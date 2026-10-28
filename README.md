@@ -18,3 +18,4 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | `assets/brand/` | Logo kit: mark, full logo, app icon (favicon.ico sits at the root) |
 | `assets/site.css` | Shared styles for home and About (story pages carry their own) |
 | `404.html` | Page-not-found |
+| `tools/share-cards.js` | Builds the link-preview images (`share.png` per story, `assets/share-home.png`). Claude runs it. |
