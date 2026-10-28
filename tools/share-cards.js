@@ -92,6 +92,28 @@ function shotDietCard(curve) {
   </div>`;
 }
 
+function roleCallCard(stab) {
+  const rows = stab.map((s) => `<div class="rb"><span>${s.label}</span><i><b style="width:${Math.max(0, s.r) * 100}%;background:${s.group === "role" ? C.orange : C.slateDark}"></b></i><em>${s.r.toFixed(2)}</em></div>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr 430px; grid-template-rows: 1fr auto; column-gap: 48px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 22px; }
+    h1 { font: 700 104px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .bars { align-self: center; display: grid; gap: 14px; }
+    .rb { display: grid; grid-template-columns: 190px 1fr 50px; align-items: center; gap: 12px; font: 400 18px "IBM Plex Sans"; color: ${C.sub}; }
+    .rb i { height: 14px; background: ${C.rule}; border-radius: 3px; position: relative; }
+    .rb b { position: absolute; inset: 0 auto 0 0; border-radius: 3px; }
+    .rb em { font: 500 18px "IBM Plex Mono"; font-style: normal; color: ${C.mist}; text-align: right; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 26px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Data story</p><h1>Role Call</h1>
+      <p class="dek">One week in, a player's role is real. His shooting isn't, yet.</p></div>
+    <div class="bars">${rows}</div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -107,9 +129,12 @@ function homeCard() {
   const D = JSON.parse(story.match(/const D = (\{.*?\});\n/s)[1]);
   const sd = fs.readFileSync(path.join(ROOT, "stories/shot-diet/index.html"), "utf8");
   const SD = JSON.parse(sd.match(/const D = (\{.*?\});\n/s)[1]);
+  const rc = fs.readFileSync(path.join(ROOT, "stories/role-call/index.html"), "utf8");
+  const RC = JSON.parse(rc.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["stories/early-season-mirage/share.png", storyCard(D.curve5.avg)],
     ["stories/shot-diet/share.png", shotDietCard(SD.curve.avg)],
+    ["stories/role-call/share.png", roleCallCard(RC.stab)],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();

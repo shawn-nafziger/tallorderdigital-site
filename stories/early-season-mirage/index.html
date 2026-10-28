@@ -70,6 +70,7 @@ strong { font-weight: 600; color: var(--ink); }
 .amber { color: var(--amber); font-weight: 600; }
 .navy { color: var(--navy); font-weight: 600; }
 
+.stats-note { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 680px; margin-top: -40px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
 .stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
 .stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
@@ -164,6 +165,7 @@ body { margin: 0; }
     <div class="stat" role="listitem"><b id="st-k">14 games</b><span>Until it becomes a good guide, with the correlation passing 0.7 (five-season average)</span></div>
     <div class="stat" role="listitem"><b id="st-move">7.5</b><span>Places the average team moves in the net-rating rankings between game 4 and season's end</span></div>
   </div>
+  <p class="stats-note"><strong>How to read the first number:</strong> it's a correlation, a score from 0 to 1.0 for how well a team's first games predict the rest of its season. 0 means they tell you nothing; 1.0 means they predict it perfectly. Around 0.7 and up, early numbers are a good guide.</p>
 
   <section>
     <div class="prose">
