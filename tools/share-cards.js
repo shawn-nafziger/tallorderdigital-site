@@ -114,6 +114,34 @@ function roleCallCard(stab) {
   </div>`;
 }
 
+function newSpotsCard(pl) {
+  const R = 15, pts = [30, 90, 150, 210, 270, 330].map((d) => [Math.cos(d * Math.PI / 180) * R, Math.sin(d * Math.PI / 180) * R]);
+  const courtSvg = (hexes, total, label) => {
+    const hx = hexes.map(([x, y, c]) => `<polygon points="${pts.map(([dx, dy]) => `${(x + dx).toFixed(1)},${(y + dy).toFixed(1)}`).join(" ")}" fill="${C.mist}" fill-opacity="${Math.max(0.12, Math.min(1, Math.sqrt(c / total / 0.06))).toFixed(2)}"/>`).join("");
+    const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2), ln = `stroke="${C.slateDark}" stroke-width="3" fill="none"`;
+    return `<div class="ct"><p>${label}</p><svg viewBox="-250 -52 500 330">${hx}
+      <rect x="-80" y="-47.5" width="160" height="190" ${ln}/><path d="M -60 142.5 A 60 60 0 0 0 60 142.5" ${ln}/>
+      <line x1="-250" y1="-47.5" x2="250" y2="-47.5" ${ln}/><line x1="-220" y1="-47.5" x2="-220" y2="${c3}" ${ln}/><line x1="220" y1="-47.5" x2="220" y2="${c3}" ${ln}/>
+      <path d="M -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3}" ${ln}/><circle cx="0" cy="0" r="7.5" ${ln}/></svg></div>`;
+  };
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 88px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .courts { align-self: center; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ct p { font: 500 17px "IBM Plex Mono"; color: ${C.sub}; margin-bottom: 8px; }
+    .ct svg { width: 100%; display: block; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Data story</p><h1>New Team, New Spots</h1>
+      <p class="dek">${pl.name}'s shot map, ${pl.from} vs ${pl.t}. One week in, where players shoot is already real.</p></div>
+    <div class="courts">${courtSvg(pl.hexl, pl.nl, "2025-26 · " + pl.from)}${courtSvg(pl.hexn, pl.n, "2026-27 · " + pl.t)}</div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -131,10 +159,13 @@ function homeCard() {
   const SD = JSON.parse(sd.match(/const D = (\{.*?\});\n/s)[1]);
   const rc = fs.readFileSync(path.join(ROOT, "stories/role-call/index.html"), "utf8");
   const RC = JSON.parse(rc.match(/const D = (\{.*?\});\n/s)[1]);
+  const ns = fs.readFileSync(path.join(ROOT, "stories/new-spots/index.html"), "utf8");
+  const NS = JSON.parse(ns.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["stories/early-season-mirage/share.png", storyCard(D.curve5.avg)],
     ["stories/shot-diet/share.png", shotDietCard(SD.curve.avg)],
     ["stories/role-call/share.png", roleCallCard(RC.stab)],
+    ["stories/new-spots/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();
