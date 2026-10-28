@@ -15,5 +15,6 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | `index.html` | Home page: latest stories |
 | `about/` | About and contact |
 | `stories/` | One folder per story |
+| `assets/brand/` | Logo kit: mark, full logo, app icon (favicon.ico sits at the root) |
 | `assets/site.css` | Shared styles for home and About (story pages carry their own) |
 | `404.html` | Page-not-found |
