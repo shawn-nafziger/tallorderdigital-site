@@ -203,7 +203,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
       <h2>Whose role changed</h2>
       <p>Each dot is one player. <strong>Across:</strong> how his minutes per game changed since last season. <strong>Up:</strong> how his <button type="button" class="term" data-term="usg">usage</button> changed, meaning how much of the offense runs through him.</p>
       <p>The gray box shows what a normal first week looks like: about ±10 minutes and ±6 usage points of random <button type="button" class="term" data-term="wobble">wobble</button>. Being inside the box isn't good or bad. It means we can't yet tell his change from noise.</p>
-      <p>Orange dots are outside the box: a change bigger than a noisy week explains, so it reflects a real decision about that player's role. <strong>47 of 249</strong> players are there. Whether that's good news depends on the player. More minutes for a second-year player is usually good; a smaller share for a star on a new team is a question.</p>
+      <p>Orange dots are outside the box: a change bigger than a noisy week explains, so it reflects a real decision about that player's role. <strong>47 of 249</strong> players are there. Light orange dots are at the edge: at least 80% of the way out of the box, so probably real but not yet certain. Whether that's good news depends on the player. More minutes for a second-year player is usually good; a smaller share for a star on a new team is a question.</p>
     </div>
     <figure class="figure" style="margin:0">
       <div class="fig-head">
@@ -213,7 +213,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
         </div>
         <div class="picker" id="move-picker" aria-label="Show"></div>
       </div>
-      <div class="legend"><span><i class="dot" style="background:var(--amber)"></i>Changed more than a normal week</span><span><i class="dot" style="background:var(--ghost)"></i>Inside normal week-1 wobble</span><span><i class="ring" style="border-color:var(--ink-2)"></i>Hollow dot: new team this season</span><span><i class="bar" style="height:10px;width:16px;border-radius:2px"></i>Gray box: a normal first week</span></div>
+      <div class="legend"><span><i class="dot" style="background:var(--amber)"></i>Changed more than a normal week</span><span><i class="dot" style="background:var(--amber);opacity:.45"></i>At the edge of the box</span><span><i class="dot" style="background:var(--ghost)"></i>Inside normal week-1 wobble</span><span><i class="ring" style="border-color:var(--ink-2)"></i>Hollow dot: new team this season</span><span><i class="bar" style="height:10px;width:16px;border-radius:2px"></i>Gray box: a normal first week</span></div>
       <div class="chart" id="scatter"></div>
       <details>
         <summary>Show players outside the box as a table (* = new team)</summary>
@@ -228,7 +228,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
       <ul style="margin:0;padding-left:20px;display:grid;gap:8px">
         <li><strong>New team, smaller share.</strong> Jaylen Brown (BOS to PHI) is using 24.9% of plays, down from 35.1%, while playing more minutes (34.4 to 36.8). Ja Morant (MEM to POR): 30.5% to 20.7%. Jonathan Kuminga (GSW/ATL to MIN) is playing 29.8 minutes a game, up from 23.1, but his usage fell from 22.6% to 14.2%.</li>
         <li><strong>Bigger share of the offense.</strong> Naz Reid (MIN to CHA): 21.3% to 28.1%. Brandon Miller: 27.2% to 34.4%. Duncan Robinson (15.2% to 21.3%) is the player behind Detroit's new <a href="../shot-diet/">shot diet</a>. Anthony Edwards, already a high-usage star, is up to 36.7%, right at the edge of the box.</li>
-        <li><strong>More minutes.</strong> Khaman Maluach went from 8.9 to 23.4 minutes a game. Dylan Harper (22.6 to 31.1) is just inside the box: probably real, but not yet beyond what a noisy week could do.</li>
+        <li><strong>More minutes.</strong> Khaman Maluach went from 8.9 to 23.4 minutes a game. Dylan Harper (22.6 to 31.1) is at the edge of the box: probably real, but not yet beyond what a noisy week could do.</li>
       </ul>
       <p>Same team, smaller role happens too: Alex Sarr's usage is 13.8%, down from 25.2%.</p>
     </div>
@@ -241,7 +241,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
       <li><strong>Data:</strong> player box scores for the 2025-26 regular season and 2026-27 through Oct 27 (56 games), from the NBA Stats API via the open-source <code>nba_api</code> client.</li>
       <li><strong>Usage %</strong> is the NBA's per-game usage, averaged with each game weighted by minutes played. <strong>True shooting %</strong> = points ÷ (2 × (FGA + 0.44 × FTA)), from totals.</li>
       <li><strong>Predictive test:</strong> among the 367 players with 40+ games in 2025-26, the correlation between each player's first 4 games and his games 5 to 82. Rate stats need 40+ minutes in the first 4 games. Part of the high correlation for minutes and usage comes from stars staying stars, which is why changes are judged against the wobble instead.</li>
-      <li><strong>Wobble:</strong> the standard deviation of (first 4 games − full season) for the same players: 5.2 minutes per game and 3.0 usage points. The box is ±2 of those. Players with 3 games played wobble a bit more.</li>
+      <li><strong>Wobble:</strong> the standard deviation of (first 4 games − full season) for the same players: 5.2 minutes per game and 3.0 usage points. The box is ±2 of those. "At the edge" (light orange) means at least 80% of the way to the box's edge. Players with 3 games played wobble a bit more.</li>
       <li><strong>Who is shown:</strong> 249 players with 3+ games this season and 20+ last season who play 15+ minutes a game in either season. 27 rotation players without a 2025-26 baseline (rookies and returning players) aren't shown.</li>
       <li><strong>Limits:</strong> one season of history for the test. The story describes what changed, not why; it doesn't account for injuries, opponents or blowouts.</li>
     </ul>
@@ -267,6 +267,7 @@ function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classLis
 
 const P = D.players, W2 = { m: 2 * D.wobble.mpg, u: 2 * D.wobble.usg };
 const outside = p => Math.abs(p.dm) > W2.m || Math.abs(p.du) > W2.u;
+const near = p => !outside(p) && (Math.abs(p.dm) >= 0.8 * W2.m || Math.abs(p.du) >= 0.8 * W2.u);
 
 /* ---------- 1. Stability bars ---------- */
 function drawStab() {
@@ -296,12 +297,12 @@ function drawScatter() {
   el("text", { x: W - m.r, y: H - 4, "text-anchor": "end" }, s, "More minutes →");
   if (W >= 600) el("text", { x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle", style: "font-size:11px" }, s, "Change in minutes per game");
   const vis = P.filter(p => show === "all" || (show === "moved") === p.moved);
-  const order = vis.slice().sort((a, b) => outside(a) - outside(b));
+  const order = vis.slice().sort((a, b) => (outside(a) * 2 + near(a)) - (outside(b) * 2 + near(b)));
   order.forEach(p => {
     const o = outside(p), cx = x(p.dm), cy = y(p.du);
     const g = el("g", { tabindex: o ? 0 : -1, "aria-label": `${p.name}, ${p.t}: ${p.mpgl} to ${p.mpg} minutes, usage ${p.usgl}% to ${p.usg}%` }, s);
-    const col = o ? css("--amber") : css("--ghost");
-    el("circle", { cx, cy, r: 4.5, fill: p.moved ? css("--surface") : col, stroke: p.moved ? col : css("--surface"), "stroke-width": p.moved ? 2 : 1, "fill-opacity": o || p.moved ? 1 : .7 }, g);
+    const nr = near(p), col = o || nr ? css("--amber") : css("--ghost");
+    el("circle", { cx, cy, r: 4.5, fill: p.moved ? css("--surface") : col, stroke: p.moved ? col : css("--surface"), "stroke-width": p.moved ? 2 : 1, "fill-opacity": o || p.moved ? 1 : nr ? .45 : .7, "stroke-opacity": nr && p.moved ? .55 : 1 }, g);
     el("circle", { cx, cy, r: 10, fill: "transparent" }, g);
     const tip = e => { const hr = host.getBoundingClientRect(); const px = e.clientX != null ? e.clientX - hr.left : cx; const py = e.clientY != null ? e.clientY - hr.top : cy;
       showTip(host, `<b>${p.name}</b>, ${p.t}${p.moved ? ` (was ${p.from})` : ""}<br>Minutes: ${p.mpgl} → ${p.mpg} (${fmt(p.dm)})<br>Usage: ${p.usgl}% → ${p.usg}% (${fmt(p.du)})<br>Points: ${p.ppgl} → ${p.ppg} a game · ${p.g} games`, px, py); };
