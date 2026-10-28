@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Early-Season Mirage · Tall Order Digital</title>
+<meta name="description" content="Four games into an NBA season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="The Early-Season Mirage">
+<meta property="og:description" content="Four games into an NBA season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #142233;
+  --ink-2: #4a5a6b;
+  --ink-3: #7b8896;
+  --rule: #d9dfe5;
+  --ghost: #8b9aaa;
+  --navy: #172b40;
+  --amber: #e8940f;
+  --funnel: #dce3eb;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --font-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
+    --rule: #263445; --ghost: #5d6e80; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
+  --rule: #263445; --ghost: #5d6e80; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 800; letter-spacing: .01em; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(56px, 12vw, 112px); }
+h2 { font-size: clamp(30px, 5.5vw, 44px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+.navy { color: var(--navy); font-weight: 600; }
+
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat b { font: 800 clamp(40px, 7vw, 60px)/.9 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 10px 18px; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lbl { fill: var(--ink-2); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 500; font-size: 12px; }
+.source { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend .dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ghost); background: transparent; box-sizing: border-box; }
+.legend .bar { width: 16px; height: 6px; border-radius: 3px; background: var(--funnel); }
+
+.picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.picker button { font: 500 12px/1 var(--font-data); padding: 7px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.picker button:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
+.tip b { font-weight: 600; }
+.tip.on { opacity: 1; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.brand { font: 800 20px/1 var(--font-display); letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../">Tall Order Digital</a>
+  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../about/">About</a></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">NBA · 2026-27 · Week 2</p>
+    <h1>The Early-Season Mirage</h1>
+    <p class="dek">Four games into an NBA season, a team's <button type="button" class="term" data-term="net">net rating</button> is mostly noise. We replayed every game of the last five seasons to measure when the numbers start telling the truth.</p>
+    <p class="byline">By Shawn Nafziger · Data through Oct 27, 2026</p>
+  </header>
+
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b id="st-r4">0.41</b><span>How well a team's net rating after 4 games predicts the rest of its season (<button type="button" class="term" data-term="corr">correlation</button>, 1.0 = perfect; five-season average)</span></div>
+    <div class="stat" role="listitem"><b id="st-k">8 games</b><span>Until it becomes a good guide, with the correlation passing 0.7 (five-season average)</span></div>
+    <div class="stat" role="listitem"><b id="st-move">7.6</b><span>Places the average team moves in the net-rating rankings between game 4 and season's end</span></div>
+  </div>
+
+  <section>
+    <div class="prose">
+      <h2>Every team starts as a rumor</h2>
+      <p>Net rating is the point differential per 100 <button type="button" class="term" data-term="poss">possessions</button>: the best single number for how good a team is. After one game last season, it ranged from <strong id="rng1">−33 to +33</strong>. By April, last season's 30 teams fit between <strong id="rngF">−11.5 and +10.9</strong>.</p>
+      <p>The shaded funnel shows how far an exactly average team would drift by luck alone. Early on, almost every team is inside it.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">Net rating after each game, 2025-26 (all 30 teams)</p>
+          <p class="fig-sub">Pick a team to follow its path. Hover to read any team.</p>
+        </div>
+        <div class="picker" id="fan-picker" aria-label="Highlight a team"></div>
+      </div>
+      <div class="chart" id="fan"></div>
+      <div class="legend"><span><i style="background:var(--amber)"></i><span id="fan-legend-team">Chicago Bulls</span></span><span><i style="background:var(--ghost);opacity:.6"></i>Other teams</span><span><i class="bar"></i><button type="button" class="term" data-term="range">90% range</button> for an average team, from luck alone</span></div>
+      <p class="source">Net rating = 100 × (points − opponent points) ÷ possessions, from cumulative totals. Source: NBA Stats API.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>When the numbers start to mean something</h2>
+      <p>To test how much an early rating really says, compare a team's rating after its first <em>k</em> games with how it played in <em>all the games that followed</em>. Comparing against the full-season number would cheat, because the early games are part of the final total.</p>
+      <p>Averaged over five seasons, net rating reaches <strong>0.5 by game 6</strong> and <strong>0.7 by game <span class="k07">14</span></strong>. Seasons differ: 2024-25 got there by game 7, while 2021-22 never did. The curve then levels off around 0.7, because teams genuinely change during a season through injuries, trades and late-season tanking.</p>
+      <p>Defense is the noisiest of all. <button type="button" class="term" data-term="drtg">Defensive rating</button> barely gets past 0.5 on average, so early "elite defense" headlines deserve the most skepticism.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">How well the first <em>k</em> games predict the rest of the season</p>
+          <p class="fig-sub">Correlation across 30 teams. Five-season average in bold, each season faint. Hover for values.</p>
+        </div>
+        <div class="picker" id="curve-picker" aria-label="Choose a rating"></div>
+      </div>
+      <div class="chart" id="curve"></div>
+      <div class="legend"><span><i id="curve-key" style="background:var(--s1)"></i>Five-season average</span><span><i style="background:var(--ghost);opacity:.6"></i>Single seasons, 2021-22 to 2025-26</span></div>
+      <p class="source">Correlation of each team's rating over games 1–k with its rating over games k+1–82, regular seasons 2021-22 to 2025-26. Source: NBA Stats API.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Early leaders, late fades</h2>
+      <p>Rankings tell the same story. <span class="amber">Chicago</span> was 5th after four games and finished 22nd. <span class="navy">Detroit</span> was 20th and finished 3rd. Some early signals were real: San Antonio was 1st after four games and finished 2nd.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">Net-rating rank after 4 games vs. final rank, 2025-26</p>
+          <p class="fig-sub" id="slope-sub">Teams that moved 10 or more places are colored. Hover a line for details.</p>
+        </div>
+        <div class="legend"><span><i style="background:var(--amber)"></i>Fell 10+ places</span><span><i style="background:var(--navy)"></i>Rose 10+ places</span></div>
+      </div>
+      <div class="chart" id="slope"></div>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Last season knows more than you think</h2>
+      <p>Early games aren't the only evidence. Last season's net rating, before any offseason moves are accounted for, is a steady predictor all year. For the <strong>first five games, it predicts the rest of the season better than the new season's own results do</strong>. The current season's games overtake it around game 6.</p>
+      <p>Using both beats either one alone, and that's how the estimates below are built.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">Predicting rest-of-season net rating: this season, last season, or both</p>
+          <p class="fig-sub">Correlation with games k+1–82, pooled across 2022-23 to 2025-26 (120 team-seasons). Hover for values.</p>
+        </div>
+        <div class="legend"><span><i style="background:var(--s1)"></i>This season so far</span><span><i style="background:var(--s2)"></i>Last season's rating</span><span><i style="background:var(--ink)"></i>Both combined</span></div>
+      </div>
+      <div class="chart" id="prior"></div>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>So what do we know about this season?</h2>
+      <p>Four games in, the <button type="button" class="term" data-term="est">best estimate</button> of each team's rest-of-season net rating leans <strong>more on last season than on this one</strong>. Chicago's −17 start becomes about −5.5, close to where it finished last year. Minnesota's +16 start nudges its estimate from last season's +3.2 to about +4.5.</p>
+      <p>The ranges are wide on purpose. They describe how the rest of the season could realistically go, and they don't know about trades, injuries or new coaches.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">2026-27 net rating so far, and the best estimate for the rest of the season</p>
+          <p class="fig-sub" id="now-sub">Regular season through Oct 27. Hover a team for details.</p>
+        </div>
+        <div class="legend"><span><i class="ring"></i>2026-27 so far</span><span><i class="dot" style="background:var(--ink)"></i>Best estimate, rest of season</span><span><i class="bar"></i>90% range</span><span><i style="background:var(--s2);width:2px;height:12px"></i>2025-26 final</span></div>
+      </div>
+      <div class="chart" id="now"></div>
+      <details>
+        <summary>Show as a table</summary>
+        <div class="tablewrap"><table id="now-table"><thead><tr><th>Team</th><th>Games</th><th>Net so far</th><th>2025-26</th><th>Best estimate</th><th>90% range</th></tr></thead><tbody></tbody></table></div>
+      </details>
+    </figure>
+    <p class="callout">Check back around game <span class="k07">14</span>. Over the last five seasons, that's when a team's own results became a good guide to the rest of its year.</p>
+  </section>
+
+  <section class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>Data:</strong> every regular-season game from 2021-22 to 2025-26 (6,150 games) and 2026-27 through Oct 27 (56 games), from the NBA Stats API via the open-source <code>nba_api</code> client. 2019-20 and 2020-21 are excluded (bubble, shortened schedules, empty arenas).</li>
+      <li><strong>Ratings</strong> are built from cumulative totals, never averages of single-game ratings. Possessions are estimated as FGA + 0.44 × FTA − offensive rebounds + turnovers. Against the NBA's own possession counts for 2025-26, season net ratings differ by at most 0.15 and every team's rank is identical.</li>
+      <li><strong>Predictive test:</strong> Pearson correlation across the 30 teams between games 1–k and games k+1–82, so the early games never appear on both sides.</li>
+      <li><strong>Noise model:</strong> a team's single-game net rating varies by about <span id="m-noise">15.4</span> points (standard deviation), while true team quality varies by about <span id="m-true">5.9</span>. Signal and noise are equal at about <span id="m-khalf">7</span> games, consistent with the correlation curve.</li>
+      <li><strong>Best estimate:</strong> a linear regression of rest-of-season net rating on (a) net rating so far and (b) last season's final net rating, fitted at the same game count across four season pairs (120 team-seasons). The 90% range comes from the regression's typical error.</li>
+      <li><strong>Limits:</strong> five seasons of history. The estimate doesn't know about offseason trades, injuries or coaching changes, and makes no adjustment for opponents or rest. The highlighted paths and rankings use 2025-26 as the example season.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital · <a href="../../">More stories</a></p>
+</footer>
+
+<script>
+const D = {"paths":{"ATL":[-17.5,-7.3,-10.5,-9.1,-6.4,-2.1,-2.9,-0.7,-1.9,0.2,0.4,3.1,3.5,3.4,2.7,2.0,2.8,2.9,1.7,2.0,2.2,2.1,1.0,1.0,1.5,0.4,0.5,0.3,-0.7,-0.7,-0.8,-1.2,-1.2,-1.5,-0.8,-0.5,-0.9,-1.3,-0.9,-0.3,0.0,-0.6,-0.9,-1.4,-1.5,-1.4,-1.2,-0.9,-0.6,-1.0,-1.0,-0.8,-0.8,-0.9,-1.2,-1.3,-1.1,-1.6,-1.4,-1.0,-0.5,0.0,0.3,0.4,0.6,0.7,1.1,1.2,1.4,1.1,1.3,1.8,1.8,1.7,1.8,1.9,2.2,2.6,2.5,2.4,2.6,2.3],"BKN":[-17.6,-12.0,-11.7,-15.9,-13.7,-15.2,-15.3,-12.3,-12.8,-15.2,-14.7,-14.1,-11.3,-11.5,-10.2,-10.2,-10.4,-10.5,-10.8,-9.6,-8.7,-8.9,-7.7,-7.7,-5.6,-5.8,-5.1,-4.6,-3.9,-4.2,-4.9,-5.3,-4.8,-4.7,-5.0,-5.0,-5.1,-5.0,-4.8,-5.3,-5.4,-6.5,-6.5,-7.2,-7.1,-7.0,-6.7,-7.7,-7.8,-8.1,-7.6,-7.3,-7.3,-7.7,-7.9,-7.9,-7.9,-8.1,-8.6,-8.5,-8.8,-8.9,-8.7,-8.4,-8.9,-8.9,-8.9,-9.0,-9.3,-9.2,-9.1,-9.5,-9.4,-9.5,-9.1,-9.4,-9.7,-9.5,-9.3,-9.6,-9.7,-10.0],"BOS":[-1.0,-5.5,-5.6,3.7,7.0,6.0,1.3,0.9,4.0,2.3,2.5,2.1,4.7,4.6,5.2,4.4,4.7,4.6,4.2,4.0,4.2,6.0,6.7,6.8,5.9,5.4,5.7,6.0,6.1,6.5,6.1,6.2,6.4,7.2,7.4,7.1,7.1,6.8,6.6,6.5,7.0,6.8,7.0,6.9,6.7,6.7,6.3,6.6,7.1,7.1,7.4,7.3,6.8,7.0,7.1,7.3,7.5,7.1,7.6,7.7,8.1,7.5,7.7,7.7,7.5,7.3,7.4,7.4,7.6,7.5,7.3,7.3,7.3,7.4,7.2,7.4,7.7,7.8,7.8,7.6,7.9,7.8],"CHA":[17.7,7.0,12.7,3.2,-0.4,-3.0,0.5,0.0,-1.9,-2.7,-1.5,-2.4,-3.2,-3.1,-3.5,-4.2,-4.1,-5.4,-4.7,-4.1,-4.5,-5.0,-3.7,-3.9,-3.9,-3.4,-3.1,-3.8,-3.9,-3.3,-2.7,-2.9,-3.0,-3.0,-2.5,-1.7,-1.7,-1.7,-0.3,-0.5,-0.1,-0.5,0.0,-0.2,0.4,0.5,1.3,1.5,1.6,1.6,1.7,1.9,2.0,1.8,1.8,1.7,1.6,1.9,2.4,2.7,3.0,3.3,3.8,3.6,3.3,3.3,3.4,3.1,3.5,3.7,4.0,4.6,4.6,4.5,4.3,4.6,4.8,5.0,5.1,4.9,4.7,4.8],"CHI":[3.7,7.5,6.5,8.0,8.4,5.1,4.7,2.2,1.3,0.8,-0.3,-0.5,-0.2,-0.1,-2.4,-2.2,-2.7,-3.0,-2.9,-3.0,-3.3,-3.8,-5.0,-4.6,-4.8,-4.1,-3.5,-3.3,-3.1,-2.8,-3.0,-3.9,-3.4,-3.1,-3.3,-3.6,-3.9,-3.4,-3.4,-3.3,-3.3,-2.7,-2.0,-1.9,-1.8,-2.0,-2.0,-2.0,-1.8,-2.6,-2.9,-3.1,-3.3,-3.4,-3.7,-3.8,-4.0,-4.0,-4.5,-4.5,-4.1,-4.1,-4.1,-4.2,-4.1,-4.2,-4.3,-3.9,-4.2,-4.2,-4.1,-4.3,-4.4,-4.4,-4.5,-4.7,-5.1,-5.2,-4.7,-4.5,-4.8,-4.9],"CLE":[-7.6,-0.5,1.3,5.8,0.9,-1.0,0.3,1.5,4.8,4.9,4.3,5.0,3.7,4.0,4.5,3.6,4.0,4.6,3.8,3.3,3.0,3.6,3.0,3.4,3.0,3.1,2.7,2.0,1.6,1.8,2.4,2.3,1.7,2.0,2.4,2.4,2.3,2.3,2.0,2.3,2.0,2.5,2.5,1.7,1.8,1.9,2.2,2.4,3.0,2.7,3.0,3.5,3.6,3.5,3.9,4.3,4.3,4.1,4.3,4.2,4.1,4.1,4.1,3.9,4.0,3.9,4.3,4.1,4.1,4.1,4.2,4.2,3.9,4.1,4.2,3.9,4.0,4.0,4.2,4.2,3.9,4.0],"DAL":[-32.5,-20.2,-10.2,-9.5,-7.2,-7.9,-7.9,-7.2,-7.9,-6.5,-6.1,-6.3,-6.1,-5.3,-6.5,-6.2,-5.7,-5.7,-5.6,-5.8,-5.3,-4.7,-4.1,-4.7,-4.1,-3.6,-3.7,-3.5,-3.6,-3.7,-3.5,-3.7,-3.8,-3.8,-4.1,-3.8,-3.6,-3.6,-3.9,-3.7,-3.8,-3.2,-2.7,-2.3,-2.1,-2.1,-2.4,-2.3,-2.4,-2.5,-2.7,-2.9,-3.0,-3.3,-3.4,-3.3,-3.1,-3.2,-3.4,-3.6,-3.9,-3.9,-4.1,-4.5,-4.6,-4.4,-4.9,-4.6,-4.8,-5.0,-5.0,-5.0,-5.0,-4.8,-5.2,-5.4,-5.5,-5.3,-5.4,-5.4,-5.6,-5.2],"DEN":[-5.6,7.5,9.1,15.2,11.8,10.7,10.5,12.3,12.7,12.9,13.0,12.8,11.6,11.2,10.8,9.8,9.8,9.1,9.6,8.6,8.9,8.5,8.5,9.5,9.2,9.2,8.4,8.9,8.5,8.3,8.0,7.1,7.0,6.6,6.1,5.9,5.9,5.2,5.1,5.1,5.2,5.3,4.6,4.3,4.5,4.4,4.3,4.3,4.5,4.2,4.0,3.8,4.0,3.9,4.0,3.9,4.7,4.5,4.7,4.5,4.3,4.3,4.3,3.7,3.6,4.0,4.0,4.0,4.3,4.1,4.2,4.3,4.3,4.3,4.3,4.6,4.7,4.6,4.6,4.8,5.0,5.0],"DET":[-3.8,0.0,1.9,-3.5,0.8,2.5,3.3,4.2,5.7,5.4,5.0,5.5,5.7,6.4,6.5,6.8,6.7,6.2,5.7,5.6,5.3,4.9,5.0,5.2,6.1,6.1,5.8,6.4,6.5,6.6,6.3,5.7,6.2,5.8,5.8,6.4,6.7,6.3,6.3,7.1,7.0,7.0,6.7,7.0,6.9,6.4,6.4,7.3,7.2,6.9,7.5,7.5,7.7,7.8,7.9,7.6,7.6,7.5,7.6,7.4,7.1,6.9,6.7,7.1,7.4,7.5,7.2,7.3,7.5,7.6,7.5,7.4,7.6,7.8,7.6,7.7,7.6,7.8,7.5,7.7,7.9,7.9],"GSW":[9.9,7.6,-1.3,2.1,5.4,2.9,1.8,2.9,2.0,-0.6,2.2,0.1,0.4,0.5,1.6,1.0,0.2,-0.1,0.8,0.6,0.9,0.4,0.3,0.5,1.7,1.4,1.2,1.1,1.1,1.8,2.1,1.6,1.9,2.1,1.0,1.2,1.2,1.3,2.1,1.8,2.2,2.5,2.9,3.3,2.9,2.6,3.1,2.5,2.8,2.6,2.2,2.2,2.1,2.0,1.8,1.6,1.7,1.6,1.9,1.5,1.2,1.2,1.1,1.1,0.9,0.8,0.7,0.8,0.5,0.3,0.1,0.2,0.2,0.3,-0.0,-0.2,-0.3,-0.3,-0.2,-0.4,-0.5,-0.5],"HOU":[-0.8,-2.3,7.2,9.8,13.1,12.2,12.4,9.6,9.4,10.7,11.9,11.1,11.1,10.1,10.9,10.5,11.5,10.4,11.2,11.5,10.4,10.0,9.4,8.8,9.0,8.6,7.6,8.2,8.5,8.4,8.9,8.5,8.3,8.0,7.6,7.1,7.1,6.4,6.3,6.4,6.4,6.0,6.1,6.1,5.7,6.0,6.0,5.9,5.4,5.1,5.1,5.1,5.0,5.0,4.9,5.1,5.6,5.6,5.3,5.3,5.2,5.2,4.7,4.9,4.2,4.2,4.0,3.9,4.1,4.1,3.9,3.8,3.9,4.3,4.5,4.5,4.9,4.8,4.9,5.0,4.9,5.2],"IND":[-4.8,-13.7,-10.6,-8.3,-10.3,-8.0,-7.1,-7.3,-8.3,-10.3,-11.4,-13.3,-13.6,-13.6,-12.2,-12.1,-11.7,-11.1,-8.9,-8.4,-8.7,-9.0,-8.0,-7.3,-7.4,-7.8,-7.6,-8.0,-8.0,-8.3,-8.6,-9.1,-9.0,-8.8,-8.8,-8.8,-8.6,-8.4,-7.5,-7.3,-7.5,-7.1,-7.9,-7.9,-8.1,-7.8,-8.0,-7.8,-7.5,-7.4,-7.5,-7.4,-7.6,-7.4,-7.2,-7.2,-7.3,-7.2,-7.4,-7.7,-7.9,-8.1,-8.1,-8.3,-8.2,-8.3,-8.4,-8.4,-8.6,-8.6,-8.7,-8.6,-8.5,-8.4,-8.1,-7.8,-7.9,-7.9,-8.1,-7.6,-7.7,-7.7],"LAC":[-21.6,3.1,4.4,-1.5,-0.8,-0.8,-3.4,-4.7,-5.4,-5.2,-6.1,-4.9,-4.8,-4.6,-6.1,-4.8,-5.4,-6.0,-6.0,-5.9,-6.4,-5.0,-5.2,-5.1,-5.0,-5.5,-6.1,-5.3,-4.5,-3.8,-3.3,-1.9,-1.3,-2.2,-2.1,-2.4,-1.9,-1.7,-1.4,-1.0,-0.9,-0.8,-1.4,-1.2,-0.4,-0.1,-0.4,0.1,-0.2,-0.8,-0.8,-0.4,-0.5,-0.4,-0.4,-0.5,-0.5,-0.6,-0.2,0.0,0.4,0.3,0.4,0.5,0.9,1.0,0.9,0.8,0.6,0.5,0.6,1.0,1.3,1.3,1.5,1.4,1.1,1.4,1.6,1.3,1.1,1.1],"LAL":[-9.8,4.1,4.9,0.2,0.4,1.1,2.3,3.0,2.9,0.7,1.5,-1.0,0.2,1.8,2.6,2.6,3.4,3.8,4.2,3.1,3.1,2.1,2.1,1.5,1.5,1.8,1.2,0.3,-0.5,0.3,-0.4,-0.2,0.0,0.2,-0.2,-0.3,-0.6,0.0,-0.4,-0.8,-0.4,-0.2,-0.4,-0.2,0.0,-0.6,0.0,-0.2,0.1,0.2,0.3,0.1,-0.4,-0.0,0.0,-0.4,-0.4,-0.4,0.1,0.5,0.6,0.5,0.6,0.8,1.0,1.2,1.2,1.3,1.4,1.5,1.5,1.4,1.5,1.7,1.9,2.1,1.5,1.4,1.0,1.1,1.5,1.7],"MEM":[5.5,-11.5,-0.3,-3.2,-2.4,-2.8,-4.2,-4.6,-5.7,-3.8,-4.7,-5.3,-7.5,-7.5,-7.7,-4.7,-4.2,-4.5,-4.0,-3.6,-3.0,-3.2,-2.7,-1.6,-1.7,-1.0,-0.7,-1.0,-1.5,-1.1,-0.5,-0.6,-0.6,-0.8,-0.9,-0.9,-1.4,-1.3,-1.2,-1.3,-0.9,-0.9,-1.0,-1.2,-1.5,-1.6,-1.9,-1.7,-1.6,-2.0,-2.1,-2.0,-2.1,-1.9,-2.2,-2.3,-2.6,-2.2,-1.9,-2.0,-2.1,-2.1,-2.2,-2.3,-2.4,-2.6,-2.9,-2.8,-2.8,-3.1,-3.6,-3.8,-3.9,-3.9,-4.1,-4.2,-4.6,-4.7,-4.8,-5.0,-5.5,-5.8],"MIA":[-3.6,12.4,10.9,14.4,10.5,7.2,6.4,4.4,5.8,5.6,5.3,3.7,2.9,2.8,3.5,5.3,5.5,5.5,5.3,4.9,5.4,4.8,4.5,3.7,3.3,2.8,3.1,2.5,2.2,1.5,1.9,2.6,3.2,3.3,2.9,3.3,2.5,1.9,1.5,1.6,1.5,1.5,1.0,1.2,0.8,1.4,1.6,1.4,1.4,1.2,2.0,1.8,1.7,2.2,2.1,2.3,2.7,2.9,2.7,2.6,2.7,3.0,3.2,3.3,3.4,3.6,3.7,3.6,3.1,3.0,2.9,2.5,2.7,2.4,2.2,2.3,2.0,2.2,1.9,1.7,1.9,2.2],"MIL":[12.0,8.9,4.4,5.8,6.5,5.1,4.7,0.7,2.3,1.5,1.5,0.5,1.4,-0.3,-1.1,-1.6,-2.2,-2.7,-2.8,-3.1,-2.1,-2.2,-1.9,-2.5,-2.8,-2.2,-3.7,-3.8,-3.8,-3.1,-3.7,-3.3,-2.9,-2.8,-2.7,-2.2,-2.3,-2.1,-2.2,-3.0,-3.3,-3.2,-3.6,-3.6,-3.8,-4.0,-4.5,-4.1,-3.9,-3.7,-4.0,-3.8,-3.4,-2.9,-3.4,-3.1,-3.0,-3.5,-3.8,-4.2,-4.4,-4.1,-4.7,-4.8,-4.9,-5.1,-4.9,-4.9,-5.3,-5.2,-5.6,-6.0,-6.3,-6.4,-6.0,-6.0,-6.4,-6.1,-6.1,-6.3,-6.0,-6.2],"MIN":[3.8,-7.0,-3.3,-5.7,-4.7,-1.2,1.3,-1.7,2.9,5.2,5.3,6.0,4.7,6.0,6.3,5.9,5.2,4.5,4.5,4.9,5.0,5.1,5.0,4.7,4.8,5.2,4.7,4.7,4.7,4.9,4.6,4.0,4.9,4.0,4.2,4.8,5.4,5.5,5.0,4.9,5.6,5.3,5.2,4.9,4.7,4.1,4.5,4.6,4.8,5.0,4.8,4.7,4.5,4.1,4.4,4.8,4.9,4.3,4.3,4.3,4.4,4.4,4.5,4.0,3.8,3.3,3.4,3.2,3.3,3.8,3.7,3.7,3.7,3.4,3.7,3.6,3.4,3.2,3.4,3.2,3.2,3.2],"NOP":[-5.5,-4.6,-13.2,-18.2,-15.1,-17.7,-14.7,-12.7,-12.0,-13.1,-12.7,-12.8,-13.1,-13.4,-12.9,-12.2,-12.5,-11.0,-10.7,-10.6,-10.6,-10.4,-10.3,-10.6,-10.3,-9.0,-8.3,-7.8,-6.9,-6.5,-7.0,-7.0,-7.0,-7.0,-7.2,-7.4,-7.6,-7.6,-7.8,-7.1,-7.2,-7.2,-7.0,-7.0,-7.0,-7.0,-6.8,-6.4,-6.5,-6.2,-6.3,-6.3,-6.3,-6.1,-5.5,-5.6,-5.9,-5.5,-5.4,-5.1,-4.9,-5.1,-5.1,-4.9,-4.9,-4.5,-4.3,-4.2,-3.9,-3.7,-3.5,-3.6,-3.6,-3.8,-3.9,-4.3,-4.4,-4.4,-4.4,-4.1,-4.3,-4.3],"NYK":[7.5,8.9,3.2,0.0,-2.0,0.3,2.7,5.2,8.6,8.9,6.6,6.7,6.0,5.7,4.5,5.1,6.4,6.5,7.4,6.7,7.1,8.3,8.2,8.6,8.7,8.4,7.8,7.7,7.1,6.9,6.8,6.7,6.4,5.9,5.4,4.4,4.6,4.4,4.5,4.1,3.7,3.4,3.0,4.1,4.1,4.4,4.8,5.4,5.5,6.0,6.0,5.2,5.5,5.3,6.1,5.7,5.7,5.7,5.3,5.7,6.0,6.2,6.1,6.6,6.3,6.1,6.2,6.3,6.2,6.5,6.4,6.8,6.8,6.5,6.3,6.0,6.1,6.5,6.5,6.5,6.6,6.3],"OKC":[0.9,2.9,7.1,7.1,6.9,8.7,11.7,12.6,11.0,12.8,12.9,13.7,14.8,14.7,14.8,14.7,15.7,16.3,15.9,15.3,14.9,14.7,15.0,15.6,16.9,16.2,16.3,15.5,15.5,14.4,13.5,13.8,13.7,14.1,14.7,14.2,13.2,12.9,12.6,12.6,12.8,12.9,12.6,13.0,13.2,12.8,12.5,12.5,12.0,11.9,12.4,12.0,11.6,11.6,11.9,11.4,11.5,11.4,11.4,11.1,11.0,11.0,10.9,10.8,10.8,10.6,10.5,10.6,10.5,10.7,10.9,11.0,10.7,10.8,10.8,10.7,11.1,11.4,11.7,11.8,11.4,10.9],"ORL":[3.6,0.0,-3.7,-5.7,-8.2,-4.4,0.5,-1.3,0.2,-0.2,0.1,1.5,1.9,1.5,1.9,3.5,3.9,3.2,5.2,5.0,5.0,4.7,4.5,4.1,4.3,3.7,3.1,3.1,2.2,2.2,1.7,1.7,1.6,1.6,1.4,1.6,1.3,1.3,1.0,1.2,1.3,0.9,0.3,-0.0,-0.4,-0.2,0.0,-0.2,-0.9,-0.5,-0.4,-0.0,-0.2,0.5,0.4,0.4,0.5,0.4,0.1,0.4,0.4,0.8,1.4,1.5,1.5,1.6,1.4,1.3,1.0,1.0,0.9,0.8,0.9,0.2,0.2,-0.1,0.0,0.1,0.3,0.4,0.7,0.6],"PHI":[1.0,2.4,5.5,5.2,4.0,7.1,5.8,3.8,4.4,3.7,3.6,2.6,2.5,1.7,2.2,1.4,-1.0,-0.3,-0.7,0.3,0.3,1.0,0.7,1.1,1.0,1.3,1.5,1.1,0.9,0.0,0.1,0.6,0.9,0.8,1.4,1.7,1.6,1.9,1.2,1.1,1.3,1.1,1.2,1.1,0.3,0.7,0.7,0.9,1.2,1.5,1.4,1.5,1.2,0.3,0.1,-0.2,0.3,0.6,0.7,0.5,-0.2,-0.1,-0.3,-0.5,-0.3,-0.6,-0.5,-0.4,-0.8,-0.5,-0.4,-0.6,-0.4,-0.3,-0.4,-0.1,0.0,-0.3,-0.4,-0.6,-0.4,-0.2],"PHX":[3.8,-11.2,-14.5,-11.5,-9.4,-4.4,-2.2,-3.2,-1.5,-0.3,1.8,2.3,4.8,4.3,5.1,4.8,5.1,3.6,4.0,3.6,2.6,3.3,2.3,2.4,0.4,0.3,0.3,0.2,1.0,1.2,1.4,1.8,1.3,2.0,2.0,1.9,2.4,2.4,2.8,2.6,2.5,2.6,2.7,2.8,2.6,2.3,2.4,2.7,2.9,2.4,2.4,2.3,2.2,2.3,1.8,1.3,1.3,1.0,0.7,0.8,0.9,0.9,0.9,1.1,1.3,1.5,1.4,1.2,1.0,1.0,1.0,1.2,1.2,1.5,1.8,1.8,1.5,1.6,1.4,1.4,1.1,1.5],"POR":[-3.5,7.0,2.7,5.2,4.5,4.1,2.5,2.4,1.6,1.2,1.8,-0.2,-0.6,-1.7,-1.6,-1.3,-2.7,-1.9,-2.5,-2.7,-2.7,-2.1,-2.2,-3.1,-3.8,-3.5,-3.3,-3.0,-3.2,-3.2,-3.6,-3.3,-3.1,-3.8,-3.4,-3.2,-2.6,-2.5,-2.3,-2.4,-2.9,-2.4,-2.0,-1.8,-1.4,-1.7,-1.8,-1.8,-2.4,-2.7,-2.7,-2.3,-2.1,-1.8,-2.2,-1.9,-2.7,-2.4,-2.5,-2.3,-2.5,-3.0,-2.8,-2.9,-2.5,-2.5,-2.3,-2.4,-2.1,-2.0,-1.9,-2.1,-1.6,-1.1,-1.2,-0.8,-0.6,-0.5,-0.5,-0.7,-0.4,-0.3],"SAC":[-3.7,-1.5,-3.1,-3.8,-5.6,-4.3,-4.5,-3.4,-6.3,-8.2,-8.7,-10.6,-10.8,-10.9,-11.1,-12.9,-11.9,-10.9,-10.9,-10.8,-10.7,-11.3,-10.2,-10.2,-11.0,-11.1,-10.7,-10.5,-10.1,-10.0,-9.5,-10.0,-10.9,-11.0,-11.4,-11.6,-11.3,-11.9,-11.3,-10.7,-10.2,-9.7,-9.6,-9.7,-9.8,-9.7,-9.9,-10.1,-9.9,-10.1,-10.0,-9.9,-9.7,-9.7,-9.9,-10.3,-10.7,-10.8,-10.5,-10.8,-10.5,-10.7,-10.7,-10.7,-10.3,-10.0,-10.0,-9.7,-9.5,-9.8,-9.9,-9.7,-10.2,-10.1,-10.1,-10.2,-10.0,-9.8,-10.0,-10.0,-9.8,-9.8],"SAS":[31.9,17.5,15.5,16.2,14.3,9.8,8.1,8.4,8.3,7.8,6.6,6.0,6.5,6.8,6.9,5.9,6.3,6.1,5.2,5.3,5.1,4.3,4.2,4.5,4.4,5.2,6.0,6.2,6.6,6.9,6.3,5.7,5.6,5.7,5.4,5.2,5.5,5.5,5.3,4.7,5.0,5.0,5.1,4.9,5.2,4.9,5.0,4.8,4.9,5.0,5.1,5.3,5.7,5.8,6.2,6.4,6.4,6.4,6.5,6.0,6.5,6.7,6.6,6.9,6.9,6.8,6.9,6.8,7.1,7.0,7.1,7.4,7.6,7.9,8.0,8.1,8.2,8.1,8.1,8.2,8.3,8.1],"TOR":[17.4,6.4,1.2,-3.2,-6.0,-3.3,-1.1,2.4,3.4,2.1,2.8,3.6,4.7,4.5,4.8,6.3,6.5,6.7,6.5,5.8,4.5,4.4,4.1,2.9,2.5,1.8,2.1,2.3,1.6,1.1,1.7,1.0,1.4,1.4,1.3,1.7,2.1,2.1,1.9,1.8,1.5,1.8,1.6,1.2,1.6,1.8,2.0,2.0,1.5,1.2,1.3,1.3,1.6,1.8,1.5,1.6,2.1,1.9,1.8,1.9,1.6,1.5,1.9,1.7,1.5,1.6,1.7,2.1,2.0,1.7,1.9,1.5,1.7,2.3,2.1,2.0,2.4,2.2,2.5,2.6,2.4,2.8],"UTA":[21.9,10.1,7.7,5.2,0.0,-3.7,-2.9,-3.8,-7.7,-7.6,-4.8,-5.1,-4.5,-5.1,-6.7,-6.4,-7.0,-6.1,-7.2,-6.5,-5.6,-6.8,-7.8,-7.3,-6.7,-6.7,-6.5,-7.0,-7.1,-6.8,-6.2,-6.3,-6.6,-6.6,-7.0,-6.9,-6.7,-7.9,-7.4,-7.3,-7.6,-7.8,-7.9,-7.6,-7.8,-8.3,-8.4,-8.5,-8.5,-8.5,-8.2,-8.0,-7.9,-7.7,-7.1,-7.2,-7.3,-7.5,-7.5,-7.5,-7.5,-7.4,-7.2,-7.3,-7.1,-7.3,-7.3,-7.3,-7.6,-7.1,-7.1,-7.2,-7.4,-7.4,-7.6,-7.6,-7.7,-8.0,-8.3,-8.4,-7.8,-8.0],"WAS":[-12.2,-1.4,-8.9,-7.6,-9.7,-12.8,-13.3,-15.1,-16.9,-15.8,-14.4,-15.1,-15.6,-15.3,-16.2,-15.2,-13.3,-14.4,-13.5,-13.7,-15.1,-15.1,-14.6,-13.3,-13.7,-12.9,-12.8,-13.0,-11.9,-11.3,-11.4,-11.0,-10.1,-10.5,-10.0,-10.3,-10.6,-10.8,-10.8,-10.9,-10.8,-10.6,-10.6,-10.5,-10.1,-9.7,-10.1,-9.8,-10.3,-9.9,-9.9,-10.3,-10.6,-10.2,-9.8,-10.0,-10.1,-10.4,-10.4,-10.3,-10.4,-10.4,-10.6,-10.7,-10.6,-10.6,-10.5,-10.6,-10.7,-10.9,-11.2,-10.7,-10.6,-10.9,-11.0,-11.1,-11.2,-11.1,-11.3,-11.3,-11.5,-11.5]},"names":{"ATL":"Atlanta Hawks","BKN":"Brooklyn Nets","BOS":"Boston Celtics","CHA":"Charlotte Hornets","CHI":"Chicago Bulls","CLE":"Cleveland Cavaliers","DAL":"Dallas Mavericks","DEN":"Denver Nuggets","DET":"Detroit Pistons","GSW":"Golden State Warriors","HOU":"Houston Rockets","IND":"Indiana Pacers","LAC":"LA Clippers","LAL":"Los Angeles Lakers","MEM":"Memphis Grizzlies","MIA":"Miami Heat","MIL":"Milwaukee Bucks","MIN":"Minnesota Timberwolves","NOP":"New Orleans Pelicans","NYK":"New York Knicks","OKC":"Oklahoma City Thunder","ORL":"Orlando Magic","PHI":"Philadelphia 76ers","PHX":"Phoenix Suns","POR":"Portland Trail Blazers","SAC":"Sacramento Kings","SAS":"San Antonio Spurs","TOR":"Toronto Raptors","UTA":"Utah Jazz","WAS":"Washington Wizards"},"slope":[{"t":"ATL","r4":26,"rf":12,"n4":-9.1,"nf":2.3},{"t":"BKN","r4":29,"rf":29,"n4":-15.9,"nf":-10.0},{"t":"BOS","r4":12,"rf":4,"n4":3.7,"nf":7.8},{"t":"CHA","r4":13,"rf":8,"n4":3.2,"nf":4.8},{"t":"CHI","r4":5,"rf":22,"n4":8.0,"nf":-4.9},{"t":"CLE","r4":7,"rf":9,"n4":5.8,"nf":4.0},{"t":"DAL","r4":27,"rf":23,"n4":-9.5,"nf":-5.2},{"t":"DEN","r4":2,"rf":7,"n4":15.2,"nf":5.0},{"t":"DET","r4":20,"rf":3,"n4":-3.5,"nf":7.9},{"t":"GSW","r4":14,"rf":20,"n4":2.1,"nf":-0.5},{"t":"HOU","r4":4,"rf":6,"n4":9.8,"nf":5.2},{"t":"IND","r4":25,"rf":26,"n4":-8.3,"nf":-7.7},{"t":"LAC","r4":17,"rf":16,"n4":-1.5,"nf":1.1},{"t":"LAL","r4":15,"rf":14,"n4":0.2,"nf":1.7},{"t":"MEM","r4":18,"rf":24,"n4":-3.2,"nf":-5.8},{"t":"MIA","r4":3,"rf":13,"n4":14.4,"nf":2.2},{"t":"MIL","r4":8,"rf":25,"n4":5.8,"nf":-6.2},{"t":"MIN","r4":22,"rf":10,"n4":-5.7,"nf":3.2},{"t":"NOP","r4":30,"rf":21,"n4":-18.2,"nf":-4.3},{"t":"NYK","r4":16,"rf":5,"n4":0.0,"nf":6.3},{"t":"OKC","r4":6,"rf":1,"n4":7.1,"nf":10.9},{"t":"ORL","r4":23,"rf":17,"n4":-5.7,"nf":0.6},{"t":"PHI","r4":10,"rf":18,"n4":5.2,"nf":-0.2},{"t":"PHX","r4":28,"rf":15,"n4":-11.5,"nf":1.5},{"t":"POR","r4":9,"rf":19,"n4":5.2,"nf":-0.3},{"t":"SAC","r4":21,"rf":28,"n4":-3.8,"nf":-9.8},{"t":"SAS","r4":1,"rf":2,"n4":16.2,"nf":8.1},{"t":"TOR","r4":19,"rf":11,"n4":-3.2,"nf":2.8},{"t":"UTA","r4":11,"rf":27,"n4":5.2,"nf":-8.0},{"t":"WAS","r4":24,"rf":30,"n4":-7.6,"nf":-11.5}],"now":[{"t":"ATL","name":"Atlanta Hawks","n":4,"net":8.7,"prior":2.3,"proj":2.7,"lo":-4.5,"hi":9.9},{"t":"BKN","name":"Brooklyn Nets","n":4,"net":-9.1,"prior":-10.0,"proj":-6.3,"lo":-13.5,"hi":0.9},{"t":"BOS","name":"Boston Celtics","n":4,"net":7.7,"prior":7.8,"proj":5.0,"lo":-2.2,"hi":12.2},{"t":"CHA","name":"Charlotte Hornets","n":4,"net":-6.9,"prior":4.8,"proj":0.8,"lo":-6.4,"hi":8.0},{"t":"CHI","name":"Chicago Bulls","n":4,"net":-17.0,"prior":-4.9,"proj":-5.5,"lo":-12.7,"hi":1.7},{"t":"CLE","name":"Cleveland Cavaliers","n":3,"net":-0.6,"prior":4.0,"proj":1.7,"lo":-5.4,"hi":8.9},{"t":"DAL","name":"Dallas Mavericks","n":4,"net":-3.4,"prior":-5.2,"proj":-3.0,"lo":-10.2,"hi":4.1},{"t":"DEN","name":"Denver Nuggets","n":3,"net":-8.6,"prior":5.0,"proj":0.7,"lo":-6.4,"hi":7.9},{"t":"DET","name":"Detroit Pistons","n":4,"net":6.0,"prior":7.9,"proj":4.7,"lo":-2.5,"hi":11.9},{"t":"GSW","name":"Golden State Warriors","n":4,"net":-3.5,"prior":-0.5,"proj":-0.9,"lo":-8.1,"hi":6.3},{"t":"HOU","name":"Houston Rockets","n":4,"net":9.8,"prior":5.2,"proj":4.2,"lo":-3.0,"hi":11.4},{"t":"IND","name":"Indiana Pacers","n":4,"net":1.4,"prior":-7.7,"proj":-3.2,"lo":-10.4,"hi":4.0},{"t":"LAC","name":"LA Clippers","n":3,"net":3.2,"prior":1.1,"proj":1.1,"lo":-6.0,"hi":8.2},{"t":"LAL","name":"Los Angeles Lakers","n":4,"net":7.8,"prior":1.7,"proj":2.3,"lo":-4.9,"hi":9.5},{"t":"MEM","name":"Memphis Grizzlies","n":4,"net":9.6,"prior":-5.8,"proj":-0.8,"lo":-8.0,"hi":6.4},{"t":"MIA","name":"Miami Heat","n":4,"net":-12.0,"prior":2.2,"proj":-1.3,"lo":-8.5,"hi":5.9},{"t":"MIL","name":"Milwaukee Bucks","n":4,"net":-5.2,"prior":-6.2,"proj":-3.8,"lo":-11.0,"hi":3.4},{"t":"MIN","name":"Minnesota Timberwolves","n":4,"net":16.1,"prior":3.2,"proj":4.5,"lo":-2.6,"hi":11.7},{"t":"NOP","name":"New Orleans Pelicans","n":3,"net":-3.1,"prior":-4.3,"proj":-2.6,"lo":-9.7,"hi":4.5},{"t":"NYK","name":"New York Knicks","n":4,"net":-1.2,"prior":6.3,"proj":2.6,"lo":-4.6,"hi":9.8},{"t":"OKC","name":"Oklahoma City Thunder","n":4,"net":10.3,"prior":10.9,"proj":6.9,"lo":-0.3,"hi":14.1},{"t":"ORL","name":"Orlando Magic","n":3,"net":-6.3,"prior":0.6,"proj":-0.9,"lo":-8.0,"hi":6.2},{"t":"PHI","name":"Philadelphia 76ers","n":4,"net":2.8,"prior":-0.2,"proj":0.4,"lo":-6.7,"hi":7.6},{"t":"PHX","name":"Phoenix Suns","n":3,"net":-14.4,"prior":1.5,"proj":-2.0,"lo":-9.1,"hi":5.1},{"t":"POR","name":"Portland Trail Blazers","n":3,"net":18.0,"prior":-0.3,"proj":3.2,"lo":-3.9,"hi":10.3},{"t":"SAC","name":"Sacramento Kings","n":4,"net":-17.2,"prior":-9.8,"proj":-7.8,"lo":-14.9,"hi":-0.6},{"t":"SAS","name":"San Antonio Spurs","n":4,"net":6.5,"prior":8.1,"proj":4.9,"lo":-2.3,"hi":12.1},{"t":"TOR","name":"Toronto Raptors","n":3,"net":9.3,"prior":2.8,"proj":3.0,"lo":-4.1,"hi":10.1},{"t":"UTA","name":"Utah Jazz","n":4,"net":-8.0,"prior":-8.0,"proj":-5.2,"lo":-12.3,"hi":2.0},{"t":"WAS","name":"Washington Wizards","n":4,"net":-0.2,"prior":-11.5,"proj":-5.3,"lo":-12.4,"hi":1.9}],"prior":[{"k":1,"early":0.265,"prior":0.545,"both":0.571},{"k":2,"early":0.407,"prior":0.544,"both":0.604},{"k":3,"early":0.451,"prior":0.54,"both":0.603},{"k":4,"early":0.457,"prior":0.536,"both":0.597},{"k":5,"early":0.512,"prior":0.533,"both":0.615},{"k":6,"early":0.548,"prior":0.531,"both":0.628},{"k":8,"early":0.653,"prior":0.53,"both":0.694},{"k":10,"early":0.722,"prior":0.523,"both":0.737},{"k":15,"early":0.78,"prior":0.526,"both":0.792},{"k":20,"early":0.765,"prior":0.51,"both":0.772}],"curve5":{"avg":[{"k":1,"net":0.263,"o":0.225,"d":0.195},{"k":2,"net":0.367,"o":0.302,"d":0.209},{"k":3,"net":0.413,"o":0.362,"d":0.21},{"k":4,"net":0.419,"o":0.385,"d":0.236},{"k":5,"net":0.462,"o":0.407,"d":0.281},{"k":6,"net":0.5,"o":0.401,"d":0.338},{"k":7,"net":0.545,"o":0.44,"d":0.388},{"k":8,"net":0.589,"o":0.499,"d":0.44},{"k":9,"net":0.621,"o":0.547,"d":0.471},{"k":10,"net":0.63,"o":0.577,"d":0.459},{"k":11,"net":0.653,"o":0.594,"d":0.487},{"k":12,"net":0.674,"o":0.59,"d":0.507},{"k":13,"net":0.676,"o":0.586,"d":0.506},{"k":14,"net":0.709,"o":0.607,"d":0.525},{"k":15,"net":0.712,"o":0.604,"d":0.504},{"k":16,"net":0.707,"o":0.597,"d":0.501},{"k":17,"net":0.71,"o":0.6,"d":0.508},{"k":18,"net":0.704,"o":0.597,"d":0.493},{"k":19,"net":0.691,"o":0.603,"d":0.481},{"k":20,"net":0.707,"o":0.617,"d":0.474},{"k":21,"net":0.713,"o":0.621,"d":0.499},{"k":22,"net":0.717,"o":0.617,"d":0.53},{"k":23,"net":0.708,"o":0.618,"d":0.536},{"k":24,"net":0.706,"o":0.618,"d":0.542},{"k":25,"net":0.694,"o":0.617,"d":0.53},{"k":26,"net":0.698,"o":0.606,"d":0.547},{"k":27,"net":0.708,"o":0.625,"d":0.544},{"k":28,"net":0.708,"o":0.623,"d":0.55},{"k":29,"net":0.707,"o":0.63,"d":0.535},{"k":30,"net":0.714,"o":0.632,"d":0.52},{"k":31,"net":0.705,"o":0.625,"d":0.529},{"k":32,"net":0.704,"o":0.626,"d":0.51},{"k":33,"net":0.698,"o":0.637,"d":0.488},{"k":34,"net":0.711,"o":0.643,"d":0.5},{"k":35,"net":0.719,"o":0.636,"d":0.511},{"k":36,"net":0.717,"o":0.63,"d":0.507},{"k":37,"net":0.714,"o":0.626,"d":0.491},{"k":38,"net":0.709,"o":0.627,"d":0.488},{"k":39,"net":0.727,"o":0.634,"d":0.506},{"k":40,"net":0.734,"o":0.641,"d":0.523},{"k":41,"net":0.732,"o":0.641,"d":0.519}],"seasons":{"2021-22":[{"k":1,"net":0.35,"o":0.328,"d":-0.081},{"k":2,"net":0.225,"o":0.274,"d":-0.091},{"k":3,"net":0.351,"o":0.423,"d":-0.17},{"k":4,"net":0.383,"o":0.564,"d":-0.123},{"k":5,"net":0.353,"o":0.414,"d":0.032},{"k":6,"net":0.4,"o":0.349,"d":0.08},{"k":7,"net":0.413,"o":0.423,"d":0.103},{"k":8,"net":0.449,"o":0.383,"d":0.217},{"k":9,"net":0.372,"o":0.365,"d":0.224},{"k":10,"net":0.337,"o":0.418,"d":0.096},{"k":11,"net":0.367,"o":0.416,"d":0.153},{"k":12,"net":0.392,"o":0.411,"d":0.192},{"k":13,"net":0.385,"o":0.477,"d":0.152},{"k":14,"net":0.443,"o":0.497,"d":0.212},{"k":15,"net":0.479,"o":0.529,"d":0.204},{"k":16,"net":0.476,"o":0.557,"d":0.164},{"k":17,"net":0.498,"o":0.54,"d":0.178},{"k":18,"net":0.49,"o":0.533,"d":0.146},{"k":19,"net":0.423,"o":0.532,"d":0.073},{"k":20,"net":0.476,"o":0.583,"d":0.082},{"k":21,"net":0.514,"o":0.586,"d":0.161},{"k":22,"net":0.54,"o":0.598,"d":0.277},{"k":23,"net":0.566,"o":0.639,"d":0.277},{"k":24,"net":0.575,"o":0.649,"d":0.294},{"k":25,"net":0.544,"o":0.638,"d":0.294},{"k":26,"net":0.554,"o":0.643,"d":0.323},{"k":27,"net":0.554,"o":0.644,"d":0.338},{"k":28,"net":0.57,"o":0.666,"d":0.34},{"k":29,"net":0.575,"o":0.664,"d":0.329},{"k":30,"net":0.583,"o":0.656,"d":0.302},{"k":31,"net":0.549,"o":0.62,"d":0.319},{"k":32,"net":0.56,"o":0.598,"d":0.338},{"k":33,"net":0.562,"o":0.602,"d":0.348},{"k":34,"net":0.584,"o":0.601,"d":0.398},{"k":35,"net":0.598,"o":0.592,"d":0.418},{"k":36,"net":0.596,"o":0.56,"d":0.431},{"k":37,"net":0.605,"o":0.567,"d":0.439},{"k":38,"net":0.595,"o":0.548,"d":0.411},{"k":39,"net":0.613,"o":0.55,"d":0.434},{"k":40,"net":0.631,"o":0.569,"d":0.495},{"k":41,"net":0.665,"o":0.585,"d":0.516}],"2022-23":[{"k":1,"net":0.022,"o":0.046,"d":0.057},{"k":2,"net":0.341,"o":0.181,"d":0.224},{"k":3,"net":0.216,"o":0.104,"d":0.11},{"k":4,"net":0.15,"o":0.17,"d":0.127},{"k":5,"net":0.303,"o":0.284,"d":0.125},{"k":6,"net":0.355,"o":0.256,"d":0.211},{"k":7,"net":0.319,"o":0.195,"d":0.22},{"k":8,"net":0.432,"o":0.368,"d":0.252},{"k":9,"net":0.549,"o":0.462,"d":0.26},{"k":10,"net":0.583,"o":0.49,"d":0.335},{"k":11,"net":0.572,"o":0.467,"d":0.298},{"k":12,"net":0.581,"o":0.482,"d":0.27},{"k":13,"net":0.601,"o":0.48,"d":0.284},{"k":14,"net":0.674,"o":0.544,"d":0.282},{"k":15,"net":0.674,"o":0.526,"d":0.236},{"k":16,"net":0.67,"o":0.479,"d":0.261},{"k":17,"net":0.674,"o":0.487,"d":0.311},{"k":18,"net":0.657,"o":0.489,"d":0.316},{"k":19,"net":0.706,"o":0.522,"d":0.383},{"k":20,"net":0.727,"o":0.564,"d":0.334},{"k":21,"net":0.766,"o":0.56,"d":0.401},{"k":22,"net":0.754,"o":0.511,"d":0.379},{"k":23,"net":0.707,"o":0.509,"d":0.416},{"k":24,"net":0.695,"o":0.473,"d":0.441},{"k":25,"net":0.718,"o":0.462,"d":0.458},{"k":26,"net":0.733,"o":0.431,"d":0.509},{"k":27,"net":0.739,"o":0.458,"d":0.458},{"k":28,"net":0.743,"o":0.463,"d":0.452},{"k":29,"net":0.749,"o":0.479,"d":0.422},{"k":30,"net":0.755,"o":0.472,"d":0.405},{"k":31,"net":0.75,"o":0.451,"d":0.451},{"k":32,"net":0.744,"o":0.439,"d":0.399},{"k":33,"net":0.73,"o":0.466,"d":0.351},{"k":34,"net":0.751,"o":0.463,"d":0.407},{"k":35,"net":0.737,"o":0.439,"d":0.405},{"k":36,"net":0.716,"o":0.436,"d":0.399},{"k":37,"net":0.709,"o":0.465,"d":0.383},{"k":38,"net":0.72,"o":0.489,"d":0.39},{"k":39,"net":0.739,"o":0.484,"d":0.418},{"k":40,"net":0.752,"o":0.495,"d":0.405},{"k":41,"net":0.729,"o":0.478,"d":0.417}],"2023-24":[{"k":1,"net":0.381,"o":0.348,"d":0.367},{"k":2,"net":0.453,"o":0.401,"d":0.25},{"k":3,"net":0.433,"o":0.47,"d":0.335},{"k":4,"net":0.54,"o":0.544,"d":0.434},{"k":5,"net":0.552,"o":0.498,"d":0.525},{"k":6,"net":0.539,"o":0.505,"d":0.554},{"k":7,"net":0.611,"o":0.515,"d":0.58},{"k":8,"net":0.585,"o":0.561,"d":0.593},{"k":9,"net":0.639,"o":0.573,"d":0.641},{"k":10,"net":0.656,"o":0.631,"d":0.604},{"k":11,"net":0.775,"o":0.721,"d":0.673},{"k":12,"net":0.813,"o":0.704,"d":0.671},{"k":13,"net":0.799,"o":0.679,"d":0.659},{"k":14,"net":0.836,"o":0.676,"d":0.688},{"k":15,"net":0.822,"o":0.679,"d":0.675},{"k":16,"net":0.816,"o":0.662,"d":0.712},{"k":17,"net":0.8,"o":0.647,"d":0.708},{"k":18,"net":0.813,"o":0.629,"d":0.708},{"k":19,"net":0.792,"o":0.634,"d":0.668},{"k":20,"net":0.808,"o":0.598,"d":0.668},{"k":21,"net":0.795,"o":0.613,"d":0.645},{"k":22,"net":0.784,"o":0.618,"d":0.669},{"k":23,"net":0.761,"o":0.599,"d":0.66},{"k":24,"net":0.782,"o":0.646,"d":0.689},{"k":25,"net":0.755,"o":0.647,"d":0.649},{"k":26,"net":0.751,"o":0.654,"d":0.615},{"k":27,"net":0.758,"o":0.686,"d":0.623},{"k":28,"net":0.76,"o":0.702,"d":0.634},{"k":29,"net":0.762,"o":0.706,"d":0.634},{"k":30,"net":0.764,"o":0.722,"d":0.62},{"k":31,"net":0.761,"o":0.703,"d":0.648},{"k":32,"net":0.76,"o":0.721,"d":0.623},{"k":33,"net":0.765,"o":0.729,"d":0.593},{"k":34,"net":0.803,"o":0.763,"d":0.573},{"k":35,"net":0.815,"o":0.768,"d":0.595},{"k":36,"net":0.815,"o":0.74,"d":0.597},{"k":37,"net":0.805,"o":0.734,"d":0.581},{"k":38,"net":0.793,"o":0.731,"d":0.599},{"k":39,"net":0.803,"o":0.738,"d":0.628},{"k":40,"net":0.782,"o":0.736,"d":0.64},{"k":41,"net":0.777,"o":0.746,"d":0.595}],"2024-25":[{"k":1,"net":0.347,"o":0.252,"d":0.203},{"k":2,"net":0.518,"o":0.268,"d":0.497},{"k":3,"net":0.652,"o":0.437,"d":0.485},{"k":4,"net":0.62,"o":0.343,"d":0.502},{"k":5,"net":0.643,"o":0.443,"d":0.452},{"k":6,"net":0.625,"o":0.441,"d":0.386},{"k":7,"net":0.73,"o":0.575,"d":0.546},{"k":8,"net":0.759,"o":0.589,"d":0.626},{"k":9,"net":0.766,"o":0.674,"d":0.644},{"k":10,"net":0.79,"o":0.707,"d":0.694},{"k":11,"net":0.779,"o":0.706,"d":0.696},{"k":12,"net":0.797,"o":0.704,"d":0.744},{"k":13,"net":0.812,"o":0.686,"d":0.723},{"k":14,"net":0.794,"o":0.667,"d":0.713},{"k":15,"net":0.784,"o":0.62,"d":0.678},{"k":16,"net":0.778,"o":0.626,"d":0.693},{"k":17,"net":0.788,"o":0.652,"d":0.668},{"k":18,"net":0.777,"o":0.634,"d":0.656},{"k":19,"net":0.768,"o":0.629,"d":0.658},{"k":20,"net":0.757,"o":0.635,"d":0.64},{"k":21,"net":0.748,"o":0.649,"d":0.657},{"k":22,"net":0.751,"o":0.649,"d":0.651},{"k":23,"net":0.74,"o":0.652,"d":0.647},{"k":24,"net":0.728,"o":0.626,"d":0.64},{"k":25,"net":0.734,"o":0.657,"d":0.633},{"k":26,"net":0.73,"o":0.629,"d":0.669},{"k":27,"net":0.756,"o":0.648,"d":0.683},{"k":28,"net":0.744,"o":0.664,"d":0.684},{"k":29,"net":0.724,"o":0.664,"d":0.654},{"k":30,"net":0.725,"o":0.669,"d":0.631},{"k":31,"net":0.718,"o":0.693,"d":0.588},{"k":32,"net":0.7,"o":0.688,"d":0.568},{"k":33,"net":0.693,"o":0.704,"d":0.532},{"k":34,"net":0.692,"o":0.688,"d":0.536},{"k":35,"net":0.71,"o":0.705,"d":0.527},{"k":36,"net":0.719,"o":0.716,"d":0.525},{"k":37,"net":0.7,"o":0.705,"d":0.488},{"k":38,"net":0.693,"o":0.713,"d":0.461},{"k":39,"net":0.712,"o":0.739,"d":0.45},{"k":40,"net":0.72,"o":0.741,"d":0.472},{"k":41,"net":0.719,"o":0.749,"d":0.479}],"2025-26":[{"k":1,"net":0.214,"o":0.153,"d":0.43},{"k":2,"net":0.299,"o":0.384,"d":0.162},{"k":3,"net":0.412,"o":0.377,"d":0.293},{"k":4,"net":0.403,"o":0.304,"d":0.241},{"k":5,"net":0.46,"o":0.397,"d":0.273},{"k":6,"net":0.583,"o":0.456,"d":0.46},{"k":7,"net":0.651,"o":0.494,"d":0.49},{"k":8,"net":0.722,"o":0.595,"d":0.514},{"k":9,"net":0.779,"o":0.662,"d":0.587},{"k":10,"net":0.782,"o":0.639,"d":0.566},{"k":11,"net":0.77,"o":0.659,"d":0.613},{"k":12,"net":0.788,"o":0.648,"d":0.657},{"k":13,"net":0.783,"o":0.61,"d":0.711},{"k":14,"net":0.8,"o":0.65,"d":0.732},{"k":15,"net":0.803,"o":0.665,"d":0.729},{"k":16,"net":0.796,"o":0.662,"d":0.676},{"k":17,"net":0.788,"o":0.676,"d":0.674},{"k":18,"net":0.783,"o":0.701,"d":0.64},{"k":19,"net":0.765,"o":0.699,"d":0.625},{"k":20,"net":0.766,"o":0.705,"d":0.646},{"k":21,"net":0.742,"o":0.696,"d":0.631},{"k":22,"net":0.759,"o":0.71,"d":0.672},{"k":23,"net":0.764,"o":0.692,"d":0.679},{"k":24,"net":0.752,"o":0.696,"d":0.644},{"k":25,"net":0.721,"o":0.68,"d":0.613},{"k":26,"net":0.723,"o":0.675,"d":0.62},{"k":27,"net":0.732,"o":0.69,"d":0.618},{"k":28,"net":0.726,"o":0.619,"d":0.638},{"k":29,"net":0.725,"o":0.635,"d":0.636},{"k":30,"net":0.742,"o":0.641,"d":0.645},{"k":31,"net":0.749,"o":0.66,"d":0.637},{"k":32,"net":0.758,"o":0.687,"d":0.621},{"k":33,"net":0.741,"o":0.684,"d":0.615},{"k":34,"net":0.726,"o":0.699,"d":0.586},{"k":35,"net":0.737,"o":0.678,"d":0.608},{"k":36,"net":0.739,"o":0.697,"d":0.582},{"k":37,"net":0.753,"o":0.661,"d":0.565},{"k":38,"net":0.745,"o":0.655,"d":0.578},{"k":39,"net":0.765,"o":0.657,"d":0.601},{"k":40,"net":0.783,"o":0.663,"d":0.604},{"k":41,"net":0.772,"o":0.649,"d":0.587}]}},"model":{"noiseSD":14.4,"trueSD":5.03,"kHalf":8.2,"rankMove":7.5,"asof":"2026-10-27","games":56,"seasons":["2021-22","2022-23","2023-24","2024-25","2025-26"],"showcase":"2025-26"}};
+const NS = "http://www.w3.org/2000/svg";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
+function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
+function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+
+const teams = Object.keys(D.paths);
+const name = t => D.names[t] || t;
+const curveAt = k => D.curve.find(c => c.k === k);
+
+/* ---------- Stats strip (from data, so the page never disagrees with itself) ---------- */
+document.getElementById("st-r4").textContent = D.curve5.avg[3].net.toFixed(2);
+const k07 = D.curve5.avg.find(c => c.net >= 0.7).k;
+document.getElementById("st-k").textContent = k07 + " games";
+document.querySelectorAll(".k07").forEach(e => e.textContent = k07);
+document.getElementById("st-move").textContent = D.model.rankMove.toFixed(1);
+{ const first = Object.values(D.paths).map(p => p[0]), last = Object.values(D.paths).map(p => p[p.length - 1]);
+  const r = v => Math.round(Math.abs(v)), sg = v => (v < 0 ? "−" : "+");
+  document.getElementById("rng1").textContent = `${sg(Math.min(...first))}${r(Math.min(...first))} to ${sg(Math.max(...first))}${r(Math.max(...first))}`;
+  document.getElementById("rngF").textContent = `${fmt(Math.min(...last))} and ${fmt(Math.max(...last))}`; }
+document.getElementById("m-noise").textContent = D.model.noiseSD.toFixed(1);
+document.getElementById("m-true").textContent = D.model.trueSD.toFixed(1);
+document.getElementById("m-khalf").textContent = Math.round(D.model.kHalf);
+
+/* ---------- 1. The fan ---------- */
+const featured = ["CHI", "DET", "MIL", "ATL", "SAS", "OKC"];
+let fanTeam = "CHI";
+const picker = document.getElementById("fan-picker");
+featured.forEach(t => { const b = document.createElement("button"); b.type = "button"; b.textContent = t; b.title = name(t); b.setAttribute("aria-pressed", t === fanTeam); b.onclick = () => setFan(t); picker.appendChild(b); });
+const sel = document.createElement("select"); sel.id = "fan-select"; sel.setAttribute("aria-label", "Any team");
+sel.innerHTML = `<option value="">Any team…</option>` + teams.slice().sort((a, b) => name(a).localeCompare(name(b))).map(t => `<option value="${t}">${name(t)}</option>`).join("");
+sel.onchange = () => sel.value && setFan(sel.value);
+picker.appendChild(sel);
+function setFan(t) { fanTeam = t; picker.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.textContent === t)); if (!featured.includes(t)) sel.value = t; else sel.value = ""; document.getElementById("fan-legend-team").textContent = name(t); drawFan(); }
+
+function drawFan() {
+  const host = document.getElementById("fan"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, H = Math.max(280, Math.min(420, W * 0.55));
+  const m = { l: 40, r: W < 520 ? 16 : 120, t: 12, b: 34 };
+  const x = lin(1, 82, m.l, W - m.r), y = lin(-36, 36, H - m.b, m.t);
+  const s = svg(W, H);
+  // funnel: 90% band of chance for an average team, ±1.645·σ/√k
+  let top = "", bot = "";
+  for (let k = 1; k <= 82; k++) { const h = Math.min(36, 1.645 * D.model.noiseSD / Math.sqrt(k)); top += `${k === 1 ? "M" : "L"}${x(k)},${y(h)} `; bot = `L${x(k)},${y(-h)} ` + bot; }
+  el("path", { d: top + bot + "Z", fill: css("--funnel") }, s);
+  [-30, -15, 0, 15, 30].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v)); });
+  [1, 10, 20, 30, 40, 50, 60, 70, 82].forEach(k => el("text", { x: x(k), y: H - m.b + 18, "text-anchor": "middle" }, s, k));
+  el("text", { x: W - m.r, y: H - 4, "text-anchor": "end" }, s, "Games played →");
+  // game-4 marker
+  el("line", { x1: x(4), x2: x(4), y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-dasharray": "3 3" }, s);
+  el("text", { x: x(4) + 6, y: m.t + 10, class: "lbl" }, s, "Game 4: where 2026-27 is now");
+  const line = t => D.paths[t].map((v, i) => `${i ? "L" : "M"}${x(i + 1).toFixed(1)},${y(Math.max(-36, Math.min(36, v))).toFixed(1)}`).join("");
+  teams.forEach(t => { if (t !== fanTeam) el("path", { d: line(t), fill: "none", stroke: css("--ghost"), "stroke-width": 1, "stroke-opacity": .45 }, s); });
+  const hp = D.paths[fanTeam];
+  el("path", { d: line(fanTeam), fill: "none", stroke: css("--surface"), "stroke-width": 5, "stroke-linejoin": "round" }, s);
+  el("path", { d: line(fanTeam), fill: "none", stroke: css("--amber"), "stroke-width": 2.5, "stroke-linejoin": "round" }, s);
+  [[4, hp[3]], [82, hp[81]]].forEach(([k, v]) => el("circle", { cx: x(k), cy: y(v), r: 4.5, fill: css("--amber"), stroke: css("--surface"), "stroke-width": 2 }, s));
+  const fr = D.slope.find(o => o.t === fanTeam);
+  if (W >= 520) { el("text", { x: W - m.r + 8, y: y(hp[81]) - 4, class: "lbl-strong" }, s, fanTeam + " " + fmt(hp[81])); el("text", { x: W - m.r + 8, y: y(hp[81]) + 11, class: "lbl" }, s, `final rank ${fr.rf}`); }
+  el("text", { x: x(4) + 8, y: y(hp[3]) + (hp[3] > 0 ? -8 : 16), class: "lbl-strong" }, s, `${fmt(hp[3])} · rank ${fr.r4}`);
+  const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, s);
+  hit.addEventListener("pointermove", e => {
+    const r = s.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width, py = (e.clientY - r.top) * H / r.height;
+    const k = Math.max(1, Math.min(82, Math.round(1 + (px - m.l) * 81 / (W - m.l - m.r))));
+    let best = null, bd = 1e9; teams.forEach(t => { const d = Math.abs(y(D.paths[t][k - 1]) - py); if (d < bd) { bd = d; best = t; } });
+    showTip(host, `<b>${name(best)}</b><br>After ${k} game${k > 1 ? "s" : ""}: ${fmt(D.paths[best][k - 1])}<br>Final: ${fmt(D.paths[best][81])}`, e.clientX - host.getBoundingClientRect().left, e.clientY - host.getBoundingClientRect().top);
+  });
+  hit.addEventListener("pointerleave", () => hideTip(host));
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", `Net rating paths for all 30 teams in 2025-26, highlighting ${name(fanTeam)}: ${fmt(hp[3])} after 4 games, ${fmt(hp[81])} at season's end.`);
+  host.prepend(s);
+}
+
+/* ---------- 2. The curve (five seasons) ---------- */
+let curveKey = "net";
+const curveDefs = [["net", "Net rating", "--s1"], ["o", "Offense", "--s2"], ["d", "Defense", "--s3"]];
+const cpick = document.getElementById("curve-picker");
+curveDefs.forEach(([key, lab]) => { const b = document.createElement("button"); b.type = "button"; b.textContent = lab; b.setAttribute("aria-pressed", key === curveKey); b.onclick = () => { curveKey = key; cpick.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.textContent === lab)); drawCurve(); }; cpick.appendChild(b); });
+function drawCurve() {
+  const host = document.getElementById("curve"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const def = curveDefs.find(d => d[0] === curveKey), color = css(def[2]);
+  document.getElementById("curve-key").style.background = color;
+  const W = host.clientWidth, H = Math.max(240, Math.min(340, W * 0.45));
+  const m = { l: 40, r: W < 520 ? 16 : 70, t: 12, b: 34 }, K = 41;
+  const x = lin(1, K, m.l, W - m.r), y = lin(-0.1, 1, H - m.b, m.t);
+  const s = svg(W, H);
+  [0, .25, .5, .75, 1].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--rule") }, s); el("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, s, v.toFixed(2).replace(/^0/, "")); });
+  el("line", { x1: m.l, x2: W - m.r, y1: y(.7), y2: y(.7), stroke: css("--ink-3"), "stroke-dasharray": "4 3" }, s);
+  el("text", { x: m.l + 6, y: y(.7) - 6, class: "lbl" }, s, "0.7: a good guide");
+  [1, 5, 10, 15, 20, 25, 30, 35, 41].forEach(k => el("text", { x: x(k), y: H - m.b + 18, "text-anchor": "middle" }, s, k));
+  el("text", { x: W - m.r, y: H - 4, "text-anchor": "end" }, s, "Games used for the early rating →");
+  const path = pts => pts.map((c, i) => `${i ? "L" : "M"}${x(c.k).toFixed(1)},${y(Math.max(-0.1, c[curveKey])).toFixed(1)}`).join("");
+  const seasons = Object.keys(D.curve5.seasons);
+  seasons.forEach(sn => el("path", { d: path(D.curve5.seasons[sn]), fill: "none", stroke: css("--ghost"), "stroke-width": 1, "stroke-opacity": .55 }, s));
+  const avg = D.curve5.avg;
+  el("path", { d: path(avg), fill: "none", stroke: css("--surface"), "stroke-width": 5 }, s);
+  el("path", { d: path(avg), fill: "none", stroke: color, "stroke-width": 2.5, "stroke-linejoin": "round" }, s);
+  if (W >= 520) { const last = avg[avg.length - 1]; el("text", { x: W - m.r + 8, y: y(last[curveKey]) + 4, class: "lbl-strong" }, s, "Average"); }
+  const hitK = avg.find(c => c[curveKey] >= 0.7);
+  if (hitK) { el("circle", { cx: x(hitK.k), cy: y(hitK[curveKey]), r: 5, fill: color, stroke: css("--surface"), "stroke-width": 2 }, s); el("text", { x: x(hitK.k) + 8, y: y(hitK[curveKey]) + 16, class: "lbl-strong" }, s, `Game ${hitK.k}: ${hitK[curveKey].toFixed(2)}`); }
+  else { const peak = avg.reduce((a, b) => (b[curveKey] > a[curveKey] ? b : a)); el("text", { x: x(peak.k), y: y(peak[curveKey]) - 10, "text-anchor": "middle", class: "lbl-strong" }, s, `Never reaches 0.7 on average (peak ${peak[curveKey].toFixed(2)})`); }
+  const guide = el("line", { y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-width": 1, opacity: 0 }, s);
+  const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, s);
+  hit.addEventListener("pointermove", e => {
+    const r = s.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width;
+    const k = Math.max(1, Math.min(K, Math.round(1 + (px - m.l) * (K - 1) / (W - m.l - m.r))));
+    guide.setAttribute("x1", x(k)); guide.setAttribute("x2", x(k)); guide.setAttribute("opacity", .5);
+    const rows = seasons.map(sn => `${sn}: ${D.curve5.seasons[sn][k - 1][curveKey].toFixed(2)}`).join("<br>");
+    showTip(host, `<b>${def[1]}, first ${k} game${k > 1 ? "s" : ""}</b><br>Average: <b>${avg[k - 1][curveKey].toFixed(2)}</b><br>${rows}`, e.clientX - host.getBoundingClientRect().left, e.clientY - host.getBoundingClientRect().top);
+  });
+  hit.addEventListener("pointerleave", () => { hideTip(host); guide.setAttribute("opacity", 0); });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", `${def[1]}: correlation between early-season and rest-of-season ratings, five-season average ${avg[3][curveKey].toFixed(2)} after 4 games${hitK ? `, passing 0.7 at game ${hitK.k}` : ", never reaching 0.7"}.`);
+  host.prepend(s);
+}
+
+/* ---------- 2b. Last season vs this season ---------- */
+function drawPrior() {
+  const host = document.getElementById("prior"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, H = Math.max(220, Math.min(300, W * 0.4));
+  const m = { l: 40, r: W < 520 ? 16 : 110, t: 12, b: 34 }, P = D.prior, K = 20;
+  const x = lin(1, K, m.l, W - m.r), y = lin(0.2, 0.85, H - m.b, m.t);
+  const s = svg(W, H);
+  [.2, .4, .6, .8].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--rule") }, s); el("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, s, v.toFixed(1).replace(/^0/, "")); });
+  P.forEach(p => el("text", { x: x(p.k), y: H - m.b + 18, "text-anchor": "middle" }, s, p.k));
+  el("text", { x: W - m.r, y: H - 4, "text-anchor": "end" }, s, "Games played this season →");
+  const ser = [["early", "--s1", "This season"], ["prior", "--s2", "Last season"], ["both", "--ink", "Both"]];
+  ser.forEach(([key, col, lab]) => {
+    el("path", { d: P.map((p, i) => `${i ? "L" : "M"}${x(p.k).toFixed(1)},${y(p[key]).toFixed(1)}`).join(""), fill: "none", stroke: css(col), "stroke-width": key === "both" ? 2.5 : 2, "stroke-linejoin": "round" }, s);
+    P.forEach(p => el("circle", { cx: x(p.k), cy: y(p[key]), r: 3.5, fill: css(col), stroke: css("--surface"), "stroke-width": 1.5 }, s));
+    if (W >= 520) { const last = P[P.length - 1]; el("text", { x: W - m.r + 8, y: y(last[key]) + 4 + (key === "early" ? 10 : key === "both" ? -4 : 0), class: "lbl" }, s, lab); }
+  });
+  const cross = P.find(p => p.early > p.prior);
+  if (cross) { el("line", { x1: x(cross.k), x2: x(cross.k), y1: m.t, y2: H - m.b, stroke: css("--ink-3"), "stroke-dasharray": "3 3" }, s); el("text", { x: x(cross.k) + 6, y: m.t + 10, class: "lbl" }, s, `Game ${cross.k}: this season takes over`); }
+  const hit = el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" }, s);
+  hit.addEventListener("pointermove", e => {
+    const r = s.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width;
+    let best = P[0]; P.forEach(p => { if (Math.abs(x(p.k) - px) < Math.abs(x(best.k) - px)) best = p; });
+    showTip(host, `<b>After ${best.k} game${best.k > 1 ? "s" : ""}</b><br>This season: ${best.early.toFixed(2)}<br>Last season: ${best.prior.toFixed(2)}<br>Both: <b>${best.both.toFixed(2)}</b>`, e.clientX - host.getBoundingClientRect().left, e.clientY - host.getBoundingClientRect().top);
+  });
+  hit.addEventListener("pointerleave", () => hideTip(host));
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", `Last season's rating predicts the rest of the season better than this season's games until game ${cross ? cross.k : "?"}; combining both predicts best.`);
+  host.prepend(s);
+}
+
+/* ---------- 3. The slope ---------- */
+function drawSlope() {
+  const host = document.getElementById("slope"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, row = 17, H = 30 * row + 44;
+  const m = { l: 74, r: 74, t: 30, b: 14 };
+  const y = r => m.t + (r - 1) * row + row / 2, xl = m.l, xr = W - m.r;
+  const s = svg(W, H);
+  el("text", { x: xl, y: 14, "text-anchor": "middle", class: "lbl-strong" }, s, "After 4 games");
+  el("text", { x: xr, y: 14, "text-anchor": "middle", class: "lbl-strong" }, s, "Final");
+  const col = o => (o.rf - o.r4 >= 10 ? css("--amber") : o.r4 - o.rf >= 10 ? css("--navy") : null);
+  const order = D.slope.slice().sort((a, b) => (col(a) ? 1 : 0) - (col(b) ? 1 : 0));
+  const groups = [];
+  order.forEach(o => {
+    const c = col(o), g = el("g", { tabindex: 0, "aria-label": `${name(o.t)}: rank ${o.r4} after 4 games, ${o.rf} at season's end` }, s);
+    el("line", { x1: xl + 4, x2: xr - 4, y1: y(o.r4), y2: y(o.rf), stroke: c || css("--ghost"), "stroke-width": c ? 2.5 : 1, "stroke-opacity": c ? 1 : .5 }, g);
+    el("text", { x: xl - 10, y: y(o.r4) + 4, "text-anchor": "end", class: c ? "lbl-strong" : "" }, g, `${o.t} ${o.r4}`);
+    el("text", { x: xr + 10, y: y(o.rf) + 4, class: c ? "lbl-strong" : "" }, g, `${o.rf} ${o.t}`);
+    el("line", { x1: xl, x2: xr, y1: y(o.r4), y2: y(o.rf), stroke: "transparent", "stroke-width": 12 }, g);
+    const show = e => { groups.forEach(x => x.style.opacity = x === g ? 1 : .25); const hr = host.getBoundingClientRect(); const ev = e.clientX != null ? e : { clientX: hr.left + W / 2, clientY: hr.top + y(o.rf) }; showTip(host, `<b>${name(o.t)}</b><br>After 4 games: #${o.r4} (${fmt(o.n4)})<br>Final: #${o.rf} (${fmt(o.nf)})`, ev.clientX - hr.left, ev.clientY - hr.top); };
+    const hide = () => { groups.forEach(x => x.style.opacity = 1); hideTip(host); };
+    g.addEventListener("pointerenter", show); g.addEventListener("pointermove", show); g.addEventListener("pointerleave", hide);
+    g.addEventListener("focus", show); g.addEventListener("blur", hide);
+    groups.push(g);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Rank after 4 games versus final rank for all 30 teams in 2025-26.");
+  host.prepend(s);
+}
+
+/* ---------- 4. This season ---------- */
+function drawNow() {
+  const host = document.getElementById("now"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const rows = D.now.slice().sort((a, b) => b.proj - a.proj);
+  const W = host.clientWidth, row = 22, m = { l: 48, r: 14, t: 22, b: 30 }, H = m.t + rows.length * row + m.b;
+  const ext = Math.max(20, ...rows.map(r => Math.abs(r.net))) + 2;
+  const x = lin(-ext, ext, m.l, W - m.r), s = svg(W, H);
+  [-20, -10, 0, 10, 20].forEach(v => { el("line", { x1: x(v), x2: x(v), y1: m.t - 6, y2: H - m.b, stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: x(v), y: H - m.b + 16, "text-anchor": "middle" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v)); });
+  el("text", { x: W - m.r, y: H - 2, "text-anchor": "end" }, s, "Net rating →");
+  rows.forEach((r, i) => {
+    const cy = m.t + i * row + row / 2, g = el("g", { tabindex: 0, "aria-label": `${r.name}: ${fmt(r.net)} in ${r.n} games, ${fmt(r.prior)} last season, best estimate ${fmt(r.proj)}, 90% range ${fmt(r.lo)} to ${fmt(r.hi)}` }, s);
+    el("rect", { x: 0, y: cy - row / 2, width: W, height: row, fill: "transparent" }, g);
+    el("text", { x: m.l - 10, y: cy + 4, "text-anchor": "end", class: "lbl" }, g, r.t);
+    el("line", { x1: x(r.lo), x2: x(r.hi), y1: cy, y2: cy, stroke: css("--funnel"), "stroke-width": 8, "stroke-linecap": "round" }, g);
+    el("line", { x1: x(r.net), x2: x(r.proj), y1: cy, y2: cy, stroke: css("--ghost"), "stroke-width": 1.5, "stroke-dasharray": "2 2" }, g);
+    el("line", { x1: x(r.prior), x2: x(r.prior), y1: cy - 7, y2: cy + 7, stroke: css("--s2"), "stroke-width": 2 }, g);
+    el("circle", { cx: x(r.net), cy, r: 4.5, fill: css("--surface"), stroke: css("--ghost"), "stroke-width": 2 }, g);
+    el("circle", { cx: x(r.proj), cy, r: 5, fill: css("--ink"), stroke: css("--surface"), "stroke-width": 2 }, g);
+    const show = e => { const hr = host.getBoundingClientRect(); const px = e.clientX != null ? e.clientX - hr.left : x(r.proj); const py = e.clientY != null ? e.clientY - hr.top : cy; showTip(host, `<b>${r.name}</b><br>2026-27 so far: ${fmt(r.net)} in ${r.n} games<br>2025-26 final: ${fmt(r.prior)}<br>Best estimate: <b>${fmt(r.proj)}</b><br>90% range: ${fmt(r.lo)} to ${fmt(r.hi)}`, px, py); };
+    g.addEventListener("pointermove", show); g.addEventListener("focus", show);
+    g.addEventListener("pointerleave", () => hideTip(host)); g.addEventListener("blur", () => hideTip(host));
+  });
+  el("text", { x: m.l, y: 12, class: "lbl" }, s, "Sorted by best estimate");
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Each team's 2026-27 net rating so far, last season's final rating, and a best estimate for the rest of the season with a 90% range.");
+  host.prepend(s);
+  const tb = document.querySelector("#now-table tbody");
+  tb.innerHTML = rows.map(r => `<tr><td>${r.name}</td><td>${r.n}</td><td>${fmt(r.net)}</td><td>${fmt(r.prior)}</td><td>${fmt(r.proj)}</td><td>${fmt(r.lo)} to ${fmt(r.hi)}</td></tr>`).join("");
+  document.getElementById("now-sub").textContent = `Regular season through ${new Date(D.model.asof + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })} (${D.model.games} games). Hover a team for details.`;
+}
+
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  net: ["Net rating", "How many more points a team scores than it allows per 100 possessions. +5 means it outscores opponents by 5 points every 100 trips down the floor; 0 is exactly average. Because it's per possession, fast and slow teams compare fairly."],
+  corr: ["Correlation", "A measure of how closely two sets of numbers line up, from 0 (no relationship) to 1.0 (perfect). Here: do the teams that look good early keep playing well? Around 0.7 and up, early numbers are a good guide."],
+  poss: ["Possession", "One trip down the floor that ends in a shot, a turnover or free throws. Teams average about 100 per game. Counting per possession puts fast- and slow-paced teams on equal footing."],
+  drtg: ["Defensive rating", "Points a team allows per 100 possessions. Lower is better. It's especially noisy early, partly because it depends on how well opponents happen to shoot on a given night."],
+  est: ["Best estimate", "Our best guess for a team's net rating over the rest of the season, blending its results so far with last season's rating. Four games in, last season gets more weight, because four games is a small sample."],
+  range: ["90% range", "The span where the real value should land about 9 times out of 10. A wide range is an honest way of saying there's still a lot we don't know."],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}`; pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+function closeTerm() { if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeTerm(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", closeTerm);
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { drawFan(); drawCurve(); drawPrior(); drawSlope(); drawNow(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Tall Order Digital · Data stories by Shawn Nafziger</title>
+<meta name="description" content="Data stories and visualization by Shawn Nafziger, starting with the NBA.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tall Order Digital">
+<meta property="og:description" content="Data stories and visualization by Shawn Nafziger, starting with the NBA.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-bar wrap">
+  <a class="brand" href="">Tall Order Digital</a>
+  <nav class="site-nav" aria-label="Site"><a href="#stories">Stories</a><a href="about/">About</a></nav>
+</header>
+<main class="wrap">
+  <header>
+    <p class="kicker">Data stories &amp; visualization</p>
+    <h1>Tall Order <span class="amber">Digital</span></h1>
+    <p class="lede">Stories built from the numbers up, by Shawn Nafziger. Starting with the NBA: what the stats say, how sure we can be, and what it means on the court.</p>
+  </header>
+
+  <section id="stories" aria-labelledby="stories-h">
+    <div class="section-head"><p class="kicker" id="stories-h">Latest stories</p></div>
+    <a class="story" href="stories/early-season-mirage/">
+      <div>
+        <p class="kicker">NBA · Oct 28, 2026</p>
+        <h2>The Early-Season Mirage</h2>
+        <p class="dek">Four games into a season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.</p>
+        <p class="meta">5 charts · about 6 minutes</p>
+      </div>
+      <div class="spark" aria-hidden="true">
+        <svg viewBox="0 0 320 120">
+          <line x1="8" x2="312" y1="39.2" y2="39.2" stroke="var(--rule)" stroke-dasharray="3 3"/>
+          <text x="312" y="34.2" text-anchor="end">0.7 = good guide</text>
+          <path d="M8.0,84.6 L15.6,73.8 L23.2,69.0 L30.8,68.4 L38.4,64.0 L46.0,60.0 L53.6,55.3 L61.2,50.7 L68.8,47.4 L76.4,46.5 L84.0,44.1 L91.6,41.9 L99.2,41.7 L106.8,38.3 L114.4,38.0 L122.0,38.5 L129.6,38.2 L137.2,38.8 L144.8,40.1 L152.4,38.5 L160.0,37.8 L167.6,37.4 L175.2,38.4 L182.8,38.6 L190.4,39.8 L198.0,39.4 L205.6,38.4 L213.2,38.4 L220.8,38.5 L228.4,37.7 L236.0,38.7 L243.6,38.8 L251.2,39.4 L258.8,38.1 L266.4,37.2 L274.0,37.4 L281.6,37.7 L289.2,38.3 L296.8,36.4 L304.4,35.7 L312.0,35.9" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="106.8" cy="38.3" r="4.5" fill="var(--amber)"/>
+          <text x="106.8" y="58.3" text-anchor="middle" style="fill:var(--ink-2)">game 14</text>
+          <text x="8" y="116">game 1</text><text x="312" y="116" text-anchor="end">game 41</text>
+        </svg>
+      </div>
+    </a>
+    <p class="soon">More stories are on the way through the 2026-27 season.</p>
+  </section>
+</main>
+<footer class="site-foot wrap">
+  <p>NBA data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital</p>
+</footer>
+</body>
+</html>
