@@ -5,7 +5,7 @@
  *   node tools/share-cards.js
  *
  * Needs Playwright (Chromium) and these fonts installed locally: Barlow Semi
- * Condensed, Big Shoulders Display, IBM Plex Sans, IBM Plex Mono. Look at
+ * Condensed, IBM Plex Sans, IBM Plex Mono. Look at
  * the PNGs before committing: a missing font silently falls back.
  */
 const fs = require("fs");
@@ -41,7 +41,7 @@ function storyCard(curve) {
   return `${base}<style>
     .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 48px; }
     .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 22px; }
-    h1 { font: 800 100px/.9 "Big Shoulders Display"; text-transform: uppercase; letter-spacing: .01em; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
     .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
     .chart { align-self: center; }
     .chart text { font-family: "IBM Plex Mono"; font-size: 17px; fill: ${C.sub}; }
@@ -70,7 +70,7 @@ function shotDietCard(curve) {
   return `${base}<style>
     .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 48px; }
     .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 22px; }
-    h1 { font: 800 112px/.9 "Big Shoulders Display"; text-transform: uppercase; letter-spacing: .01em; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
     .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
     .chart { align-self: center; }
     .chart text { font-family: "IBM Plex Mono"; font-size: 17px; fill: ${C.sub}; }
