@@ -9,6 +9,13 @@
 <meta property="og:site_name" content="Tall Order Digital">
 <meta property="og:title" content="The Early-Season Mirage">
 <meta property="og:description" content="Four games into an NBA season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.">
+<link rel="canonical" href="https://tallorderdigital.com/stories/early-season-mirage/">
+<meta property="og:url" content="https://tallorderdigital.com/stories/early-season-mirage/">
+<meta property="og:image" content="https://tallorderdigital.com/stories/early-season-mirage/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Early-Season Mirage: a chart of how well early-season net rating predicts the rest of an NBA season, reaching 0.7 at game 14.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../../favicon.ico" sizes="48x48">
 <link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
@@ -153,15 +160,15 @@ body { margin: 0; }
   </header>
 
   <div class="stats" role="list">
-    <div class="stat" role="listitem"><b id="st-r4">0.41</b><span>How well a team's net rating after 4 games predicts the rest of its season (<button type="button" class="term" data-term="corr">correlation</button>, 1.0 = perfect; five-season average)</span></div>
-    <div class="stat" role="listitem"><b id="st-k">8 games</b><span>Until it becomes a good guide, with the correlation passing 0.7 (five-season average)</span></div>
-    <div class="stat" role="listitem"><b id="st-move">7.6</b><span>Places the average team moves in the net-rating rankings between game 4 and season's end</span></div>
+    <div class="stat" role="listitem"><b id="st-r4">0.42</b><span>How well a team's net rating after 4 games predicts the rest of its season (<button type="button" class="term" data-term="corr">correlation</button>, 1.0 = perfect; five-season average)</span></div>
+    <div class="stat" role="listitem"><b id="st-k">14 games</b><span>Until it becomes a good guide, with the correlation passing 0.7 (five-season average)</span></div>
+    <div class="stat" role="listitem"><b id="st-move">7.5</b><span>Places the average team moves in the net-rating rankings between game 4 and season's end</span></div>
   </div>
 
   <section>
     <div class="prose">
       <h2>Every team starts as a rumor</h2>
-      <p>Net rating is the point differential per 100 <button type="button" class="term" data-term="poss">possessions</button>: the best single number for how good a team is. After one game last season, it ranged from <strong id="rng1">−33 to +33</strong>. By April, last season's 30 teams fit between <strong id="rngF">−11.5 and +10.9</strong>.</p>
+      <p>Net rating is the point differential per 100 <button type="button" class="term" data-term="poss">possessions</button>: the best single number for how good a team is. After one game last season, it ranged from <strong id="rng1">−33 to +32</strong>. By April, last season's 30 teams fit between <strong id="rngF">−11.5 and +10.9</strong>.</p>
       <p>The shaded funnel shows how far an exactly average team would drift by luck alone. Early on, almost every team is inside it.</p>
     </div>
     <figure class="figure" style="margin:0">
@@ -244,7 +251,7 @@ body { margin: 0; }
       <div class="fig-head">
         <div>
           <p class="fig-title">2026-27 net rating so far, and the best estimate for the rest of the season</p>
-          <p class="fig-sub" id="now-sub">Regular season through Oct 27. Hover a team for details.</p>
+          <p class="fig-sub" id="now-sub">Regular season through Oct 27 (56 games). Hover a team for details.</p>
         </div>
         <div class="legend"><span><i class="ring"></i>2026-27 so far</span><span><i class="dot" style="background:var(--ink)"></i>Best estimate, rest of season</span><span><i class="bar"></i>90% range</span><span><i style="background:var(--s2);width:2px;height:12px"></i>2025-26 final</span></div>
       </div>
@@ -263,7 +270,7 @@ body { margin: 0; }
       <li><strong>Data:</strong> every regular-season game from 2021-22 to 2025-26 (6,150 games) and 2026-27 through Oct 27 (56 games), from the NBA Stats API via the open-source <code>nba_api</code> client. 2019-20 and 2020-21 are excluded (bubble, shortened schedules, empty arenas).</li>
       <li><strong>Ratings</strong> are built from cumulative totals, never averages of single-game ratings. Possessions are estimated as FGA + 0.44 × FTA − offensive rebounds + turnovers. Against the NBA's own possession counts for 2025-26, season net ratings differ by at most 0.15 and every team's rank is identical.</li>
       <li><strong>Predictive test:</strong> Pearson correlation across the 30 teams between games 1–k and games k+1–82, so the early games never appear on both sides.</li>
-      <li><strong>Noise model:</strong> a team's single-game net rating varies by about <span id="m-noise">15.4</span> points (standard deviation), while true team quality varies by about <span id="m-true">5.9</span>. Signal and noise are equal at about <span id="m-khalf">7</span> games, consistent with the correlation curve.</li>
+      <li><strong>Noise model:</strong> a team's single-game net rating varies by about <span id="m-noise">14.4</span> points (standard deviation), while true team quality varies by about <span id="m-true">5.0</span>. Signal and noise are equal at about <span id="m-khalf">8</span> games, consistent with the correlation curve.</li>
       <li><strong>Best estimate:</strong> a linear regression of rest-of-season net rating on (a) net rating so far and (b) last season's final net rating, fitted at the same game count across four season pairs (120 team-seasons). The 90% range comes from the regression's typical error.</li>
       <li><strong>Limits:</strong> five seasons of history. The estimate doesn't know about offseason trades, injuries or coaching changes, and makes no adjustment for opponents or rest. The highlighted paths and rankings use 2025-26 as the example season.</li>
     </ul>
