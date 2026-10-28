@@ -15,4 +15,4 @@ Public site for Shawn Nafziger's data stories. The project memory, data and anal
 ## Design
 Logo kit in `assets/brand/` (see its README): bar mark with the orange standout, wordmark in Barlow Semi Condensed. Orange #E8912D, slate #46536F (#8A97B7 on dark), ink #1F2638. The header and home hero draw the mark as inline SVG so it follows light/dark mode. No other logos.
 
-Big Shoulders Display (headlines), IBM Plex Sans (body), IBM Plex Mono (data and labels). Navy #172B40, amber #F5A623 / #E8940F for the one thing that matters, muted grays elsewhere. Tokens in `assets/site.css`.
+Barlow Semi Condensed (headlines and logo), IBM Plex Sans (body), IBM Plex Mono (data and labels). Navy #172B40, amber #F5A623 / #E8940F for the one thing that matters, muted grays elsewhere. Tokens in `assets/site.css`.
