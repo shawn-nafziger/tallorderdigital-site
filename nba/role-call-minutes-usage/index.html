@@ -25,17 +25,20 @@
 <style>
 /* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
 :root {
-  --bg: #f4f6f8;
+  --bg: #f3f4ef;
   --surface: #ffffff;
-  --ink: #142233;
-  --ink-2: #4a5a6b;
-  --ink-3: #7b8896;
-  --rule: #d9dfe5;
-  --ghost: #8b9aaa;
-  --navy: #172b40;
-  --amber: #e8940f;
-  --funnel: #dce3eb;
-  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #f99a2b;
+  --funnel: rgba(127, 196, 214, .3);
+  --s1: #0a3746;
+  --s2: #4a403a;
+  --s3: #0a3746;
   --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
   --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -43,16 +46,12 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
-    --rule: #263445; --ghost: #5d6e80; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c;
-    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
-  --rule: #263445; --ghost: #5d6e80; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c;
-  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
-}
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
 body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
@@ -155,7 +154,8 @@ body { margin: 0; }
 .rbar b { font: 600 14px/1 var(--font-data); text-align: right; font-variant-numeric: tabular-nums; }
 .rgroup { font: 500 11px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-top: 6px; }
 .ptable td:nth-child(n+2), .ptable th:nth-child(n+2) { text-align: right; }
-.up { color: var(--amber); font-weight: 600; }
+.up { color: var(--ink); font-weight: 600; }
+.up::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 1px; background: var(--amber); }
 .muted { color: var(--ink-3); }
 details, .tablewrap { min-width: 0; max-width: 100%; }
 @media (max-width: 520px) { .rbar { grid-template-columns: 128px minmax(0, 1fr) 40px; font-size: 13px; } .ptable { font-size: 12px; } .ptable td, .ptable th { white-space: normal; padding: 5px 4px; } .ptable .hide-m { display: none; } }
@@ -206,7 +206,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
     <div class="prose">
       <h2>Whose role changed</h2>
       <p>Each dot is one player. <strong>Across:</strong> how his minutes per game changed since last season. <strong>Up:</strong> how his <button type="button" class="term" data-term="usg">usage</button> changed, meaning how much of the offense runs through him.</p>
-      <p>The gray box shows what a normal first week looks like: about ±10 minutes and ±6 usage points of random <button type="button" class="term" data-term="wobble">wobble</button>. Being inside the box isn't good or bad. It means we can't yet tell his change from noise.</p>
+      <p>The shaded box shows what a normal first week looks like: about ±10 minutes and ±6 usage points of random <button type="button" class="term" data-term="wobble">wobble</button>. Being inside the box isn't good or bad. It means we can't yet tell his change from noise.</p>
       <p>Orange dots are outside the box: a change bigger than a noisy week explains, so it reflects a real decision about that player's role. <strong>47 of 249</strong> players are there.</p>
       <p>Light orange dots are at the edge: at least 80% of the way out of the box, so probably real but not yet certain.</p>
       <p>Whether that's good news depends on the player. More minutes for a second-year player is usually good; a smaller share for a star on a new team is a question.</p>
@@ -219,7 +219,7 @@ details, .tablewrap { min-width: 0; max-width: 100%; }
         </div>
         <div class="picker" id="move-picker" aria-label="Show"></div>
       </div>
-      <div class="legend"><span><i class="dot" style="background:var(--amber)"></i>Changed more than a normal week</span><span><i class="dot" style="background:var(--amber);opacity:.45"></i>At the edge of the box</span><span><i class="dot" style="background:var(--ghost)"></i>Inside normal week-1 wobble</span><span><i class="ring" style="border-color:var(--ink-2)"></i>Hollow dot: new team this season</span><span><i class="bar" style="height:10px;width:16px;border-radius:2px"></i>Gray box: a normal first week</span></div>
+      <div class="legend"><span><i class="dot" style="background:var(--amber)"></i>Changed more than a normal week</span><span><i class="dot" style="background:var(--edge)"></i>At the edge of the box</span><span><i class="dot" style="background:var(--ghost)"></i>Inside normal week-1 wobble</span><span><i class="ring" style="border-color:var(--ink-2)"></i>Hollow dot: new team this season</span><span><i class="bar" style="height:10px;width:16px;border-radius:2px"></i>Shaded box: a normal first week</span></div>
       <div class="chart" id="scatter"></div>
       <details>
         <summary>Show players outside the box as a table (* = new team)</summary>
@@ -307,8 +307,8 @@ function drawScatter() {
   order.forEach(p => {
     const o = outside(p), cx = x(p.dm), cy = y(p.du);
     const g = el("g", { tabindex: o ? 0 : -1, "aria-label": `${p.name}, ${p.t}: ${p.mpgl} to ${p.mpg} minutes, usage ${p.usgl}% to ${p.usg}%` }, s);
-    const nr = near(p), col = o || nr ? css("--amber") : css("--ghost");
-    el("circle", { cx, cy, r: 4.5, fill: p.moved ? css("--surface") : col, stroke: p.moved ? col : css("--surface"), "stroke-width": p.moved ? 2 : 1, "fill-opacity": o || p.moved ? 1 : nr ? .45 : .7, "stroke-opacity": nr && p.moved ? .55 : 1 }, g);
+    const nr = near(p), col = o ? css("--amber") : nr ? css("--edge") : css("--ghost");
+    el("circle", { cx, cy, r: 4.5, fill: p.moved ? css("--surface") : col, stroke: p.moved ? col : css("--surface"), "stroke-width": p.moved ? 2 : 1, "fill-opacity": o || nr || p.moved ? 1 : .7 }, g);
     el("circle", { cx, cy, r: 10, fill: "transparent" }, g);
     const tip = e => { const hr = host.getBoundingClientRect(); const px = e.clientX != null ? e.clientX - hr.left : cx; const py = e.clientY != null ? e.clientY - hr.top : cy;
       showTip(host, `<b>${p.name}</b>, ${p.t}${p.moved ? ` (was ${p.from})` : ""}<br>Minutes: ${p.mpgl} → ${p.mpg} (${fmt(p.dm)})<br>Usage: ${p.usgl}% → ${p.usg}% (${fmt(p.du)})<br>Points: ${p.ppgl} → ${p.ppg} a game · ${p.g} games`, px, py); };

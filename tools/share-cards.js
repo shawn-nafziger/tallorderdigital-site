@@ -13,13 +13,14 @@ const path = require("path");
 const { chromium } = require("playwright");
 
 const ROOT = path.resolve(__dirname, "..");
-const C = { ink: "#1f2638", mist: "#f2f3f7", orange: "#e8912d", slateDark: "#8a97b7", sub: "#b4bfd6", rule: "#3a4560" };
+// Playbook palette (Oct 29, 2026), dark theme: Deep background, Paper text, Stone secondary, Sky comparison, Orange signal
+const C = { ink: "#03222c", mist: "#f3f4ef", orange: "#f99a2b", slateDark: "#3a5762", sky: "#7fc4d6", sub: "#dddad3", rule: "#1e3a44", logo2: "#7fc4d6", logo3: "#4f8d9e", logo4: "#2e6272" };
 
 const mark = (h) => `<svg width="${h}" height="${h}" viewBox="0 0 100 100">
   <rect x="6" y="6" width="18" height="88" rx="3" fill="${C.orange}"/>
-  <rect x="30" y="50" width="18" height="44" rx="3" fill="${C.slateDark}"/>
-  <rect x="54" y="60" width="18" height="34" rx="3" fill="${C.slateDark}"/>
-  <rect x="78" y="70" width="18" height="24" rx="3" fill="${C.slateDark}"/></svg>`;
+  <rect x="30" y="50" width="18" height="44" rx="3" fill="${C.logo2}"/>
+  <rect x="54" y="60" width="18" height="34" rx="3" fill="${C.logo3}"/>
+  <rect x="78" y="70" width="18" height="24" rx="3" fill="${C.logo4}"/></svg>`;
 
 const lockup = (h) => `<div class="lockup" style="--h:${h}px">${mark(h)}<div class="wm"><b>Tall Order</b><span>Digital</span></div></div>`;
 
@@ -53,7 +54,7 @@ function storyCard(curve) {
     <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
       <line x1="${P}" x2="${W - P}" y1="${y(0.7)}" y2="${y(0.7)}" stroke="${C.rule}" stroke-width="2" stroke-dasharray="6 6"/>
       <text x="${W - P}" y="${y(0.7) - 12}" text-anchor="end">0.7 = good guide</text>
-      <path d="${d}" fill="none" stroke="${C.mist}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${d}" fill="none" stroke="${C.sky}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="${x(hit.k)}" cy="${y(hit.net)}" r="10" fill="${C.orange}"/>
       <text x="${x(hit.k)}" y="${y(hit.net) + 38}" text-anchor="middle" style="fill:${C.mist}">game ${hit.k}</text>
       <text x="${P}" y="${H - 2}">game 1</text><text x="${W - P}" y="${H - 2}" text-anchor="end">game 41</text>
@@ -117,7 +118,7 @@ function roleCallCard(stab) {
 function newSpotsCard(pl) {
   const R = 15, pts = [30, 90, 150, 210, 270, 330].map((d) => [Math.cos(d * Math.PI / 180) * R, Math.sin(d * Math.PI / 180) * R]);
   const courtSvg = (hexes, total, label) => {
-    const hx = hexes.map(([x, y, c]) => `<polygon points="${pts.map(([dx, dy]) => `${(x + dx).toFixed(1)},${(y + dy).toFixed(1)}`).join(" ")}" fill="${C.mist}" fill-opacity="${Math.max(0.12, Math.min(1, Math.sqrt(c / total / 0.06))).toFixed(2)}"/>`).join("");
+    const hx = hexes.map(([x, y, c]) => `<polygon points="${pts.map(([dx, dy]) => `${(x + dx).toFixed(1)},${(y + dy).toFixed(1)}`).join(" ")}" fill="${C.sky}" fill-opacity="${Math.max(0.12, Math.min(1, Math.sqrt(c / total / 0.06))).toFixed(2)}"/>`).join("");
     const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2), ln = `stroke="${C.slateDark}" stroke-width="3" fill="none"`;
     return `<div class="ct"><p>${label}</p><svg viewBox="-250 -52 500 330">${hx}
       <rect x="-80" y="-47.5" width="160" height="190" ${ln}/><path d="M -60 142.5 A 60 60 0 0 0 60 142.5" ${ln}/>
