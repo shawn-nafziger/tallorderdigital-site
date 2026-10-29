@@ -9,7 +9,7 @@ Public site for Shawn Nafziger's data stories. The project memory, data and anal
 - **No NBA or team logos.** Names, abbreviations and stats are fine.
 - **Credit the data source on every page.** NBA stories keep the "not affiliated with the NBA" line in the footer; weather stories credit NOAA instead.
 - **Every published claim follows `knowledge/reference/methods.md`** in the story's data repo: honest sample sizes, ranges where uncertain (and, for NBA, totals not averages).
-- **Story addresses:** weather stories live at `weather/<slug>/` (NBA stories are still at `stories/<slug>/`). **Never break a published address:** when a page moves, leave a redirect page in the old folder (meta refresh plus `location.replace` to the new relative path, `noindex`, a canonical link and the story's link-preview tags pointing at the new address), and update the home card. Example: `stories/phoenix-after-dark/`.
+- **Story addresses:** `/<topic>/<slug>/`: weather stories at `weather/<slug>/`, NBA stories at `nba/<slug>/` (e.g. `nba/role-call-minutes-usage/`). The slug is the story's name plus one or two plain keywords, lowercase with hyphens. **Never break a published address:** when a page moves, leave a redirect page in the old folder (meta refresh plus `location.replace` to the new relative path, `noindex`, a canonical link and the story's link-preview tags pointing at the new address), and update the home card. Example: `stories/phoenix-after-dark/`.
 - **Story pages are generated** from `<repo>/analysis/<story>/` in the data repos. Edit the template there and re-run, then copy the output here; don't hand-edit the copy.
 - Test before every PR: serve locally, check desktop and phone widths, light and dark, no script errors, and no broken internal links.
 
