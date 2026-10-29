@@ -2,7 +2,7 @@
 
 *The shared design rules for everything Tall Order Digital publishes: the website, weather and NBA stories, the live weather page, and Power BI dashboards. Read it before designing any page, chart, story or Power BI visual. Adopted October 29, 2026. Owner: Shawn Nafziger.*
 
-*Kept in the Claude Projects "Weather intelligence", "Tall Order Digital" and "NBA analytics". The master copy is in "Weather intelligence"; when it changes, re-upload it to the other two.*
+***Master copy: this file, `docs/design-system-and-dataviz-playbook.md` in the `tallorderdigital-site` repo.** Changes arrive as pull requests like any other site change. The Claude Projects "Tall Order Digital", "Weather intelligence" and "NBA analytics" may hold reference copies; if a copy disagrees with this file, this file wins. Last updated October 29, 2026, to match the live site.*
 
 ---
 
@@ -52,14 +52,15 @@ Shawn's palette (12 swatches, adopted Oct 29, 2026; Sky added the same day) is t
 | Card / surface | `#FFFFFF`† | Teal `#0A3746` | |
 | Primary text | Ink `#201914` (15.7:1) | Paper `#F3F4EF` (15:1) | |
 | Secondary text | Bark `#4A403A` (9.1:1) | Stone `#DDDAD3` (11.9:1) | |
+| Small labels (axes, captions, meta) | `#6E645D`† | `#9FB1B8`† | 4.5:1 or better on the page background |
 | Rules, gridlines, borders | Stone `#DDDAD3` | `#1E3A44`† | Recessive |
 | **Signal** (the one thing that matters) | **Burnt `#B36000`** | **Orange `#F99A2B`** | Orange is too light on Paper for text or thin marks (1.96:1); Burnt carries the signal in light mode |
-| **At the edge** | Orange `#F99A2B` | `#8F6230`† | |
+| **At the edge** | Peach `#E3B88A`† | `#8F6230`† | A pale tint of Burnt, so it reads weaker than the signal (changed from Orange on Oct 29, 2026) |
 | **Noise** (ordinary marks) | `#CDC9C1`† | `#3A5762`† | Slightly stronger than gridlines so dots don't vanish |
 | **Comparison** series (lines, dots, labels) | Teal `#0A3746` | **Sky `#7FC4D6`** (8.5:1 on Deep, 6.5:1 on Teal) | |
 | Bands and fills (normal range, shaded areas) | Sky at about 25-30% opacity | Sky at about 25-30% opacity | In light mode Sky is **fills only**: as text or thin lines it's too pale on Paper (1.8:1) |
 | Brand accent (logo bar, headline highlights) | Orange `#F99A2B` | Orange `#F99A2B` | **Decided Oct 29, 2026:** the logo moves from `#E8912D` to `#F99A2B` |
-| Warm side of a diverging scale | Burnt → Orange | Orange | |
+| Warm side of a diverging scale | Burnt → Peach | Orange | |
 | Cold side of a diverging scale | Teal → Sky | Sky | |
 | Diverging midpoint ("normal") | Paper / Stone | `#1E3A44` | Never a hue at the midpoint |
 | Status backgrounds | Butter (notable), Mint (normal / OK), Blush (alert, e.g. heat advisory) | Same hues at about 15% opacity on Deep | **UI state only, never a data encoding.** Always paired with an icon and a label: Mint and Blush are indistinguishable with deuteranopia |
@@ -77,10 +78,27 @@ Shawn's palette (12 swatches, adopted Oct 29, 2026; Sky added the same day) is t
 9. **Orange is earned.** If more than one or two things on a view are orange, the highlight stops working (Von Restorff, §5).
 10. **NBA stories:** the old Game Overview colors (navy home, slate away, amber advantage) map to Teal / Sky for home and away and Burnt/Orange for the primary advantage. No team colors or logos.
 
-### Rollout (not yet done; one PR set)
-- Website: rewrite the `assets/site.css` tokens, then regenerate the stories (four NBA stories plus Phoenix After Dark) from their templates.
-- Logo: `#E8912D` → `#F99A2B` in the logo kit (`assets/brand/`), the inline header and home-hero marks, the favicon and icons, and the `CLAUDE.md` notes in all three repos that call `#E8912D` "the logo orange".
-- Power BI: a theme JSON built from these tokens (weather and NBA models).
+### Logo colors
+
+The mark's three shorter bars fade **toward the background**; only the tall orange bar stays fully saturated. These shades are **logo-only**, never chart colors.
+
+| Element | Light | Dark |
+|---|---|---|
+| Tall bar | Orange `#F99A2B` | Orange `#F99A2B` |
+| Bar 2 | Teal `#0A3746` | Sky `#7FC4D6` |
+| Bar 3 | `#366F80` | `#4F8D9E` |
+| Bar 4 | `#62A8BB` | `#2E6272` |
+| "TALL ORDER" | Ink `#201914` | Paper `#F3F4EF` |
+| "DIGITAL" | Bark `#4A403A` | Stone `#DDDAD3` |
+
+### Website tokens (as live)
+
+The site's CSS names these roles as: `--amber` signal, `--edge` at the edge, `--ghost` noise, `--navy` comparison, `--funnel` bands, `--ink` / `--ink-2` / `--ink-3` text, `--rule` gridlines, `--logo-*` logo bars. They live in `assets/site.css`, and each story template carries its own copy.
+
+### Rollout
+
+**Done Oct 29, 2026:** website tokens, logo kit, header and home-hero marks, favicon and icons, regenerated stories.
+**Still to do:** a Power BI theme JSON built from these tokens (weather and NBA models).
 
 ## 2. Typography
 
@@ -167,7 +185,7 @@ They work **in sequence**, each one narrowing what the next has to explain. Use 
 2. **Every number has context:** the normal or league average, the record, the rank with its count, and an *as of* time.
 3. **Final / so far / forecast** are always labeled differently, in text and in style (forecast marks are hollow or dashed).
 4. **Phone first:** single column, no sideways scrolling, large tap targets. Power BI embeds get an image version on phones.
-5. **Both themes**, designed separately rather than auto-inverted.
+5. **Both themes**, designed separately rather than auto-inverted. The first visit follows the reader's system setting; a sun/moon button in the header switches themes and remembers the choice (`assets/theme.js`, saved as `tod-theme`). Pages read `:root[data-theme="light" | "dark"]`, and charts redraw when it changes.
 6. **Accessibility:** color never carries meaning alone, every chart has a table view, keyboard focus is visible, and motion respects "reduce motion".
 7. **Interaction:** hover/tap tooltips on every mark, with hit targets larger than the marks; filters in one row above the charts.
 8. **Trust signals:** the data source on every page, a methods note, and clearly labeled modeled data. NBA pages keep the "not affiliated with the NBA" line.

@@ -2,6 +2,8 @@
 
 Last updated: October 29, 2026
 
+**Master copy: `docs/brand-decisions.md` in the `tallorderdigital-site` repo.** Project copies are for reference.
+
 **Colors, typography and chart rules now live in `design-system-and-dataviz-playbook.md`** (adopted Oct 29, 2026). Where this doc and the playbook disagree, the playbook wins.
 
 ## Positioning: DECIDED
@@ -41,7 +43,7 @@ Last updated: October 29, 2026
 - `#366F80`, `#62A8BB`, `#4F8D9E` and `#2E6272` are logo-only shades derived from the playbook's Sky → Teal → Deep ramp; they are not chart tokens.
 - Wordmark: "TALL ORDER" in Barlow Semi Condensed Bold, with "DIGITAL" below in Barlow Semi Condensed SemiBold, widely letterspaced (0.52em) and indented to start under the stem of the T.
 - Order stays tallest-first. Flipping was considered and rejected: rising bars look like a phone signal-strength icon and a generic growth chart.
-- Logo kit rebuilt Oct 29 with these colors (Tall-Order-Digital-logo-kit.zip).
+- Logo kit rebuilt Oct 29 with these colors (Tall-Order-Digital-logo-kit.zip) and live on the website (`assets/brand/`). The logo colors are also in the playbook.
 - Design canvas (artboard "A+ new palette · 3 Teal-to-sky steps"): https://claude.ai/artifact/RwgWsq1ir3xf8Ni8wPvNt2
 
 ### Rejected directions
@@ -54,7 +56,6 @@ Last updated: October 29, 2026
 - Body type: Barlow. Replaced by IBM Plex Sans (body) and IBM Plex Mono (data); Barlow Semi Condensed stays for headlines and the logo.
 
 ## Open items
-- Add the logo bar colors to the playbook (master copy in "Weather intelligence"), and swap the new kit into the website repo's `assets/brand/` during the palette rollout.
 - Create a one-color version of the mark (for single-color printing, embroidery, stamps).
 - Have a human designer produce the final logo files (vector master, icon set), fine-tuning the "DIGITAL" alignment. AI-only artwork generally can't be copyrighted in the US.
 - Trademark search (USPTO), domain, and social handle checks. A quick web search found no exact "Tall Order Digital" match; nearby names include Tall Order Creatives, TallOrder (South Africa), and Tall (UK agency).

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,7 +11,8 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <style>
 body{margin:0;background:#f3f4ef;color:#201914;font:400 17px/1.6 "IBM Plex Sans","Segoe UI",system-ui,sans-serif;padding:0 16px}
-@media (prefers-color-scheme:dark){body{background:#03222c;color:#f3f4ef}}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) body{background:#03222c;color:#f3f4ef}}
+html[data-theme=dark] body{background:#03222c;color:#f3f4ef}
 main{max-width:860px;margin:0 auto;padding:96px 0}
 h1{font:700 clamp(44px,10vw,92px)/.95 "Barlow Semi Condensed","Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 20px}
 a{color:inherit}

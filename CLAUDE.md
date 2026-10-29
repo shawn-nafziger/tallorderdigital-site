@@ -17,7 +17,11 @@ Public site for Shawn Nafziger's data stories. The project memory, data and anal
 ## Design
 Logo kit in `assets/brand/` (see its README; updated Oct 29, 2026): four bars, tallest first. The tall bar is orange #F99A2B; the three shorter bars step down and fade toward the background (light: #0A3746, #366F80, #62A8BB; dark: #7FC4D6, #4F8D9E, #2E6272). Wordmark in Barlow Semi Condensed: "TALL ORDER" Ink #201914 / Paper #F3F4EF on dark, "DIGITAL" Bark #4A403A / Stone #DDDAD3. The header and home hero draw the mark as inline SVG (bar classes `m-o`, `m-2`, `m-3`, `m-4`; colors from the `--logo-*` tokens) so it follows light/dark mode; story templates in the data repos carry the same rules. Logo shades are not chart colors. No other logos.
 
-**Read `docs/design-system-and-dataviz-playbook.md` before designing anything.** It's a copy; the master lives in the "Weather intelligence" Claude Project. Brand decisions are in `docs/brand-decisions.md`.
+**Read `docs/design-system-and-dataviz-playbook.md` before designing anything.** This repo's `docs/` folder is the **master copy** of the playbook and of `docs/brand-decisions.md`. Copies in Claude Projects are reference only; if one disagrees with `docs/`, `docs/` wins. Update `docs/` in the same pull request as any design change, so the docs always match what's live.
+
+**Who owns what:**
+- **Sitewide (owned by the "Tall Order Digital" Claude Project):** `assets/site.css` tokens, the light/dark theme and toggle (`assets/theme.js`), header, footer, navigation, logo kit and favicon, the home, About and 404 pages, and `docs/`.
+- **Stories (owned by the weather and NBA data repos and their projects):** story pages, their templates and charts. Stories use the shared tokens, header and logo rules as they are; they don't define new colors or change the shell. If a story needs a new sitewide token or component, add it to `docs/` and `assets/site.css` first, in its own PR.
 
 **Palette (rolled out Oct 29, 2026):** ink on paper.
 - **Light:** Paper `#F3F4EF` background, white cards, Ink `#201914` text, Bark `#4A403A` secondary.
@@ -36,5 +40,7 @@ Logo kit in `assets/brand/` (see its README; updated Oct 29, 2026): four bars, t
 - **Color keys:** orange = the real signal, light orange = "at the edge", gray = noise. Each key goes on its own line, starting with the color word.
 
 **Type:** Barlow Semi Condensed (headlines, big numbers, logo), IBM Plex Sans (body), IBM Plex Mono (data and labels).
+
+**Light/dark toggle:** the first visit follows the reader's system setting; the sun/moon button in the header switches and saves the choice in localStorage (`tod-theme`). Each page needs (1) the one-line script right after `<meta charset>` that applies a saved choice before drawing (copy it from `index.html`), (2) the `.theme-toggle` button as the last item in `.site-nav`, and (3) `assets/theme.js` with its CSS from `assets/site.css`. Home and About have the button; 404 honors a saved choice. **Story templates in the data repos still need it** (their pages already redraw charts when `data-theme` changes); until then story pages follow the system setting only.
 
 **Share cards** (`tools/share-cards.js`) use the dark palette: Deep background, Sky comparison, Orange signal, and the logo's on-dark bar colors.
