@@ -83,3 +83,21 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .hero-logo .wm { min-width: 0; }
 .hero-logo .wm-1 { font-size: calc(var(--m) * .5); white-space: normal; }
 .hero-logo .wm-2 { font-size: calc(var(--m) * .17); margin: calc(var(--m) * .04) 0 0 calc(var(--m) * .06); }
+
+/* Light/dark toggle (assets/theme.js). 44px tap target; the icon shows the theme you'd switch to. */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+.site-nav { align-items: center; }
+@media (max-width: 420px) {
+  .site-bar { flex-wrap: wrap; gap: 4px 8px; }
+  .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; }
+  .brand .mark { width: 36px; height: 36px; }
+  .wm-1 { font-size: 20px; }
+  .wm-2 { font-size: 7.3px; }
+}
