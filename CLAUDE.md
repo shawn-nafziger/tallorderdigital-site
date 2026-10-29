@@ -14,8 +14,8 @@ Public site for Shawn Nafziger's data stories. The project memory, data and anal
 - Test before every PR: serve locally, check desktop and phone widths, light and dark, no script errors, and no broken internal links.
 
 ## Design
-Logo kit in `assets/brand/` (see its README): bar mark with the orange standout, wordmark in Barlow Semi Condensed. Orange #E8912D, slate #46536F (#8A97B7 on dark), ink #1F2638. The header and home hero draw the mark as inline SVG so it follows light/dark mode. No other logos.
+Logo kit in `assets/brand/` (see its README; updated Oct 29, 2026): four bars, tallest first. The tall bar is orange #F99A2B; the three shorter bars step down and fade toward the background (light: #0A3746, #366F80, #62A8BB; dark: #7FC4D6, #4F8D9E, #2E6272). Wordmark in Barlow Semi Condensed: "TALL ORDER" Ink #201914 / Paper #F3F4EF on dark, "DIGITAL" Bark #4A403A / Stone #DDDAD3. The header and home hero draw the mark as inline SVG (bar classes `m-o`, `m-2`, `m-3`, `m-4`; colors from the `--logo-*` tokens) so it follows light/dark mode; story templates in the data repos carry the same rules. Logo shades are not chart colors. No other logos.
 
 Color keys: orange = the real signal, light orange = "at the edge", gray = noise. Each color key sits on its own line, starting with the color word shown in that color. See `nba-analytics/CLAUDE.md`.
 
-Barlow Semi Condensed (headlines and logo), IBM Plex Sans (body), IBM Plex Mono (data and labels). Navy #172B40, amber #F5A623 / #E8940F for the one thing that matters, muted grays elsewhere. Tokens in `assets/site.css`; **story data colors come only from these tokens**. #E8912D is the logo's orange, not a data color.
+Barlow Semi Condensed (headlines and logo), IBM Plex Sans (body), IBM Plex Mono (data and labels). Navy #172B40, amber #F5A623 / #E8940F for the one thing that matters, muted grays elsewhere. Tokens in `assets/site.css`; **story data colors come only from these tokens**. The full new palette (Paper / Ink / Teal / Sky / Orange) is adopted but not rolled out yet; see the design playbook in the Claude Projects.

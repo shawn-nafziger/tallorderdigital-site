@@ -3,11 +3,11 @@
     .t { font-family: 'Barlow Semi Condensed', sans-serif; }
   </style>
   <g transform="scale(1.5)">
-  <rect x="6" y="6" width="18" height="88" rx="3" fill="#e8912d"/>
-  <rect x="30" y="50" width="18" height="44" rx="3" fill="#46536f"/>
-  <rect x="54" y="60" width="18" height="34" rx="3" fill="#46536f"/>
-  <rect x="78" y="70" width="18" height="24" rx="3" fill="#46536f"/>
+  <rect x="6" y="6" width="18" height="88" rx="3" fill="#f99a2b"/>
+  <rect x="30" y="50" width="18" height="44" rx="3" fill="#0a3746"/>
+  <rect x="54" y="60" width="18" height="34" rx="3" fill="#366f80"/>
+  <rect x="78" y="70" width="18" height="24" rx="3" fill="#62a8bb"/>
   </g>
-  <text class="t" x="186" y="84" font-size="76" font-weight="700" letter-spacing="0.76" fill="#2b3448">TALL ORDER</text>
-  <text class="t" x="199" y="118" font-size="26" font-weight="600" letter-spacing="13.52" fill="#5b6680">DIGITAL</text>
+  <text class="t" x="186" y="84" font-size="76" font-weight="700" letter-spacing="0.76" fill="#201914">TALL ORDER</text>
+  <text class="t" x="199" y="118" font-size="26" font-weight="600" letter-spacing="13.52" fill="#4a403a">DIGITAL</text>
 </svg>

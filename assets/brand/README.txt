@@ -1,4 +1,4 @@
-Tall Order Digital - logo kit (working version, October 2026)
+Tall Order Digital - logo kit (Option 3 palette, October 29, 2026)
 
 MARK (bars only)
   tod-mark.svg / .png ............ for light backgrounds
@@ -15,5 +15,7 @@ FULL LOGO (mark + name)
   They display correctly in web browsers; in design apps, install the font first.
   For a PNG of the full logo, export it from the design canvas in Claude.
 
-Colors: orange #E8912D, slate #46536F, ink #1F2638, mist #F2F3F7
+Colors: orange #F99A2B. Shorter bars on light: #0A3746 / #366F80 / #62A8BB.
+Shorter bars on dark: #7FC4D6 / #4F8D9E / #2E6272. App-icon tile: Deep #03222C.
+Wordmark: Ink #201914 + Bark #4A403A (light); Paper #F3F4EF + Stone #DDDAD3 (dark).
 Final production files (text converted to outlines, spacing fine-tuned) should come from a designer.

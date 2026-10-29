@@ -2,7 +2,7 @@
    Story pages carry their own copy of these tokens so each stays self-contained. */
 :root {
   --bg: #f4f6f8; --surface: #ffffff; --ink: #142233; --ink-2: #4a5a6b; --ink-3: #7b8896;
-  --rule: #d9dfe5; --navy: #172b40; --amber: #e8940f; --funnel: #dce3eb; --brand-slate: #46536f;
+  --rule: #d9dfe5; --navy: #172b40; --amber: #e8940f; --funnel: #dce3eb; --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
   --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
@@ -10,12 +10,12 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
-    --rule: #263445; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c; --brand-slate: #8a97b7; color-scheme: dark;
+    --rule: #263445; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0d1722; --surface: #13202e; --ink: #e8eef4; --ink-2: #b4c0cc; --ink-3: #8696a6;
-  --rule: #263445; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c; --brand-slate: #8a97b7; color-scheme: dark;
+  --rule: #263445; --navy: #9cc0e6; --amber: #f5a623; --funnel: #22374c; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
@@ -30,11 +30,13 @@ p { margin: 0; }
 /* Logo: bar mark + wordmark (Barlow Semi Condensed), colors follow the theme */
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
 .brand .mark { width: 42px; height: 42px; flex: none; }
-.mark .m-o { fill: #e8912d; }
-.mark .m-s { fill: var(--brand-slate, #46536f); }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
 .wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
-.wm-1 { font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
-.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--ink-3); margin: 3px 0 0 2px; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
 .site-bar { align-items: center; }
 
 .site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
