@@ -153,19 +153,19 @@ function homeCard() {
 }
 
 (async () => {
-  const story = fs.readFileSync(path.join(ROOT, "stories/early-season-mirage/index.html"), "utf8");
+  const story = fs.readFileSync(path.join(ROOT, "nba/early-season-mirage-net-rating/index.html"), "utf8");
   const D = JSON.parse(story.match(/const D = (\{.*?\});\n/s)[1]);
-  const sd = fs.readFileSync(path.join(ROOT, "stories/shot-diet/index.html"), "utf8");
+  const sd = fs.readFileSync(path.join(ROOT, "nba/shot-diet-three-point-rate/index.html"), "utf8");
   const SD = JSON.parse(sd.match(/const D = (\{.*?\});\n/s)[1]);
-  const rc = fs.readFileSync(path.join(ROOT, "stories/role-call/index.html"), "utf8");
+  const rc = fs.readFileSync(path.join(ROOT, "nba/role-call-minutes-usage/index.html"), "utf8");
   const RC = JSON.parse(rc.match(/const D = (\{.*?\});\n/s)[1]);
-  const ns = fs.readFileSync(path.join(ROOT, "stories/new-spots/index.html"), "utf8");
+  const ns = fs.readFileSync(path.join(ROOT, "nba/new-team-shot-maps/index.html"), "utf8");
   const NS = JSON.parse(ns.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
-    ["stories/early-season-mirage/share.png", storyCard(D.curve5.avg)],
-    ["stories/shot-diet/share.png", shotDietCard(SD.curve.avg)],
-    ["stories/role-call/share.png", roleCallCard(RC.stab)],
-    ["stories/new-spots/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
+    ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
+    ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
+    ["nba/role-call-minutes-usage/share.png", roleCallCard(RC.stab)],
+    ["nba/new-team-shot-maps/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();
