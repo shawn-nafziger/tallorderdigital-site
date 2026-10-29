@@ -170,6 +170,41 @@ function injuryCard(stars, med) {
   </div>`;
 }
 
+function readyNowCard(D) {
+  const W = 470, H = 330, m = { l: 34, r: 10, t: 10, b: 34 }, a0 = 18.5, a1 = 28.5;
+  const x = (a) => m.l + (a - a0) / (a1 - a0) * (W - m.l - m.r), y = (v) => H - m.b - v / 40 * (H - m.t - m.b);
+  const jit = (id) => ((id * 9301 + 49297) % 233280) / 233280 - 0.5;
+  const pts = D.pts.filter((p) => p.age <= a1).map((p) => {
+    const big = p.mpg >= D.model.big_mpg;
+    return `<circle cx="${x(p.age + jit(p.id) * .6)}" cy="${y(p.mpg)}" r="${big ? 5.5 : 3.5}" fill="${big ? C.sky : C.slateDark}"/>`;
+  }).join("");
+  const me = D.me;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Data story</p><h1>Ready Now</h1>
+      <p class="dek">No rookie 23 or older has averaged 30 minutes since 2020-21. Yaxel Lendeborg, 24, is playing ${me.mpg} a night.</p></div>
+    <div class="chart"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <rect x="${x(22.5)}" y="${m.t}" width="${W - m.r - x(22.5)}" height="${H - m.t - m.b}" fill="${C.sky}" fill-opacity=".08"/>
+      <line x1="${m.l}" x2="${W - m.r}" y1="${y(30)}" y2="${y(30)}" stroke="${C.sub}" stroke-opacity=".5" stroke-dasharray="6 5" stroke-width="2"/>
+      ${pts}
+      <circle cx="${x(me.age)}" cy="${y(me.mpg)}" r="10" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+      <text x="${x(me.age) + 16}" y="${y(me.mpg) - 10}" font-family="IBM Plex Mono" font-size="17" font-weight="600" fill="${C.mist}">Lendeborg</text>
+      <text x="${W - m.r - 4}" y="${y(30) + 22}" text-anchor="end" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">30 min a game</text>
+      <text x="${(m.l + W - m.r) / 2}" y="${H - 6}" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">age as a rookie →</text>
+      <text x="${x(20)}" y="${H - 22}" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="${C.sub}">20</text>
+      <text x="${x(24)}" y="${H - 22}" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="${C.sub}">24</text>
+      <text x="${x(28)}" y="${H - 22}" text-anchor="middle" font-family="IBM Plex Mono" font-size="14" fill="${C.sub}">28</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -191,12 +226,15 @@ function homeCard() {
   const NS = JSON.parse(ns.match(/const D = (\{.*?\});\n/s)[1]);
   const it = fs.readFileSync(path.join(ROOT, "nba/injury-tax-missing-stars/index.html"), "utf8");
   const IT = JSON.parse(it.match(/const D = (\{.*?\});\n/s)[1]);
+  const rn = fs.readFileSync(path.join(ROOT, "nba/ready-now-rookie-age/index.html"), "utf8");
+  const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
     ["nba/role-call-minutes-usage/share.png", roleCallCard(RC.stab)],
     ["nba/new-team-shot-maps/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
+    ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();
