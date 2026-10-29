@@ -317,10 +317,14 @@ function drawWW() {
   const ms = svg(W, 20); host.append(ms);
   const nameW = Math.ceil(Math.max(...R.map(r => el("text", { class: r.ppg >= D.model.star_ppg ? "lbl-strong" : "lbl" }, ms, label(r)).getComputedTextLength()))) + 16;
   ms.remove();
-  const m = { l: stack ? 10 : nameW, r: 14, t: 8, b: 30 }, H = m.t + R.length * row + m.b;
+  const m = { l: stack ? 10 : nameW, r: 14, t: 30, b: 30 }, H = m.t + R.length * row + m.b;
   const ext = Math.max(...R.map(r => Math.max(Math.abs(r.lo), Math.abs(r.hi)))) + 1;
   const x = lin(-ext, ext, m.l, W - m.r), s = svg(W, H);
   for (let v = -20; v <= 20; v += 10) if (Math.abs(v) < ext) { el("line", { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: x(v), y: H - m.b + 16, "text-anchor": "middle" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v)); }
+  // Repeat the axis at the top: the chart is tall, so readers see the scale before scrolling
+  for (let v = -20; v <= 20; v += 10) if (Math.abs(v) < ext) el("text", { x: x(v), y: m.t - 18, "text-anchor": "middle" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v));
+  el("text", { x: m.l, y: m.t - 4 }, s, W < 520 ? "← Worse" : "← Worse with him");
+  el("text", { x: W - m.r, y: m.t - 4, "text-anchor": "end" }, s, W < 520 ? "Better →" : "Better with him →");
   el("text", { x: m.l, y: H - 2 }, s, W < 520 ? "← Worse" : "← Worse with him");
   el("text", { x: W - m.r, y: H - 2, "text-anchor": "end" }, s, W < 520 ? "Better →" : "Better with him →");
   R.forEach((r, i) => {
