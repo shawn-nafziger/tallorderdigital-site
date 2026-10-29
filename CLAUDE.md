@@ -24,7 +24,7 @@ Logo kit in `assets/brand/` (see its README; updated Oct 29, 2026): four bars, t
 
 **Chart roles** (tokens in `assets/site.css` and each story template; story data colors come only from these):
 - `--amber` = signal: Burnt `#B36000` light, Orange `#F99A2B` dark
-- `--edge` = at the edge: Orange light, `#8F6230` dark
+- `--edge` = at the edge: Peach `#E3B88A` light (a pale tint of Burnt, so it reads weaker than the signal; changed from Orange on Oct 29), `#8F6230` dark
 - `--ghost` = noise: `#CDC9C1` / `#3A5762`
 - `--navy` = comparison: Teal / Sky `#7FC4D6`
 - `--funnel` = bands: Sky at 25-30%
