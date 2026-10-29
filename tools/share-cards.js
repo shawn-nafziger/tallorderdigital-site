@@ -143,6 +143,33 @@ function newSpotsCard(pl) {
   </div>`;
 }
 
+function injuryCard(stars, med) {
+  const R = stars.filter((r) => r.ppg >= 25).sort((a, b) => b.diff - a.diff);
+  const W = 430, row = 24, H = R.length * row + 34, ext = 26, x = (v) => 10 + (v + ext) / (2 * ext) * (W - 20);
+  const rows = R.map((r, i) => {
+    const y = 12 + i * row, clear = r.lo > 0 || r.hi < 0;
+    return `<line x1="${x(r.lo)}" x2="${x(r.hi)}" y1="${y}" y2="${y}" stroke="${C.sky}" stroke-opacity=".3" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="${x(r.diff)}" cy="${y}" r="6.5" fill="${clear ? C.orange : C.slateDark}" stroke="${C.ink}" stroke-width="2"/>`;
+  }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 48px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; } .chart p { font: 500 16px "IBM Plex Mono"; color: ${C.sub}; margin-bottom: 8px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Data story</p><h1>The Injury Tax</h1>
+      <p class="dek">Last season, teams played a typical ${med.toFixed(1)} points per 100 possessions worse without their 25-point scorer. Haliburton is out again.</p></div>
+    <div class="chart"><p>25-point scorers, 2025-26</p><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <line x1="${x(0)}" x2="${x(0)}" y1="0" y2="${H - 26}" stroke="${C.sub}" stroke-opacity=".5" stroke-width="2"/>${rows}
+      <text x="${x(0)}" y="${H - 4}" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">0</text>
+      <text x="${W - 10}" y="${H - 4}" text-anchor="end" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">better with him →</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -162,11 +189,14 @@ function homeCard() {
   const RC = JSON.parse(rc.match(/const D = (\{.*?\});\n/s)[1]);
   const ns = fs.readFileSync(path.join(ROOT, "nba/new-team-shot-maps/index.html"), "utf8");
   const NS = JSON.parse(ns.match(/const D = (\{.*?\});\n/s)[1]);
+  const it = fs.readFileSync(path.join(ROOT, "nba/injury-tax-missing-stars/index.html"), "utf8");
+  const IT = JSON.parse(it.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
     ["nba/role-call-minutes-usage/share.png", roleCallCard(RC.stab)],
     ["nba/new-team-shot-maps/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
+    ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();

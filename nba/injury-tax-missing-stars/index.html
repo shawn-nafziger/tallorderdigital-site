@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Injury Tax · Tall Order Digital</title>
+<meta name="description" content="Tyrese Haliburton is out again, and he isn't alone. What last season says about how much a missing star costs his team, and who's missing right now.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="The Injury Tax">
+<meta property="og:description" content="Tyrese Haliburton is out again, and he isn't alone. What last season says about how much a missing star costs his team, and who's missing right now.">
+<link rel="canonical" href="https://tallorderdigital.com/nba/injury-tax-missing-stars/">
+<meta property="og:url" content="https://tallorderdigital.com/nba/injury-tax-missing-stars/">
+<meta property="og:image" content="https://tallorderdigital.com/nba/injury-tax-missing-stars/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Injury Tax: how much worse NBA teams played without their stars in 2025-26, and who is missing now.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --s1: #0a3746;
+  --s2: #4a403a;
+  --s3: #0a3746;
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(44px, 9vw, 88px); }
+h2 { font-size: clamp(26px, 4.6vw, 38px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+.navy { color: var(--navy); font-weight: 600; }
+
+.stats-note { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 680px; margin-top: -40px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat b { font: 700 clamp(34px, 5.6vw, 50px)/.95 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 10px 18px; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lbl { fill: var(--ink-2); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 500; font-size: 12px; }
+.source { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend .dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ghost); background: transparent; box-sizing: border-box; }
+.legend .bar { width: 16px; height: 6px; border-radius: 3px; background: var(--funnel); }
+
+.picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.picker button { font: 500 12px/1 var(--font-data); padding: 7px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.picker button:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
+.tip b { font-weight: 600; }
+.tip.on { opacity: 1; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+/* Logo: bar mark + wordmark (Barlow Semi Condensed), colors follow the theme */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-bar { align-items: center; }
+
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+
+/* Injury Tax additions */
+.ind-games { display: grid; gap: 8px; }
+.ww-tier { font: 500 11px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.miss-list { display: grid; gap: 0; }
+.miss-row { display: grid; grid-template-columns: 56px 120px minmax(0, 1fr); gap: 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.miss-row .tm { font: 600 13px/1.4 var(--font-data); }
+.miss-row .tot { display: grid; gap: 4px; font: 500 12px/1 var(--font-data); color: var(--ink-2); }
+.miss-row .tot i { display: block; height: 8px; border-radius: 2px; background: var(--navy); }
+.miss-row .who { display: grid; gap: 3px; }
+.miss-row .who span { color: var(--ink); }
+.miss-row .who em { font-style: normal; color: var(--ink-3); font-size: 13px; }
+.reason-rep::before, .reason-box::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: 1px; background: var(--navy); }
+.reason-none { color: var(--ink-3); }
+.src { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+@media (max-width: 520px) { .miss-row { grid-template-columns: 44px 1fr; } .miss-row .tot { grid-column: 2; } .miss-row .who { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../about/">About</a></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">NBA · 2026-27 · Week 2</p>
+    <h1>The Injury Tax</h1>
+    <p class="dek">Tyrese Haliburton is out again, and he isn't alone. What last season says about how much a missing star costs his team, and who's missing right now.</p>
+    <p class="byline">By Shawn Nafziger · Data through Oct 28, 2026</p>
+  </header>
+
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b>19–63</b><span>The Pacers' record last season, with Haliburton out all year</span></div>
+    <div class="stat" role="listitem"><b>5.9</b><span>Drop in <button type="button" class="term" data-term="net">net rating</button> for the typical team without its 25-point scorer, 2025-26</span></div>
+    <div class="stat" role="listitem"><b>14 of 16</b><span>25-point scorers whose teams played worse without them</span></div>
+  </div>
+  <p class="stats-note"><strong>How to read these:</strong> net rating is how many more points a team scores than it allows per 100 possessions. Last season, a drop of 5.9 over a full season was worth about 13 wins.</p>
+
+  <section>
+    <div class="prose">
+      <h2>The Pacers, with and without</h2>
+      <p>Indiana went 19–63 last season while Haliburton recovered from a torn Achilles, with the league's 26th-best net rating (−7.7). He came back for the first 4 games of this season and averaged 21.8 points, and the Pacers were +1.4 per 100 possessions: an ordinary team again, not a lottery one.</p>
+      <p>Now he's out with a strained left hamstring, and ESPN's injury page estimates at least two more weeks. In the first game without him, the Pacers lost to PHI 114–109. ESPN lists four more Pacers out, including Ivica Zubac and T.J. McConnell. Four games with him and one without are far too few to measure his value on their own, so the rest of this story looks at last season.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">Pacers net rating by game, 2026-27</p>
+          <p class="fig-sub">Points scored minus allowed per 100 possessions. Dashed line: the Pacers' 2025-26 season average.</p>
+        </div>
+        <div class="legend"><span><i class="dot" style="background:var(--navy)"></i>Haliburton played</span><span><i class="dot" style="background:transparent;box-shadow:inset 0 0 0 1.5px var(--navy)"></i>Haliburton out (hollow)</span></div>
+      </div>
+      <div class="chart" id="ind"></div>
+      <p class="source">Single games swing wildly, so read this as a picture of the season so far, not a verdict. Source: NBA Stats API.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>What a star is worth</h2>
+      <p>Last season, 90 players who logged 28+ minutes a game also missed at least five games. For each one, we compared his team's net rating in the games he played with the games he missed.</p>
+      <p>For the 16 who scored 25+ a game, the typical team was <strong>5.9 points per 100 possessions worse</strong> without him, and 14 of the 16 teams were worse. For 20–25 point scorers the typical drop was 2.2. One example close to home: last season's Pacers were +9.0 better with Pascal Siakam than without him.</p>
+      <p>Each player's own number is noisy. Missed games are few, and they come against different opponents, often alongside other injuries. That's why every row has a range. Look at the pattern across stars, not any one player.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">How much better each team was with its 20+ point scorer, 2025-26</p>
+          <p class="fig-sub">Net rating with him minus without him. Hover or tap a row for details.</p>
+        </div>
+      </div>
+      <div class="legend"><span><i class="dot" style="background:var(--amber)"></i>Real difference (range clears zero)</span><span><i class="dot" style="background:var(--ghost)"></i>Can't tell from noise</span><span><i class="bar"></i>90% range</span><span><b>Bold name</b>: 25+ points a game</span></div>
+      <div class="chart" id="ww"></div>
+      <details>
+        <summary>Show as a table</summary>
+        <div class="tablewrap"><table id="ww-table"><thead><tr><th>Player</th><th>Team</th><th>PPG</th><th>Played</th><th>Missed</th><th>With</th><th>Without</th><th>Difference</th></tr></thead><tbody></tbody></table></div>
+      </details>
+      <p class="source"><span class="amber">Orange</span>: the whole 90% range is on one side of zero. Right of zero, the team was better with him; left of zero, better without him.<br>
+        <span style="color:var(--ink-3)">Gray</span>: the range includes zero, so we can't rule out no difference.<br>
+        Source: NBA Stats API box scores and team game logs, 2025-26 regular season.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Who's missing right now</h2>
+      <p>34 rotation players on 19 teams sat out their team's most recent game. Some are long-term injuries; some are a night off. Each player's injury and estimated return come from ESPN's injury page as of Oct 28. A few reasons come from the box score instead.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head">
+        <div>
+          <p class="fig-title">Rotation players who missed their team's latest game</p>
+          <p class="fig-sub">Bar: points per game sitting out. Games through Oct 28.</p>
+        </div>
+      </div>
+      <div class="miss-list" id="miss"></div>
+      <p class="source">Points per game from this season (2+ games played), otherwise from 2025-26.<br>
+        Injuries and estimated return dates come from ESPN's injury page (RotoWire data) as of Oct 28. Estimates change often.</p>
+      <div class="src" id="sources"></div>
+    </figure>
+    <p class="callout">One missing star changes a team by about 5.9 points per 100 possessions. Indiana is now missing five players at once, so expect the early numbers to swing.</p>
+  </section>
+
+  <section class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>Data:</strong> NBA box scores and team game logs, 2025-26 regular season and 2026-27 through Oct 28 (68 games), via the open-source <code>nba_api</code> client. Injury details come from the cited reports.</li>
+      <li><strong>Net rating</strong> = 100 × (points − opponent points) ÷ possessions, from totals. Possessions = FGA + 0.44 × FTA − offensive rebounds + turnovers.</li>
+      <li><strong>With / without:</strong> players with 28+ minutes a game, 20+ games played and 5+ games missed while on the team. The difference compares team net rating in the two sets of games. The 90% range comes from the game-to-game spread (±1.645 standard errors). The "typical" figure is the median across players.</li>
+      <li><strong>Wins:</strong> across the 30 teams in 2025-26, each point of net rating was worth about 2.2 wins over 82 games.</li>
+      <li><strong>Chance:</strong> with 41 players and 90% ranges, about 4 would land wholly on one side of zero by luck alone (half on each side). 11 cleared zero on the "better with him" side and 3 on the "better without him" side, so the first group is far more than luck; the second is about what luck would produce.</li>
+      <li><strong>Limits:</strong> missed games aren't random. They often come with other injuries, back-to-backs or easier and harder opponents, and nothing here adjusts for that. Some "better without him" results, like a team surging while a star rested late in a lost season, are context, not proof he hurt his team.</li>
+      <li><strong>Missing now:</strong> a rotation player is one who plays 20+ minutes a game this season (2+ games), or, if he hasn't played 2 games yet, played 24+ last season (20+ games), and who sat out his team's latest game.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital · <a href="../../">More stories</a></p>
+</footer>
+
+<script>
+const D = {"ind":{"last":{"w":19,"l":63,"net":-7.7,"rank":26},"now":{"with_n":4,"with_net":1.4,"without_n":1,"without_net":-4.8,"hali_ppg":21.8},"games":[{"date":"2026-10-21","opp":"NOP","wl":"W","pts":123,"opp_pts":120,"net":2.8,"hali":true},{"date":"2026-10-23","opp":"DAL","wl":"L","pts":105,"opp_pts":121,"net":-15.0,"hali":true},{"date":"2026-10-25","opp":"BKN","wl":"W","pts":136,"opp_pts":109,"net":25.8,"hali":true},{"date":"2026-10-26","opp":"MIL","wl":"L","pts":102,"opp_pts":110,"net":-7.8,"hali":true},{"date":"2026-10-28","opp":"PHI","wl":"L","pts":109,"opp_pts":114,"net":-4.8,"hali":false}]},"stars":[{"name":"Naji Marshall","t":"DAL","ppg":15.2,"usg":20.0,"gp":74,"miss":5,"with":-4.5,"without":-18.5,"diff":14.0,"se":5.1,"lo":5.6,"hi":22.4},{"name":"Brandon Miller","t":"CHA","ppg":20.2,"usg":27.2,"gp":65,"miss":17,"with":7.6,"without":-5.8,"diff":13.4,"se":3.9,"lo":7.0,"hi":19.8},{"name":"Devin Booker","t":"PHX","ppg":26.1,"usg":30.7,"gp":64,"miss":16,"with":3.6,"without":-7.5,"diff":11.1,"se":4.6,"lo":3.5,"hi":18.6},{"name":"Lauri Markkanen","t":"UTA","ppg":26.7,"usg":26.9,"gp":42,"miss":16,"with":-4.6,"without":-15.1,"diff":10.5,"se":4.2,"lo":3.6,"hi":17.3},{"name":"VJ Edgecombe","t":"PHI","ppg":16.0,"usg":19.5,"gp":75,"miss":7,"with":0.7,"without":-9.2,"diff":9.9,"se":6.3,"lo":-0.5,"hi":20.3},{"name":"Jimmy Butler III","t":"GSW","ppg":20.0,"usg":22.6,"gp":38,"miss":6,"with":4.7,"without":-5.2,"diff":9.8,"se":8.0,"lo":-3.3,"hi":23.0},{"name":"Kawhi Leonard","t":"LAC","ppg":27.9,"usg":32.7,"gp":65,"miss":16,"with":3.0,"without":-6.7,"diff":9.7,"se":3.6,"lo":3.9,"hi":15.6},{"name":"Stephen Curry","t":"GSW","ppg":26.6,"usg":30.9,"gp":43,"miss":39,"with":3.8,"without":-5.5,"diff":9.3,"se":3.1,"lo":4.2,"hi":14.4},{"name":"LeBron James","t":"LAL","ppg":20.9,"usg":26.1,"gp":60,"miss":8,"with":2.8,"without":-6.4,"diff":9.2,"se":7.8,"lo":-3.6,"hi":22.0},{"name":"Josh Hart","t":"NYK","ppg":12.0,"usg":16.3,"gp":66,"miss":14,"with":8.2,"without":-0.9,"diff":9.1,"se":4.0,"lo":2.6,"hi":15.7},{"name":"Pascal Siakam","t":"IND","ppg":24.0,"usg":29.2,"gp":62,"miss":15,"with":-6.2,"without":-15.2,"diff":9.0,"se":3.3,"lo":3.6,"hi":14.5},{"name":"Dyson Daniels","t":"ATL","ppg":11.9,"usg":15.7,"gp":76,"miss":5,"with":3.2,"without":-5.7,"diff":8.9,"se":7.5,"lo":-3.5,"hi":21.2},{"name":"Cameron Johnson","t":"DEN","ppg":12.2,"usg":14.3,"gp":54,"miss":26,"with":7.6,"without":-1.2,"diff":8.8,"se":2.9,"lo":4.1,"hi":13.5},{"name":"Quentin Grimes","t":"PHI","ppg":13.4,"usg":18.2,"gp":75,"miss":7,"with":0.5,"without":-7.9,"diff":8.4,"se":8.8,"lo":-6.1,"hi":22.9},{"name":"Joel Embiid","t":"PHI","ppg":26.9,"usg":33.7,"gp":38,"miss":41,"with":3.7,"without":-4.2,"diff":7.9,"se":3.3,"lo":2.4,"hi":13.3},{"name":"RJ Barrett","t":"TOR","ppg":19.3,"usg":25.4,"gp":57,"miss":25,"with":5.2,"without":-2.7,"diff":7.9,"se":3.6,"lo":2.0,"hi":13.7},{"name":"Paul George","t":"PHI","ppg":17.3,"usg":22.8,"gp":37,"miss":33,"with":2.9,"without":-4.6,"diff":7.6,"se":3.9,"lo":1.2,"hi":14.0},{"name":"LaMelo Ball","t":"CHA","ppg":20.1,"usg":30.6,"gp":72,"miss":10,"with":5.7,"without":-1.8,"diff":7.5,"se":4.3,"lo":0.3,"hi":14.6},{"name":"Zion Williamson","t":"NOP","ppg":21.0,"usg":25.0,"gp":62,"miss":17,"with":-2.8,"without":-10.1,"diff":7.3,"se":3.4,"lo":1.8,"hi":12.8},{"name":"Shai Gilgeous-Alexander","t":"OKC","ppg":31.1,"usg":32.3,"gp":68,"miss":12,"with":12.9,"without":5.7,"diff":7.1,"se":4.6,"lo":-0.5,"hi":14.7},{"name":"Zach LaVine","t":"SAC","ppg":19.2,"usg":23.5,"gp":39,"miss":14,"with":-7.9,"without":-14.7,"diff":6.8,"se":4.5,"lo":-0.6,"hi":14.1},{"name":"Nikola Jokić","t":"DEN","ppg":27.7,"usg":28.9,"gp":65,"miss":17,"with":6.3,"without":-0.2,"diff":6.6,"se":3.3,"lo":1.1,"hi":12.1},{"name":"Luka Dončić","t":"LAL","ppg":33.5,"usg":36.8,"gp":64,"miss":13,"with":2.6,"without":-3.7,"diff":6.2,"se":4.8,"lo":-1.7,"hi":14.2},{"name":"Karl-Anthony Towns","t":"NYK","ppg":20.1,"usg":25.0,"gp":75,"miss":6,"with":7.0,"without":1.0,"diff":6.0,"se":11.0,"lo":-12.0,"hi":24.1},{"name":"Jaime Jaquez Jr.","t":"MIA","ppg":15.4,"usg":21.6,"gp":75,"miss":7,"with":2.7,"without":-3.2,"diff":5.9,"se":5.1,"lo":-2.4,"hi":14.3},{"name":"Victor Wembanyama","t":"SAS","ppg":25.0,"usg":31.7,"gp":64,"miss":17,"with":9.5,"without":3.9,"diff":5.6,"se":2.8,"lo":0.9,"hi":10.3},{"name":"Jalen Brunson","t":"NYK","ppg":26.0,"usg":29.7,"gp":74,"miss":7,"with":7.1,"without":1.7,"diff":5.4,"se":5.8,"lo":-4.2,"hi":15.0},{"name":"Chet Holmgren","t":"OKC","ppg":17.1,"usg":21.5,"gp":69,"miss":11,"with":12.5,"without":7.1,"diff":5.4,"se":4.1,"lo":-1.3,"hi":12.1},{"name":"Giannis Antetokounmpo","t":"MIL","ppg":27.6,"usg":35.9,"gp":36,"miss":31,"with":-2.5,"without":-7.7,"diff":5.1,"se":3.9,"lo":-1.3,"hi":11.5},{"name":"Herbert Jones","t":"NOP","ppg":8.9,"usg":15.3,"gp":56,"miss":23,"with":-2.9,"without":-7.9,"diff":5.0,"se":2.6,"lo":0.6,"hi":9.3},{"name":"Jamal Murray","t":"DEN","ppg":25.4,"usg":27.0,"gp":75,"miss":5,"with":5.1,"without":0.2,"diff":4.9,"se":6.7,"lo":-6.2,"hi":16.0},{"name":"Jrue Holiday","t":"POR","ppg":16.3,"usg":22.8,"gp":53,"miss":29,"with":1.4,"without":-3.4,"diff":4.8,"se":3.2,"lo":-0.5,"hi":10.1},{"name":"Franz Wagner","t":"ORL","ppg":20.6,"usg":25.7,"gp":34,"miss":48,"with":3.4,"without":-1.4,"diff":4.8,"se":3.3,"lo":-0.7,"hi":10.3},{"name":"Saddiq Bey","t":"NOP","ppg":17.7,"usg":21.3,"gp":72,"miss":7,"with":-3.9,"without":-8.5,"diff":4.6,"se":4.9,"lo":-3.5,"hi":12.7},{"name":"Austin Reaves","t":"LAL","ppg":23.3,"usg":25.7,"gp":51,"miss":26,"with":3.0,"without":-1.4,"diff":4.5,"se":3.8,"lo":-1.8,"hi":10.8},{"name":"Stephon Castle","t":"SAS","ppg":16.7,"usg":24.3,"gp":68,"miss":14,"with":8.8,"without":4.5,"diff":4.3,"se":3.1,"lo":-0.7,"hi":9.4},{"name":"Marcus Smart","t":"LAL","ppg":9.3,"usg":15.1,"gp":62,"miss":20,"with":2.8,"without":-1.4,"diff":4.2,"se":4.7,"lo":-3.6,"hi":12.0},{"name":"Miles Bridges","t":"CHA","ppg":17.1,"usg":22.2,"gp":77,"miss":5,"with":5.0,"without":0.8,"diff":4.2,"se":5.0,"lo":-4.0,"hi":12.4},{"name":"Michael Porter Jr.","t":"BKN","ppg":24.2,"usg":29.2,"gp":52,"miss":13,"with":-8.0,"without":-12.2,"diff":4.2,"se":5.4,"lo":-4.7,"hi":13.0},{"name":"Trey Murphy III","t":"NOP","ppg":21.5,"usg":22.4,"gp":66,"miss":12,"with":-3.7,"without":-7.8,"diff":4.1,"se":4.4,"lo":-3.2,"hi":11.3},{"name":"Jalen Williams","t":"OKC","ppg":17.1,"usg":25.2,"gp":33,"miss":28,"with":12.3,"without":8.3,"diff":4.1,"se":4.0,"lo":-2.5,"hi":10.6},{"name":"Christian Braun","t":"DEN","ppg":12.0,"usg":14.2,"gp":44,"miss":36,"with":6.5,"without":2.6,"diff":3.9,"se":3.0,"lo":-1.1,"hi":8.8},{"name":"Anthony Black","t":"ORL","ppg":15.0,"usg":21.9,"gp":64,"miss":18,"with":1.5,"without":-2.4,"diff":3.9,"se":4.6,"lo":-3.8,"hi":11.5},{"name":"Rui Hachimura","t":"LAL","ppg":11.5,"usg":14.9,"gp":68,"miss":14,"with":2.4,"without":-1.4,"diff":3.7,"se":4.7,"lo":-4.0,"hi":11.5},{"name":"Bennedict Mathurin","t":"IND","ppg":17.8,"usg":23.0,"gp":28,"miss":22,"with":-6.0,"without":-9.2,"diff":3.2,"se":3.9,"lo":-3.3,"hi":9.6},{"name":"Alperen Sengun","t":"HOU","ppg":20.4,"usg":26.0,"gp":72,"miss":9,"with":5.2,"without":2.3,"diff":2.9,"se":4.1,"lo":-3.7,"hi":9.6},{"name":"Donovan Mitchell","t":"CLE","ppg":27.9,"usg":31.1,"gp":70,"miss":10,"with":4.5,"without":1.9,"diff":2.6,"se":3.1,"lo":-2.6,"hi":7.8},{"name":"Devin Vassell","t":"SAS","ppg":13.9,"usg":17.6,"gp":67,"miss":15,"with":8.5,"without":6.1,"diff":2.4,"se":3.5,"lo":-3.4,"hi":8.2},{"name":"Deni Avdija","t":"POR","ppg":24.2,"usg":28.5,"gp":66,"miss":16,"with":0.1,"without":-2.1,"diff":2.2,"se":4.2,"lo":-4.8,"hi":9.2},{"name":"Kevin Porter Jr.","t":"MIL","ppg":17.4,"usg":23.5,"gp":38,"miss":30,"with":-4.0,"without":-6.1,"diff":2.0,"se":3.8,"lo":-4.2,"hi":8.2},{"name":"Kelly Oubre Jr.","t":"PHI","ppg":14.1,"usg":17.8,"gp":50,"miss":32,"with":0.6,"without":-1.3,"diff":1.9,"se":3.5,"lo":-3.8,"hi":7.7},{"name":"Anthony Davis","t":"DAL","ppg":20.4,"usg":27.1,"gp":20,"miss":18,"with":-2.7,"without":-4.5,"diff":1.8,"se":3.0,"lo":-3.2,"hi":6.8},{"name":"Coby White","t":"CHI","ppg":18.6,"usg":26.7,"gp":29,"miss":11,"with":-3.2,"without":-4.7,"diff":1.5,"se":4.8,"lo":-6.4,"hi":9.5},{"name":"Aaron Nesmith","t":"IND","ppg":13.8,"usg":18.9,"gp":45,"miss":29,"with":-7.9,"without":-9.4,"diff":1.5,"se":3.1,"lo":-3.6,"hi":6.6},{"name":"Jalen Johnson","t":"ATL","ppg":22.5,"usg":26.4,"gp":72,"miss":9,"with":2.8,"without":1.5,"diff":1.3,"se":8.1,"lo":-12.0,"hi":14.6},{"name":"Jaden McDaniels","t":"MIN","ppg":14.8,"usg":18.3,"gp":73,"miss":8,"with":3.3,"without":2.3,"diff":1.0,"se":6.5,"lo":-9.6,"hi":11.7},{"name":"Davion Mitchell","t":"MIA","ppg":9.3,"usg":13.8,"gp":70,"miss":12,"with":2.3,"without":1.3,"diff":1.0,"se":4.6,"lo":-6.5,"hi":8.6},{"name":"Bam Adebayo","t":"MIA","ppg":20.1,"usg":24.7,"gp":73,"miss":9,"with":2.3,"without":1.6,"diff":0.7,"se":5.6,"lo":-8.6,"hi":9.9},{"name":"Peyton Watson","t":"DEN","ppg":14.6,"usg":20.6,"gp":54,"miss":23,"with":4.9,"without":4.2,"diff":0.7,"se":4.0,"lo":-6.0,"hi":7.3},{"name":"OG Anunoby","t":"NYK","ppg":16.7,"usg":19.3,"gp":67,"miss":14,"with":6.7,"without":6.2,"diff":0.4,"se":6.0,"lo":-9.5,"hi":10.4},{"name":"Immanuel Quickley","t":"TOR","ppg":16.4,"usg":20.6,"gp":70,"miss":12,"with":2.8,"without":2.6,"diff":0.2,"se":6.7,"lo":-10.8,"hi":11.2},{"name":"Tyrese Maxey","t":"PHI","ppg":28.3,"usg":28.6,"gp":70,"miss":12,"with":-0.2,"without":-0.2,"diff":0.1,"se":5.0,"lo":-8.1,"hi":8.2},{"name":"Andrew Nembhard","t":"IND","ppg":16.9,"usg":23.3,"gp":57,"miss":18,"with":-8.1,"without":-8.0,"diff":-0.1,"se":3.9,"lo":-6.5,"hi":6.3},{"name":"Jerami Grant","t":"POR","ppg":18.6,"usg":22.9,"gp":57,"miss":18,"with":-1.3,"without":-1.1,"diff":-0.2,"se":4.1,"lo":-6.8,"hi":6.5},{"name":"Cade Cunningham","t":"DET","ppg":23.9,"usg":29.6,"gp":64,"miss":18,"with":7.9,"without":8.1,"diff":-0.2,"se":3.1,"lo":-5.4,"hi":4.9},{"name":"P.J. Washington","t":"DAL","ppg":14.2,"usg":19.4,"gp":56,"miss":22,"with":-5.4,"without":-5.0,"diff":-0.4,"se":3.4,"lo":-6.1,"hi":5.2},{"name":"Ja Morant","t":"MEM","ppg":19.4,"usg":30.5,"gp":20,"miss":22,"with":-1.2,"without":-0.7,"diff":-0.5,"se":4.4,"lo":-7.7,"hi":6.6},{"name":"Cooper Flagg","t":"DAL","ppg":21.0,"usg":26.4,"gp":70,"miss":12,"with":-5.3,"without":-4.8,"diff":-0.5,"se":4.5,"lo":-7.8,"hi":6.9},{"name":"Andrew Wiggins","t":"MIA","ppg":15.4,"usg":19.4,"gp":68,"miss":14,"with":2.1,"without":2.8,"diff":-0.7,"se":4.4,"lo":-7.9,"hi":6.5},{"name":"Ryan Rollins","t":"MIL","ppg":17.3,"usg":23.6,"gp":74,"miss":6,"with":-6.4,"without":-5.7,"diff":-0.7,"se":7.6,"lo":-13.2,"hi":11.8},{"name":"Darius Garland","t":"CLE","ppg":18.0,"usg":25.0,"gp":26,"miss":9,"with":2.7,"without":3.8,"diff":-1.1,"se":4.6,"lo":-8.6,"hi":6.4},{"name":"Josh Giddey","t":"CHI","ppg":17.0,"usg":23.8,"gp":54,"miss":23,"with":-5.4,"without":-4.4,"diff":-1.1,"se":3.7,"lo":-7.2,"hi":5.1},{"name":"Dillon Brooks","t":"PHX","ppg":20.2,"usg":28.1,"gp":56,"miss":25,"with":0.3,"without":2.8,"diff":-2.4,"se":3.5,"lo":-8.2,"hi":3.4},{"name":"Onyeka Okongwu","t":"ATL","ppg":15.2,"usg":19.0,"gp":74,"miss":7,"with":2.4,"without":4.9,"diff":-2.4,"se":5.3,"lo":-11.1,"hi":6.2},{"name":"Anthony Edwards","t":"MIN","ppg":28.8,"usg":30.8,"gp":61,"miss":20,"with":2.5,"without":5.3,"diff":-2.8,"se":3.9,"lo":-9.3,"hi":3.7},{"name":"Grayson Allen","t":"PHX","ppg":16.5,"usg":23.2,"gp":51,"miss":30,"with":-0.1,"without":3.0,"diff":-3.1,"se":3.5,"lo":-8.9,"hi":2.6},{"name":"Russell Westbrook","t":"SAC","ppg":15.2,"usg":25.2,"gp":64,"miss":7,"with":-10.2,"without":-6.8,"diff":-3.4,"se":5.3,"lo":-12.1,"hi":5.3},{"name":"Shaedon Sharpe","t":"POR","ppg":20.8,"usg":29.3,"gp":50,"miss":32,"with":-1.6,"without":1.8,"diff":-3.4,"se":3.7,"lo":-9.5,"hi":2.8},{"name":"Evan Mobley","t":"CLE","ppg":18.2,"usg":22.1,"gp":65,"miss":16,"with":3.0,"without":7.4,"diff":-4.4,"se":4.0,"lo":-11.0,"hi":2.3},{"name":"Norman Powell","t":"MIA","ppg":21.7,"usg":26.2,"gp":58,"miss":24,"with":0.9,"without":5.4,"diff":-4.5,"se":3.7,"lo":-10.6,"hi":1.5},{"name":"Jalen Duren","t":"DET","ppg":19.5,"usg":23.1,"gp":70,"miss":11,"with":7.2,"without":11.9,"diff":-4.6,"se":4.6,"lo":-12.1,"hi":2.9},{"name":"Keyonte George","t":"UTA","ppg":23.6,"usg":27.6,"gp":54,"miss":12,"with":-8.1,"without":-3.4,"diff":-4.7,"se":4.4,"lo":-11.9,"hi":2.6},{"name":"Max Christie","t":"DAL","ppg":12.3,"usg":16.1,"gp":77,"miss":5,"with":-5.5,"without":-0.6,"diff":-5.0,"se":5.7,"lo":-14.4,"hi":4.4},{"name":"Keegan Murray","t":"SAC","ppg":14.0,"usg":18.2,"gp":23,"miss":22,"with":-13.3,"without":-7.9,"diff":-5.4,"se":4.5,"lo":-12.8,"hi":2.0},{"name":"Kyshawn George","t":"WAS","ppg":14.8,"usg":22.2,"gp":48,"miss":12,"with":-11.5,"without":-5.8,"diff":-5.6,"se":5.7,"lo":-15.0,"hi":3.7},{"name":"Tyler Herro","t":"MIA","ppg":20.5,"usg":24.8,"gp":33,"miss":32,"with":-2.1,"without":4.7,"diff":-6.8,"se":3.9,"lo":-13.3,"hi":-0.3},{"name":"Brandon Ingram","t":"TOR","ppg":21.5,"usg":26.4,"gp":77,"miss":5,"with":2.3,"without":10.0,"diff":-7.7,"se":10.7,"lo":-25.4,"hi":9.9},{"name":"Paolo Banchero","t":"ORL","ppg":22.2,"usg":27.5,"gp":72,"miss":10,"with":-0.5,"without":8.5,"diff":-9.0,"se":4.8,"lo":-16.9,"hi":-1.1},{"name":"Jaylen Brown","t":"BOS","ppg":28.7,"usg":35.1,"gp":71,"miss":10,"with":6.7,"without":16.9,"diff":-10.3,"se":5.0,"lo":-18.4,"hi":-2.1},{"name":"Ivica Zubac","t":"LAC","ppg":14.4,"usg":18.4,"gp":43,"miss":6,"with":-3.0,"without":21.3,"diff":-24.3,"se":5.0,"lo":-32.5,"hi":-16.1}],"tiers":{"star":{"n":16,"median":5.9,"pos":14},"scorer":{"n":25,"median":2.2,"pos":16},"rest":{"n":49,"median":1.9,"pos":32}},"slope":2.22,"missing":[{"name":"Kawhi Leonard","t":"TOR","date":"2026-10-28","opp":"ORL","ppg":19.5,"basis":"this season","reason":"Left knee swelling · est. back Nov 23","src":"ESPN injury page"},{"name":"Tobias Harris","t":"SAS","date":"2026-10-28","opp":"UTA","ppg":13.3,"basis":"2025-26","reason":"Calf · est. back Oct 31","src":"ESPN injury page"},{"name":"Jimmy Butler III","t":"GSW","date":"2026-10-28","opp":"MIN","ppg":20.0,"basis":"2025-26","reason":"Torn right ACL · est. back Jan 2, 2027","src":"ESPN injury page"},{"name":"Marcus Smart","t":"HOU","date":"2026-10-28","opp":"MIL","ppg":7.5,"basis":"this season","reason":"Forearm · est. back Oct 30","src":"ESPN injury page"},{"name":"Jusuf Nurkić","t":"UTA","date":"2026-10-28","opp":"SAS","ppg":10.9,"basis":"2025-26","reason":"Partial plantar plate tear, right toe · est. back Nov 4","src":"ESPN injury page"},{"name":"Kristaps Porziņģis","t":"GSW","date":"2026-10-28","opp":"MIN","ppg":16.7,"basis":"2025-26","reason":"Away from team (health) · est. back Dec 1","src":"ESPN injury page"},{"name":"Brandon Ingram","t":"LAC","date":"2026-10-28","opp":"LAL","ppg":21.5,"basis":"2025-26","reason":"Partially torn Achilles · est. back Nov 8","src":"ESPN injury page"},{"name":"Ivica Zubac","t":"IND","date":"2026-10-28","opp":"PHI","ppg":9.0,"basis":"this season","reason":"Ankle · est. back Oct 30","src":"ESPN injury page"},{"name":"Lauri Markkanen","t":"UTA","date":"2026-10-28","opp":"SAS","ppg":16.0,"basis":"this season","reason":"Wrist · day-to-day","src":"ESPN injury page"},{"name":"Donte DiVincenzo","t":"MIN","date":"2026-10-28","opp":"GSW","ppg":12.2,"basis":"2025-26","reason":"Achilles · est. back Apr 2, 2027","src":"ESPN injury page"},{"name":"Jaren Jackson Jr.","t":"UTA","date":"2026-10-28","opp":"SAS","ppg":16.2,"basis":"this season","reason":"Torn right knee MCL · est. back Dec 14","src":"ESPN injury page"},{"name":"Luka Dončić","t":"LAL","date":"2026-10-28","opp":"LAC","ppg":36.0,"basis":"this season","reason":"Back · est. back Oct 30","src":"ESPN injury page"},{"name":"Rui Hachimura","t":"LAC","date":"2026-10-28","opp":"LAL","ppg":10.3,"basis":"this season","reason":"Quad · est. back Oct 30","src":"ESPN injury page"},{"name":"Terance Mann","t":"BKN","date":"2026-10-27","opp":"BOS","ppg":7.2,"basis":"2025-26","reason":"Coach's Decision","src":"box score"},{"name":"Coby White","t":"CHA","date":"2026-10-28","opp":"DET","ppg":17.4,"basis":"2025-26","reason":"Calf · est. back Nov 2","src":"ESPN injury page"},{"name":"Nic Claxton","t":"CHI","date":"2026-10-28","opp":"NYK","ppg":11.7,"basis":"2025-26","reason":"Hamstring · est. back Nov 4","src":"ESPN injury page"},{"name":"Cameron Johnson","t":"DEN","date":"2026-10-28","opp":"NOP","ppg":12.2,"basis":"2025-26","reason":"Ankle · day-to-day","src":"ESPN injury page"},{"name":"Anthony Edwards","t":"MIN","date":"2026-10-28","opp":"GSW","ppg":33.2,"basis":"this season","reason":"Right knee surgery · est. back Dec 21","src":"ESPN injury page"},{"name":"Tyrese Haliburton","t":"IND","date":"2026-10-28","opp":"PHI","ppg":21.8,"basis":"this season","reason":"Hamstring · est. back Nov 13","src":"ESPN injury page"},{"name":"Naji Marshall","t":"DAL","date":"2026-10-28","opp":"OKC","ppg":13.7,"basis":"this season","reason":"Illness · day-to-day","src":"ESPN injury page"},{"name":"Ziaire Williams","t":"LAL","date":"2026-10-28","opp":"LAC","ppg":11.2,"basis":"this season","reason":"Foot · est. back Oct 30","src":"ESPN injury page"},{"name":"Moses Moody","t":"GSW","date":"2026-10-28","opp":"MIN","ppg":12.1,"basis":"2025-26","reason":"Ruptured left patellar tendon · est. back Dec 1","src":"ESPN injury page"},{"name":"Alperen Sengun","t":"HOU","date":"2026-10-28","opp":"MIL","ppg":24.5,"basis":"this season","reason":"Back · est. back Oct 30","src":"ESPN injury page"},{"name":"Santi Aldama","t":"DAL","date":"2026-10-28","opp":"OKC","ppg":14.0,"basis":"2025-26","reason":"Knee · est. back Oct 30","src":"ESPN injury page"},{"name":"Jalen Suggs","t":"ORL","date":"2026-10-28","opp":"TOR","ppg":8.0,"basis":"this season","reason":"Right knee bone bruise · est. back Nov 10","src":"ESPN injury page"},{"name":"Gui Santos","t":"GSW","date":"2026-10-28","opp":"MIN","ppg":9.2,"basis":"this season","reason":"Injury/Illness","src":"box score"},{"name":"Paolo Banchero","t":"ORL","date":"2026-10-28","opp":"TOR","ppg":24.5,"basis":"this season","reason":"Right high-ankle sprain · est. back Nov 22","src":"ESPN injury page"},{"name":"Chet Holmgren","t":"OKC","date":"2026-10-28","opp":"DAL","ppg":12.0,"basis":"this season","reason":"Knee · est. back Oct 31","src":"ESPN injury page"},{"name":"Keegan Murray","t":"SAC","date":"2026-10-27","opp":"SAS","ppg":7.0,"basis":"this season","reason":"Ankle · est. back Nov 6","src":"ESPN injury page"},{"name":"Shaedon Sharpe","t":"POR","date":"2026-10-27","opp":"LAL","ppg":20.8,"basis":"2025-26","reason":"Torn knee meniscus · est. back Mar 2, 2027","src":"ESPN injury page"},{"name":"Jalen Williams","t":"OKC","date":"2026-10-28","opp":"DAL","ppg":13.7,"basis":"this season","reason":"Dislocated ankle, fractured fibula (surgery) · est. back Mar 2, 2027","src":"ESPN injury page"},{"name":"Tre Johnson","t":"WAS","date":"2026-10-28","opp":"CLE","ppg":12.0,"basis":"this season","reason":"Coach's Decision","src":"box score"},{"name":"Kon Knueppel","t":"CHA","date":"2026-10-28","opp":"DET","ppg":18.5,"basis":"2025-26","reason":"Hamstring · est. back Nov 2","src":"ESPN injury page"},{"name":"Maxime Raynaud","t":"SAC","date":"2026-10-27","opp":"SAS","ppg":12.5,"basis":"2025-26","reason":"Knee · est. back Nov 10","src":"ESPN injury page"}],"teams":[{"t":"GSW","ppg":58.0,"n":4},{"t":"LAL","ppg":47.2,"n":2},{"t":"MIN","ppg":45.4,"n":2},{"t":"UTA","ppg":43.1,"n":3},{"t":"CHA","ppg":35.9,"n":2},{"t":"ORL","ppg":32.5,"n":2},{"t":"HOU","ppg":32.0,"n":2},{"t":"LAC","ppg":31.8,"n":2},{"t":"IND","ppg":30.8,"n":2},{"t":"DAL","ppg":27.7,"n":2},{"t":"OKC","ppg":25.7,"n":2},{"t":"POR","ppg":20.8,"n":1},{"t":"SAC","ppg":19.5,"n":2},{"t":"TOR","ppg":19.5,"n":1},{"t":"SAS","ppg":13.3,"n":1},{"t":"DEN","ppg":12.2,"n":1},{"t":"WAS","ppg":12.0,"n":1},{"t":"CHI","ppg":11.7,"n":1},{"t":"BKN","ppg":7.2,"n":1}],"reports":[{"player":"Tyrese Haliburton","team":"IND","status":"Out (no timeline)","injury":"Left hamstring strain","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN (Shams Charania)","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":"Played first 4 games after missing ~16 months (Achilles); Pacers consulting a hamstring specialist"},{"player":"Ivica Zubac","team":"IND","status":"Out","injury":"Left ankle sprain","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":""},{"player":"T.J. McConnell","team":"IND","status":"Out","injury":"Right hamstring strain","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":"Has not played this season"},{"player":"Ben Sheppard","team":"IND","status":"Out","injury":"Torn left meniscus","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":""},{"player":"Johnny Furphy","team":"IND","status":"Out","injury":"Right ACL surgery","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":""},{"player":"Jalen Williams","team":"OKC","status":"Sidelined","injury":"Not specified in article","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":"Mentioned among stars sidelined early"},{"player":"Anthony Edwards","team":"MIN","status":"Sidelined","injury":"Not specified in article","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":"Mentioned among stars sidelined early"},{"player":"Kawhi Leonard","team":"TOR","status":"Sidelined","injury":"Not specified in article","reported_date":"2026-10-28","source_title":"Sources: Pacers' Tyrese Haliburton (hamstring) to miss time","source_outlet":"ESPN","url":"https://www.espn.com/nba/story/_/id/50309485/sources-pacers-tyrese-haliburton-hamstring-miss","note":"Mentioned among stars sidelined early"},{"url":"https://www.espn.com/nba/injuries","source_title":"NBA Injuries","source_outlet":"ESPN, RotoWire data","reported_date":"status as of 2026-10-28"}],"model":{"asof":"2026-10-28","games":68,"baseline":"2025-26","n_with_without":90,"show_ppg":20,"star_ppg":25}};
+const NS = "http://www.w3.org/2000/svg";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
+function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
+function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+
+
+const short = n => { const s = n.replace(/^(\S)\S*\s/, "$1. "); return s.length > 16 ? n.split(" ").slice(-1)[0] : s; };
+
+/* ---------- 1. Pacers ---------- */
+function drawInd() {
+  const host = document.getElementById("ind"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const G = D.ind.games, W = host.clientWidth, H = 220, m = { l: 40, r: 12, t: 16, b: 44 };
+  const ext = Math.max(30, ...G.map(g => Math.abs(g.net))) + 4;
+  const y = lin(-ext, ext, H - m.b, m.t), s = svg(W, H), bw = Math.min(56, (W - m.l - m.r) / G.length * 0.6);
+  const x = i => m.l + (i + 0.5) * (W - m.l - m.r) / G.length;
+  [-20, 0, 20].forEach(v => { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: m.l - 8, y: y(v) + 4, "text-anchor": "end" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v)); });
+  el("line", { x1: m.l, x2: W - m.r, y1: y(D.ind.last.net), y2: y(D.ind.last.net), stroke: css("--ink-3"), "stroke-dasharray": "5 4" }, s);
+  el("text", { x: W - m.r, y: y(D.ind.last.net) + 14, "text-anchor": "end" }, s, `2025-26 average ${fmt(D.ind.last.net)}`);
+  G.forEach((g, i) => {
+    const top = Math.min(y(0), y(g.net)), hgt = Math.max(2, Math.abs(y(g.net) - y(0)));
+    const gg = el("g", { tabindex: 0, "aria-label": `${g.date} vs ${g.opp}: ${g.wl} ${g.pts}-${g.opp_pts}, net ${fmt(g.net)}, Haliburton ${g.hali ? "played" : "out"}` }, s);
+    el("rect", { x: x(i) - bw / 2, y: top, width: bw, height: hgt, rx: 3, fill: g.hali ? css("--navy") : "transparent", stroke: css("--navy"), "stroke-width": g.hali ? 0 : 1.5 }, gg);
+    el("text", { x: x(i), y: H - m.b + 16, "text-anchor": "middle", class: "lbl" }, gg, `${g.wl} ${g.opp}`);
+    el("text", { x: x(i), y: H - m.b + 30, "text-anchor": "middle" }, gg, new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" }));
+    el("rect", { x: x(i) - bw, y: m.t, width: bw * 2, height: H - m.t - m.b, fill: "transparent" }, gg);
+    const tip = e => { const hr = host.getBoundingClientRect(); showTip(host, `<b>${g.wl} vs ${g.opp}, ${g.pts}–${g.opp_pts}</b><br>Net rating ${fmt(g.net)}<br>Haliburton ${g.hali ? "played" : "out"}`, e.clientX != null ? e.clientX - hr.left : x(i), e.clientY != null ? e.clientY - hr.top : top); };
+    gg.addEventListener("pointermove", tip); gg.addEventListener("focus", tip); gg.addEventListener("pointerleave", () => hideTip(host)); gg.addEventListener("blur", () => hideTip(host));
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Pacers net rating in each game this season, colored by whether Haliburton played.");
+  host.prepend(s);
+}
+
+/* ---------- 2. With / without ---------- */
+function drawWW() {
+  const host = document.getElementById("ww"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const R = D.stars.filter(r => r.ppg >= D.model.show_ppg).sort((a, b) => b.diff - a.diff);
+  const W = host.clientWidth, stack = W < 520, row = stack ? 42 : 26;   // phone: name on its own line above the bar
+  const label = r => `${r.name} · ${r.t}`;
+  // Measure the longest name so none is ever clipped at the left edge
+  const ms = svg(W, 20); host.append(ms);
+  const nameW = Math.ceil(Math.max(...R.map(r => el("text", { class: r.ppg >= D.model.star_ppg ? "lbl-strong" : "lbl" }, ms, label(r)).getComputedTextLength()))) + 16;
+  ms.remove();
+  const m = { l: stack ? 10 : nameW, r: 14, t: 8, b: 30 }, H = m.t + R.length * row + m.b;
+  const ext = Math.max(...R.map(r => Math.max(Math.abs(r.lo), Math.abs(r.hi)))) + 1;
+  const x = lin(-ext, ext, m.l, W - m.r), s = svg(W, H);
+  for (let v = -20; v <= 20; v += 10) if (Math.abs(v) < ext) { el("line", { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: x(v), y: H - m.b + 16, "text-anchor": "middle" }, s, v > 0 ? "+" + v : v === 0 ? "0" : "−" + Math.abs(v)); }
+  el("text", { x: m.l, y: H - 2 }, s, W < 520 ? "← Worse" : "← Worse with him");
+  el("text", { x: W - m.r, y: H - 2, "text-anchor": "end" }, s, W < 520 ? "Better →" : "Better with him →");
+  R.forEach((r, i) => {
+    const mid = m.t + i * row + row / 2, cy = stack ? mid + 9 : mid, clear = r.lo > 0 || r.hi < 0;
+    const g = el("g", { tabindex: 0, "aria-label": `${r.name}, ${r.t}: team ${fmt(r.diff)} per 100 with him (range ${fmt(r.lo)} to ${fmt(r.hi)}), ${r.gp} played, ${r.miss} missed` }, s);
+    // Alternate row shading plus a dotted guide from each name to its range, so the eye can follow the row
+    const band = el("rect", { x: 0, y: mid - row / 2, width: W - m.r, height: row, rx: 3, fill: i % 2 ? "transparent" : css("--bg") }, g);
+    if (!stack) el("line", { x1: m.l - 6, x2: x(r.lo) - 6, y1: cy, y2: cy, stroke: css("--ink-3"), "stroke-width": 1, "stroke-dasharray": "1 3", opacity: .6 }, g);
+    el("text", stack ? { x: 8, y: mid - 5, class: r.ppg >= D.model.star_ppg ? "lbl-strong" : "lbl" } : { x: m.l - 10, y: cy + 4, "text-anchor": "end", class: r.ppg >= D.model.star_ppg ? "lbl-strong" : "lbl" }, g, label(r));
+    g.addEventListener("pointerenter", () => band.setAttribute("fill", css("--funnel")));
+    g.addEventListener("pointerleave", () => band.setAttribute("fill", i % 2 ? "transparent" : css("--bg")));
+    el("line", { x1: x(r.lo), x2: x(r.hi), y1: cy, y2: cy, stroke: css("--funnel"), "stroke-width": 8, "stroke-linecap": "round" }, g);
+    el("circle", { cx: x(r.diff), cy, r: 5, fill: css(clear ? "--amber" : "--ghost"), stroke: css("--surface"), "stroke-width": 1.5 }, g);
+    const tip = e => { const hr = host.getBoundingClientRect(); showTip(host, `<b>${r.name}</b>, ${r.t} · ${r.ppg} ppg<br>With him: ${r.gp} games · Without: ${r.miss}<br>Team ${fmt(r.diff)} per 100 better with him<br>90% range ${fmt(r.lo)} to ${fmt(r.hi)}`, e.clientX != null ? e.clientX - hr.left : x(r.diff), e.clientY != null ? e.clientY - hr.top : cy); };
+    g.addEventListener("pointermove", tip); g.addEventListener("focus", tip); g.addEventListener("pointerleave", () => hideTip(host)); g.addEventListener("blur", () => hideTip(host));
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Team net rating with minus without each 20-point scorer in 2025-26, with 90% ranges.");
+  host.prepend(s);
+  document.querySelector("#ww-table tbody").innerHTML = R.map(r => `<tr><td>${r.name}</td><td>${r.t}</td><td>${r.ppg}</td><td>${r.gp}</td><td>${r.miss}</td><td>${fmt(r.with)}</td><td>${fmt(r.without)}</td><td>${fmt(r.diff)} (${fmt(r.lo)} to ${fmt(r.hi)})</td></tr>`).join("");
+}
+
+/* ---------- 3. Missing now ---------- */
+function drawMiss() {
+  const host = document.getElementById("miss"), maxp = Math.max(...D.teams.map(t => t.ppg));
+  host.innerHTML = D.teams.map(t => {
+    const who = D.missing.filter(m => m.t === t.t).sort((a, b) => b.ppg - a.ppg);
+    return `<div class="miss-row"><span class="tm">${t.t}</span><span class="tot">${t.ppg.toFixed(1)} ppg<i style="width:${t.ppg / maxp * 100}%"></i></span>
+      <span class="who">${who.map(m => `<span>${m.name} <em>${m.ppg.toFixed(1)} ppg${m.basis === "2025-26" ? " (2025-26)" : ""} · <span class="${m.reason === "Not listed" ? "reason-none" : ""}">${m.reason === "Not listed" ? "not listed" : m.reason}</span></em></span>`).join("")}</span></div>`;
+  }).join("");
+  const srcs = [...new Map(D.reports.map(r => [r.url, r])).values()];
+  document.getElementById("sources").innerHTML = "Reports: " + srcs.map(r => `<a href="${r.url}">${r.source_title}</a> (${r.source_outlet}, ${r.reported_date})`).join("; ");
+}
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  net: ["Net rating", "How many more points a team scores than it allows per 100 possessions. +5 means it outscores opponents by 5 every 100 trips down the floor; 0 is exactly average."],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}`; pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+function closeTerm() { if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeTerm(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", closeTerm);
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { drawInd(); drawWW(); drawMiss(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+</body>
+</html>
