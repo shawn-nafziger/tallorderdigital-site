@@ -65,6 +65,20 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .section-head { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 8px; }
 .section-head .kicker { margin: 0; }
 
+/* Home: topic filter above the story list (assets/topic-filter.js). Tap targets 44px tall; the chosen topic is underlined in ink. */
+.section-head { flex-wrap: wrap; gap: 4px 16px; }
+.topic-filter { display: flex; gap: 4px; margin: -12px 0; }
+.topic-filter[hidden], .story[hidden] { display: none; }
+.topic-filter button { min-height: 44px; padding: 0 10px; border: 0; background: transparent; cursor: pointer;
+  font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.topic-filter button .n { margin-left: 6px; color: var(--ink-3); letter-spacing: 0; }
+.topic-filter button:hover { color: var(--ink); }
+.topic-filter button[aria-pressed="true"] { color: var(--ink); }
+.topic-filter button[aria-pressed="true"] .l { text-decoration: underline 2px; text-underline-offset: 6px; }
+.topic-filter button:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; border-radius: 2px; }
+.topic-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 420px) { .topic-filter { margin: 0 0 -8px -10px; } }
+
 .story { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 28px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
 .story:hover h2 { color: var(--amber); }
 .story .dek { color: var(--ink-2); margin-top: 12px; max-width: 30em; }
