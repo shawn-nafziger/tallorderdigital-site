@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Stats, Explained · Tall Order Digital</title>
+<meta name="description" content="The numbers behind Tall Order Digital's stories, in plain words: chance wobble, correlation, per-36, net rating, true shooting and more, with basketball examples.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Stats, Explained · Tall Order Digital">
+<meta property="og:description" content="The numbers behind the stories, in plain words, with basketball examples and a coin you can flip.">
+<link rel="canonical" href="https://tallorderdigital.com/explained/">
+<meta property="og:url" content="https://tallorderdigital.com/explained/">
+<meta property="og:image" content="https://tallorderdigital.com/assets/share-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tall Order Digital logo: data stories and visualization, starting with the NBA.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/brand/tod-app-icon-180.png">
+<link rel="stylesheet" href="../assets/site.css">
+<script src="../assets/theme.js" defer></script>
+<style>
+/* Stats, Explained: page-only styles, built from the shared tokens */
+.toc { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 18px 0 8px; padding: 0; list-style: none; }
+.toc a { display: inline-block; font: 500 13px/1 var(--font-data); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.toc a:hover { border-color: var(--ink-3); }
+.entry { scroll-margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 26px; margin-top: 34px; }
+.entry h2 { margin-bottom: 4px; }
+.entry .aka { font: 500 12px/1.4 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
+.entry .short { font-size: 19px; line-height: 1.45; }
+.entry .eg { border-left: 3px solid var(--navy); padding: 2px 0 2px 14px; margin: 14px 0; }
+.entry .eg b { font: 600 11px/1.6 var(--font-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); display: block; }
+.entry details { margin-top: 10px; font-size: 15px; }
+.entry summary { cursor: pointer; font: 500 13px/1.6 var(--font-data); color: var(--ink-2); }
+.entry code, .entry .f { font: 400 14px/1.5 var(--font-data); }
+.widget { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; margin: 16px 0; }
+.widget .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.widget button { font: 500 13px/1 var(--font-data); padding: 9px 12px; border-radius: 6px; border: 1px solid var(--ink-3); background: var(--bg); color: var(--ink); cursor: pointer; }
+.widget button:hover { border-color: var(--ink); }
+.widget button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.widget .out { font: 500 14px/1.5 var(--font-data); color: var(--ink-2); min-height: 42px; }
+.widget .out b { color: var(--ink); }
+.widget svg { width: 100%; height: auto; display: block; }
+.widget svg text { font: 400 11px var(--font-data); fill: var(--ink-3); }
+.widget .note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); margin: 8px 0 0; }
+.minis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.minis figure { margin: 0; }
+.minis figcaption { font: 500 12px/1.4 var(--font-data); color: var(--ink-2); text-align: center; margin-top: 4px; }
+.chip { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+.keyline { display: block; margin: 4px 0; }
+@media (max-width: 520px) { .minis { grid-template-columns: 1fr 1fr 1fr; gap: 6px; } .entry .short { font-size: 17px; } }
+</style>
+</head>
+<body>
+<header class="site-bar wrap">
+  <a class="brand" href="../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../#stories">Stories</a><a href="../about/">About</a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+<main class="wrap">
+  <article class="prose">
+    <p class="kicker">Reference</p>
+    <h1>Stats, explained</h1>
+    <p class="lede">The numbers behind the stories on this site, in plain words. Each one has a basketball example; the math is tucked away for anyone who wants it.</p>
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#chance-wobble">Chance wobble</a></li>
+      <li><a href="#colors">Orange, light orange, gray</a></li>
+      <li><a href="#correlation">Correlation</a></li>
+      <li><a href="#totals">Totals, not averages</a></li>
+      <li><a href="#median">Median &amp; middle half</a></li>
+      <li><a href="#pp">Percentage points</a></li>
+      <li><a href="#per-36">Per 36 &amp; per 100</a></li>
+      <li><a href="#net-rating">Net rating</a></li>
+      <li><a href="#efg">eFG% &amp; true shooting</a></li>
+      <li><a href="#expected">Expected eFG%</a></li>
+      <li><a href="#usage">Usage</a></li>
+      <li><a href="#regression">Regression</a></li>
+    </ul>
+
+    <section class="entry" id="chance-wobble">
+      <span id="standard-error"></span>
+      <h2>Chance wobble</h2>
+      <p class="aka">Statisticians call it the standard error</p>
+      <p class="short">How much a percentage would move by luck alone if the same games were played again. The more shots (or games) behind a number, the smaller its wobble.</p>
+      <div class="eg"><b>The coin-flip version</b>Flip a fair coin 100 times. You expect 50 heads, but you'll usually land somewhere between about 45 and 55. That ±5 is the chance wobble. About 3 times in 4 you'll land in that range. Getting 60 or more heads (twice the wobble) happens only about 1 time in 35. Getting 70 or more (four times) happens about 4 times in 100,000: essentially never by luck.</div>
+      <div class="widget" id="coins">
+        <div class="btns"><button type="button" data-n="100">Flip 100 coins</button><button type="button" data-n="1000">Flip 1,000 coins</button><button type="button" data-n="reset">Clear</button></div>
+        <div class="out" aria-live="polite">Press a button. Each flip adds a dot at the share of heads.</div>
+        <svg id="coin-plot" viewBox="0 0 600 150" role="img" aria-label="Dots showing the share of heads in each set of flips, with the normal chance wobble shaded."></svg>
+        <p class="note"><span style="color:var(--navy);font-weight:600">Teal dot</span>: one set of flips.<br>
+          <span class="amber" style="color:var(--amber);font-weight:600">Orange dot</span>: a rare one, more than twice the wobble from 50%, by pure luck.<br>
+          Shaded: the normal wobble (±1) and twice the wobble (±2) for each number of coins.<br>
+          With 100 coins the wobble is ±5 points; with 1,000 coins it shrinks to about ±1.6.</p>
+      </div>
+      <div class="eg"><b>In basketball</b>On 369 opponent shots against Miami, the share taken at the rim would normally wobble about ±2.3 points. It was 9.5 points below the league average, about four times the wobble, so it's not a fluke. On only 42 midrange shots, though, the wobble is huge (about ±12 points for a 90% range), so a hot opponent midrange percentage over four games means very little.</div>
+      <p>Our rule of thumb: a gap more than <strong>twice</strong> the wobble is "too big to be a fluke." Even then, if you check 30 teams at once, one or two will clear that bar by luck, so an early result is a "watch this," not proof.</p>
+      <details><summary>The math</summary>
+        <p>For a percentage <span class="f">p</span> based on <span class="f">n</span> tries: wobble = √(p × (1 − p) ÷ n). For 100 coin flips: √(0.5 × 0.5 ÷ 100) = 0.05, or 5 points. Quadruple the tries and the wobble halves.</p>
+        <p>It's related to the standard deviation, which measures how spread out individual results are (one shot is either a make or a miss). The standard error is the standard deviation of an <em>average</em> or <em>percentage</em>: the standard deviation divided by √n.</p>
+        <p>"Twice the wobble" is close to the usual 95% line; 1.645 times the wobble gives a 90% range, which our charts often shade.</p>
+      </details>
+    </section>
+
+    <section class="entry" id="colors">
+      <h2>Orange, light orange, gray</h2>
+      <p class="aka">How every chart on this site uses color</p>
+      <p class="short">Color tells you how sure we are, and it means the same thing in every story.</p>
+      <p><span class="keyline"><i class="chip" style="background:var(--amber)"></i><strong>Orange</strong>: the real signal. A change or gap bigger than normal chance wobble.</span>
+        <span class="keyline"><i class="chip" style="background:var(--edge)"></i><strong>Light orange</strong>: at the edge. At least 80% of the way to that bar: worth watching, not yet proven.</span>
+        <span class="keyline"><i class="chip" style="background:var(--ghost)"></i><strong>Gray</strong>: noise. Within what luck alone could produce.</span></p>
+      <p>Other colors (like teal) are for comparison: last season, the league, another team. Every chart says what its colors mean underneath.</p>
+    </section>
+
+    <section class="entry" id="correlation">
+      <h2>Correlation</h2>
+      <p class="aka">Written as r</p>
+      <p class="short">How closely two numbers move together, from 0 (not at all) to 1 (perfectly in step).</p>
+      <div class="widget"><div class="minis" id="minis"></div>
+        <p class="note">Each dot is one made-up player. The more the dots hug a line, the closer to 1.</p></div>
+      <div class="eg"><b>In basketball</b>A team's share of shots at the rim allowed in its first four games had a correlation of 0.74 with the rest of its season: defenses control where opponents shoot. Its opponents' 3-point percentage in those four games had a correlation of about 0 with the rest: that part is mostly luck.</div>
+      <p>Rough guide for our stories: below 0.2, the first number tells you almost nothing about the second; around 0.5, it's a useful hint; above 0.7, it's a good guide.</p>
+      <details><summary>The math</summary><p>This is Pearson's correlation. A correlation can also be negative (one goes up as the other goes down). It measures a straight-line relationship, and it doesn't say which causes which, or whether anything causes anything.</p></details>
+    </section>
+
+    <section class="entry" id="totals">
+      <h2>Totals, not averages</h2>
+      <p class="short">Rates like shooting percentage are computed from season totals, not by averaging each game's percentage.</p>
+      <div class="eg"><b>In basketball</b>A player goes 1-for-1 one night (100%) and 4-for-16 the next (25%). Averaging the two games says 62.5%. He actually made 5 of 17 shots: 29.4%. The 1-for-1 night shouldn't count as much as a 16-shot night, and totals take care of that.</div>
+    </section>
+
+    <section class="entry" id="median">
+      <h2>Median and the middle half</h2>
+      <p class="short">The median is the middle value: half the players are above it, half below. The "middle half" is the range covering the middle 50% of players.</p>
+      <div class="eg"><b>In basketball</b>If nine rookies improved by 0, 0, 1, 1, 2, 2, 3, 3 and 15 points per 36, the average is 3, pulled up by one breakout. The median is 2, which better describes the typical rookie. The middle half runs from 1 to 3.</div>
+      <details><summary>The math</summary><p>The middle half is the 25th to 75th percentile (the interquartile range). A wide middle half means players varied a lot.</p></details>
+    </section>
+
+    <section class="entry" id="pp">
+      <h2>Percentage points</h2>
+      <p class="aka">Written as pp</p>
+      <p class="short">The plain difference between two percentages.</p>
+      <div class="eg"><b>In basketball</b>A team going from 35% to 38% on threes improved by 3 percentage points (3 pp). Saying "3%" would be wrong: 3% of 35% is only about 1 point.</div>
+    </section>
+
+    <section class="entry" id="per-36">
+      <h2>Per 36 minutes, per 100 possessions</h2>
+      <p class="short">Ways to compare players or teams fairly when they play different amounts or at different speeds.</p>
+      <div class="eg"><b>In basketball</b><strong>Per 36:</strong> a bench player who scores 8 points in 18 minutes is scoring 16 per 36, the same rate as a starter who scores 16 in 36. <strong>Per 100 possessions:</strong> a fast team gets more trips down the floor, so it scores more points per game without being better; per 100 possessions removes that.</div>
+      <details><summary>The math</summary><p>Per 36 = 36 × points ÷ minutes. Possessions are estimated from the box score: shot attempts + 0.44 × free-throw attempts − offensive rebounds + turnovers.</p></details>
+    </section>
+
+    <section class="entry" id="net-rating">
+      <h2>Net rating</h2>
+      <p class="short">How many more points a team scores than it allows per 100 possessions. Zero is exactly average.</p>
+      <div class="eg"><b>In basketball</b>+5 means a team outscores opponents by 5 every 100 trips down the floor, a solid playoff team. Across the 2025-26 season, each point of net rating was worth about 2.2 wins over 82 games. A player's "on-court" net rating is the same idea, counting only the minutes he played; it's noisy, because it depends on his teammates and opponents too.</div>
+    </section>
+
+    <section class="entry" id="efg">
+      <h2>Effective FG% and true shooting</h2>
+      <p class="aka">eFG% and TS%</p>
+      <p class="short">Shooting percentages that give threes (and, for true shooting, free throws) their full value.</p>
+      <div class="eg"><b>In basketball</b>Going 4-for-10 on threes scores 12 points; going 5-for-10 on twos scores 10. Plain FG% says the second is better (50% vs 40%); effective FG% says the first is (60% vs 50%). True shooting also counts free throws, so it's the best single measure of scoring efficiency. League average true shooting has been about 57–58% in recent seasons.</div>
+      <details><summary>The math</summary><p>eFG% = (made shots + 0.5 × made threes) ÷ shot attempts. TS% = points ÷ (2 × (shot attempts + 0.44 × free-throw attempts)).</p></details>
+    </section>
+
+    <section class="entry" id="expected">
+      <h2>Expected eFG%</h2>
+      <p class="short">What a set of shots "should" produce if each one went in at the league's rate for its spot on the floor.</p>
+      <div class="eg"><b>In basketball</b>A team whose opponents take lots of shots at the rim will allow a high expected eFG%, because rim shots go in most often. If opponents' actual eFG% is far above expected, they're making more than their locations predict: often luck, sometimes great shooters.</div>
+      <p>Ours uses location only. Private tracking models (like GeniusIQ, from the company behind Second Spectrum) also know how close the defender was and what kind of shot it was, so they're sharper. We say which one a story uses.</p>
+    </section>
+
+    <section class="entry" id="usage">
+      <h2>Usage</h2>
+      <p class="short">The share of his team's possessions a player finishes, with a shot, free throws or a turnover, while he's on the floor.</p>
+      <div class="eg"><b>In basketball</b>With five players on the floor, about 20% is average. Stars who run the offense sit around 28–35%. Usage tells you how big a player's role is, not how well he plays it.</div>
+    </section>
+
+    <section class="entry" id="regression">
+      <h2>Regression</h2>
+      <p class="short">A way to compare things while holding something else steady.</p>
+      <div class="eg"><b>In basketball</b>Older rookies tend to be drafted later. To ask whether age itself matters, we compared rookies taken at similar draft spots, so "older" doesn't just mean "picked later." A regression does that comparison for every draft spot at once.</div>
+      <details><summary>The math</summary><p>Our stories use ordinary least squares: it finds the straight-line relationship between, say, a rookie's growth and his age, after accounting for draft position. Each estimate comes with its own chance wobble.</p></details>
+    </section>
+  </article>
+</main>
+<footer class="site-foot wrap">
+  <p>Examples use NBA data from the NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital · <a href="../">More stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../about/#privacy">privacy</a>).</p>
+</footer>
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  function css(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function el(tag, attrs, parent, text) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+
+  /* ---- Coin flips: each set of flips adds a dot at its share of heads ---- */
+  var plot = document.getElementById("coin-plot"), out = document.querySelector("#coins .out"), results = { 100: [], 1000: [] };
+  var W = 600, x = function (p) { return 30 + (p - 30) / 40 * (W - 60); };   // 30% to 70% heads
+  function drawCoins() {
+    plot.innerHTML = "";
+    [[100, 34], [1000, 98]].forEach(function (row) {
+      var n = row[0], cy = row[1], wob = 100 * Math.sqrt(0.25 / n);
+      el("rect", { x: x(50 - 2 * wob), y: cy - 20, width: x(50 + 2 * wob) - x(50 - 2 * wob), height: 40, rx: 4, fill: css("--funnel"), opacity: 0.55 }, plot);
+      el("rect", { x: x(50 - wob), y: cy - 20, width: x(50 + wob) - x(50 - wob), height: 40, rx: 4, fill: css("--funnel") }, plot);
+      el("line", { x1: x(50), x2: x(50), y1: cy - 22, y2: cy + 22, stroke: css("--ink-3"), "stroke-dasharray": "3 3" }, plot);
+      el("text", { x: 30, y: cy - 24 }, plot, n.toLocaleString() + " coins · wobble ±" + wob.toFixed(1));
+      var seen = {};
+      results[n].forEach(function (p) {
+        var k = Math.round(p * 2) / 2; seen[k] = (seen[k] || 0) + 1;
+        var big = Math.abs(p - 50) > 2 * wob;
+        el("circle", { cx: x(Math.max(30, Math.min(70, p))), cy: cy + 14 - (seen[k] - 1) * 7 % 28, r: 4, fill: css(big ? "--amber" : "--navy"), "fill-opacity": 0.85 }, plot);
+      });
+    });
+    [30, 40, 50, 60, 70].forEach(function (v) { el("text", { x: x(v), y: 146, "text-anchor": "middle" }, plot, v + "%"); });
+  }
+  function flip(n) { var h = 0; for (var i = 0; i < n; i++) if (Math.random() < 0.5) h++; return h; }
+  document.querySelectorAll("#coins button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var n = b.getAttribute("data-n");
+      if (n === "reset") { results = { 100: [], 1000: [] }; out.innerHTML = "Cleared. Press a button to flip again."; drawCoins(); return; }
+      n = +n; var h = flip(n), p = 100 * h / n, wob = 100 * Math.sqrt(0.25 / n), times = Math.abs(p - 50) / wob;
+      results[n].push(p);
+      out.innerHTML = "<b>" + h.toLocaleString() + " heads</b> in " + n.toLocaleString() + " flips (" + p.toFixed(1) + "%): " + (p - 50 >= 0 ? "+" : "−") + Math.abs(p - 50).toFixed(1) + " points from 50%, " + times.toFixed(1) + "× the wobble." + (times > 2 ? " A rare one: more than twice the wobble, by pure luck." : "");
+      drawCoins();
+    });
+  });
+
+  /* ---- Correlation minis: made-up data with r near 0, 0.5 and 0.85 (fixed seed, same every visit) ---- */
+  function rng(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+  function gauss(r) { var u = r() || 1e-9, v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+  function drawMinis() {
+    var host = document.getElementById("minis"); host.innerHTML = "";
+    [[0.02, "about 0"], [0.5, "about 0.5"], [0.85, "about 0.85"]].forEach(function (c, i) {
+      var r = rng(42 + i), pts = [];
+      for (var k = 0; k < 40; k++) { var a = gauss(r), b = gauss(r); pts.push([a, c[0] * a + Math.sqrt(1 - c[0] * c[0]) * b]); }
+      var f = document.createElement("figure"), s = el("svg", { viewBox: "0 0 120 120", role: "img", "aria-label": "Scatter with correlation " + c[1] });
+      el("rect", { x: 1, y: 1, width: 118, height: 118, rx: 6, fill: "none", stroke: css("--rule") }, s);
+      pts.forEach(function (p) { el("circle", { cx: 60 + p[0] * 18, cy: 60 - p[1] * 18, r: 2.6, fill: css("--navy"), "fill-opacity": 0.8 }, s); });
+      f.appendChild(s); var cap = document.createElement("figcaption"); cap.textContent = "r " + c[1]; f.appendChild(cap); host.appendChild(f);
+    });
+  }
+  function drawAll() { drawCoins(); drawMinis(); }
+  drawAll();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+  new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>

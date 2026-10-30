@@ -15,6 +15,7 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | --- | --- |
 | `index.html` | Home page: latest stories |
 | `about/` | About and contact |
+| `explained/` | Stats, explained: plain-language reference for the numbers in every story (anchors per concept; story pop-ups link here) |
 | `weather/` | One folder per weather story |
 | `nba/` | One folder per NBA story |
 | `stories/` | Redirect pages only, for stories that moved (old NBA addresses → `nba/...`, `phoenix-after-dark` → `weather/...`) |
