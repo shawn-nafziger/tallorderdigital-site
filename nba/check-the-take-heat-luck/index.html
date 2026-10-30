@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Check the Take: Heat Luck · Tall Order Digital</title>
+<meta name="description" content="Zach Kram says Miami's ugly start is partly bad luck and the Heat are bound to improve. His luck numbers are private, but the public shot data around them isn't. Here's what it shows.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Check the Take: Is Miami just unlucky?">
+<meta property="og:description" content="Zach Kram says Miami's ugly start is partly bad luck and the Heat are bound to improve. His luck numbers are private, but the public shot data around them isn't. Here's what it shows.">
+<link rel="canonical" href="https://tallorderdigital.com/nba/check-the-take-heat-luck/">
+<meta property="og:url" content="https://tallorderdigital.com/nba/check-the-take-heat-luck/">
+<meta property="og:image" content="https://tallorderdigital.com/nba/check-the-take-heat-luck/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Check the Take: Miami opponents' shooting vs what their shot locations predict, and whether early opponent shooting lasts.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --s1: #0a3746;
+  --s2: #4a403a;
+  --s3: #0a3746;
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(44px, 9vw, 88px); }
+h2 { font-size: clamp(26px, 4.6vw, 38px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+.navy { color: var(--navy); font-weight: 600; }
+
+.stats-note { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 680px; margin-top: -40px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat b { font: 700 clamp(34px, 5.6vw, 50px)/.95 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 10px 18px; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lbl { fill: var(--ink-2); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 500; font-size: 12px; }
+.source { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend .dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ghost); background: transparent; box-sizing: border-box; }
+.legend .bar { width: 16px; height: 6px; border-radius: 3px; background: var(--funnel); }
+
+.picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.picker button { font: 500 12px/1 var(--font-data); padding: 7px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.picker button:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
+.tip b { font-weight: 600; }
+.tip.on { opacity: 1; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+/* Logo: bar mark + wordmark (Barlow Semi Condensed), colors follow the theme */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-bar { align-items: center; }
+
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+
+/* Check the Take additions */
+.verdict { border: 1px solid var(--rule); background: var(--surface); border-radius: 8px; padding: 18px 20px; margin: 8px 0 40px; max-width: 760px; }
+.verdict .vk { font: 500 12px/1 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px; }
+.verdict .vh { font: 700 30px/1.05 var(--font-display); text-transform: uppercase; margin: 0 0 14px; }
+.verdict ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.verdict li { display: grid; grid-template-columns: 112px 1fr; gap: 10px; font-size: 15px; line-height: 1.45; }
+.verdict li b { font: 600 11px/1.6 var(--font-data); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.zonemap { max-width: 520px; margin: 4px auto 14px; }
+.zonemap svg { width: 100%; height: auto; display: block; }
+.take { border-left: 3px solid var(--rule); padding: 2px 0 2px 16px; color: var(--ink-2); }
+@media (max-width: 560px) { .verdict li { grid-template-columns: 1fr; gap: 2px; } }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../about/">About</a></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">Check the Take · NBA · Oct 30, 2026</p>
+    <h1>Is Miami just unlucky?</h1>
+    <p class="dek">Zach Kram says Miami's ugly start is partly bad luck and the Heat are bound to improve. His luck numbers are private, but the public shot data around them isn't. Here's what it shows.</p>
+    <p class="byline">By Shawn Nafziger · Shot data through Oct 27, the same games Kram used</p>
+  </header>
+
+  <div class="verdict">
+    <p class="vk">The verdict</p>
+    <p class="vh">Holds up, on the part we can check</p>
+    <ul>
+      <li><b>Tough shots</b><span>Opponents get to the rim far less against Miami (18.4% of their shots vs 27.9% league-wide). By location alone, that's the 5th-toughest shot diet in the league.</span></li>
+      <li><b>Hot shooting</b><span>They're making those shots anyway, +3.7 points of <button type="button" class="term" data-term="efg">effective FG%</button> above what their locations predict. Over just 4 games, a gap that size is well within chance.</span></li>
+      <li><b>Will it last?</b><span>Last season, how well opponents shot in a team's first 4 games said nothing about the rest of the season. Where they shot did.</span></li>
+      <li><b>Can't check</b><span>Kram's <button type="button" class="term" data-term="giq">GeniusIQ</button> luck numbers, and how closely each shot was contested.</span></li>
+    </ul>
+  </div>
+
+  <section>
+    <div class="prose">
+      <h2>The take</h2>
+      <p class="take">In ESPN's <a href="https://www.espn.com/nba/story/_/id/50301628/giannis-heat-ty-jerome-warriors-overreactions">early-season overreactions piece</a> (Oct 29), Zach Kram argues the 0–4 Heat are bound to improve: by GeniusIQ tracking they've had some of the league's worst shooting luck at both ends, and Miami is actually forcing opponents into tough shots, only for them to hit 53% from midrange and 40% from three (per Cleaning the Glass).</p>
+      <p>GeniusIQ is a private tracking model; we can't see it. But the shots themselves are public: every attempt, where it came from, and whether it went in. So we checked the parts of the take the public data can reach.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Miami keeps opponents away from the rim</h2>
+      <p>Shots at the rim are the easiest in basketball. Against Miami, only 18.4% of opponents' shots came there, compared with 27.9% league-wide. On 369 shots, that share would normally wobble about ±2.3 points by chance, so a gap about 4 times that size is no fluke. More of their shots were threes and floaters instead.</p>
+      <p>If you value each shot at what the league made from that spot last season, opponents' shot diet against Miami was worth an <button type="button" class="term" data-term="xefg">expected eFG%</button> of 52.9%, 5th-lowest in the league (the league average is 54.5%). That's location only, not how tightly each shot was guarded, but it points the same way as Kram's "tough shots."</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Where opponents shot against Miami, through Oct 27</p>
+        <p class="fig-sub">Share of opponents' shots from each area. Hover or tap a row for details.</p>
+      </div></div>
+      <div class="chart zonemap" id="zones"></div>
+      <div class="chart" id="mix"></div>
+      <p class="source"><strong>Court</strong>: the five shot zones (both corners count as Corner 3). Each label shows Miami's opponents' share, then the league average and the gap in <button type="button" class="term" data-term="pp">percentage points</button>.<br>
+        <span class="amber">Orange</span> chip: a gap too big to be a fluke, more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> on 369 shots.<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line.<br>
+        No chip: within normal chance wobble.<br>
+        <span style="color:var(--navy);font-weight:600">Teal bars</span>: Miami's opponents (4 games).<br>
+        <strong>Tick mark</strong>: league average.<br>
+        Source: NBA Stats API shot locations.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Opponents are hot, but four games is very few</h2>
+      <p>Opponents' actual eFG% against Miami was 56.5%, +3.7 points above what their locations predict, the 3rd-biggest gap in the league. On 42 midrange shots they made 59.5% (league: 40.0%), the hottest in the league; from three, 39.0% on 177 attempts. (Cleaning the Glass filters out garbage time and draws its zones differently, so its 53% and our 59.5% differ; both point the same way.)</p>
+      <p>But 42 shots is about ten a game. On that few, a team's opponent midrange percentage can swing about ±12 points by chance alone. Over the whole 2025-26 season, every team's opponent midrange percentage landed between 37.5% and 45.7%.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Opponent shooting vs what their shot locations predict, every defense</p>
+        <p class="fig-sub">Effective FG% allowed through Oct 27. Dots above the line: opponents made more than their shot locations predict.</p>
+      </div></div>
+      <div class="chart" id="luck"></div>
+      <p class="source"><span class="amber">Orange</span>: a gap too big to be a fluke, more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> for that many shots.<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span>: at the edge (at least 80% of the way there).<br>
+        <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble. Miami is labeled, whatever its color.<br>
+        <span style="display:inline-block;width:14px;height:6px;border-radius:3px;background:var(--funnel);vertical-align:middle;margin-right:4px"></span><strong>Light band</strong>: how far a typical defense can land from the line by chance (90%).<br>
+        Source: NBA Stats API shot locations; expected values use 2025-26 league make rates by zone.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Hot opponent shooting doesn't last</h2>
+      <p>The real question behind "bound to improve" is whether early opponent shooting tells you anything about later. Last season it didn't. A team's opponent midrange percentage over its first 4 games had a <button type="button" class="term" data-term="r">correlation</button> of -0.11 with the rest of its season; opponent 3-point percentage, -0.03. In plain terms: none.</p>
+      <p>Where opponents shoot is different. Opponents' share of shots at the rim carried over strongly (0.74). Defenses control where shots come from far more than whether they go in. So the part of Miami's start that's likely to last is the good part.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">2025-26: do a defense's first 4 games predict the rest of its season?</p>
+        <p class="fig-sub">Correlation between each team's first 4 games and its remaining games, all 30 defenses.</p>
+      </div></div>
+      <div class="chart" id="stab"></div>
+      <p class="source"><span class="amber">Orange</span>: where opponents shoot, which carries over.<br>
+        <span style="color:var(--ink-3);font-weight:600">Gray</span>: whether they make them, which mostly doesn't. Effective FG% mixes both, so it lands in between.<br>
+        <strong><button type="button" class="term" data-term="r">Correlation</button></strong>: 0 means no relationship; 1 means the first games predict the rest exactly.</p>
+    </figure>
+    <p class="callout">Kram's take holds up where public data can reach it: Miami is forcing tougher shots, opponents are making them anyway, and that kind of hot shooting hasn't lasted. The Heat's offense (4.1 points of eFG% below what its shot locations predict) is the same story in reverse.</p>
+  </section>
+
+  <section class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>Data:</strong> every regular-season shot from the NBA Stats API via the open-source <code>nba_api</code> client: 2025-26, and 2026-27 through Oct 27 (4 Heat games), matching the games in Kram's article.</li>
+      <li><strong>Expected eFG%:</strong> each shot is valued at the league's 2025-26 make rate for its zone (at the rim, rest of the paint, midrange, corner 3, above-the-break 3), times 1.5 for threes. It knows location, not defender distance, shot type or shooter.</li>
+      <li><strong>Chance:</strong> the gap's <button type="button" class="term" data-term="se">standard error</button> comes from the shot-by-shot spread (3.3 points for Miami's opponents). The midrange swing is a 90% range around the league rate on 42 shots. With 30 defenses, two or three will land beyond 2 standard errors by chance alone, so a colored dot this early is a "watch this," not proof.</li>
+      <li><strong>Carry-over:</strong> for each 2025-26 defense, its first 4 games vs the rest of its season, correlated across the 30 teams.</li>
+      <li><strong>Not checked:</strong> GeniusIQ's shot-quality and luck model (private tracking data) and Cleaning the Glass's filtered splits; we cite them, we don't reproduce them.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital · <a href="../../">More stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script>
+const D = {"team":"MIA","mix":[{"key":"rim","label":"At the rim","team":18.4,"lg":27.9,"wobble":2.3,"z":-4.1,"tier":"big"},{"key":"paint","label":"Rest of the paint","team":22.2,"lg":19.9,"wobble":2.1,"z":1.1,"tier":"noise"},{"key":"mid","label":"Midrange","team":11.4,"lg":9.9,"wobble":1.6,"z":0.9,"tier":"noise"},{"key":"c3","label":"Corner 3","team":11.9,"lg":11.2,"wobble":1.6,"z":0.5,"tier":"noise"},{"key":"ab3","label":"Above-the-break 3","team":36.0,"lg":31.0,"wobble":2.4,"z":2.1,"tier":"big"}],"teams":[{"t":"ATL","games":4,"fga":342,"efg":52.6,"xefg":55.4,"gap":-2.8,"se":3.1,"z":-0.91,"mid_n":31,"mid":45.2,"fg3_n":153,"fg3":30.1,"rim":31.0,"gap_rank":19,"xefg_rank":21,"mid_rank":7,"fg3_rank":26},{"t":"BKN","games":4,"fga":350,"efg":58.1,"xefg":55.5,"gap":2.6,"se":3.3,"z":0.8,"mid_n":18,"mid":44.4,"fg3_n":170,"fg3":37.1,"rim":29.1,"gap_rank":5,"xefg_rank":23,"mid_rank":9,"fg3_rank":9},{"t":"BOS","games":4,"fga":347,"efg":52.7,"xefg":54.1,"gap":-1.4,"se":3.3,"z":-0.41,"mid_n":31,"mid":58.1,"fg3_n":174,"fg3":34.5,"rim":21.6,"gap_rank":16,"xefg_rank":9,"mid_rank":2,"fg3_rank":13},{"t":"CHA","games":4,"fga":346,"efg":54.3,"xefg":55.0,"gap":-0.6,"se":3.2,"z":-0.2,"mid_n":38,"mid":28.9,"fg3_n":139,"fg3":37.4,"rim":30.6,"gap_rank":13,"xefg_rank":16,"mid_rank":27,"fg3_rank":7},{"t":"CHI","games":4,"fga":374,"efg":56.1,"xefg":55.6,"gap":0.6,"se":3.1,"z":0.19,"mid_n":36,"mid":41.7,"fg3_n":153,"fg3":39.2,"rim":32.9,"gap_rank":9,"xefg_rank":24,"mid_rank":12,"fg3_rank":4},{"t":"CLE","games":3,"fga":292,"efg":51.4,"xefg":55.8,"gap":-4.5,"se":3.5,"z":-1.29,"mid_n":26,"mid":46.2,"fg3_n":117,"fg3":34.2,"rim":34.9,"gap_rank":23,"xefg_rank":27,"mid_rank":6,"fg3_rank":14},{"t":"DAL","games":4,"fga":369,"efg":54.3,"xefg":55.0,"gap":-0.7,"se":3.1,"z":-0.22,"mid_n":27,"mid":48.1,"fg3_n":151,"fg3":33.8,"rim":30.6,"gap_rank":14,"xefg_rank":16,"mid_rank":4,"fg3_rank":16},{"t":"DEN","games":3,"fga":279,"efg":55.2,"xefg":55.4,"gap":-0.2,"se":3.5,"z":-0.05,"mid_n":24,"mid":37.5,"fg3_n":125,"fg3":35.2,"rim":29.7,"gap_rank":12,"xefg_rank":21,"mid_rank":18,"fg3_rank":12},{"t":"DET","games":4,"fga":368,"efg":48.5,"xefg":54.4,"gap":-5.9,"se":3.1,"z":-1.93,"mid_n":43,"mid":32.6,"fg3_n":156,"fg3":32.7,"rim":27.2,"gap_rank":28,"xefg_rank":12,"mid_rank":26,"fg3_rank":22},{"t":"GSW","games":4,"fga":337,"efg":60.2,"xefg":53.8,"gap":6.4,"se":3.2,"z":2.01,"mid_n":37,"mid":56.8,"fg3_n":133,"fg3":37.6,"rim":25.5,"gap_rank":1,"xefg_rank":6,"mid_rank":3,"fg3_rank":6},{"t":"HOU","games":4,"fga":360,"efg":52.6,"xefg":53.8,"gap":-1.2,"se":3.1,"z":-0.39,"mid_n":34,"mid":35.3,"fg3_n":162,"fg3":29.0,"rim":24.2,"gap_rank":15,"xefg_rank":6,"mid_rank":22,"fg3_rank":28},{"t":"IND","games":4,"fga":358,"efg":51.1,"xefg":55.8,"gap":-4.6,"se":3.1,"z":-1.49,"mid_n":32,"mid":34.4,"fg3_n":147,"fg3":34.0,"rim":33.5,"gap_rank":24,"xefg_rank":27,"mid_rank":24,"fg3_rank":15},{"t":"LAC","games":3,"fga":258,"efg":53.9,"xefg":55.6,"gap":-1.7,"se":3.5,"z":-0.5,"mid_n":32,"mid":28.1,"fg3_n":84,"fg3":35.7,"rim":37.2,"gap_rank":17,"xefg_rank":24,"mid_rank":28,"fg3_rank":11},{"t":"LAL","games":4,"fga":348,"efg":56.6,"xefg":54.6,"gap":2.0,"se":3.2,"z":0.64,"mid_n":25,"mid":40.0,"fg3_n":144,"fg3":36.1,"rim":28.4,"gap_rank":7,"xefg_rank":13,"mid_rank":14,"fg3_rank":10},{"t":"MEM","games":4,"fga":345,"efg":50.3,"xefg":52.5,"gap":-2.2,"se":3.2,"z":-0.69,"mid_n":41,"mid":46.3,"fg3_n":139,"fg3":32.4,"rim":19.4,"gap_rank":18,"xefg_rank":3,"mid_rank":5,"fg3_rank":23},{"t":"MIA","games":4,"fga":369,"efg":56.5,"xefg":52.9,"gap":3.7,"se":3.3,"z":1.12,"mid_n":42,"mid":59.5,"fg3_n":177,"fg3":39.0,"rim":18.4,"gap_rank":3,"xefg_rank":5,"mid_rank":1,"fg3_rank":5},{"t":"MIL","games":4,"fga":378,"efg":51.6,"xefg":55.9,"gap":-4.3,"se":3.0,"z":-1.45,"mid_n":38,"mid":44.7,"fg3_n":165,"fg3":30.3,"rim":32.5,"gap_rank":21,"xefg_rank":29,"mid_rank":8,"fg3_rank":25},{"t":"MIN","games":4,"fga":358,"efg":50.0,"xefg":54.3,"gap":-4.3,"se":3.1,"z":-1.4,"mid_n":33,"mid":33.3,"fg3_n":155,"fg3":28.4,"rim":26.3,"gap_rank":21,"xefg_rank":10,"mid_rank":25,"fg3_rank":30},{"t":"NOP","games":3,"fga":273,"efg":56.6,"xefg":54.3,"gap":2.3,"se":3.5,"z":0.65,"mid_n":28,"mid":42.9,"fg3_n":112,"fg3":33.0,"rim":27.5,"gap_rank":6,"xefg_rank":10,"mid_rank":11,"fg3_rank":20},{"t":"NYK","games":4,"fga":351,"efg":50.9,"xefg":54.9,"gap":-4.0,"se":3.2,"z":-1.25,"mid_n":46,"mid":43.5,"fg3_n":158,"fg3":33.5,"rim":28.2,"gap_rank":20,"xefg_rank":15,"mid_rank":10,"fg3_rank":17},{"t":"OKC","games":4,"fga":347,"efg":48.6,"xefg":55.1,"gap":-6.5,"se":3.2,"z":-2.05,"mid_n":37,"mid":35.1,"fg3_n":155,"fg3":32.9,"rim":28.5,"gap_rank":29,"xefg_rank":19,"mid_rank":23,"fg3_rank":21},{"t":"ORL","games":3,"fga":281,"efg":50.7,"xefg":55.3,"gap":-4.6,"se":3.5,"z":-1.32,"mid_n":22,"mid":36.4,"fg3_n":111,"fg3":33.3,"rim":32.0,"gap_rank":24,"xefg_rank":20,"mid_rank":21,"fg3_rank":18},{"t":"PHI","games":4,"fga":358,"efg":49.0,"xefg":54.7,"gap":-5.7,"se":3.0,"z":-1.9,"mid_n":40,"mid":22.5,"fg3_n":130,"fg3":33.1,"rim":31.8,"gap_rank":27,"xefg_rank":14,"mid_rank":30,"fg3_rank":19},{"t":"PHX","games":3,"fga":271,"efg":56.8,"xefg":55.6,"gap":1.2,"se":3.8,"z":0.33,"mid_n":21,"mid":38.1,"fg3_n":118,"fg3":40.7,"rim":31.7,"gap_rank":8,"xefg_rank":24,"mid_rank":17,"fg3_rank":1},{"t":"POR","games":3,"fga":255,"efg":52.0,"xefg":51.7,"gap":0.2,"se":3.7,"z":0.06,"mid_n":29,"mid":41.4,"fg3_n":107,"fg3":29.0,"rim":16.1,"gap_rank":10,"xefg_rank":1,"mid_rank":13,"fg3_rank":28},{"t":"SAC","games":4,"fga":364,"efg":57.7,"xefg":52.6,"gap":5.1,"se":3.1,"z":1.62,"mid_n":23,"mid":39.1,"fg3_n":161,"fg3":37.3,"rim":18.7,"gap_rank":2,"xefg_rank":4,"mid_rank":15,"fg3_rank":8},{"t":"SAS","games":4,"fga":353,"efg":53.8,"xefg":54.0,"gap":-0.1,"se":3.1,"z":-0.04,"mid_n":51,"mid":37.3,"fg3_n":121,"fg3":39.7,"rim":29.5,"gap_rank":11,"xefg_rank":8,"mid_rank":20,"fg3_rank":2},{"t":"TOR","games":3,"fga":237,"efg":48.3,"xefg":56.1,"gap":-7.8,"se":3.8,"z":-2.05,"mid_n":21,"mid":23.8,"fg3_n":101,"fg3":30.7,"rim":34.2,"gap_rank":30,"xefg_rank":30,"mid_rank":29,"fg3_rank":24},{"t":"UTA","games":4,"fga":347,"efg":55.8,"xefg":52.4,"gap":3.4,"se":3.2,"z":1.05,"mid_n":39,"mid":38.5,"fg3_n":144,"fg3":39.6,"rim":19.6,"gap_rank":4,"xefg_rank":2,"mid_rank":16,"fg3_rank":3},{"t":"WAS","games":4,"fga":382,"efg":49.7,"xefg":55.0,"gap":-5.2,"se":2.9,"z":-1.78,"mid_n":48,"mid":37.5,"fg3_n":157,"fg3":29.3,"rim":30.9,"gap_rank":26,"xefg_rank":16,"mid_rank":18,"fg3_rank":27}],"stab":[{"key":"rim_share","label":"Share of shots at the rim","kind":"where","r":0.74},{"key":"mid_share","label":"Share of shots from midrange","kind":"where","r":0.54},{"key":"fg3_share","label":"Share of shots from three","kind":"where","r":0.47},{"key":"efg","label":"Effective FG%","kind":"makes","r":0.37},{"key":"mid_pct","label":"Midrange FG%","kind":"makes","r":-0.11},{"key":"fg3_pct","label":"3-point %","kind":"makes","r":-0.03}],"model":{"cutoff":"2026-10-27","early":4,"baseline":"2025-26","lg_efg":53.2}};
+const NS = "http://www.w3.org/2000/svg";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
+function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
+function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+
+
+
+
+function hover(host, g, html, px, py) {
+  const tip = e => { const hr = host.getBoundingClientRect(); showTip(host, html, e.clientX != null ? e.clientX - hr.left : px, e.clientY != null ? e.clientY - hr.top : py); };
+  g.addEventListener("pointermove", tip); g.addEventListener("focus", tip); g.addEventListener("pointerleave", () => hideTip(host)); g.addEventListener("blur", () => hideTip(host));
+}
+const tier = z => Math.abs(z) >= 2 ? "--amber" : Math.abs(z) >= 1.6 ? "--edge" : "--ghost";
+
+/* ---------- 1a. Half-court zone map (same court as New Spots: baseline at top, hoop at 0,0, units = 0.1 ft) ---------- */
+function drawZones() {
+  const host = document.getElementById("zones"); host.innerHTML = "";
+  const s = svg(500, 410); s.setAttribute("viewBox", "-250 -100 500 410"); s.removeAttribute("width"); s.removeAttribute("height");
+  host.append(s);   // attach first so label widths can be measured
+  const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2), Z = Object.fromEntries(D.mix.map(r => [r.key, r]));
+  const shapes = {
+    rim: "M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z",
+    paint: "M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z",
+    mid: `M -220 -47.5 L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 220 -47.5 Z M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z`,
+    c3: `M -250 -47.5 L -250 ${c3} L -220 ${c3} L -220 -47.5 Z M 220 -47.5 L 220 ${c3} L 250 ${c3} L 250 -47.5 Z`,
+    ab3: `M -250 ${c3} L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 250 ${c3} L 250 305 L -250 305 Z`,
+  };
+  // Every zone gets the same light tint: the court is a map, the labels carry the numbers (zone sizes differ, so shading by share would mislead).
+  Object.entries(shapes).forEach(([k, d]) => {
+    const r = Z[k];
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: ${r.team}% of opponents' shots vs league ${r.lg}%` }, s);
+    el("path", { d, "fill-rule": "evenodd", fill: css("--funnel"), stroke: css("--surface"), "stroke-width": 4 }, g);
+    hover(host, g, `<b>${r.label}</b><br>vs Miami: ${r.team.toFixed(1)}% of opponents' shots<br>League: ${r.lg.toFixed(1)}%<br>Gap: ${fmt(r.team - r.lg)} pp (normal chance wobble ±${r.wobble})`, 0, 0);
+  });
+  const line = css("--ink-3"), L = (x1, y1, x2, y2) => el("line", { x1, y1, x2, y2, stroke: line, "stroke-width": 1.5 }, s);
+  L(-250, -47.5, 250, -47.5); el("circle", { cx: 0, cy: 0, r: 7.5, fill: "none", stroke: line, "stroke-width": 1.5 }, s); L(-30, -7.5, 30, -7.5);
+  // Labels: big = Miami's opponents, small = league and gap. Text sits on a paper pill so it reads on any shade.
+  const k1 = host.clientWidth < 520 ? 1.3 : 1;   // bigger text on phones, where the court shrinks
+  const label = (k, x, y, name) => {
+    const r = Z[k], g = el("g", { "pointer-events": "none" }, s);
+    const t1 = `${name} ${r.team.toFixed(1)}%`, t2 = `vs league ${r.lg.toFixed(1)}% (${fmt(r.team - r.lg)} pp)`;
+    const w = (Math.max(t1.length * 9.6, t2.length * 7.6) + 30) * k1, h = 42 * k1;
+    el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 6, fill: css("--surface"), "fill-opacity": 0.92 }, g);
+    el("text", { x, y: y - 2 * k1, "text-anchor": "middle", style: `font: 600 ${17 * k1}px var(--font-data); fill: ${css("--ink")}` }, g, t1);
+    const chip = r.tier !== "noise", off = chip ? 7 * k1 : 0;   // shift the gap line right to make room for its chip
+    const tt = el("text", { x: x + off, y: y + 16 * k1, "text-anchor": "middle", style: `font: 500 ${13 * k1}px var(--font-data); fill: ${css("--ink-2")}` }, g, t2);
+    if (chip) { const tw = tt.getComputedTextLength ? tt.getComputedTextLength() : t2.length * 7.6 * k1;
+      el("rect", { x: x + off - tw / 2 - 14 * k1, y: y + 7.5 * k1, width: 9 * k1, height: 9 * k1, rx: 2, fill: css(r.tier === "big" ? "--amber" : "--edge") }, g); }
+  };
+  label("rim", 0, k1 > 1 ? 30 : 36, "Rim"); label("paint", 0, k1 > 1 ? 110 : 104, "Paint"); label("mid", 0, k1 > 1 ? 196 : 190, "Midrange"); label("ab3", 0, k1 > 1 ? 276 : 272, "Above-break 3");
+  label("c3", 0, -74, "Corner 3");
+  const cw = 86 * k1 + 4;
+  el("path", { d: `M ${-cw} -70 L -235 -70 L -235 -40 M ${cw} -70 L 235 -70 L 235 -40`, stroke: line, "stroke-width": 1.5, fill: "none" }, s);
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Half-court map of the five shot zones, shaded by the share of opponents' shots against Miami, with league comparisons.");
+}
+
+/* ---------- 1. Shot mix ---------- */
+function drawMix() {
+  const host = document.getElementById("mix"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, phone = W < 520, row = phone ? 44 : 34, lw = phone ? 0 : 150, m = { l: lw, r: 150, t: 6, b: 6 };
+  const H = m.t + D.mix.length * row + m.b, s = svg(W, H), max = Math.max(...D.mix.map(r => Math.max(r.team, r.lg))) * 1.1;
+  D.mix.forEach((r, i) => {
+    const top = m.t + i * row, cy = phone ? top + 30 : top + row / 2, x0 = phone ? 0 : m.l, x = lin(0, max, x0, W - m.r);
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: ${r.team}% vs league ${r.lg}%` }, s);
+    el("rect", { x: 0, y: top, width: W, height: row, fill: "transparent" }, g);
+    el("text", phone ? { x: 0, y: top + 13, class: "lbl-strong" } : { x: m.l - 12, y: cy + 4, "text-anchor": "end", class: "lbl-strong" }, g, r.label);
+    el("rect", { x: x0, y: cy - 7, width: Math.max(2, x(r.team) - x0), height: 14, rx: 3, fill: css("--navy") }, g);
+    el("line", { x1: x(r.lg), x2: x(r.lg), y1: cy - 11, y2: cy + 11, stroke: css("--ink"), "stroke-width": 2.5 }, g);
+    const tx = Math.max(x(r.team), x(r.lg)) + 8;
+    if (r.tier !== "noise") el("rect", { x: tx, y: cy - 4.5, width: 9, height: 9, rx: 2, fill: css(r.tier === "big" ? "--amber" : "--edge") }, g);
+    el("text", { x: tx + (r.tier !== "noise" ? 14 : 0), y: cy + 4 }, g, `${r.team.toFixed(1)}% (lg ${r.lg.toFixed(1)})`);
+    hover(host, g, `<b>${r.label}</b><br>vs Miami: ${r.team}% of opponents' shots<br>League: ${r.lg}%<br>Normal chance wobble: ±${r.wobble} pp`, x(r.team), cy);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Share of opponents' shots by area against Miami vs league average.");
+  host.prepend(s);
+}
+
+/* ---------- 2. Expected vs actual ---------- */
+function drawLuck() {
+  const host = document.getElementById("luck"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, H = Math.min(420, Math.max(300, W * 0.62)), m = { l: 42, r: 14, t: 12, b: 40 };
+  const X = D.teams.map(t => t.xefg), Y = D.teams.map(t => t.efg);
+  const xl = Math.floor(Math.min(...X) - 1), xh = Math.ceil(Math.max(...X) + 1), yl = Math.floor(Math.min(...Y) - 1), yh = Math.ceil(Math.max(...Y) + 1);
+  const lo = Math.min(xl, yl), hi = Math.max(xh, yh);
+  const x = lin(xl, xh, m.l, W - m.r), y = lin(yl, yh, H - m.b, m.t), s = svg(W, H);
+  const cid = "clip-luck"; const cp = el("clipPath", { id: cid }, el("defs", {}, s)); el("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b }, cp);
+  const se = D.teams.map(t => t.se).sort((a, b) => a - b)[Math.floor(D.teams.length / 2)], band = 1.645 * se;
+  el("path", { d: `M${x(lo)},${y(lo + band)} L${x(hi)},${y(hi + band)} L${x(hi)},${y(hi - band)} L${x(lo)},${y(lo - band)} Z`, fill: css("--funnel"), "clip-path": `url(#${cid})` }, s);
+  for (let v = Math.ceil(yl / 2) * 2; v <= yh; v += 2) { el("line", { x1: m.l, x2: W - m.r, y1: y(v), y2: y(v), stroke: css("--rule") }, s); el("text", { x: m.l - 6, y: y(v) + 4, "text-anchor": "end" }, s, v); }
+  for (let v = Math.ceil(xl); v <= xh; v += 1) el("text", { x: x(v), y: H - m.b + 15, "text-anchor": "middle" }, s, v);
+  el("line", { x1: x(lo), y1: y(lo), x2: x(hi), y2: y(hi), stroke: css("--ink-3"), "stroke-dasharray": "5 4", "clip-path": `url(#${cid})` }, s);
+  if (W >= 520) el("text", { x: W - m.r - 4, y: Math.max(m.t + 24, y(xh) + 14), "text-anchor": "end", class: "lbl" }, s, "Made what locations predict");
+  el("text", { x: (m.l + W - m.r) / 2, y: H - 6, "text-anchor": "middle" }, s, "Expected eFG% from shot locations →");
+  el("text", { x: m.l + 4, y: m.t + 10, class: "lbl" }, s, "Actual eFG% allowed");
+  [...D.teams].sort((a, b) => (a.t === D.team) - (b.t === D.team)).forEach(t => {
+    const cx = x(t.xefg), cy = y(t.efg), me = t.t === D.team;
+    const g = el("g", { tabindex: 0, "aria-label": `${t.t}: expected ${t.xefg}, actual ${t.efg}` }, s);
+    el("circle", { cx, cy, r: 10, fill: "transparent" }, g);
+    el("circle", { cx, cy, r: me ? 7 : 5, fill: css(tier(t.z)), stroke: me ? css("--ink") : css("--surface"), "stroke-width": me ? 2 : 1.5 }, g);
+    if (me || Math.abs(t.z) >= 1.6) el("text", { x: cx + (me ? 11 : 8), y: cy - (me ? 8 : 6), class: me ? "lbl-strong" : "lbl" }, g, me ? "Miami" : t.t);
+    hover(host, g, `<b>${t.t} defense</b> · ${t.games} games, ${t.fga} opponent shots<br>Expected eFG% ${t.xefg} · actual ${t.efg}<br>Gap ${fmt(t.gap)} (${Math.abs(t.gap / t.se).toFixed(1)}× the normal chance wobble)<br>Opp. midrange ${t.mid}% on ${t.mid_n} · 3P ${t.fg3}% on ${t.fg3_n}`, cx, cy);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Opponent effective FG% vs location-expected, every defense; Miami labeled.");
+  host.prepend(s);
+}
+
+/* ---------- 3. Carry-over ---------- */
+function drawStab() {
+  const host = document.getElementById("stab"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, phone = W < 520, row = phone ? 44 : 32, lw = phone ? 0 : 210, m = { l: lw, r: 48, t: 6, b: 24 };
+  const H = m.t + D.stab.length * row + m.b, s = svg(W, H), x0 = phone ? 0 : m.l, x = lin(-0.2, 1, x0, W - m.r);
+  [0, 0.5, 1].forEach(v => { el("line", { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s); el("text", { x: x(v), y: H - 6, "text-anchor": "middle" }, s, v.toFixed(1)); });
+  D.stab.forEach((r, i) => {
+    const top = m.t + i * row, cy = phone ? top + 30 : top + row / 2;
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: correlation ${r.r}` }, s);
+    el("text", phone ? { x: 0, y: top + 13, class: "lbl-strong" } : { x: m.l - 12, y: cy + 4, "text-anchor": "end", class: "lbl-strong" }, g, r.label);
+    const a = x(Math.min(0, r.r)), b = x(Math.max(0, r.r));
+    el("rect", { x: a, y: cy - 7, width: Math.max(2, b - a), height: 14, rx: 3, fill: css(r.kind === "where" ? "--amber" : "--ghost") }, g);
+    el("text", { x: b + 6, y: cy + 4 }, g, r.r.toFixed(2));
+    hover(host, g, `<b>${r.label}</b> allowed<br>First ${D.model.early} games vs the rest: ${r.r.toFixed(2)}`, b, cy);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "2025-26 correlations between each defense's first games and the rest of its season.");
+  host.prepend(s);
+}
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  efg: ["Effective FG%", "Field-goal percentage that counts a made three as 1.5 makes, since it's worth 50% more. League average is about 54%.", "efg"],
+  xefg: ["Expected eFG%", "What a set of shots 'should' produce if each were made at the league's rate for its spot on the floor. Here it uses location only, not how closely the shot was guarded.", "expected"],
+  giq: ["GeniusIQ", "A private tracking model (from the company behind Second Spectrum) that rates every shot's difficulty using player positions. Only its subscribers can see the numbers.", "expected"],
+  pp: ["Percentage points", "The plain difference between two percentages: 18% to 28% is a 10-point (pp) gap, not 10%.", "pp"],
+  se: ["Chance wobble (standard error)", "How much a percentage would move by luck alone if the same games were replayed. It shrinks as the number of shots grows. A gap more than twice the wobble is unlikely to be a fluke. Statisticians call it the standard error.", "chance-wobble"],
+  r: ["Correlation", "How closely two numbers move together, from 0 (not at all) to 1 (perfectly). Below about 0.2, the first number tells you almost nothing about the second.", "correlation"],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+// Hover pop-ups close after a short delay, so the mouse can move onto the pop-up and click "More on this".
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { drawZones(); drawMix(); drawLuck(); drawStab(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>

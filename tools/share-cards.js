@@ -205,6 +205,41 @@ function readyNowCard(D) {
   </div>`;
 }
 
+function takeHeatCard(D) {
+  const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2), Z = Object.fromEntries(D.mix.map((r) => [r.key, r]));
+  const zone = (d) => `<path d="${d}" fill="${C.sky}" fill-opacity=".14" stroke="${C.ink}" stroke-width="5" fill-rule="evenodd"/>`;
+  const lab = (k, x, y, name) => { const r = Z[k], big = r.tier === "big", gap = r.team - r.lg;
+    return `<rect x="${x - 170}" y="${y - 34}" width="340" height="70" rx="10" fill="${C.ink}" fill-opacity=".92"/>
+      ${big ? `<rect x="${x - 156}" y="${y + 9}" width="15" height="15" rx="3" fill="${C.orange}"/>` : ""}
+      <text x="${x}" y="${y - 4}" text-anchor="middle" font-family="IBM Plex Mono" font-size="28" font-weight="600" fill="${C.mist}">${name} ${r.team.toFixed(1)}%</text>
+      <text x="${x + (big ? 10 : 0)}" y="${y + 23}" text-anchor="middle" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">league ${r.lg.toFixed(1)}% (${gap > 0 ? "+" : "−"}${Math.abs(gap).toFixed(1)} pp)</text>`; };
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .verdict { font: 600 22px "IBM Plex Mono"; color: ${C.mist}; margin-top: 18px; }
+    .court { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Check the Take · NBA</p><h1>Is Miami just unlucky?</h1>
+      <p class="dek">A pundit says the Heat are bound to improve. We checked what public shot data can reach.</p>
+      <p class="verdict">Verdict: holds up, on the part we can check</p></div>
+    <div class="court"><svg width="470" height="400" viewBox="-250 -50 500 425">
+      ${zone(`M -250 ${c3} L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 250 ${c3} L 250 365 L -250 365 Z`)}
+      ${zone(`M -220 -47.5 L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 220 -47.5 Z M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z`)}
+      ${zone(`M -250 -47.5 L -250 ${c3} L -220 ${c3} L -220 -47.5 Z M 220 -47.5 L 220 ${c3} L 250 ${c3} L 250 -47.5 Z`)}
+      ${zone("M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z")}
+      ${zone("M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z")}
+      <line x1="-250" y1="-47.5" x2="250" y2="-47.5" stroke="${C.sub}" stroke-width="3"/>
+      <circle cx="0" cy="0" r="7.5" fill="none" stroke="${C.sub}" stroke-width="3"/>
+      ${lab("rim", 0, 80, "Rim")}${lab("ab3", 0, 300, "Above-break 3")}
+    </svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -228,6 +263,8 @@ function homeCard() {
   const IT = JSON.parse(it.match(/const D = (\{.*?\});\n/s)[1]);
   const rn = fs.readFileSync(path.join(ROOT, "nba/ready-now-rookie-age/index.html"), "utf8");
   const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
+  const th = fs.readFileSync(path.join(ROOT, "nba/check-the-take-heat-luck/index.html"), "utf8");
+  const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -235,6 +272,7 @@ function homeCard() {
     ["nba/new-team-shot-maps/share.png", newSpotsCard(NS.players.find((p) => p.name === "LeBron James"))],
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
+    ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
     ["assets/share-home.png", homeCard()],
   ];
   const browser = await chromium.launch();
