@@ -225,6 +225,7 @@ They work **in sequence**, each one narrowing what the next has to explain. Use 
 5. **Both themes**, designed separately rather than auto-inverted. The first visit follows the reader's system setting; a sun/moon button in the header switches themes and remembers the choice (`assets/theme.js`, saved as `tod-theme`). Pages read `:root[data-theme="light" | "dark"]`, and charts redraw when it changes.
 6. **Accessibility:** color never carries meaning alone, every chart has a table view, keyboard focus is visible, and motion respects "reduce motion".
 7. **Interaction:** hover/tap tooltips on every mark, with hit targets larger than the marks; filters in one row above the charts.
+   - **Topic filter (home page):** text buttons above the story list (All · NBA · Weather, each with its count). The chosen topic is underlined in ink, not orange, because orange is reserved for the signal. 44 px tap targets; the choice is kept in the address so a filtered list can be shared.
 8. **Trust signals:** the data source on every page, a methods note, and clearly labeled modeled data. NBA pages keep the "not affiliated with the NBA" line.
 9. **Sample sizes:** say how many years (or games, or shots) a figure is out of; mark uncertain changes as "at the edge" or "noise", not "signal".
 

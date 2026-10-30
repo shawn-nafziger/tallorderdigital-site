@@ -24,6 +24,7 @@
 <link rel="apple-touch-icon" href="assets/brand/tod-app-icon-180.png">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/theme.js" defer></script>
+<script src="assets/topic-filter.js" defer></script>
 </head>
 <body>
 <header class="site-bar wrap">
@@ -38,8 +39,15 @@
   </header>
 
   <section id="stories" aria-labelledby="stories-h">
-    <div class="section-head"><p class="kicker" id="stories-h">Latest stories</p></div>
-    <a class="story" href="nba/check-the-take-heat-luck/">
+    <div class="section-head"><p class="kicker" id="stories-h">Latest stories</p>
+      <div class="topic-filter" role="group" aria-label="Show stories by topic" hidden>
+        <button type="button" data-topic="all" aria-pressed="true"><span class="l">All</span></button>
+        <button type="button" data-topic="nba" aria-pressed="false"><span class="l">NBA</span></button>
+        <button type="button" data-topic="weather" aria-pressed="false"><span class="l">Weather</span></button>
+      </div>
+    </div>
+    <p class="topic-status" role="status" aria-live="polite"></p>
+    <a class="story" data-topic="nba" href="nba/check-the-take-heat-luck/">
       <div>
         <p class="kicker">Check the Take · NBA · Oct 30, 2026</p>
         <h2>Is Miami just unlucky?</h2>
@@ -52,7 +60,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/ready-now-rookie-age/">
+    <a class="story" data-topic="nba" href="nba/ready-now-rookie-age/">
       <div>
         <p class="kicker">NBA · Oct 29, 2026</p>
         <h2>Ready Now</h2>
@@ -65,7 +73,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/injury-tax-missing-stars/">
+    <a class="story" data-topic="nba" href="nba/injury-tax-missing-stars/">
       <div>
         <p class="kicker">NBA · Oct 29, 2026</p>
         <h2>The Injury Tax</h2>
@@ -78,7 +86,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="weather/phoenix-after-dark/">
+    <a class="story" data-topic="weather" href="weather/phoenix-after-dark/">
       <div>
         <p class="kicker">Weather · Oct 28, 2026</p>
         <h2>Phoenix After Dark</h2>
@@ -92,7 +100,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/new-team-shot-maps/">
+    <a class="story" data-topic="nba" href="nba/new-team-shot-maps/">
       <div>
         <p class="kicker">NBA · Oct 28, 2026</p>
         <h2>New Team, New Spots</h2>
@@ -105,7 +113,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/role-call-minutes-usage/">
+    <a class="story" data-topic="nba" href="nba/role-call-minutes-usage/">
       <div>
         <p class="kicker">NBA · Oct 28, 2026</p>
         <h2>Role Call</h2>
@@ -119,7 +127,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/shot-diet-three-point-rate/">
+    <a class="story" data-topic="nba" href="nba/shot-diet-three-point-rate/">
       <div>
         <p class="kicker">NBA · Oct 28, 2026</p>
         <h2>The Shot Diet</h2>
@@ -137,7 +145,7 @@
         </svg>
       </div>
     </a>
-    <a class="story" href="nba/early-season-mirage-net-rating/">
+    <a class="story" data-topic="nba" href="nba/early-season-mirage-net-rating/">
       <div>
         <p class="kicker">NBA · Oct 28, 2026</p>
         <h2>The Early-Season Mirage</h2>
