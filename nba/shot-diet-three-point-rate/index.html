@@ -105,6 +105,7 @@ select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px
 .term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
 .term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
   font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
 .term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
 .tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
 .tip b { font-weight: 600; }
@@ -389,19 +390,19 @@ function drawZones() {
 
 /* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
 const GLOSSARY = {
-  r3: ["3-point attempt rate", "The share of a team's shots that are threes: 3-point attempts ÷ all field-goal attempts. 42% means 42 of every 100 shots are threes. Free throws don't count."],
-  corr: ["Correlation", "A measure of how closely two sets of numbers line up, from 0 (no relationship) to 1.0 (perfect). Here: do the teams that shoot lots of threes early keep doing it? Around 0.7 and up, early numbers are a good guide."],
-  pp: ["Percentage points (pp)", "The plain difference between two percentages. Going from 40% to 45% of shots is +5 pp."],
+  r3: ["3-point attempt rate", "The share of a team's shots that are threes: 3-point attempts ÷ all field-goal attempts. 42% means 42 of every 100 shots are threes. Free throws don't count.", "three-point-rate"],
+  corr: ["Correlation", "A measure of how closely two sets of numbers line up, from 0 (no relationship) to 1.0 (perfect). Here: do the teams that shoot lots of threes early keep doing it? Around 0.7 and up, early numbers are a good guide.", "correlation"],
+  pp: ["Percentage points (pp)", "The plain difference between two percentages. Going from 40% to 45% of shots is +5 pp.", "pp"],
   est: ["Best estimate", "Our best guess for a team's 3-point attempt rate over the rest of the season, blending its games so far with last season. Four games in, both count about equally, because shot selection settles quickly."],
-  range: ["90% range", "The span where the real value should land about 9 times out of 10. If the range for a change includes zero, we can't rule out that nothing changed."],
-  zones: ["Shot zones", "Rim: the restricted area right under the basket. Paint: the rest of the lane. Midrange: other 2-pointers. Corner 3: the short threes from the corners. Above-break 3: all other threes."],
+  range: ["90% range", "The span where the real value should land about 9 times out of 10. If the range for a change includes zero, we can't rule out that nothing changed.", "chance-wobble"],
+  zones: ["Shot zones", "Rim: the restricted area right under the basket. Paint: the rest of the lane. Midrange: other 2-pointers. Corner 3: the short threes from the corners. Above-break 3: all other threes.", "zones"],
 };
 const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
 let popFor = null;
 function openTerm(btn) {
   const g = GLOSSARY[btn.dataset.term]; if (!g) return;
   if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
-  pop.innerHTML = `<b>${g[0]}</b>${g[1]}`; pop.hidden = false; popFor = btn;
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
   btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
   const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
   const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
@@ -409,16 +410,22 @@ function openTerm(btn) {
   pop.style.left = left + "px";
   pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
 }
-function closeTerm() { if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+// Hover pop-ups close after a short delay, so the mouse can move onto the pop-up and click "More on this".
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
 document.querySelectorAll(".term").forEach(btn => {
   btn.setAttribute("aria-expanded", "false");
   let openedAt = 0;
   const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
   btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
   btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
-  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeTerm(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
   btn.addEventListener("focus", open);
-  btn.addEventListener("blur", closeTerm);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
 });
 document.addEventListener("click", closeTerm);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
