@@ -48,6 +48,7 @@
 .widget .out b { color: var(--ink); }
 .widget svg { width: 100%; height: auto; display: block; }
 .widget svg text { font: 400 11px var(--font-data); fill: var(--ink-3); }
+.widget svg .zl text { font: 600 17px var(--font-data); fill: var(--ink); }
 .widget .note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); margin: 8px 0 0; }
 .minis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .minis figure { margin: 0; }
@@ -77,6 +78,8 @@
       <li><a href="#per-36">Per 36 &amp; per 100</a></li>
       <li><a href="#net-rating">Net rating</a></li>
       <li><a href="#efg">eFG% &amp; true shooting</a></li>
+      <li><a href="#zones">Shot zones</a></li>
+      <li><a href="#three-point-rate">3-point attempt rate</a></li>
       <li><a href="#expected">Expected eFG%</a></li>
       <li><a href="#usage">Usage</a></li>
       <li><a href="#regression">Regression</a></li>
@@ -166,6 +169,41 @@
       <p class="short">Shooting percentages that give threes (and, for true shooting, free throws) their full value.</p>
       <div class="eg"><b>In basketball</b>Going 4-for-10 on threes scores 12 points; going 5-for-10 on twos scores 10. Plain FG% says the second is better (50% vs 40%); effective FG% says the first is (60% vs 50%). True shooting also counts free throws, so it's the best single measure of scoring efficiency. League average true shooting has been about 57–58% in recent seasons.</div>
       <details><summary>The math</summary><p>eFG% = (made shots + 0.5 × made threes) ÷ shot attempts. TS% = points ÷ (2 × (shot attempts + 0.44 × free-throw attempts)).</p></details>
+    </section>
+
+    <section class="entry" id="zones">
+      <h2>Shot zones</h2>
+      <p class="short">The five areas of the half court the NBA uses to group shots.</p>
+      <div class="widget">
+        <svg viewBox="-250 -80 500 390" role="img" aria-label="Half court divided into the five shot zones: rim, paint, midrange, corner 3 and above-the-break 3." style="max-width:460px;margin:0 auto">
+          <g fill="var(--funnel)" stroke="var(--surface)" stroke-width="4" fill-rule="evenodd">
+            <path d="M -250 89.5 L -220 89.5 A 237.5 237.5 0 0 0 220 89.5 L 250 89.5 L 250 305 L -250 305 Z"/>
+            <path d="M -250 -47.5 L -250 89.5 L -220 89.5 L -220 -47.5 Z M 220 -47.5 L 220 89.5 L 250 89.5 L 250 -47.5 Z"/>
+            <path d="M -220 -47.5 L -220 89.5 A 237.5 237.5 0 0 0 220 89.5 L 220 -47.5 Z M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z"/>
+            <path d="M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z"/>
+            <path d="M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z"/>
+          </g>
+          <g stroke="var(--ink-3)" stroke-width="1.5" fill="none"><line x1="-250" y1="-47.5" x2="250" y2="-47.5"/><circle cx="0" cy="0" r="7.5"/><line x1="-30" y1="-7.5" x2="30" y2="-7.5"/><path d="M -235 -55 L -235 -40 M 235 -55 L 235 -40"/></g>
+          <g class="zl" text-anchor="middle">
+            <text x="0" y="30">Rim</text><text x="0" y="100">Paint</text><text x="0" y="195">Midrange</text><text x="0" y="270">Above-the-break 3</text>
+            <text x="-150" y="-52" text-anchor="middle">Corner 3</text><text x="150" y="-52" text-anchor="middle">Corner 3</text>
+          </g>
+        </svg>
+        <p class="note">The baseline is at the top, with the basket just below it.</p>
+      </div>
+      <p><strong>Rim:</strong> the restricted area right under the basket, the easiest shots in the game.<br>
+        <strong>Paint:</strong> the rest of the lane, mostly floaters and hooks.<br>
+        <strong>Midrange:</strong> every other 2-pointer.<br>
+        <strong>Corner 3:</strong> the short threes from either corner.<br>
+        <strong>Above-the-break 3:</strong> all other threes.</p>
+      <div class="eg"><b>In basketball</b>Where a team's shots come from is a choice, and it settles within a few games. How many of them go in takes much longer to settle. That's why our stories trust early changes in a team's shot zones well before they trust its shooting percentages.</div>
+    </section>
+
+    <section class="entry" id="three-point-rate">
+      <h2>3-point attempt rate</h2>
+      <p class="short">The share of a team's (or player's) shots that are threes.</p>
+      <div class="eg"><b>In basketball</b>42% means 42 of every 100 shots are threes. It's a decision about what shots to take, so it settles quickly; 3-point <em>percentage</em> (how many go in) is much noisier and takes months to trust.</div>
+      <details><summary>The math</summary><p>3-point attempt rate = 3-point attempts ÷ all field-goal attempts. Free throws don't count. Don't confuse it with free-throw rate, which is free-throw attempts ÷ field-goal attempts.</p></details>
     </section>
 
     <section class="entry" id="expected">

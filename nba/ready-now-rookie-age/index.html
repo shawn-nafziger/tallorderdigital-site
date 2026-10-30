@@ -105,6 +105,7 @@ select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px
 .term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
 .term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
   font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
 .term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
 .tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
 .tip b { font-weight: 600; }
@@ -240,9 +241,9 @@ body { margin: 0; }
         </div>
       </div>
       <div class="tablewrap" id="wide"></div>
-      <p class="source"><span class="amber">Orange</span>: the age gap is beyond normal noise (2+ <button type="button" class="term" data-term="se">standard errors</button>, comparing players taken at similar draft spots).<br>
+      <p class="source"><span class="amber">Orange</span>: the age gap is too big to be a fluke: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button>, comparing players taken at similar draft spots.<br>
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span>: at the edge (at least 80% of the way there).<br>
-        <span style="color:var(--ink-3);font-weight:600">Gray</span>: within noise on its own.</p>
+        <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble on its own.</p>
     </figure>
   </section>
 
@@ -395,22 +396,22 @@ function drawFive() {
 
 /* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
 const GLOSSARY = {
-  usg: ["Usage", "The share of his team's possessions a player ends with a shot, free throws or a turnover while he's on the floor. About 20% is average; stars run 28–35%."],
-  p36: ["Points per 36", "Points scaled to 36 minutes of playing time: 36 × points ÷ minutes. It lets a bench player and a starter be compared fairly."],
-  ts: ["True shooting %", "Scoring efficiency that counts threes and free throws: points ÷ (2 × (shot attempts + 0.44 × free-throw attempts)). League average is about 57–58%."],
-  med: ["Median", "The middle value: half the players are above it, half below. Unlike an average, one extreme player can't drag it around."],
-  iqr: ["Middle half", "The range covering the middle 50% of players (the 25th to 75th percentile). A wide band means players varied a lot."],
-  se: ["Standard error", "How much a number would wobble by chance alone. A result more than 2 standard errors from zero is unlikely to be luck."],
-  reg: ["Regression", "A way to compare players while holding something else steady, here draft position, so 'older' doesn't just mean 'drafted later'."],
-  pp: ["Percentage points", "The plain difference between two percentages: 55% to 57% is +2 pp (not +2%)."],
-  r: ["Correlation", "How closely two numbers move together, from 0 (not at all) to 1 (perfectly). Above about 0.7, the first number is a good guide to the second."],
+  usg: ["Usage", "The share of his team's possessions a player ends with a shot, free throws or a turnover while he's on the floor. About 20% is average; stars run 28–35%.", "usage"],
+  p36: ["Points per 36", "Points scaled to 36 minutes of playing time: 36 × points ÷ minutes. It lets a bench player and a starter be compared fairly.", "per-36"],
+  ts: ["True shooting %", "Scoring efficiency that counts threes and free throws: points ÷ (2 × (shot attempts + 0.44 × free-throw attempts)). League average is about 57–58%.", "efg"],
+  med: ["Median", "The middle value: half the players are above it, half below. Unlike an average, one extreme player can't drag it around.", "median"],
+  iqr: ["Middle half", "The range covering the middle 50% of players (the 25th to 75th percentile). A wide band means players varied a lot.", "median"],
+  se: ["Chance wobble (standard error)", "How much a number would move by luck alone if the same seasons were played again. It shrinks as the number of players grows. A gap more than twice the wobble is unlikely to be a fluke. Statisticians call it the standard error.", "chance-wobble"],
+  reg: ["Regression", "A way to compare players while holding something else steady, here draft position, so 'older' doesn't just mean 'drafted later'.", "regression"],
+  pp: ["Percentage points", "The plain difference between two percentages: 55% to 57% is +2 pp (not +2%).", "pp"],
+  r: ["Correlation", "How closely two numbers move together, from 0 (not at all) to 1 (perfectly). Above about 0.7, the first number is a good guide to the second.", "correlation"],
 };
 const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
 let popFor = null;
 function openTerm(btn) {
   const g = GLOSSARY[btn.dataset.term]; if (!g) return;
   if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
-  pop.innerHTML = `<b>${g[0]}</b>${g[1]}`; pop.hidden = false; popFor = btn;
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
   btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
   const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
   const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
@@ -418,16 +419,22 @@ function openTerm(btn) {
   pop.style.left = left + "px";
   pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
 }
-function closeTerm() { if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+// Hover pop-ups close after a short delay, so the mouse can move onto the pop-up and click "More on this".
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
 document.querySelectorAll(".term").forEach(btn => {
   btn.setAttribute("aria-expanded", "false");
   let openedAt = 0;
   const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
   btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
   btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
-  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeTerm(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
   btn.addEventListener("focus", open);
-  btn.addEventListener("blur", closeTerm);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
 });
 document.addEventListener("click", closeTerm);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
