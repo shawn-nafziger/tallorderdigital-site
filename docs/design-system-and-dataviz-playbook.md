@@ -2,7 +2,7 @@
 
 *The shared design rules for everything Tall Order Digital publishes: the website, weather and NBA stories, the live weather page, and Power BI dashboards. Read it before designing any page, chart, story or Power BI visual. Adopted October 29, 2026. Owner: Shawn Nafziger.*
 
-***Master copy: this file, `docs/design-system-and-dataviz-playbook.md` in the `tallorderdigital-site` repo.** Changes arrive as pull requests like any other site change. The Claude Projects "Tall Order Digital", "Weather intelligence" and "NBA analytics" may hold reference copies; if a copy disagrees with this file, this file wins. Last updated October 29, 2026, to match the live site.*
+***Master copy: this file, `docs/design-system-and-dataviz-playbook.md` in the `tallorderdigital-site` repo.** Changes arrive as pull requests like any other site change. The Claude Projects "Tall Order Digital", "Weather intelligence" and "NBA analytics" may hold reference copies; if a copy disagrees with this file, this file wins. Last updated October 30, 2026 (NBA dashboard colors, §1).*
 
 ---
 
@@ -76,7 +76,7 @@ Shawn's palette (12 swatches, adopted Oct 29, 2026; Sky added the same day) is t
 7. **No color-only meaning.** Pair color with a label, position or icon; every chart also has a table view.
 8. **Run the palette validator** on any new color combination before shipping it.
 9. **Orange is earned.** If more than one or two things on a view are orange, the highlight stops working (Von Restorff, §5).
-10. **NBA stories:** the old Game Overview colors (navy home, slate away, amber advantage) map to Teal / Sky for home and away and Burnt/Orange for the primary advantage. No team colors or logos.
+10. **NBA stories and dashboards:** home and away share **one hue**: home is solid, away is outlined (see *NBA Game Overview colors* below). Burnt/Orange marks the primary advantage. No team colors or logos. *(Changed Oct 30, 2026: the earlier plan of Teal home / Sky away is retired, because a second blue clashed with the shot-zone tints.)*
 
 ### Logo colors
 
@@ -90,6 +90,43 @@ The mark's three shorter bars fade **toward the background**; only the tall oran
 | Bar 4 | `#62A8BB` | `#2E6272` |
 | "TALL ORDER" | Ink `#201914` | Paper `#F3F4EF` |
 | "DIGITAL" | Bark `#4A403A` | Stone `#DDDAD3` |
+
+### NBA Game Overview colors (adopted Oct 30, 2026)
+
+From the Game Overview dashboard (`nba/dashboards/game-overview/`). Checked with the palette validator and the color-blind simulations (Machado 2009, protan / deutan / tritan; OKLab ΔE×100) on Oct 30, 2026.
+
+**Home / away: one hue, filled vs outlined.** Shape, not color, tells them apart, so it holds for every type of color vision.
+
+| Mark | Light | Dark |
+|---|---|---|
+| Home | Solid Teal `#0A3746` | Solid Sky `#7FC4D6` |
+| Away | `#FFFFFF` fill, `#0A3746` outline | Teal `#0A3746` fill, `#7FC4D6` outline |
+
+- Checked: home vs away fill ΔE ≥ 46 in every simulation; the mark (and the away outline) is 6:1 or better against every zone tint, card and page in both themes.
+- In dark mode the away fill equals the card color, so the outline is the whole mark: keep it at least 1.5 px.
+
+**The deciding factor:** on Game Overview, orange (`--amber`: Burnt light, Orange dark) marks **only the one factor that decided the game**. Every other edge is gray (`--ghost`). Checked: signal vs gray ΔE ≥ 27 in every simulation. The gray is recessive by design (1.65:1 on the card), so each factor also carries its name and value in text.
+
+**Shot-zone tints: court areas only.** Background fills for the five zones, never a data encoding. Every zone is labeled with its name on the court, and every key chip sits beside its word.
+
+| Zone | Light fill | Light chip | Dark fill | Dark chip |
+|---|---|---|---|---|
+| Rim | `#E6DFF2` | `#9A88C8` | `#2C2C4A` | `#A99AD6` |
+| Paint | `#E4E1DB` | `#A59C92` | `#273A42` | `#A8A097` |
+| Midrange | `#F2E4C9` | `#C69A52` | `#353528` | `#B58A3A` † |
+| Corner 3 | `#DBEFE1` | `#5FAE7E` | `#1D3B31` | `#74C193` |
+| Above the break 3 | `#DCEBF3` | `#6EABC9` | `#143C4C` | `#658BA7` † |
+
+† Replaced after the checks (Oct 30, 2026):
+- **Dark Above-the-break chip** `#7FC4D6` → `#658BA7`. The original was identical to the dark **home** color (ΔE 0), so the key chip read as "home team". The replacement is ΔE ≥ 16 from home in every simulation.
+- **Dark Midrange chip** `#D3A865` → `#B58A3A`. The original was only ΔE 5.3 (protan) from the Orange **signal**, so the zone could read as "the deciding factor". The replacement is ΔE 8.5 or more, and is ≥ 8.7 from every other chip.
+
+What the checks found, and why the rest is allowed:
+- **As a data palette, this set fails** the validator (low chroma by design, and some pairs collapse in simulation). It is allowed **only** as labeled area tints, which is why the labeling rule above is required, not optional.
+- Pairs that stay close for some readers: Paint vs Corner 3 chips (deutan ΔE 2.3 light, 4.2 dark), Rim vs Paint chips (tritan 4.4 light, 2.8 dark), and Corner 3 vs Above-the-break chips in light mode (tritan 2.9). The labels carry the meaning.
+- Neighbouring **fills** are deliberately faint (ΔE 0.6-6.7). Corner 3 and Above the break are nearly identical with tritanopia (ΔE 0.6 light, 2.0 dark), so **draw the boundary line between them** (where the arc meets the corner line), like the other court lines.
+- Light-mode chips are 2.3-2.8:1 on Paper and 2.5-3.1:1 on white (validator WARN). That's acceptable only because each chip sits beside its word; never use a chip alone.
+- None of these tints or chips is a chart token. They are not used outside the court.
 
 ### Website tokens (as live)
 
