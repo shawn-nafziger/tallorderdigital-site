@@ -325,6 +325,41 @@ function gameOverviewCard() {
   </div>`;
 }
 
+function teamProfileCard() {
+  // A fixed, made-up profile: offense and defense Four Factor bars (right = helps the team) and a
+  // shot-quality vs shot-making dumbbell. No names or numbers, so the card never goes out of date.
+  const rows = [["eFG%", .55, "o"], ["TOV%", -.25, "n"], ["ORB%", .3, "n"], ["FTr", .1, "n"],
+                ["eFG%", .85, "o"], ["TOV%", .2, "n"], ["ORB%", -.45, "e"], ["FTr", -.15, "n"]];
+  const fill = { o: C.orange, e: "#8f6230", n: C.slateDark };
+  const W = 440, cx = 250, half = 170, rowH = 34;
+  const bars = rows.map(([lab, v, t], i) => {
+    const y = (i < 4 ? 30 : 64) + i * rowH, x = v >= 0 ? cx : cx + v * half;
+    return `<text x="0" y="${y + 6}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${lab}</text>
+      <rect x="${x}" y="${y - 8}" width="${Math.abs(v) * half}" height="16" rx="4" fill="${fill[t]}"/>`;
+  }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Dashboard · Updated daily</p><h1>Team Profile</h1>
+      <p class="dek">Every team on one page: how they win possessions, good shots vs good shooting, and who's carrying them.</p></div>
+    <div class="chart"><svg width="${W}" height="400" viewBox="0 0 ${W} 400">
+      <text x="0" y="14" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}" letter-spacing="2">OFFENSE</text>
+      <text x="0" y="${64 + 4 * rowH - 18}" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}" letter-spacing="2">DEFENSE</text>
+      <line x1="${cx}" y1="18" x2="${cx}" y2="${64 + 8 * rowH - 12}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2"/>
+      ${bars}
+      <text x="${cx - 8}" y="392" text-anchor="end" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">← worse</text>
+      <text x="${cx + 8}" y="392" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">better →</text>
+    </svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -362,6 +397,7 @@ function homeCard() {
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
+    ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
