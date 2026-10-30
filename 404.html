@@ -16,9 +16,15 @@ html[data-theme=dark] body{background:#03222c;color:#f3f4ef}
 main{max-width:860px;margin:0 auto;padding:96px 0}
 h1{font:700 clamp(44px,10vw,92px)/.95 "Barlow Semi Condensed","Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 20px}
 a{color:inherit}
+nav{max-width:860px;margin:0 auto;padding:18px 0 14px;display:flex;flex-wrap:wrap;gap:18px;font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
+nav a{text-decoration:none;padding:8px 0}
+nav a:hover{color:#b36000}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) nav a:hover{color:#f99a2b}}
+html[data-theme=dark] nav a:hover{color:#f99a2b}
 </style>
 </head>
 <body>
+<nav aria-label="Site"><a href="/#stories">Stories</a><a href="/nba/dashboards/">Dashboards</a><a href="/about/">About</a></nav>
 <main>
   <h1>Air ball.</h1>
   <p>That page isn't here. <a href="/">Back to Tall Order Digital</a>.</p>

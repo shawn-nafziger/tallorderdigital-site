@@ -4,6 +4,7 @@ Public site for Shawn Nafziger's data stories. The project memory, data and anal
 
 ## Rules
 - **Changes arrive as pull requests.** Shawn reviews and merges; GitHub Pages publishes `main`.
+  - **One exception, the daily dashboard publish (decided Oct 30, 2026):** every morning Shawn commits the two dashboard pages, `nba/dashboards/team-ratings/index.html` and `nba/dashboards/game-overview/index.html`, straight to `main` with no PR. They are generated in `nba-analytics`, whose build scripts check the data before writing. The exception covers only those two `index.html` files and only that daily data refresh. Everything else still comes as a PR, including the dashboards' share images (`nba/dashboards/*/share.png`) and the dashboards index (`nba/dashboards/index.html`). Changes to a dashboard's layout or design are made in the `nba-analytics` template. Don't hand-edit the two dashboard pages here: the next morning's publish overwrites them.
 - **Static only:** self-contained HTML, data baked in. No server, database, login or build step.
 - **Relative links only** (`about/`, `../../`), never `/about/`, so pages work both at the GitHub Pages project address and on the custom domain. Exception: `404.html` (served from any depth).
 - **No NBA or team logos.** Names, abbreviations and stats are fine.

@@ -2,7 +2,8 @@
  * Builds the 1200x630 link-preview images (LinkedIn, X, Slack, iMessage).
  * Claude runs this; Shawn doesn't need to.
  *
- *   node tools/share-cards.js
+ *   node tools/share-cards.js                 (every card)
+ *   node tools/share-cards.js nba/dashboards  (only cards whose output path starts with this)
  *
  * Needs Playwright (Chromium) and these fonts installed locally: Barlow Semi
  * Condensed, IBM Plex Sans, IBM Plex Mono. Look at
@@ -240,6 +241,90 @@ function takeHeatCard(D) {
   </div>`;
 }
 
+// Dashboard cards: built once, so they show the dashboard's shape, not today's numbers or team names.
+function teamRatingsCard(D) {
+  const T = [...D.teams].sort((a, b) => b.net.v - a.net.v);
+  const W = 450, row = 9, top = 6, H = top + T.length * row + 34;
+  const ext = Math.max(...T.map((t) => Math.abs(t.net.v) + t.net.band)) * 1.05;
+  const x = (v) => 10 + (v + ext) / (2 * ext) * (W - 20);
+  const fill = { sig: C.orange, edge: "#8f6230", noise: C.slateDark };
+  const rows = T.map((t, i) => {
+    const y = top + i * row + row / 2;
+    return `<line x1="${x(t.net.v - t.net.band)}" x2="${x(t.net.v + t.net.band)}" y1="${y}" y2="${y}" stroke="${C.sky}" stroke-opacity=".22" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="${x(t.net.v)}" cy="${y}" r="4" fill="${fill[t.net.cls] || C.slateDark}"/>`;
+  }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 104px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart text { font-family: "IBM Plex Mono"; font-size: 15px; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Dashboard · Updated daily</p><h1>Team Ratings</h1>
+      <p class="dek">All 30 teams, every morning: who is really good or bad so far, and who is still within luck's range.</p></div>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <line x1="${x(0)}" x2="${x(0)}" y1="0" y2="${H - 30}" stroke="${C.sub}" stroke-opacity=".5" stroke-width="2"/>${rows}
+      <text x="${x(0)}" y="${H - 8}" text-anchor="middle">league average</text>
+      <text x="10" y="${H - 8}">worse</text><text x="${W - 10}" y="${H - 8}" text-anchor="end">better</text>
+    </svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function gameOverviewCard() {
+  // Court and shot-zone tints from the playbook (dark theme); home = solid Sky, away = Teal fill with a Sky outline.
+  const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2);
+  const Zf = { rim: "#2c2c4a", paint: "#273a42", mid: "#353528", c3: "#1d3b31", ab3: "#143c4c" };
+  const zone = (d, f) => `<path d="${d}" fill="${f}" fill-rule="evenodd"/>`;
+  const ln = `stroke="${C.sub}" stroke-opacity=".55" stroke-width="3" fill="none"`;
+  // A fixed, made-up scatter of shots: the card shows the dashboard's look, not a real game.
+  let s = 4; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  const shots = [];
+  for (let i = 0; i < 46; i++) {
+    const zoneRoll = rnd(), side = rnd() < 0.5 ? -1 : 1, home = i % 2 === 0;
+    let px, py;
+    if (zoneRoll < 0.3) { const a = rnd() * Math.PI, r = 8 + rnd() * 34; px = Math.cos(a) * r; py = Math.sin(a) * r - 10; }
+    else if (zoneRoll < 0.45) { px = side * (10 + rnd() * 62); py = 40 + rnd() * 95; }
+    else if (zoneRoll < 0.6) { const a = 0.35 + rnd() * 2.4, r = 150 + rnd() * 60; px = Math.cos(a) * r; py = Math.sin(a) * r; }
+    else if (zoneRoll < 0.72) { px = side * (228 + rnd() * 14); py = -30 + rnd() * 110; }
+    else { const a = 0.7 + rnd() * 1.75, r = 252 + rnd() * 34; px = Math.cos(a) * r; py = Math.sin(a) * r; }
+    shots.push(home
+      ? `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="9" fill="${C.sky}"/>`
+      : `<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="8" fill="#0a3746" stroke="${C.sky}" stroke-width="3"/>`);
+  }
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) 440px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .key { display: flex; gap: 22px; margin-top: 22px; font: 500 18px "IBM Plex Mono"; color: ${C.sub}; align-items: center; }
+    .key i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin-right: 8px; vertical-align: -2px; }
+    .court { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Dashboard · Updated daily</p><h1>Game Overview</h1>
+      <p class="dek">Last night's games: where each team shot from, and the one factor that decided it.</p>
+      <p class="key"><span><i style="background:${C.sky}"></i>Home</span><span><i style="background:#0a3746;box-shadow:inset 0 0 0 3px ${C.sky}"></i>Away</span></p></div>
+    <div class="court"><svg width="440" height="352" viewBox="-250 -50 500 400">
+      ${zone(`M -250 ${c3} L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 250 ${c3} L 250 350 L -250 350 Z`, Zf.ab3)}
+      ${zone(`M -220 -47.5 L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 220 -47.5 Z M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z`, Zf.mid)}
+      ${zone(`M -250 -47.5 L -250 ${c3} L -220 ${c3} L -220 -47.5 Z M 220 -47.5 L 220 ${c3} L 250 ${c3} L 250 -47.5 Z`, Zf.c3)}
+      ${zone("M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z", Zf.paint)}
+      ${zone("M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z", Zf.rim)}
+      <rect x="-80" y="-47.5" width="160" height="190" ${ln}/><path d="M -60 142.5 A 60 60 0 0 0 60 142.5" ${ln}/>
+      <line x1="-250" y1="-47.5" x2="250" y2="-47.5" ${ln}/><line x1="-220" y1="-47.5" x2="-220" y2="${c3}" ${ln}/><line x1="220" y1="-47.5" x2="220" y2="${c3}" ${ln}/>
+      <line x1="-250" y1="${c3}" x2="-220" y2="${c3}" ${ln}/><line x1="220" y1="${c3}" x2="250" y2="${c3}" ${ln}/>
+      <path d="M -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3}" ${ln}/><circle cx="0" cy="0" r="7.5" ${ln}/>
+      ${shots.join("")}
+    </svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -265,6 +350,8 @@ function homeCard() {
   const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
   const th = fs.readFileSync(path.join(ROOT, "nba/check-the-take-heat-luck/index.html"), "utf8");
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
+  const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
+  const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -273,8 +360,14 @@ function homeCard() {
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
+    ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
+    ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["assets/share-home.png", homeCard()],
   ];
+  // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
+  const only = process.argv.slice(2);
+  if (only.length) cards.splice(0, cards.length, ...cards.filter(([out]) => only.some((o) => out.startsWith(o))));
+  for (const [out] of cards) fs.mkdirSync(path.dirname(path.join(ROOT, out)), { recursive: true });
   const browser = await chromium.launch();
   for (const [out, html] of cards) {
     const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
