@@ -430,6 +430,36 @@ function midtermsCard(D) {
   </div>`;
 }
 
+function seaweedCard(CMP) {
+  // Mini version of the story's "Mexico or the Caribbean?" chart: share of summer weeks with seaweed off each coast.
+  // Colors: the story's seaweed ramp, dark-mode version (proposed exception to the palette, see the story's PR).
+  const RAMP = ["#5a4a34", "#8f6230", "#c88030", "#f99a2b", "#f9cda2"], LV = [0.05, 0.2, 0.4, 0.6, 1.01];
+  const SHORT = { "Riviera Maya (Tulum)": "Riviera Maya", "Costa Maya (Mahahual)": "Costa Maya", "Turks & Caicos (Grace Bay)": "Turks & Caicos", "Nassau / Paradise Island": "Nassau" };
+  const rows = [...CMP.places].sort((a, b) => b.share - a.share);
+  const W = 470, rh = 22, H = rows.length * rh, nw = 150, x0 = nw + 10, x1 = W - 10;
+  const bars = rows.map((p, i) => {
+    const y = i * rh, lv = LV.findIndex((m) => p.share < m), w = Math.max(3, p.share * (x1 - x0));
+    return `<text x="0" y="${y + 16}" ${p.region === "Mexico" ? `style="fill:${C.mist};font-weight:600"` : ""}>${SHORT[p.name] || p.name}</text>` +
+      `<rect x="${x0}" y="${y + 5}" width="${w.toFixed(1)}" height="13" rx="2" fill="${RAMP[lv]}"/>`;
+  }).join("");
+  const top = rows[0], low = rows.filter((p) => p.share < 0.05).map((p) => SHORT[p.name] || p.name);
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart text { font-family: "IBM Plex Sans"; font-size: 16px; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · Mexico and the Caribbean</p><h1>Where the seaweed lands</h1>
+      <p class="dek">Off the ${SHORT[top.name] || top.name}, seaweed showed up about ${Math.round(top.share * 10)} in 10 summer weeks. ${low.slice(-2).join(" and ")}: almost never.</p></div>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${bars}</svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -459,6 +489,8 @@ function homeCard() {
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
   const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
+  const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
+  const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -472,6 +504,7 @@ function homeCard() {
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
+    ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
