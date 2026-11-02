@@ -1,5 +1,5 @@
-"""Puts the sitewide header pieces into pages: the search icon in the menu, the sticky-header CSS and
-the phone hide-on-scroll script. Claude runs this; Shawn doesn't need to.
+"""Puts the sitewide header pieces into pages: the Dashboards link target (the dashboards hub), the search
+icon in the menu, the sticky-header CSS and the phone hide-on-scroll script. Claude runs this; Shawn doesn't need to.
 
     python3 tools/apply-header.py                      # every page in this repo
     python3 tools/apply-header.py path/to/template.html ...   # specific files (e.g. story templates in the data repos)
@@ -16,6 +16,8 @@ Pages without a .site-bar header (404, redirect pages) are skipped, and so are t
 import pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+# Where the menu's Dashboards link goes, from the site root (the hub offering NBA and Weather; Nov 2, 2026).
+DASHBOARDS = "dashboards/"
 CSS = (ROOT / "assets/site-header.css").read_text().strip()
 JS = (ROOT / "assets/site-header.js").read_text().strip()
 ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
@@ -35,7 +37,15 @@ def apply(html, path):
     link = (f'<a class="nav-search" href="{"./" if on_search else root + "search/"}" aria-label="Search"'
             f'{" aria-current=\"page\"" if on_search else ""}>{ICON}</a>')
 
-    # 1. Search icon: before the light/dark button, or last in the menu.
+    # 1. Dashboards link: to the hub. Pages inside the dashboards section keep their "current page" mark.
+    on_hub = re.search(r"(^|/)(?<!nba/)dashboards/index\.html$", str(path).replace("\\", "/")) is not None
+    def dash(m):
+        current = ' aria-current="page"' if (m.group(1) or on_hub) else ""
+        return f'<a href="{"./" if on_hub else root + DASHBOARDS}"{current}>Dashboards</a>'
+    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
+    html = html[: nav.start()] + re.sub(r'<a href="[^"]*"( aria-current="page")?>Dashboards</a>', dash, nav.group(0)) + html[nav.end():]
+
+    # 2. Search icon: before the light/dark button, or last in the menu.
     html = re.sub(r'<a class="nav-search"[^>]*>.*?</a>', "", html, flags=re.S)
     nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
     inner = nav.group(0)
@@ -45,7 +55,7 @@ def apply(html, path):
         inner = inner[: -len("</nav>")] + link + "</nav>"
     html = html[: nav.start()] + inner + html[nav.end():]
 
-    # 2 and 3. Styles and script.
+    # 3 and 4. Styles and script.
     if re.search(r'href="[^"]*assets/site\.css"', html):
         if "assets/site-header.css" not in html:
             html = re.sub(r'(<link rel="stylesheet" href="([^"]*)assets/site\.css">)',

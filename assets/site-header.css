@@ -1,7 +1,8 @@
 /* site-header:start */
 /* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
    On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
-   (assets/site-header.js). The search icon sits before the light/dark button.
+   (assets/site-header.js). Menu: Stories, Dashboards (to the dashboards hub, dashboards/; set as DASHBOARDS in
+   tools/apply-header.py), About, then the search icon and the light/dark button.
    Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
    carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
 :root { --header-h: 76px; }
