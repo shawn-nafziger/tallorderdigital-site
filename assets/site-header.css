@@ -1,0 +1,19 @@
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). The search icon sits before the light/dark button.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* site-header:end */

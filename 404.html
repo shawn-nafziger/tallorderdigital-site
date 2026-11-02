@@ -16,6 +16,12 @@ html[data-theme=dark] body{background:#03222c;color:#f3f4ef}
 main{max-width:860px;margin:0 auto;padding:96px 0}
 h1{font:700 clamp(44px,10vw,92px)/.95 "Barlow Semi Condensed","Arial Narrow",sans-serif;text-transform:uppercase;margin:0 0 20px}
 a{color:inherit}
+form.find{display:flex;gap:8px;margin-top:20px;max-width:520px}
+form.find input{flex:1;min-width:0;min-height:48px;padding:0 14px;border:1px solid #6e645d;border-radius:6px;background:#fff;color:#201914;font:400 17px "IBM Plex Sans",system-ui,sans-serif}
+form.find button{min-height:48px;padding:0 16px;border:0;border-radius:6px;background:#201914;color:#f3f4ef;font:500 12px "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+@media (prefers-color-scheme:dark){html:not([data-theme=light]) form.find input{background:#0a3746;color:#f3f4ef;border-color:#9fb1b8}html:not([data-theme=light]) form.find button{background:#f3f4ef;color:#03222c}}
+html[data-theme=dark] form.find input{background:#0a3746;color:#f3f4ef;border-color:#9fb1b8}
+html[data-theme=dark] form.find button{background:#f3f4ef;color:#03222c}
 nav{max-width:860px;margin:0 auto;padding:18px 0 14px;display:flex;flex-wrap:wrap;gap:18px;font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
 nav a{text-decoration:none;padding:8px 0}
 nav a:hover{color:#b36000}
@@ -24,10 +30,11 @@ html[data-theme=dark] nav a:hover{color:#f99a2b}
 </style>
 </head>
 <body>
-<nav aria-label="Site"><a href="/#stories">Stories</a><a href="/nba/dashboards/">Dashboards</a><a href="/about/">About</a></nav>
+<nav aria-label="Site"><a href="/#stories">Stories</a><a href="/nba/dashboards/">Dashboards</a><a href="/about/">About</a><a href="/search/">Search</a></nav>
 <main>
   <h1>Air ball.</h1>
-  <p>That page isn't here. <a href="/">Back to Tall Order Digital</a>.</p>
+  <p>That page isn't here. <a href="/">Back to Tall Order Digital</a>, or search for it:</p>
+  <form class="find" role="search" action="/search/" method="get"><label for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search the site</label><input id="q" name="q" type="search" placeholder="Story, dashboard or stat"><button type="submit">Search</button></form>
 </main>
 <script>window.goatcounter = { path: function (p) { return "404" + p; } };</script>
 <!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->

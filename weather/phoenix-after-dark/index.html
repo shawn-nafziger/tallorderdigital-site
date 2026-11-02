@@ -133,12 +133,31 @@ th { color: var(--ink-3); font-weight: 500; position: sticky; top: 0; background
 .wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
 .site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
 .site-foot a { color: var(--ink-2); }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). The search icon sits before the light/dark button.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* site-header:end */
 </style>
 </head>
 <body>
 <header class="site-bar">
   <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
-  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../nba/dashboards/">Dashboards</a><a href="../../about/">About</a></nav>
+  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../nba/dashboards/">Dashboards</a><a href="../../about/">About</a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a></nav>
 </header>
 
 <main>
@@ -423,6 +442,35 @@ let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTime
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
 new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 if (document.fonts) document.fonts.ready.then(drawAll);
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+/* site-header:end */
 </script>
 <!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
 <script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
