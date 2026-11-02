@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Redistricting Moved the Line · Tall Order Digital</title>
+<meta name="description" content="Nine states redrew their congressional district maps for 2026. Replay the 2024 vote on the old and new district maps and drag the tide to see how far redistricting moved the House majority line.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Redistricting moved the line: the 2026 House maps">
+<meta property="og:description" content="Drag a national tide and watch all 435 House seats flip, on the district maps before and after 2026 redistricting.">
+<link rel="canonical" href="https://tallorderdigital.com/politics/midterms-2026/">
+<meta property="og:url" content="https://tallorderdigital.com/politics/midterms-2026/">
+<meta property="og:image" content="https://tallorderdigital.com/politics/midterms-2026/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --s1: #0a3746;
+  --s2: #4a403a;
+  --s3: #0a3746;
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --dem: #3b6ba5; --rep: #b33a3a; --dem-lean: rgba(59, 107, 165, .45); --rep-lean: rgba(179, 58, 58, .45);
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; --dem: #7b9fe0; --rep: #e8746e; --dem-lean: rgba(123, 159, 224, .45); --rep-lean: rgba(232, 116, 110, .45); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; --dem: #7b9fe0; --rep: #e8746e; --dem-lean: rgba(123, 159, 224, .45); --rep-lean: rgba(232, 116, 110, .45); color-scheme: dark;
+  }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(44px, 9vw, 88px); }
+h2 { font-size: clamp(26px, 4.6vw, 38px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+.navy { color: var(--navy); font-weight: 600; }
+
+.stats-note { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 680px; margin-top: -40px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat b { font: 700 clamp(34px, 5.6vw, 50px)/.95 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 10px 18px; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-body); font-size: 12.5px; fill: var(--ink-2); }
+.chart .lbl { fill: var(--ink-2); font-size: 13px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 600; font-size: 13px; }
+.source { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend .dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ghost); background: transparent; box-sizing: border-box; }
+.legend .bar { width: 16px; height: 6px; border-radius: 3px; background: var(--funnel); }
+
+.picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.picker button { font: 500 12px/1 var(--font-data); padding: 7px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.picker button:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
+.tip b { font-weight: 600; }
+.tip.on { opacity: 1; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+/* Logo: bar mark + wordmark (Barlow Semi Condensed), colors follow the theme */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-bar { align-items: center; }
+
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+
+/* Midterms hub additions */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.legend .dash { width: 18px; height: 0; border-top: 2px dashed var(--ink-3); background: none; }
+.swing-ctl { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.swing-ctl label { font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.swing-ctl output { font: 500 13px/1.2 var(--font-data); color: var(--ink); min-width: 15ch; text-align: right; font-variant-numeric: tabular-nums; }
+#swing { width: 100%; accent-color: var(--ink); min-width: 0; }
+#swing:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.readout { display: grid; gap: 4px; border-top: 1px solid var(--rule); padding-top: 10px; }
+.ro { display: grid; grid-template-columns: 11ch 7ch 7ch 1fr; gap: 10px; align-items: center; font: 400 13px/1.3 var(--font-data); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.ro:first-child { color: var(--ink); }
+.ro b { font-weight: 600; color: var(--ink); }
+.ro-m { color: var(--ink-3); }
+.sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 420px) { .ro { grid-template-columns: 11ch 7ch 7ch; } .ro-m { display: none; } .swing-ctl { grid-template-columns: 1fr; gap: 6px; } .swing-ctl output { text-align: left; } }
+.strip-wrap { position: relative; }
+.strip { display: grid; grid-template-columns: repeat(29, minmax(0, 1fr)); gap: 2px; }
+.tile { aspect-ratio: 1; border-radius: 2px; position: relative; background: var(--ghost); transition: background-color .15s, opacity .15s; }
+.tile[data-c="d"] { background: var(--dem); } .tile[data-c="dl"] { background: var(--dem-lean); }
+.tile[data-c="r"] { background: var(--rep); } .tile[data-c="rl"] { background: var(--rep-lean); }
+.tile.rd::after { content: ""; position: absolute; inset: 0; margin: auto; width: 30%; height: 30%; border-radius: 50%; background: var(--surface); opacity: .9; }
+.tile.tp { outline: 2.5px solid var(--ink); outline-offset: 1px; z-index: 1; }
+.tile.dim { opacity: .14; }
+.key { display: grid; gap: 4px; font-size: 13px; color: var(--ink-2); }
+.key i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -2px; margin-right: 8px; }
+.key .dotkey { background: var(--ghost); position: relative; }
+.key .dotkey::after { content: ""; position: absolute; inset: 0; margin: auto; width: 4px; height: 4px; border-radius: 50%; background: var(--surface); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; counter-reset: st; }
+.steps li { counter-increment: st; min-width: 0; }
+.steps button { width: 100%; min-height: 44px; display: grid; gap: 2px; justify-items: start; text-align: left; padding: 8px 10px; border: 0; border-top: 3px solid var(--rule); background: none; color: var(--ink-3); font: 500 13px/1.25 var(--font-body); cursor: pointer; }
+.steps button::before { content: "Step " counter(st); font: 500 11px/1 var(--font-data); letter-spacing: .1em; text-transform: uppercase; }
+.steps button[aria-current="step"] { border-top-color: var(--ink); color: var(--ink); }
+.steps button:focus-visible, .step-nav button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.step-text { display: grid; gap: 6px; font-size: 16px; line-height: 1.45; color: var(--ink); max-width: 62ch; min-height: 4.5em; }
+.step-text p { margin: 0; }
+.step-text .takeaway { font-weight: 600; border-left: 3px solid var(--ink); padding: 2px 0 2px 12px; margin: 4px 0; }
+.step-nav { display: flex; justify-content: space-between; gap: 10px; }
+.step-nav button { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--rule); background: none; color: var(--ink-2); font: 500 14px/1 var(--font-body); cursor: pointer; }
+.step-nav button.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.step-nav button[hidden] { display: none; }
+.explore { display: grid; gap: 12px; }
+.explore[hidden] { display: none; }
+@media (max-width: 520px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.howto { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 62ch; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font: 400 13px/1 var(--font-body); color: var(--ink-2); margin-left: 6px; cursor: pointer; }
+.toggle input { accent-color: var(--ink); width: 16px; height: 16px; }
+.chart .tide-ct { font: 600 13px/1 var(--font-data); }
+.chart .note { fill: var(--ink-2); font-size: 12px; }
+.chart .halo { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.key .tickkey { background: none; width: 3px; height: 14px; border-radius: 0; background: var(--ink); margin: 0 12px 0 4px; }
+.chart .pile { font: 700 20px/1 var(--font-display); fill: var(--ink); }
+.chart .pile-cap { font-size: 12px; fill: var(--ink-2); }
+.key .tipkey { background: transparent; outline: 2px solid var(--ink); outline-offset: -1px; }
+.soon .prose { border-left: 3px solid var(--rule); padding-left: 16px; }
+@media (max-width: 420px) { .strip { gap: 1px; } }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu: Stories, Dashboards (to the dashboards hub, dashboards/; set as DASHBOARDS in
+   tools/apply-header.py), About, then the search icon and the light/dark button.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* site-header:end */
+/* Phone: with four nav items, the header wraps under the logo (same rule as the other stories). */
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+</style>
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../dashboards/">Dashboards</a><a href="../../about/">About</a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">Politics · 2026 midterms</p>
+    <h1>Redistricting moved the line</h1>
+    <p class="dek">Nine states redrew their congressional district maps for 2026, a process called <button type="button" class="term" data-term="redistricting">redistricting</button>. Replay the 2024 presidential vote on the old and new maps, and the line for a House majority moves 1.4 points. Use the tide below to see it seat by seat.</p>
+    <p class="byline">By Shawn Nafziger · Nov 2, 2026 · Built on 2024 presidential results; 2026 House, Senate and governor results arrive Wednesday</p>
+  </header>
+
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b>3.2</b><span>points of <button type="button" class="term" data-term="swing">swing</button> toward Democrats from the 2024 result would give them 218 seats on the <strong>2024 lines</strong></span></div>
+    <div class="stat" role="listitem"><b>4.6</b><span>points it takes on the <strong>2026 lines</strong></span></div>
+    <div class="stat" role="listitem"><b>9</b><span>states with new districts this year. Everywhere else, the lines are the same as in 2024</span></div>
+  </div>
+  <p class="stats-note"><b>How to read these:</b> each district's starting point is how it voted for president in 2024, measured as the <button type="button" class="term" data-term="margin">two-party margin</button>. A "swing" adds the same number of points to every district at once. That's a simulation, not a forecast: real House races don't move in lockstep, and House candidates often run ahead of or behind the top of the ticket.</p>
+
+  <section>
+    <div class="prose">
+      <h2>Where the lines moved</h2>
+      <p>Of the nine states that went through redistricting, 6 drew district maps with more Trump-won districts and 2 with more Harris-won districts; in North Carolina the count didn't change. Counting districts each candidate carried in 2024, the new district maps add 11 Trump-won districts in some states and 7 Harris-won districts in others.</p>
+    </div>
+    <figure class="figure" aria-labelledby="states-title">
+      <div class="fig-head">
+        <div><p class="fig-title" id="states-title">Districts Harris carried in 2024: old lines → new lines</p>
+        <p class="fig-sub">The nine states that redrew their district maps for 2026</p></div>
+      </div>
+      <div class="chart" id="states"></div>
+      <div class="key">
+        <span><i style="background:var(--rep)"></i>Red bar: the new map has more districts Trump carried</span>
+        <span><i style="background:var(--dem)"></i>Blue bar: the new map has more districts Harris carried</span>
+      </div>
+      <p class="source">Bars: change in the number of districts each candidate carried in 2024, same votes, new lines.<br>
+      Missouri also passed a new map, but the Supreme Court ordered it to use its 2022 lines on Nov 3.<br>
+      Source: <a href="https://the-db.co/presbycd">The Downballot</a>.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>All 435 seats, in order</h2>
+      <p>Each square is a district on the 2026 lines, ranked from the most Democratic (top left) to the most Republican (bottom right). The outlined square is the 218th: whoever carries it holds the majority. At the 2024 result that's WI-1, which Trump carried by 4.6 points. Pick a state to find your own district.</p>
+    </div>
+    <figure class="figure" aria-labelledby="strip-title">
+      <div class="fig-head">
+        <div><p class="fig-title" id="strip-title">Every House district at the current swing (<span id="strip-swing">2024 result</span>)</p>
+        <p class="fig-sub">2026 lines. Tap or hover a square for its numbers.</p></div>
+        <div><label class="sr" for="state">Find a state</label>
+        <select id="state"><option value="">All states</option></select></div>
+      </div>
+      <div class="strip-wrap"><div class="strip" id="strip" role="img" aria-label="435 House districts ranked by margin, colored by which party carries each at the selected swing."></div></div>
+      <div class="key">
+        <span><i style="background:var(--dem)"></i>Blue: carried by the Democrat</span>
+        <span><i style="background:var(--dem-lean)"></i>Light blue: Democratic, but within 2 points of flipping</span>
+        <span><i style="background:var(--rep-lean)"></i>Light red: Republican, but within 2 points of flipping</span>
+        <span><i style="background:var(--rep)"></i>Red: carried by the Republican</span>
+        <span><i class="dotkey"></i>Dot: a district in one of the 9 redrawn states</span>
+        <span><i class="tipkey"></i>Outline: the 218th seat, the one that decides the majority</span>
+      </div>
+      <p class="source">Order: 2026-lines margin at the 2024 result.<br>
+      Colors: follow the tide in the chart below.<br>
+      Source: <a href="https://the-db.co/presbycd">The Downballot</a>.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Move the tide</h2>
+      <p>Picture a <button type="button" class="term" data-term="uniform">uniform swing</button> as a tide that moves every district the same number of points. Starting from the 2024 presidential vote, Democrats would need a tide of 3.2 points to win the House on the 2024 maps. On the 2026 maps they'd need 4.6: the new lines push the majority 1.4 points further out.</p>
+      <p>The new district maps also thin out the middle. 90 districts sit within 10 points of flipping on the 2024 lines; on the 2026 lines, 76 do.</p>
+    </div>
+    <figure class="figure" aria-labelledby="wave-title">
+      <div class="fig-head">
+        <div><p class="fig-title" id="wave-title">Redistricting pushed the House majority line 1.4 points further out</p>
+        <p class="fig-sub">Simulation: every district's 2024 presidential margin moved by the same amount</p></div>
+      </div>
+      <ol class="steps" aria-label="Walk through the chart">
+        <li><button type="button" data-step="1" aria-current="step">Where seats stand</button></li>
+        <li><button type="button" data-step="2">Add a tide</button></li>
+        <li><button type="button" data-step="3">Before vs after redistricting</button></li>
+        <li><button type="button" data-step="4">Explore</button></li>
+      </ol>
+      <div class="step-text" id="step-text" aria-live="polite"></div>
+      <div id="explore" class="explore" hidden>
+        <div class="swing-ctl">
+          <label for="swing">Tide</label>
+          <input type="range" id="swing" min="-10" max="10" step="0.1" value="0" aria-describedby="swing-out">
+          <output id="swing-out" for="swing">2024 result</output>
+        </div>
+        <div class="picker" role="group" aria-label="Jump to">
+          <button type="button" data-jump="0" aria-pressed="true">2024 result</button>
+          <button type="button" data-jump="3.2" aria-pressed="false">Majority, 2024 maps</button>
+          <button type="button" data-jump="4.6" aria-pressed="false">Majority, 2026 maps</button>
+          <label class="toggle"><input type="checkbox" id="show-redrawn"> Show the 173 districts in the 9 states that redrew</label>
+        </div>
+      </div>
+      <div class="chart" id="wave"></div>
+      <div class="step-nav"><button type="button" id="step-back">← Back</button><button type="button" id="step-next" class="primary">Next →</button></div>
+      <div class="key">
+        <span><i style="background:var(--dem)"></i><span data-k="1">Blue: Harris won it in 2024</span><span data-k="2" hidden>Blue: the Democrat carries it at this tide</span></span>
+        <span><i style="background:var(--rep)"></i><span data-k="1">Red: Trump won it in 2024</span><span data-k="2" hidden>Red: the Republican carries it at this tide</span></span>
+        <span data-k="2" hidden><i style="background:var(--dem-lean)"></i><i style="background:var(--rep-lean);margin-left:-4px"></i>Lighter: within 2 points of flipping</span>
+      </div>
+      <p class="source">Dots: all 435 districts. Along the line, the ones within 10 points either way; in the end blocks, the ones won by more.<br>
+      Tide: the same number of points of two-party margin added to every district (a simulation, not a forecast).<br>
+      Source: 2024 presidential results by district from <a href="https://the-db.co/presbycd">The Downballot</a>.</p>
+      <details>
+        <summary>Seats at each swing (table)</summary>
+        <div class="tablewrap"><table id="wave-table"><thead><tr><th>Swing</th><th>Dem seats, 2024 maps</th><th>Dem seats, 2026 maps</th></tr></thead><tbody></tbody></table></div>
+      </details>
+    </figure>
+  </section>
+
+  <section class="soon">
+    <div class="prose">
+      <h2>Coming Wednesday</h2>
+      <p>When the 2026 votes come in, this page adds the real House results next to these simulations, a board of every Senate and governor race against the last time each seat was up, and a daily "still counting" tracker. All 2026 numbers will be labeled unofficial until states certify them.</p>
+    </div>
+  </section>
+
+  <section class="method">
+    <h3>How this was measured</h3>
+    <ul>
+      <li><strong>Data:</strong> 2024 presidential votes for every congressional district, calculated by The Downballot for the districts used in 2024 and for the districts used in 2026. Each state's district totals match its certified 2024 statewide count within 0.1%.</li>
+      <li><strong>Margin:</strong> Harris's share of the two-party vote minus Trump's, so third-party votes are left out. Shown as a lead for whoever is ahead.</li>
+      <li><strong>Swing:</strong> the same number of points added to every district's margin. A district flips when its margin crosses zero. Real elections don't swing evenly, so read the curves as "how hard is each map," not "what will happen."</li>
+      <li><strong>Close seats:</strong> within 2 points of flipping at the selected swing.</li>
+      <li><strong>Redrawn states:</strong> Alabama, California, Florida, Louisiana, North Carolina, Ohio, Tennessee, Texas and Utah.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>Data: 2024 presidential results by congressional district, <a href="https://the-db.co/presbycd">The Downballot</a>. Certified state totals: MIT Election Data and Science Lab.</p>
+  <p>Nonpartisan: this page shows how district lines turn votes into seats. It doesn't predict or endorse.</p>
+  <p>© 2026 Tall Order Digital · <a href="../../">More stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script>
+const D = {"shifts":[-10.0,-9.9,-9.8,-9.7,-9.6,-9.5,-9.4,-9.3,-9.2,-9.1,-9.0,-8.9,-8.8,-8.7,-8.6,-8.5,-8.4,-8.3,-8.2,-8.1,-8.0,-7.9,-7.8,-7.7,-7.6,-7.5,-7.4,-7.3,-7.2,-7.1,-7.0,-6.9,-6.8,-6.7,-6.6,-6.5,-6.4,-6.3,-6.2,-6.1,-6.0,-5.9,-5.8,-5.7,-5.6,-5.5,-5.4,-5.3,-5.2,-5.1,-5.0,-4.9,-4.8,-4.7,-4.6,-4.5,-4.4,-4.3,-4.2,-4.1,-4.0,-3.9,-3.8,-3.7,-3.6,-3.5,-3.4,-3.3,-3.2,-3.1,-3.0,-2.9,-2.8,-2.7,-2.6,-2.5,-2.4,-2.3,-2.2,-2.1,-2.0,-1.9,-1.8,-1.7,-1.6,-1.5,-1.4,-1.3,-1.2,-1.1,-1.0,-0.9,-0.8,-0.7,-0.6,-0.5,-0.4,-0.3,-0.2,-0.1,0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7,1.8,1.9,2.0,2.1,2.2,2.3,2.4,2.5,2.6,2.7,2.8,2.9,3.0,3.1,3.2,3.3,3.4,3.5,3.6,3.7,3.8,3.9,4.0,4.1,4.2,4.3,4.4,4.5,4.6,4.7,4.8,4.9,5.0,5.1,5.2,5.3,5.4,5.5,5.6,5.7,5.8,5.9,6.0,6.1,6.2,6.3,6.4,6.5,6.6,6.7,6.8,6.9,7.0,7.1,7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,8.0,8.1,8.2,8.3,8.4,8.5,8.6,8.7,8.8,8.9,9.0,9.1,9.2,9.3,9.4,9.5,9.6,9.7,9.8,9.9,10.0],"c24":[154,154,154,154,154,154,154,154,154,154,154,155,157,157,157,158,159,160,160,160,160,162,163,164,166,166,166,166,166,166,167,168,168,169,169,171,171,172,172,172,172,175,175,175,177,179,179,181,182,182,182,182,183,183,184,184,184,185,185,186,187,187,188,188,189,190,190,191,191,191,191,192,192,192,192,193,193,195,195,195,196,197,198,198,198,200,200,200,201,201,201,201,201,201,201,202,203,204,204,204,205,205,205,206,206,206,206,206,208,208,208,208,210,210,211,211,211,211,211,214,214,215,215,215,215,216,216,216,216,216,216,216,218,219,220,220,220,220,220,220,221,221,221,221,222,224,225,225,225,225,225,226,226,227,227,227,228,229,230,230,231,232,232,232,232,232,232,233,234,234,234,234,234,234,235,235,236,236,236,236,236,237,237,237,237,237,239,239,239,239,239,239,239,241,242,242,242,243,243,243,244],"c26":[156,156,156,157,157,157,157,157,157,157,157,157,159,159,160,161,162,162,162,162,163,164,165,165,167,167,167,167,167,167,168,169,169,170,170,172,172,172,172,173,173,177,177,177,178,180,180,181,182,182,182,182,183,183,184,184,184,184,184,185,186,186,186,186,187,187,188,190,190,190,190,191,191,191,191,191,191,193,193,193,194,194,195,195,195,196,196,196,197,197,197,197,197,197,197,198,199,201,201,201,201,201,201,202,202,202,202,202,204,204,204,204,206,206,207,207,207,207,207,209,210,211,211,211,211,211,211,212,212,212,212,212,213,214,215,215,215,215,215,215,215,215,215,215,216,217,218,218,218,218,218,219,219,220,220,220,220,221,221,221,221,221,221,221,221,221,221,222,222,222,222,222,222,222,222,222,223,223,223,224,224,225,225,225,225,225,227,227,227,227,227,227,227,229,230,230,230,231,231,231,232],"t24":[3.2,3.1],"t26":[4.6,4.5],"districts":[{"id":"PA-3","st":"PA","m":78.26,"m24":78.26,"redrawn":false},{"id":"CA-12","st":"CA","m":77.64,"m24":77.65,"redrawn":true},{"id":"WA-7","st":"WA","m":77.56,"m24":77.56,"redrawn":false},{"id":"MD-4","st":"MD","m":75.67,"m24":75.67,"redrawn":false},{"id":"GA-5","st":"GA","m":72.33,"m24":72.33,"redrawn":false},{"id":"CA-11","st":"CA","m":70.62,"m24":70.62,"redrawn":true},{"id":"IL-7","st":"IL","m":66.16,"m24":66.16,"redrawn":false},{"id":"MA-7","st":"MA","m":65.14,"m24":65.14,"redrawn":false},{"id":"NY-12","st":"NY","m":64.9,"m24":64.9,"redrawn":false},{"id":"MN-5","st":"MN","m":63.54,"m24":63.54,"redrawn":false},{"id":"CA-37","st":"CA","m":62.31,"m24":62.31,"redrawn":true},{"id":"NY-10","st":"NY","m":61.89,"m24":61.89,"redrawn":false},{"id":"MD-7","st":"MD","m":60.5,"m24":60.5,"redrawn":false},{"id":"NY-13","st":"NY","m":60.27,"m24":60.27,"redrawn":false},{"id":"MO-1","st":"MO","m":58.19,"m24":58.19,"redrawn":false},{"id":"MD-8","st":"MD","m":58.06,"m24":58.06,"redrawn":false},{"id":"TX-37","st":"TX","m":57.7,"m24":50.29,"redrawn":true},{"id":"CO-1","st":"CO","m":57.61,"m24":57.61,"redrawn":false},{"id":"TX-18","st":"TX","m":55.72,"m24":40.39,"redrawn":true},{"id":"OH-11","st":"OH","m":55.46,"m24":55.46,"redrawn":true},{"id":"CA-34","st":"CA","m":53.04,"m24":53.04,"redrawn":true},{"id":"GA-4","st":"GA","m":53.04,"m24":53.04,"redrawn":false},{"id":"WI-4","st":"WI","m":52.47,"m24":52.47,"redrawn":false},{"id":"NJ-10","st":"NJ","m":51.67,"m24":51.67,"redrawn":false},{"id":"VA-8","st":"VA","m":50.9,"m24":50.9,"redrawn":false},{"id":"CA-43","st":"CA","m":50.59,"m24":50.59,"redrawn":true},{"id":"GA-6","st":"GA","m":50.35,"m24":50.35,"redrawn":false},{"id":"CA-16","st":"CA","m":49.88,"m24":50.32,"redrawn":true},{"id":"CA-15","st":"CA","m":49.64,"m24":49.64,"redrawn":true},{"id":"NY-15","st":"NY","m":48.81,"m24":48.81,"redrawn":false},{"id":"LA-2","st":"LA","m":48.34,"m24":32.01,"redrawn":true},{"id":"TX-30","st":"TX","m":47.8,"m24":47.58,"redrawn":true},{"id":"OR-3","st":"OR","m":47.61,"m24":47.61,"redrawn":false},{"id":"NY-7","st":"NY","m":47.19,"m24":47.19,"redrawn":false},{"id":"NC-12","st":"NC","m":47.05,"m24":47.05,"redrawn":true},{"id":"MA-5","st":"MA","m":46.35,"m24":46.35,"redrawn":false},{"id":"NC-4","st":"NC","m":46.06,"m24":46.06,"redrawn":true},{"id":"NY-8","st":"NY","m":44.7,"m24":44.7,"redrawn":false},{"id":"NY-5","st":"NY","m":42.8,"m24":42.8,"redrawn":false},{"id":"GA-13","st":"GA","m":42.72,"m24":42.72,"redrawn":false},{"id":"WA-9","st":"WA","m":42.69,"m24":42.69,"redrawn":false},{"id":"IN-7","st":"IN","m":42.16,"m24":42.16,"redrawn":false},{"id":"MI-13","st":"MI","m":42.0,"m24":42.0,"redrawn":false},{"id":"NY-9","st":"NY","m":41.46,"m24":41.46,"redrawn":false},{"id":"CA-30","st":"CA","m":41.44,"m24":42.52,"redrawn":true},{"id":"CO-2","st":"CO","m":40.92,"m24":40.92,"redrawn":false},{"id":"WI-2","st":"WI","m":40.75,"m24":40.75,"redrawn":false},{"id":"CA-17","st":"CA","m":40.74,"m24":39.65,"redrawn":true},{"id":"OH-3","st":"OH","m":40.65,"m24":40.66,"redrawn":true},{"id":"CA-36","st":"CA","m":40.43,"m24":40.43,"redrawn":true},{"id":"AZ-3","st":"AZ","m":40.31,"m24":40.31,"redrawn":false},{"id":"MI-12","st":"MI","m":39.9,"m24":39.9,"redrawn":false},{"id":"OR-1","st":"OR","m":39.11,"m24":39.11,"redrawn":false},{"id":"FL-24","st":"FL","m":39.05,"m24":30.32,"redrawn":true},{"id":"IL-5","st":"IL","m":37.57,"m24":37.57,"redrawn":false},{"id":"FL-20","st":"FL","m":37.5,"m24":39.97,"redrawn":true},{"id":"IL-9","st":"IL","m":36.99,"m24":36.99,"redrawn":false},{"id":"MN-4","st":"MN","m":36.47,"m24":36.47,"redrawn":false},{"id":"CA-44","st":"CA","m":36.32,"m24":34.92,"redrawn":true},{"id":"CA-14","st":"CA","m":36.2,"m24":36.85,"redrawn":true},{"id":"PA-2","st":"PA","m":36.17,"m24":36.17,"redrawn":false},{"id":"CA-19","st":"CA","m":35.66,"m24":35.64,"redrawn":true},{"id":"VA-11","st":"VA","m":35.29,"m24":35.29,"redrawn":false},{"id":"VA-3","st":"VA","m":35.17,"m24":35.17,"redrawn":false},{"id":"CA-8","st":"CA","m":35.16,"m24":45.05,"redrawn":true},{"id":"CA-29","st":"CA","m":34.71,"m24":35.93,"redrawn":true},{"id":"CA-10","st":"CA","m":34.71,"m24":34.96,"redrawn":true},{"id":"NC-2","st":"NC","m":34.44,"m24":34.44,"redrawn":true},{"id":"MD-5","st":"MD","m":34.05,"m24":34.05,"redrawn":false},{"id":"IL-2","st":"IL","m":33.58,"m24":33.58,"redrawn":false},{"id":"TX-33","st":"TX","m":33.34,"m24":34.56,"redrawn":true},{"id":"NY-16","st":"NY","m":33.31,"m24":33.31,"redrawn":false},{"id":"VA-4","st":"VA","m":33.18,"m24":33.18,"redrawn":false},{"id":"VT-AL","st":"VT","m":32.77,"m24":32.77,"redrawn":false},{"id":"IL-1","st":"IL","m":32.46,"m24":32.46,"redrawn":false},{"id":"NY-14","st":"NY","m":32.37,"m24":32.37,"redrawn":false},{"id":"IL-3","st":"IL","m":31.83,"m24":31.83,"redrawn":false},{"id":"TX-29","st":"TX","m":30.85,"m24":20.64,"redrawn":true},{"id":"WA-1","st":"WA","m":29.71,"m24":29.71,"redrawn":false},{"id":"CA-18","st":"CA","m":29.37,"m24":30.46,"redrawn":true},{"id":"PA-5","st":"PA","m":28.93,"m24":28.93,"redrawn":false},{"id":"TX-20","st":"TX","m":28.88,"m24":21.52,"redrawn":true},{"id":"IL-4","st":"IL","m":28.75,"m24":28.75,"redrawn":false},{"id":"MA-8","st":"MA","m":26.99,"m24":26.99,"redrawn":false},{"id":"CA-28","st":"CA","m":26.15,"m24":27.86,"redrawn":true},{"id":"CA-32","st":"CA","m":25.75,"m24":32.29,"redrawn":true},{"id":"CA-24","st":"CA","m":25.74,"m24":25.85,"redrawn":true},{"id":"CA-2","st":"CA","m":25.44,"m24":46.75,"redrawn":true},{"id":"HI-1","st":"HI","m":25.17,"m24":25.17,"redrawn":false},{"id":"NJ-8","st":"NJ","m":24.81,"m24":24.81,"redrawn":false},{"id":"NJ-12","st":"NJ","m":24.54,"m24":24.54,"redrawn":false},{"id":"MD-3","st":"MD","m":24.49,"m24":24.49,"redrawn":false},{"id":"WA-2","st":"WA","m":24.45,"m24":24.45,"redrawn":false},{"id":"UT-1","st":"UT","m":24.33,"m24":-20.65,"redrawn":true},{"id":"FL-10","st":"FL","m":24.29,"m24":23.02,"redrawn":true},{"id":"MA-2","st":"MA","m":24.29,"m24":24.29,"redrawn":false},{"id":"TX-7","st":"TX","m":24.09,"m24":21.39,"redrawn":true},{"id":"MI-6","st":"MI","m":23.92,"m24":23.92,"redrawn":false},{"id":"CT-4","st":"CT","m":23.73,"m24":23.73,"redrawn":false},{"id":"MO-5","st":"MO","m":23.51,"m24":23.51,"redrawn":false},{"id":"CT-1","st":"CT","m":23.27,"m24":23.27,"redrawn":false},{"id":"SC-6","st":"SC","m":23.04,"m24":23.04,"redrawn":false},{"id":"RI-1","st":"RI","m":22.66,"m24":22.66,"redrawn":false},{"id":"AZ-7","st":"AZ","m":22.39,"m24":22.39,"redrawn":false},{"id":"IL-10","st":"IL","m":22.35,"m24":22.35,"redrawn":false},{"id":"ME-1","st":"ME","m":22.08,"m24":22.08,"redrawn":false},{"id":"HI-2","st":"HI","m":22.06,"m24":22.06,"redrawn":false},{"id":"MN-3","st":"MN","m":21.72,"m24":21.72,"redrawn":false},{"id":"MA-6","st":"MA","m":21.09,"m24":21.09,"redrawn":false},{"id":"MS-2","st":"MS","m":20.57,"m24":20.57,"redrawn":false},{"id":"CO-6","st":"CO","m":20.36,"m24":20.36,"redrawn":false},{"id":"MA-4","st":"MA","m":20.13,"m24":20.13,"redrawn":false},{"id":"WA-6","st":"WA","m":19.89,"m24":19.89,"redrawn":false},{"id":"NY-26","st":"NY","m":19.56,"m24":19.56,"redrawn":false},{"id":"MA-3","st":"MA","m":19.39,"m24":19.39,"redrawn":false},{"id":"PA-12","st":"PA","m":19.37,"m24":19.37,"redrawn":false},{"id":"KY-3","st":"KY","m":19.27,"m24":19.27,"redrawn":false},{"id":"NJ-1","st":"NJ","m":19.02,"m24":19.02,"redrawn":false},{"id":"MD-2","st":"MD","m":18.94,"m24":18.94,"redrawn":false},{"id":"CA-50","st":"CA","m":18.84,"m24":30.58,"redrawn":true},{"id":"CA-51","st":"CA","m":18.8,"m24":24.24,"redrawn":true},{"id":"NY-25","st":"NY","m":18.65,"m24":18.65,"redrawn":false},{"id":"WA-10","st":"WA","m":18.6,"m24":18.6,"redrawn":false},{"id":"CA-52","st":"CA","m":18.04,"m24":21.76,"redrawn":true},{"id":"AL-7","st":"AL","m":17.95,"m24":23.58,"redrawn":true},{"id":"CA-46","st":"CA","m":16.69,"m24":18.29,"redrawn":true},{"id":"TX-16","st":"TX","m":16.64,"m24":16.21,"redrawn":true},{"id":"MI-11","st":"MI","m":16.42,"m24":16.42,"redrawn":false},{"id":"PA-4","st":"PA","m":15.97,"m24":15.97,"redrawn":false},{"id":"CA-26","st":"CA","m":15.72,"m24":13.54,"redrawn":true},{"id":"CO-7","st":"CO","m":15.41,"m24":15.41,"redrawn":false},{"id":"DE-AL","st":"DE","m":14.96,"m24":14.96,"redrawn":false},{"id":"CA-4","st":"CA","m":14.95,"m24":32.23,"redrawn":true},{"id":"CA-41","st":"CA","m":14.64,"m24":-6.09,"redrawn":true},{"id":"CT-3","st":"CT","m":14.33,"m24":14.33,"redrawn":false},{"id":"NY-20","st":"NY","m":14.32,"m24":14.32,"redrawn":false},{"id":"MA-1","st":"MA","m":13.91,"m24":13.91,"redrawn":false},{"id":"FL-23","st":"FL","m":13.86,"m24":1.92,"redrawn":true},{"id":"CA-42","st":"CA","m":13.56,"m24":33.6,"redrawn":true},{"id":"CA-7","st":"CA","m":13.24,"m24":30.84,"redrawn":true},{"id":"NM-1","st":"NM","m":13.0,"m24":13.0,"redrawn":false},{"id":"CA-38","st":"CA","m":12.74,"m24":16.6,"redrawn":true},{"id":"CA-1","st":"CA","m":12.63,"m24":-25.67,"redrawn":true},{"id":"CA-31","st":"CA","m":12.61,"m24":17.43,"redrawn":true},{"id":"CA-49","st":"CA","m":12.47,"m24":7.99,"redrawn":true},{"id":"OR-4","st":"OR","m":12.44,"m24":12.44,"redrawn":false},{"id":"CA-9","st":"CA","m":11.79,"m24":-1.83,"redrawn":true},{"id":"OR-6","st":"OR","m":11.74,"m24":11.74,"redrawn":false},{"id":"IL-11","st":"IL","m":11.61,"m24":11.61,"redrawn":false},{"id":"PA-6","st":"PA","m":11.53,"m24":11.53,"redrawn":false},{"id":"MA-9","st":"MA","m":10.94,"m24":10.94,"redrawn":false},{"id":"IL-13","st":"IL","m":10.65,"m24":10.65,"redrawn":false},{"id":"CA-3","st":"CA","m":10.52,"m24":-3.94,"redrawn":true},{"id":"CA-47","st":"CA","m":10.47,"m24":4.32,"redrawn":true},{"id":"CA-33","st":"CA","m":10.07,"m24":8.99,"redrawn":true},{"id":"CA-27","st":"CA","m":10.03,"m24":4.01,"redrawn":true},{"id":"CA-39","st":"CA","m":9.78,"m24":10.0,"redrawn":true},{"id":"NJ-11","st":"NJ","m":8.9,"m24":8.9,"redrawn":false},{"id":"OR-5","st":"OR","m":8.81,"m24":8.81,"redrawn":false},{"id":"CA-6","st":"CA","m":8.68,"m24":14.36,"redrawn":true},{"id":"VA-10","st":"VA","m":8.58,"m24":8.58,"redrawn":false},{"id":"NJ-3","st":"NJ","m":8.5,"m24":8.5,"redrawn":false},{"id":"CA-35","st":"CA","m":8.05,"m24":10.58,"redrawn":true},{"id":"MI-3","st":"MI","m":7.97,"m24":7.97,"redrawn":false},{"id":"CT-2","st":"CT","m":7.86,"m24":7.86,"redrawn":false},{"id":"NY-22","st":"NY","m":7.69,"m24":7.69,"redrawn":false},{"id":"GA-2","st":"GA","m":7.65,"m24":7.65,"redrawn":false},{"id":"IL-8","st":"IL","m":7.0,"m24":7.0,"redrawn":false},{"id":"RI-2","st":"RI","m":6.93,"m24":6.93,"redrawn":false},{"id":"AZ-4","st":"AZ","m":6.76,"m24":6.76,"redrawn":false},{"id":"NJ-6","st":"NJ","m":6.59,"m24":6.59,"redrawn":false},{"id":"NY-6","st":"NY","m":6.53,"m24":6.53,"redrawn":false},{"id":"CA-21","st":"CA","m":6.13,"m24":3.89,"redrawn":true},{"id":"WA-8","st":"WA","m":5.97,"m24":5.97,"redrawn":false},{"id":"MN-2","st":"MN","m":5.95,"m24":5.95,"redrawn":false},{"id":"CA-25","st":"CA","m":5.95,"m24":2.53,"redrawn":true},{"id":"MD-6","st":"MD","m":5.93,"m24":5.93,"redrawn":false},{"id":"CT-5","st":"CT","m":5.68,"m24":5.68,"redrawn":false},{"id":"IL-6","st":"IL","m":5.58,"m24":5.58,"redrawn":false},{"id":"PA-17","st":"PA","m":5.56,"m24":5.56,"redrawn":false},{"id":"NM-3","st":"NM","m":5.32,"m24":5.32,"redrawn":false},{"id":"IL-14","st":"IL","m":5.26,"m24":5.26,"redrawn":false},{"id":"IL-17","st":"IL","m":4.83,"m24":4.83,"redrawn":false},{"id":"NE-2","st":"NE","m":4.68,"m24":4.68,"redrawn":false},{"id":"KS-3","st":"KS","m":4.17,"m24":4.17,"redrawn":false},{"id":"CA-45","st":"CA","m":4.05,"m24":1.58,"redrawn":true},{"id":"NH-2","st":"NH","m":3.63,"m24":3.63,"redrawn":false},{"id":"CA-48","st":"CA","m":3.48,"m24":-15.69,"redrawn":true},{"id":"NY-18","st":"NY","m":3.35,"m24":3.35,"redrawn":false},{"id":"OH-13","st":"OH","m":3.32,"m24":0.05,"redrawn":true},{"id":"VA-7","st":"VA","m":2.91,"m24":2.91,"redrawn":false},{"id":"NV-4","st":"NV","m":2.36,"m24":2.36,"redrawn":false},{"id":"NV-1","st":"NV","m":2.3,"m24":2.3,"redrawn":false},{"id":"NH-1","st":"NH","m":2.02,"m24":2.02,"redrawn":false},{"id":"NY-19","st":"NY","m":1.8,"m24":1.8,"redrawn":false},{"id":"NJ-5","st":"NJ","m":1.54,"m24":1.54,"redrawn":false},{"id":"NY-4","st":"NY","m":1.29,"m24":1.29,"redrawn":false},{"id":"NY-17","st":"NY","m":0.56,"m24":0.56,"redrawn":false},{"id":"IN-1","st":"IN","m":0.4,"m24":0.4,"redrawn":false},{"id":"CA-13","st":"CA","m":0.38,"m24":-5.57,"redrawn":true},{"id":"PA-1","st":"PA","m":0.32,"m24":0.32,"redrawn":false},{"id":"VA-2","st":"VA","m":-0.25,"m24":-0.25,"redrawn":false},{"id":"NV-3","st":"NV","m":-0.75,"m24":-0.75,"redrawn":false},{"id":"AZ-6","st":"AZ","m":-0.76,"m24":-0.76,"redrawn":false},{"id":"NJ-9","st":"NJ","m":-1.17,"m24":-1.17,"redrawn":false},{"id":"NJ-7","st":"NJ","m":-1.2,"m24":-1.2,"redrawn":false},{"id":"MI-7","st":"MI","m":-1.3,"m24":-1.3,"redrawn":false},{"id":"NM-2","st":"NM","m":-1.85,"m24":-1.85,"redrawn":false},{"id":"CO-8","st":"CO","m":-1.88,"m24":-1.88,"redrawn":false},{"id":"CA-22","st":"CA","m":-1.9,"m24":-5.99,"redrawn":true},{"id":"MI-8","st":"MI","m":-2.01,"m24":-2.01,"redrawn":false},{"id":"OH-1","st":"OH","m":-2.62,"m24":6.4,"redrawn":true},{"id":"AZ-1","st":"AZ","m":-3.14,"m24":-3.14,"redrawn":false},{"id":"PA-7","st":"PA","m":-3.24,"m24":-3.24,"redrawn":false},{"id":"WA-3","st":"WA","m":-3.4,"m24":-3.4,"redrawn":false},{"id":"NY-3","st":"NY","m":-4.35,"m24":-4.35,"redrawn":false},{"id":"IA-3","st":"IA","m":-4.46,"m24":-4.46,"redrawn":false},{"id":"WI-1","st":"WI","m":-4.57,"m24":-4.57,"redrawn":false},{"id":"VA-1","st":"VA","m":-5.0,"m24":-5.0,"redrawn":false},{"id":"PA-10","st":"PA","m":-5.29,"m24":-5.29,"redrawn":false},{"id":"MI-4","st":"MI","m":-5.62,"m24":-5.62,"redrawn":false},{"id":"MI-10","st":"MI","m":-6.68,"m24":-6.68,"redrawn":false},{"id":"WI-3","st":"WI","m":-7.51,"m24":-7.51,"redrawn":false},{"id":"OH-10","st":"OH","m":-7.86,"m24":-5.8,"redrawn":true},{"id":"MO-2","st":"MO","m":-8.04,"m24":-8.04,"redrawn":false},{"id":"PA-8","st":"PA","m":-8.57,"m24":-8.57,"redrawn":false},{"id":"IA-1","st":"IA","m":-8.59,"m24":-8.59,"redrawn":false},{"id":"FL-25","st":"FL","m":-9.22,"m24":5.38,"redrawn":true},{"id":"ME-2","st":"ME","m":-9.23,"m24":-9.23,"redrawn":false},{"id":"CO-5","st":"CO","m":-9.34,"m24":-9.34,"redrawn":false},{"id":"NC-11","st":"NC","m":-9.62,"m24":-9.62,"redrawn":true},{"id":"CO-3","st":"CO","m":-9.98,"m24":-9.98,"redrawn":false},{"id":"OH-15","st":"OH","m":-10.11,"m24":-9.29,"redrawn":true},{"id":"IA-2","st":"IA","m":-10.13,"m24":-10.13,"redrawn":false},{"id":"NY-1","st":"NY","m":-10.19,"m24":-10.19,"redrawn":false},{"id":"TX-34","st":"TX","m":-10.23,"m24":-4.47,"redrawn":true},{"id":"FL-22","st":"FL","m":-10.37,"m24":5.62,"redrawn":true},{"id":"TX-28","st":"TX","m":-10.46,"m24":-7.35,"redrawn":true},{"id":"TX-35","st":"TX","m":-10.56,"m24":34.17,"redrawn":true},{"id":"FL-14","st":"FL","m":-10.62,"m24":7.76,"redrawn":true},{"id":"OH-9","st":"OH","m":-10.68,"m24":-6.77,"redrawn":true},{"id":"WA-5","st":"WA","m":-11.11,"m24":-11.11,"redrawn":false},{"id":"OH-7","st":"OH","m":-11.15,"m24":-10.73,"redrawn":true},{"id":"NC-1","st":"NC","m":-11.64,"m24":-3.12,"redrawn":true},{"id":"MT-1","st":"MT","m":-11.92,"m24":-11.92,"redrawn":false},{"id":"FL-4","st":"FL","m":-11.96,"m24":-11.96,"redrawn":true},{"id":"MN-1","st":"MN","m":-12.23,"m24":-12.23,"redrawn":false},{"id":"VA-5","st":"VA","m":-12.41,"m24":-12.41,"redrawn":false},{"id":"CA-40","st":"CA","m":-12.6,"m24":-2.4,"redrawn":true},{"id":"FL-7","st":"FL","m":-12.62,"m24":-12.62,"redrawn":true},{"id":"NJ-2","st":"NJ","m":-12.74,"m24":-12.74,"redrawn":false},{"id":"SC-1","st":"SC","m":-13.21,"m24":-13.21,"redrawn":false},{"id":"NE-1","st":"NE","m":-13.23,"m24":-13.23,"redrawn":false},{"id":"FL-13","st":"FL","m":-13.45,"m24":-11.97,"redrawn":true},{"id":"AK-AL","st":"AK","m":-13.69,"m24":-13.69,"redrawn":false},{"id":"NC-3","st":"NC","m":-13.76,"m24":-22.06,"redrawn":true},{"id":"FL-16","st":"FL","m":-13.81,"m24":-15.6,"redrawn":true},{"id":"NC-7","st":"NC","m":-13.95,"m24":-13.95,"redrawn":true},{"id":"NY-2","st":"NY","m":-14.08,"m24":-14.08,"redrawn":false},{"id":"SC-2","st":"SC","m":-14.12,"m24":-14.12,"redrawn":false},{"id":"GA-12","st":"GA","m":-14.23,"m24":-14.23,"redrawn":false},{"id":"NV-2","st":"NV","m":-14.27,"m24":-14.27,"redrawn":false},{"id":"AL-2","st":"AL","m":-14.46,"m24":8.31,"redrawn":true},{"id":"MN-8","st":"MN","m":-14.53,"m24":-14.53,"redrawn":false},{"id":"FL-27","st":"FL","m":-14.7,"m24":-14.78,"redrawn":true},{"id":"TX-23","st":"TX","m":-14.97,"m24":-15.68,"redrawn":true},{"id":"AZ-2","st":"AZ","m":-15.12,"m24":-15.12,"redrawn":false},{"id":"NC-14","st":"NC","m":-15.23,"m24":-15.23,"redrawn":true},{"id":"KY-6","st":"KY","m":-15.31,"m24":-15.31,"redrawn":false},{"id":"FL-12","st":"FL","m":-15.55,"m24":-34.85,"redrawn":true},{"id":"OH-8","st":"OH","m":-15.77,"m24":-23.9,"redrawn":true},{"id":"FL-11","st":"FL","m":-15.84,"m24":-16.41,"redrawn":true},{"id":"GA-1","st":"GA","m":-15.89,"m24":-15.89,"redrawn":false},{"id":"AR-2","st":"AR","m":-15.91,"m24":-15.91,"redrawn":false},{"id":"NC-9","st":"NC","m":-16.01,"m24":-16.01,"redrawn":true},{"id":"TX-24","st":"TX","m":-16.39,"m24":-15.77,"redrawn":true},{"id":"FL-8","st":"FL","m":-16.4,"m24":-22.55,"redrawn":true},{"id":"FL-21","st":"FL","m":-16.41,"m24":-16.68,"redrawn":true},{"id":"WI-8","st":"WI","m":-16.46,"m24":-16.46,"redrawn":false},{"id":"AZ-8","st":"AZ","m":-16.48,"m24":-16.48,"redrawn":false},{"id":"NC-13","st":"NC","m":-16.65,"m24":-16.65,"redrawn":true},{"id":"WI-6","st":"WI","m":-16.7,"m24":-16.7,"redrawn":false},{"id":"FL-18","st":"FL","m":-17.1,"m24":-29.63,"redrawn":true},{"id":"IN-5","st":"IN","m":-17.13,"m24":-17.13,"redrawn":false},{"id":"MD-1","st":"MD","m":-17.31,"m24":-17.31,"redrawn":false},{"id":"NC-6","st":"NC","m":-17.37,"m24":-17.37,"redrawn":true},{"id":"NC-10","st":"NC","m":-17.9,"m24":-17.9,"redrawn":true},{"id":"FL-9","st":"FL","m":-17.93,"m24":3.56,"redrawn":true},{"id":"NC-5","st":"NC","m":-17.95,"m24":-17.95,"redrawn":true},{"id":"TX-15","st":"TX","m":-18.02,"m24":-18.0,"redrawn":true},{"id":"TX-32","st":"TX","m":-18.11,"m24":24.33,"redrawn":true},{"id":"OK-5","st":"OK","m":-18.12,"m24":-18.12,"redrawn":false},{"id":"FL-2","st":"FL","m":-18.18,"m24":-18.18,"redrawn":true},{"id":"FL-26","st":"FL","m":-18.54,"m24":-35.19,"redrawn":true},{"id":"CO-4","st":"CO","m":-18.71,"m24":-18.71,"redrawn":false},{"id":"NC-8","st":"NC","m":-19.59,"m24":-19.59,"redrawn":true},{"id":"CA-23","st":"CA","m":-19.92,"m24":-17.32,"redrawn":true},{"id":"TX-9","st":"TX","m":-19.97,"m24":44.76,"redrawn":true},{"id":"KS-2","st":"KS","m":-20.06,"m24":-20.06,"redrawn":false},{"id":"MN-6","st":"MN","m":-20.07,"m24":-20.07,"redrawn":false},{"id":"FL-15","st":"FL","m":-20.1,"m24":-11.35,"redrawn":true},{"id":"AZ-5","st":"AZ","m":-20.19,"m24":-20.19,"redrawn":false},{"id":"TN-8","st":"TN","m":-20.43,"m24":-41.6,"redrawn":true},{"id":"OH-14","st":"OH","m":-20.53,"m24":-18.09,"redrawn":true},{"id":"NY-21","st":"NY","m":-20.76,"m24":-20.76,"redrawn":false},{"id":"GA-10","st":"GA","m":-20.91,"m24":-20.91,"redrawn":false},{"id":"NY-23","st":"NY","m":-21.19,"m24":-21.19,"redrawn":false},{"id":"CA-5","st":"CA","m":-21.24,"m24":-18.18,"redrawn":true},{"id":"WA-4","st":"WA","m":-21.24,"m24":-21.24,"redrawn":false},{"id":"TX-38","st":"TX","m":-21.3,"m24":-21.06,"redrawn":true},{"id":"FL-3","st":"FL","m":-21.32,"m24":-21.32,"redrawn":true},{"id":"TN-9","st":"TN","m":-21.43,"m24":44.18,"redrawn":true},{"id":"TX-27","st":"TX","m":-21.46,"m24":-29.92,"redrawn":true},{"id":"MI-1","st":"MI","m":-21.52,"m24":-21.52,"redrawn":false},{"id":"PA-11","st":"PA","m":-21.57,"m24":-21.57,"redrawn":false},{"id":"FL-5","st":"FL","m":-21.68,"m24":-21.68,"redrawn":true},{"id":"TX-5","st":"TX","m":-21.84,"m24":-27.38,"redrawn":true},{"id":"TX-17","st":"TX","m":-21.95,"m24":-29.54,"redrawn":true},{"id":"OK-1","st":"OK","m":-22.0,"m24":-22.0,"redrawn":false},{"id":"TX-21","st":"TX","m":-22.08,"m24":-23.91,"redrawn":true},{"id":"TX-31","st":"TX","m":-22.15,"m24":-23.58,"redrawn":true},{"id":"FL-17","st":"FL","m":-22.24,"m24":-24.11,"redrawn":true},{"id":"GA-7","st":"GA","m":-22.3,"m24":-22.3,"redrawn":false},{"id":"WI-5","st":"WI","m":-22.45,"m24":-22.45,"redrawn":false},{"id":"TN-7","st":"TN","m":-22.73,"m24":-22.62,"redrawn":true},{"id":"TX-22","st":"TX","m":-22.73,"m24":-19.91,"redrawn":true},{"id":"WI-7","st":"WI","m":-22.84,"m24":-22.84,"redrawn":false},{"id":"TX-10","st":"TX","m":-22.94,"m24":-25.16,"redrawn":true},{"id":"PA-16","st":"PA","m":-22.96,"m24":-22.96,"redrawn":false},{"id":"IL-16","st":"IL","m":-23.05,"m24":-23.05,"redrawn":false},{"id":"SC-5","st":"SC","m":-23.09,"m24":-23.09,"redrawn":false},{"id":"TX-2","st":"TX","m":-23.13,"m24":-24.07,"redrawn":true},{"id":"NY-24","st":"NY","m":-23.24,"m24":-23.24,"redrawn":false},{"id":"TX-6","st":"TX","m":-23.27,"m24":-28.85,"redrawn":true},{"id":"TN-5","st":"TN","m":-23.39,"m24":-18.06,"redrawn":true},{"id":"GA-11","st":"GA","m":-23.56,"m24":-23.56,"redrawn":false},{"id":"KS-4","st":"KS","m":-23.7,"m24":-23.7,"redrawn":false},{"id":"SC-4","st":"SC","m":-23.96,"m24":-23.96,"redrawn":false},{"id":"OH-5","st":"OH","m":-23.97,"m24":-29.53,"redrawn":true},{"id":"TX-3","st":"TX","m":-23.98,"m24":-20.54,"redrawn":true},{"id":"TX-26","st":"TX","m":-24.14,"m24":-23.76,"redrawn":true},{"id":"TX-12","st":"TX","m":-24.15,"m24":-22.86,"redrawn":true},{"id":"VA-6","st":"VA","m":-24.16,"m24":-24.16,"redrawn":false},{"id":"TN-4","st":"TN","m":-24.28,"m24":-44.11,"redrawn":true},{"id":"TX-25","st":"TX","m":-24.34,"m24":-36.75,"redrawn":true},{"id":"TX-14","st":"TX","m":-24.58,"m24":-34.39,"redrawn":true},{"id":"NY-11","st":"NY","m":-24.83,"m24":-24.83,"redrawn":false},{"id":"TX-4","st":"TX","m":-25.16,"m24":-33.08,"redrawn":true},{"id":"TX-36","st":"TX","m":-25.31,"m24":-37.18,"redrawn":true},{"id":"AR-3","st":"AR","m":-25.59,"m24":-25.59,"redrawn":false},{"id":"FL-28","st":"FL","m":-25.62,"m24":-25.57,"redrawn":true},{"id":"SC-7","st":"SC","m":-26.62,"m24":-26.62,"redrawn":false},{"id":"TN-6","st":"TN","m":-26.88,"m24":-35.65,"redrawn":true},{"id":"IN-2","st":"IN","m":-26.92,"m24":-26.92,"redrawn":false},{"id":"MO-3","st":"MO","m":-27.1,"m24":-27.1,"redrawn":false},{"id":"MI-5","st":"MI","m":-27.41,"m24":-27.41,"redrawn":false},{"id":"ID-2","st":"ID","m":-27.56,"m24":-27.56,"redrawn":false},{"id":"OR-2","st":"OR","m":-27.88,"m24":-27.88,"redrawn":false},{"id":"TX-8","st":"TX","m":-27.99,"m24":-34.31,"redrawn":true},{"id":"MS-3","st":"MS","m":-29.46,"m24":-29.46,"redrawn":false},{"id":"AL-5","st":"AL","m":-29.49,"m24":-29.49,"redrawn":true},{"id":"GA-3","st":"GA","m":-29.88,"m24":-29.88,"redrawn":false},{"id":"IN-4","st":"IN","m":-29.88,"m24":-29.88,"redrawn":false},{"id":"SD-AL","st":"SD","m":-29.89,"m24":-29.89,"redrawn":false},{"id":"UT-2","st":"UT","m":-29.92,"m24":-20.85,"redrawn":true},{"id":"FL-6","st":"FL","m":-30.31,"m24":-30.31,"redrawn":true},{"id":"OH-12","st":"OH","m":-30.36,"m24":-33.02,"redrawn":true},{"id":"IN-9","st":"IN","m":-30.39,"m24":-30.39,"redrawn":false},{"id":"FL-19","st":"FL","m":-30.42,"m24":-29.36,"redrawn":true},{"id":"MT-2","st":"MT","m":-30.51,"m24":-30.51,"redrawn":false},{"id":"NJ-4","st":"NJ","m":-30.54,"m24":-30.54,"redrawn":false},{"id":"MI-2","st":"MI","m":-30.54,"m24":-30.54,"redrawn":false},{"id":"LA-6","st":"LA","m":-30.63,"m24":15.22,"redrawn":true},{"id":"GA-8","st":"GA","m":-30.72,"m24":-30.72,"redrawn":false},{"id":"AZ-9","st":"AZ","m":-31.34,"m24":-31.34,"redrawn":false},{"id":"IN-3","st":"IN","m":-31.73,"m24":-31.73,"redrawn":false},{"id":"KS-1","st":"KS","m":-31.85,"m24":-31.85,"redrawn":false},{"id":"IA-4","st":"IA","m":-31.9,"m24":-31.9,"redrawn":false},{"id":"MI-9","st":"MI","m":-32.78,"m24":-32.78,"redrawn":false},{"id":"CA-20","st":"CA","m":-32.97,"m24":-31.04,"redrawn":true},{"id":"IN-6","st":"IN","m":-33.1,"m24":-33.1,"redrawn":false},{"id":"UT-4","st":"UT","m":-33.45,"m24":-27.47,"redrawn":true},{"id":"PA-14","st":"PA","m":-33.6,"m24":-33.6,"redrawn":false},{"id":"OK-4","st":"OK","m":-33.89,"m24":-33.89,"redrawn":false},{"id":"TN-2","st":"TN","m":-34.33,"m24":-34.33,"redrawn":true},{"id":"GA-9","st":"GA","m":-34.34,"m24":-34.34,"redrawn":false},{"id":"LA-5","st":"LA","m":-34.46,"m24":-36.82,"redrawn":true},{"id":"LA-4","st":"LA","m":-34.66,"m24":-52.78,"redrawn":true},{"id":"TX-11","st":"TX","m":-34.78,"m24":-45.86,"redrawn":true},{"id":"OH-6","st":"OH","m":-34.9,"m24":-33.93,"redrawn":true},{"id":"AL-6","st":"AL","m":-35.0,"m24":-38.97,"redrawn":true},{"id":"KY-4","st":"KY","m":-36.16,"m24":-36.16,"redrawn":false},{"id":"TN-3","st":"TN","m":-36.21,"m24":-36.35,"redrawn":true},{"id":"AL-1","st":"AL","m":-36.35,"m24":-55.76,"redrawn":true},{"id":"LA-3","st":"LA","m":-36.49,"m24":-45.39,"redrawn":true},{"id":"IN-8","st":"IN","m":-36.49,"m24":-36.49,"redrawn":false},{"id":"GA-14","st":"GA","m":-37.02,"m24":-37.02,"redrawn":false},{"id":"MN-7","st":"MN","m":-37.1,"m24":-37.1,"redrawn":false},{"id":"ND-AL","st":"ND","m":-37.39,"m24":-37.39,"redrawn":false},{"id":"MS-1","st":"MS","m":-37.53,"m24":-37.53,"redrawn":false},{"id":"FL-1","st":"FL","m":-37.59,"m24":-37.59,"redrawn":true},{"id":"PA-9","st":"PA","m":-38.29,"m24":-38.29,"redrawn":false},{"id":"PA-15","st":"PA","m":-38.29,"m24":-38.29,"redrawn":false},{"id":"LA-1","st":"LA","m":-38.95,"m24":-38.64,"redrawn":true},{"id":"MO-6","st":"MO","m":-39.32,"m24":-39.32,"redrawn":false},{"id":"WV-2","st":"WV","m":-40.38,"m24":-40.38,"redrawn":false},{"id":"IL-15","st":"IL","m":-40.43,"m24":-40.43,"redrawn":false},{"id":"AR-4","st":"AR","m":-40.66,"m24":-40.66,"redrawn":false},{"id":"KY-2","st":"KY","m":-41.93,"m24":-41.93,"redrawn":false},{"id":"UT-3","st":"UT","m":-42.42,"m24":-19.87,"redrawn":true},{"id":"OH-2","st":"OH","m":-42.48,"m24":-47.94,"redrawn":true},{"id":"MO-4","st":"MO","m":-42.81,"m24":-42.81,"redrawn":false},{"id":"MS-4","st":"MS","m":-42.99,"m24":-42.99,"redrawn":false},{"id":"OH-4","st":"OH","m":-43.01,"m24":-37.08,"redrawn":true},{"id":"MO-7","st":"MO","m":-43.12,"m24":-43.12,"redrawn":false},{"id":"SC-3","st":"SC","m":-43.62,"m24":-43.62,"redrawn":false},{"id":"IL-12","st":"IL","m":-44.08,"m24":-44.08,"redrawn":false},{"id":"VA-9","st":"VA","m":-44.43,"m24":-44.43,"redrawn":false},{"id":"WV-1","st":"WV","m":-45.2,"m24":-45.2,"redrawn":false},{"id":"PA-13","st":"PA","m":-45.9,"m24":-45.9,"redrawn":false},{"id":"AR-1","st":"AR","m":-46.18,"m24":-46.18,"redrawn":false},{"id":"ID-1","st":"ID","m":-46.2,"m24":-46.2,"redrawn":false},{"id":"OK-3","st":"OK","m":-46.42,"m24":-46.42,"redrawn":false},{"id":"TX-13","st":"TX","m":-46.66,"m24":-48.26,"redrawn":true},{"id":"WY-AL","st":"WY","m":-46.96,"m24":-46.96,"redrawn":false},{"id":"AL-3","st":"AL","m":-47.07,"m24":-47.07,"redrawn":true},{"id":"KY-1","st":"KY","m":-47.91,"m24":-47.91,"redrawn":false},{"id":"TX-1","st":"TX","m":-49.9,"m24":-51.64,"redrawn":true},{"id":"TX-19","st":"TX","m":-52.17,"m24":-52.17,"redrawn":true},{"id":"NE-3","st":"NE","m":-54.43,"m24":-54.43,"redrawn":false},{"id":"MO-8","st":"MO","m":-54.61,"m24":-54.61,"redrawn":false},{"id":"OK-2","st":"OK","m":-56.51,"m24":-56.51,"redrawn":false},{"id":"TN-1","st":"TN","m":-58.44,"m24":-58.44,"redrawn":true},{"id":"KY-5","st":"KY","m":-64.67,"m24":-64.67,"redrawn":false},{"id":"AL-4","st":"AL","m":-66.92,"m24":-66.92,"redrawn":true}],"d24":[{"id":"PA-3","st":"PA","m":78.26,"redrawn":false},{"id":"CA-12","st":"CA","m":77.65,"redrawn":true},{"id":"WA-7","st":"WA","m":77.56,"redrawn":false},{"id":"MD-4","st":"MD","m":75.67,"redrawn":false},{"id":"GA-5","st":"GA","m":72.33,"redrawn":false},{"id":"CA-11","st":"CA","m":70.62,"redrawn":true},{"id":"IL-7","st":"IL","m":66.16,"redrawn":false},{"id":"MA-7","st":"MA","m":65.14,"redrawn":false},{"id":"NY-12","st":"NY","m":64.9,"redrawn":false},{"id":"MN-5","st":"MN","m":63.54,"redrawn":false},{"id":"CA-37","st":"CA","m":62.31,"redrawn":true},{"id":"NY-10","st":"NY","m":61.89,"redrawn":false},{"id":"MD-7","st":"MD","m":60.5,"redrawn":false},{"id":"NY-13","st":"NY","m":60.27,"redrawn":false},{"id":"MO-1","st":"MO","m":58.19,"redrawn":false},{"id":"MD-8","st":"MD","m":58.06,"redrawn":false},{"id":"CO-1","st":"CO","m":57.61,"redrawn":false},{"id":"OH-11","st":"OH","m":55.46,"redrawn":true},{"id":"CA-34","st":"CA","m":53.04,"redrawn":true},{"id":"GA-4","st":"GA","m":53.04,"redrawn":false},{"id":"WI-4","st":"WI","m":52.47,"redrawn":false},{"id":"NJ-10","st":"NJ","m":51.67,"redrawn":false},{"id":"VA-8","st":"VA","m":50.9,"redrawn":false},{"id":"CA-43","st":"CA","m":50.59,"redrawn":true},{"id":"GA-6","st":"GA","m":50.35,"redrawn":false},{"id":"CA-16","st":"CA","m":50.32,"redrawn":true},{"id":"TX-37","st":"TX","m":50.29,"redrawn":true},{"id":"CA-15","st":"CA","m":49.64,"redrawn":true},{"id":"NY-15","st":"NY","m":48.81,"redrawn":false},{"id":"OR-3","st":"OR","m":47.61,"redrawn":false},{"id":"TX-30","st":"TX","m":47.58,"redrawn":true},{"id":"NY-7","st":"NY","m":47.19,"redrawn":false},{"id":"NC-12","st":"NC","m":47.05,"redrawn":true},{"id":"CA-2","st":"CA","m":46.75,"redrawn":true},{"id":"MA-5","st":"MA","m":46.35,"redrawn":false},{"id":"NC-4","st":"NC","m":46.06,"redrawn":true},{"id":"CA-8","st":"CA","m":45.05,"redrawn":true},{"id":"TX-9","st":"TX","m":44.76,"redrawn":true},{"id":"NY-8","st":"NY","m":44.7,"redrawn":false},{"id":"TN-9","st":"TN","m":44.18,"redrawn":true},{"id":"NY-5","st":"NY","m":42.8,"redrawn":false},{"id":"GA-13","st":"GA","m":42.72,"redrawn":false},{"id":"WA-9","st":"WA","m":42.69,"redrawn":false},{"id":"CA-30","st":"CA","m":42.52,"redrawn":true},{"id":"IN-7","st":"IN","m":42.16,"redrawn":false},{"id":"MI-13","st":"MI","m":42.0,"redrawn":false},{"id":"NY-9","st":"NY","m":41.46,"redrawn":false},{"id":"CO-2","st":"CO","m":40.92,"redrawn":false},{"id":"WI-2","st":"WI","m":40.75,"redrawn":false},{"id":"OH-3","st":"OH","m":40.66,"redrawn":true},{"id":"CA-36","st":"CA","m":40.43,"redrawn":true},{"id":"TX-18","st":"TX","m":40.39,"redrawn":true},{"id":"AZ-3","st":"AZ","m":40.31,"redrawn":false},{"id":"FL-20","st":"FL","m":39.97,"redrawn":true},{"id":"MI-12","st":"MI","m":39.9,"redrawn":false},{"id":"CA-17","st":"CA","m":39.65,"redrawn":true},{"id":"OR-1","st":"OR","m":39.11,"redrawn":false},{"id":"IL-5","st":"IL","m":37.57,"redrawn":false},{"id":"IL-9","st":"IL","m":36.99,"redrawn":false},{"id":"CA-14","st":"CA","m":36.85,"redrawn":true},{"id":"MN-4","st":"MN","m":36.47,"redrawn":false},{"id":"PA-2","st":"PA","m":36.17,"redrawn":false},{"id":"CA-29","st":"CA","m":35.93,"redrawn":true},{"id":"CA-19","st":"CA","m":35.64,"redrawn":true},{"id":"VA-11","st":"VA","m":35.29,"redrawn":false},{"id":"VA-3","st":"VA","m":35.17,"redrawn":false},{"id":"CA-10","st":"CA","m":34.96,"redrawn":true},{"id":"CA-44","st":"CA","m":34.92,"redrawn":true},{"id":"TX-33","st":"TX","m":34.56,"redrawn":true},{"id":"NC-2","st":"NC","m":34.44,"redrawn":true},{"id":"TX-35","st":"TX","m":34.17,"redrawn":true},{"id":"MD-5","st":"MD","m":34.05,"redrawn":false},{"id":"CA-42","st":"CA","m":33.6,"redrawn":true},{"id":"IL-2","st":"IL","m":33.58,"redrawn":false},{"id":"NY-16","st":"NY","m":33.31,"redrawn":false},{"id":"VA-4","st":"VA","m":33.18,"redrawn":false},{"id":"VT-AL","st":"VT","m":32.77,"redrawn":false},{"id":"IL-1","st":"IL","m":32.46,"redrawn":false},{"id":"NY-14","st":"NY","m":32.37,"redrawn":false},{"id":"CA-32","st":"CA","m":32.29,"redrawn":true},{"id":"CA-4","st":"CA","m":32.23,"redrawn":true},{"id":"LA-2","st":"LA","m":32.01,"redrawn":true},{"id":"IL-3","st":"IL","m":31.83,"redrawn":false},{"id":"CA-7","st":"CA","m":30.84,"redrawn":true},{"id":"CA-50","st":"CA","m":30.58,"redrawn":true},{"id":"CA-18","st":"CA","m":30.46,"redrawn":true},{"id":"FL-24","st":"FL","m":30.32,"redrawn":true},{"id":"WA-1","st":"WA","m":29.71,"redrawn":false},{"id":"PA-5","st":"PA","m":28.93,"redrawn":false},{"id":"IL-4","st":"IL","m":28.75,"redrawn":false},{"id":"CA-28","st":"CA","m":27.86,"redrawn":true},{"id":"MA-8","st":"MA","m":26.99,"redrawn":false},{"id":"CA-24","st":"CA","m":25.85,"redrawn":true},{"id":"HI-1","st":"HI","m":25.17,"redrawn":false},{"id":"NJ-8","st":"NJ","m":24.81,"redrawn":false},{"id":"NJ-12","st":"NJ","m":24.54,"redrawn":false},{"id":"MD-3","st":"MD","m":24.49,"redrawn":false},{"id":"WA-2","st":"WA","m":24.45,"redrawn":false},{"id":"TX-32","st":"TX","m":24.33,"redrawn":true},{"id":"MA-2","st":"MA","m":24.29,"redrawn":false},{"id":"CA-51","st":"CA","m":24.24,"redrawn":true},{"id":"MI-6","st":"MI","m":23.92,"redrawn":false},{"id":"CT-4","st":"CT","m":23.73,"redrawn":false},{"id":"AL-7","st":"AL","m":23.58,"redrawn":true},{"id":"MO-5","st":"MO","m":23.51,"redrawn":false},{"id":"CT-1","st":"CT","m":23.27,"redrawn":false},{"id":"SC-6","st":"SC","m":23.04,"redrawn":false},{"id":"FL-10","st":"FL","m":23.02,"redrawn":true},{"id":"RI-1","st":"RI","m":22.66,"redrawn":false},{"id":"AZ-7","st":"AZ","m":22.39,"redrawn":false},{"id":"IL-10","st":"IL","m":22.35,"redrawn":false},{"id":"ME-1","st":"ME","m":22.08,"redrawn":false},{"id":"HI-2","st":"HI","m":22.06,"redrawn":false},{"id":"CA-52","st":"CA","m":21.76,"redrawn":true},{"id":"MN-3","st":"MN","m":21.72,"redrawn":false},{"id":"TX-20","st":"TX","m":21.52,"redrawn":true},{"id":"TX-7","st":"TX","m":21.39,"redrawn":true},{"id":"MA-6","st":"MA","m":21.09,"redrawn":false},{"id":"TX-29","st":"TX","m":20.64,"redrawn":true},{"id":"MS-2","st":"MS","m":20.57,"redrawn":false},{"id":"CO-6","st":"CO","m":20.36,"redrawn":false},{"id":"MA-4","st":"MA","m":20.13,"redrawn":false},{"id":"WA-6","st":"WA","m":19.89,"redrawn":false},{"id":"NY-26","st":"NY","m":19.56,"redrawn":false},{"id":"MA-3","st":"MA","m":19.39,"redrawn":false},{"id":"PA-12","st":"PA","m":19.37,"redrawn":false},{"id":"KY-3","st":"KY","m":19.27,"redrawn":false},{"id":"NJ-1","st":"NJ","m":19.02,"redrawn":false},{"id":"MD-2","st":"MD","m":18.94,"redrawn":false},{"id":"NY-25","st":"NY","m":18.65,"redrawn":false},{"id":"WA-10","st":"WA","m":18.6,"redrawn":false},{"id":"CA-46","st":"CA","m":18.29,"redrawn":true},{"id":"CA-31","st":"CA","m":17.43,"redrawn":true},{"id":"CA-38","st":"CA","m":16.6,"redrawn":true},{"id":"MI-11","st":"MI","m":16.42,"redrawn":false},{"id":"TX-16","st":"TX","m":16.21,"redrawn":true},{"id":"PA-4","st":"PA","m":15.97,"redrawn":false},{"id":"CO-7","st":"CO","m":15.41,"redrawn":false},{"id":"LA-6","st":"LA","m":15.22,"redrawn":true},{"id":"DE-AL","st":"DE","m":14.96,"redrawn":false},{"id":"CA-6","st":"CA","m":14.36,"redrawn":true},{"id":"CT-3","st":"CT","m":14.33,"redrawn":false},{"id":"NY-20","st":"NY","m":14.32,"redrawn":false},{"id":"MA-1","st":"MA","m":13.91,"redrawn":false},{"id":"CA-26","st":"CA","m":13.54,"redrawn":true},{"id":"NM-1","st":"NM","m":13.0,"redrawn":false},{"id":"OR-4","st":"OR","m":12.44,"redrawn":false},{"id":"OR-6","st":"OR","m":11.74,"redrawn":false},{"id":"IL-11","st":"IL","m":11.61,"redrawn":false},{"id":"PA-6","st":"PA","m":11.53,"redrawn":false},{"id":"MA-9","st":"MA","m":10.94,"redrawn":false},{"id":"IL-13","st":"IL","m":10.65,"redrawn":false},{"id":"CA-35","st":"CA","m":10.58,"redrawn":true},{"id":"CA-39","st":"CA","m":10.0,"redrawn":true},{"id":"CA-33","st":"CA","m":8.99,"redrawn":true},{"id":"NJ-11","st":"NJ","m":8.9,"redrawn":false},{"id":"OR-5","st":"OR","m":8.81,"redrawn":false},{"id":"VA-10","st":"VA","m":8.58,"redrawn":false},{"id":"NJ-3","st":"NJ","m":8.5,"redrawn":false},{"id":"AL-2","st":"AL","m":8.31,"redrawn":true},{"id":"CA-49","st":"CA","m":7.99,"redrawn":true},{"id":"MI-3","st":"MI","m":7.97,"redrawn":false},{"id":"CT-2","st":"CT","m":7.86,"redrawn":false},{"id":"FL-14","st":"FL","m":7.76,"redrawn":true},{"id":"NY-22","st":"NY","m":7.69,"redrawn":false},{"id":"GA-2","st":"GA","m":7.65,"redrawn":false},{"id":"IL-8","st":"IL","m":7.0,"redrawn":false},{"id":"RI-2","st":"RI","m":6.93,"redrawn":false},{"id":"AZ-4","st":"AZ","m":6.76,"redrawn":false},{"id":"NJ-6","st":"NJ","m":6.59,"redrawn":false},{"id":"NY-6","st":"NY","m":6.53,"redrawn":false},{"id":"OH-1","st":"OH","m":6.4,"redrawn":true},{"id":"WA-8","st":"WA","m":5.97,"redrawn":false},{"id":"MN-2","st":"MN","m":5.95,"redrawn":false},{"id":"MD-6","st":"MD","m":5.93,"redrawn":false},{"id":"CT-5","st":"CT","m":5.68,"redrawn":false},{"id":"FL-22","st":"FL","m":5.62,"redrawn":true},{"id":"IL-6","st":"IL","m":5.58,"redrawn":false},{"id":"PA-17","st":"PA","m":5.56,"redrawn":false},{"id":"FL-25","st":"FL","m":5.38,"redrawn":true},{"id":"NM-3","st":"NM","m":5.32,"redrawn":false},{"id":"IL-14","st":"IL","m":5.26,"redrawn":false},{"id":"IL-17","st":"IL","m":4.83,"redrawn":false},{"id":"NE-2","st":"NE","m":4.68,"redrawn":false},{"id":"CA-47","st":"CA","m":4.32,"redrawn":true},{"id":"KS-3","st":"KS","m":4.17,"redrawn":false},{"id":"CA-27","st":"CA","m":4.01,"redrawn":true},{"id":"CA-21","st":"CA","m":3.89,"redrawn":true},{"id":"NH-2","st":"NH","m":3.63,"redrawn":false},{"id":"FL-9","st":"FL","m":3.56,"redrawn":true},{"id":"NY-18","st":"NY","m":3.35,"redrawn":false},{"id":"VA-7","st":"VA","m":2.91,"redrawn":false},{"id":"CA-25","st":"CA","m":2.53,"redrawn":true},{"id":"NV-4","st":"NV","m":2.36,"redrawn":false},{"id":"NV-1","st":"NV","m":2.3,"redrawn":false},{"id":"NH-1","st":"NH","m":2.02,"redrawn":false},{"id":"FL-23","st":"FL","m":1.92,"redrawn":true},{"id":"NY-19","st":"NY","m":1.8,"redrawn":false},{"id":"CA-45","st":"CA","m":1.58,"redrawn":true},{"id":"NJ-5","st":"NJ","m":1.54,"redrawn":false},{"id":"NY-4","st":"NY","m":1.29,"redrawn":false},{"id":"NY-17","st":"NY","m":0.56,"redrawn":false},{"id":"IN-1","st":"IN","m":0.4,"redrawn":false},{"id":"PA-1","st":"PA","m":0.32,"redrawn":false},{"id":"OH-13","st":"OH","m":0.05,"redrawn":true},{"id":"VA-2","st":"VA","m":-0.25,"redrawn":false},{"id":"NV-3","st":"NV","m":-0.75,"redrawn":false},{"id":"AZ-6","st":"AZ","m":-0.76,"redrawn":false},{"id":"NJ-9","st":"NJ","m":-1.17,"redrawn":false},{"id":"NJ-7","st":"NJ","m":-1.2,"redrawn":false},{"id":"MI-7","st":"MI","m":-1.3,"redrawn":false},{"id":"CA-9","st":"CA","m":-1.83,"redrawn":true},{"id":"NM-2","st":"NM","m":-1.85,"redrawn":false},{"id":"CO-8","st":"CO","m":-1.88,"redrawn":false},{"id":"MI-8","st":"MI","m":-2.01,"redrawn":false},{"id":"CA-40","st":"CA","m":-2.4,"redrawn":true},{"id":"NC-1","st":"NC","m":-3.12,"redrawn":true},{"id":"AZ-1","st":"AZ","m":-3.14,"redrawn":false},{"id":"PA-7","st":"PA","m":-3.24,"redrawn":false},{"id":"WA-3","st":"WA","m":-3.4,"redrawn":false},{"id":"CA-3","st":"CA","m":-3.94,"redrawn":true},{"id":"NY-3","st":"NY","m":-4.35,"redrawn":false},{"id":"IA-3","st":"IA","m":-4.46,"redrawn":false},{"id":"TX-34","st":"TX","m":-4.47,"redrawn":true},{"id":"WI-1","st":"WI","m":-4.57,"redrawn":false},{"id":"VA-1","st":"VA","m":-5.0,"redrawn":false},{"id":"PA-10","st":"PA","m":-5.29,"redrawn":false},{"id":"CA-13","st":"CA","m":-5.57,"redrawn":true},{"id":"MI-4","st":"MI","m":-5.62,"redrawn":false},{"id":"OH-10","st":"OH","m":-5.8,"redrawn":true},{"id":"CA-22","st":"CA","m":-5.99,"redrawn":true},{"id":"CA-41","st":"CA","m":-6.09,"redrawn":true},{"id":"MI-10","st":"MI","m":-6.68,"redrawn":false},{"id":"OH-9","st":"OH","m":-6.77,"redrawn":true},{"id":"TX-28","st":"TX","m":-7.35,"redrawn":true},{"id":"WI-3","st":"WI","m":-7.51,"redrawn":false},{"id":"MO-2","st":"MO","m":-8.04,"redrawn":false},{"id":"PA-8","st":"PA","m":-8.57,"redrawn":false},{"id":"IA-1","st":"IA","m":-8.59,"redrawn":false},{"id":"ME-2","st":"ME","m":-9.23,"redrawn":false},{"id":"OH-15","st":"OH","m":-9.29,"redrawn":true},{"id":"CO-5","st":"CO","m":-9.34,"redrawn":false},{"id":"NC-11","st":"NC","m":-9.62,"redrawn":true},{"id":"CO-3","st":"CO","m":-9.98,"redrawn":false},{"id":"IA-2","st":"IA","m":-10.13,"redrawn":false},{"id":"NY-1","st":"NY","m":-10.19,"redrawn":false},{"id":"OH-7","st":"OH","m":-10.73,"redrawn":true},{"id":"WA-5","st":"WA","m":-11.11,"redrawn":false},{"id":"FL-15","st":"FL","m":-11.35,"redrawn":true},{"id":"MT-1","st":"MT","m":-11.92,"redrawn":false},{"id":"FL-4","st":"FL","m":-11.96,"redrawn":true},{"id":"FL-13","st":"FL","m":-11.97,"redrawn":true},{"id":"MN-1","st":"MN","m":-12.23,"redrawn":false},{"id":"VA-5","st":"VA","m":-12.41,"redrawn":false},{"id":"FL-7","st":"FL","m":-12.62,"redrawn":true},{"id":"NJ-2","st":"NJ","m":-12.74,"redrawn":false},{"id":"SC-1","st":"SC","m":-13.21,"redrawn":false},{"id":"NE-1","st":"NE","m":-13.23,"redrawn":false},{"id":"AK-AL","st":"AK","m":-13.69,"redrawn":false},{"id":"NC-7","st":"NC","m":-13.95,"redrawn":true},{"id":"NY-2","st":"NY","m":-14.08,"redrawn":false},{"id":"SC-2","st":"SC","m":-14.12,"redrawn":false},{"id":"GA-12","st":"GA","m":-14.23,"redrawn":false},{"id":"NV-2","st":"NV","m":-14.27,"redrawn":false},{"id":"MN-8","st":"MN","m":-14.53,"redrawn":false},{"id":"FL-27","st":"FL","m":-14.78,"redrawn":true},{"id":"AZ-2","st":"AZ","m":-15.12,"redrawn":false},{"id":"NC-14","st":"NC","m":-15.23,"redrawn":true},{"id":"KY-6","st":"KY","m":-15.31,"redrawn":false},{"id":"FL-16","st":"FL","m":-15.6,"redrawn":true},{"id":"TX-23","st":"TX","m":-15.68,"redrawn":true},{"id":"CA-48","st":"CA","m":-15.69,"redrawn":true},{"id":"TX-24","st":"TX","m":-15.77,"redrawn":true},{"id":"GA-1","st":"GA","m":-15.89,"redrawn":false},{"id":"AR-2","st":"AR","m":-15.91,"redrawn":false},{"id":"NC-9","st":"NC","m":-16.01,"redrawn":true},{"id":"FL-11","st":"FL","m":-16.41,"redrawn":true},{"id":"WI-8","st":"WI","m":-16.46,"redrawn":false},{"id":"AZ-8","st":"AZ","m":-16.48,"redrawn":false},{"id":"NC-13","st":"NC","m":-16.65,"redrawn":true},{"id":"FL-21","st":"FL","m":-16.68,"redrawn":true},{"id":"WI-6","st":"WI","m":-16.7,"redrawn":false},{"id":"IN-5","st":"IN","m":-17.13,"redrawn":false},{"id":"MD-1","st":"MD","m":-17.31,"redrawn":false},{"id":"CA-23","st":"CA","m":-17.32,"redrawn":true},{"id":"NC-6","st":"NC","m":-17.37,"redrawn":true},{"id":"NC-10","st":"NC","m":-17.9,"redrawn":true},{"id":"NC-5","st":"NC","m":-17.95,"redrawn":true},{"id":"TX-15","st":"TX","m":-18.0,"redrawn":true},{"id":"TN-5","st":"TN","m":-18.06,"redrawn":true},{"id":"OH-14","st":"OH","m":-18.09,"redrawn":true},{"id":"OK-5","st":"OK","m":-18.12,"redrawn":false},{"id":"FL-2","st":"FL","m":-18.18,"redrawn":true},{"id":"CA-5","st":"CA","m":-18.18,"redrawn":true},{"id":"CO-4","st":"CO","m":-18.71,"redrawn":false},{"id":"NC-8","st":"NC","m":-19.59,"redrawn":true},{"id":"UT-3","st":"UT","m":-19.87,"redrawn":true},{"id":"TX-22","st":"TX","m":-19.91,"redrawn":true},{"id":"KS-2","st":"KS","m":-20.06,"redrawn":false},{"id":"MN-6","st":"MN","m":-20.07,"redrawn":false},{"id":"AZ-5","st":"AZ","m":-20.19,"redrawn":false},{"id":"TX-3","st":"TX","m":-20.54,"redrawn":true},{"id":"UT-1","st":"UT","m":-20.65,"redrawn":true},{"id":"NY-21","st":"NY","m":-20.76,"redrawn":false},{"id":"UT-2","st":"UT","m":-20.85,"redrawn":true},{"id":"GA-10","st":"GA","m":-20.91,"redrawn":false},{"id":"TX-38","st":"TX","m":-21.06,"redrawn":true},{"id":"NY-23","st":"NY","m":-21.19,"redrawn":false},{"id":"WA-4","st":"WA","m":-21.24,"redrawn":false},{"id":"FL-3","st":"FL","m":-21.32,"redrawn":true},{"id":"MI-1","st":"MI","m":-21.52,"redrawn":false},{"id":"PA-11","st":"PA","m":-21.57,"redrawn":false},{"id":"FL-5","st":"FL","m":-21.68,"redrawn":true},{"id":"OK-1","st":"OK","m":-22.0,"redrawn":false},{"id":"NC-3","st":"NC","m":-22.06,"redrawn":true},{"id":"GA-7","st":"GA","m":-22.3,"redrawn":false},{"id":"WI-5","st":"WI","m":-22.45,"redrawn":false},{"id":"FL-8","st":"FL","m":-22.55,"redrawn":true},{"id":"TN-7","st":"TN","m":-22.62,"redrawn":true},{"id":"WI-7","st":"WI","m":-22.84,"redrawn":false},{"id":"TX-12","st":"TX","m":-22.86,"redrawn":true},{"id":"PA-16","st":"PA","m":-22.96,"redrawn":false},{"id":"IL-16","st":"IL","m":-23.05,"redrawn":false},{"id":"SC-5","st":"SC","m":-23.09,"redrawn":false},{"id":"NY-24","st":"NY","m":-23.24,"redrawn":false},{"id":"GA-11","st":"GA","m":-23.56,"redrawn":false},{"id":"TX-31","st":"TX","m":-23.58,"redrawn":true},{"id":"KS-4","st":"KS","m":-23.7,"redrawn":false},{"id":"TX-26","st":"TX","m":-23.76,"redrawn":true},{"id":"OH-8","st":"OH","m":-23.9,"redrawn":true},{"id":"TX-21","st":"TX","m":-23.91,"redrawn":true},{"id":"SC-4","st":"SC","m":-23.96,"redrawn":false},{"id":"TX-2","st":"TX","m":-24.07,"redrawn":true},{"id":"FL-17","st":"FL","m":-24.11,"redrawn":true},{"id":"VA-6","st":"VA","m":-24.16,"redrawn":false},{"id":"NY-11","st":"NY","m":-24.83,"redrawn":false},{"id":"TX-10","st":"TX","m":-25.16,"redrawn":true},{"id":"FL-28","st":"FL","m":-25.57,"redrawn":true},{"id":"AR-3","st":"AR","m":-25.59,"redrawn":false},{"id":"CA-1","st":"CA","m":-25.67,"redrawn":true},{"id":"SC-7","st":"SC","m":-26.62,"redrawn":false},{"id":"IN-2","st":"IN","m":-26.92,"redrawn":false},{"id":"MO-3","st":"MO","m":-27.1,"redrawn":false},{"id":"TX-5","st":"TX","m":-27.38,"redrawn":true},{"id":"MI-5","st":"MI","m":-27.41,"redrawn":false},{"id":"UT-4","st":"UT","m":-27.47,"redrawn":true},{"id":"ID-2","st":"ID","m":-27.56,"redrawn":false},{"id":"OR-2","st":"OR","m":-27.88,"redrawn":false},{"id":"TX-6","st":"TX","m":-28.85,"redrawn":true},{"id":"FL-19","st":"FL","m":-29.36,"redrawn":true},{"id":"MS-3","st":"MS","m":-29.46,"redrawn":false},{"id":"AL-5","st":"AL","m":-29.49,"redrawn":true},{"id":"OH-5","st":"OH","m":-29.53,"redrawn":true},{"id":"TX-17","st":"TX","m":-29.54,"redrawn":true},{"id":"FL-18","st":"FL","m":-29.63,"redrawn":true},{"id":"GA-3","st":"GA","m":-29.88,"redrawn":false},{"id":"IN-4","st":"IN","m":-29.88,"redrawn":false},{"id":"SD-AL","st":"SD","m":-29.89,"redrawn":false},{"id":"TX-27","st":"TX","m":-29.92,"redrawn":true},{"id":"FL-6","st":"FL","m":-30.31,"redrawn":true},{"id":"IN-9","st":"IN","m":-30.39,"redrawn":false},{"id":"MT-2","st":"MT","m":-30.51,"redrawn":false},{"id":"NJ-4","st":"NJ","m":-30.54,"redrawn":false},{"id":"MI-2","st":"MI","m":-30.54,"redrawn":false},{"id":"GA-8","st":"GA","m":-30.72,"redrawn":false},{"id":"CA-20","st":"CA","m":-31.04,"redrawn":true},{"id":"AZ-9","st":"AZ","m":-31.34,"redrawn":false},{"id":"IN-3","st":"IN","m":-31.73,"redrawn":false},{"id":"KS-1","st":"KS","m":-31.85,"redrawn":false},{"id":"IA-4","st":"IA","m":-31.9,"redrawn":false},{"id":"MI-9","st":"MI","m":-32.78,"redrawn":false},{"id":"OH-12","st":"OH","m":-33.02,"redrawn":true},{"id":"TX-4","st":"TX","m":-33.08,"redrawn":true},{"id":"IN-6","st":"IN","m":-33.1,"redrawn":false},{"id":"PA-14","st":"PA","m":-33.6,"redrawn":false},{"id":"OK-4","st":"OK","m":-33.89,"redrawn":false},{"id":"OH-6","st":"OH","m":-33.93,"redrawn":true},{"id":"TX-8","st":"TX","m":-34.31,"redrawn":true},{"id":"TN-2","st":"TN","m":-34.33,"redrawn":true},{"id":"GA-9","st":"GA","m":-34.34,"redrawn":false},{"id":"TX-14","st":"TX","m":-34.39,"redrawn":true},{"id":"FL-12","st":"FL","m":-34.85,"redrawn":true},{"id":"FL-26","st":"FL","m":-35.19,"redrawn":true},{"id":"TN-6","st":"TN","m":-35.65,"redrawn":true},{"id":"KY-4","st":"KY","m":-36.16,"redrawn":false},{"id":"TN-3","st":"TN","m":-36.35,"redrawn":true},{"id":"IN-8","st":"IN","m":-36.49,"redrawn":false},{"id":"TX-25","st":"TX","m":-36.75,"redrawn":true},{"id":"LA-5","st":"LA","m":-36.82,"redrawn":true},{"id":"GA-14","st":"GA","m":-37.02,"redrawn":false},{"id":"OH-4","st":"OH","m":-37.08,"redrawn":true},{"id":"MN-7","st":"MN","m":-37.1,"redrawn":false},{"id":"TX-36","st":"TX","m":-37.18,"redrawn":true},{"id":"ND-AL","st":"ND","m":-37.39,"redrawn":false},{"id":"MS-1","st":"MS","m":-37.53,"redrawn":false},{"id":"FL-1","st":"FL","m":-37.59,"redrawn":true},{"id":"PA-9","st":"PA","m":-38.29,"redrawn":false},{"id":"PA-15","st":"PA","m":-38.29,"redrawn":false},{"id":"LA-1","st":"LA","m":-38.64,"redrawn":true},{"id":"AL-6","st":"AL","m":-38.97,"redrawn":true},{"id":"MO-6","st":"MO","m":-39.32,"redrawn":false},{"id":"WV-2","st":"WV","m":-40.38,"redrawn":false},{"id":"IL-15","st":"IL","m":-40.43,"redrawn":false},{"id":"AR-4","st":"AR","m":-40.66,"redrawn":false},{"id":"TN-8","st":"TN","m":-41.6,"redrawn":true},{"id":"KY-2","st":"KY","m":-41.93,"redrawn":false},{"id":"MO-4","st":"MO","m":-42.81,"redrawn":false},{"id":"MS-4","st":"MS","m":-42.99,"redrawn":false},{"id":"MO-7","st":"MO","m":-43.12,"redrawn":false},{"id":"SC-3","st":"SC","m":-43.62,"redrawn":false},{"id":"IL-12","st":"IL","m":-44.08,"redrawn":false},{"id":"TN-4","st":"TN","m":-44.11,"redrawn":true},{"id":"VA-9","st":"VA","m":-44.43,"redrawn":false},{"id":"WV-1","st":"WV","m":-45.2,"redrawn":false},{"id":"LA-3","st":"LA","m":-45.39,"redrawn":true},{"id":"TX-11","st":"TX","m":-45.86,"redrawn":true},{"id":"PA-13","st":"PA","m":-45.9,"redrawn":false},{"id":"AR-1","st":"AR","m":-46.18,"redrawn":false},{"id":"ID-1","st":"ID","m":-46.2,"redrawn":false},{"id":"OK-3","st":"OK","m":-46.42,"redrawn":false},{"id":"WY-AL","st":"WY","m":-46.96,"redrawn":false},{"id":"AL-3","st":"AL","m":-47.07,"redrawn":true},{"id":"KY-1","st":"KY","m":-47.91,"redrawn":false},{"id":"OH-2","st":"OH","m":-47.94,"redrawn":true},{"id":"TX-13","st":"TX","m":-48.26,"redrawn":true},{"id":"TX-1","st":"TX","m":-51.64,"redrawn":true},{"id":"TX-19","st":"TX","m":-52.17,"redrawn":true},{"id":"LA-4","st":"LA","m":-52.78,"redrawn":true},{"id":"NE-3","st":"NE","m":-54.43,"redrawn":false},{"id":"MO-8","st":"MO","m":-54.61,"redrawn":false},{"id":"AL-1","st":"AL","m":-55.76,"redrawn":true},{"id":"OK-2","st":"OK","m":-56.51,"redrawn":false},{"id":"TN-1","st":"TN","m":-58.44,"redrawn":true},{"id":"KY-5","st":"KY","m":-64.67,"redrawn":false},{"id":"AL-4","st":"AL","m":-66.92,"redrawn":true}],"reach":10,"states":[{"st":"FL","name":"Florida","n":28,"d24":8,"d26":4,"net":-4},{"st":"TX","name":"Texas","n":38,"d24":11,"d26":8,"net":-3},{"st":"AL","name":"Alabama","n":7,"d24":2,"d26":1,"net":-1},{"st":"LA","name":"Louisiana","n":6,"d24":2,"d26":1,"net":-1},{"st":"OH","name":"Ohio","n":15,"d24":4,"d26":3,"net":-1},{"st":"TN","name":"Tennessee","n":9,"d24":1,"d26":0,"net":-1},{"st":"NC","name":"North Carolina","n":14,"d24":3,"d26":3,"net":0},{"st":"UT","name":"Utah","n":4,"d24":0,"d26":1,"net":1},{"st":"CA","name":"California","n":52,"d24":41,"d26":47,"net":6}],"close":2.0,"names":{"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming"}};
+const NS = "http://www.w3.org/2000/svg";
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
+function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
+function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+
+/* Margins are Democratic minus Republican, in points of two-party margin. Shown as a lead for whoever is ahead. */
+const lead = (m, d = "D", r = "R") => Math.abs(m) < 0.05 ? "Tied" : (m > 0 ? d : r) + " +" + Math.abs(m).toFixed(1);
+const swingWords = s => Math.abs(s) < 0.05 ? "2024 result" : `${Math.abs(s).toFixed(1)} points toward ${s > 0 ? "Democrats" : "Republicans"}`;
+const idx = s => Math.round((s + 10) * 10);
+let shift = 0;
+
+const range = document.getElementById("swing"), out = document.getElementById("swing-out");
+const jumps = [...document.querySelectorAll("[data-jump]")];
+function setShift(v) {
+  shift = Math.max(-10, Math.min(10, Math.round(v * 10) / 10));
+  range.value = shift; out.textContent = swingWords(shift);
+  document.getElementById("strip-swing").textContent = swingWords(shift);
+  jumps.forEach(b => b.setAttribute("aria-pressed", String(Math.abs(+b.dataset.jump - shift) < 0.05)));
+  drawWave(); colorStrip();
+}
+range.addEventListener("input", () => setShift(+range.value));
+jumps.forEach(b => b.addEventListener("click", () => setShift(+b.dataset.jump)));
+
+/* ---------- 1. Seat curves ---------- */
+function beeswarm(items, x, r) {
+  // Greedy vertical stacking: each dot takes the slot closest to the row's center line that doesn't overlap.
+  const placed = [], gap = 2 * r + 0.8;
+  items.slice().sort((a, b) => a.x - b.x).forEach(it => {
+    const px = x(it.x); let k = 0, y = 0;
+    for (;;) {
+      y = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * gap * 0.92;
+      if (!placed.some(p => Math.abs(p.px - px) < gap && Math.abs(p.y - y) < gap)) break;
+      k++;
+    }
+    placed.push({ ...it, px, y });
+  });
+  return placed;
+}
+let waveDots = [], step = 1, anim = 0;
+document.getElementById("show-redrawn").addEventListener("change", colorWave);
+/* Guided steps: each one adds a single idea. One sentence per line. */
+const STEPS = {
+  1: ["This is all 435 U.S. House districts, as drawn on the new 2026 district maps.",
+      "Each dot is one district. The 76 spread along the line were close in 2024: within 10 points either way in the presidential vote.",
+      "Harris won the blue ones on the left; Trump won the red ones on the right.",
+      "The blocks at each end are the rest: 156 districts Harris won by more than 10 points, and 203 Trump won by more than 10. They're too far out to change hands here."],
+  2: ["Now picture a tide: voters in every district shift the same amount toward one party, compared with 2024.",
+      "Here the tide runs toward Democrats, which helps Democrats: every dot it passes turns blue.",
+      "Light dots are within 2 points of flipping.",
+      "At a 4.6-point tide, it reaches the Majority flag: the 218th seat, WI-1 (circled). That's where Democrats would win control of the House."],
+  3: ["On top: the district maps used in 2024, before this year's redistricting.",
+      "On those maps, Democrats needed a 3.2-point tide in their favor to win the House.",
+      "On the new maps, they need 4.6.",
+      "!After redistricting, Democrats need a bigger shift in the vote to win the House, and Republicans can lose more ground and still keep it.",
+      "The difference is the gap between the two flags: 1.4 points of vote margin."],
+  4: ["Your turn. Drag the tide either way, or tap a dot to see its district.",
+      "This is a simulation: real elections don't move every district the same amount."],
+};
+const NEXT = { 1: "Next: add a tide →", 2: "Next: before redistricting →", 3: "Next: explore on your own →" };
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function glide(to) {
+  cancelAnimationFrame(anim);
+  if (reduce) return setShift(to);
+  const from = shift, t0 = performance.now(), dur = 1400;
+  const tick = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); setShift(from + (to - from) * e); if (k < 1) anim = requestAnimationFrame(tick); };
+  anim = requestAnimationFrame(tick);
+}
+function goStep(n) {
+  step = n;
+  document.querySelectorAll("[data-step]").forEach(b => b.toggleAttribute("aria-current", +b.dataset.step === n) || b.removeAttribute("aria-current"));
+  document.querySelectorAll("[data-step]").forEach(b => { if (+b.dataset.step === n) b.setAttribute("aria-current", "step"); });
+  const txt = document.getElementById("step-text"); txt.innerHTML = ""; STEPS[n].forEach(line => { const p = document.createElement("p"); if (line[0] === "!") { p.className = "takeaway"; line = line.slice(1); } p.textContent = line; txt.appendChild(p); });
+  document.getElementById("explore").hidden = n !== 4;
+  document.querySelectorAll("[data-k]").forEach(k => { k.hidden = (k.dataset.k === "1") !== (n === 1); });
+  document.getElementById("step-back").hidden = n === 1;
+  const nx = document.getElementById("step-next"); nx.hidden = n === 4; nx.textContent = NEXT[n] || "";
+  if (n === 1) { cancelAnimationFrame(anim); setShift(0); }
+  else if (n === 2) { setShift(0); glide(D.t26[0]); }
+  else if (n === 3 && Math.abs(shift - D.t26[0]) > 0.05) glide(D.t26[0]);
+  else drawWave();
+}
+document.querySelectorAll("[data-step]").forEach(b => b.addEventListener("click", () => goStep(+b.dataset.step)));
+document.getElementById("step-next").addEventListener("click", () => goStep(Math.min(4, step + 1)));
+document.getElementById("step-back").addEventListener("click", () => goStep(Math.max(1, step - 1)));
+function drawWave() {
+  const host = document.getElementById("wave"); host.querySelectorAll("svg").forEach(n => n.remove());
+  const W = Math.max(300, host.clientWidth), narrow = W < 560, r = narrow ? 3.6 : 4.6, R = D.reach;
+  const showTide = step >= 2, showOld = step >= 3;
+  // All 435 districts are drawn: the close ones on the axis, the lopsided ones as a block of dots at each end
+  const bs = narrow ? 4.2 : 7.6, br = narrow ? 1.7 : 3.1, bc = narrow ? 8 : 12;   // block spacing, dot radius, columns
+  const m = { l: bc * bs + (narrow ? 14 : 26), r: bc * bs + (narrow ? 14 : 26) };
+  // x = how the district voted: Harris-won to the left, Trump-won to the right (x = minus the D-R margin)
+  const x = lin(-R, R, m.l, W - m.r);
+  const rows = [[narrow ? "2024 maps (before)" : "2024 district maps (before redistricting)", D.d24, D.t24[0], D.c24], [narrow ? "2026 maps (after)" : "2026 district maps (after redistricting)", D.districts, D.t26[0], D.c26]].slice(showOld ? 0 : 1).map(([label, list, t, curve]) => {
+    const dots = beeswarm(list.filter(d => Math.abs(d.m) <= R).map(d => ({ ...d, x: -d.m })), x, r);
+    const safeD = list.filter(d => d.m > R), safeR = list.filter(d => d.m < -R);
+    const blockH = Math.ceil(Math.max(safeD.length, safeR.length) / bc) * bs;
+    const half = Math.max(Math.max(...dots.map(d => Math.abs(d.y))) + r + 6, blockH / 2 + 26);
+    return { label, t, curve, dots, half, safeD, safeR };
+  });
+  const top = 64, flagH = 34, rowGap = 74, H = top + rows.reduce((a, rw) => a + rw.half * 2 + flagH, 0) + (rows.length - 1) * rowGap + 40;
+  const s = svg(W, H), g = el("g", {}, s);
+  host.prepend(s);   // attached first, so labels can be measured
+  const tx = x(Math.max(-R, Math.min(R, shift))), i = idx(shift);
+  const fit = (t, xR) => { if (t.getComputedTextLength() + (+t.getAttribute("x")) > xR) { t.setAttribute("x", +t.getAttribute("data-alt")); t.setAttribute("text-anchor", "end"); } };
+  // Axis: how each district voted in 2024
+  const axY = H - 22;
+  for (let v = -R; v <= R; v += 5) {
+    if (v % 10 === 0) el("line", { x1: x(v), x2: x(v), y1: top - 8, y2: axY - 14, stroke: "var(--rule)", "stroke-dasharray": v ? "" : "2 4" }, g);
+    if (!narrow || v % 10 === 0) el("text", { x: x(v), y: axY, "text-anchor": v === -R && narrow ? "start" : v === R && narrow ? "end" : "middle" }, g, v === 0 ? "Even" : (v < 0 ? "Harris +" : "Trump +") + Math.abs(v));
+  }
+  el("text", { x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle" }, g, "How each district voted for president in 2024");
+  const tg = el("g", {}, g);   // the tide line sits under the dots and labels
+  waveDots = [];
+  let y0 = top;
+  rows.forEach((row, ri) => {
+    const cy = y0 + row.half;
+    el("text", { x: 0, y: y0 - 10, class: "lbl-strong" }, g, row.label);
+    // Lopsided districts: a block of small dots at each end, filled from the inside edge outward
+    [[-1, row.safeD], [1, row.safeR]].forEach(([side, list]) => {
+      const rowsN = Math.ceil(list.length / bc), y1 = cy - rowsN * bs / 2 + bs / 2;
+      const inner = side < 0 ? m.l - 10 : W - m.r + 10;
+      list.slice().sort((a, b) => Math.abs(a.m) - Math.abs(b.m)).forEach((d, k) => {
+        const col = k % bc, rw = Math.floor(k / bc);
+        const c = el("circle", { cx: inner + side * (col * bs + bs / 2), cy: y1 + rw * bs, r: br }, g);
+        waveDots.push({ el: c, d, label: row.label });
+      });
+      const mid = inner + side * (bc * bs) / 2;
+      el("text", { x: mid, y: y1 - bs / 2 - 6, "text-anchor": "middle", class: "pile" }, g, list.length);
+      el("text", { x: mid, y: y1 + rowsN * bs + 8, "text-anchor": "middle", class: "pile-cap" }, g, side < 0 ? (narrow ? "Harris 10+" : "Harris won by 10+") : (narrow ? "Trump 10+" : "Trump won by 10+"));
+    });
+    row.dots.forEach(d => { const c = el("circle", { cx: d.px, cy: cy + d.y, r }, g); waveDots.push({ el: c, d, label: row.label }); });
+    // Seat counts ride on the tide line
+    const dn = row.curve[i], rn = 435 - dn;
+    if (showTide) {
+    el("text", { x: tx - 8, y: y0 - 10, "text-anchor": "end", class: "tide-ct", fill: "var(--dem)" }, g, `← ${dn} D`);
+    el("text", { x: tx + 8, y: y0 - 10, "text-anchor": "start", class: "tide-ct", fill: "var(--rep)" }, g, `${rn} R →`);
+    }
+    // Majority flag on this row's baseline
+    const fx = x(row.t), fy = cy + row.half + 4;
+    row.cy = cy; row.fy = fy; y0 += row.half * 2 + flagH + rowGap;
+    if (!showTide) return;
+    el("line", { x1: fx, x2: fx, y1: fy, y2: fy + 22, stroke: "var(--ink)", "stroke-width": 2 }, g);
+    el("path", { d: `M${fx},${fy}L${fx + 14},${fy + 5}L${fx},${fy + 10}Z`, fill: "var(--ink)" }, g);
+    const ftxt = narrow ? "Majority" : `Majority: the 218th seat (Trump +${row.t.toFixed(1)})`;
+    fit(el("text", { x: fx + 18, "data-alt": fx - 6, y: fy + 10, class: "lbl halo" }, g, ftxt), W - 2);
+  });
+  // The gap between the two flags
+  if (showOld) {
+  const gy = rows[0].fy + flagH + rowGap / 2 - 6, x1 = x(rows[0].t), x2 = x(rows[1].t);
+  el("line", { x1, x2, y1: gy, y2: gy, stroke: "var(--ink)", "stroke-width": 1.5 }, g);
+  el("line", { x1, x2: x1, y1: gy - 5, y2: gy + 5, stroke: "var(--ink)", "stroke-width": 1.5 }, g);
+  el("path", { d: `M${x2 - 6},${gy - 4}L${x2},${gy}L${x2 - 6},${gy + 4}`, fill: "none", stroke: "var(--ink)", "stroke-width": 1.5 }, g);
+  const cap = `Democrats need ${(rows[1].t - rows[0].t).toFixed(1)} more points to win the House`;
+  el("text", { x: narrow ? x2 + 8 : x1 - 10, y: gy + 4, "text-anchor": narrow ? "start" : "end", class: "lbl-strong halo" }, g, narrow ? `D need +${(rows[1].t - rows[0].t).toFixed(1)}` : cap);
+  }
+  // Worked example: the 2026 tipping-point district, ringed and labeled (explained in the text above the chart)
+  const nr = rows[rows.length - 1], ex = nr.dots.find(d => d.id === D.districts[217].id);
+  if (ex && showTide) {
+    const ey = nr.cy + ex.y;
+    el("circle", { cx: ex.px, cy: ey, r: r + 3.5, fill: "none", stroke: "var(--ink)", "stroke-width": 1.5 }, g);
+    el("text", { x: ex.px + r + 6, y: ey - r - 4, class: "lbl-strong halo" }, g, ex.id);
+  }
+  // The tide line (under the dots and labels)
+  if (showTide) {
+  el("line", { x1: tx, x2: tx, y1: top - 26, y2: axY - 14, stroke: "var(--ink-2)", "stroke-width": 1.5 }, tg);
+  el("text", { x: tx, y: 12, "text-anchor": "middle", class: "lbl-strong" }, g, Math.abs(shift) < 0.05 ? "Tide: 2024 result" : `Tide: ${Math.abs(shift).toFixed(1)} pts toward ${shift > 0 ? (narrow ? "D" : "Democrats") : (narrow ? "R" : "Republicans")}`);
+  el("path", { d: `M${tx - 6},${top - 34}L${tx + 6},${top - 34}L${tx},${top - 26}Z`, fill: "var(--ink)" }, g);
+  }
+  // Interaction: drag anywhere; hover a dot for its district
+  const pick = e => { const b = s.getBoundingClientRect(); setShift(lin(m.l, W - m.r, -R, R)((e.clientX - b.left) * W / b.width)); };
+  s.addEventListener("pointerdown", e => { if (step === 4 && e.target.tagName !== "circle") { pick(e); s.setPointerCapture(e.pointerId); } });
+  s.addEventListener("pointermove", e => {
+    if (step === 4 && e.buttons && e.target.tagName !== "circle") return pick(e);
+    const hit = waveDots.find(w => w.el === e.target);
+    if (!hit) return hideTip(host);
+    const b = host.getBoundingClientRect(), d = hit.d;
+    showTip(host, `<b>${d.id}</b> · ${D.names[d.st]} (${hit.label})<br>2024: ${lead(d.m, "Harris", "Trump")}<br>Flips with a ${Math.abs(d.m).toFixed(1)}-point tide toward ${d.m > 0 ? "Republicans" : "Democrats"}${d.redrawn ? "<br>New lines for 2026" : ""}`, e.clientX - b.left, e.clientY - b.top);
+  });
+  s.addEventListener("pointerleave", () => hideTip(host));
+  s.style.touchAction = "pan-y"; s.style.cursor = step === 4 ? "ew-resize" : "default";
+  s.setAttribute("role", "img");
+  s.setAttribute("aria-label", `Districts placed by their 2024 presidential vote. The majority flag sits at Trump +${D.t24[0]} on the 2024 maps and Trump +${D.t26[0]} on the 2026 maps.`);
+  colorWave();
+}
+function colorWave() {
+  waveDots.forEach(({ el: c, d }) => {
+    const now = d.m + shift, lean = step >= 2 && Math.abs(now) < D.close;
+    const f = now > 0 ? (lean ? "var(--dem-lean)" : "var(--dem)") : (lean ? "var(--rep-lean)" : "var(--rep)");
+    const hole = d.redrawn && document.getElementById("show-redrawn").checked;
+    c.setAttribute("fill", hole ? "var(--surface)" : f);
+    c.setAttribute("stroke", f); c.setAttribute("stroke-width", hole ? 1.8 : 0);
+  });
+}
+function fillTable() {
+  const tb = document.querySelector("#wave-table tbody"); tb.innerHTML = "";
+  for (let v = -6; v <= 6; v += 1) { const i = idx(v); tb.insertAdjacentHTML("beforeend", `<tr><td>${v === 0 ? "2024 result" : (v > 0 ? "D+" : "R+") + Math.abs(v)}</td><td>${D.c24[i]}</td><td>${D.c26[i]}</td></tr>`); }
+}
+fillTable();
+
+/* ---------- 2. The 435 strip ---------- */
+const strip = document.getElementById("strip"), tiles = [];
+D.districts.forEach((d, i) => {
+  const t = document.createElement("span"); t.className = "tile" + (d.redrawn ? " rd" : "") + (i === 217 ? " tp" : "");
+  t.dataset.i = i; strip.appendChild(t); tiles.push(t);
+});
+function colorStrip() {
+  const st = document.getElementById("state").value;
+  D.districts.forEach((d, i) => {
+    const m = d.m + shift, t = tiles[i];
+    t.dataset.c = m > 0 ? (m < D.close ? "dl" : "d") : (m > -D.close ? "rl" : "r");
+    t.classList.toggle("dim", !!st && d.st !== st);
+  });
+}
+const sel = document.getElementById("state");
+Object.keys(D.names).sort((a, b) => D.names[a].localeCompare(D.names[b])).forEach(st => { const o = document.createElement("option"); o.value = st; o.textContent = D.names[st]; sel.appendChild(o); });
+sel.addEventListener("change", colorStrip);
+const wrap = strip.parentElement;
+function tileTip(e) {
+  const t = e.target.closest(".tile"); if (!t) return hideTip(wrap);
+  const d = D.districts[+t.dataset.i], hr = wrap.getBoundingClientRect(), tr = t.getBoundingClientRect();
+  const now = d.m + shift;
+  let h = `<b>${d.id}</b> · ${D.names[d.st]}<br>2024 vote on the 2026 lines: ${lead(d.m, "Harris", "Trump")}`;
+  if (d.redrawn) h += `<br>New lines for 2026`;
+  if (Math.abs(shift) >= 0.05) h += `<br>At this swing: ${lead(now)}`;
+  h += `<br>Rank ${+t.dataset.i + 1} of 435, most Democratic first`;
+  showTip(wrap, h, tr.left - hr.left + tr.width / 2, tr.top - hr.top);
+}
+strip.addEventListener("pointermove", tileTip); strip.addEventListener("click", tileTip);
+strip.addEventListener("pointerleave", () => hideTip(wrap));
+
+/* ---------- 3. Redrawn states ---------- */
+function drawStates() {
+  const host = document.getElementById("states"); host.querySelectorAll("svg").forEach(n => n.remove());
+  const W = Math.max(300, host.clientWidth), rowH = 34, narrow = W < 520, m = { t: 8, r: 16, b: 26, l: narrow ? 92 : 120 };
+  const H = m.t + m.b + rowH * D.states.length, lim = Math.max(...D.states.map(s => Math.abs(s.net))) + 3;
+  const x = lin(-lim, lim, m.l, W - m.r - (narrow ? 72 : 190)), s = svg(W, H), g = el("g", {}, s);
+  el("line", { x1: x(0), x2: x(0), y1: m.t, y2: H - m.b, stroke: "var(--ink-3)" }, g);
+  el("text", { x: x(-lim), y: H - 6, "text-anchor": "start" }, g, "← more Trump districts");
+  el("text", { x: x(lim), y: H - 6, "text-anchor": "end" }, g, "more Harris districts →");
+  D.states.forEach((st, i) => {
+    const cy = m.t + i * rowH + rowH / 2, row = el("g", { tabindex: 0 }, g);
+    el("text", { x: m.l - 10, y: cy + 4, "text-anchor": "end", class: "lbl-strong" }, row, narrow ? st.st : st.name);
+    if (st.net !== 0) el("rect", { x: Math.min(x(0), x(st.net)), y: cy - 9, width: Math.abs(x(st.net) - x(0)), height: 18, rx: 2, fill: st.net > 0 ? "var(--dem)" : "var(--rep)" }, row);
+    const lbl = st.net === 0 ? "no change" : `+${Math.abs(st.net)} ${st.net > 0 ? "Harris" : "Trump"}`;
+    el("text", { x: st.net >= 0 ? x(Math.max(st.net, 0)) + 6 : x(0) + 6, y: cy + 4, class: "lbl" }, row, lbl);
+    el("text", { x: W - m.r, y: cy + 4, "text-anchor": "end" }, row, narrow ? `${st.d24}→${st.d26}/${st.n}` : `Harris seats ${st.d24} → ${st.d26} of ${st.n}`);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Change in districts carried by each 2024 candidate, old lines to new lines, in the nine redrawn states.");
+  host.prepend(s);
+}
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  margin: ["Two-party margin", "One candidate's share of the votes cast for the two major parties minus the other's. Leaving out third-party votes makes districts with and without a strong third candidate comparable.", "pp"],
+  redistricting: ["Redistricting", "Redrawing the boundaries of congressional districts. It normally happens once a decade, after the census, but nine states redrew mid-decade for 2026. The same votes can produce different seat counts depending on where the lines fall."],
+  swing: ["Swing", "How far the margin moves from one election to the next, in percentage points. A 4-point swing turns a 1-point loss into a 3-point win."],
+  uniform: ["Uniform swing", "A simple simulation: add the same swing to every district at once and see which ones cross from one party to the other. Real elections are lumpier, so it measures how hard a map is, not what will happen."],
+  pp: ["Percentage points", "The plain difference between two percentages: 48% to 52% is a 4-point (pp) gap.", "pp"],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { if (!document.getElementById("step-text").childElementCount) goStep(1); drawWave(); drawStates(); colorStrip(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+/* site-header:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>
