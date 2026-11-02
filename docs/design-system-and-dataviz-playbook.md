@@ -226,6 +226,8 @@ They work **in sequence**, each one narrowing what the next has to explain. Use 
 6. **Accessibility:** color never carries meaning alone, every chart has a table view, keyboard focus is visible, and motion respects "reduce motion".
 7. **Interaction:** hover/tap tooltips on every mark, with hit targets larger than the marks; filters in one row above the charts.
    - **Topic filter (home page):** text buttons above the story list (All · NBA · Weather, each with its count). The chosen topic is underlined in ink, not orange, because orange is reserved for the signal. 44 px tap targets; the choice is kept in the address so a filtered list can be shared.
+   - **Site header:** pinned to the top while scrolling (same background as the page, so nothing shows through). On phones it slides away while you scroll down and comes back on any scroll up, so it never eats reading space. Anchor links land below it. Menu order: Stories, Dashboards, About, search icon, light/dark button; icons are 44 px tap targets in `--ink-2`, hover in `--amber`.
+   - **Search:** a page, not a pop-over (`search/`), so it works the same on every page and phone. Results update as you type and show the type (Story, Dashboard, Stats, explained), topic and date; matched words are bold ink, never colored. The query is kept in the address (`?q=`).
 8. **Trust signals:** the data source on every page, a methods note, and clearly labeled modeled data. NBA pages keep the "not affiliated with the NBA" line.
 9. **Sample sizes:** say how many years (or games, or shots) a figure is out of; mark uncertain changes as "at the edge" or "noise", not "signal".
 
