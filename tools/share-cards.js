@@ -393,6 +393,43 @@ function playerProfileCard() {
   </div>`;
 }
 
+function midtermsCard(D) {
+  // Mini version of the story's dot chart: districts within 10 points, before and after redistricting, with the majority flags.
+  const W = 440, H = 300, R = 10, P = 14, x = (v) => P + (v + R) * (W - 2 * P) / (2 * R);
+  const DEM = "#7b9fe0", REP = "#e8746e";
+  const row = (list, cy, t) => {
+    const near = list.filter((d) => Math.abs(d.m) <= R).map((d) => -d.m).sort((a, b) => a - b), placed = [];
+    let dots = "";
+    for (const v of near) {
+      const px = x(v); let k = 0, y = 0;
+      for (;;) { y = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 9; if (!placed.some((p) => Math.abs(p.px - px) < 9 && Math.abs(p.y - y) < 9)) break; k++; }
+      placed.push({ px, y });
+      dots += `<circle cx="${px.toFixed(1)}" cy="${(cy + y).toFixed(1)}" r="4" fill="${v < 0 ? DEM : REP}"/>`;
+    }
+    const fx = x(t);
+    return dots + `<line x1="${fx}" x2="${fx}" y1="${cy - 46}" y2="${cy + 46}" stroke="${C.mist}" stroke-width="3"/>`;
+  };
+  return `${base}<style>
+    .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 80px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart text { font-family: "IBM Plex Sans"; font-size: 17px; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 26px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Politics · 2026 midterms</p><h1>Redistricting moved the line</h1>
+      <p class="dek">On the new district maps, a House majority takes a ${D.t26[0]}-point swing toward Democrats, up from ${D.t24[0]}.</p></div>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <text x="${P}" y="20">2024 maps</text>${row(D.d24, 84, D.t24[0])}
+      <text x="${P}" y="170">2026 maps</text>${row(D.districts, 234, D.t26[0])}
+      <text x="${x(D.t26[0]) + 10}" y="166" style="fill:${C.mist};font-weight:600">+${(D.t26[0] - D.t24[0]).toFixed(1)} pts</text>
+    </svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -420,6 +457,8 @@ function homeCard() {
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
+  const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
+  const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -432,6 +471,7 @@ function homeCard() {
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
+    ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
