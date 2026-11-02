@@ -7,7 +7,7 @@
  *
  * What it reads (all from this repo, so nothing is typed twice):
  *   - home page story cards (index.html): title, summary, topic, date, plus each story's meta description
- *   - dashboards index cards (nba/dashboards/index.html)
+ *   - dashboards index cards (nba/dashboards/index.html) and off-site dashboards on the hub (dashboards/index.html)
  *   - each Stats, explained section (explained/index.html): heading, "also called" line, summary, and its text
  *   - the About, Stats explained and Dashboards pages themselves
  * Daily dashboard refreshes don't change titles or summaries, so they don't need a rebuild.
@@ -48,6 +48,14 @@ for (const m of dashIndex.matchAll(/<a class="dash" href="([^"]+)">([\s\S]*?)<\/
     kw: "dashboard daily " + pick(body, /<p class="kicker">([\s\S]*?)<\/p>/), body: "", url: "nba/dashboards/" + href, date: "" });
 }
 
+// Dashboards that live on another site (e.g. the Weather Almanac), from the dashboards hub.
+const hub = read("dashboards/index.html");
+for (const m of hub.matchAll(/<a class="hub-card" data-topic="([a-z-]+)" href="(https?:[^"]+)">([\s\S]*?)<\/a>/g)) {
+  const [, topic, href, body] = m;
+  items.push({ type: "Dashboard", topic, title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
+    kw: "dashboard daily " + pick(body, /<p class="kicker">([\s\S]*?)<\/p>/) + " " + pick(body, /<p class="meta">([\s\S]*?)<\/p>/), body: "", url: href, date: "" });
+}
+
 // Stats, explained: one entry per section, linked to its anchor.
 const ex = read("explained/index.html");
 const toc = Object.fromEntries([...ex.matchAll(/<li><a href="#([^"]+)">([\s\S]*?)<\/a><\/li>/g)].map((m) => [m[1], text(m[2])]));
@@ -60,6 +68,7 @@ for (const m of ex.matchAll(/<section class="entry" id="([^"]+)">([\s\S]*?)<\/se
 
 // Pages.
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
+page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
 page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
