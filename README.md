@@ -15,12 +15,15 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | --- | --- |
 | `index.html` | Home page: latest stories |
 | `about/` | About and contact |
+| `search/` | Search page; its index is built by `tools/search-index.js` |
 | `explained/` | Stats, explained: plain-language reference for the numbers in every story (anchors per concept; story pop-ups link here) |
 | `weather/` | One folder per weather story |
 | `nba/` | One folder per NBA story |
-| `nba/dashboards/` | Index of the daily NBA dashboards; `team-ratings/` and `game-overview/` are generated in `nba-analytics` and committed to `main` each morning (see CLAUDE.md) |
+| `nba/dashboards/` | Index of the daily NBA dashboards; `team-ratings/`, `game-overview/`, `team-profile/` and `player-profile/` are generated in `nba-analytics` and committed to `main` each morning (see CLAUDE.md) |
 | `stories/` | Redirect pages only, for stories that moved (old NBA addresses → `nba/...`, `phoenix-after-dark` → `weather/...`) |
 | `assets/brand/` | Logo kit: mark, full logo, app icon (favicon.ico sits at the root) |
 | `assets/site.css` | Shared styles for home and About (story pages carry their own) |
 | `404.html` | Page-not-found |
+| `tools/search-index.js` | Rebuilds the search index in `search/index.html`. Claude runs it when stories or dashboards are added. |
+| `tools/apply-header.py` | Copies the header's search icon, sticky CSS and script into pages and templates. |
 | `tools/share-cards.js` | Builds the link-preview images (`share.png` per story and per dashboard, `assets/share-home.png`). Claude runs it. |

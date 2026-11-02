@@ -102,31 +102,35 @@ From the Game Overview dashboard (`nba/dashboards/game-overview/`). Checked with
 | Home | Solid Teal `#0A3746` | Solid Sky `#7FC4D6` |
 | Away | `#FFFFFF` fill, `#0A3746` outline | Teal `#0A3746` fill, `#7FC4D6` outline |
 
-- Checked: home vs away fill ΔE ≥ 46 in every simulation; the mark (and the away outline) is 6:1 or better against every zone tint, card and page in both themes.
+- Checked: home vs away fill ΔE ≥ 46 in every simulation; the mark (and the away outline) is 6:1 or better against the card and page in both themes, and 4.3:1 or better against every zone tint (Nov 2, 2026 tints).
 - In dark mode the away fill equals the card color, so the outline is the whole mark: keep it at least 1.5 px.
 
 **The deciding factor:** on Game Overview, orange (`--amber`: Burnt light, Orange dark) marks **only the one factor that decided the game**. Every other edge is gray (`--ghost`). Checked: signal vs gray ΔE ≥ 27 in every simulation. The gray is recessive by design (1.65:1 on the card), so each factor also carries its name and value in text.
 
-**Shot-zone tints: court areas only.** Background fills for the five zones, never a data encoding. Every zone is labeled with its name on the court, and every key chip sits beside its word.
+**Shot-zone tints: court areas only** (redone Nov 2, 2026 as "option D"). Background fills for the five zones, never a data encoding. Three rules travel with them:
+- **Zone lines** between every pair of touching zones, in `--z-line`, 3:1 or better against every fill.
+- **Zone names on the court**, haloed in their own zone's fill.
+- **The key's swatches are the fills themselves**, outlined in `--z-line`, each beside its word.
 
-| Zone | Light fill | Light chip | Dark fill | Dark chip |
-|---|---|---|---|---|
-| Rim | `#E6DFF2` | `#9A88C8` | `#2C2C4A` | `#A99AD6` |
-| Paint | `#E4E1DB` | `#A59C92` | `#273A42` | `#A8A097` |
-| Midrange | `#F2E4C9` | `#C69A52` | `#353528` | `#B58A3A` † |
-| Corner 3 | `#DBEFE1` | `#5FAE7E` | `#1D3B31` | `#74C193` |
-| Above the break 3 | `#DCEBF3` | `#6EABC9` | `#143C4C` | `#658BA7` † |
+| Zone | Light fill | Dark fill |
+|---|---|---|
+| Rim | `#D5CCE8` | `#231933` |
+| Paint | `#F7F1E9` | `#3C342A` |
+| Midrange | `#EADDC1` | `#5A4B2C` |
+| Corner 3 | `#D8FCEA` | `#002719` |
+| Above the break 3 | `#B2CFE1` | `#315265` |
+| Zone line (`--z-line`) | `#75706D` | `#8A9FA3` |
 
-† Replaced after the checks (Oct 30, 2026):
-- **Dark Above-the-break chip** `#7FC4D6` → `#658BA7`. The original was identical to the dark **home** color (ΔE 0), so the key chip read as "home team". The replacement is ΔE ≥ 16 from home in every simulation.
-- **Dark Midrange chip** `#D3A865` → `#B58A3A`. The original was only ΔE 5.3 (protan) from the Orange **signal**, so the zone could read as "the deciding factor". The replacement is ΔE 8.5 or more, and is ≥ 8.7 from every other chip.
+Code: `nba-analytics/dashboards/shared/` (`court_tokens.css`, `court.js`, `zone_key.html`), shared by Game Overview and Player Profile.
 
-What the checks found, and why the rest is allowed:
-- **As a data palette, this set fails** the validator (low chroma by design, and some pairs collapse in simulation). It is allowed **only** as labeled area tints, which is why the labeling rule above is required, not optional.
-- Pairs that stay close for some readers: Paint vs Corner 3 chips (deutan ΔE 2.3 light, 4.2 dark), Rim vs Paint chips (tritan 4.4 light, 2.8 dark), and Corner 3 vs Above-the-break chips in light mode (tritan 2.9). The labels carry the meaning.
-- Neighbouring **fills** are deliberately faint (ΔE 0.6-6.7). Corner 3 and Above the break are nearly identical with tritanopia (ΔE 0.6 light, 2.0 dark), so **draw the boundary line between them** (where the arc meets the corner line), like the other court lines.
-- Light-mode chips are 2.3-2.8:1 on Paper and 2.5-3.1:1 on white (validator WARN). That's acceptable only because each chip sits beside its word; never use a chip alone.
-- None of these tints or chips is a chart token. They are not used outside the court.
+What the checks found (Nov 2, 2026; OKLab ΔE×100, worst of normal vision and the Machado 2009 protan / deutan / tritan simulations):
+- **Touching zones differ in lightness as well as hue**, so they hold up for every type of color vision checked. Worst touching pair: ΔE 9.0 dark, 5.1 light (the Oct 30 set was 1.7 and 0.6, about the limit of what can be seen).
+- **Corner 3 vs Above the break**, the narrow strip where a small area needs a bigger difference: ΔE 17.5 dark, 12.3 light.
+- **Lines:** 3.0:1 or better against every fill in both modes (the Oct 30 lines were drawn in the card color, 1.03:1 in dark mode, and disappeared).
+- **Shot marks:** made dots (`--ink`) 7.5:1 or better on every fill; missed × (`--ink-3`) 3.5:1 or better. Zone names (`--ink-2`) 6:1 or better.
+- **Away from the signal colors:** every fill is ΔE ≥ 29 from Burnt/Orange and ≥ 9 from the light-orange "at the edge" color in its mode, so no zone reads as a signal.
+- None of these tints is a chart token. They are not used outside the court.
+- **Retired (Oct 30 set):** the separate saturated key chips (`--zc-*`). They didn't look like the dark fills, so the key couldn't be matched to the court.
 
 ### Website tokens (as live)
 
@@ -226,6 +230,8 @@ They work **in sequence**, each one narrowing what the next has to explain. Use 
 6. **Accessibility:** color never carries meaning alone, every chart has a table view, keyboard focus is visible, and motion respects "reduce motion".
 7. **Interaction:** hover/tap tooltips on every mark, with hit targets larger than the marks; filters in one row above the charts.
    - **Topic filter (home page):** text buttons above the story list (All · NBA · Weather, each with its count). The chosen topic is underlined in ink, not orange, because orange is reserved for the signal. 44 px tap targets; the choice is kept in the address so a filtered list can be shared.
+   - **Site header:** pinned to the top while scrolling (same background as the page, so nothing shows through). On phones it slides away while you scroll down and comes back on any scroll up, so it never eats reading space. Anchor links land below it. Menu order: Stories, Dashboards, About, search icon, light/dark button; icons are 44 px tap targets in `--ink-2`, hover in `--amber`.
+   - **Search:** a page, not a pop-over (`search/`), so it works the same on every page and phone. Results update as you type and show the type (Story, Dashboard, Stats, explained), topic and date; matched words are bold ink, never colored. The query is kept in the address (`?q=`).
 8. **Trust signals:** the data source on every page, a methods note, and clearly labeled modeled data. NBA pages keep the "not affiliated with the NBA" line.
 9. **Sample sizes:** say how many years (or games, or shots) a figure is out of; mark uncertain changes as "at the edge" or "noise", not "signal".
 

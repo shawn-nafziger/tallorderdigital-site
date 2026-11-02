@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>Search · Tall Order Digital</title>
+<meta name="description" content="Search Tall Order Digital: data stories, NBA dashboards and Stats, explained.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Search · Tall Order Digital">
+<meta property="og:description" content="Search Tall Order Digital: data stories, NBA dashboards and Stats, explained.">
+<link rel="canonical" href="https://tallorderdigital.com/search/">
+<meta property="og:url" content="https://tallorderdigital.com/search/">
+<meta property="og:image" content="https://tallorderdigital.com/assets/share-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tall Order Digital logo: data stories and visualization, starting with the NBA.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/brand/tod-app-icon-180.png">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/site-header.css">
+<style>
+/* Search page only. Results are filtered in the browser from the index below (built by tools/search-index.js). */
+.search-form { display: flex; gap: 8px; margin-top: 22px; }
+.search-form input { flex: 1; width: 0; min-width: 0; min-height: 48px; padding: 0 14px; border: 1px solid var(--ink-3); border-radius: 6px;
+  background: var(--surface); color: var(--ink); font: 400 18px var(--font-body); }
+.search-form input::placeholder { color: var(--ink-3); }
+.search-form input:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.search-form button { min-height: 48px; padding: 0 16px; border: 1px solid var(--ink); border-radius: 6px; background: var(--ink); color: var(--bg);
+  font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
+.search-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.search-status { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 14px; min-height: 1.4em; }
+.try { color: var(--ink-2); margin-top: 6px; }
+.try a { display: inline-block; margin: 6px 6px 0 0; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 999px; text-decoration: none;
+  font: 400 14px var(--font-body); color: var(--ink-2); }
+.try a:hover { color: var(--ink); border-color: var(--ink-3); }
+.results { list-style: none; margin: 8px 0 0; padding: 0; }
+.hit { display: grid; gap: 6px; padding: 18px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
+.hit .kicker { margin: 0; }
+.hit h2 { font-size: clamp(22px, 3.6vw, 28px); }
+.hit:hover h2 { color: var(--amber); }
+.hit .dek { color: var(--ink-2); max-width: 36em; }
+.hit mark { background: none; color: var(--ink); font-weight: 600; }
+.hit h2 mark { font-weight: inherit; }
+</style>
+<script src="../assets/theme.js" defer></script>
+<script src="../assets/site-header.js" defer></script>
+</head>
+<body>
+<header class="site-bar wrap">
+  <a class="brand" href="../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../#stories">Stories</a><a href="../nba/dashboards/">Dashboards</a><a href="../about/">About</a><a class="nav-search" href="./" aria-label="Search" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+<main class="wrap">
+  <section aria-labelledby="search-h">
+    <p class="kicker">Search</p>
+    <h1 id="search-h">Find a story, dashboard or stat</h1>
+    <form class="search-form" role="search" action="./" method="get">
+      <label for="q" class="sr-only">Search the site</label>
+      <input id="q" name="q" type="search" placeholder="Story, dashboard or stat" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+      <button type="submit">Search</button>
+    </form>
+    <p class="search-status" role="status" aria-live="polite"></p>
+    <div class="try" id="try"><p>Popular searches:</p><p>
+      <a href="?q=net+rating">net rating</a><a href="?q=rookie">rookie</a><a href="?q=shot+zones">shot zones</a><a href="?q=chance+wobble">chance wobble</a><a href="?q=Phoenix">Phoenix</a><a href="?q=dashboard">dashboards</a></p></div>
+    <ol class="results" id="results"></ol>
+    <noscript><p>Search needs JavaScript. Every story is listed on the <a href="../#stories">home page</a>, and every stat on <a href="../explained/">Stats, explained</a>.</p></noscript>
+  </section>
+</main>
+<footer class="site-foot wrap">
+  <p>NBA data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>© 2026 Tall Order Digital</p>
+  <p>No cookies. Visits are counted anonymously (<a href="../about/#privacy">privacy</a>).</p>
+</footer>
+<script>
+// Search index: written by tools/search-index.js. Don't edit by hand.
+const INDEX = /* search-index:start */[{"type":"Story","topic":"nba","title":"Is Miami just unlucky?","sum":"A pundit says the 0–4 Heat are bound to improve. His luck numbers are private, but the shot data around them isn't. Verdict: holds up, on the part we can check.","kw":"Check the Take · NBA","body":"Zach Kram says Miami's ugly start is partly bad luck and the Heat are bound to improve. His luck numbers are private, but the public shot data around them isn't. Here's what it shows.","url":"nba/check-the-take-heat-luck/","date":"Oct 30, 2026"},{"type":"Story","topic":"nba","title":"Ready Now","sum":"Yaxel Lendeborg is a 24-year-old rookie playing star minutes. Older rookies usually get smaller jobs and grow less. How unusual his start is, and what five games can tell us.","kw":"NBA","body":"Yaxel Lendeborg is a 24-year-old rookie playing star minutes. Older rookies usually get smaller jobs and grow less. Here's how unusual his start is, and what five games can and can't tell us.","url":"nba/ready-now-rookie-age/","date":"Oct 29, 2026"},{"type":"Story","topic":"nba","title":"The Injury Tax","sum":"Tyrese Haliburton is out again, and he isn't alone. Last season, teams played 5.9 points per 100 possessions worse without their 25-point scorer. Who's missing now.","kw":"NBA","body":"Tyrese Haliburton is out again, and he isn't alone. What last season says about how much a missing star costs his team, and who's missing right now.","url":"nba/injury-tax-missing-stars/","date":"Oct 29, 2026"},{"type":"Story","topic":"weather","title":"Phoenix After Dark","sum":"For most of the last century, a Phoenix night that stayed at 90°F or warmer almost never happened. Now it happens every summer. In 2024 it happened 39 times.","kw":"Weather","body":"Before 1970, a Phoenix night that stayed at 90°F or warmer almost never happened. Now it happens every summer. In 2024 it happened 39 times.","url":"weather/phoenix-after-dark/","date":"Oct 28, 2026"},{"type":"Story","topic":"nba","title":"New Team, New Spots","sum":"Shot maps for the biggest names who changed teams. One week in, their percentages are noise, but where they shoot already shows their new roles.","kw":"NBA","body":"Some of the league's biggest names changed teams. One week in, their shooting percentages are noise, but their shot maps already show their new roles.","url":"nba/new-team-shot-maps/","date":"Oct 28, 2026"},{"type":"Story","topic":"nba","title":"Role Call","sum":"One week in, a player's shooting is noise. His role isn't. Whose role has really changed this season, and whose only looks like it.","kw":"NBA","body":"One week in, a player's shooting is noise. His role isn't. Whose role has really changed this season, and whose only looks like it.","url":"nba/role-call-minutes-usage/","date":"Oct 28, 2026"},{"type":"Story","topic":"nba","title":"The Shot Diet","sum":"One week in, a team's 3-point percentage is noise. Where it shoots from isn't, and a few teams have really changed.","kw":"NBA","body":"One week in, a team's 3-point percentage is noise. Where it shoots from is not. Five seasons of games show why, and which teams have changed.","url":"nba/shot-diet-three-point-rate/","date":"Oct 28, 2026"},{"type":"Story","topic":"nba","title":"The Early-Season Mirage","sum":"Four games into a season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.","kw":"NBA","body":"Four games into an NBA season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.","url":"nba/early-season-mirage-net-rating/","date":"Oct 28, 2026"},{"type":"Dashboard","topic":"nba","title":"Team Ratings","sum":"Every team's net rating so far this season, and whether it is further from the league average than luck usually allows, or still within normal noise.","kw":"dashboard daily Net rating · Updated daily","body":"","url":"nba/dashboards/team-ratings/","date":""},{"type":"Dashboard","topic":"nba","title":"Game Overview","sum":"Last night's games, one at a time: the score, where each team's shots came from, and the one factor that decided the game.","kw":"dashboard daily Last night · Updated daily from Oct 31, 2026","body":"","url":"nba/dashboards/game-overview/","date":""},{"type":"Dashboard","topic":"nba","title":"Team Profile","sum":"Who each team is so far: how it wins and loses possessions, whether it's getting good shots or just making them, where its shots come from, and who's carrying it.","kw":"dashboard daily Any team · Updated daily from Oct 31, 2026","body":"","url":"nba/dashboards/team-profile/","date":""},{"type":"Dashboard","topic":"nba","title":"Player Profile","sum":"Who each player is so far: how much he carries and how efficiently, good shots or good shooting, his shot chart, how this season compares with last, and a leaderboard.","kw":"dashboard daily Any player · Updated daily from Nov 3, 2026","body":"","url":"nba/dashboards/player-profile/","date":""},{"type":"Stats, explained","topic":"","title":"Chance wobble","sum":"How much a percentage would move by luck alone if the same games were played again. The more shots (or games) behind a number, the smaller its wobble.","kw":"Statisticians call it the standard error Chance wobble chance wobble standard error","body":"Chance wobble Statisticians call it the standard error How much a percentage would move by luck alone if the same games were played again. The more shots (or games) behind a number, the smaller its wobble. The coin-flip version Flip a fair coin 100 times. You expect 50 heads, but you'll usually land somewhere between about 45 and 55. That ±5 is the chance wobble. About 3 times in 4 you'll land in that range. Getting 60 or more heads (twice the wobble) happens only about 1 time in 35. Getting 70 or more (four times) happens about 4 times in 100,000: essentially never by luck. Flip 100 coins Flip 1,000 coins Clear Press a button. Each flip adds a dot at the share of heads. Teal dot : one set of flips. Orange dot : a rare one, more than twice the wobble from 50%, by pure luck. Shaded: the normal wobble (±1) and twice the wobble (±2) for each number of coins. With 100 coins the wobble is ±5 points; with 1,000 coins it shrinks to about ±1.6. In basketball On 369 opponent shots against Miami, the share taken at the rim would normally wobble about ±2.3 points. It was 9.5 points below the league average, about four times the wobble, so it's not a fluke. On only 42 midrange shots, though, the wobble is huge (about ±12 points for a 90% range), so a hot opponent midrange percentage over four games means very little. Our rule of thumb: a gap more than twice the wobble is \"too big to be a fluke.\" Even then, if you check 30 teams at once, one or two will clear that bar by luck, so an early result is a \"watch this,\" not proof.","url":"explained/#chance-wobble","date":""},{"type":"Stats, explained","topic":"","title":"Orange, light orange, gray","sum":"Color tells you how sure we are, and it means the same thing in every story.","kw":"How every chart on this site uses color Orange, light orange, gray colors","body":"Orange, light orange, gray How every chart on this site uses color Color tells you how sure we are, and it means the same thing in every story. Orange : the real signal. A change or gap bigger than normal chance wobble. Light orange : at the edge. At least 80% of the way to that bar: worth watching, not yet proven. Gray : noise. Within what luck alone could produce. Other colors (like teal) are for comparison: last season, the league, another team. Every chart says what its colors mean underneath.","url":"explained/#colors","date":""},{"type":"Stats, explained","topic":"","title":"Correlation","sum":"How closely two numbers move together, from 0 (not at all) to 1 (perfectly in step).","kw":"Written as r Correlation correlation","body":"Correlation Written as r How closely two numbers move together, from 0 (not at all) to 1 (perfectly in step). Each dot is one made-up player. The more the dots hug a line, the closer to 1. In basketball A team's share of shots at the rim allowed in its first four games had a correlation of 0.74 with the rest of its season: defenses control where opponents shoot. Its opponents' 3-point percentage in those four games had a correlation of about 0 with the rest: that part is mostly luck. Rough guide for our stories: below 0.2, the first number tells you almost nothing about the second; around 0.5, it's a useful hint; above 0.7, it's a good guide.","url":"explained/#correlation","date":""},{"type":"Stats, explained","topic":"","title":"Totals, not averages","sum":"Rates like shooting percentage are computed from season totals, not by averaging each game's percentage.","kw":" Totals, not averages totals","body":"Totals, not averages Rates like shooting percentage are computed from season totals, not by averaging each game's percentage. In basketball A player goes 1-for-1 one night (100%) and 4-for-16 the next (25%). Averaging the two games says 62.5%. He actually made 5 of 17 shots: 29.4%. The 1-for-1 night shouldn't count as much as a 16-shot night, and totals take care of that.","url":"explained/#totals","date":""},{"type":"Stats, explained","topic":"","title":"Median and the middle half","sum":"The median is the middle value: half the players are above it, half below. The \"middle half\" is the range covering the middle 50% of players.","kw":" Median & middle half median","body":"Median and the middle half The median is the middle value: half the players are above it, half below. The \"middle half\" is the range covering the middle 50% of players. In basketball If nine rookies improved by 0, 0, 1, 1, 2, 2, 3, 3 and 15 points per 36, the average is 3, pulled up by one breakout. The median is 2, which better describes the typical rookie. The middle half runs from 1 to 3.","url":"explained/#median","date":""},{"type":"Stats, explained","topic":"","title":"Percentage points","sum":"The plain difference between two percentages.","kw":"Written as pp Percentage points pp","body":"Percentage points Written as pp The plain difference between two percentages. In basketball A team going from 35% to 38% on threes improved by 3 percentage points (3 pp). Saying \"3%\" would be wrong: 3% of 35% is only about 1 point.","url":"explained/#pp","date":""},{"type":"Stats, explained","topic":"","title":"Per 36 minutes, per 100 possessions","sum":"Ways to compare players or teams fairly when they play different amounts or at different speeds.","kw":" Per 36 & per 100 per 36","body":"Per 36 minutes, per 100 possessions Ways to compare players or teams fairly when they play different amounts or at different speeds. In basketball Per 36: a bench player who scores 8 points in 18 minutes is scoring 16 per 36, the same rate as a starter who scores 16 in 36. Per 100 possessions: a fast team gets more trips down the floor, so it scores more points per game without being better; per 100 possessions removes that.","url":"explained/#per-36","date":""},{"type":"Stats, explained","topic":"","title":"Net rating","sum":"How many more points a team scores than it allows per 100 possessions. Zero is exactly average.","kw":" Net rating net rating","body":"Net rating How many more points a team scores than it allows per 100 possessions. Zero is exactly average. In basketball +5 means a team outscores opponents by 5 every 100 trips down the floor, a solid playoff team. Across the 2025-26 season, each point of net rating was worth about 2.2 wins over 82 games. A player's \"on-court\" net rating is the same idea, counting only the minutes he played; it's noisy, because it depends on his teammates and opponents too.","url":"explained/#net-rating","date":""},{"type":"Stats, explained","topic":"","title":"Effective FG% and true shooting","sum":"Shooting percentages that give threes (and, for true shooting, free throws) their full value.","kw":"eFG% and TS% eFG% & true shooting efg","body":"Effective FG% and true shooting eFG% and TS% Shooting percentages that give threes (and, for true shooting, free throws) their full value. In basketball Going 4-for-10 on threes scores 12 points; going 5-for-10 on twos scores 10. Plain FG% says the second is better (50% vs 40%); effective FG% says the first is (60% vs 50%). True shooting also counts free throws, so it's the best single measure of scoring efficiency. League average true shooting has been about 57–58% in recent seasons.","url":"explained/#efg","date":""},{"type":"Stats, explained","topic":"","title":"Shot zones","sum":"The five areas of the half court the NBA uses to group shots.","kw":" Shot zones zones","body":"Shot zones The five areas of the half court the NBA uses to group shots. The baseline is at the top, with the basket just below it. Rim: the restricted area right under the basket, the easiest shots in the game. Paint: the rest of the lane, mostly floaters and hooks. Midrange: every other 2-pointer. Corner 3: the short threes from either corner. Above-the-break 3: all other threes. In basketball Where a team's shots come from is a choice, and it settles within a few games. How many of them go in takes much longer to settle. That's why our stories trust early changes in a team's shot zones well before they trust its shooting percentages.","url":"explained/#zones","date":""},{"type":"Stats, explained","topic":"","title":"3-point attempt rate","sum":"The share of a team's (or player's) shots that are threes.","kw":" 3-point attempt rate three point rate","body":"3-point attempt rate The share of a team's (or player's) shots that are threes. In basketball 42% means 42 of every 100 shots are threes. It's a decision about what shots to take, so it settles quickly; 3-point percentage (how many go in) is much noisier and takes months to trust.","url":"explained/#three-point-rate","date":""},{"type":"Stats, explained","topic":"","title":"Expected eFG%","sum":"What a set of shots \"should\" produce if each one went in at the league's rate for its spot on the floor.","kw":" Expected eFG% expected","body":"Expected eFG% What a set of shots \"should\" produce if each one went in at the league's rate for its spot on the floor. In basketball A team whose opponents take lots of shots at the rim will allow a high expected eFG%, because rim shots go in most often. If opponents' actual eFG% is far above expected, they're making more than their locations predict: often luck, sometimes great shooters. Ours uses location only. Private tracking models (like GeniusIQ, from the company behind Second Spectrum) also know how close the defender was and what kind of shot it was, so they're sharper. We say which one a story uses.","url":"explained/#expected","date":""},{"type":"Stats, explained","topic":"","title":"Usage","sum":"The share of his team's possessions a player finishes, with a shot, free throws or a turnover, while he's on the floor.","kw":" Usage usage","body":"Usage The share of his team's possessions a player finishes, with a shot, free throws or a turnover, while he's on the floor. In basketball With five players on the floor, about 20% is average. Stars who run the offense sit around 28–35%. Usage tells you how big a player's role is, not how well he plays it.","url":"explained/#usage","date":""},{"type":"Stats, explained","topic":"","title":"Regression","sum":"A way to compare things while holding something else steady.","kw":" Regression regression","body":"Regression A way to compare things while holding something else steady. In basketball Older rookies tend to be drafted later. To ask whether age itself matters, we compared rookies taken at similar draft spots, so \"older\" doesn't just mean \"picked later.\" A regression does that comparison for every draft spot at once.","url":"explained/#regression","date":""},{"type":"Page","topic":"","title":"NBA dashboards","sum":"NBA dashboards that rebuild every morning: team ratings and last night's games, with the context to read them.","kw":"dashboards daily updated every morning","body":"","url":"nba/dashboards/","date":""},{"type":"Page","topic":"","title":"Stats, explained","sum":"The numbers behind Tall Order Digital's stories, in plain words: chance wobble, correlation, per-36, net rating, true shooting and more, with basketball examples.","kw":"glossary reference terms definitions math","body":"","url":"explained/","date":""},{"type":"Page","topic":"","title":"About","sum":"About Shawn Nafziger and Tall Order Digital.","kw":"Shawn Nafziger contact email privacy cookies hire","body":"","url":"about/","date":""}]/* search-index:end */;
+(function () {
+  var input = document.getElementById("q"), list = document.getElementById("results");
+  var status = document.querySelector(".search-status"), tryBox = document.getElementById("try");
+  var fold = function (s) { return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim(); };
+  var docs = INDEX.map(function (d) {
+    return { d: d, f: [[fold(d.title), 10], [fold(d.kw), 6], [fold(d.sum), 3], [fold(d.body), 1]].map(function (x) { return [" " + x[0], x[1]]; }) };
+  });
+  var esc = function (s) { return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  function mark(s, words) {
+    var out = esc(s);
+    words.forEach(function (w) {
+      var re = new RegExp("(^|[^A-Za-z0-9])(" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[A-Za-z0-9]*)", "gi");
+      out = out.replace(re, "$1<mark>$2</mark>");
+    });
+    return out;
+  }
+  function score(doc, words, phrase) {
+    var total = 0;
+    for (var i = 0; i < words.length; i++) {
+      var best = 0;
+      doc.f.forEach(function (f) { if (f[0].indexOf(" " + words[i]) >= 0 && f[1] > best) best = f[1]; });
+      if (!best) return 0;
+      total += best;
+    }
+    if (doc.f[0][0].indexOf(" " + phrase) >= 0) total += 15;
+    // A Stats, explained section whose anchor is exactly the query ("efg", "usage") comes first.
+    if (doc.d.url.slice(-phrase.length - 1) === "#" + phrase.replace(/ /g, "-")) total += 25;
+    return total;
+  }
+  var when = function (d) { return d ? Date.parse(d) || 0 : 0; };
+  function run(q) {
+    var phrase = fold(q), words = phrase ? phrase.split(" ") : [];
+    tryBox.hidden = words.length > 0;
+    if (!words.length) { list.innerHTML = ""; status.textContent = ""; return; }
+    var hits = docs.map(function (doc) { return { doc: doc.d, s: score(doc, words, phrase) }; })
+      .filter(function (h) { return h.s > 0; })
+      .sort(function (a, b) { return b.s - a.s || when(b.doc.date) - when(a.doc.date); }).slice(0, 30);
+    status.textContent = hits.length ? hits.length + (hits.length === 1 ? " result" : " results") + " for “" + q.trim() + "”"
+      : "Nothing found for “" + q.trim() + "”. Try a shorter word, or browse the stories on the home page.";
+    list.innerHTML = hits.map(function (h) {
+      var d = h.doc, topic = { nba: "NBA", weather: "Weather" }[d.topic];
+      var kicker = [d.type, topic, d.date].filter(Boolean).join(" · ");
+      return '<li><a class="hit" href="../' + esc(d.url) + '"><p class="kicker">' + esc(kicker) + "</p><h2>" + mark(d.title, words) + "</h2>" +
+        (d.sum ? '<p class="dek">' + mark(d.sum, words) + "</p>" : "") + "</a></li>";
+    }).join("");
+  }
+  var timer;
+  function sync() {
+    try {
+      var url = new URL(location.href);
+      if (input.value.trim()) url.searchParams.set("q", input.value.trim()); else url.searchParams.delete("q");
+      history.replaceState(null, "", url.pathname + url.search);
+    } catch (e) { /* the results still update */ }
+  }
+  input.addEventListener("input", function () { run(input.value); clearTimeout(timer); timer = setTimeout(sync, 400); });
+  document.querySelector(".search-form").addEventListener("submit", function (e) {
+    e.preventDefault(); run(input.value); sync();
+    var first = list.querySelector("a"); if (first) first.focus();
+  });
+  var start = new URLSearchParams(location.search).get("q") || "";
+  input.value = start;
+  run(start);
+})();
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>

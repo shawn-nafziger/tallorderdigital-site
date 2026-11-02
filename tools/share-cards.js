@@ -360,6 +360,39 @@ function teamProfileCard() {
   </div>`;
 }
 
+function playerProfileCard() {
+  // A fixed, made-up usage vs true-shooting cloud with one player ringed, plus dashed league lines.
+  // No names or numbers, so the card never goes out of date.
+  const W = 440, H = 380, m = 24;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pts = Array.from({ length: 70 }, () => { const u = .12 + rnd() * .55 + (rnd() - .5) * .1; return [u, .2 + rnd() * .55 + (rnd() - .5) * .15 - Math.max(0, u - .6) * .3]; });
+  const X = (v) => m + v * (W - 2 * m), Y = (v) => H - m - v * (H - 2 * m);
+  const dots = pts.map(([u, s]) => `<circle cx="${X(u).toFixed(1)}" cy="${Y(s).toFixed(1)}" r="7" fill="${C.slateDark}"/>`).join("");
+  const me = [.86, .74];
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Dashboard · Updated daily</p><h1>Player Profile</h1>
+      <p class="dek">Every player on one page: how much he carries and how well, good shots vs good shooting, and this season against last.</p></div>
+    <div class="chart"><svg width="${W}" height="${H + 30}" viewBox="0 0 ${W} ${H + 30}">
+      <line x1="${X(.42)}" y1="${m}" x2="${X(.42)}" y2="${H - m}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2" stroke-dasharray="6 6"/>
+      <line x1="${m}" y1="${Y(.48)}" x2="${W - m}" y2="${Y(.48)}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2" stroke-dasharray="6 6"/>
+      ${dots}
+      <circle cx="${X(me[0])}" cy="${Y(me[1])}" r="20" fill="none" stroke="${C.sky}" stroke-width="4"/>
+      <circle cx="${X(me[0])}" cy="${Y(me[1])}" r="11" fill="${C.sky}"/>
+      <text x="${W - m}" y="${H + 22}" text-anchor="end" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">usage →</text>
+      <text x="${m}" y="${H + 22}" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">↑ true shooting</text>
+    </svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -398,6 +431,7 @@ function homeCard() {
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
+    ["nba/dashboards/player-profile/share.png", playerProfileCard()],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).

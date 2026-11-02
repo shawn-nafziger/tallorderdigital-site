@@ -116,3 +116,6 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
   .wm-1 { font-size: 20px; }
   .wm-2 { font-size: 7.3px; }
 }
+
+/* Visually hidden, still read by screen readers (form labels, live status). */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
