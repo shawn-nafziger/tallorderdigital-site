@@ -7,7 +7,7 @@
  *
  * Re-run it in the same PR as any new or moved page. Every folder with an
  * index.html is listed, except redirect pages (marked noindex), the search
- * page and the 404 page. Addresses come from each page's canonical link when
+ * page, the 404 page and pages whose canonical link points to another site. Addresses come from each page's canonical link when
  * it has one, so the sitemap always agrees with what the page says about itself.
  */
 const fs = require("fs");
@@ -33,9 +33,11 @@ const urls = pages(ROOT)
   .map(p => {
     const canon = p.html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i);
     const url = canon ? canon[1] : SITE + p.rel;
-    if (!url.startsWith(SITE)) throw new Error(`${p.rel || "home"}: canonical points off-site: ${url}`);
+    // A page whose canonical points to another site belongs in that site's sitemap, not this one.
+    if (!url.startsWith(SITE)) { console.log(`skipped ${p.rel}: canonical is ${url}`); return null; }
     return url;
   })
+  .filter(Boolean)
   .sort((a, b) => (a === SITE ? -1 : b === SITE ? 1 : a.localeCompare(b)));
 
 const dupes = urls.filter((u, i) => urls.indexOf(u) !== i);
