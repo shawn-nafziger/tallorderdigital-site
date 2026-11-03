@@ -123,3 +123,21 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 
 /* Visually hidden, still read by screen readers (form labels, live status). */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
