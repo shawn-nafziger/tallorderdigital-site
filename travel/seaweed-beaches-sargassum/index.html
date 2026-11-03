@@ -149,6 +149,9 @@ h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(38px, 
 .plabel.is-selected::before { background: var(--bg); box-shadow: none; }
 .plabel.minor { display: none; }
 .zoomed .plabel.minor { display: flex; }
+.rarea { display: none; align-items: center; gap: 5px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; pointer-events: none; }
+.rarea::after { content: ""; width: 10px; height: 1.5px; background: var(--ink-3); opacity: .7; }
+.areas-on .rarea { display: flex; }
 .plabel.mid { display: none; } .midz .plabel.mid { display: flex; }
 .alabel.nd { text-transform: none; letter-spacing: 0; font-family: var(--font-body); font-size: 12px; color: var(--ink-3); font-style: italic; }
 .map-note { position: absolute; left: 10px; top: 10px; z-index: 2; font-size: 12px; color: var(--ink-2); background: color-mix(in srgb, var(--surface) 90%, transparent); border: 1px solid var(--rule); border-radius: 6px; padding: 3px 8px; white-space: nowrap; max-width: calc(100% - 20px); overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
@@ -346,7 +349,7 @@ select.pick { width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px so
     <ul>
       <li>The Atlantic map shows where seaweed was floating and how it moved, not how many tons there were.</li>
       <li>The coastline map shows seaweed <em>approaching</em> the coast. It doesn't measure what washes up on the sand on a given day.</li>
-      <li>Resorts often clean their own beaches every morning, so a stretch can look worse here than it does in front of one hotel.</li>
+      <li>Resorts often clean their own beaches every morning, so a stretch can look worse here than it does in front of one hotel. The gray resort-area names on the map are only there to help you find your area; the colors describe the public water along that stretch, not any one resort.</li>
       <li>Each colored piece of coastline is about 1 km long, but it counts seaweed within 3 km of its middle, so neighboring beaches blend a little.</li>
       <li>"A seaweed month" means satellites spotted seaweed within 3 km of the beach on at least 2 separate days that month. One sighting can be a passing patch; two or more means it kept coming back. A month gets only about 7 clear-sky days, so this is a yes-or-no count, not a precise rate.</li>
       <li>Months with fewer than two clear-sky days are shown gray, not clean.</li>
@@ -440,7 +443,7 @@ function drawKey(atl) {
   document.getElementById('key').innerHTML =
     '<div class="key-title">Coastline color: share of <button type="button" class="term" data-term="clearday">clear-sky days</button> with seaweed floating within 3 km of the beach (May–Sep)</div>' +
     '<div class="key-row">' + LEVELS.map((l, i) => `<span class="key-item"><i style="background:${c[i]}"></i>${l.word} <small>${l.range}</small></span>`).join('') + '</div>' +
-    '<div class="key-note">Tap or hover the coastline for its number.</div>';
+    '<div class="key-note">Tap or hover the coastline for its number. Gray names on land: resort areas, for finding your way.</div>';
 }
 
 // ---- numbers in the story text (always from the data) ----
@@ -462,6 +465,11 @@ const VIEWS = {
   cozumel: { center: [-86.92, 20.47], zoom: 9.9 },
   cancun:  { center: [-86.795, 21.115], zoom: 11.2 },
 };
+// Resort areas: labels on land, for orientation only (never single resorts; see the project rule). Each sits about
+// 1.3 km inland of the GSHHG coastline at that latitude, with its text running inland.
+const AREAS = [
+  ['Cancún Hotel Zone', -86.787, 21.112], ['Punta Maroma', -86.966 - 0.013, 20.725], ['Playacar', -87.082 - 0.013, 20.61],
+  ['Puerto Aventuras', -87.216 - 0.013, 20.505], ['Xpu-Ha', -87.259 - 0.013, 20.47], ['Tulum Hotel Zone', -87.453 - 0.013, 20.165]];
 const MAJOR = new Set(['Holbox', 'Cancún: Caribbean side', 'Playa del Carmen', 'Cozumel: east side', 'Tulum', 'Mahahual']);
 const SHORT = { 'Cancún: north-facing beaches': 'Cancún (north)', 'Cancún: Caribbean side': 'Cancún (Caribbean)', 'Cozumel: west side': 'Cozumel (west)', 'Cozumel: east side': 'Cozumel (east)' };
 
@@ -528,7 +536,8 @@ map.on('load', () => {
   setMode(activeView);
 });
 map.on('zoom', onZoom);
-function onZoom() { const z = map.getZoom(), el = document.getElementById('map'); el.classList.toggle('zoomed', z >= 9.2); el.classList.toggle('midz', z >= 8.4); }
+function onZoom() { const z = map.getZoom(), el = document.getElementById('map'); el.classList.toggle('zoomed', z >= 9.2); el.classList.toggle('midz', z >= 8.4);
+  el.classList.toggle('areas-on', z >= 9.4 && activeView !== 'atlantic' && activeView !== 'compare'); }
 
 // hover / tap on the coastline
 const tip = document.getElementById('tip');
@@ -560,6 +569,10 @@ function addLabels() {
     markers[p.name] = new maplibregl.Marker({ element: el, anchor: 'left', offset: [-4, 0] }).setLngLat([p.lon, p.lat]).addTo(map);
   });
   Object.entries(markers).forEach(([n, m]) => m.getElement().classList.toggle('is-selected', n === current));
+  AREAS.forEach(([name, lon, lat]) => {
+    const el = document.createElement('div'); el.className = 'rarea'; el.textContent = name; el.setAttribute('aria-hidden', 'true');
+    new maplibregl.Marker({ element: el, anchor: 'right' }).setLngLat([lon, lat]).addTo(map);
+  });
 }
 
 function go(view) {
@@ -769,6 +782,7 @@ function setMode(view) {
   if (cmp) drawCmpKey();
   document.getElementById('map-note').hidden = atl || cmp;
   if (!cmp) drawKey(atl);
+  setTimeout(onZoom, 0);
   if (!atl) play(false);
   if (!map.getLayer('cur')) return;
   const vis = (id, on) => map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
