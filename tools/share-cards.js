@@ -241,6 +241,36 @@ function takeHeatCard(D) {
   </div>`;
 }
 
+function startsFastCard(D) {
+  // Pace dumbbells, one row per season: filled sky = first N days, open ring = rest of season.
+  const S = D.seasons, days = D.model.days, vals = S.flatMap((r) => [r.early.pace, r.rest ? r.rest.pace : r.early.pace]);
+  const lo = Math.floor(Math.min(...vals) - 0.3), hi = Math.ceil(Math.max(...vals) + 0.3), W = 470, L = 96, x = (v) => L + (v - lo) * (W - L - 20) / (hi - lo);
+  const rows = S.map((r, i) => { const y = 40 + i * 58, e = x(r.early.pace);
+    const tierFill = { big: C.orange, near: "#8f6230" }[D.vs_last.pace.tier];
+    return `<text x="0" y="${y + 8}" font-family="IBM Plex Mono" font-size="22" fill="${r.rest ? C.sub : C.mist}" font-weight="${r.rest ? 400 : 600}">${r.season}</text>` +
+      (r.rest ? `<line x1="${e}" x2="${x(r.rest.pace)}" y1="${y}" y2="${y}" stroke="${C.slateDark}" stroke-width="6"/>
+        <circle cx="${x(r.rest.pace)}" cy="${y}" r="11" fill="${C.ink}" stroke="${C.sub}" stroke-width="3.5"/>
+        <circle cx="${e}" cy="${y}" r="12" fill="${C.sky}"/>`
+        : `<circle cx="${e}" cy="${y}" r="14" fill="${C.sky}" stroke="${C.mist}" stroke-width="3"/>` +
+          (tierFill ? `<rect x="${e + 24}" y="${y - 8}" width="16" height="16" rx="3" fill="${tierFill}"/>` : "")); }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 92px/.92 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .key { font: 500 19px "IBM Plex Mono"; color: ${C.sub}; margin-top: 4px; text-align: right; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · pace and fouls</p><h1>Every season starts fast</h1>
+      <p class="dek">This season's first ${days} days look fast and whistle-happy. So did every season's. The fair comparison is the same days of past seasons.</p></div>
+    <div class="chart"><svg width="470" height="370" viewBox="0 0 470 370">${rows}</svg>
+      <p class="key">● first ${days} days &nbsp; ○ rest of season · pace</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 // Dashboard cards: built once, so they show the dashboard's shape, not today's numbers or team names.
 function teamRatingsCard(D) {
   const T = [...D.teams].sort((a, b) => b.net.v - a.net.v);
@@ -525,6 +555,8 @@ function homeCard() {
   const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
   const th = fs.readFileSync(path.join(ROOT, "nba/check-the-take-heat-luck/index.html"), "utf8");
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
+  const sf = fs.readFileSync(path.join(ROOT, "nba/every-season-starts-fast-pace-fouls/index.html"), "utf8");
+  const SF = JSON.parse(sf.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
@@ -539,6 +571,7 @@ function homeCard() {
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
+    ["nba/every-season-starts-fast-pace-fouls/share.png", startsFastCard(SF)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
