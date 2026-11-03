@@ -460,6 +460,46 @@ function seaweedCard(CMP) {
   </div>`;
 }
 
+function hotColdCard() {
+  // A fixed, made-up dot plot of players over the hill luck alone would make, with dashed luck lines and
+  // orange dots out in the tails. No names or numbers, so the card never goes out of date.
+  const W = 440, H = 330, y0 = 290, step = 13, r = 5.5, zmax = 3.6;
+  const X = (z) => 20 + (z + zmax) / (2 * zmax) * (W - 40);
+  const pdf = (z) => Math.exp(-z * z / 2);
+  let hill = `M ${X(-zmax)} ${y0}`;
+  for (let z = -zmax; z <= zmax + 1e-9; z += .05) hill += ` L ${X(z).toFixed(1)} ${(y0 - 230 * pdf(z)).toFixed(1)}`;
+  hill += ` L ${X(zmax)} ${y0} Z`;
+  // column heights follow the hill, a few dots past the lines on each side
+  const cols = [];
+  for (let z = -3.1; z <= 3.15; z += .31) cols.push([z, Math.max(1, Math.round(16 * pdf(z) + (Math.abs(z) > 2 ? 0.4 : 0)))]);
+  const dots = cols.map(([z, n]) => Array.from({ length: n }, (_, k) => {
+    const fill = Math.abs(z) > 2 ? C.orange : Math.abs(z) > 1.6 ? "#8f6230" : C.slateDark;
+    return `<circle cx="${X(z).toFixed(1)}" cy="${y0 - r - 1 - k * step}" r="${r}" fill="${fill}"/>`;
+  }).join("")).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 88px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · Dashboard · Updated daily</p><h1>Hot and Cold Shooters</h1>
+      <p class="dek">Hot streak or just luck? Every shooter against an average shooter taking the same shots.</p></div>
+    <div class="chart"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <path d="${hill}" fill="${C.sky}" fill-opacity=".22"/>
+      ${[-2, 2].map((z) => `<line x1="${X(z)}" x2="${X(z)}" y1="20" y2="${y0}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2" stroke-dasharray="6 6"/>`).join("")}
+      ${dots}
+      <line x1="20" x2="${W - 20}" y1="${y0}" y2="${y0}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2"/>
+      <text x="20" y="${H - 6}" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">← colder</text>
+      <text x="${W / 2}" y="${H - 6}" text-anchor="middle" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">luck</text>
+      <text x="${W - 20}" y="${H - 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="15" fill="${C.sub}">hotter →</text>
+    </svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -503,6 +543,7 @@ function homeCard() {
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
+    ["nba/dashboards/hot-cold/share.png", hotColdCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["assets/share-home.png", homeCard()],
