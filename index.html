@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="assets/site-header.css">
 <script src="assets/theme.js" defer></script>
 <script src="assets/site-header.js" defer></script>
+<script src="assets/subscribe.js" defer></script>
 <script src="assets/topic-filter.js" defer></script>
 </head>
 <body>
@@ -215,10 +216,25 @@
     </a>
     <p class="soon">More stories are on the way through the 2026-27 season.</p>
   </section>
+  <section class="subscribe" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="about/#privacy">privacy</a>).</p>
+  </section>
 </main>
 <footer class="site-foot wrap">
   <p>NBA data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p>Weather data: NOAA National Weather Service and Regional Climate Centers (RCC-ACIS).</p>
+  <p><a href="subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital</p>
   <p>No cookies. Visits are counted anonymously (<a href="about/#privacy">privacy</a>).</p>
 </footer>
