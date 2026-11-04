@@ -67,7 +67,7 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 
 /* Home: topic filter above the story list (assets/topic-filter.js). Tap targets 44px tall; the chosen topic is underlined in ink. */
 .section-head { flex-wrap: wrap; gap: 4px 16px; }
-.topic-filter { display: flex; gap: 4px; margin: -12px 0; }
+.topic-filter { display: flex; flex-wrap: wrap; gap: 0 4px; margin: -12px 0; }
 .topic-filter[hidden], .story[hidden] { display: none; }
 .topic-filter button { min-height: 44px; padding: 0 10px; border: 0; background: transparent; cursor: pointer;
   font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }

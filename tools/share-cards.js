@@ -521,6 +521,47 @@ function seaweedCard(CMP) {
   </div>`;
 }
 
+function stateCard(D) {
+  // Mini version of the story's headline chart: Indiana laid over Portugal (its land twin), both at true size,
+  // each in a Lambert equal-area view centered on itself (same method as the page, done here without d3).
+  const pts = (id) => D.outlines[id].map((poly) => poly.map((r) => { const a = []; for (let i = 0; i < r.length; i += 2) a.push([r[i], r[i + 1]]); return a; }));
+  const rad = Math.PI / 180;
+  const laea = (c) => ([lon, lat]) => {
+    const l = (lon - c[0]) * rad, p = lat * rad, p0 = c[1] * rad;
+    const k = Math.sqrt(2 / (1 + Math.sin(p0) * Math.sin(p) + Math.cos(p0) * Math.cos(p) * Math.cos(l)));
+    return [k * Math.cos(p) * Math.sin(l), -k * (Math.cos(p0) * Math.sin(p) - Math.sin(p0) * Math.cos(p) * Math.cos(l))];
+  };
+  const main = (polys) => polys.reduce((a, b) => (b[0].length > a[0].length ? b : a)); // biggest piece sets the center
+  const center = (polys) => { const r = main(polys)[0]; return [r.reduce((s, q) => s + q[0], 0) / r.length, r.reduce((s, q) => s + q[1], 0) / r.length]; };
+  const proj = (id) => { const P = pts(id), f = laea(center(P)); return P.map((poly) => poly.map((r) => r.map(f))); };
+  const st = proj("US-Indiana"), ct = proj("PRT");
+  const mainBox = (P) => { const xs = main(P)[0].map((q) => q[0]), ys = main(P)[0].map((q) => q[1]); return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)]; };
+  const bs = mainBox(st), bc = mainBox(ct);
+  const W = 400, H = 400, k = Math.min(W * 0.86 / Math.max(bs[2] - bs[0], bc[2] - bc[0]), H * 0.86 / Math.max(bs[3] - bs[1], bc[3] - bc[1]));
+  const path = (P, b) => P.map((poly) => poly.map((r) => "M" + r.map((q) => `${(W / 2 + (q[0] - (b[0] + b[2]) / 2) * k).toFixed(1)},${(H / 2 + (q[1] - (b[1] + b[3]) / 2) * k).toFixed(1)}`).join("L") + "Z").join("")).join("");
+  const keep = (P, b) => P.filter((poly) => poly[0].every((q) => Math.abs(W / 2 + (q[0] - (b[0] + b[2]) / 2) * k - W / 2) < W && Math.abs(H / 2 + (q[1] - (b[1] + b[3]) / 2) * k - H / 2) < H));
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart text { font-family: "IBM Plex Mono"; font-size: 18px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Numbers · Data story</p><h1>How big is your state, really?</h1>
+      <p class="dek">Lay your state on any country at true size. Indiana and Portugal have about the same land.</p></div>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <path d="${path(keep(ct, bc), bc)}" fill="${C.slateDark}" stroke="${C.sub}" stroke-opacity=".7" stroke-width="1.5"/>
+      <path d="${path(keep(st, bs), bs)}" fill="${C.orange}" fill-opacity=".14" stroke="${C.orange}" stroke-width="4" stroke-linejoin="round"/>
+      <text x="${W - 4}" y="24" text-anchor="end" fill="${C.orange}">Indiana</text>
+      <text x="${W - 4}" y="${H - 8}" text-anchor="end" fill="${C.sub}">Portugal</text>
+    </svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function hotColdCard() {
   // A fixed, made-up dot plot of players over the hill luck alone would make, with dashed luck lines and
   // orange dots out in the tails. No names or numbers, so the card never goes out of date.
@@ -594,6 +635,8 @@ function homeCard() {
   const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
   const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
+  const sc = fs.readFileSync(path.join(ROOT, "numbers/state-vs-country-size/index.html"), "utf8");
+  const SC = JSON.parse(sc.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -611,6 +654,7 @@ function homeCard() {
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["politics/midterms-2026/results/share.png", resultsCard()],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
+    ["numbers/state-vs-country-size/share.png", stateCard(SC)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
