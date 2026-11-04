@@ -1,26 +1,25 @@
 # Tall Order Digital — Brand Decisions
 
-Last updated: October 29, 2026
+Last updated: November 4, 2026
 
 **Master copy: `docs/brand-decisions.md` in the `tallorderdigital-site` repo.** Project copies are for reference.
 
 **Colors, typography and chart rules now live in `design-system-and-dataviz-playbook.md`** (adopted Oct 29, 2026). Where this doc and the playbook disagree, the playbook wins.
 
-## Positioning: DECIDED
-> Tall Order Digital turns scattered data sources into Power BI dashboards and data visualizations that tell stories people understand: clear visual explanations of what's working, what isn't, and what to do next.
+## Positioning: DECIDED (revised Nov 4, 2026)
+**Tall Order Digital is a data visualization and data storytelling site, not a portfolio or services site.** It shows Shawn's data viz and storytelling skills through the work itself: data stories (NBA first, other subjects when the data is good) and public dashboards.
 
-- Audience kept general for now (growing small and mid-sized businesses); not built around the founder's personal background.
-- "Scattered data sources" deliberately covers spreadsheets without naming them, and describes the real pain: data spread across too many places.
-- Offer is both Power BI dashboards and data visualizations, not Power BI alone.
-- Website version (headline + support): **Turning data into stories people understand.** Power BI dashboards and data visualizations that bring your data sources together and make clear what's working, what isn't, and what to do next.
+- **Portfolio and Power BI live on shawnnafziger.com.** Tall Order Digital doesn't promote Power BI or consulting work. The About page mentions the day job (BI and data-visualization analyst using tools like Power BI and Contentsquare) as background, and links to shawnnafziger.com.
+- Home page description as live: "Data stories and visualization, with a focus on NBA analytics."
 - Tagline candidate: "Find what stands out." (ties to the logo's standout bar; not yet decided)
 
-## Business direction (working)
-- Start as a Power BI and data visualization portfolio, using the NBA analytics and Weather intelligence projects as case studies.
-- Earliest revenue: Power BI and data viz project work for small and mid-sized businesses.
-- Ongoing: data stories as the marketing engine.
-- Later: productize what clients repeatedly ask for (templates, retainers, training).
-- Niche to test later: weather-sensitive businesses (construction, agriculture, events, outdoor retail, logistics).
+## Business direction (working, revised Nov 4, 2026)
+- Tall Order Digital: data stories, dashboards and the weekly email build an audience and show the skills.
+- shawnnafziger.com: the portfolio, including Power BI work and case studies.
+- Launch: soft launch to friends by text (Nov 4, 2026), asking for feedback; links carry `?ref=text` so GoatCounter shows them as their own source.
+
+## Superseded positioning (Oct 28-29, 2026, kept for history)
+- "Tall Order Digital turns scattered data sources into Power BI dashboards and data visualizations that tell stories people understand", aimed at small and mid-sized businesses, with the NBA and weather projects as Power BI case studies, Power BI and data viz project work as early revenue, productized templates/retainers/training later, and weather-sensitive businesses as a niche to test.
 
 ## Logo: DECIDED — Direction "A+", colors "Option 3: teal-to-sky steps" (Oct 29, 2026)
 - Mark: four bars sorted tallest to shortest, left to right. The first bar is orange and much taller than the rest; the three shorter bars step down evenly in height **and fade in color toward the background**. It reads as "tall" + "order" and as the outlier.
