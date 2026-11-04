@@ -1,5 +1,5 @@
-"""Puts the sitewide header pieces into pages: the Dashboards link target (the dashboards hub), the search
-icon and the light/dark button in the menu, the saved-theme line in <head>, the sticky-header CSS, the phone
+"""Puts the sitewide header pieces into pages: the Dashboards link target (the dashboards hub), the Subscribe
+link, the search icon and the light/dark button in the menu, the saved-theme line in <head>, the sticky-header CSS, the phone
 hide-on-scroll script and the light/dark script. Claude runs this; Shawn doesn't need to.
 
     python3 tools/apply-header.py                      # every page in this repo
@@ -33,6 +33,8 @@ TOGGLE = ('<button type="button" class="theme-toggle" aria-label="Switch theme">
           '<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>'
           '<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>'
           '</button>')
+MAIL = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
+        'stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg>')
 TBLOCK = re.compile(r"/\* theme-toggle:start \*/.*?/\* theme-toggle:end \*/", re.S)
 TSCRIPT = re.compile(r"<script>\s*/\* theme-toggle:start \*/.*?/\* theme-toggle:end \*/\s*</script>\n?", re.S)
 BLOCK = re.compile(r"/\* site-header:start \*/.*?/\* site-header:end \*/", re.S)
@@ -64,6 +66,17 @@ def apply(html, path):
     nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
     if 'class="theme-toggle"' not in nav.group(0):
         html = html[: nav.start()] + nav.group(0)[: -len("</nav>")] + TOGGLE + "</nav>" + html[nav.end():]
+
+    # 1c. Subscribe (Nov 4, 2026): right after About, before the icons. Text on wide screens, an envelope on phones.
+    on_sub = re.search(r"(^|/)subscribe/index\.html$", str(path).replace("\\", "/")) is not None
+    sub = (f'<a class="nav-sub" href="{"./" if on_sub else root + "subscribe/"}"{" aria-current=\"page\"" if on_sub else ""}>'
+           f'<span class="t">Subscribe</span>{MAIL}</a>')
+    html = re.sub(r'<a class="nav-sub"[^>]*>.*?</a>', "", html, flags=re.S)
+    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
+    about = re.search(r'<a href="[^"]*"( aria-current="page")?>About</a>', nav.group(0))
+    if about:
+        inner = nav.group(0)[: about.end()] + sub + nav.group(0)[about.end():]
+        html = html[: nav.start()] + inner + html[nav.end():]
 
     # 2. Search icon: before the light/dark button, or last in the menu.
     html = re.sub(r'<a class="nav-search"[^>]*>.*?</a>', "", html, flags=re.S)
