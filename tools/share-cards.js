@@ -460,6 +460,37 @@ function midtermsCard(D) {
   </div>`;
 }
 
+function resultsCard() {
+  // The results page changes as counts come in, so its card carries no numbers: three made-up count lines that cross
+  // the middle, the shape of the page's "How the count moved" replay. Labeled as an illustration on the card.
+  const DEM = "#7b9fe0", REP = "#e8746e", W = 440, H = 300, mid = 150;
+  const lines = [[[0, 70], [60, 90], [120, 120], [200, 140], [300, 160], [420, 170]],
+                 [[0, 230], [80, 200], [160, 170], [240, 150], [330, 130], [420, 120]],
+                 [[0, 120], [90, 135], [170, 150], [260, 155], [340, 152], [420, 158]]];
+  const path = (pts) => pts.map(([x, y], i) => `${i ? "L" : "M"}${x + 10},${y}`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 88px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart text { font-family: "IBM Plex Sans"; font-size: 17px; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 26px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Politics · 2026 midterms</p><h1>The 2026 count</h1>
+      <p class="dek">Who leads each House, Senate and governor race, straight from the states' own files, and how the count moved on election night.</p></div>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+      <rect x="10" y="20" width="420" height="${mid - 20}" fill="${DEM}" opacity=".18"/>
+      <rect x="10" y="${mid}" width="420" height="${mid - 20}" fill="${REP}" opacity=".18"/>
+      <line x1="10" x2="430" y1="${mid}" y2="${mid}" stroke="${C.sub}" stroke-width="2"/>
+      ${lines.map((l) => `<path d="${path(l)}" fill="none" stroke="${C.mist}" stroke-width="4" stroke-linejoin="round"/>`).join("")}
+      <text x="14" y="${H - 4}">Illustration: leads move as each kind of ballot is counted</text>
+    </svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function seaweedCard(CMP) {
   // Mini version of the story's "Mexico or the Caribbean?" chart: share of summer weeks with seaweed off each coast.
   // Colors: the story's seaweed ramp, dark-mode version (proposed exception to the palette, see the story's PR).
@@ -578,6 +609,7 @@ function homeCard() {
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
     ["nba/dashboards/hot-cold/share.png", hotColdCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
+    ["politics/midterms-2026/results/share.png", resultsCard()],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["assets/share-home.png", homeCard()],
   ];
