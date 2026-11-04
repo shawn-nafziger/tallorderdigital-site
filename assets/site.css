@@ -55,7 +55,8 @@ p { margin: 0; }
 .site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
 .site-foot a { color: var(--ink-2); }
 
-main { padding-block: 56px 72px; display: grid; gap: 64px; }
+main { padding-block: 56px 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 64px; }
+/* minmax(0, 1fr): a wide child (e.g. the topic filter) can't stretch the column past the screen. */
 .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
 h1, h2 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0; line-height: .95; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(34px, 6vw, 56px); }
@@ -67,7 +68,7 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 
 /* Home: topic filter above the story list (assets/topic-filter.js). Tap targets 44px tall; the chosen topic is underlined in ink. */
 .section-head { flex-wrap: wrap; gap: 4px 16px; }
-.topic-filter { display: flex; gap: 4px; margin: -12px 0; }
+.topic-filter { display: flex; flex-wrap: wrap; gap: 0 4px; margin: -12px 0; }
 .topic-filter[hidden], .story[hidden] { display: none; }
 .topic-filter button { min-height: 44px; padding: 0 10px; border: 0; background: transparent; cursor: pointer;
   font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
@@ -109,6 +110,9 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .theme-toggle[data-showing="dark"] .i-sun { display: block; }
 .theme-toggle[data-showing="dark"] .i-moon { display: none; }
 .site-nav { align-items: center; }
+/* Let the menu drop under the logo whenever the two don't fit on one line (not only at 420px and below). */
+.site-bar { flex-wrap: wrap; row-gap: 4px; }
+.site-nav { margin-left: auto; }
 @media (max-width: 420px) {
   .site-bar { flex-wrap: wrap; gap: 4px 8px; }
   .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; }
