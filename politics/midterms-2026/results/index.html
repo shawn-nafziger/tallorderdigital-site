@@ -620,13 +620,17 @@ const hstat = d => d.call ? (d.call.party === "D" ? "d" : "r") : d.now ? (d.now.
   const hs = { d: 0, dl: 0, r: 0, rl: 0, "": 0 }; D.house.forEach(d => hs[hstat(d)]++);
   const seg = (cls, n, tot) => n ? `<i class="${cls}" style="width:${100 * n / tot}%"></i>` : "";
   const pr = D.practice ? " (practice)" : "";
+  // Senate: each of the 35 races on the ballot is AP-projected (solid), else led in a loaded count (faded), else gray.
+  const sst = r => r.call ? (r.call.party === "D" ? "d" : r.call.party === "R" ? "r" : "i") : (r.now && r.now.m != null ? (r.ind ? (r.now.m >= 0 ? "il" : "rl") : (r.now.m >= 0 ? "dl" : "rl")) : "");
+  const ss = { d: 0, dl: 0, r: 0, rl: 0, i: 0, il: 0, "": 0 }; D.board.Senate.forEach(r => ss[sst(r)]++);
+  const dTot = H0.D + ss.d, rTot = H0.R + ss.r;
   const senate = `<div><div class="sc-head"><b>Senate</b><span>100 seats · 51 for a majority</span></div>
-    <div class="sc-wrap"><div class="sc-bar" role="img" aria-label="Senate: Democrats ${H0.D} not up plus ${sD} leading; Republicans ${H0.R} not up plus ${sR} leading; ${sI} independents leading; ${sX} not loaded.">
-      ${seg("s-d", H0.D, 100)}${seg("s-dl", sD, 100)}${seg("s-i", sI, 100)}${seg("s-x", sX, 100)}${seg("s-rl", sR, 100)}${seg("s-r", H0.R, 100)}</div>
+    <div class="sc-wrap"><div class="sc-bar" role="img" aria-label="Senate: Democrats ${H0.D} not up plus ${ss.d} projected by AP; Republicans ${H0.R} not up plus ${ss.r} projected; ${ss[""] + ss.dl + ss.rl + ss.il} not called.">
+      ${seg("s-d", H0.D + ss.d, 100)}${seg("s-dl", ss.dl, 100)}${seg("s-i", ss.i + ss.il, 100)}${seg("s-x", ss[""], 100)}${seg("s-rl", ss.rl, 100)}${seg("s-r", H0.R + ss.r, 100)}</div>
       <span class="sc-mid" style="left:50%" data-label="50"></span></div>
-    <div class="sc-lines"><div><b>${H0.D + sD}</b>Democrats<br><small>${H0.D} not up this year (incl. ${H0.ind_caucus} independents who vote with them) + ${sD} leading${pr}</small></div>
-      <div class="r"><b>${H0.R + sR}</b>Republicans<br><small>${H0.R} not up this year + ${sR} leading${pr}</small></div></div>
-    <p class="sc-note">Darker blue and red: seats not up this year.<br>Faded blue and red: races led in the 2026 count.<br>${sI ? `Dark gray: independent candidates leading.<br>` : ""}${sI ? `Independent candidates leading: ${sI}.<br>` : ""}${sX ? `Light gray: ${sX} races not loaded yet.<br>` : ""}At 50–50, the vice president breaks ties.</p>${apLine("Senate")}</div>`;
+    <div class="sc-lines"><div><b>${dTot}</b>Democrats<br><small>${H0.D} not up this year (incl. ${H0.ind_caucus} independents who vote with them) + ${ss.d} projected by AP${ss.dl ? ` + ${ss.dl} leading, not called` : ""}</small></div>
+      <div class="r"><b>${rTot}</b>Republicans<br><small>${H0.R} not up this year + ${ss.r} projected by AP${ss.rl ? ` + ${ss.rl} leading, not called` : ""}</small></div></div>
+    <p class="sc-note">Solid blue and red: seats not up this year, plus races the Associated Press has projected (AP's calls, not this page's; <a href="#calls">sources</a>).<br>${ss.dl + ss.rl ? "Faded blue and red: not called, but leading in the 2026 count loaded here.<br>" : ""}${ss[""] ? `Gray: ${ss[""]} race${ss[""] === 1 ? "" : "s"} not called and with no count loaded (${D.board.Senate.filter(r => sst(r) === "").map(r => r.st).join(", ")}).<br>` : ""}At 50–50, the vice president breaks ties.</p></div>`;
   const house = `<div><div class="sc-head"><b>House</b><span>435 seats · 218 for a majority</span></div>
     <div class="sc-wrap"><div class="sc-bar" role="img" aria-label="House: Democrats ${hs.d} projected by AP plus ${hs.dl} leading; Republicans ${hs.r} projected plus ${hs.rl} leading; ${hs[""]} not called and no count loaded.">
       ${seg("s-d", hs.d, 435)}${seg("s-dl", hs.dl, 435)}${seg("s-x", hs[""], 435)}${seg("s-rl", hs.rl, 435)}${seg("s-r", hs.r, 435)}</div>
