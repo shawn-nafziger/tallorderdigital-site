@@ -1,11 +1,13 @@
 """Puts the sitewide header pieces into pages: the Dashboards link target (the dashboards hub), the search
-icon in the menu, the sticky-header CSS and the phone hide-on-scroll script. Claude runs this; Shawn doesn't need to.
+icon and the light/dark button in the menu, the saved-theme line in <head>, the sticky-header CSS, the phone
+hide-on-scroll script and the light/dark script. Claude runs this; Shawn doesn't need to.
 
     python3 tools/apply-header.py                      # every page in this repo
     python3 tools/apply-header.py path/to/template.html ...   # specific files (e.g. story templates in the data repos)
     python3 tools/apply-header.py --check              # report pages that are out of date, change nothing
 
-Master copies: assets/site-header.css and assets/site-header.js.
+Master copies: assets/site-header.css and assets/site-header.js; for the light/dark button, assets/theme.js and the
+".theme-toggle" rules in assets/site.css.
 - Pages that use assets/site.css (home, About, Stats explained, dashboards index, search) link those two files.
 - Self-contained pages (stories, dashboards, and their templates in nba-analytics / weather-intelligence) get an
   inline copy between "site-header:start" / "site-header:end" markers. Re-running replaces the copy, so to change
@@ -22,6 +24,17 @@ CSS = (ROOT / "assets/site-header.css").read_text().strip()
 JS = (ROOT / "assets/site-header.js").read_text().strip()
 ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
         'aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>')
+THEME_JS = (ROOT / "assets/theme.js").read_text().strip().replace("</", "<\\/")  # a literal "</script>" in a comment would end the inline script
+_site_css = (ROOT / "assets/site.css").read_text()
+THEME_CSS = "\n".join(l for l in _site_css.splitlines() if l.startswith(".theme-toggle") or l.startswith("  border: 0; border-radius: 50%"))
+# Applies a saved light/dark choice before the page draws (no flash of the wrong theme).
+SAVED = '<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>'
+TOGGLE = ('<button type="button" class="theme-toggle" aria-label="Switch theme">'
+          '<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>'
+          '<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>'
+          '</button>')
+TBLOCK = re.compile(r"/\* theme-toggle:start \*/.*?/\* theme-toggle:end \*/", re.S)
+TSCRIPT = re.compile(r"<script>\s*/\* theme-toggle:start \*/.*?/\* theme-toggle:end \*/\s*</script>\n?", re.S)
 BLOCK = re.compile(r"/\* site-header:start \*/.*?/\* site-header:end \*/", re.S)
 SCRIPT = re.compile(r"<script>\s*/\* site-header:start \*/.*?/\* site-header:end \*/\s*</script>\n?", re.S)
 
@@ -44,6 +57,13 @@ def apply(html, path):
         return f'<a href="{"./" if on_hub else root + DASHBOARDS}"{current}>Dashboards</a>'
     nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
     html = html[: nav.start()] + re.sub(r'<a href="[^"]*"( aria-current="page")?>Dashboards</a>', dash, nav.group(0)) + html[nav.end():]
+
+    # 1b. Light/dark: the saved-choice line first thing in <head>, and the button last in the menu.
+    if "tod-theme" not in html.split("</head>", 1)[0]:
+        html = html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + SAVED, 1)
+    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
+    if 'class="theme-toggle"' not in nav.group(0):
+        html = html[: nav.start()] + nav.group(0)[: -len("</nav>")] + TOGGLE + "</nav>" + html[nav.end():]
 
     # 2. Search icon: before the light/dark button, or last in the menu.
     html = re.sub(r'<a class="nav-search"[^>]*>.*?</a>', "", html, flags=re.S)
@@ -70,6 +90,22 @@ def apply(html, path):
         else:
             i = html.index("</style>")
             html = html[:i] + CSS + "\n" + html[i:]
+        # Light/dark styles and script, unless the page already links assets/theme.js.
+        if "assets/theme.js" not in html:
+            tcss = "/* theme-toggle:start */\n/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */\n" + THEME_CSS + "\n/* theme-toggle:end */"
+            if TBLOCK.search(html):
+                html = TBLOCK.sub(lambda _: tcss, html, count=1)
+            else:
+                i = html.index("</style>")
+                html = html[:i] + tcss + "\n" + html[i:]
+            ttag = "<script>\n/* theme-toggle:start */\n" + THEME_JS + "\n/* theme-toggle:end */\n</script>\n"
+            if TSCRIPT.search(html):
+                html = TSCRIPT.sub(lambda _: ttag, html, count=1)
+            else:
+                j = html.find("<!-- Analytics")
+                if j < 0:
+                    j = html.rindex("</body>")
+                html = html[:j] + ttag + html[j:]
         tag = "<script>\n" + JS + "\n</script>\n"
         if SCRIPT.search(html):
             html = SCRIPT.sub(lambda _: tag, html, count=1)
