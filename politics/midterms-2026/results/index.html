@@ -304,8 +304,8 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span><i class="ringkey" style="border-color:var(--dem)"></i><i class="ringkey" style="border-color:var(--rep);margin-left:-2px"></i>Hollow colored dot: the votes counted so far are under half of the state's 2024 turnout</span>
         <span><i class="ringkey" style="border-color:var(--ink-2);border-width:1.5px"></i>Thin gray ring: the last election for this seat (2020, 2022 or 2024)</span>
         <span><i class="tickkey"></i>Gray tick: the state's 2024 presidential vote</span>
-        <span><i style="font-style:italic;color:var(--ink-3);margin-right:6px">Name</i>Gray italic name: no 2026 count loaded yet</span>
-        <span><i style="font-style:normal;font-weight:600;font-size:11px;color:var(--ink-2);margin-right:6px">AP: D</i>Right edge: the party of the winner the Associated Press has projected, if it has (tap the row for details)</span>
+        <span><i style="font-style:italic;color:var(--ink-3);opacity:.7;margin-right:6px">Name</i>Gray italic name: no 2026 count loaded yet (dark names have counts)</span>
+        <span><i style="font-style:normal;font-weight:600;font-size:11px;color:var(--ink);margin-right:6px">D / R</i>AP call column: the party of the winner the Associated Press has projected; a dash means not called yet (tap the row for details)</span>
       </div>
       <p class="source">Margin: <button type="button" class="term" data-term="margin">two-party margin</button>, shown as a lead for whoever is ahead, never as a win.<br>
       Races are not called here. "AP" marks the Associated Press's projection, as reported by news outlets.<br>
@@ -659,9 +659,9 @@ function drawBoard() {
   host.querySelectorAll("svg").forEach(s => s.remove()); hideTip(host);
   const rows = D.board[office];
   const W = Math.max(300, host.clientWidth), narrow = W < 520;
-  const m = { l: narrow ? 92 : 150, r: 12, t: 34, b: 8 }, RH = narrow ? 24 : 26;
+  const m = { l: narrow ? 92 : 150, r: narrow ? 40 : 56, t: 34, b: 8 }, RH = narrow ? 24 : 26;   // right column: AP call
   const H = m.t + rows.length * RH + m.b;
-  const LIM = 40, x = lin(-LIM, LIM, W - m.r, m.l);   // Republican lead to the right, Democratic lead to the left
+  const LIM = 50, x = lin(-LIM, LIM, W - m.r, m.l);   // Republican lead to the right, Democratic lead to the left
   const clip = v => Math.max(-LIM, Math.min(LIM, v));
   const s = svg(W, H);
   const dem = css("--dem"), rep = css("--rep");
@@ -670,24 +670,25 @@ function drawBoard() {
   el("rect", { x: x(0), y: m.t - 6, width: W - m.r - x(0), height: rows.length * RH + 6, fill: css("--rep-lean"), opacity: .18 }, s);
   el("text", { x: x(0) - 8, y: 14, "text-anchor": "end", class: "lbl-strong" }, s, narrow ? "← D leads" : "← Democrat leads");
   el("text", { x: x(0) + 8, y: 14, class: "lbl-strong" }, s, narrow ? "R leads →" : "Republican leads →");
-  [-30, -20, -10, 0, 10, 20, 30].forEach(v => {
+  [-40, -30, -20, -10, 0, 10, 20, 30, 40].forEach(v => {
     el("line", { x1: x(v), x2: x(v), y1: m.t - 6, y2: H - m.b, stroke: v === 0 ? css("--ink") : css("--rule"), "stroke-width": v === 0 ? 1.5 : 1 }, s);
-    if (v && (!narrow || Math.abs(v) === 20)) el("text", { x: x(v), y: 28, "text-anchor": "middle", style: "font-size:10.5px;fill:var(--ink-3)" }, s, `+${Math.abs(v)}`);
+    if (v && (narrow ? Math.abs(v) === 20 || Math.abs(v) === 40 : Math.abs(v) % 20 === 0 || !narrow)) el("text", { x: x(v), y: 28, "text-anchor": "middle", style: "font-size:10.5px;fill:var(--ink-3)" }, s, `+${Math.abs(v)}`);
   });
+  el("text", { x: W, y: 28, "text-anchor": "end", style: "font-size:10.5px;font-weight:600;fill:var(--ink-2)" }, s, "AP call");
   rows.forEach((r, i) => {
     const cy = m.t + i * RH + RH / 2;
     const g = el("g", { class: "board-row", tabindex: 0, role: "button" }, s);
     el("rect", { x: 0, y: cy - RH / 2, width: W, height: RH, fill: "transparent" }, g);
     const nm = (narrow ? r.name.replace(" (special)", "*") : r.name) + (r.now && r.now.stale ? " †" : "");
     const has = r.now && r.now.m != null;
-    el("text", { x: 0, y: cy + 4, class: "lbl", style: has ? "" : "fill:var(--ink-3);font-style:italic" }, g, nm);
+    el("text", { x: 0, y: cy + 4, class: "lbl", style: has ? "fill:var(--ink);font-weight:500" : "fill:var(--ink-3);opacity:.7;font-style:italic" }, g, nm);
     if (r.last_m != null) el("circle", { cx: x(clip(r.last_m)), cy, r: 5.5, fill: "none", stroke: css("--ink-2"), "stroke-width": 1.6 }, g);
     const n = r.now;
     if (n && n.m != null) {
       const col = n.m >= 0 ? dem : rep, early = n.frac != null && n.frac < 0.5;
       el("circle", { cx: x(clip(n.m)), cy, r: 6, fill: early ? css("--surface") : col, stroke: col, "stroke-width": 2 }, g);
     }
-    if (r.call) el("text", { x: W - m.r + 10, y: cy + 4, "text-anchor": "end", style: "font-size:10.5px;font-weight:600;fill:var(--ink-2)" }, g, `AP: ${r.call.party}`);
+    el("text", { x: W, y: cy + 4, "text-anchor": "end", style: `font-size:11px;font-weight:600;fill:${r.call ? css("--ink") : css("--ink-3")}` }, g, r.call ? r.call.party : "–");
     // 2024 president: a tall gray tick drawn on top, so it still shows when the dot sits on it
     el("line", { x1: x(clip(r.pres_m)), x2: x(clip(r.pres_m)), y1: cy - 10, y2: cy + 10, stroke: css("--ink-3"), "stroke-width": 2.5, "stroke-linecap": "round" }, g);
     const side = r.ind ? ["Ind.", "R"] : ["D", "R"];
