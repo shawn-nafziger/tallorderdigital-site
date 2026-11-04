@@ -371,7 +371,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <h2>The House, district by district</h2>
       <p>Each shape is one House district, drawn the same size so small city districts don't disappear.</p>
       <p>A solid color means the Associated Press has projected that party's candidate.</p>
-      <p>A lighter color means the race isn't called yet, and that party leads the count loaded here.</p>
+      <p>A faded color means the race isn't called yet, and that party leads the count loaded here.</p>
       <p>Gray means neither yet.</p>
     </div>
     <figure class="figure" aria-labelledby="house-title">
@@ -385,7 +385,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <div class="key">
         <span><i class="lean-d" style="background:var(--dem)"></i>Blue: the Associated Press has projected the Democrat</span>
         <span><i class="lean-r" style="background:var(--rep)"></i>Red: the Associated Press has projected the Republican</span>
-        <span><i class="lean-d"></i><i class="lean-r" style="margin-left:-2px"></i>Lighter shade: not called yet; that party leads the count loaded here</span>
+        <span><i class="lean-d"></i><i class="lean-r" style="margin-left:-2px"></i>Faded shade: not called yet; that party leads the count loaded here</span>
         <span><i class="lean-d" style="background:var(--ghost)"></i>Gray: not called, and no count loaded yet</span>
       </div>
       <p class="source">Map: The Downballot's congressional district hexmap (2026 lines), by Daniel Donner, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>; colors added.<br>
@@ -524,8 +524,8 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <p class="map-count" id="grid-count"></p>
       <div class="strip-wrap"><div class="strip" id="strip" role="img" aria-label="435 House seats in order of the 2024 presidential vote, colored by who leads the 2026 count."></div></div>
       <div class="key">
-        <span><i class="lean-d" style="background:var(--dem)"></i>Blue: the Associated Press has projected the Democrat (lighter: not called, the Democrat leads)</span>
-        <span><i class="lean-r" style="background:var(--rep)"></i>Red: the Associated Press has projected the Republican (lighter: not called, the Republican leads)</span>
+        <span><i class="lean-d" style="background:var(--dem)"></i>Blue: the Associated Press has projected the Democrat (faded: not called, the Democrat leads)</span>
+        <span><i class="lean-r" style="background:var(--rep)"></i>Red: the Associated Press has projected the Republican (faded: not called, the Republican leads)</span>
         <span><i class="lean-d" style="background:var(--ghost)"></i>Gray: not called, and no count loaded yet</span>
         <span><i class="lean-d" style="background:transparent;outline:2px solid var(--ink);outline-offset:-2px"></i>Outlined square: the leader's party differs from the 2024 presidential winner in that district</span>
       </div>
@@ -538,18 +538,21 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <div class="prose">
       <h2>Did the new maps do what the math said?</h2>
       <p>Before Election Day, we replayed the 2024 presidential vote on the new <button type="button" class="term" data-term="redistricting">redistricted</button> House maps.</p>
-      <p>Here is that replay next to who actually leads each seat now, in the nine states that redrew.</p>
+      <p>That replay is what each party was expected to win on the new maps.</p>
+      <p>Below, each state shows the expected seats next to what is actually happening in 2026.</p>
     </div>
     <figure class="figure" aria-labelledby="rd-title">
       <div class="fig-head">
-        <div><p class="fig-title" id="rd-title">Seats in the nine redrawn states: the 2024 replay, then the 2026 count</p>
-        <p class="fig-sub">Each square is one seat. Tap a square for details.</p></div>
+        <div><p class="fig-title" id="rd-title">Seats the new maps were expected to give each party, and what's happening in 2026</p>
+        <p class="fig-sub">Each square is one House seat, in the same order in both rows. Tap a square for details.</p></div>
       </div>
       <div class="chart" id="rdcheck"></div>
       <div class="key">
-        <span><i class="lean-d" style="background:var(--dem)"></i>Blue: Harris carried it in 2024 (top row), or the Democrat leads now (bottom row)</span>
-        <span><i class="lean-r" style="background:var(--rep)"></i>Red: Trump carried it in 2024 (top row), or the Republican leads now (bottom row)</span>
-        <span><i class="lean-d" style="background:var(--ghost)"></i>Gray: no count loaded yet</span>
+        <span>Top row, "Expected from the 2024 vote": who would win each new district if people voted exactly as they did for president in 2024.</span>
+        <span>Bottom row, "2026 so far": what is actually happening.</span>
+        <span><i class="lean-d" style="background:var(--dem)"></i><i class="lean-r" style="background:var(--rep);margin-left:-2px"></i>Solid blue or red: Democrat or Republican (in the bottom row, projected by the Associated Press)</span>
+        <span><i class="lean-d"></i><i class="lean-r" style="margin-left:-2px"></i>Faded: not called yet; that party leads the count loaded here</span>
+        <span><i class="lean-d" style="background:var(--ghost)"></i>Gray: not called, and no count loaded yet</span>
       </div>
       <p class="source">2024 replay: 2024 presidential vote on the 2026 district lines, <a href="https://the-db.co/presbycd">The Downballot</a>.<br>
       Seats in each row are in the same order, so a square that changes color is a seat that changed sides.<br>
@@ -689,14 +692,14 @@ const hstat = d => d.call ? (d.call.party === "D" ? "d" : "r") : d.now ? (d.now.
       <span class="sc-mid" style="left:50%" data-label="50"></span></div>
     <div class="sc-lines"><div><b>${H0.D + sD}</b>Democrats<br><small>${H0.D} not up this year (incl. ${H0.ind_caucus} independents who vote with them) + ${sD} leading${pr}</small></div>
       <div class="r"><b>${H0.R + sR}</b>Republicans<br><small>${H0.R} not up this year + ${sR} leading${pr}</small></div></div>
-    <p class="sc-note">Darker blue and red: seats not up this year.<br>Lighter blue and red: races led in the 2026 count.<br>${sI ? `Dark gray: independent candidates leading.<br>` : ""}${sI ? `Independent candidates leading: ${sI}.<br>` : ""}${sX ? `Light gray: ${sX} races not loaded yet.<br>` : ""}At 50–50, the vice president breaks ties.</p>${apLine("Senate")}</div>`;
+    <p class="sc-note">Darker blue and red: seats not up this year.<br>Faded blue and red: races led in the 2026 count.<br>${sI ? `Dark gray: independent candidates leading.<br>` : ""}${sI ? `Independent candidates leading: ${sI}.<br>` : ""}${sX ? `Light gray: ${sX} races not loaded yet.<br>` : ""}At 50–50, the vice president breaks ties.</p>${apLine("Senate")}</div>`;
   const house = `<div><div class="sc-head"><b>House</b><span>435 seats · 218 for a majority</span></div>
     <div class="sc-wrap"><div class="sc-bar" role="img" aria-label="House: Democrats ${hs.d} projected by AP plus ${hs.dl} leading; Republicans ${hs.r} projected plus ${hs.rl} leading; ${hs[""]} not called and no count loaded.">
       ${seg("s-d", hs.d, 435)}${seg("s-dl", hs.dl, 435)}${seg("s-x", hs[""], 435)}${seg("s-rl", hs.rl, 435)}${seg("s-r", hs.r, 435)}</div>
       <span class="sc-mid" style="left:${100 * 218 / 435}%" data-label="218"></span></div>
     <div class="sc-lines"><div><b>${hs.d + hs.dl}</b>Democrats<br><small>${hs.d} projected by AP + ${hs.dl} leading, not called</small></div>
       <div class="r"><b>${hs.r + hs.rl}</b>Republicans<br><small>${hs.r} projected by AP + ${hs.rl} leading, not called</small></div></div>
-    <p class="sc-note">Darker blue and red: seats the Associated Press has projected (AP's calls, not this page's; <a href="#calls">sources</a>).<br>Lighter blue and red: not called, but leading in the 2026 count loaded here.<br>Gray: ${hs[""]} seats not called and with no count loaded yet.<br>218 seats make a majority.</p></div>`;
+    <p class="sc-note">Darker blue and red: seats the Associated Press has projected (AP's calls, not this page's; <a href="#calls">sources</a>).<br>Faded blue and red: not called, but leading in the 2026 count loaded here.<br>Gray: ${hs[""]} seats not called and with no count loaded yet.<br>218 seats make a majority.</p></div>`;
   document.getElementById("score").innerHTML = senate + house + apLine("Governor") +
     `<p class="sc-note">Leading is not winning: counts are <button type="button" class="term" data-term="unofficial">unofficial</button>, and this page doesn't call races.</p>`;
 })();
@@ -868,31 +871,37 @@ strip.addEventListener("pointermove", tileTip); strip.addEventListener("click", 
 /* ---------- Redistricting check ---------- */
 function drawRd() {
   const host = document.getElementById("rdcheck"); host.querySelectorAll("svg").forEach(n => n.remove()); hideTip(host);
-  const W = Math.max(300, host.clientWidth), narrow = W < 560, lw = narrow ? 84 : 120;
-  const states = D.redrawn.map(st => ({ st, ds: H.filter(d => d.st === st).sort((a, b) => b.pres - a.pres) }));
-  const maxN = Math.max(...states.map(s => s.ds.length));
-  const perRow = Math.min(maxN, Math.floor((W - lw) / (narrow ? 7 : 11)));
-  const sz = Math.min(narrow ? 6 : 10, (W - lw) / perRow - 1), gap = 1;
-  let y = 4; const s = svg(W, 10), parts = [];
-  states.forEach(({ st, ds }) => {
-    const rows = Math.ceil(ds.length / perRow), bandH = rows * (sz + gap);
-    const dn24 = ds.filter(d => d.pres > 0).length, ld = ds.filter(d => d.now), dnow = ld.filter(d => d.now.m >= 0).length;
-    el("text", { x: 0, y: y + 11, class: "lbl-strong" }, s, D.names[st]);
-    el("text", { x: 0, y: y + 25, style: "font-size:11px;fill:var(--ink-3)" }, s, narrow ? `${ds.length} seats` : `${ds.length} seats`);
-    [["2024 replay", d => d.pres > 0 ? "var(--dem)" : "var(--rep)"], ["2026 count", d => !d.now ? "var(--ghost)" : d.now.m >= 0 ? "var(--dem)" : "var(--rep)"]].forEach(([lab, col], k) => {
-      const y0 = y + k * (bandH + 6);
-      ds.forEach((d, i) => { const r = el("rect", { x: lw + (i % perRow) * (sz + gap), y: y0 + Math.floor(i / perRow) * (sz + gap), width: sz, height: sz, rx: 1, fill: col(d) }, s); r.dataset.id = d.id; });
+  const W = Math.max(300, host.clientWidth), narrow = W < 560, lw = narrow ? 0 : 178;
+  const cell = narrow ? 7 : 11, perRow = Math.floor((W - lw) / cell), sz = cell - 1.5;
+  const COL = { d: "var(--dem)", dl: "var(--dem-lean)", r: "var(--rep)", rl: "var(--rep-lean)", "": "var(--ghost)" };
+  const states = D.redrawn.map(st => {
+    const ds = H.filter(d => d.st === st).sort((a, b) => b.pres - a.pres);
+    const exp = ds.filter(d => d.pres > 0).length, now = ds.filter(d => ["d", "dl"].includes(hstat(d))).length, nowR = ds.filter(d => ["r", "rl"].includes(hstat(d))).length;
+    return { st, ds, exp, now, nowR, open: ds.length - now - nowR };
+  }).sort((a, b) => Math.abs(b.now - b.exp) - Math.abs(a.now - a.exp) || b.ds.length - a.ds.length);
+  let y = 2; const s = svg(W, 10);
+  states.forEach(o => {
+    const { st, ds, exp, now, nowR, open } = o, rows = Math.ceil(ds.length / perRow), bandH = rows * cell, diff = now - exp;
+    // Header: state and the answer in words
+    el("text", { x: 0, y: y + 13, class: "lbl-strong", style: "font-size:14px" }, s, `${D.names[st]} · ${ds.length} seats`);
+    const verdict = now + nowR === 0 ? "No calls or counts yet" :
+      open ? `Democrats: ${exp} expected · ${now} so far, with ${open} seat${open === 1 ? "" : "s"} not in yet` :
+      `Democrats: ${exp} expected → ${now} now` + (diff ? ` (${diff > 0 ? "+" : "−"}${Math.abs(diff)} seat${Math.abs(diff) === 1 ? "" : "s"})` : " (as expected)");
+    el("text", { x: 0, y: y + 30, style: "font-size:12.5px;fill:var(--ink-2)" }, s, verdict);
+    y += 40;
+    [["Expected from the 2024 vote", d => d.pres > 0 ? "d" : "r"], ["2026 so far", d => hstat(d)]].forEach(([lab, f]) => {
+      if (narrow) { el("text", { x: 0, y: y + 9, style: "font-size:11px;fill:var(--ink-3)" }, s, lab); y += 13; }
+      else el("text", { x: 0, y: y + 9, style: "font-size:11.5px;fill:var(--ink-3)" }, s, lab);
+      ds.forEach((d, i) => { const r = el("rect", { x: lw + (i % perRow) * cell, y: y + Math.floor(i / perRow) * cell, width: sz, height: sz, rx: 1.5, fill: COL[f(d)] }, s); r.dataset.id = d.id; });
+      y += bandH + 5;
     });
-    const yt = y + 2 * bandH + 6 + 12;
-    el("text", { x: lw, y: yt, style: "font-size:11px;fill:var(--ink-2)" }, s,
-      `2024 replay: Harris ${dn24}, Trump ${ds.length - dn24} · 2026: ` + (ld.length ? `D leads ${dnow}, R leads ${ld.length - dnow}` + (ds.length - ld.length ? `, ${ds.length - ld.length} not loaded` : "") : "no counts loaded yet"));
-    y = yt + 16;
+    y += 16;
   });
   s.setAttribute("viewBox", `0 0 ${W} ${y}`); s.setAttribute("height", y);
   const byId = Object.fromEntries(H.map(d => [d.id, d]));
-  const tip = e => { const r = e.target.closest("rect[data-id]"); if (!r) return hideTip(host); const b = host.getBoundingClientRect(); showTip(host, houseTip(byId[r.dataset.id]), e.clientX - b.left, e.clientY - b.top); };
+  const tip = e => { const r = e.target.closest("rect[data-id]"); if (!r) return hideTip(host); const b = host.getBoundingClientRect(); const d = byId[r.dataset.id]; showTip(host, houseTip(d) + `<br>Expected from the 2024 vote: ${d.pres > 0 ? "Democrat" : "Republican"}`, e.clientX - b.left, e.clientY - b.top); };
   s.addEventListener("pointermove", tip); s.addEventListener("click", e => { e.stopPropagation(); tip(e); }); s.addEventListener("pointerleave", () => hideTip(host));
-  s.setAttribute("role", "img"); s.setAttribute("aria-label", "For each of the nine redrawn states, a row of seats as the 2024 vote would have gone on the new lines, and a row of who leads each seat in 2026.");
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "For each of the nine redrawn states: seats Democrats were expected to win from the 2024 vote on the new lines, and seats they hold or lead in 2026. " + states.map(o => `${D.names[o.st]}: ${o.exp} expected, ${o.now} now`).join("; "));
   host.prepend(s);
 }
 
