@@ -491,6 +491,41 @@ function resultsCard() {
   </div>`;
 }
 
+function whoVotedCard(WV) {
+  // Part 2's headline chart in miniature: 100 voters as dots, grouped by where they live (House, nationwide).
+  const DEM = "#7b9fe0", REP = "#e8746e", GRAY = "#3a5762";
+  const rows = WV.q["US-House"].area.rows;   // [label, share, dem %, rep %]
+  const tot = rows.reduce((a, r) => a + r[1], 0);
+  const raw = rows.map((r) => (r[1] * 100) / tot); const n = raw.map(Math.floor); let left = 100 - n.reduce((a, b) => a + b, 0);
+  raw.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (left > 0) { n[i]++; left--; } });
+  const cols = 25, pitch = 17, W = 470;
+  let y = 6, svg = "";
+  rows.forEach((r, i) => {
+    const nd = Math.round((n[i] * r[2]) / 100), nr = Math.min(n[i] - nd, Math.round((n[i] * r[3]) / 100));
+    svg += `<text x="0" y="${y + 14}" class="lab">${r[0]}</text>`;
+    for (let k = 0; k < n[i]; k++) {
+      const c = k < nd ? DEM : k >= n[i] - nr ? REP : GRAY;
+      svg += `<circle cx="${40 + (k % cols) * pitch}" cy="${y + 34 + Math.floor(k / cols) * pitch}" r="6.5" fill="${c}"/>`;
+    }
+    y += 34 + Math.ceil(n[i] / cols) * pitch + 4;
+  });
+  return `${base}<style>
+    .wrap { position: absolute; inset: 64px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 88px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart .lab { font: 600 18px "IBM Plex Sans"; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 26px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Politics · 2026 midterms</p><h1>Who voted how</h1>
+      <p class="dek">100 voters, dot by dot: who voted which way, what mattered to them, and how rural and city districts voted.</p></div>
+    <svg class="chart" width="${W}" height="${y}" viewBox="0 0 ${W} ${y}">${svg}</svg>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function seaweedCard(CMP) {
   // Mini version of the story's "Mexico or the Caribbean?" chart: share of summer weeks with seaweed off each coast.
   // Colors: the story's seaweed ramp, dark-mode version (proposed exception to the palette, see the story's PR).
@@ -592,6 +627,8 @@ function homeCard() {
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
   const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
+  const wv = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/who-voted/index.html"), "utf8");
+  const WV = JSON.parse(wv.match(/const D = (\{.*?\});\n/s)[1]);
   const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const cards = [
@@ -610,6 +647,7 @@ function homeCard() {
     ["nba/dashboards/hot-cold/share.png", hotColdCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["politics/midterms-2026/results/share.png", resultsCard()],
+    ["politics/midterms-2026/who-voted/share.png", whoVotedCard(WV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["assets/share-home.png", homeCard()],
   ];
