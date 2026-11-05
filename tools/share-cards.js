@@ -491,6 +491,37 @@ function resultsCard() {
   </div>`;
 }
 
+function districtsCard(DV) {
+  // Part 2's headline chart in miniature: all 435 House seats as dots, grouped by kind of place, colored by AP's call
+  // (solid), the leader in the count (faded) or neither (gray). Reads the page's own data.
+  const COLS = { d: "#7b9fe0", r: "#e8746e", dl: "rgba(123,159,224,.45)", rl: "rgba(232,116,110,.45)", "": "#3a5762" };
+  const ORDER = { d: 0, dl: 1, "": 2, rl: 3, r: 4 };
+  const groups = [["metro", "Mostly big metro"], ["city", "Mostly mid-size cities"], ["rural", "Mostly small towns and rural"]];
+  const cols = 30, pitch = 14.5, W = 470;
+  let y = 4, svg = "";
+  groups.forEach(([k, lab]) => {
+    const ds = DV.dists.filter((d) => d.kind === k).sort((a, b) => ORDER[a.s] - ORDER[b.s]);
+    svg += `<text x="0" y="${y + 14}" class="lab">${lab}</text>`;
+    ds.forEach((d, i) => { svg += `<circle cx="${6 + (i % cols) * pitch}" cy="${y + 30 + Math.floor(i / cols) * pitch}" r="5.4" fill="${COLS[d.s]}"/>`; });
+    y += 30 + Math.ceil(ds.length / cols) * pitch + 6;
+  });
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 48px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 80px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart .lab { font: 600 17px "IBM Plex Sans"; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 22px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Politics · 2026 midterms</p><h1>The House, district by district</h1>
+      <p class="dek">All 435 seats: what kinds of places AP has called for each party, and a profile of every district.</p></div>
+    <svg class="chart" width="${W}" height="${y}" viewBox="0 0 ${W} ${y}">${svg}</svg>
+    <div class="foot">${lockup(56)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function seaweedCard(CMP) {
   // Mini version of the story's "Mexico or the Caribbean?" chart: share of summer weeks with seaweed off each coast.
   // Colors: the story's seaweed ramp, dark-mode version (proposed exception to the palette, see the story's PR).
@@ -592,6 +623,8 @@ function homeCard() {
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
   const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
+  const dv = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/districts/index.html"), "utf8");
+  const DV = JSON.parse(dv.match(/const D = (\{.*?\});\n/s)[1]);
   const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const cards = [
@@ -610,6 +643,7 @@ function homeCard() {
     ["nba/dashboards/hot-cold/share.png", hotColdCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["politics/midterms-2026/results/share.png", resultsCard()],
+    ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["assets/share-home.png", homeCard()],
   ];
