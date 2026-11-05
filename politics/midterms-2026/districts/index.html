@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="claude:viewport-fit-sides" content="cover">
 <title>The House, District by District · Tall Order Digital</title>
-<meta name="description" content="All 435 House districts, grouped by the kinds of places they are and who lives there, with AP's race calls: rural and city, college degrees, income, race and age.">
+<meta name="description" content="All 435 House districts, sorted by who lives there (big cities or small towns, college degrees, income, race and age), with AP's race calls.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Tall Order Digital">
 <meta property="og:title" content="The 2026 count, part 2: The House, district by district">
-<meta property="og:description" content="435 House seats as dots: which kinds of places AP has called for each party, and a profile of every district.">
+<meta property="og:description" content="All 435 House seats as dots, sorted by who lives there: big cities or small towns, college grads or not, richer or poorer. Plus a profile of every district.">
 <link rel="canonical" href="https://tallorderdigital.com/politics/midterms-2026/districts/">
 <meta property="og:url" content="https://tallorderdigital.com/politics/midterms-2026/districts/">
 <meta property="og:image" content="https://tallorderdigital.com/politics/midterms-2026/districts/share.png">
@@ -394,7 +394,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <header class="col">
     <p class="kicker">Politics · 2026 midterms · The 2026 count, part 2</p>
     <h1>The House, district by district</h1>
-    <p class="dek">What kinds of places did each party win House seats in? Here are all 435 districts, with the Associated Press's calls so far.</p>
+    <p class="dek">Where did each party win House seats: big cities or small towns, richer or poorer places? Here are all 435 districts, with the Associated Press's calls so far.</p>
     <ul class="dek-list">
       <li><strong>Big metro areas:</strong> of the 206 districts where most people live in a big metro area, AP has called 144 for the <span class="pd">Democrat</span> and 24 for the <span class="pr">Republican</span>.</li>
       <li><strong>Small towns and rural areas:</strong> of the 112 districts where most people live in small towns or rural areas, AP has called 74 for the <span class="pr">Republican</span> and 18 for the <span class="pd">Democrat</span>.</li>
@@ -413,7 +413,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section id="seats-sec">
     <div class="prose">
       <h2>435 seats</h2>
-      <p>Every House seat as a dot, grouped by the kind of place it is or who lives there.</p>
+      <p>Every House seat as a dot, sorted by who lives there: big cities or small towns, college grads or not, richer or poorer, younger or older.</p>
     </div>
     <figure class="figure">
       <div class="fig-head"><div><h3 class="fig-title" id="seats-ans"></h3><p class="fig-sub"><span class="cnt">Census profiles and AP calls</span></p></div></div>
@@ -505,7 +505,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <h3>How this was put together</h3>
     <ul>
       <li><strong>Districts:</strong> all 435 on the lines used in 2026, including the nine states that drew new maps. For those states, district profiles were rebuilt from neighborhood (block group) data; their median age and income are close estimates.</li>
-      <li><strong>Kinds of places:</strong> from the 2020 Census. Each district's people are split by the size of the urban area they live in: big metro (1 million people or more), mid-size city (50,000 to 1 million), small town (5,000 to 49,999) or rural (outside any urban area).</li>
+      <li><strong>Where people live:</strong> from the 2020 Census. Each district's people are split by the size of the urban area they live in: big metro (1 million people or more), mid-size city (50,000 to 1 million), small town (5,000 to 49,999) or rural (outside any urban area).</li>
       <li><strong>No race calls:</strong> this page reports AP's calls with their sources and says who leads in unofficial counts. Counts are unofficial until each state's <button type="button" class="term" data-term="certification">certification</button>.</li>
       <li><strong>Places vs. people:</strong> district profiles describe everyone who lives there, including people too young to vote and people who didn't vote. They don't say how any group of people voted.</li>
     </ul>
@@ -570,7 +570,7 @@ function fifths(k, f, lab, where) {
     return { lab: lab(range), where: where(range), fifth: true, test: d => (i === 0 || d[k] >= cut[i - 1]) && (i === 4 || d[k] < cut[i]) }; });
 }
 const GROUPS = {
-  kind: { label: "Kind of place", rows: () => [["metro", "Mostly big metro areas", "where most people live in big metro areas"], ["city", "Mostly mid-size cities", "where most people live in mid-size cities"],
+  kind: { label: "Where people live", rows: () => [["metro", "Mostly big metro areas", "where most people live in big metro areas"], ["city", "Mostly mid-size cities", "where most people live in mid-size cities"],
       ["rural", "Mostly small towns and rural areas", "where most people live in small towns or rural areas"]].map(([k, lab, where]) => ({ lab, where, test: d => d.kind === k })),
     note: "Grouped by where most of a district's people live: big metro areas (1 million people or more), mid-size cities (50,000 to 1 million), or small towns (under 50,000) and rural areas." },
   college: { label: "College degrees", rows: () => fifths("college", v => v.toFixed(0) + "%", r => `${r.replace(/^./, c => c.toUpperCase())} with a degree`, r => `where ${r} of adults have a college degree`),
