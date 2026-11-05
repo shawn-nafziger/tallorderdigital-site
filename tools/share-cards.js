@@ -516,7 +516,7 @@ function districtsCard(DV) {
   </style>
   <div class="wrap">
     <div><p class="kicker">Politics · 2026 midterms</p><h1>The House, district by district</h1>
-      <p class="dek">All 435 seats: what kinds of places AP has called for each party, and a profile of every district.</p></div>
+      <p class="dek">All 435 seats, sorted by who lives there: big cities or small towns, richer or poorer. Plus a profile of every district.</p></div>
     <svg class="chart" width="${W}" height="${y}" viewBox="0 0 ${W} ${y}">${svg}</svg>
     <div class="foot">${lockup(56)}<span class="url">tallorderdigital.com</span></div>
   </div>`;
