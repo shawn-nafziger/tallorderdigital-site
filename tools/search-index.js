@@ -40,6 +40,18 @@ for (const m of home.matchAll(/<a class="story" data-topic="([a-z-]+)" href="([^
     kw: kicker.replace(date, "").replace(/[·\s]+$/, ""), body: desc, url: href, date });
 }
 
+// Tall Takes (opinion columns), from the takes index cards.
+const takes = read("takes/index.html");
+for (const m of takes.matchAll(/<a class="take-card" href="([^"]+)">([\s\S]*?)<\/a>/g)) {
+  const [, href, body] = m;
+  const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
+  const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
+  let desc = "";
+  try { desc = meta(read(path.join("takes", href, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
+  items.push({ type: "Take", topic: "nba", title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
+    kw: "tall takes opinion column " + kicker.replace(date, ""), body: desc, url: "takes/" + href, date });
+}
+
 // Dashboards, from the dashboards index.
 const dashIndex = read("nba/dashboards/index.html");
 for (const m of dashIndex.matchAll(/<a class="dash" href="([^"]+)">([\s\S]*?)<\/a>/g)) {
@@ -70,6 +82,7 @@ for (const m of ex.matchAll(/<section class="entry" id="([^"]+)">([\s\S]*?)<\/se
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
 page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");
+page("takes/", "takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
 page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
 
