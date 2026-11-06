@@ -592,6 +592,35 @@ function hotColdCard() {
   </div>`;
 }
 
+function flightDelaysCard(D) {
+  // Share of flights arriving late by departure hour: sky line, 6 a.m. and 7 p.m. marked in orange.
+  const H = D.hours, W = 500, Ht = 330, L = 50, B = 290, T = 30;
+  const ymax = Math.ceil(Math.max(...H.map((d) => d.late)) / 10) * 10;
+  const x = (h) => L + (h - 5) * (W - L - 20) / 18, y = (v) => B - v * (B - T) / ymax;
+  const line = H.map((d, i) => `${i ? "L" : "M"}${x(d.h).toFixed(1)},${y(d.late).toFixed(1)}`).join("");
+  const grid = [0, 10, 20, 30].filter((v) => v <= ymax).map((v) => `<line x1="${L}" x2="${W - 20}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}%</text>`).join("");
+  const six = H.find((d) => d.h === 6), sev = H.find((d) => d.h === 19);
+  const mark = (d, lab, right) => `<circle cx="${x(d.h)}" cy="${y(d.late)}" r="11" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(d.h) + (right ? 18 : -18)}" y="${y(d.late) + (right ? 30 : -18)}" text-anchor="${right ? "start" : "end"}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab}: ${Math.round(d.late)}%</text>`;
+  const ticks = [[6, "6 a.m."], [12, "noon"], [18, "6 p.m."]].map(([h, t]) => `<text x="${x(h)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 500px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · US flights</p><h1>The later you fly, the more likely you'll be late</h1>
+      <p class="dek">Share of flights arriving 15+ minutes late, by departure time. Plus: look up your own route.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht + 20}" viewBox="0 0 ${W} ${Ht + 20}">${grid}${ticks}
+      <path d="${line}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${mark(six, "6 a.m.", true)}${mark(sev, "7 p.m.", false)}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -627,6 +656,8 @@ function homeCard() {
   const DV = JSON.parse(dv.match(/const D = (\{.*?\});\n/s)[1]);
   const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
+  const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
+  const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -645,6 +676,7 @@ function homeCard() {
     ["politics/midterms-2026/results/share.png", resultsCard()],
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
+    ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
