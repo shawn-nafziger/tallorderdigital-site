@@ -2,6 +2,7 @@
    - Each story card carries data-topic ("nba", "weather", ...); each filter button names a topic or "all".
    - Counts come from the cards on the page, so a new story only needs its data-topic.
    - The choice is kept in the address (?topic=nba), so a filtered list can be shared or bookmarked.
+   - Extras marked data-show-topic="nba" (the Latest Tall Take strip) appear only while that topic is chosen.
    - Without this script the buttons stay hidden and every story shows. */
 (function () {
   var group = document.querySelector(".topic-filter");
@@ -9,6 +10,7 @@
   var cards = [].slice.call(document.querySelectorAll(".story[data-topic]"));
   var buttons = [].slice.call(group.querySelectorAll("button[data-topic]"));
   var status = document.querySelector(".topic-status");
+  var extras = [].slice.call(document.querySelectorAll("[data-show-topic]"));
   var names = {};
 
   buttons.forEach(function (btn) {
@@ -36,6 +38,7 @@
       c.hidden = !on;
       if (on) shown++;
     });
+    extras.forEach(function (el) { el.hidden = el.dataset.showTopic !== t; });
     buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.topic === t)); });
     if (status && announce) {
       status.textContent = t === "all" ? "Showing all " + shown + " stories" : "Showing " + shown + " " + names[t] + (shown === 1 ? " story" : " stories");
