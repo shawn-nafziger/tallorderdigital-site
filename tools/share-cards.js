@@ -241,6 +241,36 @@ function takeHeatCard(D) {
   </div>`;
 }
 
+function takeLukaCard(D) {
+  // Three luck-range rows: shot making vs an average shooter (this season, last season) and vs himself.
+  const W = 470, x = (v) => 10 + (v + 5) * (W - 100) / 27, x0 = x(0);
+  const rows = D.ranges.map((r, i) => { const y = 70 + i * 110, c = r.tier === "big" ? C.orange : C.slateDark;
+    const lab = ["This season vs an average shooter", "Last season vs an average shooter", "This season vs himself"][i];
+    return `<line x1="${x0}" x2="${x0}" y1="${y - 16}" y2="${y + 16}" stroke="${C.sub}" stroke-width="2"/><text x="0" y="${y - 26}" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">${lab}</text>
+      <rect x="${x(r.v - 2 * r.se)}" y="${y - 10}" width="${x(r.v + 2 * r.se) - x(r.v - 2 * r.se)}" height="20" rx="10" fill="${C.sky}" fill-opacity=".28"/>
+      <circle cx="${x(r.v)}" cy="${y}" r="13" fill="${c}" stroke="${C.ink}" stroke-width="3"/>
+      <text x="${x(r.v + 2 * r.se) + 12}" y="${y + 8}" font-family="IBM Plex Mono" font-size="22" font-weight="600" fill="${C.mist}">${r.v > 0 ? "+" : "−"}${Math.abs(r.v).toFixed(1)}</text>`; }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .verdict { font: 600 22px/1.35 "IBM Plex Mono"; color: ${C.mist}; margin-top: 18px; }
+    .chart { align-self: center; }
+    .key { font: 500 18px "IBM Plex Mono"; color: ${C.sub}; margin-top: 6px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Check the Take · NBA</p><h1>Is Luka unguardable?</h1>
+      <p class="dek">A pundit calls him the MVP favorite. We checked his workload, shot making and on/off.</p>
+      <p class="verdict">Verdict: holds up. The leap from last season is too early to call</p></div>
+    <div class="chart"><svg width="470" height="330" viewBox="0 0 470 330">
+${rows}</svg>
+      <p class="key">Shot making, pp of eFG% · line = 0<br>band = luck range</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function startsFastCard(D) {
   // Pace dumbbells, one row per season: filled sky = first N days, open ring = rest of season.
   const S = D.seasons, days = D.model.days, vals = S.flatMap((r) => [r.early.pace, r.rest ? r.rest.pace : r.early.pace]);
@@ -646,6 +676,8 @@ function homeCard() {
   const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
   const th = fs.readFileSync(path.join(ROOT, "nba/check-the-take-heat-luck/index.html"), "utf8");
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
+  const tl = fs.readFileSync(path.join(ROOT, "nba/check-the-take-luka-unguardable/index.html"), "utf8");
+  const TL = JSON.parse(tl.match(/const D = (\{.*?\});\n/s)[1]);
   const sf = fs.readFileSync(path.join(ROOT, "nba/every-season-starts-fast-pace-fouls/index.html"), "utf8");
   const SF = JSON.parse(sf.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
@@ -666,6 +698,7 @@ function homeCard() {
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
+    ["nba/check-the-take-luka-unguardable/share.png", takeLukaCard(TL)],
     ["nba/every-season-starts-fast-pace-fouls/share.png", startsFastCard(SF)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
