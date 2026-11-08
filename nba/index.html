@@ -42,17 +42,33 @@
     <p class="lede">Stories on what stands out in the 2026-27 season, popular takes checked against the data, opinion columns, and dashboards that update every morning.</p>
   </header>
 
-  <!-- take:start -->
-  <aside class="latest-take" aria-labelledby="lt-h">
-    <p class="kicker" id="lt-h">Latest Tall Take · Nov 5, 2026</p>
-    <a class="lt-title" href="takes/memphis-good-not-ten-net-rating/">Memphis is good. Not +10 good.</a>
-    <p class="lt-dek">Opinion columns built on the data. <a href="takes/">All takes</a></p>
-  </aside>
-  <!-- take:end -->
+  <div class="top-pair">
+    <!-- take:start -->
+    <aside class="box" aria-labelledby="lt-h">
+      <p class="kicker" id="lt-h">Latest Tall Take · Nov 5, 2026</p>
+      <a class="box-title" href="takes/memphis-good-not-ten-net-rating/">Memphis is good. Not +10 good.</a>
+      <p class="dek">The Grizzlies' 6-2 start is real, but a soft schedule and hot shooting on hard shots are doing a lot of the work. Expect a fade.</p>
+      <a class="more-link" href="takes/">All Tall Takes →</a>
+    </aside>
+    <!-- take:end -->
+    <!-- dashboards:start -->
+    <aside class="box" aria-labelledby="dash-h">
+      <p class="kicker" id="dash-h">Dashboards · updated every morning</p>
+      <ul class="mini tight">
+        <li><a href="dashboards/team-ratings/"><span class="k">Net rating</span><span class="t">Team Ratings</span></a></li>
+        <li><a href="dashboards/game-overview/"><span class="k">Last night</span><span class="t">Game Overview</span></a></li>
+        <li><a href="dashboards/team-profile/"><span class="k">Any team</span><span class="t">Team Profile</span></a></li>
+        <li><a href="dashboards/player-profile/"><span class="k">Any player</span><span class="t">Player Profile</span></a></li>
+        <li><a href="dashboards/hot-cold/"><span class="k">Shooting</span><span class="t">Hot and Cold Shooters</span></a></li>
+      </ul>
+      <a class="more-link" href="dashboards/">All NBA dashboards →</a>
+    </aside>
+    <!-- dashboards:end -->
+  </div>
 
   <section id="latest" aria-labelledby="latest-h">
     <div class="section-head"><p class="kicker" id="latest-h">Latest</p>
-      <div class="topic-filter" data-filter="series" role="group" aria-label="Show NBA pieces by series" hidden>
+      <div class="topic-filter" data-filter="series" data-limit="5" role="group" aria-label="Show NBA pieces by series" hidden>
         <button type="button" data-topic="all" aria-pressed="true"><span class="l">All</span></button>
         <button type="button" data-topic="check-the-take" aria-pressed="false"><span class="l">Check the Take</span></button>
         <button type="button" data-topic="weird-stat" aria-pressed="false"><span class="l">Weird Stat</span></button>
@@ -63,7 +79,7 @@
     <!-- cards:start -->
     <a class="story" data-topic="nba" data-series="check-the-take" href="check-the-take-luka-unguardable/">
       <div>
-        <p class="kicker">Check the Take · NBA · Nov 7, 2026</p>
+        <p class="kicker">Check the Take · Nov 7, 2026</p>
         <h2>Is Luka unguardable?</h2>
         <p class="dek">A pundit calls Luka Dončić the MVP favorite and "completely unguardable." We checked his workload, his shot making and the Lakers with and without him. Verdict: holds up, but the leap from last season is too early to call.</p>
         <p class="meta">5 charts · about 5 minutes</p>
@@ -74,7 +90,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="every-season-starts-fast-pace-fouls/">
       <div>
-        <p class="kicker">NBA · Nov 3, 2026</p>
+        <p class="kicker">Focus story · Nov 3, 2026</p>
         <h2>Every season starts fast</h2>
         <p class="dek">The first two weeks of 2026-27 looked like the fastest pace and the most fouls in years. Next to the same days of the last five seasons, they look ordinary, and openings like this fade every year.</p>
         <p class="meta">3 charts · about 4 minutes</p>
@@ -87,7 +103,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="check-the-take" href="check-the-take-heat-luck/">
       <div>
-        <p class="kicker">Check the Take · NBA · Oct 30, 2026</p>
+        <p class="kicker">Check the Take · Oct 30, 2026</p>
         <h2>Is Miami just unlucky?</h2>
         <p class="dek">A pundit says the 0–4 Heat are bound to improve. His luck numbers are private, but the shot data around them isn't. Verdict: holds up, on the part we can check.</p>
         <p class="meta">4 charts · about 4 minutes</p>
@@ -100,7 +116,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="ready-now-rookie-age/">
       <div>
-        <p class="kicker">NBA · Oct 29, 2026</p>
+        <p class="kicker">Focus story · Oct 29, 2026</p>
         <h2>Ready Now</h2>
         <p class="dek">Yaxel Lendeborg is a 24-year-old rookie playing star minutes. Older rookies usually get smaller jobs and grow less. How unusual his start is, and what five games can tell us.</p>
         <p class="meta">4 charts · about 5 minutes</p>
@@ -113,7 +129,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="injury-tax-missing-stars/">
       <div>
-        <p class="kicker">NBA · Oct 29, 2026</p>
+        <p class="kicker">Focus story · Oct 29, 2026</p>
         <h2>The Injury Tax</h2>
         <p class="dek">Tyrese Haliburton is out again, and he isn't alone. Last season, teams played 5.9 points per 100 possessions worse without their 25-point scorer. Who's missing now.</p>
         <p class="meta">3 charts · about 4 minutes</p>
@@ -126,7 +142,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="new-team-shot-maps/">
       <div>
-        <p class="kicker">NBA · Oct 28, 2026</p>
+        <p class="kicker">Focus story · Oct 28, 2026</p>
         <h2>New Team, New Spots</h2>
         <p class="dek">Shot maps for the biggest names who changed teams. One week in, their percentages are noise, but where they shoot already shows their new roles.</p>
         <p class="meta">Shot maps for 22 players · about 4 minutes</p>
@@ -139,7 +155,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="role-call-minutes-usage/">
       <div>
-        <p class="kicker">NBA · Oct 28, 2026</p>
+        <p class="kicker">Focus story · Oct 28, 2026</p>
         <h2>Role Call</h2>
         <p class="dek">One week in, a player's shooting is noise. His role isn't. Whose role has really changed this season, and whose only looks like it.</p>
         <p class="meta">2 charts · about 4 minutes</p>
@@ -153,7 +169,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="shot-diet-three-point-rate/">
       <div>
-        <p class="kicker">NBA · Oct 28, 2026</p>
+        <p class="kicker">Focus story · Oct 28, 2026</p>
         <h2>The Shot Diet</h2>
         <p class="dek">One week in, a team's 3-point percentage is noise. Where it shoots from isn't, and a few teams have really changed.</p>
         <p class="meta">3 charts · about 4 minutes</p>
@@ -171,7 +187,7 @@
     </a>
     <a class="story" data-topic="nba" data-series="focus" href="early-season-mirage-net-rating/">
       <div>
-        <p class="kicker">NBA · Oct 28, 2026</p>
+        <p class="kicker">Focus story · Oct 28, 2026</p>
         <h2>The Early-Season Mirage</h2>
         <p class="dek">Four games into a season, a team's net rating is mostly noise. Five seasons of games show when the numbers start telling the truth.</p>
         <p class="meta">5 charts · about 6 minutes</p>
@@ -188,6 +204,7 @@
       </div>
     </a>
     <!-- cards:end -->
+    <button type="button" class="show-all" hidden>Show all</button>
   </section>
 
   <!-- series:start -->
@@ -215,20 +232,6 @@
     </div>
   </section>
   <!-- series:end -->
-
-  <!-- dashboards:start -->
-  <section aria-labelledby="dash-h">
-    <div class="section-head"><p class="kicker" id="dash-h">Dashboards · updated every morning</p></div>
-    <ul class="mini">
-      <li><a href="dashboards/team-ratings/"><span class="k">Net rating · Updated daily</span><span class="t">Team Ratings</span></a></li>
-      <li><a href="dashboards/game-overview/"><span class="k">Last night · Updated daily from Oct 31, 2026</span><span class="t">Game Overview</span></a></li>
-      <li><a href="dashboards/team-profile/"><span class="k">Any team · Updated daily from Oct 31, 2026</span><span class="t">Team Profile</span></a></li>
-      <li><a href="dashboards/player-profile/"><span class="k">Any player · Updated daily from Nov 3, 2026</span><span class="t">Player Profile</span></a></li>
-      <li><a href="dashboards/hot-cold/"><span class="k">Shooting · Updated daily from Nov 4, 2026</span><span class="t">Hot and Cold Shooters</span></a></li>
-    </ul>
-    <a class="more-link" href="dashboards/">All NBA dashboards →</a>
-  </section>
-  <!-- dashboards:end -->
 
   <section class="subscribe" id="subscribe" aria-labelledby="sub-h">
     <p class="kicker">The weekly email</p>

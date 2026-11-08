@@ -28,18 +28,22 @@ const CHECK = process.argv.includes("--check");
 const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
 
 // Series on each topic page, in the order their sections appear. "page" = a series page under the topic folder.
+// "one" = the name of a single piece; each card's kicker is rewritten as "<one> · <date>" (Nov 8, 2026), so every
+// card names its series the same way. Anything after the date in a hand-written kicker is dropped.
 const SERIES = {
   nba: [
-    { key: "check-the-take", name: "Check the Take", dek: "A popular claim about a player or team, tested against the data.", page: "check-the-take/" },
-    { key: "weird-stat", name: "Weird Stat", dek: "One strange number, and what's behind it." },
-    { key: "focus", name: "Focus stories", dek: "A longer look at one question, chart by chart." },
+    { key: "check-the-take", name: "Check the Take", one: "Check the Take", dek: "A popular claim about a player or team, tested against the data.", page: "check-the-take/" },
+    { key: "weird-stat", name: "Weird Stat", one: "Weird Stat", dek: "One strange number, and what's behind it." },
+    { key: "focus", name: "Focus stories", one: "Focus story", dek: "A longer look at one question, chart by chart." },
   ],
   weather: [
-    { key: "month-in-review", name: "Month in review", dek: "How last month ranked against every year on record." },
-    { key: "record-watch", name: "Record watch", dek: "A record broken, or a streak still running." },
-    { key: "focus", name: "Focus stories", dek: "A longer look at one weather question." },
+    { key: "month-in-review", name: "Month in review", one: "Month in review", dek: "How last month ranked against every year on record." },
+    { key: "record-watch", name: "Record watch", one: "Record watch", dek: "A record broken, or a streak still running." },
+    { key: "focus", name: "Focus stories", one: "Focus story", dek: "A longer look at one weather question." },
   ],
 };
+// How many pieces each topic page's Latest list shows before "Show all" (assets/topic-filter.js reads data-limit).
+const LIMIT = 5;
 const PAGES = [
   { key: "nba", file: "nba/index.html", dir: "nba/", name: "NBA", dek: "Stories, popular takes checked against the data, opinion columns and dashboards that update every morning." },
   { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
@@ -73,8 +77,9 @@ function parseCards(page) {
     card.t = Date.parse(`${d[1]} ${d[2]}, ${d[3]}`);
     if (SERIES[page.key]) {
       if (card.topic !== page.key) throw new Error(`${page.file}: card ${card.href} has data-topic="${card.topic}"`);
-      if (!SERIES[page.key].some((s) => s.key === card.series))
-        throw new Error(`${page.file}: card ${card.href} needs a data-series from: ${SERIES[page.key].map((s) => s.key).join(", ")}`);
+      const s = SERIES[page.key].find((x) => x.key === card.series);
+      if (!s) throw new Error(`${page.file}: card ${card.href} needs a data-series from: ${SERIES[page.key].map((x) => x.key).join(", ")}`);
+      card.html = card.html.replace(/<p class="kicker">[\s\S]*?<\/p>/, `<p class="kicker">${s.one} · ${card.date || d[0]}</p>`);
     } else if (card.topic === "nba" || card.topic === "weather") {
       throw new Error(`${page.file}: ${card.topic} stories belong on ${card.topic}/, not More stories (${card.href})`);
     }
@@ -132,17 +137,20 @@ for (const page of PAGES) {
   if (!tk) throw new Error("nba/takes/index.html: no take cards");
   const tDate = (text(tk[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]).match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
   const tTitle = text(tk[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]);
-  const take = `  <aside class="latest-take" aria-labelledby="lt-h">\n    <p class="kicker" id="lt-h">Latest Tall Take · ${tDate}</p>\n` +
-    `    <a class="lt-title" href="takes/${tk[1]}">${tTitle}</a>\n    <p class="lt-dek">Opinion columns built on the data. <a href="takes/">All takes</a></p>\n  </aside>`;
-  let h = fill(get(f), "take", take);
+  const tDek = text((tk[2].match(/<p class="dek">([\s\S]*?)<\/p>/) || [])[1] || "");
+  // The two boxes sit side by side near the top of the page (Nov 8, 2026), so neither is buried under the story list.
+  const take = `    <aside class="box" aria-labelledby="lt-h">\n      <p class="kicker" id="lt-h">Latest Tall Take · ${tDate}</p>\n` +
+    `      <a class="box-title" href="takes/${tk[1]}">${tTitle}</a>\n` + (tDek ? `      <p class="dek">${tDek}</p>\n` : "") +
+    `      <a class="more-link" href="takes/">All Tall Takes →</a>\n    </aside>`;
+  let h = fill(get(f), "take", take, "    ");
 
   const dash = read("nba/dashboards/index.html");
   const items = [...dash.matchAll(/<a class="dash" href="([^"]+)">([\s\S]*?)<\/a>/g)].map((m) => ({
-    href: "dashboards/" + m[1], k: text(m[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]), t: text(m[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]) }));
+    href: "dashboards/" + m[1], k: text(m[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]).split(" · ")[0], t: text(m[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]) }));
   if (!items.length) throw new Error("nba/dashboards/index.html: no dashboard cards");
-  const body = `  <section aria-labelledby="dash-h">\n    <div class="section-head"><p class="kicker" id="dash-h">Dashboards · updated every morning</p></div>\n` +
-    mini(items, "    ") + `\n    <a class="more-link" href="dashboards/">All NBA dashboards →</a>\n  </section>`;
-  out[f] = fill(h, "dashboards", body);
+  const body = `    <aside class="box" aria-labelledby="dash-h">\n      <p class="kicker" id="dash-h">Dashboards · updated every morning</p>\n` +
+    mini(items, "      ").replace('<ul class="mini">', '<ul class="mini tight">') + `\n      <a class="more-link" href="dashboards/">All NBA dashboards →</a>\n    </aside>`;
+  out[f] = fill(h, "dashboards", body, "    ");
 }
 
 // Home: one door per topic page, newest three pieces each.

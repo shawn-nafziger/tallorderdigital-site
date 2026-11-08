@@ -52,7 +52,7 @@
 
   <section id="latest" aria-labelledby="latest-h">
     <div class="section-head"><p class="kicker" id="latest-h">Weather stories</p>
-      <div class="topic-filter" data-filter="series" role="group" aria-label="Show weather stories by series" hidden>
+      <div class="topic-filter" data-filter="series" data-limit="5" role="group" aria-label="Show weather stories by series" hidden>
         <button type="button" data-topic="all" aria-pressed="true"><span class="l">All</span></button>
         <button type="button" data-topic="month-in-review" aria-pressed="false"><span class="l">Month in review</span></button>
         <button type="button" data-topic="record-watch" aria-pressed="false"><span class="l">Record watch</span></button>
@@ -63,7 +63,7 @@
     <!-- cards:start -->
     <a class="story" data-topic="weather" data-series="focus" href="phoenix-after-dark/">
       <div>
-        <p class="kicker">Weather · Oct 28, 2026</p>
+        <p class="kicker">Focus story · Oct 28, 2026</p>
         <h2>Phoenix After Dark</h2>
         <p class="dek">For most of the last century, a Phoenix night that stayed at 90°F or warmer almost never happened. Now it happens every summer. In 2024 it happened 39 times.</p>
         <p class="meta">4 charts · about 4 minutes</p>
@@ -76,6 +76,7 @@
       </div>
     </a>
     <!-- cards:end -->
+    <button type="button" class="show-all" hidden>Show all</button>
     <p class="soon">More weather stories are on the way.</p>
   </section>
 
