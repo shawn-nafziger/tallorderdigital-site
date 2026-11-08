@@ -42,6 +42,10 @@ SHARE_HTML = '''  <!-- share:start -->
   </div>
   <!-- share:end -->
 '''
+END_OPEN = '  <!-- story-end:start --><div class="story-end">\n'
+END_CLOSE = '  </div><!-- story-end:end -->\n'
+END_OPEN_RE = re.compile(r"[ \t]*<!-- story-end:start --><div class=\"story-end\">\n?")
+END_CLOSE_RE = re.compile(r"[ \t]*</div><!-- story-end:end -->\n?")
 SHARE_CSS_RE = re.compile(r"/\* share:start \*/.*?/\* share:end \*/\n?", re.S)
 SHARE_HTML_RE = re.compile(r"[ \t]*<!-- share:start -->.*?<!-- share:end -->\n?", re.S)
 SHARE_JS_RE = re.compile(r"<script>\s*/\* share:start \*/.*?/\* share:end \*/\s*</script>\n?", re.S)
@@ -100,11 +104,16 @@ def apply(html, path):
         raise SystemExit(f"{path}: can't find the logo link (class=\"brand\") to work out the path to the site root")
     root = "" if m.group(1) in ("./", ".") else m.group(1)
 
-    # 1. The share row, then the card: last things inside the <main> that comes before the footer.
-    html = SHARE_HTML_RE.sub("", HTML_RE.sub("", html))
+    # 1. The share row, then the card: last things inside the <main> that comes before the footer. On stories whose
+    #    sections carry their own side margins (class "wrap", the travel stories), <main> is full width, so the two go
+    #    inside a centered column (.story-end, added Nov 8, 2026) instead of running to the edge of the screen.
+    html = SHARE_HTML_RE.sub("", HTML_RE.sub("", END_OPEN_RE.sub("", END_CLOSE_RE.sub("", html))))
     foot = html.index("<footer")
     end = html.rindex("</main>", 0, foot)
-    html = html[:end] + SHARE_HTML + card(root) + html[end:]
+    body = SHARE_HTML + card(root)
+    if re.search(r'<section class="(?:[^"]*\s)?wrap(?:\s[^"]*)?"', html[html.index("<body"):end][html[html.index("<body"):end].index("<main"):]):
+        body = END_OPEN + body + END_CLOSE
+    html = html[:end] + body + html[end:]
 
     # 2. Footer link, before the copyright line.
     html = FOOT_RE.sub("", html)
