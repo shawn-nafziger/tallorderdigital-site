@@ -12,7 +12,8 @@ replaces them. To change the card: edit those two files, then re-run this here a
 
 The share row and then the card go last inside <main>, just above the footer. Story pages are the self-contained pages with a site header
 (stories, not the home/About/search pages, which link assets/site.css and have the card or footer link already).
-Skipped: the dashboards (a data tool gets only the menu link), redirect pages and the 404 page.
+Skipped: the dashboards (a data tool gets only the menu link), the weird stat of the day (rebuilt in nba-analytics
+every morning), redirect pages and the 404 page.
 Never run this on the travel-analytics template: it builds shawnnafziger.com's copy, which has no Tall Order links.
 """
 import pathlib, re, sys
@@ -71,12 +72,14 @@ def apply(html, path):
     rel = str(path).replace("\\", "/")
     if 'class="site-bar' not in html or "<footer" not in html or "</main>" not in html:
         return None
-    if re.search(r'href="[^"]*assets/site\.css"', html) or "/dashboards/" in rel or 'http-equiv="refresh"' in html:
+    if re.search(r'href="[^"]*assets/site\.css"', html) or "/dashboards/" in rel or "/weird-stat/" in rel or 'http-equiv="refresh"' in html:
         return None
-    m = re.search(r'<a href="([^"]*)#stories"[^>]*>Stories</a>', html)
+    # The path to the site root comes from the logo link, as in tools/apply-header.py (the menu has had no
+    # "Stories" link since Nov 8, 2026). "./" (a page at the site root) becomes "".
+    m = re.search(r'<a class="brand" href="([^"]*)"', html)
     if not m:
-        raise SystemExit(f"{path}: can't find the Stories link to work out the path to the site root")
-    root = m.group(1)
+        raise SystemExit(f"{path}: can't find the logo link (class=\"brand\") to work out the path to the site root")
+    root = "" if m.group(1) in ("./", ".") else m.group(1)
 
     # 1. The share row, then the card: last things inside the <main> that comes before the footer.
     html = SHARE_HTML_RE.sub("", HTML_RE.sub("", html))
