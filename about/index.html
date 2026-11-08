@@ -8,11 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <title>About · Tall Order Digital</title>
-<meta name="description" content="About Shawn Nafziger and Tall Order Digital.">
+<meta name="description" content="About Tall Order Digital, privacy and contact.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tall Order Digital">
 <meta property="og:title" content="About · Tall Order Digital">
-<meta property="og:description" content="About Shawn Nafziger and Tall Order Digital.">
+<meta property="og:description" content="About Tall Order Digital, privacy and contact.">
 <link rel="canonical" href="https://tallorderdigital.com/about/">
 <meta property="og:url" content="https://tallorderdigital.com/about/">
 <meta property="og:image" content="https://tallorderdigital.com/assets/share-home.png">
@@ -28,6 +28,20 @@
 <style>
 /* About page only: a quieter headline than the story pages. */
 .about-name { font-size: clamp(28px, 4.5vw, 40px); }
+/* Contact form: same field and button styles as the subscribe card. */
+.contact-form { display: grid; gap: 14px; max-width: 34em; margin-top: 16px; }
+.contact-form label { display: grid; gap: 6px; font: 500 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.contact-form input, .contact-form textarea { width: 100%; min-height: 44px; padding: 10px 12px; font: 400 16px/1.4 var(--font-body); letter-spacing: 0; text-transform: none;
+  color: var(--ink); background: var(--surface); border: 1px solid var(--ghost); border-radius: 6px; }
+.contact-form textarea { resize: vertical; }
+.contact-form .contact-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.contact-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.contact-form button { min-height: 44px; padding: 10px 24px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink); border: 0; border-radius: 6px; cursor: pointer; }
+.contact-form button:hover { background: var(--amber); }
+.contact-form button[disabled] { opacity: .6; cursor: wait; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible, .contact-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.contact-status { margin: 0; color: var(--ink-2); }
+.contact-status.done { color: var(--ink); font-weight: 600; }
 </style>
 <script src="../assets/theme.js" defer></script>
 <script src="../assets/site-header.js" defer></script>
@@ -40,16 +54,25 @@
 <main class="wrap">
   <article class="prose">
     <p class="kicker">About</p>
-    <h1 class="about-name">Shawn Nafziger</h1>
-    <p class="lede">In my day job, I'm a business intelligence and data-visualization analyst. I use tools like Power BI and Contentsquare to measure website engagement and answer business questions with data. Tall Order Digital is where I do my own work.</p>
-    <p>This site is for data stories: questions worth asking, answered with real data and drawn so you can see the answer. I start with the NBA because basketball runs on stats and strong opinions, and the two usually meet at the same question: how much can you trust what you're seeing?</p>
+    <h1 class="about-name">Tall Order Digital</h1>
+    <p class="lede">This site is for data stories: questions worth asking, answered with real data and drawn so you can see the answer.</p>
+    <p>It starts with the NBA because basketball runs on stats and strong opinions, and the two usually meet at the same question: how much can you trust what you're seeing?</p>
     <p>Each story says where its data comes from, how much of it there is, and where the answer is uncertain. New to the numbers? <a href="../explained/">Stats, explained</a> walks through each one in plain words, with basketball examples.</p>
     <h2 id="privacy">Privacy</h2>
     <p>This site doesn't use cookies, and reading it doesn't collect your name, email or anything else that identifies you.</p>
     <p>If you sign up for <a href="../subscribe/">the weekly email</a>, your address goes to <a href="https://buttondown.com/">Buttondown</a>, the service that sends it, along with the page you signed up on. It's used only to send that email, and never sold or shared. Every email has an unsubscribe link.</p>
-    <p>Two cookie-free services count visits. <a href="https://www.goatcounter.com/">GoatCounter</a> counts which pages people read, and whether they open a glossary term, reach the end of a story, use a story's share button or click the email link below. A shared link ends in <code>?ref=share</code>, so visits from shares can be counted too; it doesn't say who shared it. <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a> measures how fast pages load. Neither one follows you to other sites.</p>
-    <h2>Get in touch</h2>
-    <p>Email <a href="mailto:shawn@tallod.com">shawn@tallod.com</a>. More of my work is at <a href="https://shawnnafziger.com/">shawnnafziger.com</a>.</p>
+    <p>Two cookie-free services count visits. <a href="https://www.goatcounter.com/">GoatCounter</a> counts which pages people read, and whether they open a glossary term, reach the end of a story, use a story's share button or send the contact form below. A shared link ends in <code>?ref=share</code>, so visits from shares can be counted too; it doesn't say who shared it. <a href="https://www.cloudflare.com/web-analytics/">Cloudflare Web Analytics</a> measures how fast pages load. Neither one follows you to other sites.</p>
+    <p>If you use the contact form below, your name, email and message go to <a href="https://formspree.io/">Formspree</a>, the service that delivers them by email. They're used only to reply to you, and never sold or shared.</p>
+    <h2 id="contact">Contact us</h2>
+    <!-- Contact form (Formspree). The form's address is the action below; the script at the end of the page sends it without leaving the page. -->
+    <form class="contact-form" action="https://formspree.io/f/FORM_ID" method="POST">
+      <label>Name<input type="text" name="name" autocomplete="name" required maxlength="200"></label>
+      <label>Email<input type="email" name="email" autocomplete="email" required maxlength="320"></label>
+      <label>Message<textarea name="message" rows="6" required maxlength="5000"></textarea></label>
+      <input type="hidden" name="_subject" value="Contact form: tallorderdigital.com">
+      <input type="text" name="_gotcha" class="contact-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="contact-row"><button type="submit">Send</button><p class="contact-status" role="status" aria-live="polite"></p></div>
+    </form>
   </article>
 </main>
 <footer class="site-foot wrap">
@@ -101,15 +124,28 @@
 })();
 </script>
 <script>
-// About page only: a click on the email link counts in GoatCounter as contact/<page>.
+// About page only: the contact form (Formspree). Sends without leaving the page, shows the result
+// next to the button, and counts each sent message in GoatCounter as contact/<page>.
+// Without JavaScript the form still posts normally and Formspree shows its own thank-you page.
 (function () {
+  var form = document.querySelector(".contact-form");
+  if (!form || !window.fetch) return;
+  var status = form.querySelector(".contact-status"), button = form.querySelector("button");
   var parts = location.pathname.split("/").filter(Boolean);
   var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
-  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
-    a.addEventListener("click", function () {
-      var gc = window.goatcounter;
-      if (gc && gc.count) gc.count({ path: "contact/" + page, title: "contact/" + page, event: true });
-    });
+  function say(text, done) { status.textContent = text; status.className = "contact-status" + (done ? " done" : ""); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    button.disabled = true; say("Sending…");
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.reset(); say("Thanks, your message was sent.", true);
+        var gc = window.goatcounter;
+        if (gc && gc.count) gc.count({ path: "contact/" + page, title: "contact/" + page, event: true });
+      })
+      .catch(function () { say("Sorry, that didn't send. Please try again in a minute."); })
+      .then(function () { button.disabled = false; });
   });
 })();
 </script>
