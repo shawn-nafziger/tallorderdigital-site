@@ -622,6 +622,32 @@ function hotColdCard() {
   </div>`;
 }
 
+function weirdStatCard() {
+  // Three rubber stamps, one per tag: Legit in orange (the only signal), On purpose in Paper, Fluke in slate.
+  // No names or numbers, so the card never goes out of date.
+  const stamp = (t, color, rot, x, y, size) => `<div class="stamp" style="color:${color};left:${x}px;top:${y}px;font-size:${size}px;transform:rotate(${rot}deg)">${t}</div>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.92 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .stamps { position: relative; }
+    .stamp { position: absolute; font-family: "Barlow Semi Condensed"; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      line-height: 1; padding: .18em .3em .14em; border: .09em solid currentColor; border-radius: .14em; white-space: nowrap; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · New every morning</p><h1>Weird stat of the day</h1>
+      <p class="dek">The strangest thing in last night's box scores, and one word on whether it means anything.</p></div>
+    <div class="stamps">
+      ${stamp("Fluke", "#9fb1b8", 6, 210, 20, 58)}
+      ${stamp("On purpose", C.mist, -3, 10, 120, 58)}
+      ${stamp("Legit", C.orange, -7, 120, 228, 84)}
+    </div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function flightDelaysCard(D) {
   // Share of flights arriving late by departure hour: sky line, 6 a.m. and 7 p.m. marked in orange.
   const H = D.hours, W = 500, Ht = 330, L = 50, B = 290, T = 30;
@@ -705,6 +731,7 @@ function homeCard() {
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
     ["nba/dashboards/hot-cold/share.png", hotColdCard()],
+    ["nba/weird-stat/share.png", weirdStatCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["politics/midterms-2026/results/share.png", resultsCard()],
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
