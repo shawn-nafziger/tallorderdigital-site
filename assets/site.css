@@ -175,6 +175,25 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .steps li { counter-increment: step; display: grid; grid-template-columns: 32px 1fr; gap: 0 12px; color: var(--ink-2); font-size: 15px; }
 .steps li::before { content: counter(step); grid-row: span 2; width: 32px; height: 32px; border: 1px solid var(--ink-3); border-radius: 50%; display: grid; place-items: center; font: 500 14px/1 var(--font-data); color: var(--ink); }
 .steps b { color: var(--ink); font-size: 17px; }
+/* NBA page top (Nov 8, 2026): Latest Tall Take and Dashboards side by side right under the intro (stacked on phones),
+   so neither sits below the story list. Pulled up a little so the intro and the boxes read as one block. */
+.top-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; margin-top: -24px; }
+.box { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px 8px; display: grid; gap: 8px; }
+.box .kicker { margin: 0; }
+.box-title { font: 700 clamp(24px, 3.4vw, 28px)/1.05 var(--font-display); text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.box-title::after { content: " →"; }
+.box-title:hover { color: var(--amber); }
+.box .dek { color: var(--ink-2); font-size: 15px; }
+.mini.tight a { padding: 8px 0; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 12px; }
+.mini.tight .t { font-size: 16px; grid-column: 1; grid-row: 1; }
+.mini.tight .k { grid-column: 2; grid-row: 1; text-align: right; }
+/* Latest list: the newest few, then "Show all" (assets/topic-filter.js, data-limit). */
+.show-all { margin-top: 16px; min-height: 44px; padding: 0 18px; border: 1px solid var(--ink-3); border-radius: 999px; background: transparent; cursor: pointer;
+  font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+.show-all:hover { border-color: var(--amber); color: var(--amber); }
+.show-all:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.show-all[hidden] { display: none; }
+.story:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
 /* hubs:end */
 
 /* Visually hidden, still read by screen readers (form labels, live status). */
