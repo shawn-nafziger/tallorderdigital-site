@@ -224,6 +224,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
    Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
 /* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
 .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; } /* pages with no subscribe card below (the weird stat of the day) */
 .share-row .share-ask { margin: 0; color: var(--ink-2); }
 .share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
   color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
@@ -760,13 +761,14 @@ new MutationObserver(drawAll).observe(document.documentElement, { attributes: tr
 /* share:start */
 /* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
    others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
-   GoatCounter as their own referrer. A finished share counts in GoatCounter as share/<page> (cancelling the share
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
    sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
    another site still shares this one. */
 (function () {
   var parts = location.pathname.split("/").filter(Boolean);
   var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
-  var url = location.origin + location.pathname + "?ref=share";
+  var base = location.origin + location.pathname + "?ref=share";
   var og = document.querySelector('meta[property="og:title"]');
   var title = og ? og.getAttribute("content") : document.title;
   function count(how) {
@@ -774,7 +776,7 @@ new MutationObserver(drawAll).observe(document.documentElement, { attributes: tr
     if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + how + ")", event: true });
   }
   document.querySelectorAll(".share-row").forEach(function (row) {
-    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg");
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
     function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
     function copy() {
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -785,6 +787,7 @@ new MutationObserver(drawAll).observe(document.documentElement, { attributes: tr
       }
     }
     btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
       if (navigator.share) {
         navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
           if (!err || err.name !== "AbortError") copy();
