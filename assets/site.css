@@ -231,3 +231,16 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .subscribe .sub-note a { color: var(--ink-2); }
 .subscribe .sub-done { font-weight: 600; }
 /* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */

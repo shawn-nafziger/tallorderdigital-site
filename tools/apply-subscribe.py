@@ -1,4 +1,4 @@
-"""Puts the weekly-email signup card at the end of story pages, plus a "Get the weekly email" footer link.
+"""Puts the share row and the weekly-email signup card at the end of story pages, plus a "Get the weekly email" footer link.
 Claude runs this; Shawn doesn't need to.
 
     python3 tools/apply-subscribe.py                       # every story page in this repo
@@ -6,10 +6,11 @@ Claude runs this; Shawn doesn't need to.
     python3 tools/apply-subscribe.py --check               # report pages that are out of date, change nothing
 
 Master copies: the ".subscribe" rules between "subscribe:start" / "subscribe:end" in assets/site.css, and
-assets/subscribe.js. Story pages are self-contained, so each gets inline copies between the same markers; re-running
+assets/subscribe.js; the share row's rules between "share:start" / "share:end" in assets/site.css, and assets/share.js
+(added Nov 8, 2026). Story pages are self-contained, so each gets inline copies between the same markers; re-running
 replaces them. To change the card: edit those two files, then re-run this here and on the templates.
 
-The card goes last inside <main>, just above the footer. Story pages are the self-contained pages with a site header
+The share row and then the card go last inside <main>, just above the footer. Story pages are the self-contained pages with a site header
 (stories, not the home/About/search pages, which link assets/site.css and have the card or footer link already).
 Skipped: the dashboards (a data tool gets only the menu link), redirect pages and the 404 page.
 Never run this on the travel-analytics template: it builds shawnnafziger.com's copy, which has no Tall Order links.
@@ -26,6 +27,19 @@ CSS = CSS.replace("/* subscribe:end */",
                   ".subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }\n"
                   ".subscribe.sub-end { margin-top: 8px; width: 100%; }\n.subscribe, .subscribe * { box-sizing: border-box; }\n/* subscribe:end */")
 JS = (ROOT / "assets/subscribe.js").read_text().strip().replace("</", "<\\/")
+SHARE_CSS = re.search(r"/\* share:start \*/.*?/\* share:end \*/", _css, re.S).group(0)
+SHARE_JS = (ROOT / "assets/share.js").read_text().strip().replace("</", "<\\/")
+SHARE_HTML = '''  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+'''
+SHARE_CSS_RE = re.compile(r"/\* share:start \*/.*?/\* share:end \*/\n?", re.S)
+SHARE_HTML_RE = re.compile(r"[ \t]*<!-- share:start -->.*?<!-- share:end -->\n?", re.S)
+SHARE_JS_RE = re.compile(r"<script>\s*/\* share:start \*/.*?/\* share:end \*/\s*</script>\n?", re.S)
 
 CSS_RE = re.compile(r"/\* subscribe:start \*/.*?/\* subscribe:end \*/\n?", re.S)
 HTML_RE = re.compile(r"[ \t]*<!-- subscribe:start -->.*?<!-- subscribe:end -->\n?", re.S)
@@ -64,11 +78,11 @@ def apply(html, path):
         raise SystemExit(f"{path}: can't find the Stories link to work out the path to the site root")
     root = m.group(1)
 
-    # 1. The card: last thing inside the <main> that comes before the footer.
-    html = HTML_RE.sub("", html)
+    # 1. The share row, then the card: last things inside the <main> that comes before the footer.
+    html = SHARE_HTML_RE.sub("", HTML_RE.sub("", html))
     foot = html.index("<footer")
     end = html.rindex("</main>", 0, foot)
-    html = html[:end] + card(root) + html[end:]
+    html = html[:end] + SHARE_HTML + card(root) + html[end:]
 
     # 2. Footer link, before the copyright line.
     html = FOOT_RE.sub("", html)
@@ -80,13 +94,14 @@ def apply(html, path):
 
     # 3. Styles, inside the page's last <style>.
     head_end = html.index("</head>")
-    head = CSS_RE.sub("", html[:head_end])
+    head = SHARE_CSS_RE.sub("", CSS_RE.sub("", html[:head_end]))
     i = head.rindex("</style>")
-    html = head[:i] + CSS + "\n" + head[i:] + html[head_end:]
+    html = head[:i] + CSS + "\n" + SHARE_CSS + "\n" + head[i:] + html[head_end:]
 
     # 4. Script, before the analytics block (or </body>).
-    html = JS_RE.sub("", html)
-    tag = "<script>\n/* subscribe:start */\n" + JS + "\n/* subscribe:end */\n</script>\n"
+    html = SHARE_JS_RE.sub("", JS_RE.sub("", html))
+    tag = ("<script>\n/* subscribe:start */\n" + JS + "\n/* subscribe:end */\n</script>\n"
+           "<script>\n/* share:start */\n" + SHARE_JS + "\n/* share:end */\n</script>\n")
     j = html.find("<!-- Analytics")
     if j < 0:
         j = html.rindex("</body>")
