@@ -4,6 +4,7 @@ Claude runs this; Shawn doesn't need to.
     python3 tools/apply-subscribe.py                       # every story page in this repo
     python3 tools/apply-subscribe.py path/to/template.html ...   # story templates in the data repos
     python3 tools/apply-subscribe.py --check               # report pages that are out of date, change nothing
+    python3 tools/apply-subscribe.py --share-only path/to/template.html   # daily pages: share row only (see below)
 
 Master copies: the ".subscribe" rules between "subscribe:start" / "subscribe:end" in assets/site.css, and
 assets/subscribe.js; the share row's rules between "share:start" / "share:end" in assets/site.css, and assets/share.js
@@ -14,6 +15,9 @@ The share row and then the card go last inside <main>, just above the footer. St
 (stories, not the home/About/search pages, which link assets/site.css and have the card or footer link already).
 Skipped: the dashboards (a data tool gets only the menu link), the weird stat of the day (rebuilt in nba-analytics
 every morning), redirect pages and the 404 page.
+--share-only (added Nov 8, 2026) is for daily pages that get the share row but no subscribe card, like the weird stat of
+the day. The page must already carry a <!-- share:start --> ... <!-- share:end --> block where the row should sit (placed
+by hand, once); the tool leaves that block where it is and refreshes the share styles and script.
 Never run this on the travel-analytics template: it builds shawnnafziger.com's copy, which has no Tall Order links.
 """
 import pathlib, re, sys
@@ -68,6 +72,21 @@ def card(root):
 '''
 
 
+def apply_share_only(html, path):
+    if not SHARE_HTML_RE.search(html):
+        raise SystemExit(f"{path}: --share-only needs a <!-- share:start --> ... <!-- share:end --> block where the row should sit")
+    head_end = html.index("</head>")
+    head = SHARE_CSS_RE.sub("", html[:head_end])
+    i = head.rindex("</style>")
+    html = head[:i] + SHARE_CSS + "\n" + head[i:] + html[head_end:]
+    html = SHARE_JS_RE.sub("", html)
+    tag = "<script>\n/* share:start */\n" + SHARE_JS + "\n/* share:end */\n</script>\n"
+    j = html.find("<!-- Analytics")
+    if j < 0:
+        j = html.rindex("</body>")
+    return html[:j] + tag + html[j:]
+
+
 def apply(html, path):
     rel = str(path).replace("\\", "/")
     if 'class="site-bar' not in html or "<footer" not in html or "</main>" not in html:
@@ -114,13 +133,16 @@ def apply(html, path):
 
 def main(argv):
     check = "--check" in argv
+    share_only = "--share-only" in argv
+    if share_only and not [a for a in argv if not a.startswith("--")]:
+        raise SystemExit("--share-only needs the page paths")
     files = [pathlib.Path(a) for a in argv if not a.startswith("--")]
     if not files:
         files = sorted(p for p in ROOT.rglob("index.html") if ".git" not in p.parts)
     stale = 0
     for f in files:
         old = f.read_text()
-        new = apply(old, f.resolve() if not files else f)
+        new = (apply_share_only if share_only else apply)(old, f.resolve() if not files else f)
         if new is None or new == old:
             continue
         stale += 1
