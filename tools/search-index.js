@@ -94,6 +94,7 @@ page("nba/check-the-take/", "nba/check-the-take/index.html", "Check the Take", "
 page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");
 page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
+page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
 page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
 

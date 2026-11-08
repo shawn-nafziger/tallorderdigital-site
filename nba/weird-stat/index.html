@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Weird Stat of the Day · Tall Order Digital</title>
+<meta name="description" content="The strangest thing in last night's NBA box scores, how rare it is, and one word on whether it means anything. A new one every morning during the season.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="NBA weird stat of the day">
+<meta property="og:description" content="The Trail Blazers are three-point maximalists.">
+<link rel="canonical" href="https://tallorderdigital.com/nba/weird-stat/">
+<meta property="og:url" content="https://tallorderdigital.com/nba/weird-stat/">
+<meta property="og:image" content="https://tallorderdigital.com/nba/weird-stat/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the site's 860px column. Today's weird stat on the dark band (the number big, the tag as a stamp), then every night so far, the Legit / On purpose / Fluke tally, what the tags mean and how it's picked. Site tokens only. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --court: #f7f5f0;
+  --home: #0a3746; --away: #ffffff; --away-line: #0a3746;
+  --hero: #03222c; --hero-ink: #f3f4ef; --hero-ink-2: #c9d3d6; --hero-ink-3: #9fb1b8; --hero-rule: #1e3a44; --hero-signal: #f99a2b;
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --court: #082f3c; --home: #7fc4d6; --away: #0a3746; --away-line: #7fc4d6; --hero: #0e4152; --hero-ink: #f3f4ef; --hero-ink-2: #dddad3; --hero-ink-3: #9fb1b8; --hero-rule: #2a5664; --hero-signal: #f99a2b; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --court: #082f3c; --home: #7fc4d6; --away: #0a3746; --away-line: #7fc4d6; --hero: #0e4152; --hero-ink: #f3f4ef; --hero-ink-2: #dddad3; --hero-ink-3: #9fb1b8; --hero-rule: #2a5664; --hero-signal: #f99a2b; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+p { margin: 0; }
+strong { font-weight: 600; color: var(--ink); }
+.wrap { max-width: 860px; margin: 0 auto; }
+[hidden] { display: none !important; }
+
+/* Site chrome */
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { text-decoration: none; }
+.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; } .mark .m-2 { fill: var(--logo-2); } .mark .m-3 { fill: var(--logo-3); } .mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-nav { display: flex; align-items: center; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-nav a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--amber); padding-bottom: 4px; }
+.site-bar a:hover { color: var(--amber); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } .brand .mark { width: 36px; height: 36px; } .wm-1 { font-size: 20px; } .wm-2 { font-size: 7.3px; } }
+
+main { padding-block: 40px 64px; display: grid; gap: 32px; }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
+h1 { font: 700 clamp(40px, 7vw, 64px)/.95 var(--font-display); text-transform: uppercase; margin: 0; text-wrap: balance; }
+h2 { font: 700 clamp(28px, 4.6vw, 40px)/.98 var(--font-display); text-transform: uppercase; margin: 0; text-wrap: balance; }
+h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.updated { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 16px; font: 400 13px/1.4 var(--font-data); color: var(--ink-3); }
+.live { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); }
+.live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--navy); }
+
+.answer { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin-top: 18px; max-width: 34em; }
+
+
+main { padding-block: 40px 64px; display: grid; gap: 40px; }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
+h1 { font: 700 clamp(40px, 7vw, 64px)/.95 var(--font-display); text-transform: uppercase; margin: 0; text-wrap: balance; }
+h2 { font: 700 clamp(26px, 4.2vw, 36px)/.98 var(--font-display); text-transform: uppercase; margin: 0; text-wrap: balance; }
+.updated { margin-top: 14px; font: 400 13px/1.4 var(--font-data); color: var(--ink-3); }
+.lede { font-size: 19px; line-height: 1.5; color: var(--ink-2); margin-top: 16px; max-width: 34em; }
+.sec { display: grid; gap: 14px; }
+.sec-sub { color: var(--ink-3); font-size: 15px; }
+
+/* Today's stat: the dark band. The tag is a stamp; only Legit is orange, because only Legit is signal. */
+.ws-band { background: var(--hero); color: var(--hero-ink); border-radius: 6px; padding: clamp(20px, 4vw, 32px); display: grid; gap: 0; }
+.ws-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; font: 500 12px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--hero-ink-3); }
+.ws-nav { display: flex; gap: 8px; flex: none; }
+.ws-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--hero-rule); background: transparent; color: var(--hero-ink); font: 600 17px/1 var(--font-body); cursor: pointer; }
+.ws-nav button:disabled { opacity: .3; cursor: default; }
+.ws-nav button:not(:disabled):hover { border-color: var(--hero-ink-3); }
+.ws-big { margin-top: 20px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+.ws-big b { font: 700 clamp(60px, 14vw, 116px)/.9 var(--font-display); letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+.ws-big span { font: 500 13px/1.3 var(--font-data); letter-spacing: .1em; text-transform: uppercase; color: var(--hero-ink-3); }
+.ws-head { margin-top: 16px; font: 700 clamp(24px, 4.2vw, 34px)/1.12 var(--font-display); text-wrap: balance; max-width: 22em; }
+.ws-detail { margin-top: 10px; color: var(--hero-ink-2); max-width: 36em; }
+.ws-match { margin-top: 6px; font: 500 12px/1.4 var(--font-data); letter-spacing: .08em; text-transform: uppercase; color: var(--hero-ink-3); }
+.ws-foot { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--hero-rule); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px 20px; align-items: start; }
+.ws-rare { font: 400 13px/1.55 var(--font-data); color: var(--hero-ink-2); min-width: 0; }
+.ws-rare .f { color: var(--hero-ink); }
+.ws-why { font: 400 15px/1.45 var(--font-body); color: var(--hero-ink-2); margin-top: 8px; }
+.ws-links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 20px; font: 500 13px/1.3 var(--font-data); }
+.ws-links a { color: var(--hero-ink); text-decoration-color: var(--hero-ink-3); text-underline-offset: 3px; }
+.ws-links a:hover { color: var(--hero-signal); }
+.stamp { display: inline-block; padding: 8px 12px 7px; border-radius: 6px; border: 2px solid currentColor; transform: rotate(-4deg); font: 700 20px/1 var(--font-display); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+.stamp.Legit { color: var(--hero-signal); }
+.stamp.Fluke { color: var(--hero-ink-3); }
+.stamp.Purpose { color: var(--hero-ink); }
+@media (max-width: 560px) { .ws-foot { grid-template-columns: 1fr; } }
+
+/* Tags as small pills (the list, the key) */
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font: 600 11px/1.5 var(--font-data); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; border: 1px solid transparent; }
+.pill.Legit { background: var(--amber); color: var(--surface); }
+.pill.Fluke { background: var(--rule); color: var(--ink-2); }
+.pill.Purpose { border-color: var(--ink-2); color: var(--ink); }
+
+/* Every night so far */
+.ws-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+.ws-list button { width: 100%; display: grid; grid-template-columns: 6.8em minmax(0, 1fr) auto; gap: 4px 14px; align-items: baseline; padding: 11px 6px; background: none; border: 0; border-bottom: 1px solid var(--rule); color: var(--ink); text-align: left; font: inherit; font-size: 15px; line-height: 1.4; cursor: pointer; }
+.ws-list button:hover { background: var(--surface); }
+.ws-list button[aria-current="true"] { background: var(--surface); box-shadow: inset 3px 0 0 var(--ink); }
+.ws-list .d { white-space: nowrap; font: 400 12px/1.4 var(--font-data); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .ws-list button { grid-template-columns: 6.2em minmax(0, 1fr); } .ws-list .t { grid-column: 2; } }
+button.more { justify-self: start; min-height: 40px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); font: 500 13px/1 var(--font-data); cursor: pointer; }
+button.more:hover { border-color: var(--ink-3); color: var(--ink); }
+
+/* Tally */
+.tally { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.tally div { border-top: 3px solid var(--ghost); padding-top: 8px; }
+.tally div.Legit { border-color: var(--amber); }
+.tally div.Purpose { border-color: var(--ink); }
+.tally b { display: block; font: 700 clamp(32px, 6vw, 44px)/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.tally span { font: 500 12px/1.3 var(--font-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+
+.key { display: grid; gap: 8px; font-size: 15px; color: var(--ink-2); max-width: 44em; }
+.key .pill { margin-right: 8px; }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
+details.method { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 20px; }
+details.method summary { cursor: pointer; font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+details.method summary:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.method-body { display: grid; gap: 10px; margin-top: 12px; font-size: 15px; color: var(--ink-2); max-width: 46em; }
+
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 8, 2026): NBA, Weather, More stories ("More" on narrow phones), About,
+   Subscribe (outlined; an envelope icon on phones), then the search icon and the light/dark button. The menu itself
+   is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* "More stories" shortens to "More" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* site-header:end */
+</style>
+</head>
+<body>
+<header class="site-bar wrap">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../../nba/" aria-current="page">NBA</a><a href="../../weather/">Weather</a><a href="../../stories/" aria-label="More stories">More<span class="nav-long"> stories</span></a><a href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main class="wrap">
+  <header>
+    <p class="kicker">NBA · New every morning</p>
+    <h1>Weird stat of the day</h1>
+    <p class="updated">Latest: Nov 7, 2026 · <a href="../">More NBA</a></p>
+    <p class="lede">The strangest thing in last night's box scores, how rare it is, and one word on whether it means anything.</p>
+  </header>
+
+  <section class="ws-band" aria-label="Weird stat" aria-live="polite">
+    <div class="ws-meta">
+      <span id="ws-date"></span>
+      <span class="ws-nav"><button type="button" id="prev" aria-label="Earlier night">←</button><button type="button" id="next" aria-label="Later night">→</button></span>
+    </div>
+    <div class="ws-big"><b id="ws-big"></b><span id="ws-biglabel"></span></div>
+    <p class="ws-head" id="ws-head"></p>
+    <p class="ws-detail" id="ws-detail"></p>
+    <p class="ws-match" id="ws-match"></p>
+    <div class="ws-foot">
+      <div><span class="stamp" id="ws-stamp"></span></div>
+      <div class="ws-rare"><div class="f" id="ws-freq"></div><div id="ws-count"></div><div class="ws-why" id="ws-why"></div></div>
+      <div class="ws-links" id="ws-links"></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Every night so far</h2>
+    <p class="sec-sub">Tap a night to put it on top. Each one keeps its own link.</p>
+    <ul class="ws-list" id="list"></ul>
+    <button type="button" class="more" id="more" hidden></button>
+  </section>
+
+  <section class="sec">
+    <h2>The scoreboard</h2>
+    <p class="sec-sub">How this season's weird stats have come out.</p>
+    <div class="tally" id="tally"></div>
+  </section>
+
+  <section class="sec">
+    <h2>What the tags mean</h2>
+    <div class="key">
+      <div><span class="pill Legit">Legit</span>A season-long pattern, beyond the <button type="button" class="term" data-term="luck">luck range</button>. The only tag in orange, because it's the only one that's signal.</div>
+      <div><span class="pill Purpose">On purpose</span>A choice, like shot mix, minutes or passing. Luck didn't do it, but it's still one night.</div>
+      <div><span class="pill Fluke">Fluke</span>Makes and misses, whistles or plus-minus on one night. Fun, and that's all.</div>
+    </div>
+  </section>
+
+  <details class="method">
+    <summary>How it's picked</summary>
+    <div class="method-body">
+      <p><strong>Each morning</strong> a script checks every team, player and long shot from the night before for about 25 kinds of oddity.</p>
+      <p><strong>How rare</strong> is measured against history, only games before that night: team box scores since 2021-22, player box scores and shots since 2025-26.</p>
+      <p><strong>"About once a month"</strong> counts game nights: how many nights of history, divided by how many times it happened (plus one, so nothing is ever "infinitely" rare). Counting nights, not games, keeps player stats from winning just because there are more players than teams.</p>
+      <p><strong>The pick</strong> is the rarest, with a small bonus for kinds that are easy to picture. For variety, it's never the same kind of stat as either of the last two nights or the same team as the night before.</p>
+      <p><strong>Legit</strong> means a team's habit over the season is more than 2 standard errors from the league, the same bar the dashboards use for "beyond luck".</p>
+      <p><strong>Checked before it's posted:</strong> every number on the card is recomputed from the box scores by a separate script. Long shots only count in a quarter's last 5 seconds (an 83-foot "jump shot" on a game's first possession is a mislabeled shot), and shot-mix stats only count when the shot data has the whole box score.</p>
+      <p><strong>A night's pick never changes</strong> once it's posted, so each day's link always shows the same stat.</p>
+    </div>
+  </details>
+</main>
+
+<footer class="site-foot wrap">
+  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>A new stat each morning during the season, from the night before. Regular-season games only.</p>
+  <p>© 2026 Tall Order Digital · <a href="../">NBA</a> · <a href="../dashboards/">Dashboards</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+
+<script src="../../assets/theme.js"></script>
+<script>
+const D = {"season":"2026-27","nights":[{"date":"2026-10-20","games":3,"pick":{"date":"2026-10-20","type":"player_fast_points","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"Javonte Green scored 19 in 18 minutes.","big":"19 pts","bigLabel":"in 18 min","detail":"That's a 38-points-per-36 pace. 5-for-10 from the field.","matchup":"Pistons vs. Celtics","count":"Happened 17 times in 26,648 player games since 2025-26. Last: Coby White, Apr 12, 2026.","freq":"About once every 9 game nights.","team":"DET","player":"Javonte Green","playerKey":1629750,"gameId":"0022600001","teamName":"Pistons"}},{"date":"2026-10-21","games":11,"pick":{"date":"2026-10-21","type":"player_perfect_fg","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"Walker Kessler didn't miss.","big":"12-for-12","bigLabel":"from the field","detail":"Every shot went in: 12 attempts, 26 points.","matchup":"Lakers vs. Warriors","count":"First in 26,716 player games since 2025-26.","freq":"Not once in more than a season of games before this.","team":"LAL","player":"Walker Kessler","playerKey":1631117,"gameId":"0022600005","teamName":"Lakers"}},{"date":"2026-10-22","games":2,"pick":{"date":"2026-10-22","type":"team_bench_low","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"The 76ers' bench scored 9. The starters scored 105.","big":"9–105","bigLabel":"bench vs starters","detail":"8% of the points came off the bench.","matchup":"76ers vs. Cavaliers","count":"Happened 9 times in 2,488 team games since 2025-26. Last: Hawks, Apr 6, 2026.","freq":"About once every 17 game nights.","team":"PHI","player":null,"playerKey":null,"gameId":"0022600006","teamName":"76ers"}},{"date":"2026-10-23","games":12,"pick":{"date":"2026-10-23","type":"team_ft_rough","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"The Bucks left a lot at the line.","big":"14/26","bigLabel":"free throws","detail":"54% on free throws.","matchup":"Bucks vs. Bulls","count":"Happened 47 times in 7,946 games with 20+ free throws since 2021-22. Last: Lakers, Apr 7, 2026.","freq":"About once every 17 game nights.","team":"MIL","player":null,"playerKey":null,"gameId":"0022600099","teamName":"Bucks"}},{"date":"2026-10-24","games":8,"pick":{"date":"2026-10-24","type":"player_long_make","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"Tyrese Maxey hit one from 46 feet at the buzzer.","big":"46 ft","bigLabel":"made","detail":"End of quarter 1.","matchup":"76ers vs. Bucks","count":"Happened 15 times in 27,290 player games since 2025-26. Last: Luka Dončić, Oct 21, 2026.","freq":"About once every 10 game nights.","team":"PHI","player":"Tyrese Maxey","playerKey":1630178,"gameId":"0022600106","teamName":"76ers"}},{"date":"2026-10-25","games":7,"pick":{"date":"2026-10-25","type":"player_pass_first","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"Tyler Kolek handed out 9 assists and scored 0.","big":"9 ast · 0 pts","bigLabel":"","detail":"4 shots of his own. Everyone else's night.","matchup":"Knicks vs. Magic","count":"First in 27,460 player games since 2025-26.","freq":"Not once in more than a season of games before this.","team":"NYK","player":"Tyler Kolek","playerKey":1642278,"gameId":"0022600114","teamName":"Knicks"}},{"date":"2026-10-26","games":9,"pick":{"date":"2026-10-26","type":"team_most_corner3","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"The Suns found the corners. All of them.","big":"22","bigLabel":"corner threes","detail":"Out of 91 shots. The corner three is the shortest three on the floor.","matchup":"Suns vs. Thunder","count":"Happened twice in 2,546 team games since 2025-26. Last: Mavericks, Jan 15, 2026.","freq":"About once every 2 months of games.","team":"PHX","player":null,"playerKey":null,"gameId":"0022600124","teamName":"Suns"}},{"date":"2026-10-27","games":4,"pick":{"date":"2026-10-27","type":"player_quick_foulout","tag":"Fluke","why":"One night of whistles. Luck covers it.","head":"Neemias Queta fouled out in 15 minutes.","big":"6 fouls","bigLabel":"in 15 min","detail":"Six fouls before he'd played 15 of the game's 48 minutes.","matchup":"Celtics vs. Nets","count":"Happened 15 times in 27,829 player games since 2025-26. Last: Kel'el Ware, Oct 21, 2026.","freq":"About once every 11 game nights.","team":"BOS","player":"Neemias Queta","playerKey":1629674,"gameId":"0022600128","teamName":"Celtics"}},{"date":"2026-10-28","games":12,"pick":{"date":"2026-10-28","type":"player_quiet","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"Jaxson Hayes played 37 minutes and barely shot.","big":"2 pts","bigLabel":"in 37 min","detail":"2 shots, 11 rebounds, 4 assists. His job was somewhere else.","matchup":"Jazz vs. Spurs","count":"Happened once in 27,923 player games since 2025-26. Last: Kris Dunn, Jan 10, 2026.","freq":"About once every 3 months of games.","team":"UTA","player":"Jaxson Hayes","playerKey":1629637,"gameId":"0022600141","teamName":"Jazz"}},{"date":"2026-10-29","games":3,"pick":{"date":"2026-10-29","type":"team_bench_low","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"The Kings' bench scored 8. The starters scored 112.","big":"8–112","bigLabel":"bench vs starters","detail":"7% of the points came off the bench.","matchup":"Kings vs. Pelicans","count":"Happened 3 times in 2,596 team games since 2025-26. Last: Lakers, Mar 12, 2026.","freq":"About once a month.","team":"SAC","player":null,"playerKey":null,"gameId":"0022600145","teamName":"Kings"}},{"date":"2026-10-30","games":10,"pick":{"date":"2026-10-30","type":"season_3pa_rate_high","tag":"Legit","why":"A season-long habit, beyond the luck range.","head":"The Hornets are three-point maximalists.","big":"50.7%","bigLabel":"of shots are threes","detail":"Through 6 games; the league is at 42.4%. Only one team-season since 2021-22 took more (the most: Celtics, 2024-25, 53.6%).","matchup":null,"count":null,"freq":null,"team":"CHA","player":null,"playerKey":null,"gameId":null,"teamName":"Hornets"}},{"date":"2026-10-31","games":7,"pick":{"date":"2026-10-31","type":"team_fewest_3pa","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"The Pelicans took 17 threes. In 2026.","big":"17","bigLabel":"three-point attempts","detail":"7 made, and 59 twos.","matchup":"Pelicans vs. Hawks","count":"Happened 19 times in 12,462 team games since 2021-22. Last: Clippers, Mar 7, 2026.","freq":"About once a month.","team":"NOP","player":null,"playerKey":null,"gameId":"0022600149","teamName":"Pelicans"}},{"date":"2026-11-01","games":4,"pick":{"date":"2026-11-01","type":"player_fast_points","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"Jamison Battle scored 20 in 17 minutes.","big":"20 pts","bigLabel":"in 17 min","detail":"That's a 42-points-per-36 pace. 7-for-14 from the field.","matchup":"Raptors vs. Lakers","count":"Happened 7 times in 28,638 player games since 2025-26. Last: Isaiah Joe, Apr 2, 2026.","freq":"About once every 22 game nights.","team":"TOR","player":"Jamison Battle","playerKey":1642419,"gameId":"0022600157","teamName":"Raptors"}},{"date":"2026-11-02","games":15,"pick":{"date":"2026-11-02","type":"season_3pa_rate_low","tag":"Legit","why":"A season-long habit, beyond the luck range.","head":"The Pelicans have nearly given up the three.","big":"33.4%","bigLabel":"of shots are threes","detail":"Through 7 games; the league is at 42.9%. Only three team-seasons since 2021-22 took fewer (the fewest: Hawks, 2022-23, 33.1%).","matchup":null,"count":null,"freq":null,"team":"NOP","player":null,"playerKey":null,"gameId":null,"teamName":"Pelicans"}},{"date":"2026-11-04","games":14,"pick":{"date":"2026-11-04","type":"team_3p_cold","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"The Spurs made 5 of 36 threes.","big":"5/36","bigLabel":"from three","detail":"That's 13.9%. Not a typo.","matchup":"Spurs vs. Mavericks","count":"Happened 25 times in 10,219 games with 30+ threes since 2021-22. Last: Bulls, Oct 21, 2026.","freq":"About once a month.","team":"SAS","player":null,"playerKey":null,"gameId":"0022600184","teamName":"Spurs"}},{"date":"2026-11-05","games":2,"pick":{"date":"2026-11-05","type":"player_pass_first","tag":"On purpose","why":"A choice, not luck. Real, but it's one night.","head":"Draymond Green handed out 11 assists and scored 2.","big":"11 ast · 2 pts","bigLabel":"","detail":"3 shots of his own. Everyone else's night.","matchup":"Warriors vs. Heat","count":"Happened twice in 29,377 player games since 2025-26. Last: Craig Porter Jr., Jan 16, 2026.","freq":"About once every 2 months of games.","team":"GSW","player":"Draymond Green","playerKey":203110,"gameId":"0022600188","teamName":"Warriors"}},{"date":"2026-11-06","games":9,"pick":{"date":"2026-11-06","type":"player_long_make","tag":"Fluke","why":"One night of makes and misses. Luck covers it.","head":"Luka Dončić hit one from 62 feet at the buzzer.","big":"62 ft","bigLabel":"made","detail":"End of quarter 2.","matchup":"Lakers vs. Trail Blazers","count":"Happened 3 times in 29,429 player games since 2025-26. Last: Jonathan Kuminga, Mar 18, 2026.","freq":"About once a month.","team":"LAL","player":"Luka Dončić","playerKey":1629029,"gameId":"0022600032","teamName":"Lakers"}},{"date":"2026-11-07","games":7,"pick":{"date":"2026-11-07","type":"season_3pa_rate_high","tag":"Legit","why":"A season-long habit, beyond the luck range.","head":"The Trail Blazers are three-point maximalists.","big":"49.8%","bigLabel":"of shots are threes","detail":"Through 9 games; the league is at 43.0%. Only one team-season since 2021-22 took more (the most: Celtics, 2024-25, 53.6%).","matchup":null,"count":null,"freq":null,"team":"POR","player":null,"playerKey":null,"gameId":null,"teamName":"Trail Blazers"}}]};
+const N = D.nights;
+const $ = id => document.getElementById(id);
+const cls = t => t === "On purpose" ? "Purpose" : t;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = iso => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+const LIST_START = 10;
+let cur = N.length - 1, showAll = false;
+
+function show(i, push) {
+  cur = Math.max(0, Math.min(N.length - 1, i));
+  const n = N[cur], p = n.pick;
+  $("ws-date").textContent = `${fmt(n.date)} · ${n.games} game${n.games === 1 ? "" : "s"}`;
+  $("ws-big").textContent = p.big;
+  $("ws-biglabel").textContent = p.bigLabel;
+  $("ws-head").textContent = p.head;
+  $("ws-detail").textContent = p.detail;
+  $("ws-match").textContent = p.matchup || "";
+  $("ws-match").hidden = !p.matchup;
+  $("ws-stamp").className = "stamp " + cls(p.tag);
+  $("ws-stamp").textContent = p.tag;
+  $("ws-freq").textContent = p.freq || "";
+  $("ws-count").textContent = p.count || "";
+  $("ws-why").textContent = p.why;
+  const links = [];
+  if (p.gameId) links.push(`<a href="../dashboards/game-overview/#g${esc(p.gameId)}">See the game →</a>`);
+  if (p.playerKey) links.push(`<a href="../dashboards/player-profile/#p${esc(p.playerKey)}">${esc(p.player)} on Player Profile →</a>`);
+  else links.push(`<a href="../dashboards/team-profile/#${esc(p.team)}">${esc(p.teamName)} on Team Profile →</a>`);
+  $("ws-links").innerHTML = links.join("");
+  $("prev").disabled = cur === 0;
+  $("next").disabled = cur === N.length - 1;
+  if (N.length - 1 - cur >= LIST_START && !showAll) { showAll = true; renderList(); }
+  document.querySelectorAll("#list button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === cur ? "true" : "false"));
+  if (push) { try { history.replaceState(null, "", cur === N.length - 1 ? location.pathname : "#d" + n.date.replace(/-/g, "")); } catch (e) {} }
+}
+
+function renderList() {
+  const order = N.map((n, i) => i).reverse();
+  const shown = showAll ? order : order.slice(0, LIST_START);
+  $("list").innerHTML = shown.map(i => { const n = N[i]; return `<li><button type="button" data-i="${i}">
+    <span class="d">${fmt(n.date)}</span><span class="h">${esc(n.pick.head)}</span><span class="t"><span class="pill ${cls(n.pick.tag)}">${esc(n.pick.tag)}</span></span></button></li>`; }).join("");
+  $("more").hidden = showAll || N.length <= LIST_START;
+  $("more").textContent = `Show all ${N.length} nights`;
+  document.querySelectorAll("#list button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === cur ? "true" : "false"));
+}
+
+$("list").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  show(+b.dataset.i, true);
+  document.querySelector(".ws-band").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+});
+$("more").addEventListener("click", () => { showAll = true; renderList(); });
+$("prev").onclick = () => show(cur - 1, true);
+$("next").onclick = () => show(cur + 1, true);
+
+const counts = { Legit: 0, "On purpose": 0, Fluke: 0 };
+N.forEach(n => counts[n.pick.tag]++);
+$("tally").innerHTML = Object.entries(counts).map(([t, c]) => `<div class="${cls(t)}"><b>${c}</b><span>${t}</span></div>`).join("");
+
+/* ---------- Glossary ---------- */
+const GLOSSARY = {
+  luck: ["Luck range", "How far a number can swing by luck alone, even when nothing real has changed. Something has to land beyond it before we call it real. Statisticians call the half-width two standard errors.", "chance-wobble"],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null, closeTimer;
+function openTerm(btn) { const g = GLOSSARY[btn.dataset.term]; if (!g) return; clearTimeout(closeTimer); if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn; btn.setAttribute("aria-expanded", "true");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  pop.style.left = Math.max(16, Math.min(scrollX + document.documentElement.clientWidth - pw - 16, scrollX + r.left + r.width / 2 - pw / 2)) + "px";
+  pop.style.top = (scrollY + (r.top - ph - 10 > 0 ? r.top - ph - 10 : r.bottom + 10)) + "px"; }
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor = null; pop.hidden = true; }
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer)); pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); }); pop.addEventListener("click", e => e.stopPropagation());
+document.querySelectorAll(".term").forEach(btn => { btn.setAttribute("aria-expanded", "false"); let at = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); at = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - at > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); }); btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+  btn.addEventListener("focus", open); btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0)); });
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+
+/* ---------- Start: the latest night, or the one in the link (#d20261104) ---------- */
+const m = /^#d(\d{8})$/.exec(location.hash);
+const start = m ? N.findIndex(n => n.date.replace(/-/g, "") === m[1]) : -1;
+renderList();
+show(start >= 0 ? start : N.length - 1, false);
+</script>
+
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+/* site-header:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>
