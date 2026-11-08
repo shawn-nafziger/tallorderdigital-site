@@ -96,7 +96,7 @@ page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboar
 page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
-page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
+page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
 for (const it of items) if (!it.title) throw new Error("search index: an entry has no title: " + JSON.stringify(it));
 
