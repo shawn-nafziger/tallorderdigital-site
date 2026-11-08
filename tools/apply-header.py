@@ -1,6 +1,8 @@
-"""Puts the sitewide header pieces into pages: the Dashboards link target (the dashboards hub), the Subscribe
-link, the search icon and the light/dark button in the menu, the saved-theme line in <head>, the sticky-header CSS, the phone
+"""Puts the sitewide header pieces into pages: the whole menu (NBA, Weather, More stories, About, Subscribe, the
+search icon and the light/dark button; Nov 8, 2026), the saved-theme line in <head>, the sticky-header CSS, the phone
 hide-on-scroll script and the light/dark script. Claude runs this; Shawn doesn't need to.
+The path to the site root comes from the logo link (class="brand"); the current menu item from the page's folder
+(or, for story templates in the data repos, from the repo they're in).
 
     python3 tools/apply-header.py                      # every page in this repo
     python3 tools/apply-header.py path/to/template.html ...   # specific files (e.g. story templates in the data repos)
@@ -18,8 +20,6 @@ Pages without a .site-bar header (404, redirect pages) are skipped, and so are t
 import pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-# Where the menu's Dashboards link goes, from the site root (the hub offering NBA and Weather; Nov 2, 2026).
-DASHBOARDS = "dashboards/"
 CSS = (ROOT / "assets/site-header.css").read_text().strip()
 JS = (ROOT / "assets/site-header.js").read_text().strip()
 ICON = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
@@ -41,52 +41,59 @@ BLOCK = re.compile(r"/\* site-header:start \*/.*?/\* site-header:end \*/", re.S)
 SCRIPT = re.compile(r"<script>\s*/\* site-header:start \*/.*?/\* site-header:end \*/\s*</script>\n?", re.S)
 
 
+def section_of(path):
+    """Which menu item a page belongs to: "nba", "weather", "stories" (More stories), "about", "subscribe",
+    "search" or "" (none). Pages in this repo go by their folder; story templates in the data repos go by
+    the repo they live in."""
+    p = pathlib.Path(path).resolve()
+    try:
+        rel = p.relative_to(ROOT).as_posix()
+    except ValueError:
+        parts = [x.lower() for x in p.parts]
+        if "nba-analytics" in parts:
+            return "nba"
+        if "weather-intelligence" in parts:
+            return "weather"
+        if any(x in parts for x in ("politics-analytics", "travel-analytics", "misc-analytics")):
+            return "stories"
+        return ""
+    top = rel.split("/", 1)[0] if "/" in rel else ""
+    return {"nba": "nba", "takes": "nba", "weather": "weather", "stories": "stories", "politics": "stories",
+            "travel": "stories", "about": "about", "subscribe": "subscribe", "search": "search"}.get(top, "")
+
+
+def menu(root, here):
+    """The whole menu, written fresh every time (Nov 8, 2026): NBA, Weather, More stories, About, Subscribe,
+    then the search icon and the light/dark button. The section the page belongs to is marked as current."""
+    cur = lambda s: ' aria-current="page"' if here == s else ""
+    return ('<nav class="site-nav" aria-label="Site">'
+            f'<a href="{root}nba/"{cur("nba")}>NBA</a>'
+            f'<a href="{root}weather/"{cur("weather")}>Weather</a>'
+            f'<a href="{root}stories/" aria-label="More stories"{cur("stories")}>More<span class="nav-long"> stories</span></a>'
+            f'<a href="{root}about/"{cur("about")}>About</a>'
+            f'<a class="nav-sub" href="{root}subscribe/"{cur("subscribe")}><span class="t">Subscribe</span>{MAIL}</a>'
+            f'<a class="nav-search" href="{root}search/" aria-label="Search"{cur("search")}>{ICON}</a>'
+            f'{TOGGLE}</nav>')
+
+
 def apply(html, path):
     if 'class="site-bar' not in html or 'class="site-nav"' not in html:
         return None
-    m = re.search(r'<a href="([^"]*)#stories"[^>]*>Stories</a>', html)
+    # The logo links home, so its address is the path to the site root ("./", "../", "../../", ...).
+    m = re.search(r'<a class="brand" href="([^"]*)"', html)
     if not m:
-        raise SystemExit(f"{path}: can't find the Stories link to work out the path to the site root")
+        raise SystemExit(f"{path}: can't find the logo link (class=\"brand\") to work out the path to the site root")
     root = m.group(1)
-    on_search = re.search(r"(^|/)search/index\.html$", str(path).replace("\\", "/")) is not None
-    link = (f'<a class="nav-search" href="{"./" if on_search else root + "search/"}" aria-label="Search"'
-            f'{" aria-current=\"page\"" if on_search else ""}>{ICON}</a>')
+    if root in ("", "./") or not root.endswith("/"):
+        root = "" if root in ("", "./") else root + "/"
 
-    # 1. Dashboards link: to the hub. Pages inside the dashboards section keep their "current page" mark.
-    on_hub = re.search(r"(^|/)(?<!nba/)dashboards/index\.html$", str(path).replace("\\", "/")) is not None
-    def dash(m):
-        current = ' aria-current="page"' if (m.group(1) or on_hub) else ""
-        return f'<a href="{"./" if on_hub else root + DASHBOARDS}"{current}>Dashboards</a>'
+    # 1. The menu.
     nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
-    html = html[: nav.start()] + re.sub(r'<a href="[^"]*"( aria-current="page")?>Dashboards</a>', dash, nav.group(0)) + html[nav.end():]
+    html = html[: nav.start()] + menu(root, section_of(path)) + html[nav.end():]
 
-    # 1b. Light/dark: the saved-choice line first thing in <head>, and the button last in the menu.
+    # 1b. Light/dark: the saved-choice line first thing in <head> (the button is part of the menu).
     if "tod-theme" not in html.split("</head>", 1)[0]:
         html = html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + SAVED, 1)
-    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
-    if 'class="theme-toggle"' not in nav.group(0):
-        html = html[: nav.start()] + nav.group(0)[: -len("</nav>")] + TOGGLE + "</nav>" + html[nav.end():]
-
-    # 1c. Subscribe (Nov 4, 2026): right after About, before the icons. Text on wide screens, an envelope on phones.
-    on_sub = re.search(r"(^|/)subscribe/index\.html$", str(path).replace("\\", "/")) is not None
-    sub = (f'<a class="nav-sub" href="{"./" if on_sub else root + "subscribe/"}"{" aria-current=\"page\"" if on_sub else ""}>'
-           f'<span class="t">Subscribe</span>{MAIL}</a>')
-    html = re.sub(r'<a class="nav-sub"[^>]*>.*?</a>', "", html, flags=re.S)
-    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
-    about = re.search(r'<a href="[^"]*"( aria-current="page")?>About</a>', nav.group(0))
-    if about:
-        inner = nav.group(0)[: about.end()] + sub + nav.group(0)[about.end():]
-        html = html[: nav.start()] + inner + html[nav.end():]
-
-    # 2. Search icon: before the light/dark button, or last in the menu.
-    html = re.sub(r'<a class="nav-search"[^>]*>.*?</a>', "", html, flags=re.S)
-    nav = re.search(r'<nav class="site-nav"[^>]*>.*?</nav>', html, re.S)
-    inner = nav.group(0)
-    if '<button type="button" class="theme-toggle"' in inner:
-        inner = inner.replace('<button type="button" class="theme-toggle"', link + '<button type="button" class="theme-toggle"', 1)
-    else:
-        inner = inner[: -len("</nav>")] + link + "</nav>"
-    html = html[: nav.start()] + inner + html[nav.end():]
 
     # 3 and 4. Styles and script.
     if re.search(r'href="[^"]*assets/site\.css"', html):

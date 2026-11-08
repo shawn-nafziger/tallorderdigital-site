@@ -1,9 +1,9 @@
 /* site-header:start */
 /* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
    On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
-   (assets/site-header.js). Menu: Stories, Dashboards (to the dashboards hub, dashboards/; set as DASHBOARDS in
-   tools/apply-header.py), About, Subscribe (outlined; an envelope icon on phones), then the search icon and the
-   light/dark button.
+   (assets/site-header.js). Menu (Nov 8, 2026): NBA, Weather, More stories ("More" on narrow phones), About,
+   Subscribe (outlined; an envelope icon on phones), then the search icon and the light/dark button. The menu itself
+   is written by tools/apply-header.py.
    Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
    carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
 :root { --header-h: 76px; }
@@ -32,4 +32,6 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   .nav-sub svg { display: block; }
   .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
 }
+/* "More stories" shortens to "More" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
 /* site-header:end */

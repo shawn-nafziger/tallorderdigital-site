@@ -131,6 +131,52 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
   .wm-2 { font-size: 7.3px; }
 }
 
+/* hubs:start */
+/* Topic pages (nba/, weather/), More stories (stories/), series pages and the home page's doors (Nov 8, 2026).
+   The lists inside them are written by tools/build-hubs.js from the story cards on each topic page. */
+.crumb { font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 22px; }
+.crumb a { color: var(--ink-2); text-decoration: none; display: inline-block; padding: 14px 0; margin: -14px 0; }
+.crumb a:hover { color: var(--amber); }
+.note { color: var(--ink-3); font-size: 15px; max-width: 34em; }
+.more-link { display: inline-flex; align-items: center; min-height: 44px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; }
+.more-link:hover { color: var(--amber); }
+/* Compact list of pieces: kicker (series · date), then the title. Used by series sections, doors and dashboards rows. */
+.mini { list-style: none; margin: 0; padding: 0; }
+.mini li { border-top: 1px solid var(--rule); }
+.mini a { display: grid; gap: 4px; padding: 12px 0; text-decoration: none; }
+.mini a:hover .t { color: var(--amber); }
+.mini .k { font: 400 12px/1.3 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.mini .t { font: 600 17px/1.35 var(--font-body); color: var(--ink); }
+/* By series: one block per series, newest two pieces each. */
+.series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+.series { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 20px 8px; display: grid; align-content: start; gap: 8px; }
+.series h3 { font: 700 26px/1 var(--font-display); text-transform: uppercase; margin: 0; }
+.series .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 4px; }
+/* Home: one door per topic (NBA, Weather, More stories). */
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.door { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px 10px; display: grid; align-content: start; gap: 8px; }
+.door h2 { font-size: clamp(32px, 5vw, 40px); }
+.door h2 a { text-decoration: none; }
+.door h2 a:hover { color: var(--amber); }
+.door .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 6px; }
+.door .more-link { margin-top: 2px; }
+/* Weather page: the Almanac, first thing under the title. */
+.almanac { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 22px 20px; text-decoration: none; max-width: 680px; }
+.almanac:hover h2 { color: var(--amber); }
+.almanac .kicker { margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.almanac .dek { color: var(--ink-2); }
+.almanac .go { font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); margin-top: 4px; }
+.almanac:hover .go { color: var(--amber); }
+/* Status tag: ink text in an outline, never colored. */
+.tag { font: 500 10px/1 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
+  border: 1px solid var(--ink-3); border-radius: 3px; padding: 4px 6px 3px; }
+/* Series page: how each piece works, three numbered steps. */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 32px 1fr; gap: 0 12px; color: var(--ink-2); font-size: 15px; }
+.steps li::before { content: counter(step); grid-row: span 2; width: 32px; height: 32px; border: 1px solid var(--ink-3); border-radius: 50%; display: grid; place-items: center; font: 500 14px/1 var(--font-data); color: var(--ink); }
+.steps b { color: var(--ink); font-size: 17px; }
+/* hubs:end */
+
 /* Visually hidden, still read by screen readers (form labels, live status). */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
