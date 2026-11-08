@@ -194,6 +194,19 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .show-all:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .show-all[hidden] { display: none; }
 .story:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+/* NBA page feature (Nov 8, 2026): the weird stat of the day, a full-width card first under the intro. Ink edge and an
+   ink button so it stands out without orange (orange is reserved for data meaning). Button drops under the text on phones. */
+.feature { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: -24px;
+  padding: 20px 22px; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--ink); border-radius: 8px; text-decoration: none; }
+.feature-text { display: grid; gap: 6px; flex: 1 1 320px; min-width: 0; }
+.feature .kicker { margin: 0; }
+.feature-title { font: 700 clamp(30px, 5vw, 40px)/1 var(--font-display); text-transform: uppercase; color: var(--ink); }
+.feature .dek { color: var(--ink-2); font-size: 15px; max-width: 34em; }
+.feature-go { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 6px; background: var(--ink); color: var(--bg);
+  font: 600 15px/1 var(--font-body); white-space: nowrap; }
+.feature:hover .feature-title { color: var(--amber); }
+.feature:hover .feature-go { background: var(--amber); }
+.feature:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 /* hubs:end */
 
 /* Visually hidden, still read by screen readers (form labels, live status). */

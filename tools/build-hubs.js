@@ -33,7 +33,6 @@ const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
 const SERIES = {
   nba: [
     { key: "check-the-take", name: "Check the Take", one: "Check the Take", dek: "A popular claim about a player or team, tested against the data.", page: "check-the-take/" },
-    { key: "weird-stat", name: "Weird Stat", one: "Weird Stat", dek: "One strange number, and what's behind it." },
     { key: "focus", name: "Focus stories", one: "Focus story", dek: "A longer look at one question, chart by chart." },
   ],
   weather: [
@@ -45,7 +44,8 @@ const SERIES = {
 // How many pieces each topic page's Latest list shows before "Show all" (assets/topic-filter.js reads data-limit).
 const LIMIT = 5;
 const PAGES = [
-  { key: "nba", file: "nba/index.html", dir: "nba/", name: "NBA", dek: "Stories, popular takes checked against the data, opinion columns and dashboards that update every morning." },
+  { key: "nba", file: "nba/index.html", dir: "nba/", name: "NBA", dek: "Stories, popular takes checked against the data, opinion columns and dashboards that update every morning.",
+    extra: { k: "Weird stat of the day · New every morning", t: "The strangest thing in last night's box scores", href: "nba/weird-stat/" } },
   { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
     extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://weather.tallorderdigital.com/almanac/" } },
   { key: "stories", file: "stories/index.html", dir: "stories/", name: "More stories", dek: "Politics, travel and everything else with data too good to pass up." },
@@ -157,8 +157,9 @@ for (const page of PAGES) {
 {
   const f = "index.html";
   const doors = PAGES.map((p) => {
-    const series = Object.fromEntries((SERIES[p.key] || []).map((s) => [s.key, s.name]));
-    const items = lists[p.key].slice(0, 3).map((c) => ({
+    const series = Object.fromEntries((SERIES[p.key] || []).map((s) => [s.key, s.one]));
+    // A door with a daily page up top (Weird stat, Almanac) shows two stories under it, so the doors stay even.
+    const items = lists[p.key].slice(0, p.extra ? 2 : 3).map((c) => ({
       href: p.key === "stories" ? c.href.replace(/^\.\.\//, "") : p.dir + c.href,
       k: `${series[c.series] || TOPIC_NAMES[c.topic] || c.topic} · ${c.date}`, t: c.title }));
     if (p.extra) items.unshift(p.extra);
