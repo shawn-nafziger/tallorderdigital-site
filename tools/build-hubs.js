@@ -1,0 +1,172 @@
+/*
+ * Topic pages and home doors (Nov 8, 2026; replaces tools/sort-home.js). Claude runs this; Shawn doesn't need to.
+ *
+ *   node tools/build-hubs.js           (rewrite the generated parts)
+ *   node tools/build-hubs.js --check   (exit 1 if anything is out of date; changes nothing)
+ *
+ * Where story cards live (the one place each card is written by hand):
+ *   nba/index.html      NBA stories      <a class="story" data-topic="nba" data-series="..." href="<slug>/">
+ *   weather/index.html  weather stories  <a class="story" data-topic="weather" data-series="..." href="<slug>/">
+ *   stories/index.html  More stories     <a class="story" data-topic="politics" href="../politics/...">
+ * Cards go between the "cards:start" / "cards:end" markers, anywhere in the list: this tool sorts them newest
+ * first by the date in each card's kicker ("Check the Take · NBA · Nov 7, 2026"; every card needs one).
+ *
+ * What it writes (between markers; don't edit these by hand):
+ *   - "By series" on nba/ and weather/ (only when 2 or more series have pieces): newest two of each series
+ *   - nba/check-the-take/: every Check the Take card
+ *   - nba/: the Latest Tall Take box (the first card on nba/takes/index.html) and the NBA dashboards list
+ *     (from the cards on nba/dashboards/index.html)
+ *   - index.html: the three doors (NBA, Weather, More stories), newest three pieces each
+ * A new series: add it to SERIES below and a button to that page's filter. A new topic page: add it to PAGES.
+ * Then run node tools/search-index.js and node tools/sitemap.js.
+ */
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = path.resolve(__dirname, "..");
+const CHECK = process.argv.includes("--check");
+const read = (p) => fs.readFileSync(path.join(ROOT, p), "utf8");
+
+// Series on each topic page, in the order their sections appear. "page" = a series page under the topic folder.
+const SERIES = {
+  nba: [
+    { key: "check-the-take", name: "Check the Take", dek: "A popular claim about a player or team, tested against the data.", page: "check-the-take/" },
+    { key: "weird-stat", name: "Weird Stat", dek: "One strange number, and what's behind it." },
+    { key: "focus", name: "Focus stories", dek: "A longer look at one question, chart by chart." },
+  ],
+  weather: [
+    { key: "month-in-review", name: "Month in review", dek: "How last month ranked against every year on record." },
+    { key: "record-watch", name: "Record watch", dek: "A record broken, or a streak still running." },
+    { key: "focus", name: "Focus stories", dek: "A longer look at one weather question." },
+  ],
+};
+const PAGES = [
+  { key: "nba", file: "nba/index.html", dir: "nba/", name: "NBA", dek: "Stories, popular takes checked against the data, opinion columns and dashboards that update every morning." },
+  { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
+    extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://weather.tallorderdigital.com/almanac/" } },
+  { key: "stories", file: "stories/index.html", dir: "stories/", name: "More stories", dek: "Politics, travel and everything else with data too good to pass up." },
+];
+const TOPIC_NAMES = { politics: "Politics", travel: "Travel" };
+
+const CARD = /<a class="story"[^>]*>[\s\S]*?<\/a>(?=\s*(?:<a class="story"|<!-- cards:end -->))/g;
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const between = (html, name) => {
+  const re = new RegExp(`(<!-- ${esc(name)}:start -->)[\\s\\S]*?(<!-- ${esc(name)}:end -->)`);
+  if (!re.test(html)) throw new Error(`missing <!-- ${name}:start --> / <!-- ${name}:end --> markers`);
+  return re;
+};
+const fill = (html, name, body, indent = "  ") => html.replace(between(html, name), (_, a, b) => `${a}\n${body ? body + "\n" : ""}${indent}${b}`);
+const text = (s) => s.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+
+function parseCards(page) {
+  const html = read(page.file);
+  const region = html.match(between(html, "cards"))[0];
+  const cards = [...region.matchAll(CARD)].map((m, i) => {
+    const h = m[0];
+    const attr = (n) => (h.match(new RegExp(`^<a class="story"[^>]*\\s${n}="([^"]*)"`)) || [])[1];
+    const kicker = text((h.match(/<p class="kicker">([\s\S]*?)<\/p>/) || [])[1] || "");
+    const d = kicker.match(/([A-Z][a-z]{2}) (\d{1,2}), (\d{4})/);
+    const card = { html: h, i, topic: attr("data-topic"), series: attr("data-series"), href: attr("href"),
+      title: text((h.match(/<h2>([\s\S]*?)<\/h2>/) || [])[1] || ""), kicker };
+    if (!d) throw new Error(`${page.file}: no date in the kicker of the card for ${card.href}`);
+    card.date = d[0];
+    card.t = Date.parse(`${d[1]} ${d[2]}, ${d[3]}`);
+    if (SERIES[page.key]) {
+      if (card.topic !== page.key) throw new Error(`${page.file}: card ${card.href} has data-topic="${card.topic}"`);
+      if (!SERIES[page.key].some((s) => s.key === card.series))
+        throw new Error(`${page.file}: card ${card.href} needs a data-series from: ${SERIES[page.key].map((s) => s.key).join(", ")}`);
+    } else if (card.topic === "nba" || card.topic === "weather") {
+      throw new Error(`${page.file}: ${card.topic} stories belong on ${card.topic}/, not More stories (${card.href})`);
+    }
+    return card;
+  });
+  cards.sort((a, b) => b.t - a.t || a.i - b.i);
+  return { html, cards };
+}
+
+const mini = (items, indent) => `${indent}<ul class="mini">\n` +
+  items.map((x) => `${indent}  <li><a href="${x.href}"><span class="k">${x.k}</span><span class="t">${x.t}</span></a></li>`).join("\n") +
+  `\n${indent}</ul>`;
+
+const out = {}; // file -> new content
+const get = (f) => (f in out ? out[f] : read(f));
+const lists = {};
+
+for (const page of PAGES) {
+  const { html, cards } = parseCards(page);
+  lists[page.key] = cards;
+  let h = fill(html, "cards", cards.map((c) => "    " + c.html).join("\n"), "    ");
+
+  // By series: only worth showing once two or more series have pieces.
+  if (SERIES[page.key]) {
+    const present = SERIES[page.key].filter((s) => cards.some((c) => c.series === s.key));
+    let body = "";
+    if (present.length >= 2) {
+      body = `  <section aria-labelledby="series-h">\n    <div class="section-head"><p class="kicker" id="series-h">By series</p></div>\n    <div class="series-grid">\n` +
+        present.map((s) => {
+          const mine = cards.filter((c) => c.series === s.key);
+          const all = s.page ? s.page : `?series=${s.key}#latest`;
+          return `      <div class="series">\n        <h3>${s.name}</h3>\n        <p class="dek">${s.dek}</p>\n` +
+            mini(mine.slice(0, 2).map((c) => ({ href: c.href, k: c.date, t: c.title })), "        ") +
+            `\n        <a class="more-link" href="${all}">All ${mine.length} →</a>\n      </div>`;
+        }).join("\n") + `\n    </div>\n  </section>`;
+    }
+    h = fill(h, "series", body);
+  }
+  out[page.file] = h;
+}
+
+// Check the Take series page: every Check the Take card, links one folder up.
+{
+  const f = "nba/check-the-take/index.html";
+  const cards = lists.nba.filter((c) => c.series === "check-the-take")
+    .map((c) => "    " + c.html.replace(`href="${c.href}"`, `href="../${c.href}"`));
+  out[f] = fill(get(f), "series-cards", cards.join("\n"), "    ");
+}
+
+// NBA page: Latest Tall Take box and the dashboards list.
+{
+  const f = "nba/index.html";
+  const takes = read("nba/takes/index.html");
+  const tk = takes.match(/<a class="take-card" href="([^"]+)">([\s\S]*?)<\/a>/);
+  if (!tk) throw new Error("nba/takes/index.html: no take cards");
+  const tDate = (text(tk[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]).match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
+  const tTitle = text(tk[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]);
+  const take = `  <aside class="latest-take" aria-labelledby="lt-h">\n    <p class="kicker" id="lt-h">Latest Tall Take · ${tDate}</p>\n` +
+    `    <a class="lt-title" href="takes/${tk[1]}">${tTitle}</a>\n    <p class="lt-dek">Opinion columns built on the data. <a href="takes/">All takes</a></p>\n  </aside>`;
+  let h = fill(get(f), "take", take);
+
+  const dash = read("nba/dashboards/index.html");
+  const items = [...dash.matchAll(/<a class="dash" href="([^"]+)">([\s\S]*?)<\/a>/g)].map((m) => ({
+    href: "dashboards/" + m[1], k: text(m[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]), t: text(m[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]) }));
+  if (!items.length) throw new Error("nba/dashboards/index.html: no dashboard cards");
+  const body = `  <section aria-labelledby="dash-h">\n    <div class="section-head"><p class="kicker" id="dash-h">Dashboards · updated every morning</p></div>\n` +
+    mini(items, "    ") + `\n    <a class="more-link" href="dashboards/">All NBA dashboards →</a>\n  </section>`;
+  out[f] = fill(h, "dashboards", body);
+}
+
+// Home: one door per topic page, newest three pieces each.
+{
+  const f = "index.html";
+  const doors = PAGES.map((p) => {
+    const series = Object.fromEntries((SERIES[p.key] || []).map((s) => [s.key, s.name]));
+    const items = lists[p.key].slice(0, 3).map((c) => ({
+      href: p.key === "stories" ? c.href.replace(/^\.\.\//, "") : p.dir + c.href,
+      k: `${series[c.series] || TOPIC_NAMES[c.topic] || c.topic} · ${c.date}`, t: c.title }));
+    if (p.extra) items.unshift(p.extra);
+    return `    <div class="door">\n      <h2><a href="${p.dir}">${p.name}</a></h2>\n      <p class="dek">${p.dek}</p>\n` +
+      mini(items, "      ") + `\n      <a class="more-link" href="${p.dir}">All ${p.name === "More stories" ? "more stories" : p.name} →</a>\n    </div>`;
+  }).join("\n");
+  out[f] = fill(get(f), "doors", doors, "    ");
+}
+
+let stale = 0;
+for (const [f, s] of Object.entries(out)) {
+  if (s === read(f)) continue;
+  stale++;
+  if (CHECK) console.log("out of date:", f);
+  else { fs.writeFileSync(path.join(ROOT, f), s); console.log("updated:", f); }
+}
+for (const p of PAGES) console.log(`${p.file}: ${lists[p.key].length} cards, newest ${lists[p.key][0] ? lists[p.key][0].date : "-"}`);
+if (CHECK && stale) { console.log("run node tools/build-hubs.js"); process.exit(1); }
+if (!stale) console.log("everything up to date");

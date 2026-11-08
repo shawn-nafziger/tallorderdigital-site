@@ -1,6 +1,6 @@
 # Tall Order Digital — Brand Decisions
 
-Last updated: November 4, 2026
+Last updated: November 8, 2026
 
 **Master copy: `docs/brand-decisions.md` in the `tallorderdigital-site` repo.** Project copies are for reference.
 
@@ -12,6 +12,26 @@ Last updated: November 4, 2026
 - **Portfolio and Power BI live on shawnnafziger.com.** Tall Order Digital doesn't promote Power BI or consulting work. The About page mentions the day job (BI and data-visualization analyst using tools like Power BI and Contentsquare) as background, and links to shawnnafziger.com.
 - Home page description as live: "Data stories and visualization, with a focus on NBA analytics."
 - Tagline candidate: "Find what stands out." (ties to the logo's standout bar; not yet decided)
+
+## Site structure: DECIDED (Nov 8, 2026)
+Readers come for NBA, for weather, or for everything else, and NBA will publish far more often than the rest (a daily automated piece is coming). So the site splits into **topic pages** plus one page for everything else, and nothing is listed twice.
+
+- **Menu:** NBA · Weather · More stories · About · Subscribe, then search and the light/dark button. "More stories" shortens to "More" on narrow phones. Dashboards left the menu: each topic page shows its own, and the home page links the dashboards hub (`dashboards/`), which stays live.
+- **Strict split:** NBA content appears only under NBA, weather only under Weather. **More stories** (`stories/`) holds everything else (politics and travel today) and is expected to grow quickly.
+- **Series:** every NBA and weather story carries a series (NBA: Check the Take, Weird Stat, Focus stories; weather: Month in review, Record watch, Focus stories; names to be settled once the real mix is known). Each topic page lists every piece newest first with a series filter, and adds "By series" once two or more series have pieces. The existing non-Check-the-Take stories are Focus stories.
+- **NBA page (`nba/`):** Latest Tall Take box, the full NBA list, By series, the NBA dashboards, the email sign-up. A predictions scorecard is added only once there are graded predictions.
+  - Tall Takes moved to `nba/takes/`; every old `takes/` address redirects.
+  - Check the Take has a series page at `nba/check-the-take/`; its stories stay at `nba/<slug>/`.
+- **Weather page (`weather/`):** the Weather Almanac first (it lives at weather.tallorderdigital.com), then weather stories. The planned "Today in your city" and "Most unusual today" blocks (300+ cities) wait until weather-live publishes a small daily file the page can read. Commit only to a cadence that can be kept.
+- **Home page:** three doors (NBA, Weather, More stories), each with its newest pieces; the Weather door leads with the Almanac. Old `?topic=` links forward to the matching page.
+- **How it's kept current:** story cards live on their topic page; `tools/build-hubs.js` sorts them and writes the series sections, series pages, Latest Tall Take box and home doors. Later, the data repos could write a list of pieces the site reads instead.
+- **Reader's city (when the live weather blocks arrive):** chosen once and remembered in the browser (`localStorage`, like `tod-theme`), never a cookie sent to the server and never in a URL; no location or IP detection; a "Change city" control always visible.
+- Later, maybe: per-topic options for the weekly email (Buttondown tags).
+- Design canvas (Home, NBA, Check the Take, Weather; light and dark): https://claude.ai/artifact/Txb3Rr3KS4HA6iekMaBn7G. The built pages use the site's existing look (story cards with chart previews) rather than the canvas's cards.
+
+## Privacy notes (working, Nov 8, 2026)
+- Saving the reader's theme and city in their own browser is a user-chosen preference; no cookie banner is expected for it. Not legal advice; revisit if the site adds location detection or third-party embeds.
+- Third-party embeds (Power BI publish-to-web, video, social) can set their own cookies: use the image fallback, and consider "click to load" on desktop.
 
 ## Business direction (working, revised Nov 4, 2026)
 - Tall Order Digital: data stories, dashboards and the weekly email build an audience and show the skills.
@@ -54,7 +74,12 @@ Last updated: November 4, 2026
 - Colors: orange #E8912D, slate #46536F, ink #1F2638, mist #F2F3F7. Replaced by the playbook's Paper / Ink / Teal / Orange palette and the logo colors above.
 - Body type: Barlow. Replaced by IBM Plex Sans (body) and IBM Plex Mono (data); Barlow Semi Condensed stays for headlines and the logo.
 
+- Site menu "Stories · Dashboards · About" with one mixed, filterable story list on the home page (Nov 2-7, 2026): replaced by the topic pages above, because daily NBA pieces would bury everything else.
+
 ## Open items
+- Weather page live blocks ("Today in your city", "Most unusual today"), once weather-live publishes a daily file.
+- Run `tools/apply-header.py` on the story templates in politics-analytics and travel-analytics (their published copies here already have the new menu).
+- Settle the NBA and weather series names and cadences once the real mix is known.
 - Create a one-color version of the mark (for single-color printing, embroidery, stamps).
 - Have a human designer produce the final logo files (vector master, icon set), fine-tuning the "DIGITAL" alignment. AI-only artwork generally can't be copyrighted in the US.
 - Trademark search (USPTO), domain, and social handle checks. A quick web search found no exact "Tall Order Digital" match; nearby names include Tall Order Creatives, TallOrder (South Africa), and Tall (UK agency).

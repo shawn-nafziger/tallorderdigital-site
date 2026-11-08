@@ -6,7 +6,8 @@
  *   node tools/search-index.js --check   (exit 1 if the index is out of date; changes nothing)
  *
  * What it reads (all from this repo, so nothing is typed twice):
- *   - home page story cards (index.html): title, summary, topic, date, plus each story's meta description
+ *   - story cards on the topic pages (nba/, weather/, stories/): title, summary, topic, date, plus each story's meta description
+ *   - Tall Takes cards (nba/takes/index.html)
  *   - dashboards index cards (nba/dashboards/index.html) and off-site dashboards on the hub (dashboards/index.html)
  *   - each Stats, explained section (explained/index.html): heading, "also called" line, summary, and its text
  *   - the About, Stats explained and Dashboards pages themselves
@@ -28,28 +29,34 @@ const meta = (h, name) => { const m = h.match(new RegExp(`<meta name="${name}" c
 
 const items = [];
 
-// Stories, from the home page cards (newest first, as on the home page).
-const home = read("index.html");
-for (const m of home.matchAll(/<a class="story" data-topic="([a-z-]+)" href="([^"]+)">([\s\S]*?)<\/a>\s*(?=<a class="story"|<p class="soon"|<\/section>)/g)) {
-  const [, topic, href, body] = m;
-  const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
-  const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
-  let desc = "";
-  try { desc = meta(read(path.join(href, "index.html")), "description"); } catch (e) { /* card points outside this repo */ }
-  items.push({ type: "Story", topic, title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
-    kw: kicker.replace(date, "").replace(/[·\s]+$/, ""), body: desc, url: href, date });
+// Stories, from the story cards on the topic pages (NBA, Weather, More stories; Nov 8, 2026), newest first overall.
+// Card links are relative to their page's folder, so each becomes a path from the site root.
+const stories = [];
+for (const [file, dir] of [["nba/index.html", "nba/"], ["weather/index.html", "weather/"], ["stories/index.html", "stories/"]]) {
+  const h = read(file);
+  for (const m of h.matchAll(/<a class="story" data-topic="([a-z-]+)"(?: data-series="[a-z-]+")? href="([^"]+)">([\s\S]*?)<\/a>\s*(?=<a class="story"|<!-- cards:end -->)/g)) {
+    const [, topic, rel, body] = m;
+    const href = path.posix.normalize(dir + rel);
+    const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
+    const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
+    let desc = "";
+    try { desc = meta(read(path.join(href, "index.html")), "description"); } catch (e) { /* card points outside this repo */ }
+    stories.push({ type: "Story", topic, title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
+      kw: kicker.replace(date, "").replace(/[·\s]+$/, ""), body: desc, url: href, date, t: Date.parse(date) || 0 });
+  }
 }
+stories.sort((a, b) => b.t - a.t).forEach((s) => { delete s.t; items.push(s); });
 
-// Tall Takes (opinion columns), from the takes index cards.
-const takes = read("takes/index.html");
+// Tall Takes (opinion columns), from the takes index cards (nba/takes/ since Nov 8, 2026).
+const takes = read("nba/takes/index.html");
 for (const m of takes.matchAll(/<a class="take-card" href="([^"]+)">([\s\S]*?)<\/a>/g)) {
   const [, href, body] = m;
   const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
   const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
   let desc = "";
-  try { desc = meta(read(path.join("takes", href, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
+  try { desc = meta(read(path.join("nba/takes", href, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
   items.push({ type: "Take", topic: "nba", title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
-    kw: "tall takes opinion column " + kicker.replace(date, ""), body: desc, url: "takes/" + href, date });
+    kw: "tall takes opinion column " + kicker.replace(date, ""), body: desc, url: "nba/takes/" + href, date });
 }
 
 // Dashboards, from the dashboards index.
@@ -80,9 +87,13 @@ for (const m of ex.matchAll(/<section class="entry" id="([^"]+)">([\s\S]*?)<\/se
 
 // Pages.
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
+page("nba/", "nba/index.html", "NBA", "nba basketball stories check the take focus stories latest");
+page("weather/", "weather/index.html", "Weather", "weather almanac climate records cities stories");
+page("stories/", "stories/index.html", "More stories", "politics travel other stories more");
+page("nba/check-the-take/", "nba/check-the-take/index.html", "Check the Take", "check the take series claims tested verdict");
 page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");
-page("takes/", "takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
+page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
 page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
 
