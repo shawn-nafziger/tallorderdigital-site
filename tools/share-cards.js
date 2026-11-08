@@ -677,6 +677,35 @@ function flightDelaysCard(D) {
   </div>`;
 }
 
+function recordLowsCard(D) {
+  // Records per 100 by chance, by decade: lows in orange (the signal), highs in sky, dashed line at chance.
+  const R = D.decades, W = 520, Ht = 340, L = 56, Rt = 136, B = 300, T = 24, top = 200;
+  const x = (i) => L + i * (W - L - Rt) / (R.length - 1), y = (v) => B - v * (B - T) / top;
+  const path = (k) => R.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(d[k] * 100).toFixed(1)}`).join("");
+  const grid = [0, 100, 200].map((v) => `<line x1="${L}" x2="${W - Rt}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"${v === 100 ? ` stroke-dasharray="6 6" stroke="${C.sub}" stroke-opacity=".6"` : ""}/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}</text>`).join("");
+  const ticks = R.map((d, i) => (R.length - 1 - i) % 4 === 0 ? `<text x="${x(i)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${d.d}s</text>` : "").join("");
+  const last = R[R.length - 1], n = R.length - 1;
+  const end = (v, col, lab) => `<circle cx="${x(n)}" cy="${y(v)}" r="9" fill="${col}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(n) + 16}" y="${y(v) + 8}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab} ${Math.round(v)}</text>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 76px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.places.length} US cities</p><h1>Record lows are disappearing</h1>
+      <p class="dek">Daily records set each decade, for every 100 chance alone would give.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">${grid}${ticks}
+      <path d="${path("rhi")}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${path("rlo")}" fill="none" stroke="${C.orange}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${end(last.rhi * 100, C.sky, "Highs")}${end(last.rlo * 100, C.orange, "Lows")}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -716,6 +745,8 @@ function homeCard() {
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
+  const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
+  const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -737,6 +768,7 @@ function homeCard() {
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
+    ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
