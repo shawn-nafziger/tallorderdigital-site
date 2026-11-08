@@ -141,8 +141,9 @@ def main(argv):
     check = "--check" in argv
     files = [pathlib.Path(a) for a in argv if not a.startswith("--")]
     if not files:
-        # The daily dashboard pages are skipped: they're rebuilt from the nba-analytics templates every morning.
-        daily = re.compile(r"nba/dashboards/[^/]+/index\.html$")
+        # The daily pages (the dashboards and the weird stat of the day) are skipped: they're rebuilt from the
+        # nba-analytics templates every morning, so run this on those templates instead.
+        daily = re.compile(r"nba/(dashboards/[^/]+|weird-stat)/index\.html$")
         files = sorted(p for p in ROOT.rglob("*.html")
                        if ".git" not in p.parts and not daily.search(p.relative_to(ROOT).as_posix()))
     stale = 0

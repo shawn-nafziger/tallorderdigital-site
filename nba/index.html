@@ -40,8 +40,17 @@
     <p class="kicker">Basketball, by the numbers</p>
     <h1>NBA</h1>
     <p class="lede">Stories on what stands out in the 2026-27 season, popular takes checked against the data, opinion columns, and dashboards that update every morning.</p>
-    <p><a class="more-link" href="weird-stat/">Weird stat of the day →</a></p>
   </header>
+
+  <!-- Weird stat of the day: its own page, rebuilt every morning with the dashboards, so it gets the first spot here. -->
+  <a class="feature" href="weird-stat/">
+    <span class="feature-text">
+      <span class="kicker">New every morning</span>
+      <span class="feature-title">Weird stat of the day</span>
+      <span class="dek">The strangest thing in last night's box scores, how rare it is, and whether it means anything.</span>
+    </span>
+    <span class="feature-go">See today's →</span>
+  </a>
 
   <div class="top-pair">
     <!-- take:start -->
@@ -72,7 +81,6 @@
       <div class="topic-filter" data-filter="series" data-limit="5" role="group" aria-label="Show NBA pieces by series" hidden>
         <button type="button" data-topic="all" aria-pressed="true"><span class="l">All</span></button>
         <button type="button" data-topic="check-the-take" aria-pressed="false"><span class="l">Check the Take</span></button>
-        <button type="button" data-topic="weird-stat" aria-pressed="false"><span class="l">Weird Stat</span></button>
         <button type="button" data-topic="focus" aria-pressed="false"><span class="l">Focus stories</span></button>
       </div>
     </div>
