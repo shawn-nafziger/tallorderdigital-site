@@ -149,7 +149,9 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .mini .t { font: 600 17px/1.35 var(--font-body); color: var(--ink); }
 /* By series: one block per series, newest two pieces each. */
 .series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
-.series { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 20px 8px; display: grid; align-content: start; gap: 8px; }
+.series { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 20px 8px; display: grid; align-content: start; gap: 8px; text-decoration: none; color: inherit; }
+.series:hover { border-color: var(--ink-3); }
+.series:hover h3, .series:hover .more-link { color: var(--amber); }
 .series h3 { font: 700 26px/1 var(--font-display); text-transform: uppercase; margin: 0; }
 .series .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 4px; }
 /* Home: one door per topic (NBA, Weather, More stories). */

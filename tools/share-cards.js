@@ -712,7 +712,7 @@ function homeCard() {
     .tag { font-size: 34px; color: ${C.sub}; line-height: 1.35; }
     .url { position: absolute; left: 96px; bottom: 56px; }
   </style>
-  <div class="wrap">${lockup(200)}<p class="tag">Data stories &amp; visualization, starting with the NBA.</p></div>
+  <div class="wrap">${lockup(200)}<p class="tag">Data stories &amp; visualization: the NBA, the weather, and more.</p></div>
   <span class="url">tallorderdigital.com</span>`;
 }
 
