@@ -673,7 +673,7 @@ function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribu
 function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
 function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
 function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
-function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+function hideTip(host) { const t = host && host.querySelector(".tip"); if (t) t.classList.remove("on"); }
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
 /* Margins are Democratic minus Republican, in points of two-party margin. Shown as a lead for whoever is ahead, never as a win. */
