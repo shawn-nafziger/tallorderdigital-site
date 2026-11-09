@@ -11,7 +11,8 @@ The path to the site root comes from the logo link (class="brand"); the current 
 Master copies: assets/site-header.css and assets/site-header.js; for the light/dark button, assets/theme.js and the
 ".theme-toggle" rules in assets/site.css.
 - Pages that use assets/site.css (home, About, Stats explained, dashboards index, search) link those two files.
-- Self-contained pages (stories, dashboards, and their templates in nba-analytics / weather-intelligence) get an
+- Self-contained pages (stories, dashboards, and their templates in nba-analytics / weather-intelligence, and the
+  Almanac templates in weather-live, whose logo links to {{MAIN}}) get an
   inline copy between "site-header:start" / "site-header:end" markers. Re-running replaces the copy, so to change
   the header: edit the two asset files, then re-run this on the site pages and on the templates.
 Pages without a .site-bar header (404, redirect pages) are skipped, and so are the daily dashboard pages
@@ -52,7 +53,7 @@ def section_of(path):
         parts = [x.lower() for x in p.parts]
         if "nba-analytics" in parts:
             return "nba"
-        if "weather-intelligence" in parts:
+        if "weather-intelligence" in parts or "weather-live" in parts:  # weather-live: the Almanac templates
             return "weather"
         if any(x in parts for x in ("politics-analytics", "travel-analytics", "misc-analytics")):
             return "stories"
@@ -85,7 +86,9 @@ def apply(html, path):
     if not m:
         raise SystemExit(f"{path}: can't find the logo link (class=\"brand\") to work out the path to the site root")
     root = m.group(1)
-    if root in ("", "./") or not root.endswith("/"):
+    if root.startswith("{{") and root.endswith("}}"):
+        pass  # a template placeholder for the main site's address (the Almanac's {{MAIN}}, "https://tallorderdigital.com/")
+    elif root in ("", "./") or not root.endswith("/"):
         root = "" if root in ("", "./") else root + "/"
 
     # 1. The menu.
@@ -111,8 +114,10 @@ def apply(html, path):
         else:
             i = html.index("</style>")
             html = html[:i] + CSS + "\n" + html[i:]
-        # Light/dark styles and script, unless the page already links assets/theme.js.
-        if "assets/theme.js" not in html:
+        # Light/dark styles and script, unless the page already links assets/theme.js or runs its own light/dark
+        # script (the Almanac's also redraws its charts; a second click handler would flip the theme back).
+        own = re.search(r'localStorage\.setItem\(\s*"tod-theme"', TSCRIPT.sub("", html)) is not None
+        if "assets/theme.js" not in html and not own:
             tcss = "/* theme-toggle:start */\n/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */\n" + THEME_CSS + "\n/* theme-toggle:end */"
             if TBLOCK.search(html):
                 html = TBLOCK.sub(lambda _: tcss, html, count=1)
