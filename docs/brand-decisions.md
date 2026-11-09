@@ -10,7 +10,7 @@ Last updated: November 8, 2026
 **Tall Order Digital is a data visualization and data storytelling site, not a portfolio or services site.** It shows Shawn's data viz and storytelling skills through the work itself: data stories (NBA first, other subjects when the data is good) and public dashboards.
 
 - **Portfolio and Power BI live on shawnnafziger.com.** Tall Order Digital doesn't promote Power BI or consulting work. The About page mentions the day job (BI and data-visualization analyst using tools like Power BI and Contentsquare) as background, and links to shawnnafziger.com.
-- Home page description as live (Nov 8, 2026, when the site widened beyond the NBA): "Data stories and visualization: the NBA, the weather, and anything else where the data is too good to pass up." The intro under the logo says the same: "Stories built from the numbers up: the NBA, the weather, and anything else where the data is too good to pass up." (Was "with a focus on NBA analytics." The home share image still reads "starting with the NBA", which stays true.)
+- Home page description as live (Nov 8, 2026, when the site widened beyond the NBA): "Data stories and visualization: the NBA, the weather, and anything else where the data is too good to pass up." The intro under the logo says the same: "Stories built from the numbers up: the NBA, the weather, and anything else where the data is too good to pass up." (Was "with a focus on NBA analytics.") The home share image (`assets/share-home.png`, from `tools/share-cards.js`) reads "Data stories & visualization: the NBA, the weather, and more." (was "starting with the NBA").
 - Tagline candidate: "Find what stands out." (ties to the logo's standout bar; not yet decided)
 
 ## Site structure: DECIDED (Nov 8, 2026)
