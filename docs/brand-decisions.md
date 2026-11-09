@@ -1,6 +1,6 @@
 # Tall Order Digital — Brand Decisions
 
-Last updated: November 8, 2026
+Last updated: November 9, 2026
 
 **Master copy: `docs/brand-decisions.md` in the `tallorderdigital-site` repo.** Project copies are for reference.
 
@@ -28,6 +28,20 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - **Reader's city (when the live weather blocks arrive):** chosen once and remembered in the browser (`localStorage`, like `tod-theme`), never a cookie sent to the server and never in a URL; no location or IP detection; a "Change city" control always visible.
 - Later, maybe: per-topic options for the weekly email (Buttondown tags).
 - Design canvas (Home, NBA, Check the Take, Weather; light and dark): https://claude.ai/artifact/Txb3Rr3KS4HA6iekMaBn7G. The built pages use the site's existing look (story cards with chart previews) rather than the canvas's cards.
+
+## Copyright and reuse: DECIDED (Nov 9, 2026)
+- **Owner:** Tall Order Digital LLC (a registered LLC). Use the exact legal name from the state filing.
+- **Footer notice on every page** (live Nov 9, 2026), on its own line; any footer links that used to share that line ("More stories", "NBA" and so on) now sit on the line below:
+  > © 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.
+  - Same line on the Weather Almanac (city pages and its main page, from `weather-live/almanac/` templates).
+  - Story pages and daily dashboards are generated in the data repos, so their templates carry the line too; a new template copied from an existing one gets it.
+  - Each page's data credit stays where it is (playbook §6.8). When the site runs into 2027, update the year or use a range ("© 2026–2027").
+- **Reuse:** readers may share charts and text with credit and a link, because shared charts spread the name. If a formal license is wanted later, CC BY 4.0 says the same thing in standard terms.
+- **What the notice covers:** the analysis, charts, writing, code and design. Raw facts and stats can't be copyrighted, and US government weather data (NOAA) is public domain. Check each data source's terms of use (especially NBA data) for credit or commercial-use limits.
+- **AI-assisted work:** only the human-authored parts are protected, so don't rely on the notice for mostly generated pieces.
+- **Ownership:** work Shawn creates belongs to him personally until he assigns it, so the notice is fully accurate only once a written IP assignment to the LLC is signed (see open items). Trademark search and any filing go in the LLC's name; once the mark is in use, "™" can follow it without registration ("®" only after registration).
+- Copyright registration is optional (needed only before suing); the Copyright Office's group option for short online articles keeps it cheap if it's ever wanted.
+- Not legal advice; see a lawyer if the site starts earning money or important work gets copied.
 
 ## Privacy notes (working, Nov 8, 2026)
 - Saving the reader's theme and city in their own browser is a user-chosen preference; no cookie banner is expected for it. Not legal advice; revisit if the site adds location detection or third-party embeds.
@@ -77,11 +91,13 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Site menu "Stories · Dashboards · About" with one mixed, filterable story list on the home page (Nov 2-7, 2026): replaced by the topic pages above, because daily NBA pieces would bury everything else.
 
 ## Open items
+- Sign a written IP assignment from Shawn to Tall Order Digital LLC covering existing and future site content, charts, code and the logo.
+- Each January, update the footer year (or switch to a range, "© 2026–2027") across the site, the data-repo templates and the Almanac templates.
 - Weather page live blocks ("Today in your city", "Most unusual today"), once weather-live publishes a daily file.
 - Run `tools/apply-header.py` on the story templates in politics-analytics and travel-analytics (their published copies here already have the new menu).
 - Settle the NBA and weather series names and cadences once the real mix is known.
 - Create a one-color version of the mark (for single-color printing, embroidery, stamps).
-- Have a human designer produce the final logo files (vector master, icon set), fine-tuning the "DIGITAL" alignment. AI-only artwork generally can't be copyrighted in the US.
-- Trademark search (USPTO), domain, and social handle checks. A quick web search found no exact "Tall Order Digital" match; nearby names include Tall Order Creatives, TallOrder (South Africa), and Tall (UK agency).
+- Have a human designer produce the final logo files (vector master, icon set), fine-tuning the "DIGITAL" alignment. Their contract must assign the rights to Tall Order Digital LLC. AI-only artwork generally can't be copyrighted in the US.
+- Trademark search (USPTO), domain, and social handle checks; any filing in the LLC's name. A quick web search found no exact "Tall Order Digital" match; nearby names include Tall Order Creatives, TallOrder (South Africa), and Tall (UK agency).
 - Decide on a tagline ("Find what stands out." is the leading candidate).
 - Get one-page case study briefs from the NBA analytics and Weather intelligence projects.
