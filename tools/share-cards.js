@@ -706,6 +706,42 @@ function recordLowsCard(D) {
   </div>`;
 }
 
+function firstFreezeCard(D) {
+  // Each place stacked by the week of its typical first freeze: orange = still waiting, unusually late (the signal),
+  // sky = has frozen, rings = still waiting, nothing unusual. Dashed line = the latest day in the records.
+  const FROM = 45, TO = 229, NB = Math.ceil((TO - FROM) / 7), W = 560, Ht = 360, L = 6, B = 316;
+  const order = { frozen: 0, late: 1, edge: 2, waiting: 3 };
+  const bins = Array.from({ length: NB }, () => []);
+  D.places.filter((p) => p.med !== null && p.status in order).forEach((p) => bins[Math.max(0, Math.min(NB - 1, Math.floor((p.med - FROM) / 7)))].push(p));
+  bins.forEach((b) => b.sort((a, c) => order[a.status] - order[c.status] || a.med - c.med));
+  const colW = (W - 2 * L) / NB, r = 4.6, per = 2, col = { frozen: C.sky, late: C.orange, edge: "#8f6230" };
+  const dots = bins.map((b, i) => b.map((p, j) => {
+    const cx = L + i * colW + colW / 2 + ((j % per) - .5) * (2 * r + 1), cy = B - r - 2 - Math.floor(j / per) * (2 * r + 1);
+    return p.status === "waiting" ? `<circle cx="${cx}" cy="${cy}" r="${r - .8}" fill="none" stroke="${C.slateDark}" stroke-width="1.6"/>` : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${col[p.status]}"/>`;
+  }).join("")).join("");
+  const tx = L + (D.now + .5 - FROM) / 7 * colW;
+  const mon = [["Sep", 62], ["Oct", 92], ["Nov", 123], ["Dec", 153], ["Jan", 184], ["Feb", 215]].map(([m, o]) => `<text x="${L + (o - FROM) / 7 * colW}" y="${B + 30}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${m}</text>`).join("");
+  const late = D.places.filter((p) => p.status === "late").length;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .dek b { color: ${C.orange}; font-weight: 600; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.places.length} US places</p><h1>Fall's first freeze is running late</h1>
+      <p class="dek"><b>${late} places</b> are still waiting, later than 9 falls in 10.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - L}" y1="${B + 3}" y2="${B + 3}" stroke="${C.rule}" stroke-width="2"/>${dots}${mon}
+      <line x1="${tx}" x2="${tx}" y1="40" y2="${B + 3}" stroke="${C.mist}" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="${tx + 8}" y="52" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Nov 8</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -747,6 +783,8 @@ function homeCard() {
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
+  const FF = JSON.parse(ff.match(/const DATA = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -769,6 +807,7 @@ function homeCard() {
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
+    ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
