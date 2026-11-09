@@ -12,11 +12,13 @@
  * first by the date in each card's kicker ("Check the Take · NBA · Nov 7, 2026"; every card needs one).
  *
  * What it writes (between markers; don't edit these by hand):
- *   - "By series" on nba/ and weather/ (only when 2 or more series have pieces): newest two of each series
+ *   - "Browse by series" on nba/ and weather/ (only when 2 or more series have pieces): one small card per series
+ *     (name, what it is, a link to all of it). It lists no stories, so nothing repeats the Latest list (Nov 8, 2026).
  *   - nba/check-the-take/: every Check the Take card
  *   - nba/: the Latest Tall Take box (the first card on nba/takes/index.html) and the NBA dashboards list
  *     (from the cards on nba/dashboards/index.html)
- *   - index.html: the three doors (NBA, Weather, More stories), newest three pieces each
+ *   - index.html: the three doors. NBA leads, full width (Nov 8, 2026): the weird stat, the latest Tall Take and the
+ *     newest four NBA stories, in two columns on wider screens. Weather and More stories sit side by side under it.
  * A new series: add it to SERIES below and a button to that page's filter. A new topic page: add it to PAGES.
  * Then run node tools/search-index.js and node tools/sitemap.js.
  */
@@ -96,24 +98,25 @@ const mini = (items, indent) => `${indent}<ul class="mini">\n` +
 const out = {}; // file -> new content
 const get = (f) => (f in out ? out[f] : read(f));
 const lists = {};
+let latestTake = null; // set from nba/takes/index.html below; leads the NBA door on the home page
 
 for (const page of PAGES) {
   const { html, cards } = parseCards(page);
   lists[page.key] = cards;
   let h = fill(html, "cards", cards.map((c) => "    " + c.html).join("\n"), "    ");
 
-  // By series: only worth showing once two or more series have pieces.
+  // Browse by series: only worth showing once two or more series have pieces. No story lists here: the Latest list
+  // above already shows them, and its filter buttons pick a series (Nov 8, 2026).
   if (SERIES[page.key]) {
     const present = SERIES[page.key].filter((s) => cards.some((c) => c.series === s.key));
     let body = "";
     if (present.length >= 2) {
-      body = `  <section aria-labelledby="series-h">\n    <div class="section-head"><p class="kicker" id="series-h">By series</p></div>\n    <div class="series-grid">\n` +
+      body = `  <section aria-labelledby="series-h">\n    <div class="section-head"><p class="kicker" id="series-h">Browse by series</p></div>\n    <div class="series-grid">\n` +
         present.map((s) => {
           const mine = cards.filter((c) => c.series === s.key);
           const all = s.page ? s.page : `?series=${s.key}#latest`;
-          return `      <div class="series">\n        <h3>${s.name}</h3>\n        <p class="dek">${s.dek}</p>\n` +
-            mini(mine.slice(0, 2).map((c) => ({ href: c.href, k: c.date, t: c.title })), "        ") +
-            `\n        <a class="more-link" href="${all}">All ${mine.length} →</a>\n      </div>`;
+          return `      <a class="series" href="${all}">\n        <h3>${s.name}</h3>\n        <p class="dek">${s.dek}</p>\n` +
+            `        <span class="more-link">All ${mine.length} →</span>\n      </a>`;
         }).join("\n") + `\n    </div>\n  </section>`;
     }
     h = fill(h, "series", body);
@@ -138,6 +141,7 @@ for (const page of PAGES) {
   const tDate = (text(tk[2].match(/<p class="kicker">([\s\S]*?)<\/p>/)[1]).match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
   const tTitle = text(tk[2].match(/<h2>([\s\S]*?)<\/h2>/)[1]);
   const tDek = text((tk[2].match(/<p class="dek">([\s\S]*?)<\/p>/) || [])[1] || "");
+  latestTake = { k: `Tall Take · ${tDate}`, t: tTitle, href: `nba/takes/${tk[1]}` };
   // The two boxes sit side by side near the top of the page (Nov 8, 2026), so neither is buried under the story list.
   const take = `    <aside class="box" aria-labelledby="lt-h">\n      <p class="kicker" id="lt-h">Latest Tall Take · ${tDate}</p>\n` +
     `      <a class="box-title" href="takes/${tk[1]}">${tTitle}</a>\n` + (tDek ? `      <p class="dek">${tDek}</p>\n` : "") +
@@ -158,12 +162,15 @@ for (const page of PAGES) {
   const f = "index.html";
   const doors = PAGES.map((p) => {
     const series = Object.fromEntries((SERIES[p.key] || []).map((s) => [s.key, s.one]));
-    // A door with a daily page up top (Weird stat, Almanac) shows two stories under it, so the doors stay even.
-    const items = lists[p.key].slice(0, p.extra ? 2 : 3).map((c) => ({
+    // NBA leads (full width, two columns): its daily page, the latest Tall Take and four stories. The other doors show
+    // three pieces, counting their daily page (Almanac), so the two sit even.
+    const lead = p.key === "nba";
+    const items = lists[p.key].slice(0, lead ? 4 : p.extra ? 2 : 3).map((c) => ({
       href: p.key === "stories" ? c.href.replace(/^\.\.\//, "") : p.dir + c.href,
       k: `${series[c.series] || TOPIC_NAMES[c.topic] || c.topic} · ${c.date}`, t: c.title }));
+    if (lead) items.unshift(latestTake);
     if (p.extra) items.unshift(p.extra);
-    return `    <div class="door">\n      <h2><a href="${p.dir}">${p.name}</a></h2>\n      <p class="dek">${p.dek}</p>\n` +
+    return `    <div class="door${lead ? " lead" : ""}">\n      <h2><a href="${p.dir}">${p.name}</a></h2>\n      <p class="dek">${p.dek}</p>\n` +
       mini(items, "      ") + `\n      <a class="more-link" href="${p.dir}">All ${p.name === "More stories" ? "more stories" : p.name} →</a>\n    </div>`;
   }).join("\n");
   out[f] = fill(get(f), "doors", doors, "    ");
