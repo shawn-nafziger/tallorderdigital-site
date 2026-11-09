@@ -63,14 +63,15 @@ def section_of(path):
 
 
 def menu(root, here):
-    """The whole menu, written fresh every time (Nov 8, 2026): NBA, Weather, More stories, About, Subscribe,
-    then the search icon and the light/dark button. The section the page belongs to is marked as current."""
+    """The whole menu, written fresh every time (Nov 8, 2026): NBA, Weather, More stories, | About, Subscribe,
+    then the search icon and the light/dark button. A thin divider before About (Nov 9, 2026) separates the topics
+    from the site links (.nav-about in assets/site-header.css). The section the page belongs to is marked as current."""
     cur = lambda s: ' aria-current="page"' if here == s else ""
     return ('<nav class="site-nav" aria-label="Site">'
             f'<a href="{root}nba/"{cur("nba")}>NBA</a>'
             f'<a href="{root}weather/"{cur("weather")}>Weather</a>'
             f'<a href="{root}stories/" aria-label="More stories"{cur("stories")}>More<span class="nav-long"> stories</span></a>'
-            f'<a href="{root}about/"{cur("about")}>About</a>'
+            f'<a class="nav-about" href="{root}about/"{cur("about")}>About</a>'
             f'<a class="nav-sub" href="{root}subscribe/"{cur("subscribe")}><span class="t">Subscribe</span>{MAIL}</a>'
             f'<a class="nav-search" href="{root}search/" aria-label="Search"{cur("search")}>{ICON}</a>'
             f'{TOGGLE}</nav>')
