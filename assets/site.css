@@ -248,4 +248,13 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .share-btn:hover { border-color: var(--amber); color: var(--amber); }
 .share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
 /* share:end */

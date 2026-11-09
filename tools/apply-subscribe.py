@@ -42,6 +42,15 @@ SHARE_HTML = '''  <!-- share:start -->
   </div>
   <!-- share:end -->
 '''
+SHARE_TOP_HTML = ('\n  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn">'
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '
+    'aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>'
+    'Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->')
+SHARE_TOP_RE = re.compile(r"\n?[ \t]*<!-- share-top:start -->.*?<!-- share-top:end -->", re.S)
+# Where the small top Share button goes (added Nov 8, 2026): on its own line right after the first line under the
+# headline that says who and when (byline), or the line a page's script fills with dates (meta, status; scripts rewrite
+# those, so never inside them). Pages with none of them get it after the intro paragraph (dek).
+TOP_AFTER = [r'<p class="byline"', r'<p class="meta"', r'<p class="status"', r'<p class="dek"']
 END_OPEN = '  <!-- story-end:start --><div class="story-end">\n'
 END_CLOSE = '  </div><!-- story-end:end -->\n'
 END_OPEN_RE = re.compile(r"[ \t]*<!-- story-end:start --><div class=\"story-end\">\n?")
@@ -114,6 +123,17 @@ def apply(html, path):
     if re.search(r'<section class="(?:[^"]*\s)?wrap(?:\s[^"]*)?"', html[html.index("<body"):end][html[html.index("<body"):end].index("<main"):]):
         body = END_OPEN + body + END_CLOSE
     html = html[:end] + body + html[end:]
+
+    # 1b. The small Share button under the intro.
+    html = SHARE_TOP_RE.sub("", html)
+    start = html.index("<body")
+    start += html[start:].index("<main")
+    for pat in TOP_AFTER:
+        mm = re.compile(pat).search(html, start)
+        if mm:
+            close = html.index("</p>", mm.end()) + len("</p>")
+            html = html[:close] + SHARE_TOP_HTML + html[close:]
+            break
 
     # 2. Footer link, before the copyright line.
     html = FOOT_RE.sub("", html)
