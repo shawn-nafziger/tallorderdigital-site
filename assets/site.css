@@ -155,13 +155,7 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .series h3 { font: 700 26px/1 var(--font-display); text-transform: uppercase; margin: 0; }
 .series .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 4px; }
 /* Home: one door per topic (NBA, Weather, More stories). */
-.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
-/* NBA leads the home page (Nov 8, 2026): full width, its pieces in two columns on wider screens. */
-.door.lead { grid-column: 1 / -1; }
-.door.lead h2 { font-size: clamp(40px, 7vw, 56px); }
-@media (min-width: 700px) {
-  .door.lead .mini { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
-}
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .door { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px 10px; display: grid; align-content: start; gap: 8px; }
 .door h2 { font-size: clamp(32px, 5vw, 40px); }
 .door h2 a { text-decoration: none; }
