@@ -34,4 +34,18 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 }
 /* "More stories" shortens to "More" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
 @media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
 /* site-header:end */

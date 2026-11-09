@@ -24,13 +24,14 @@ html[data-theme=dark] form.find input{background:#0a3746;color:#f3f4ef;border-co
 html[data-theme=dark] form.find button{background:#f3f4ef;color:#03222c}
 nav{max-width:860px;margin:0 auto;padding:18px 0 14px;display:flex;flex-wrap:wrap;gap:18px;font:500 12px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;text-transform:uppercase}
 nav a{text-decoration:none;padding:8px 0}
+nav .nav-about{position:relative;margin-left:14px}nav .nav-about::before{content:"";position:absolute;left:-17px;top:50%;width:1px;height:16px;margin-top:-8px;background:currentColor;opacity:.35}
 nav a:hover{color:#b36000}
 @media (prefers-color-scheme:dark){html:not([data-theme=light]) nav a:hover{color:#f99a2b}}
 html[data-theme=dark] nav a:hover{color:#f99a2b}
 </style>
 </head>
 <body>
-<nav aria-label="Site"><a href="/#stories">Stories</a><a href="/dashboards/">Dashboards</a><a href="/about/">About</a><a href="/search/">Search</a></nav>
+<nav aria-label="Site"><a href="/nba/">NBA</a><a href="/weather/">Weather</a><a href="/stories/">More stories</a><a class="nav-about" href="/about/">About</a><a href="/subscribe/">Subscribe</a><a href="/search/">Search</a></nav>
 <main>
   <h1>Air ball.</h1>
   <p>That page isn't here. <a href="/">Back to Tall Order Digital</a>, or search for it:</p>
