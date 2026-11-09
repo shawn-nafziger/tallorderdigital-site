@@ -10,7 +10,7 @@ Last updated: November 8, 2026
 **Tall Order Digital is a data visualization and data storytelling site, not a portfolio or services site.** It shows Shawn's data viz and storytelling skills through the work itself: data stories (NBA first, other subjects when the data is good) and public dashboards.
 
 - **Portfolio and Power BI live on shawnnafziger.com.** Tall Order Digital doesn't promote Power BI or consulting work. The About page mentions the day job (BI and data-visualization analyst using tools like Power BI and Contentsquare) as background, and links to shawnnafziger.com.
-- Home page description as live: "Data stories and visualization, with a focus on NBA analytics."
+- Home page description as live (Nov 8, 2026, when the site widened beyond the NBA): "Data stories and visualization: the NBA, the weather, and anything else where the data is too good to pass up." The intro under the logo says the same: "Stories built from the numbers up: the NBA, the weather, and anything else where the data is too good to pass up." (Was "with a focus on NBA analytics." The home share image still reads "starting with the NBA", which stays true.)
 - Tagline candidate: "Find what stands out." (ties to the logo's standout bar; not yet decided)
 
 ## Site structure: DECIDED (Nov 8, 2026)
@@ -23,7 +23,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
   - Tall Takes moved to `nba/takes/`; every old `takes/` address redirects.
   - Check the Take has a series page at `nba/check-the-take/`; its stories stay at `nba/<slug>/`.
 - **Weather page (`weather/`):** the Weather Almanac first (it lives at weather.tallorderdigital.com), then weather stories. The planned "Today in your city" and "Most unusual today" blocks (300+ cities) wait until weather-live publishes a small daily file the page can read. Commit only to a cadence that can be kept.
-- **Home page:** three doors (NBA, Weather, More stories), each with its newest pieces; the Weather door leads with the Almanac. **All three doors are the same size (Nov 8, 2026):** the site is becoming a general data-stories site, and the NBA focus lives on the menu and the `nba/` page. The NBA door shows the weird stat and the newest focus stories; Tall Takes and Check the Take stay on the NBA page, as they draw fewer new readers. Old `?topic=` links forward to the matching page.
+- **Home page:** three doors (NBA, Weather, More stories), each with its newest pieces; the Weather door leads with the Almanac. **All three doors are the same size (Nov 8, 2026):** the site is becoming a general data-stories site, and the NBA focus lives on the menu and the `nba/` page. The NBA door shows the game summaries (Game Overview, as "Last night's games, and what decided each one"), the weird stat and the newest focus story; Tall Takes and Check the Take stay on the NBA page, as they draw fewer new readers. Old `?topic=` links forward to the matching page.
 - **How it's kept current:** story cards live on their topic page; `tools/build-hubs.js` sorts them and writes the series sections, series pages, Latest Tall Take box and home doors. Later, the data repos could write a list of pieces the site reads instead.
 - **Reader's city (when the live weather blocks arrive):** chosen once and remembered in the browser (`localStorage`, like `tod-theme`), never a cookie sent to the server and never in a URL; no location or IP detection; a "Change city" control always visible.
 - Later, maybe: per-topic options for the weekly email (Buttondown tags).
