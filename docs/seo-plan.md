@@ -17,9 +17,18 @@ Started November 9, 2026. Owner: Shawn Nafziger.
 4. Charts are drawn by JavaScript. Most AI crawlers don't run scripts, so they see the story text but not what a chart shows or its numbers.
 5. No RSS feed.
 6. Some meta descriptions run past ~160 characters and get cut off in results (Team Ratings 279, Game Overview 223, the Memphis take 215).
-7. The Weather Almanac (weather.tallorderdigital.com, 327 city pages, built daily in the `weather-live` repo) is `noindex` while in preview, and its pages have no canonical link or share tags. It is probably the largest search opportunity on the site (people search "record high [city] today" every day), and it earns nothing until the noindex comes off.
+7. The Weather Almanac (weather.tallorderdigital.com, 327 city pages, built daily in the `weather-live` repo) was `noindex` (marked "Preview") with no canonical link, share tags or sitemap, and its section headings and sentences were drawn by JavaScript. It is probably the largest search opportunity on the site (people search "record high [city] today" every day). **Fixed Nov 9, 2026** (below).
 8. Brand searches for "Tall Order" are crowded by TallOrder (a South African point-of-sale company) and others. Structured data with the LLC name helps search engines tell them apart.
 9. Not yet confirmed: whether Google has indexed the site (it launched ~Nov 2–4). A web search for the domain returned nothing from it on Nov 9.
+
+## Done: the Almanac goes into search (Nov 9, 2026)
+
+In `weather-live/almanac/` (built and published by the daily run, so it takes effect on the next run after merging):
+- `noindex` removed from both templates; the "Preview" labels on the Weather and Dashboards pages come off in the same change.
+- Each city page has a canonical link, share tags (the home share image until cities get their own), and JSON-LD: `WebPage`, `Dataset` (the city's daily record, its years, its NOAA source and a link to the page's `data.json`), `Place` (city, state, coordinates) and breadcrumbs (Home › Weather › Weather Almanac › city). The front page is a `CollectionPage`.
+- Titles name the state ("Chicago, IL Weather Almanac"); the front page says how many cities it covers.
+- The section headings and sentences are written into the HTML as well as by the page script, so crawlers that don't run JavaScript read them.
+- `robots.txt` and `sitemap.xml` at the root of weather.tallorderdigital.com, one entry per city with its data date.
 
 ## Done: structured data and sitemap dates (PR, Nov 9, 2026)
 
@@ -62,16 +71,17 @@ Titles live in the story templates in the data repos, so the change is made ther
 ## Checklist
 
 **Shawn (accounts and decisions)**
-- [ ] Merge PR #87 (structured data, sitemap dates, this plan)
+- [x] Merge PR #87 (structured data, sitemap dates, this plan)
+- [ ] Merge the Almanac pair together: weather-live (search-ready pages) and this repo (Preview labels off)
 - [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). One Domain property covers the main site and `weather.tallorderdigital.com`. A URL-prefix property for `https://tallorderdigital.com/` does not cover the subdomain.
-- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml`; later the Almanac's sitemap
+- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and, once the Almanac PRs are merged and the next daily run has published, `https://weather.tallorderdigital.com/sitemap.xml`
 - [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
 - [ ] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
 - [ ] Rich Results Test on one story URL after the merge
 - [ ] Keyword volumes: connect Ubersuggest, Semrush or Ahrefs, or open Google Keyword Planner
 - [ ] Approve the title rule (searchable `<title>`, headline unchanged on the page)
 - [ ] Decide: author data links to shawnnafziger.com (`sameAs`), yes or no
-- [ ] Decide: when the Almanac comes out of preview (drops `noindex`)
+- [x] Decide: when the Almanac comes out of preview (Nov 9, 2026: now)
 
 **Claude (PRs)**
 - [x] Structured data and sitemap `lastmod` on the main site (PR #87)
@@ -80,7 +90,8 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [ ] Structured data in the daily dashboard and weird-stat templates (nba-analytics)
 - [ ] RSS feed
 - [ ] Shorten meta descriptions over ~160 characters
-- [ ] Almanac (weather-live): canonical links, share tags, per-city structured data and a city sitemap, ready before the `noindex` comes off
+- [x] Almanac (weather-live): `noindex` off; canonical links, share tags, per-city structured data (WebPage, Dataset, Place, breadcrumbs), static headings and sentences, robots.txt and a city sitemap
+- [ ] Almanac: a share image per city, and city titles from the keyword check ("record high [city] today" and similar)
 - [ ] llms.txt (optional)
 
 **Every month**
@@ -93,7 +104,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 3. **Static chart summaries (data repos).** Each chart gets its finding as a sentence and its key numbers as a small HTML table that's in the page without JavaScript (the playbook's "every chart has a table view", built server-side). This is the single biggest GEO fix: it gives AI tools the data, not just the prose.
 4. **Daily pages.** Add the structured-data block to the dashboard and weird-stat templates in `nba-analytics` (Dataset or WebPage with a daily `dateModified`), so they carry it after each morning publish.
 5. **RSS feed** (`feed.xml`) built from the hub cards; link it in each page's `<head>`.
-6. **Weather Almanac.** Plan the move off `noindex`: unique title and description per city, `Dataset` and `Place` structured data, a city sitemap, and a short plain-text summary of today vs the record on each page.
+6. **Weather Almanac.** Done Nov 9, 2026: off `noindex`, with per-city structured data, a city sitemap and the section text in plain HTML. Still to do: a share image per city, and titles tuned by the keyword check.
 7. **Shorten meta descriptions** over ~160 characters (data-repo templates for the dashboards).
 8. **Author page.** Decide whether the structured data's author links to shawnnafziger.com (`sameAs`). It strengthens authorship signals but the About page deliberately leaves Shawn's name off; the byline already names him. Shawn to decide.
 9. **llms.txt** (optional, low evidence of effect, five minutes to write): a plain list of the site's main pages and what each covers.
