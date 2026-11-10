@@ -3,7 +3,7 @@ name: Publish site
 # Publishes tallorderdigital.com with GitHub Pages (Nov 10, 2026; before this, Pages
 # published the main branch directly). Same files as before, plus the Weather Almanac:
 # it is built every day in shawn-nafziger/weather-live, which pushes the pages to its
-# almanac-site branch and then asks this workflow to run (repository_dispatch
+# almanac-build branch and then asks this workflow to run (repository_dispatch
 # "almanac-updated"). This workflow copies that branch into weather/almanac/, so the
 # Almanac is an ordinary folder of the site: same hosting, same certificate.
 #
@@ -42,7 +42,7 @@ jobs:
           if [ -e weather/almanac ]; then
             echo "::error::weather/almanac/ must not exist in this repo; it comes from weather-live."; exit 1
           fi
-          git clone -q --depth 1 --branch almanac-site https://github.com/shawn-nafziger/weather-live.git weather/almanac
+          git clone -q --depth 1 --branch almanac-build https://github.com/shawn-nafziger/weather-live.git weather/almanac
           rm -rf weather/almanac/.git
           # A missing or half-built Almanac stops the publish; the live site keeps the last good one.
           test -f weather/almanac/index.html
