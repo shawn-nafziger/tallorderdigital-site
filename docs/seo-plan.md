@@ -34,7 +34,7 @@ In `weather-live/almanac/` (built and published by the daily run, so it takes ef
 
 The Almanac moves from `weather.tallorderdigital.com/almanac/` to **`tallorderdigital.com/weather/almanac/`**. Google says it has no preference between subdomains and folders, but it treats a subdomain as a separate site, and in practice a folder lets links and mentions build one domain. That matters most for a new site with little authority, and the Almanac is set to grow well past 327 pages and become the site's main search traffic. It was decided while the pages had been open to search engines for about a day, so nothing ranked yet and nothing was lost; a later move would mean redirecting thousands of ranked pages.
 
-How: the Almanac is still built daily in `weather-live` and published to its GitHub Pages. A Cloudflare Worker (`almanac-proxy`) serves it at the new address, and Cloudflare Redirect Rules send every old address there with a 301 (setup steps in the `weather-live` README). Its sitemap is `tallorderdigital.com/weather/almanac/sitemap.xml`, listed in this site's `robots.txt`, so one Search Console property covers everything.
+How: the Almanac is still built daily in `weather-live`, which pushes the pages to its `almanac-site` branch and asks this repo to republish. This repo's publish workflow copies them into `weather/almanac/`, so the Almanac is an ordinary folder of the site, on the same hosting and certificate as every other page (nothing sits in between, so readers can't see any new warnings or errors). The old `weather.tallorderdigital.com` addresses redirect permanently (301), page for page, through Cloudflare redirect rules on that subdomain only. The main domain's DNS and certificate don't change. The sitemap is `tallorderdigital.com/weather/almanac/sitemap.xml`, listed in `robots.txt`, so one Search Console property covers everything. Thousands of pages a day are no problem this way, because the daily pages never pile up in git history.
 
 Guard rail for growth: add Almanac pages only when they carry real, checked, city-specific data. Thousands of similar pages that Google judged thin could drag on the whole domain, which is the one real argument for a subdomain.
 
@@ -46,7 +46,7 @@ The plan is an NBA reference built like the Almanac:
 - **A page per team** (`nba/teams/<team>/`, 30) and **per rotation player** (`nba/players/<player>/`), rebuilt daily. Each leads with 3–5 plain, dated sentences chosen from the numbers and checked ("Through Nov 9, 2026, the Pacers' net rating is +4.1, 8th of 30 teams, over 11 games"), then the charts, a small data table in the HTML, structured data (`SportsTeam` / `Person`, `Dataset`) and a sitemap with dates. The dashboards stay as the place to explore and link to these pages.
 - **A page per game** (`nba/games/<date>-<away>-<home>/`) from Game Overview: who won and what decided it, in sentences, kept permanently.
 - **Same rules as the Almanac:** every sentence checked, honest samples ("over 11 games", totals not averages), and no page for a player without enough minutes to say something real.
-- **Hosting:** about 500 pages that change every day shouldn't be committed to this repo each morning (its history would grow by tens of MB a day). Use the Almanac pattern: publish them from an NBA build, served under `tallorderdigital.com/nba/...` by a Worker. Settle when designing.
+- **Hosting:** the Almanac pattern: nba-analytics publishes the built pages to a branch and this repo's publish workflow adds them under `nba/`, so daily pages never pile up in git history.
 - **First, check the NBA data source's terms** for republishing derived stats daily (an open item in `brand-decisions.md`).
 - **Stories:** phrase Check the Take titles and section headings as the question people ask ("Are the Pacers really a top-10 defense?") and answer it in the first sentence.
 
@@ -93,7 +93,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 **Shawn (accounts and decisions)**
 - [x] Merge PR #87 (structured data, sitemap dates, this plan)
 - [x] Merge the Almanac pair together: weather-live (search-ready pages) and this repo (Preview labels off)
-- [ ] Almanac move: merge the weather-live PR (new address), then do the Cloudflare and GitHub steps in the weather-live README (Worker, route, remove the Pages custom domain, redirect rules), then merge this repo's PR (links and robots.txt)
+- [ ] Almanac move: the five one-time steps in the weather-live README (deploy token, merge both PRs and switch this repo's Pages source to GitHub Actions, run the daily workflow, Cloudflare redirect rules for the old subdomain, unpublish weather-live's Pages)
 - [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). It covers the whole site, including the Almanac at `weather/almanac/` and the old `weather.` addresses while they redirect.
 - [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and `https://tallorderdigital.com/weather/almanac/sitemap.xml` (no separate weather property needed since the move; to see the Almanac on its own, filter Pages by `/weather/almanac/`)
 - [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
@@ -114,7 +114,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [ ] RSS feed
 - [ ] Shorten meta descriptions over ~160 characters
 - [x] Almanac (weather-live): `noindex` off; canonical links, share tags, per-city structured data (WebPage, Dataset, Place, breadcrumbs), static headings and sentences, robots.txt and a city sitemap
-- [x] Almanac move: new address in `build.py`, the `almanac-proxy` Worker and setup steps (weather-live); links and `robots.txt` here
+- [x] Almanac move: new address in `build.py` and the branch handoff (weather-live); the publish workflow, links and `robots.txt` here
 - [ ] Weather stories (weather-intelligence templates): point their Almanac links at the new address (they redirect until then)
 - [ ] NBA team, player and game pages (once approved)
 - [ ] Almanac: a share image per city, and city titles from the keyword check ("record high [city] today" and similar)
