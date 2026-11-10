@@ -131,7 +131,8 @@ Titles live in the story templates in the data repos, so the change is made ther
 
 **Claude (PRs)**
 - [x] Structured data and sitemap `lastmod` on the main site (PR #87)
-- [ ] Titles: check volumes, rewrite `<title>` in the data-repo story templates, re-copy
+- [x] Titles: searchable `<title>` on all 12 published NBA and weather stories, picked from Ubersuggest volumes (Nov 10, 2026; site #92 and #93, templates in nba-analytics #78 and weather-intelligence #25). The `<h1>` and share cards keep the headlines.
+- [x] Keyword library: 2,789 phrases from 111 Ubersuggest lookups (Nov 10, 2026), saved in each private project repo under `knowledge/reference/keywords/` (never in this public repo)
 - [ ] Static chart summaries and data tables in the story templates
 - [ ] Structured data in the daily dashboard and weird-stat templates (nba-analytics)
 - [x] IndexNow pings after every publish (Nov 10, 2026): changed site pages and Almanac cities go to Bing and the other IndexNow engines right away
