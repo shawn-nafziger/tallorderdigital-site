@@ -4,6 +4,8 @@ Started November 9, 2026. Owner: Shawn Nafziger.
 
 **Master copy: `docs/seo-plan.md` in the `tallorderdigital-site` repo.** Project copies are for reference.
 
+**The rules every page follows are in `docs/seo-standards.md`** (adopted Nov 10, 2026); this file holds the plan, decisions and open work.
+
 **Terms.** SEO: ranking in Google and Bing results. AEO (answer engine optimization): being the direct answer in AI Overviews, featured snippets and voice answers. GEO (generative engine optimization): being cited by ChatGPT, Perplexity, Gemini, Claude and Copilot. All three reward the same base: pages crawlers can read, that state facts plainly, with clear authorship and dates, from a site other people link to and mention.
 
 ## Where things stand (audit, Nov 9, 2026)
