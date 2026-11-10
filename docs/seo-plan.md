@@ -114,14 +114,14 @@ Titles live in the story templates in the data repos, so the change is made ther
 **Shawn (accounts and decisions)**
 - [x] Merge PR #87 (structured data, sitemap dates, this plan)
 - [x] Merge the Almanac pair together: weather-live (search-ready pages) and this repo (Preview labels off)
-- [ ] Almanac move: the one-time steps in the weather-live README (deploy token, merge both PRs and switch this repo's Pages source to GitHub Actions, run the daily workflow, Cloudflare redirect rules for the old subdomain, unpublish weather-live's Pages)
-- [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). It covers the whole site, including the Almanac at `weather/almanac/` and the old `weather.` addresses while they redirect.
-- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and `https://tallorderdigital.com/weather/almanac/sitemap.xml` (no separate weather property needed since the move; to see the Almanac on its own, filter Pages by `/weather/almanac/`)
-- [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
-- [ ] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
+- [x] Almanac move (Nov 10, 2026): deploy token added (expires Nov 1, 2027; reminder scheduled Oct 18, 2027), both PRs merged, this repo publishes through GitHub Actions, Cloudflare 301s from `weather.` (checked in a browser: city pages and the front page land on the new address with the query string kept), weather-live's own Pages unpublished, and `tallorderdigital.com` verified in GitHub's account settings
+- [x] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). It covers the whole site, including the Almanac at `weather/almanac/` and the old `weather.` addresses while they redirect.
+- [x] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and `https://tallorderdigital.com/weather/almanac/sitemap.xml` (no separate weather property needed since the move; to see the Almanac on its own, filter Pages by `/weather/almanac/`)
+- [x] Search Console: URL Inspection → Request indexing for the Almanac front page and the Weather page (Nov 10, 2026); later, each new story as it's published
+- [x] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
 - [ ] Rich Results Test on one story URL after the merge
 - [x] Keyword tool: Ubersuggest account, unlimited access for 7 days from Nov 10, 2026 (through about Nov 17)
-- [ ] Connect the Ubersuggest connector in claude.ai, so Claude can pull volumes and AI visibility directly during the trial
+- [x] Connect the Ubersuggest connector in claude.ai, so Claude can pull volumes and AI visibility directly during the trial (connected Nov 10, 2026)
 - [x] Approve the title rule (searchable `<title>`, headline unchanged on the page): approved Nov 10, 2026
 - [ ] Decide: author data links to shawnnafziger.com (`sameAs`), yes or no
 - [x] Decide: when the Almanac comes out of preview (Nov 9, 2026: now)
@@ -134,6 +134,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [ ] Titles: check volumes, rewrite `<title>` in the data-repo story templates, re-copy
 - [ ] Static chart summaries and data tables in the story templates
 - [ ] Structured data in the daily dashboard and weird-stat templates (nba-analytics)
+- [x] IndexNow pings after every publish (Nov 10, 2026): changed site pages and Almanac cities go to Bing and the other IndexNow engines right away
 - [ ] RSS feed
 - [ ] Shorten meta descriptions over ~160 characters
 - [x] Almanac (weather-live): `noindex` off; canonical links, share tags, per-city structured data (WebPage, Dataset, Place, breadcrumbs), static headings and sentences, robots.txt and a city sitemap

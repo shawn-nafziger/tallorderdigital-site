@@ -94,7 +94,7 @@ For every new or changed page or template:
 
 AI answer tools (ChatGPT, Perplexity, Gemini, Copilot, Claude, Google's AI Overviews) find pages through their own crawlers and through Google and Bing, then quote and cite the pages that state a fact most plainly. On top of everything above:
 - **Never block AI crawlers.** `robots.txt` allows all crawlers, including GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and Bingbot. Blocking one needs Shawn's OK and a note in `seo-plan.md`.
-- **Be in Bing as well as Google.** ChatGPT search and Copilot draw on Bing's index: keep Bing Webmaster Tools verified and fed the same sitemaps as Search Console.
+- **Be in Bing as well as Google.** ChatGPT search and Copilot draw on Bing's index: keep Bing Webmaster Tools verified and fed the same sitemaps as Search Console. Every publish pings IndexNow with the pages that changed (`tools/indexnow.js`), so Bing recrawls them right away; a new publishing path must do the same.
 - **Live data is the edge.** AI tools can't answer "today", "this season" or "yesterday in Chicago" from memory. Pages with fresh data state the date and the "data through" date in plain text and in `dateModified`.
 - **One consistent identity.** The site, its structured data, the weekly email, LinkedIn and shawnnafziger.com describe Tall Order Digital with the same name and the same one-line description, so AI tools treat them as one source.
 - **Measure it.** Track AI referrers in GoatCounter (chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com, claude.ai), and check monthly whether target questions cite the site (Ubersuggest's AI Search Visibility, or by asking the tools directly). Results go in `seo-plan.md`.
