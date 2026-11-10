@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://tallorderdigital.com/sitemap.xml
+Sitemap: https://tallorderdigital.com/weather/almanac/sitemap.xml

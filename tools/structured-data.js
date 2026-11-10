@@ -50,11 +50,11 @@ const HUBS = {
   "nba/": "NBA", "weather/": "Weather", "stories/": "More stories", "nba/takes/": "Tall Takes",
 };
 // Pages that sit under "More stories" rather than under a folder with its own topic page.
-const UNDER_STORIES = /^(politics|travel)\//;
+const UNDER_STORIES = /^(politics|travel|numbers)\//;
 // Breadcrumb names for site pages that aren't topic pages.
 const NAMES = {
   "about/": "About", "subscribe/": "The weekly email", "explained/": "Stats, explained", "dashboards/": "Dashboards",
-  "nba/dashboards/": "NBA dashboards", "nba/check-the-take/": "Check the Take",
+  "nba/dashboards/": "NBA dashboards", "nba/check-the-take/": "Check the Take", "explained/charts/": "Types of charts",
 };
 
 const MONTHS = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };

@@ -1,0 +1,62 @@
+name: Publish site
+
+# Publishes tallorderdigital.com with GitHub Pages (Nov 10, 2026; before this, Pages
+# published the main branch directly). Same files as before, plus the Weather Almanac:
+# it is built every day in shawn-nafziger/weather-live, which pushes the pages to its
+# almanac-build branch and then asks this workflow to run (repository_dispatch
+# "almanac-updated"). This workflow copies that branch into weather/almanac/, so the
+# Almanac is an ordinary folder of the site: same hosting, same certificate.
+#
+# Runs on every push to main (PR merges and the morning dashboard commits), when
+# the Almanac is rebuilt, and by hand. If any step fails, nothing is published and
+# the site stays exactly as it was.
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [almanac-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One publish at a time; a newer one waits rather than cancelling an older one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Add the Weather Almanac
+        run: |
+          if [ -e weather/almanac ]; then
+            echo "::error::weather/almanac/ must not exist in this repo; it comes from weather-live."; exit 1
+          fi
+          git clone -q --depth 1 --branch almanac-build https://github.com/shawn-nafziger/weather-live.git weather/almanac
+          rm -rf weather/almanac/.git
+          # A missing or half-built Almanac stops the publish; the live site keeps the last good one.
+          test -f weather/almanac/index.html
+          test -f weather/almanac/sitemap.xml
+          echo "Almanac: $(find weather/almanac -name index.html | wc -l) pages"
+
+      - name: Leave out the repo's own files
+        run: rm -rf .git .github
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
