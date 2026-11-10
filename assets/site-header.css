@@ -48,4 +48,8 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   .site-bar .site-nav .nav-about { margin-left: 6px; }
   .site-bar .site-nav .nav-about::before { left: -8px; }
 }
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
 /* site-header:end */

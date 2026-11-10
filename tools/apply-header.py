@@ -1,5 +1,6 @@
 """Puts the sitewide header pieces into pages: the whole menu (NBA, Weather, More stories, About, Subscribe, the
-search icon and the light/dark button; Nov 8, 2026), the saved-theme line in <head>, the sticky-header CSS, the phone
+search icon and the light/dark button; Nov 8, 2026), the saved-theme line in <head>, the animated logo intro
+(its guard line in <head>, its code in the header script; Nov 9, 2026), the sticky-header CSS, the phone
 hide-on-scroll script and the light/dark script. Claude runs this; Shawn doesn't need to.
 The path to the site root comes from the logo link (class="brand"); the current menu item from the page's folder
 (or, for story templates in the data repos, from the repo they're in).
@@ -30,6 +31,9 @@ _site_css = (ROOT / "assets/site.css").read_text()
 THEME_CSS = "\n".join(l for l in _site_css.splitlines() if l.startswith(".theme-toggle") or l.startswith("  border: 0; border-radius: 50%"))
 # Applies a saved light/dark choice before the page draws (no flash of the wrong theme).
 SAVED = '<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>'
+# Animated logo intro (Nov 9, 2026): hides the static logo before drawing on the first page of a visit, unless reduce
+# motion is on; the intro code in assets/site-header.js takes over (or the logo comes back after 2 s if it never runs).
+INTRO = '<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>'
 TOGGLE = ('<button type="button" class="theme-toggle" aria-label="Switch theme">'
           '<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>'
           '<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg>'
@@ -98,6 +102,15 @@ def apply(html, path):
     # 1b. Light/dark: the saved-choice line first thing in <head> (the button is part of the menu).
     if "tod-theme" not in html.split("</head>", 1)[0]:
         html = html.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n' + SAVED, 1)
+    # 1c. The animated logo intro's guard line, right after the saved-theme line.
+    head = html.split("</head>", 1)[0]
+    if "tod-intro" not in head:
+        k = head.find("tod-theme")
+        end = head.find("</script>", k) + len("</script>") if k >= 0 else -1
+        if end > 0:
+            html = html[:end] + "\n" + INTRO + html[end:]
+        else:
+            html = html.replace("</head>", INTRO + "\n</head>", 1)
 
     # 3 and 4. Styles and script.
     if re.search(r'href="[^"]*assets/site\.css"', html):
