@@ -74,7 +74,8 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [x] Merge PR #87 (structured data, sitemap dates, this plan)
 - [ ] Merge the Almanac pair together: weather-live (search-ready pages) and this repo (Preview labels off)
 - [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). One Domain property covers the main site and `weather.tallorderdigital.com`. A URL-prefix property for `https://tallorderdigital.com/` does not cover the subdomain.
-- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and, once the Almanac PRs are merged and the next daily run has published, `https://weather.tallorderdigital.com/sitemap.xml`
+- [ ] Search Console: also add a **URL-prefix property for `https://weather.tallorderdigital.com/`**, so the Almanac's queries and pages report on their own (the Domain property still shows everything; the DNS record usually verifies this one too)
+- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` in the Domain property, and `https://weather.tallorderdigital.com/sitemap.xml` in the weather property once the Almanac PRs are merged and the next daily run has published
 - [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
 - [ ] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
 - [ ] Rich Results Test on one story URL after the merge
