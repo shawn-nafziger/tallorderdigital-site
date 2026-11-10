@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

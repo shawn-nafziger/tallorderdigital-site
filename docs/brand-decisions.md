@@ -81,8 +81,9 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 
 ### Animated logo: DECIDED (Nov 9, 2026)
 - **The motion:** sixteen dots in a 4×4 grid, already in the logo's colors but mixed up, swirl about two turns around the center. In the last stretch of the spiral each dot widens into its slice of a bar, so the bars come straight out of the swirl (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars). The orange bar settles with a small bounce, then "TALL ORDER" wipes in and "DIGITAL" tightens to its 0.52em spacing. About 3.6 seconds.
-- **Where it runs:** the home page hero only, once per browser session (`sessionStorage` key `tod-intro`). The header logo and every other page stay static. Readers with "reduce motion" on, or without JavaScript, see the static logo.
-- **Code:** `assets/logo-intro.js`, plus a one-line script in `index.html`'s `<head>` that hides the static bars until the animation starts (and shows them after 2 s if it never does). Colors come from the existing `m-o`/`m-2`/`m-3`/`m-4` classes, so it follows light/dark mode.
+- **Where it runs:** once per visit, on whichever page the reader lands on (`sessionStorage` key `tod-intro`, shared across the site): the big hero logo on the home page, or the small header logo on any other page. Every page after that in the same visit shows the static logo. Readers with "reduce motion" on, or without JavaScript, always see the static logo. Shawn chose "first page per visit" over every page load, a shorter every-page version, or hover-only (Nov 9, 2026).
+- **Code:** part of the sitewide header. The intro code sits in `assets/site-header.js`, the rule that hides the static logo until it starts sits in `assets/site-header.css`, and a one-line guard script goes in each page's `<head>` right after the saved-theme line (it shows the static logo after 2 s if the intro never starts). `tools/apply-header.py` writes all three, so every page that carries the header gets it. Colors come from the existing `m-o`/`m-2`/`m-3`/`m-4` classes, so it follows light/dark mode.
+- **Still to do:** run `tools/apply-header.py` on the templates in the data repos (nba-analytics stories, daily dashboards and weird stat; weather-intelligence; politics-analytics; travel-analytics; the Almanac templates in weather-live), so regenerated pages keep the intro.
 - Motion study (replay, scrubber, slow motion; v3 is the one chosen): https://claude.ai/artifact/8j3xdU3sT76Q7Ess7mMKas
 - Later, maybe: an MP4/GIF export for video intros and social clips, and a looping version as a dashboard loading state.
 
@@ -101,6 +102,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Sign a written IP assignment from Shawn to Tall Order Digital LLC covering existing and future site content, charts, code and the logo.
 - Each January, update the footer year (or switch to a range, "© 2026–2027") across the site, the data-repo templates and the Almanac templates.
 - Weather page live blocks ("Today in your city", "Most unusual today"), once weather-live publishes a daily file.
+- Run `tools/apply-header.py` on the data-repo and Almanac templates so they carry the animated logo intro.
 - Run `tools/apply-header.py` on the story templates in politics-analytics and travel-analytics (their published copies here already have the new menu).
 - Settle the NBA and weather series names and cadences once the real mix is known.
 - Create a one-color version of the mark (for single-color printing, embroidery, stamps).
