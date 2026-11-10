@@ -55,7 +55,7 @@ const PAGES = [
       { k: "Weird stat of the day · New every morning", t: "The strangest thing in last night's box scores", href: "nba/weird-stat/" },
     ] },
   { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
-    extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://weather.tallorderdigital.com/almanac/" } },
+    extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://tallorderdigital.com/weather/almanac/" } },
   { key: "stories", file: "stories/index.html", dir: "stories/", name: "More stories", dek: "Politics, travel and everything else with data too good to pass up." },
 ];
 const TOPIC_NAMES = { politics: "Politics", travel: "Travel" };

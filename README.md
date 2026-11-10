@@ -19,7 +19,7 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | `explained/` | Stats, explained: plain-language reference for the numbers in every story (anchors per concept; story pop-ups link here) |
 | `weather/` | One folder per weather story |
 | `nba/` | One folder per NBA story |
-| `dashboards/` | Dashboards hub: NBA dashboards and the Weather Almanac (weather.tallorderdigital.com); the menu's Dashboards link |
+| `dashboards/` | Dashboards hub: NBA dashboards and the Weather Almanac (tallorderdigital.com/weather/almanac/); the menu's Dashboards link |
 | `nba/dashboards/` | Index of the daily NBA dashboards; `team-ratings/`, `game-overview/`, `team-profile/`, `player-profile/` and `hot-cold/` are generated in `nba-analytics` and committed to `main` each morning (see CLAUDE.md) |
 | `stories/` | Redirect pages only, for stories that moved (old NBA addresses → `nba/...`, `phoenix-after-dark` → `weather/...`) |
 | `assets/brand/` | Logo kit: mark, full logo, app icon (favicon.ico sits at the root) |
