@@ -17,7 +17,7 @@ Started November 9, 2026. Owner: Shawn Nafziger.
 4. Charts are drawn by JavaScript. Most AI crawlers don't run scripts, so they see the story text but not what a chart shows or its numbers.
 5. No RSS feed.
 6. Some meta descriptions run past ~160 characters and get cut off in results (Team Ratings 279, Game Overview 223, the Memphis take 215).
-7. The Weather Almanac (weather.tallorderdigital.com, 300+ city pages) is `noindex` while in preview. It is probably the largest search opportunity on the site (people search "record high [city] today" every day), and it earns nothing until the noindex comes off.
+7. The Weather Almanac (weather.tallorderdigital.com, 327 city pages, built daily in the `weather-live` repo) is `noindex` while in preview, and its pages have no canonical link or share tags. It is probably the largest search opportunity on the site (people search "record high [city] today" every day), and it earns nothing until the noindex comes off.
 8. Brand searches for "Tall Order" are crowded by TallOrder (a South African point-of-sale company) and others. Structured data with the LLC name helps search engines tell them apart.
 9. Not yet confirmed: whether Google has indexed the site (it launched ~Nov 2–4). A web search for the domain returned nothing from it on Nov 9.
 
@@ -58,6 +58,33 @@ A new site can't rank for "NBA stats" or "weather records". It can rank for spec
 - `Do Later Flights Get Delayed More? 2026 US Airline Data`
 
 Titles live in the story templates in the data repos, so the change is made there and re-copied.
+
+## Checklist
+
+**Shawn (accounts and decisions)**
+- [ ] Merge PR #87 (structured data, sitemap dates, this plan)
+- [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). One Domain property covers the main site and `weather.tallorderdigital.com`. A URL-prefix property for `https://tallorderdigital.com/` does not cover the subdomain.
+- [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml`; later the Almanac's sitemap
+- [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
+- [ ] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
+- [ ] Rich Results Test on one story URL after the merge
+- [ ] Keyword volumes: connect Ubersuggest, Semrush or Ahrefs, or open Google Keyword Planner
+- [ ] Approve the title rule (searchable `<title>`, headline unchanged on the page)
+- [ ] Decide: author data links to shawnnafziger.com (`sameAs`), yes or no
+- [ ] Decide: when the Almanac comes out of preview (drops `noindex`)
+
+**Claude (PRs)**
+- [x] Structured data and sitemap `lastmod` on the main site (PR #87)
+- [ ] Titles: check volumes, rewrite `<title>` in the data-repo story templates, re-copy
+- [ ] Static chart summaries and data tables in the story templates
+- [ ] Structured data in the daily dashboard and weird-stat templates (nba-analytics)
+- [ ] RSS feed
+- [ ] Shorten meta descriptions over ~160 characters
+- [ ] Almanac (weather-live): canonical links, share tags, per-city structured data and a city sitemap, ready before the `noindex` comes off
+- [ ] llms.txt (optional)
+
+**Every month**
+- [ ] Search Console queries and pages; GoatCounter AI referrers; ask ChatGPT, Perplexity and Google a few target questions
 
 ## Next steps, in order
 
