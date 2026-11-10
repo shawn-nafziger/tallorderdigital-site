@@ -36,6 +36,18 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2     # so the IndexNow step can see which pages this push changed
+
+      - name: Note what changed, for IndexNow
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            git diff --name-only HEAD~1 HEAD > "$RUNNER_TEMP/changed.txt" || : > "$RUNNER_TEMP/changed.txt"
+          else
+            : > "$RUNNER_TEMP/changed.txt"
+          fi
+          curl -fsS https://tallorderdigital.com/weather/almanac/sitemap.xml -o "$RUNNER_TEMP/prev-almanac.xml" \
+            || : > "$RUNNER_TEMP/prev-almanac.xml"
 
       - name: Add the Weather Almanac
         run: |
@@ -60,3 +72,8 @@ jobs:
 
       - id: deploy
         uses: actions/deploy-pages@v4
+
+      # Tell Bing and the other IndexNow engines which pages just changed (tools/indexnow.js). Never fails the run.
+      - name: Ping IndexNow
+        continue-on-error: true
+        run: node tools/indexnow.js --changed "$RUNNER_TEMP/changed.txt" --prev-almanac "$RUNNER_TEMP/prev-almanac.xml"
