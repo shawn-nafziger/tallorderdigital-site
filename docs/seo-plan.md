@@ -109,8 +109,9 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
 - [ ] Bing Webmaster Tools: import the site from Search Console (one click; Bing feeds ChatGPT search and Copilot)
 - [ ] Rich Results Test on one story URL after the merge
-- [ ] Keyword volumes: connect Ubersuggest, Semrush or Ahrefs, or open Google Keyword Planner
-- [ ] Approve the title rule (searchable `<title>`, headline unchanged on the page)
+- [x] Keyword tool: Ubersuggest account, unlimited access for 7 days from Nov 10, 2026 (through about Nov 17)
+- [ ] Connect the Ubersuggest connector in claude.ai, so Claude can pull volumes and AI visibility directly during the trial
+- [x] Approve the title rule (searchable `<title>`, headline unchanged on the page): approved Nov 10, 2026
 - [ ] Decide: author data links to shawnnafziger.com (`sameAs`), yes or no
 - [x] Decide: when the Almanac comes out of preview (Nov 9, 2026: now)
 - [x] Decide: Almanac as a folder, not a subdomain (Nov 10, 2026)

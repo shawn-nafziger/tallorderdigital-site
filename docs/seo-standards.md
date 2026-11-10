@@ -46,7 +46,7 @@ Adopted November 10, 2026. Owner: Shawn Nafziger.
 ## 3. Writing for search and AI answers
 
 - **Answer first.** The first two sentences state the finding, with its number and sample (Role Call's finding, say: after four games, minutes and usage predict the rest of a season and shooting percentages don't, followed by how many players that covers). This is the playbook's "lead with the answer"; it is also what search snippets and AI answers quote.
-- **Headlines vs titles.** The `<h1>` and share card can be a headline ("Role Call"). The `<title>` is what someone would type ("Role Call: Which NBA Players' Roles Changed This Season"). Pick the title phrase from the keyword check in `seo-plan.md` when one has been run; otherwise write the plainest version of the question the page answers. (Rule proposed Nov 9, 2026; confirm with Shawn before rewriting existing titles.)
+- **Headlines vs titles.** The `<h1>` and share card can be a headline ("Role Call"). The `<title>` is what someone would type ("Role Call: Which NBA Players' Roles Changed This Season"). Pick the title phrase from the keyword check in `seo-plan.md` when one has been run; otherwise write the plainest version of the question the page answers. (Approved by Shawn, Nov 10, 2026; existing titles are rewritten from the keyword check.)
 - **Section headings ask or answer a real question** ("Does early net rating predict the season?"), and the first sentence under each answers it.
 - **Name things fully the first time:** full player and team names, city and state, the stat's full name with a link to Stats, explained.
 - **Say where the numbers come from** in the text, by name, and how many games, years or places they cover.
@@ -90,6 +90,16 @@ For every new or changed page or template:
 - [ ] No `noindex` unless it's a redirect, search or 404 page.
 - [ ] On the main site, `build-hubs.js`, `search-index.js`, `structured-data.js` and `sitemap.js` were run in that order, each `--check` clean.
 
-## 8. Off the site
+## 8. AI search visibility
+
+AI answer tools (ChatGPT, Perplexity, Gemini, Copilot, Claude, Google's AI Overviews) find pages through their own crawlers and through Google and Bing, then quote and cite the pages that state a fact most plainly. On top of everything above:
+- **Never block AI crawlers.** `robots.txt` allows all crawlers, including GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and Bingbot. Blocking one needs Shawn's OK and a note in `seo-plan.md`.
+- **Be in Bing as well as Google.** ChatGPT search and Copilot draw on Bing's index: keep Bing Webmaster Tools verified and fed the same sitemaps as Search Console.
+- **Live data is the edge.** AI tools can't answer "today", "this season" or "yesterday in Chicago" from memory. Pages with fresh data state the date and the "data through" date in plain text and in `dateModified`.
+- **One consistent identity.** The site, its structured data, the weekly email, LinkedIn and shawnnafziger.com describe Tall Order Digital with the same name and the same one-line description, so AI tools treat them as one source.
+- **Measure it.** Track AI referrers in GoatCounter (chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com, claude.ai), and check monthly whether target questions cite the site (Ubersuggest's AI Search Visibility, or by asking the tools directly). Results go in `seo-plan.md`.
+- **`llms.txt`** (a plain list of the site's main pages for AI tools) is optional and its effect is unproven; add it only as a low-effort extra, never instead of the rules above.
+
+## 9. Off the site
 
 Search engines and AI tools lean heavily on what other sites say. When a piece is published, consider where its best chart belongs (data communities, local media for city findings, the weekly email, LinkedIn, shawnnafziger.com). Shares credit and link back, per the footer's reuse line.
