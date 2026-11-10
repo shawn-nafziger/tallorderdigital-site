@@ -36,6 +36,14 @@ The Almanac moves from `weather.tallorderdigital.com/almanac/` to **`tallorderdi
 
 How: the Almanac is still built daily in `weather-live`, which pushes the pages to its `almanac-site` branch and asks this repo to republish. This repo's publish workflow copies them into `weather/almanac/`, so the Almanac is an ordinary folder of the site, on the same hosting and certificate as every other page (nothing sits in between, so readers can't see any new warnings or errors). The old `weather.tallorderdigital.com` addresses redirect permanently (301), page for page, through Cloudflare redirect rules on that subdomain only. The main domain's DNS and certificate don't change. The sitemap is `tallorderdigital.com/weather/almanac/sitemap.xml`, listed in `robots.txt`, so one Search Console property covers everything. Thousands of pages a day are no problem this way, because the daily pages never pile up in git history.
 
+Checked before the move (Nov 10, 2026):
+- **Fixed:** city pages were reachable only through scripts or the sitemap (the front page's map and table are drawn by JavaScript, and city pages linked only back up). Now the front page lists every place as plain links, by state, and each city links to its six nearest places.
+- **Fixed:** a city whose checks failed on a given day used to drop out of that day's build. Once indexed, that would show search engines a page vanishing and coming back. Now it keeps its last good page, and a run that builds far fewer pages than the last one publishes nothing.
+- **Fixed in the setup steps:** the old `weather.` name points at a Cloudflare placeholder instead of GitHub, and the domain is verified in GitHub, so no one else can claim it. The Cloudflare certificate is checked before the old name is proxied, so old links never show a certificate warning.
+- **Known trade-off:** the site now publishes through one workflow. If the Almanac's build branch were missing, nothing would publish (dashboard commits included) until it's fixed; the live site stays as it was meanwhile. Each morning's dashboard commit also republishes with the newest Almanac, so the Almanac stays current even if the republish request ever fails.
+- **Limit to plan for:** about 180 KB per place against GitHub Pages' 1 GB site limit leaves room for roughly 4,000–5,000 places (shared with any NBA pages). Before then, drop each place's `data.json` (about 30%) or move hosting.
+- **Small things:** GoatCounter counts Almanac visits under `/weather/almanac/` from Nov 10, so its history splits on that day. The two weather stories link to the old address until their weather-intelligence templates are updated (the links redirect meanwhile).
+
 Guard rail for growth: add Almanac pages only when they carry real, checked, city-specific data. Thousands of similar pages that Google judged thin could drag on the whole domain, which is the one real argument for a subdomain.
 
 ## Proposed: NBA pages that answer live questions (Nov 10, 2026)
@@ -93,7 +101,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 **Shawn (accounts and decisions)**
 - [x] Merge PR #87 (structured data, sitemap dates, this plan)
 - [x] Merge the Almanac pair together: weather-live (search-ready pages) and this repo (Preview labels off)
-- [ ] Almanac move: the five one-time steps in the weather-live README (deploy token, merge both PRs and switch this repo's Pages source to GitHub Actions, run the daily workflow, Cloudflare redirect rules for the old subdomain, unpublish weather-live's Pages)
+- [ ] Almanac move: the one-time steps in the weather-live README (deploy token, merge both PRs and switch this repo's Pages source to GitHub Actions, run the daily workflow, Cloudflare redirect rules for the old subdomain, unpublish weather-live's Pages)
 - [ ] Google Search Console: add a **Domain property** for `tallorderdigital.com` (verified with a DNS TXT record). It covers the whole site, including the Almanac at `weather/almanac/` and the old `weather.` addresses while they redirect.
 - [ ] Search Console: submit `https://tallorderdigital.com/sitemap.xml` and `https://tallorderdigital.com/weather/almanac/sitemap.xml` (no separate weather property needed since the move; to see the Almanac on its own, filter Pages by `/weather/almanac/`)
 - [ ] Search Console: URL Inspection → Request indexing for the home page and the 3–5 newest stories
@@ -105,6 +113,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [x] Decide: when the Almanac comes out of preview (Nov 9, 2026: now)
 - [x] Decide: Almanac as a folder, not a subdomain (Nov 10, 2026)
 - [ ] Decide: go ahead with NBA team, player and game pages (after checking the data terms)
+- [ ] Decide: a formal license for the data and charts (CC BY 4.0 says what the footer already says). Google Dataset Search flags datasets without one; the Almanac's structured data leaves it out until you decide
 
 **Claude (PRs)**
 - [x] Structured data and sitemap `lastmod` on the main site (PR #87)
