@@ -71,6 +71,17 @@ Facts come from the page itself (h1, description, share image, canonical) and th
 
 Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a page is added, moved or retitled, or a story page is re-copied from a data repo. `--check` reports pages out of date.
 
+## Keyword data so far (Ubersuggest, US monthly searches, Nov 10, 2026)
+
+| Page | Title chosen | Searches it targets |
+| --- | --- | --- |
+| Chart guide hub (`explained/charts/`) | Types of Charts and When to Use Them | types of charts 6,600 · different types of charts 1,900 · types of charts and graphs 1,000 |
+| Chart pages | "[Chart]: when to use it" (kept) | when to use a bar chart 880 |
+| How much is a billion? | How Much Is a Billion? Dollars, Time and Things to Scale | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
+| How big is your state, really? | US State Size Comparison: Your State vs. Any Country | state size comparison 880 · us state size comparison 880 |
+
+Opportunities spotted: "alaska state size comparison" gets 1,900 a month on its own, so a page per state (`numbers/state-vs-country-size/<state>/`) could each rank for its state. The chart pages draw their example charts with scripts and have no data tables in the HTML yet; adding them (the standards' readable-without-scripts rule) is a misc-analytics follow-up.
+
 ## Keyword strategy: long tail first
 
 A new site can't rank for "NBA stats" or "weather records". It can rank for specific questions few sites answer with real data. Target phrases of 4+ words that match how people ask, and that the story actually answers:
