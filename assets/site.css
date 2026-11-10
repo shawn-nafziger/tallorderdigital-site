@@ -109,6 +109,7 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .hero-logo .wm { min-width: 0; }
 .hero-logo .wm-1 { font-size: calc(var(--m) * .5); white-space: normal; }
 .hero-logo .wm-2 { font-size: calc(var(--m) * .17); margin: calc(var(--m) * .04) 0 0 calc(var(--m) * .06); }
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm { opacity: 0; } /* hidden until assets/logo-intro.js takes over */
 
 /* Light/dark toggle (assets/theme.js). 44px tap target; the icon shows the theme you'd switch to. */
 .theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
