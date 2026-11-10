@@ -79,6 +79,13 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Logo kit rebuilt Oct 29 with these colors (Tall-Order-Digital-logo-kit.zip) and live on the website (`assets/brand/`). The logo colors are also in the playbook.
 - Design canvas (artboard "A+ new palette · 3 Teal-to-sky steps"): https://claude.ai/artifact/RwgWsq1ir3xf8Ni8wPvNt2
 
+### Animated logo: DECIDED (Nov 9, 2026)
+- **The motion:** sixteen dots in a 4×4 grid, already in the logo's colors but mixed up, swirl about two turns around the center. In the last stretch of the spiral each dot widens into its slice of a bar, so the bars come straight out of the swirl (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars). The orange bar settles with a small bounce, then "TALL ORDER" wipes in and "DIGITAL" tightens to its 0.52em spacing. About 3.6 seconds.
+- **Where it runs:** the home page hero only, once per browser session (`sessionStorage` key `tod-intro`). The header logo and every other page stay static. Readers with "reduce motion" on, or without JavaScript, see the static logo.
+- **Code:** `assets/logo-intro.js`, plus a one-line script in `index.html`'s `<head>` that hides the static bars until the animation starts (and shows them after 2 s if it never does). Colors come from the existing `m-o`/`m-2`/`m-3`/`m-4` classes, so it follows light/dark mode.
+- Motion study (replay, scrubber, slow motion; v3 is the one chosen): https://claude.ai/artifact/8j3xdU3sT76Q7Ess7mMKas
+- Later, maybe: an MP4/GIF export for video intros and social clips, and a looping version as a dashboard loading state.
+
 ### Rejected directions
 - Original scatter plot with magnifier and basketball: too detailed for small sizes; basketball ties the brand to sports only.
 - B "The outlier" (dot grid with one orange dot): liked the concept, but it blurs at small sizes and doesn't connect to the name.
