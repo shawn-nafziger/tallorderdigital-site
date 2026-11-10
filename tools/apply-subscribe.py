@@ -116,10 +116,15 @@ def apply(html, path):
     # 1. The share row, then the card: last things inside the <main> that comes before the footer. On stories whose
     #    sections carry their own side margins (class "wrap", the travel stories), <main> is full width, so the two go
     #    inside a centered column (.story-end, added Nov 8, 2026) instead of running to the edge of the screen.
+    # The button keeps the wording a page already has (the Almanac says "Share this page", Nov 9, 2026);
+    # new pages get "Share this story".
+    old = SHARE_HTML_RE.search(html)
+    label = re.search(r"</svg>([^<]+)</button>", old.group(0)) if old else None
+    share = SHARE_HTML.replace("</svg>Share this story</button>", "</svg>" + label.group(1) + "</button>") if label else SHARE_HTML
     html = SHARE_HTML_RE.sub("", HTML_RE.sub("", END_OPEN_RE.sub("", END_CLOSE_RE.sub("", html))))
     foot = html.index("<footer")
     end = html.rindex("</main>", 0, foot)
-    body = SHARE_HTML + card(root)
+    body = share + card(root)
     if re.search(r'<section class="(?:[^"]*\s)?wrap(?:\s[^"]*)?"', html[html.index("<body"):end][html[html.index("<body"):end].index("<main"):]):
         body = END_OPEN + body + END_CLOSE
     html = html[:end] + body + html[end:]
@@ -139,9 +144,13 @@ def apply(html, path):
     html = FOOT_RE.sub("", html)
     foot = html.index("<footer")
     c = html.find("<p>©", foot)
-    if c < 0:
+    if c >= 0:
+        html = html[:c] + f'<p class="sub-foot"><a href="{root}subscribe/">Get the weekly email</a></p>\n  ' + html[c:]
+    else:
+        # No "<p>©" line (the Almanac's footer is spans): last line of the footer, on a line of its own.
         c = html.index("</footer>", foot)
-    html = html[:c] + f'<p class="sub-foot"><a href="{root}subscribe/">Get the weekly email</a></p>\n  ' + html[c:]
+        c = html.rindex("\n", 0, c) + 1
+        html = html[:c] + f'  <p class="sub-foot"><a href="{root}subscribe/">Get the weekly email</a></p>\n' + html[c:]
 
     # 3. Styles, inside the page's last <style>.
     head_end = html.index("</head>")
