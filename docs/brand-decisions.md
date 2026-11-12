@@ -104,6 +104,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Weather page live blocks ("Today in your city", "Most unusual today"), once weather-live publishes a daily file.
 - Run `tools/apply-header.py` on the data-repo and Almanac templates so they carry the animated logo intro.
 - Run `tools/apply-header.py` on the story templates in politics-analytics and travel-analytics (their published copies here already have the new menu).
+- **Menu room for reference pages (Nov 12, 2026; for the Tall Order Digital project):** the chart guide (`explained/charts/`) and Stats, explained are among the site's most useful pages but aren't in the menu, which has no room for another item. Shawn likes an "Explained" or "Guides" menu item; it needs a decision on a collapsed menu (a hamburger button on phones, or a "More" drop-down) first. Until then they're linked from the More stories page, the home page and under story charts.
 - Settle the NBA and weather series names and cadences once the real mix is known.
 - Create a one-color version of the mark (for single-color printing, embroidery, stamps).
 - Have a human designer produce the final logo files (vector master, icon set), fine-tuning the "DIGITAL" alignment. Their contract must assign the rights to Tall Order Digital LLC. AI-only artwork generally can't be copyrighted in the US.
