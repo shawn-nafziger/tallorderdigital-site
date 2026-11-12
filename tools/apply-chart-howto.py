@@ -23,12 +23,16 @@ NAMES = {  # guide page -> the name in the link ("How to read a <name>")
     "bar-chart": "bar chart", "dot-plot": "dot plot", "dumbbell": "dumbbell chart", "line-chart": "line chart",
     "slope-chart": "slope chart", "heatmap": "heatmap", "waffle-chart": "waffle chart", "beeswarm": "beeswarm",
     "scatter-plot": "scatter plot", "dot-map": "dot map", "tile-grid-map": "tile grid map", "histogram": "histogram",
+    "choropleth": "choropleth map",
     "stacked-bar": "100% stacked bar",
 }
 LINKS = {
     "culture/blockbusters-got-longer": [("The gap between big hits and ordinary films more than tripled", "line-chart"),
                                         ("Animated hits stay much shorter than live action", "line-chart"),
                                         ("Shared editing rooms aren't new", "stacked-bar")],
+    "nature/houseplants-native-homes": [("Mexico's Gulf coast is home to the most", "choropleth"),
+                                        ("Every plant's driest month at home", "beeswarm"),
+                                        ("Which one's readership grew the most", "line-chart")],
     "nba/check-the-take-heat-luck": [("Opponent shooting vs what their shot locations predict", "scatter-plot")],
     "nba/check-the-take-luka-unguardable": [("Shot making, every qualified player", "beeswarm")],
     "nba/early-season-mirage-net-rating": [("Net rating after each game", "line-chart"),

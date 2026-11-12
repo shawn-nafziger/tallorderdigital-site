@@ -79,6 +79,7 @@ Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a pa
 | Chart pages | "[Chart]: when to use it" (kept) | when to use a bar chart 880 |
 | How much is a billion? | How Much Is a Billion? Dollars, Time and Things to Scale | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
 | How big is your state, really? | US State Size Comparison: Your State vs. Any Country | state size comparison 880 · us state size comparison 880 |
+| Why your houseplants survive your living room (`nature/houseplants-native-homes/`, Nov 11) | Low-Light Houseplants: Why They Survive Indoors | low light houseplants 33,100 (difficulty 53) · best low light houseplants 9,900 (19) · houseplant humidity 20 · where do houseplants come from 10 |
 
 Opportunities spotted: "alaska state size comparison" gets 1,900 a month on its own, so a page per state (`numbers/state-vs-country-size/<state>/`) could each rank for its state. The chart pages draw their example charts with scripts; **done Nov 11, 2026:** each chart's takeaway, readout and data table are now written into the HTML (Indiana, the default state) by `misc-analytics/analysis/chart_guide/prerender.py`, and every guide page shows "Published Nov 11, 2026 · Data through 2025", which `tools/structured-data.js` now reads as the page's dates (the hub is a `CollectionPage`).
 
