@@ -18,6 +18,8 @@
  *   - headline: the page's <h1>; summary: its meta description; image: its og:image; address: its canonical link
  *   - published date: the date in the story's card kicker on its topic page (nba/, weather/, stories/, nba/takes/),
  *     the same date readers see. A topic page's dateModified is its newest card's date.
+ *   - pages with no card (the chart guide, explained/charts/, Nov 11, 2026): the date shown under the intro,
+ *     <p class="meta">Published <time datetime="YYYY-MM-DD">…</time>, as datePublished and dateModified
  *   - author: Shawn Nafziger when the page's byline says "By Shawn Nafziger"; otherwise the site itself
  *
  * Skipped: redirect pages (noindex), search/, the 404 page, pages whose canonical points to another site (the
@@ -156,8 +158,12 @@ function graph(p, url) {
       ...(byShawn ? [PERSON] : []),
     ];
   }
-  const type = rel === "about/" ? "AboutPage" : HUBS[rel] || /dashboards\/$|check-the-take\/$/.test(rel) ? "CollectionPage" : "WebPage";
-  const page = { "@type": type, ...base, breadcrumb: { "@id": url + "#breadcrumb" }, ...(newest[rel] && { dateModified: newest[rel] }) };
+  const type = rel === "about/" ? "AboutPage" : HUBS[rel] || /dashboards\/$|check-the-take\/$|^explained\/charts\/$/.test(rel) ? "CollectionPage" : "WebPage";
+  // A page with no story card can state its own date under the intro (the chart guide): <p class="meta">Published <time datetime>.
+  const shown = (html.match(/<p class="meta">Published <time datetime="(\d{4}-\d{2}-\d{2})">/) || [])[1];
+  const page = { "@type": type, ...base, breadcrumb: { "@id": url + "#breadcrumb" },
+    ...(shown && { datePublished: shown, dateModified: shown, ...(image && { image: [image] }), publisher: { "@id": ORG_ID } }),
+    ...(newest[rel] && { dateModified: newest[rel] }) };
   return [page, { ...crumbs(rel, NAMES[rel] || HUBS[rel] || title), "@id": url + "#breadcrumb" }];
 }
 

@@ -10,6 +10,8 @@
  *   - Tall Takes cards (nba/takes/index.html)
  *   - dashboards index cards (nba/dashboards/index.html) and off-site dashboards on the hub (dashboards/index.html)
  *   - each Stats, explained section (explained/index.html): heading, "also called" line, summary, and its text
+ *   - Charts, explained (explained/charts/, added Nov 11, 2026): the hub, then each chart page and Charts to avoid
+ *     (built in misc-analytics/analysis/chart_guide/): heading, the question it answers, and its meta description
  *   - the About, Stats explained and Dashboards pages themselves
  * Daily dashboard refreshes don't change titles or summaries, so they don't need a rebuild.
  */
@@ -85,6 +87,18 @@ for (const m of ex.matchAll(/<section class="entry" id="([^"]+)">([\s\S]*?)<\/se
     kw: [pick(body, /<p class="aka">([\s\S]*?)<\/p>/), toc[id] || "", ...ids].join(" "), body: text(body).slice(0, 1800), url: "explained/#" + id, date: "" });
 }
 
+// Charts, explained: one entry per chart page, from the cards on the guide's hub.
+if (fs.existsSync(path.join(ROOT, "explained/charts/index.html"))) {
+  const ch = read("explained/charts/index.html");
+  for (const m of ch.matchAll(/<a class="card keep-state" href="([a-z0-9-]+)\/">([\s\S]*?)<\/a>/g)) {
+    const [, slug, body] = m;
+    let desc = "";
+    try { desc = meta(read(path.join("explained/charts", slug, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
+    items.push({ type: "Charts, explained", topic: "", title: pick(body, /<b>([\s\S]*?)<\/b>/), sum: pick(body, /<span>([\s\S]*?)<\/span>/),
+      kw: "chart type when to use visualization graph " + slug.replace(/-/g, " "), body: desc, url: "explained/charts/" + slug + "/", date: "" });
+  }
+}
+
 // Pages.
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
 page("nba/", "nba/index.html", "NBA", "nba basketball stories check the take focus stories latest");
@@ -96,6 +110,7 @@ page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboar
 page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
+page("explained/charts/", "explained/charts/index.html", "Charts, explained: one dataset, every chart", "chart types which chart should I use visualization graph guide reference");
 page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
 for (const it of items) if (!it.title) throw new Error("search index: an entry has no title: " + JSON.stringify(it));

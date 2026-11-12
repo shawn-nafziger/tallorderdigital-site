@@ -33,6 +33,12 @@
 .toc { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 18px 0 8px; padding: 0; list-style: none; }
 .toc a { display: inline-block; font: 500 13px/1 var(--font-data); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; }
 .toc a:hover { border-color: var(--ink-3); }
+/* Link to the chart-types guide (added Nov 9, 2026) */
+.charts-link { display: grid; gap: 4px; margin: 14px 0 6px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); text-decoration: none; max-width: 640px; }
+.charts-link:hover { border-color: var(--ink-3); }
+.charts-link:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.charts-link b { font: 600 16px/1.3 var(--font-body); }
+.charts-link span { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
 .entry { scroll-margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 26px; margin-top: 34px; }
 .entry h2 { margin-bottom: 4px; }
 .entry .aka { font: 500 12px/1.4 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
@@ -76,6 +82,7 @@
     <p class="kicker">Reference</p>
     <h1>Stats, explained</h1>
     <p class="lede">The numbers behind the stories on this site, in plain words. Each one has a basketball example; the math is tucked away for anyone who wants it.</p>
+    <a class="charts-link" href="charts/"><b>Charts, explained →</b><span>Which chart should you use? Every chart type, with a live example drawn from the same data, plus the charts to avoid.</span></a>
     <ul class="toc" aria-label="On this page">
       <li><a href="#chance-wobble">Chance wobble</a></li>
       <li><a href="#colors">Orange, light orange, gray</a></li>
