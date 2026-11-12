@@ -18,6 +18,8 @@
  *   - headline: the page's <h1>; summary: its meta description; image: its og:image; address: its canonical link
  *   - published date: the date in the story's card kicker on its topic page (nba/, weather/, stories/, nba/takes/),
  *     the same date readers see. A topic page's dateModified is its newest card's date.
+ *   - modified date: the story's article:modified_time meta when it has one (a story rebuilt with newer games, Nov 11,
+ *     2026); otherwise the published date
  *   - author: Shawn Nafziger when the page's byline says "By Shawn Nafziger"; otherwise the site itself
  *
  * Skipped: redirect pages (noindex), search/, the 404 page, pages whose canonical points to another site (the
@@ -132,6 +134,9 @@ function graph(p, url) {
     ];
   }
   const date = published[rel];
+  // A story rebuilt with newer games says so with <meta property="article:modified_time" content="YYYY-MM-DD"> in
+  // its template (and "Updated <date>" in its byline); that date becomes dateModified, and the sitemap's lastmod.
+  const updated = meta(html, /<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})"/);
   if (date) {
     const article = {
       "@type": rel.startsWith("nba/takes/") ? "OpinionNewsArticle" : "Article",
@@ -140,7 +145,7 @@ function graph(p, url) {
       description,
       ...(image && { image: [image] }),
       datePublished: date,
-      dateModified: date,
+      dateModified: updated && updated > date ? updated : date,
       author: byShawn ? { "@id": PERSON_ID } : { "@id": ORG_ID },
       publisher: { "@id": ORG_ID },
       copyrightHolder: { "@id": ORG_ID },

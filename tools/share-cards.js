@@ -294,7 +294,7 @@ function startsFastCard(D) {
   </style>
   <div class="wrap">
     <div><p class="kicker">NBA · pace and fouls</p><h1>Every season starts fast</h1>
-      <p class="dek">This season's first ${days} days look fast and whistle-happy. So did every season's. The fair comparison is the same days of past seasons.</p></div>
+      <p class="dek">2026-27 started slower than last season, not faster. Every season's first ${days} days run fast; the fair comparison is the same days of past seasons.</p></div>
     <div class="chart"><svg width="470" height="370" viewBox="0 0 470 370">${rows}</svg>
       <p class="key">● first ${days} days &nbsp; ○ rest of season · pace</p></div>
     <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
