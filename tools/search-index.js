@@ -110,7 +110,7 @@ page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboar
 page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
-page("explained/charts/", "explained/charts/index.html", "Charts, explained: one dataset, every chart", "chart types which chart should I use visualization graph guide reference");
+page("explained/charts/", "explained/charts/index.html", "Charts, explained: which chart should you use?", "chart types which chart should I use visualization graph guide reference");
 page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
 for (const it of items) if (!it.title) throw new Error("search index: an entry has no title: " + JSON.stringify(it));
