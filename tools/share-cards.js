@@ -677,6 +677,37 @@ function flightDelaysCard(D) {
   </div>`;
 }
 
+function blockbustersCard(D) {
+  // Typical running time by five-year period: big live-action hits (orange) pull away from the typical U.S. film (sky).
+  const P = D.table.filter((t) => t.label.includes("–")).map((t) => ({ ...t, mid: +t.label.slice(0, 4) + 2 }));
+  const W = 500, Ht = 330, L = 64, R = 24, B = 290, T = 30;
+  const x = (yr) => L + (yr - 1982) * (W - L - R) / 40, y = (m) => B - (m - 80) * (B - T) / 70;
+  const path = (k) => P.map((p, i) => `${i ? "L" : "M"}${x(p.mid).toFixed(1)},${y(p[k]).toFixed(1)}`).join("");
+  const grid = [90, 120, 150].map((v) => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${{ 90: "1½ hr", 120: "2 hr", 150: "2½ hr" }[v]}</text>`).join("");
+  const ticks = [1980, 2000, 2020].map((t) => `<text x="${x(t)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  const a = P[0], b = P[P.length - 1];
+  const dot = (p, lab, right) => `<circle cx="${x(p.mid)}" cy="${y(p.live)}" r="11" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(p.mid) + (right ? 18 : -18)}" y="${y(p.live) + (right ? 38 : -18)}" text-anchor="${right ? "start" : "end"}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab}</text>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 500px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Culture · Movies</p><h1>Movies didn't get longer. Blockbusters did.</h1>
+      <p class="dek">Typical running time: the year's biggest live-action hits vs the typical U.S. film, 1980–2024.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht + 20}" viewBox="0 0 ${W} ${Ht + 20}">${grid}${ticks}
+      <path d="${path("all")}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${path("live")}" fill="none" stroke="${C.orange}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <text x="${x(b.mid)}" y="${y(b.all) + 34}" text-anchor="end" font-family="IBM Plex Sans" font-size="20" fill="${C.sub}">typical film ${Math.round(b.all)} min</text>
+      ${dot(a, `${Math.round(a.live + 0.01)} min`, true)}${dot(b, `${Math.round(b.live)} min`, false)}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function recordLowsCard(D) {
   // Records per 100 by chance, by decade: lows in orange (the signal), highs in sky, dashed line at chance.
   const R = D.decades, W = 520, Ht = 340, L = 56, Rt = 136, B = 300, T = 24, top = 200;
@@ -781,6 +812,8 @@ function homeCard() {
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
+  const bb = fs.readFileSync(path.join(ROOT, "culture/blockbusters-got-longer/index.html"), "utf8");
+  const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
   const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
@@ -806,6 +839,7 @@ function homeCard() {
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
+    ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
     ["assets/share-home.png", homeCard()],

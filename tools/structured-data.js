@@ -52,7 +52,7 @@ const HUBS = {
   "nba/": "NBA", "weather/": "Weather", "stories/": "More stories", "nba/takes/": "Tall Takes",
 };
 // Pages that sit under "More stories" rather than under a folder with its own topic page.
-const UNDER_STORIES = /^(politics|travel|numbers)\//;
+const UNDER_STORIES = /^(politics|travel|numbers|culture)\//;
 // Breadcrumb names for site pages that aren't topic pages.
 const NAMES = {
   "about/": "About", "subscribe/": "The weekly email", "explained/": "Stats, explained", "dashboards/": "Dashboards",
