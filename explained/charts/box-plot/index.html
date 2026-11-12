@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Box plot: when to use it · Tall Order Digital</title>
+<title>Box Plot: What It Is and When to Use It · Tall Order Digital</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Box plot: How do the spreads of several groups compare? What it is, how to read it, when to use it and when not, with a live example.">
 <meta property="og:type" content="article">
@@ -326,7 +326,7 @@ a.card:hover { border-color: var(--ink-3); }
 <main>
 
   <header class="col">
-    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Spread</p>
+    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Distribution charts</p>
     <h1>Box plot</h1>
     <p class="dek">Answers: <em>How do the spreads of several groups compare?</em></p>
     <p class="meta">Published <time datetime="2026-11-12">Nov 12, 2026</time> · Data through 2025 · Source: U.S. Energy Information Administration</p>
@@ -353,10 +353,11 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-what">
-    <h2 id="h-what">What it is</h2>
+    <h2 id="h-what">What is a box plot?</h2>
     <p>A box for the middle half of the values, a line at the median, and whiskers for the usual range. One box per group.</p>
-    <h2 id="h-read">How to read it</h2>
+    <h2 id="h-read">How to read a box plot</h2>
     <p>The line in the box is the typical value (median). A tall box means a wide spread. Dots past the whiskers are unusual.</p>
+    <h2 id="h-when">When to use a box plot</h2>
   </section>
 
   <section class="facts uses" aria-label="When to use it">
@@ -366,7 +367,7 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-try">
-    <h2 id="h-try">Try instead</h2>
+    <h2 id="h-try">Alternatives to a box plot</h2>
     <div class="pills"><a class="pill keep-state" href="../histogram/">Histogram</a><a class="pill keep-state" href="../beeswarm/">Beeswarm</a></div>
     <h2 id="h-used">Where we've used it</h2>
     <div class="used"><p>Not on the site yet.</p></div>

@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Beeswarm: when to use it · Tall Order Digital</title>
+<title>Beeswarm: What It Is and When to Use It · Tall Order Digital</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Beeswarm: Where does one item sit among all the others? What it is, how to read it, when to use it and when not, with a live example.">
 <meta property="og:type" content="article">
@@ -326,7 +326,7 @@ a.card:hover { border-color: var(--ink-3); }
 <main>
 
   <header class="col">
-    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Spread</p>
+    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Distribution charts</p>
     <h1>Beeswarm</h1>
     <p class="dek">Answers: <em>Where does one item sit among all the others?</em></p>
     <p class="meta">Published <time datetime="2026-11-12">Nov 12, 2026</time> · Data through 2025 · Source: U.S. Energy Information Administration</p>
@@ -353,10 +353,11 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-what">
-    <h2 id="h-what">What it is</h2>
+    <h2 id="h-what">What is a beeswarm?</h2>
     <p>One dot per item along a single scale, nudged up and down just enough that no dot hides another. It shows every value, the rank and the spread at once.</p>
-    <h2 id="h-read">How to read it</h2>
+    <h2 id="h-read">How to read a beeswarm</h2>
     <p>Left to right is the value. Dense clumps are where most items sit; lone dots at the ends are the outliers. Height means nothing except &quot;there were more dots here&quot;.</p>
+    <h2 id="h-when">When to use a beeswarm</h2>
   </section>
 
   <section class="facts uses" aria-label="When to use it">
@@ -366,7 +367,7 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-try">
-    <h2 id="h-try">Try instead</h2>
+    <h2 id="h-try">Alternatives to a beeswarm</h2>
     <div class="pills"><a class="pill keep-state" href="../histogram/">Histogram</a><a class="pill keep-state" href="../dot-plot/">Dot plot</a><a class="pill keep-state" href="../box-plot/">Box plot</a></div>
     <h2 id="h-used">Where we've used it</h2>
     <div class="used"><ul><li><a href="../../../nba/check-the-take-luka-unguardable/">Check the Take: Luka Unguardable</a></li><li><a href="../../../politics/midterms-2026/">Redistricting Moved the Line</a></li></ul></div>

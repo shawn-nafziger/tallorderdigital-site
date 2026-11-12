@@ -5,7 +5,7 @@
 <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Heatmap: when to use it · Tall Order Digital</title>
+<title>Heatmap: What It Is and When to Use It · Tall Order Digital</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Heatmap: When does it happen: what hour, what season? What it is, how to read it, when to use it and when not, with a live example.">
 <meta property="og:type" content="article">
@@ -326,7 +326,7 @@ a.card:hover { border-color: var(--ink-3); }
 <main>
 
   <header class="col">
-    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Change over time</p>
+    <p class="kicker"><a class="crumb keep-state" href="../">Charts, explained</a> · Charts for change over time</p>
     <h1>Heatmap</h1>
     <p class="dek">Answers: <em>When does it happen: what hour, what season?</em></p>
     <p class="meta">Published <time datetime="2026-11-12">Nov 12, 2026</time> · Data through 2025 · Source: U.S. Energy Information Administration</p>
@@ -350,10 +350,11 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-what">
-    <h2 id="h-what">What it is</h2>
+    <h2 id="h-what">What is a heatmap?</h2>
     <p>A grid of cells, each colored by a value, with two things along the sides. Here: hour of the day across, month down.</p>
-    <h2 id="h-read">How to read it</h2>
+    <h2 id="h-read">How to read a heatmap</h2>
     <p>Darker cells mean more. Look for the darkest block: when does it happen? Then for rows or columns that stand out.</p>
+    <h2 id="h-when">When to use a heatmap</h2>
   </section>
 
   <section class="facts uses" aria-label="When to use it">
@@ -363,7 +364,7 @@ a.card:hover { border-color: var(--ink-3); }
   </section>
 
   <section class="prose" aria-labelledby="h-try">
-    <h2 id="h-try">Try instead</h2>
+    <h2 id="h-try">Alternatives to a heatmap</h2>
     <div class="pills"><a class="pill keep-state" href="../line-chart/">Line chart</a><span class="pill off" title="Coming soon">Small multiples</span></div>
     <h2 id="h-used">Where we've used it</h2>
     <div class="used"><ul><li><a href="../../../weather/phoenix-after-dark/">Phoenix After Dark</a></li></ul></div>
