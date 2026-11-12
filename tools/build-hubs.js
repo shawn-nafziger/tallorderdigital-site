@@ -58,7 +58,7 @@ const PAGES = [
     extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://tallorderdigital.com/weather/almanac/" } },
   { key: "stories", file: "stories/index.html", dir: "stories/", name: "More stories", dek: "Politics, travel and everything else with data too good to pass up." },
 ];
-const TOPIC_NAMES = { politics: "Politics", travel: "Travel" };
+const TOPIC_NAMES = { politics: "Politics", travel: "Travel", culture: "Culture" };
 
 const CARD = /<a class="story"[^>]*>[\s\S]*?<\/a>(?=\s*(?:<a class="story"|<!-- cards:end -->))/g;
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

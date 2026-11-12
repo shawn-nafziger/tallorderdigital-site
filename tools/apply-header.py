@@ -64,7 +64,7 @@ def section_of(path):
         return ""
     top = rel.split("/", 1)[0] if "/" in rel else ""
     return {"nba": "nba", "takes": "nba", "weather": "weather", "stories": "stories", "politics": "stories",
-            "travel": "stories", "about": "about", "subscribe": "subscribe", "search": "search"}.get(top, "")
+            "travel": "stories", "numbers": "stories", "culture": "stories", "about": "about", "subscribe": "subscribe", "search": "search"}.get(top, "")
 
 
 def menu(root, here):
