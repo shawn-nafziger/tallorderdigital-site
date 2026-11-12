@@ -159,6 +159,10 @@ Titles live in the story templates in the data repos, so the change is made ther
 8. **Author page.** Decide whether the structured data's author links to shawnnafziger.com (`sameAs`). It strengthens authorship signals but the About page deliberately leaves Shawn's name off; the byline already names him. Shawn to decide.
 9. **llms.txt** (optional, low evidence of effect, five minutes to write): a plain list of the site's main pages and what each covers.
 
+## Done: internal links to the chart guide (PR, Nov 12, 2026)
+
+The chart guide had almost no links pointing at it (only from Stats, explained), so search engines and readers rarely reached it. Added: a feature card at the top of More stories, a line on the home page, and 18 "How to read a <chart> →" links under charts in 14 stories (`tools/apply-chart-howto.py`), each pointing at the matching chart-type page. Still to do: the guide's own "Where we've used it" lists (in `misc-analytics`) can link back to these stories, and a menu entry waits on a menu decision (`brand-decisions.md` → Open items).
+
 ## GEO and AEO habits for every new story
 
 - Put the finding in the first two sentences, with its number and sample (as the og:image alt on Role Call does: after 4 games, minutes and usage predict the rest of a season; shooting percentages don't).
