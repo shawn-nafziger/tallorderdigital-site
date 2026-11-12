@@ -708,6 +708,35 @@ function blockbustersCard(D) {
   </div>`;
 }
 
+function houseplantsCard(D) {
+  // Each plant's driest month at home (humidity), as bars per 5-point band, against a heated January living room (orange).
+  const vals = D.plants.filter((p) => p.driest != null).map((p) => p.driest);
+  const home = D.home[0].rh_in, bins = {};
+  vals.forEach((v) => { const k = Math.floor(v / 5) * 5; bins[k] = (bins[k] || 0) + 1; });
+  const top = Math.max(...Object.values(bins)), W = 520, Ht = 330, L = 20, R = 20, B = 270, T = 40;
+  const x = (v) => L + v * (W - L - R) / 100, h = (n) => n * (B - T - 72) / top, bw = (W - L - R) / 20 - 4;
+  const bars = Object.entries(bins).map(([k, n]) => `<rect x="${x(+k) + 2}" y="${B - h(n)}" width="${bw}" height="${h(n)}" rx="3" fill="${C.sky}"/>`).join("");
+  const ticks = [0, 50, 100].map((v) => `<text x="${x(v)}" y="${B + 32}" text-anchor="${v ? (v === 100 ? "end" : "middle") : "start"}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}%</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 36px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 66px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 23px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Nature · Houseplants</p><h1>Why your houseplants survive your living room</h1>
+      <p class="dek">A heated home in January: ${home}% humidity. Every one of ${vals.length} popular houseplants has a driest month at home at least twice that.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - R}" y1="${B}" y2="${B}" stroke="${C.rule}" stroke-width="2"/>${bars}${ticks}
+      <line x1="${x(home)}" x2="${x(home)}" y1="${T - 10}" y2="${B}" stroke="${C.orange}" stroke-width="5" stroke-linecap="round"/>
+      <text x="${x(home) + 14}" y="${T + 8}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">Your living room: ${home}%</text>
+      <text x="${W - R}" y="${T + 44}" text-anchor="end" font-family="IBM Plex Sans" font-size="19" fill="${C.sub}">Bars: plants' driest month at home</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function recordLowsCard(D) {
   // Records per 100 by chance, by decade: lows in orange (the signal), highs in sky, dashed line at chance.
   const R = D.decades, W = 520, Ht = 340, L = 56, Rt = 136, B = 300, T = 24, top = 200;
@@ -818,6 +847,8 @@ function homeCard() {
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
   const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
   const FF = JSON.parse(ff.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const hp = fs.readFileSync(path.join(ROOT, "nature/houseplants-native-homes/index.html"), "utf8");
+  const HP = JSON.parse(hp.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -842,6 +873,7 @@ function homeCard() {
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
+    ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
