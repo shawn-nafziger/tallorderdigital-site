@@ -24,12 +24,13 @@ NAMES = {  # guide page -> the name in the link ("How to read a <name>")
     "slope-chart": "slope chart", "heatmap": "heatmap", "waffle-chart": "waffle chart", "beeswarm": "beeswarm",
     "scatter-plot": "scatter plot", "dot-map": "dot map", "tile-grid-map": "tile grid map", "histogram": "histogram",
     "choropleth": "choropleth map",
-    "stacked-bar": "100% stacked bar",
+    "stacked-bar": "100% stacked bar", "sankey": "sankey diagram",
 }
 LINKS = {
     "culture/blockbusters-got-longer": [("The gap between big hits and ordinary films more than tripled", "line-chart"),
                                         ("Animated hits stay much shorter than live action", "line-chart"),
                                         ("Shared editing rooms aren't new", "stacked-bar")],
+    "culture/craig-wood-film-editor": [("Who directed his films, and what credit he got", "sankey")],
     "nature/houseplants-native-homes": [("Mexico's Gulf coast is home to the most", "choropleth"),
                                         ("Every plant's driest month at home", "beeswarm"),
                                         ("Which one's readership grew the most", "line-chart")],
