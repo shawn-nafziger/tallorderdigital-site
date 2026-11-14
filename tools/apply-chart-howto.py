@@ -37,7 +37,7 @@ LINKS = {
     "nba/check-the-take-luka-unguardable": [("Shot making, every qualified player", "beeswarm")],
     "nba/early-season-mirage-net-rating": [("Net rating after each game", "line-chart"),
                                            ("Net-rating rank after 4 games vs. final rank", "slope-chart")],
-    "nba/every-season-starts-fast-pace-fouls": [("Pace: the first 13 days vs the rest of the season", "dumbbell")],
+    "nba/every-season-starts-fast-pace-fouls": [("Pace: the first", "dumbbell")],  # day count changes when the story is updated
     "nba/injury-tax-missing-stars": [("How much better each team was with its 20+ point scorer", "dot-plot")],
     "nba/new-team-shot-maps": [("Average shot distance, 2025-26 to 2026-27", "dumbbell")],
     "nba/ready-now-rookie-age": [("Rookie minutes per game by age", "scatter-plot")],
