@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How Much Is a Billion? In Dollars and Seconds · Tall Order Digital</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A billion is a thousand millions. At $10,000 a day, a million takes 100 days and a billion 274 years; a billion seconds is 31.7 years. Guess first.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="How much is a billion?">
+<meta property="og:description" content="Most of us file a million and a billion in the same mental drawer. Take a guess, then see the gap as money, time and real things.">
+<link rel="canonical" href="https://tallorderdigital.com/numbers/how-much-is-a-billion/">
+<meta property="og:url" content="https://tallorderdigital.com/numbers/how-much-is-a-billion/">
+<meta property="og:image" content="https://tallorderdigital.com/numbers/how-much-is-a-billion/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How much is a billion? A line from zero to one billion, with a question: where does one million go?">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px. Started from nba-analytics/analysis/take_heat_luck/template.html. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(44px, 9vw, 88px); }
+h2 { font-size: clamp(26px, 4.6vw, 38px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+[hidden] { display: none !important; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+a { color: inherit; text-underline-offset: 2px; }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 14px; min-width: 0; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lbl { fill: var(--ink-2); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 500; font-size: 12px; }
+.source { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.source .amber { font-weight: 500; }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-nav { display: flex; align-items: center; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+/* Light/dark button: same as tallorderdigital-site/assets/site.css */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 8, 2026): NBA, Weather, More stories ("More" on narrow phones), About,
+   Subscribe (outlined; an envelope icon on phones), then the search icon and the light/dark button. The menu itself
+   is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* "More stories" shortens to "More" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
+/* site-header:end */
+
+/* How much is a billion? additions */
+.howto { font-size: 15px; line-height: 1.5; color: var(--ink-2); max-width: 680px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; display: grid; gap: 4px; }
+.howto b { font: 600 12px/1.4 var(--font-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+.round { display: grid; gap: 12px; }
+.round + .round { border-top: 1px solid var(--rule); padding-top: 16px; }
+.round-q { font: 600 17px/1.35 var(--font-body); margin: 0; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.controls label { font: 500 12px/1.3 var(--font-data); color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
+input[type="range"] { flex: 1 1 260px; min-width: 0; accent-color: var(--ink); height: 32px; }
+.guessline:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; border-radius: 4px; }
+.readout { font: 500 14px/1.3 var(--font-data); font-variant-numeric: tabular-nums; min-width: 9em; }
+.btn { font: 600 14px/1 var(--font-body); padding: 12px 16px; min-height: 44px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); cursor: pointer; }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn:focus-visible, .choice:focus-visible, input:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.result { font-size: 16px; line-height: 1.5; min-height: 1.5em; }
+.result .chip { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--amber); margin-right: 6px; vertical-align: 0; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice { font: 500 14px/1.2 var(--font-body); padding: 10px 14px; min-height: 44px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer; }
+.choice[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.field { font: 500 15px/1.2 var(--font-data); padding: 10px 12px; min-height: 44px; border-radius: 6px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); box-sizing: border-box; }
+.field.money { width: 9em; }
+.field.num { width: 13em; max-width: 100%; }
+.err { font-size: 13px; color: var(--amber); }
+.bigline { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.bigline > div { padding: 14px 16px 14px 0; display: grid; gap: 4px; align-content: start; }
+.bigline > div + div { padding-left: 16px; border-left: 1px solid var(--rule); }
+.bigline b { font: 700 clamp(28px, 5vw, 42px)/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.bigline span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .bigline > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+.grid-wrap { display: grid; gap: 8px; }
+.grid-note { font: 500 12px/1.4 var(--font-data); color: var(--ink-3); }
+.key { display: grid; gap: 2px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+.sw.o { background: var(--amber); }
+.sw.g { background: var(--ghost); }
+.sw.tick { background: var(--ink-3); width: 2px; height: 12px; border-radius: 0; margin: 0 10px 0 4px; vertical-align: -1px; }
+.sw.ring { background: transparent; border: 2px solid var(--ink); border-radius: 50%; width: 9px; height: 9px; box-sizing: border-box; }
+.unit { font: 500 11px/1 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 7px; white-space: nowrap; }
+.mark-row { display: grid; gap: 6px; padding: 12px 0; border-top: 1px solid var(--rule); }
+.mark-row:first-child { border-top: 0; padding-top: 0; }
+.mark-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.mark-head b { font-weight: 600; }
+.mark-head .v { font: 500 13px/1.3 var(--font-data); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.mark-sq { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.mark-sq i { display: block; width: var(--sq, 24px); height: var(--sq, 24px); border-radius: 3px; background: var(--ghost); position: relative; overflow: hidden; }
+.mark-sq i.part { background: transparent; box-shadow: inset 0 0 0 1px var(--ghost); }
+.mark-sq i.part::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--fill); background: var(--ghost); }
+.mark-sq i.ref { background: var(--amber); }
+.mark-sq .n { font: 500 12px/1 var(--font-data); color: var(--ink-3); margin-left: 6px; }
+.mark-meta { font: 400 12px/1.45 var(--font-data); color: var(--ink-3); }
+.explore-out { display: grid; gap: 12px; }
+.conv { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.conv div { border-top: 1px solid var(--rule); padding-top: 8px; display: grid; gap: 2px; }
+.conv b { font: 600 18px/1.25 var(--font-body); font-variant-numeric: tabular-nums; }
+.conv span { font-size: 13px; color: var(--ink-3); }
+.examples { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--ink-3); }
+.examples button { font: 500 12px/1 var(--font-data); padding: 8px 10px; min-height: 36px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .reveal-anim { transition: none !important; } }
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
+</style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-14">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/numbers/how-much-is-a-billion/#article","headline":"How much is a billion?","description":"A billion is a thousand millions. At $10,000 a day, a million takes 100 days and a billion 274 years; a billion seconds is 31.7 years. Guess first.","image":["https://tallorderdigital.com/numbers/how-much-is-a-billion/share.png"],"datePublished":"2026-11-14","dateModified":"2026-11-14","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/numbers/how-much-is-a-billion/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/numbers/how-much-is-a-billion/#webpage","url":"https://tallorderdigital.com/numbers/how-much-is-a-billion/","name":"How much is a billion?","description":"A billion is a thousand millions. At $10,000 a day, a million takes 100 days and a billion 274 years; a billion seconds is 31.7 years. Guess first.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/numbers/how-much-is-a-billion/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"More stories","item":"https://tallorderdigital.com/stories/"},{"@type":"ListItem","position":3,"name":"How much is a billion?","item":"https://tallorderdigital.com/numbers/how-much-is-a-billion/"}],"@id":"https://tallorderdigital.com/numbers/how-much-is-a-billion/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a href="../../nba/">NBA</a><a href="../../weather/">Weather</a><a href="../../stories/" aria-label="More stories" aria-current="page">More<span class="nav-long"> stories</span></a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">Numbers · Nov 2026</p>
+    <h1>How much is a billion?</h1>
+    <p class="dek">Most of us file a million and a billion in the same mental drawer, labeled "a lot." Before we show you anything, take a guess. Then see the gap as money, time and real things.</p>
+    <p class="byline">By Shawn Nafziger · Published Nov 14, 2026 · Figures from 2025 and 2026</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
+  </header>
+
+  <!-- Chart 1: the guess -->
+  <section aria-labelledby="h-guess">
+    <div class="prose">
+      <h2 id="h-guess">Where does a million go?</h2>
+      <p>Here's a line from zero to a billion. Drag the dot to where you think one million belongs, then press "Show me."</p>
+    </div>
+    <div class="figure">
+      <div class="round" id="r1">
+        <p class="round-q">Round 1: place <strong>1 million</strong> on a line from 0 to 1 billion.</p>
+        <div class="chart guessline" id="line1" tabindex="0" role="slider" aria-label="Your guess for 1 million, on a line from 0 to 1 billion" aria-valuemin="0" aria-valuemax="100" aria-valuetext="not placed yet"></div>
+        <div class="controls">
+          <button type="button" class="btn" id="b1" disabled>Show me</button>
+          <span class="grid-note" id="h1">Tap or drag on the line to place your guess. Arrow keys work too.</span>
+        </div>
+        <p class="result" id="res1" aria-live="polite"></p>
+      </div>
+      <div class="round" id="r2">
+        <p class="round-q">Round 2: place <strong>1 billion</strong> on a line from 0 to 1 trillion.</p>
+        <div class="chart guessline" id="line2" tabindex="0" role="slider" aria-label="Your guess for 1 billion, on a line from 0 to 1 trillion" aria-valuemin="0" aria-valuemax="100" aria-valuetext="not placed yet"></div>
+        <div class="controls">
+          <button type="button" class="btn" id="b2" disabled>Show me</button>
+          <span class="grid-note" id="h2">Tap or drag on the line to place your guess. Arrow keys work too.</span>
+        </div>
+        <p class="result" id="res2" aria-live="polite"></p>
+      </div>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: where the number really is.</span>
+        <span><span class="sw ring"></span>Ring: your guess.</span>
+        <span class="after1" hidden><span class="sw tick"></span>Thin line: where half the adults in the 2013 study put a million (43% of the way along).</span>
+        <span>Guesses: counted in rough ranges, with no cookies and nothing that identifies you.</span>
+      </p>
+    </div>
+    <div class="prose after1" hidden>
+      <p>A million sits a tenth of one percent of the way to a billion. On a phone screen, that's about one pixel from zero.</p>
+      <p>If your dot landed far to the right, you're in large company. In the 2013 study, by David Landy, Noah Silbert and Aleah Goldin, about half of 400 American adults put a million about 43% of the way along a line from a thousand to a billion. The researchers think many of us treat "thousand, million, billion" as evenly spaced steps, like rungs on a ladder, when each rung is really a thousand times higher than the last. (A smaller first experiment, with 64 college students and graduates, found the same pattern in about 35% of them.)</p>
+      <p id="readers" hidden></p>
+    </div>
+  </section>
+
+  <aside class="howto" aria-label="How to read these">
+    <b>How to read these</b>
+    <span>A million is 1,000,000 (six zeros). A <button type="button" class="term" data-term="billion">billion</button> is 1,000,000,000 (nine zeros), a thousand millions. A trillion is a thousand billions.</span>
+    <span>Every chart below uses a <button type="button" class="term" data-term="linear">linear scale</button>, where equal distances mean equal amounts, except the last, which says so.</span>
+    <span>Orange is always the number the chart is about. Gray is everything else.</span>
+  </aside>
+
+  <!-- Chart 2: $10,000 a day -->
+  <section aria-labelledby="h-pay">
+    <div class="prose">
+      <h2 id="h-pay">How long would $10,000 a day take to make a billion?</h2>
+      <p>Someone hands you $10,000 today, and another $10,000 every day after that. When are you a millionaire? When are you a billionaire?</p>
+    </div>
+    <div class="figure">
+      <p class="round-q">First, guess: how long until you have a billion dollars?</p>
+      <div class="choices" role="group" aria-label="Your guess">
+        <button type="button" class="choice" data-g="3" aria-pressed="false">About 3 years</button>
+        <button type="button" class="choice" data-g="30" aria-pressed="false">About 30 years</button>
+        <button type="button" class="choice" data-g="100" aria-pressed="false">About 100 years</button>
+        <button type="button" class="choice" data-g="300" aria-pressed="false">About 300 years</button>
+      </div>
+      <div class="controls">
+        <button type="button" class="btn" id="bpay" disabled>Show me</button>
+        <span class="err" id="pay-hint">Pick a guess first.</span>
+      </div>
+      <div id="pay-out" class="grid-wrap">
+        <div class="bigline">
+          <div><b id="pay-m">—</b><span id="pay-m-sub">You're a millionaire</span></div>
+          <div><b id="pay-b">—</b><span id="pay-b-sub">You're a billionaire</span></div>
+        </div>
+        <div class="chart" id="paychart" aria-hidden="true"></div>
+        <p class="result" id="pay-res" aria-live="polite"></p>
+        <div class="controls">
+          <label for="amt">Try another amount per day</label>
+          <span>$</span><input type="text" inputmode="decimal" class="field money" id="amt" value="10,000" autocomplete="off">
+          <span class="err" id="amt-err" aria-live="polite"></span>
+        </div>
+      </div>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: the time to a billion.</span>
+        <span><span class="sw g"></span>Gray: the time to a million, on the same timeline.</span>
+        <span>Dates: today's payment counts as day 1. No interest, taxes or spending. Worked out from your device's date.</span>
+      </p>
+    </div>
+    <div class="prose afterpay" hidden>
+      <p>Same gift, same pace. The million takes about three months; the billion takes about 274 years. A trillion would take about 274,000 years.</p>
+      <details>
+        <summary>Table view</summary>
+        <div class="tablewrap"><table>
+          <thead><tr><th>At $10,000 a day, to reach</th><th>Days</th><th>Years</th></tr></thead>
+          <tbody><tr><td>A million</td><td>100</td><td>0.27</td></tr><tr><td>A billion</td><td>100,000</td><td>274</td></tr><tr><td>A trillion</td><td>100,000,000</td><td>273,785</td></tr></tbody>
+        </table></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Chart 3: seconds -->
+  <section aria-labelledby="h-sec">
+    <div class="prose">
+      <h2 id="h-sec">How long is a billion seconds?</h2>
+      <p>Time works the same way. A million seconds is about 11.6 days, a long vacation. A billion seconds is about 31.7 years, most of a career. A trillion seconds is about 31,700 years, longer than people have been writing things down.</p>
+    </div>
+    <div class="figure">
+      <div class="chart" id="secchart" role="img" aria-label="Bars for a million, a billion and a trillion seconds on one time scale. The million bar is a sliver; the trillion bar runs far off the chart."></div>
+      <div class="controls">
+        <label for="bday">When were (or will) you be a billion seconds old? Your birthday</label>
+        <input type="date" class="field" id="bday" min="1900-01-01" max="2100-12-31">
+      </div>
+      <p class="result" id="bday-out" aria-live="polite">Your birthday stays on your device; it isn't sent anywhere.</p>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: a billion seconds.</span>
+        <span><span class="sw g"></span>Gray: a million and a trillion seconds.</span>
+        <span>Years: 365.25 days.</span>
+      </p>
+      <details>
+        <summary>Table view</summary>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Seconds</th><th>Days</th><th>Years</th></tr></thead>
+          <tbody id="sec-table"><tr><td>1 million</td><td>11.6</td><td>0.032</td></tr><tr><td>1 billion</td><td>11,574</td><td>31.7</td></tr><tr><td>1 trillion</td><td>11,574,074</td><td>31,688.1</td></tr></tbody>
+        </table></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Chart 4: the grid -->
+  <section aria-labelledby="h-grid">
+    <div class="prose">
+      <h2 id="h-grid">How many millions are in a billion?</h2>
+      <p>Each square below is one million. The orange one is the million you placed at the top. A billion is all of them: 1,000 squares, 50 rows of 20.</p>
+    </div>
+    <div class="figure">
+      <div class="chart" id="grid1" role="img" aria-label="A grid of 1,000 small squares. The first is orange and stands for one million; together they make one billion."></div>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: one million.</span>
+        <span><span class="sw g"></span>Gray: the other 999 millions in a billion.</span>
+        <span>Labels on the left count up in hundreds of millions.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Chart 5: landmarks -->
+  <section aria-labelledby="h-marks">
+    <div class="prose">
+      <h2 id="h-marks">What comes close to a billion?</h2>
+      <p>Here are real things measured in <button type="button" class="term" data-term="bsq">billion-squares</button>, the whole first grid as one square. Everyone living in the U.S. (341.8 million people) fills about a third of one. Every trip through a TSA checkpoint in 2025 (906.7 million) and every boarding on a U.S. airline (972 million) each come just shy of a full square. Only the world's population, about 8.23 billion, and the 2026 midterms' political ads, about $11.21 billion spent or reserved by late October, run past it.</p>
+    </div>
+    <div class="figure">
+      <div id="marks"></div>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: one billion, for scale.</span>
+        <span><span class="sw g"></span>Gray: each landmark, in billions. A partly filled square is part of a billion.</span>
+        <span>Tags: what's being counted. Trips and boardings count journeys, not different people.</span>
+      </p>
+      <details>
+        <summary>Table view and sources</summary>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Landmark</th><th>Value</th><th>Billion-squares</th><th>Period</th><th>Source</th></tr></thead>
+          <tbody id="marks-table"><tr><td>People living in the U.S.</td><td>341,784,857</td><td>0.34</td><td>July 1, 2025</td><td><a href="https://www.census.gov/quickfacts/fact/table/US/PST045225">Census Bureau</a></td></tr><tr><td>People screened at TSA checkpoints</td><td>906,735,976</td><td>0.91</td><td>Calendar 2025</td><td><a href="https://www.tsa.gov/travel/passenger-volumes/2025">TSA checkpoint travel numbers</a></td></tr><tr><td>Passengers on U.S. airlines</td><td>972,000,000</td><td>0.97</td><td>Calendar 2025</td><td><a href="https://www.bts.gov/newsroom/december-2025-us-airline-traffic-data-down-26-same-month-last-year">BTS</a></td></tr><tr><td>People living on Earth</td><td>8,231,613,070</td><td>8.23</td><td>Mid-2025 (July 1)</td><td><a href="https://population.un.org/dataportal/data/indicators/49/locations/900/start/2025/end/2025/table/pivotbylocation">United Nations</a></td></tr><tr><td>Political ad spending in the 2026 midterms</td><td>$11,210,000,000</td><td>11.21</td><td>2026 cycle to Oct 29 2026</td><td><a href="https://www.alaskasnewssource.com/2026/10/29/2026-midterms-set-new-record-political-ad-spending/">AdImpact</a></td></tr></tbody>
+        </table></div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Chart 6: explorer -->
+  <section aria-labelledby="h-you">
+    <div class="prose">
+      <h2 id="h-you">Where does your number fit?</h2>
+      <p>Seen a big number in the news? Type it in, with or without the word: "4.2 billion", "750 million", "3,500,000".</p>
+    </div>
+    <div class="figure">
+      <div class="controls">
+        <label for="num">Your number</label>
+        <input type="text" class="field num" id="num" value="4.2 billion" autocomplete="off" aria-describedby="num-err">
+        <span class="err" id="num-err" aria-live="polite"></span>
+      </div>
+      <div class="examples"><span>Or try:</span>
+        <button type="button" data-n="1 million">1 million</button>
+        <button type="button" data-n="300 million">300 million</button>
+        <button type="button" data-n="1 trillion">1 trillion</button>
+      </div>
+      <div class="explore-out" aria-live="polite">
+        <p class="result" id="ex-head"></p>
+        <div class="chart" id="ruler" aria-hidden="true"></div>
+        <div class="conv">
+          <div><b id="ex-sec"></b><span>if it were seconds</span></div>
+          <div><b id="ex-beat"></b><span>if it were heartbeats, at 70 a minute</span></div>
+          <div><b id="ex-pay"></b><span>if it were dollars, at $10,000 a day</span></div>
+        </div>
+        <p class="result" id="ex-near"></p>
+      </div>
+      <p class="source key">
+        <span><span class="sw o"></span><span class="amber">Orange</span>: your number.</span>
+        <span><span class="sw g"></span>Gray: the landmarks above.</span>
+        <span>This ruler uses a <button type="button" class="term" data-term="log">log scale</button>: each step is 1,000 times the one before, so a million, a billion and a trillion look evenly spaced. That's the shortcut our minds take. The charts above show the real gaps.</span>
+      </p>
+    </div>
+    <div class="prose">
+      <p class="callout">A billion is a thousand millions. The next time a news story says "million" and "billion" in the same sentence, picture a single square and the whole grid.</p>
+    </div>
+  </section>
+
+  <section class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>The study:</strong> Landy, D., Silbert, N., &amp; Goldin, A. (2013). <a href="https://doi.org/10.1111/cogs.12028">Estimating large numbers</a>. <em>Cognitive Science</em>, 37(5), 775–799. Its main experiment had 400 U.S. adults recruited online (Amazon Mechanical Turk), not a random sample of Americans. Their line ran from 1 thousand to 1 billion; ours starts at zero. A million sits at about 0.1% on both.</li>
+      <li><strong>$10,000 a day:</strong> today's payment is day 1, so the millionth dollar arrives on day 100 and the billionth on day 100,000. The dates use your device's calendar and skip nothing for leap years.</li>
+      <li><strong>Seconds and heartbeats:</strong> a year is 365.25 days. Heartbeats assume a steady 70 beats a minute, so a billion beats takes about 27 years.</li>
+      <li><strong>Landmarks:</strong> U.S. population on July 1, 2025 (Census Bureau, Vintage 2025 estimates). TSA checkpoint screenings in 2025, all 365 daily counts added up (TSA). Passengers on U.S. airlines in 2025, domestic and international, 12 monthly figures added up (Bureau of Transportation Statistics). World population in mid-2025 (United Nations, World Population Prospects 2024; a <button type="button" class="term" data-term="proj">projection</button>). Political ad spending in the 2026 midterms, spent or reserved as of Oct 29, 2026 (an estimate by the ad-tracking firm AdImpact, in <button type="button" class="term" data-term="nominal">nominal dollars</button>; all races and parties combined).</li>
+      <li><strong>Readers' guesses:</strong> each guess is counted anonymously in a rough range (for example "10–20% along"), with no cookies. A "readers so far" line appears here once at least 300 people have guessed in a round.</li>
+    </ul>
+  </section>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
+</main>
+
+<footer class="site-foot">
+  <p>Data: U.S. Census Bureau; Transportation Security Administration; Bureau of Transportation Statistics; UN DESA Population Division; AdImpact (estimate). Research: Landy, Silbert &amp; Goldin (2013).</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../../stories/">More stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script>
+const D = {"landmarks":[{"id":"us_population_2025","label":"People living in the U.S.","value":341784857,"unit":"people","period":"July 1, 2025","kind":"one point in time","source":"Census Bureau, Vintage 2025 Population Estimates (QuickFacts)","link":"https://www.census.gov/quickfacts/fact/table/US/PST045225","status":"Verified","squares":0.341784857},{"id":"tsa_screenings_2025","label":"People screened at TSA checkpoints","value":906735976,"unit":"checkpoint screenings","period":"Calendar 2025","kind":"one year","source":"TSA checkpoint travel numbers, 2025 (365 daily counts summed)","link":"https://www.tsa.gov/travel/passenger-volumes/2025","status":"Verified","squares":0.906735976},{"id":"airline_passengers_2025","label":"Passengers on U.S. airlines","value":972000000,"unit":"passenger boardings","period":"Calendar 2025","kind":"one year","source":"BTS, monthly passengers on U.S. scheduled airlines (domestic + international); 12 months summed","link":"https://www.bts.gov/newsroom/december-2025-us-airline-traffic-data-down-26-same-month-last-year","status":"Verified","squares":0.972},{"id":"world_population_2025","label":"People living on Earth","value":8231613070,"unit":"people","period":"Mid-2025 (July 1)","kind":"one point in time","source":"United Nations, World Population Prospects 2024 (medium projection), Data Portal","link":"https://population.un.org/dataportal/data/indicators/49/locations/900/start/2025/end/2025/table/pivotbylocation","status":"Verified","squares":8.23161307},{"id":"midterm_ads_2026","label":"Political ad spending in the 2026 midterms","value":11210000000,"unit":"dollars (nominal)","period":"2026 cycle to Oct 29 2026","kind":"total","source":"AdImpact, as reported by Gray DC, Oct 29, 2026 (spent or reserved, all races)","link":"https://www.alaskasnewssource.com/2026/10/29/2026-midterms-set-new-record-political-ad-spending/","status":"Needs Source Validation","squares":11.21}],"perDay":10000,"yearDays":365.25,"beatsPerMin":70,"landy":{"n":400,"linear_share":0.5,"segmented_spot":0.43,"n1":64,"segmented_share1":0.35},"readers":null};
+const NS = "http://www.w3.org/2000/svg";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+const widthOf = host => Math.max(280, Math.round(host.clientWidth || 600));
+const nf = (v, d = 0) => v.toLocaleString("en-US", { maximumFractionDigits: d, minimumFractionDigits: 0 });
+
+/* Plain words for big numbers: 4200000000 -> "4.2 billion" */
+function words(v) {
+  const steps = [[1e12, "trillion"], [1e9, "billion"], [1e6, "million"], [1e3, "thousand"]];
+  for (const [n, w] of steps) if (Math.abs(v) >= n) { const x = v / n; return nf(x, x < 10 ? 2 : x < 100 ? 1 : 0).replace(/\.0+$/, "") + " " + w; }
+  return nf(v);
+}
+/* Durations in plain words */
+function span(years) {
+  if (years < 1 / 365.25 * 2) return nf(years * 365.25 * 24, 0) + " hours";
+  if (years < 0.25) return nf(years * 365.25, 0) + " days";
+  if (years < 2) return nf(years * 12, 0) + " months";
+  if (years < 100) return nf(years, 1).replace(/\.0$/, "") + " years";
+  return "about " + nf(years, 0) + " years";
+}
+
+/* ---------- Events: guesses counted in rough ranges (GoatCounter, cookie-free) ---------- */
+const PAGE = "how-much-is-a-billion";
+const sentEv = {};
+function sendEvent(path) {
+  if (sentEv[path]) return; sentEv[path] = true;
+  let tries = 0;
+  (function go() { const gc = window.goatcounter; if (gc && gc.count) { try { gc.count({ path, title: path, event: true }); } catch (e) {} } else if (tries++ < 20) setTimeout(go, 500); })();
+}
+function bucket(pct) { if (pct < 1) return "0-1"; if (pct < 10) return "1-10"; const lo = Math.min(90, Math.floor(pct / 10) * 10); return lo + "-" + (lo + 10); }
+
+/* ---------- Chart 1: the guess lines ---------- */
+const rounds = {
+  1: { unit: "million", end: "1 billion", target: 1, study: D.landy.segmented_spot, revealed: false, g: null },
+  2: { unit: "billion", end: "1 trillion", target: 1, study: null, revealed: false, g: null },
+};
+/* Only the two ends are labeled, as in the 2013 study: the reader's guess is a position (0-1000 thousandths of the line), with no numbers shown until "Show me". */
+function drawLine(k) {
+  const R = rounds[k], host = document.getElementById("line" + k), W = widthOf(host), H = R.revealed && R.study != null ? 104 : 86;
+  const pad = 14, x0 = pad, x1 = W - pad, y = 44;
+  const X = v => x0 + (x1 - x0) * v / 1000;
+  const s = svg(W, H);
+  el("rect", { x: 0, y: 0, width: W, height: H, fill: "transparent" }, s);
+  el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--ghost"), "stroke-width": 4, "stroke-linecap": "round" }, s);
+  [[x0, "0", "start"], [x1, R.end, "end"]].forEach(([x, t, a]) => { el("line", { x1: x, x2: x, y1: y - 8, y2: y + 8, stroke: css("--ink-3"), "stroke-width": 1.5 }, s); el("text", { x, y: y + 26, "text-anchor": a, class: "lbl" }, s, t); });
+  if (R.revealed && R.study != null) {
+    const xs = x0 + (x1 - x0) * R.study;
+    el("line", { x1: xs, x2: xs, y1: y - 14, y2: y + 46, stroke: css("--ink-3"), "stroke-width": 2 }, s);
+    el("text", { x: xs + 6, y: y + 56 }, s, W < 560 ? "half the study put it here" : "half the study's adults put it here");
+  }
+  if (R.g != null) el("circle", { cx: X(R.g), cy: y, r: 9, fill: css("--surface"), stroke: css("--ink"), "stroke-width": 2.5 }, s);
+  if (R.revealed) {
+    const xt = X(R.target);
+    el("rect", { x: xt - 2, y: y - 16, width: 4, height: 32, rx: 2, fill: css("--amber") }, s);
+    el("text", { x: xt + 8, y: y - 18, class: "lbl-strong" }, s, "1 " + R.unit + " is here");
+  }
+  host.replaceChildren(s);
+}
+function place(k, v) {
+  const R = rounds[k]; if (R.revealed) return;
+  R.g = Math.max(0, Math.min(1000, Math.round(v)));
+  const host = document.getElementById("line" + k);
+  host.setAttribute("aria-valuenow", String(Math.round(R.g / 10)));
+  host.setAttribute("aria-valuetext", Math.round(R.g / 10) + "% of the way along");
+  document.getElementById("b" + k).disabled = false;
+  document.getElementById("h" + k).textContent = "Happy with it? Press Show me.";
+  drawLine(k);
+}
+function reveal(k) {
+  const R = rounds[k]; if (R.g == null) return;
+  R.revealed = true; drawLine(k);
+  const v = R.g, out = document.getElementById("res" + k), what = "1 " + R.unit;
+  const guess = v === 0 ? "0" : v === 1000 ? R.end : nf(v) + " " + R.unit;
+  out.innerHTML = v <= 1 ? `Right on it. ${what} is a tenth of a percent of the way along, practically on top of zero.`
+    : `<span class="chip"></span>${what} is a tenth of a percent of the way along. Your guess was about ${guess}, ${nf(v)} times too big.`;
+  document.getElementById("b" + k).hidden = true;
+  document.getElementById("h" + k).textContent = "";
+  if (k === 1) document.querySelectorAll(".after1").forEach(e => e.hidden = false);
+  sendEvent(`guess/${PAGE}/r${k}/${bucket(v / 10)}`);
+}
+[1, 2].forEach(k => {
+  const host = document.getElementById("line" + k);
+  document.getElementById("b" + k).addEventListener("click", () => reveal(k));
+  let dragging = false;
+  const setFrom = e => { const r = host.getBoundingClientRect(); const pad = 14 * r.width / widthOf(host); place(k, (e.clientX - r.left - pad) / (r.width - 2 * pad) * 1000); };
+  host.style.touchAction = "pan-y"; host.style.cursor = "pointer";
+  host.addEventListener("pointerdown", e => { if (rounds[k].revealed) return; dragging = true; host.setPointerCapture(e.pointerId); setFrom(e); });
+  host.addEventListener("pointermove", e => { if (dragging) setFrom(e); });
+  host.addEventListener("pointerup", () => { dragging = false; });
+  host.addEventListener("pointercancel", () => { dragging = false; });
+  host.addEventListener("keydown", e => {
+    const R = rounds[k], step = e.shiftKey ? 100 : 10, cur = R.g == null ? 0 : R.g;
+    const next = { ArrowRight: cur + step, ArrowUp: cur + step, ArrowLeft: cur - step, ArrowDown: cur - step, Home: 0, End: 1000 }[e.key];
+    if (next == null) { if (e.key === "Enter" && R.g != null) reveal(k); return; }
+    e.preventDefault(); place(k, next);
+  });
+});
+if (D.readers) { const p = document.getElementById("readers"); p.textContent = D.readers; p.hidden = false; }
+
+/* ---------- Chart 2: $10,000 a day ---------- */
+/* paydates:start */
+/* Day 1 is today. Dates are calendar dates (UTC midnight) so time zones and daylight saving can't shift them. */
+const DAY = 86400000;
+function payDates(perDay, todayUTC) {
+  const n = t => Math.ceil(t / perDay - 1e-9);
+  const m = n(1e6), b = n(1e9), tr = n(1e12);
+  const safe = days => days <= 3e6;   // beyond about 8,000 years, show years only
+  return {
+    mDays: m, bDays: b, tDays: tr,
+    mDate: safe(m) ? todayUTC + (m - 1) * DAY : null,
+    bDate: safe(b) ? todayUTC + (b - 1) * DAY : null,
+    start: safe(b) ? todayUTC - (b - 1) * DAY : null,
+  };
+}
+function fmtDate(t) {
+  if (t == null) return null;
+  const d = new Date(t), y = d.getUTCFullYear();
+  if (y < 1) return "about " + (1 - y).toLocaleString("en-US") + " BCE";
+  return d.toLocaleDateString("en-US", { timeZone: "UTC", month: "short", day: "numeric", year: "numeric" });
+}
+/* paydates:end */
+function todayUTC() { const n = new Date(); return Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()); }
+let payGuess = null, payShown = false, perDay = D.perDay;
+document.querySelectorAll(".choice").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".choice").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  payGuess = +b.dataset.g; document.getElementById("bpay").disabled = false; document.getElementById("pay-hint").textContent = "";
+}));
+document.getElementById("bpay").addEventListener("click", () => {
+  if (payGuess == null) { document.getElementById("pay-hint").textContent = "Pick a guess first."; return; }
+  payShown = true; drawPay(); document.querySelectorAll(".afterpay").forEach(e => e.hidden = false); sendEvent(`guess/${PAGE}/pay/${payGuess}y`);
+});
+function parseMoney(s) { const v = parseFloat(String(s).replace(/[$,\s]/g, "")); return isFinite(v) ? v : NaN; }
+document.getElementById("amt").addEventListener("input", e => {
+  const v = parseMoney(e.target.value), err = document.getElementById("amt-err");
+  if (!(v >= 1)) { err.textContent = "Enter an amount of $1 or more."; return; }
+  if (v > 1e9) { err.textContent = "Enter an amount up to $1 billion a day."; return; }
+  err.textContent = ""; perDay = v; drawPay();
+});
+function drawPay() {
+  const r = payDates(perDay, todayUTC()), yd = D.yearDays;
+  const mYears = r.mDays / yd, bYears = r.bDays / yd;
+  const hidden = !payShown;
+  document.getElementById("pay-m").textContent = hidden ? "?" : (r.mDate != null ? fmtDate(r.mDate) : span(mYears));
+  document.getElementById("pay-m-sub").textContent = hidden ? "You're a millionaire" : `You're a millionaire after ${nf(r.mDays)} day${r.mDays === 1 ? "" : "s"}`;
+  document.getElementById("pay-b").textContent = hidden ? "?" : (r.bDate != null ? fmtDate(r.bDate) : span(bYears) + " from now");
+  document.getElementById("pay-b-sub").textContent = hidden ? "You're a billionaire" : `You're a billionaire after ${nf(r.bDays)} days, ${span(bYears)}`;
+  const host = document.getElementById("paychart"), W = widthOf(host), H = 112, x0 = 0, x1 = W - 2;
+  const s = svg(W, H);
+  const X = y => x0 + (x1 - x0) * y / bYears;
+  // bars
+  const bw = hidden ? 0 : X(bYears) - x0, mw = hidden ? 0 : Math.max(1.5, X(mYears) - x0);
+  el("text", { x: 0, y: 14, class: "lbl" }, s, "A million");
+  el("rect", { x: x0, y: 20, width: mw, height: 18, rx: 2, fill: css("--ghost") }, s);
+  if (!hidden) el("text", { x: x0 + mw + 8, y: 34, class: "lbl" }, s, mYears < 0.01 * bYears ? `← ${span(mYears)}: that sliver is the whole bar` : span(mYears));
+  el("text", { x: 0, y: 60, class: "lbl" }, s, "A billion");
+  el("rect", { x: x0, y: 66, width: Math.max(0, bw), height: 18, rx: 2, fill: css("--amber") }, s);
+  // calendar axis
+  if (!hidden) {
+    const y0 = new Date(todayUTC()).getUTCFullYear();
+    el("line", { x1: x0, x2: x1, y1: 94, y2: 94, stroke: css("--rule") }, s);
+    const n = W < 480 ? 3 : 5;
+    for (let i = 0; i <= n; i++) {
+      const yr = bYears * i / n, x = X(yr);
+      el("line", { x1: x, x2: x, y1: 90, y2: 98, stroke: css("--rule") }, s);
+      const lab = bYears < 3 ? (i === 0 ? "today" : nf(yr * 12, 0) + " mo") : (r.bDate != null ? String(Math.round(y0 + yr)) : "+" + nf(yr, 0) + " yr");
+      el("text", { x, y: 110, "text-anchor": i === 0 ? "start" : i === n ? "end" : "middle" }, s, lab);
+    }
+  } else {
+    el("text", { x: 0, y: 106, class: "lbl" }, s, "Pick a guess and press Show me.");
+  }
+  host.replaceChildren(s);
+  const res = document.getElementById("pay-res");
+  if (hidden) { res.textContent = ""; return; }
+  const startTxt = r.start != null ? `To be a billionaire today at this pace, the payments would have had to start on ${fmtDate(r.start)}.` : "";
+  const guessTxt = payGuess != null && perDay === D.perDay ? `You guessed about ${nf(payGuess)} years. ` : "";
+  res.innerHTML = `<span class="chip"></span>${guessTxt}${startTxt}`;
+}
+
+/* ---------- Chart 3: seconds ---------- */
+function drawSec() {
+  /* Each bar gets its label and value on the line above it, so long labels never run into the bars at any width. */
+  const host = document.getElementById("secchart"), W = widthOf(host), yd = D.yearDays;
+  const x0 = 0, x1 = W - 2, rowH = 58, barH = 20, H = rowH * 3 + 14;
+  const yrs = [1e6, 1e9, 1e12].map(v => v / 86400 / yd);
+  const X = y => x0 + (x1 - x0) * y / yrs[1];
+  const s = svg(W, H);
+  const rows = [
+    ["A million seconds", yrs[0], "--ghost", "about " + nf(1e6 / 86400, 1) + " days"],
+    ["A billion seconds", yrs[1], "--amber", "about " + nf(yrs[1], 1) + " years"],
+    ["A trillion seconds", yrs[2], "--ghost", "about " + nf(Math.round(yrs[2] / 100) * 100) + " years"],
+  ];
+  rows.forEach(([lab, y, col, val], i) => {
+    const top = i * rowH, by = top + 20;
+    const t = el("text", { x: 0, y: top + 13, class: "lbl-strong" }, s, lab);
+    el("tspan", { class: "lbl", dx: 10 }, t, val);
+    const w = Math.min(x1, X(y)) - x0;
+    el("rect", { x: x0, y: by, width: Math.max(2, w), height: barH, rx: 2, fill: css(col) }, s);
+    if (i === 0) el("text", { x: x0 + 10, y: by + 15 }, s, "← the whole bar is that sliver");
+    if (i === 2) el("text", { x: x0, y: by + barH + 16 }, s, "Runs 1,000 times off the chart.");
+  });
+  host.replaceChildren(s);
+  document.getElementById("sec-table").innerHTML = [[1e6], [1e9], [1e12]].map(([v]) => `<tr><td>${words(v)}</td><td>${nf(v / 86400, v < 1e9 ? 1 : 0)}</td><td>${nf(v / 86400 / yd, v < 1e9 ? 3 : 1)}</td></tr>`).join("");
+}
+document.getElementById("bday").addEventListener("input", e => {
+  const out = document.getElementById("bday-out"), v = e.target.value;
+  if (!v) { out.textContent = "Your birthday stays on your device; it isn't sent anywhere."; return; }
+  const [y, m, d] = v.split("-").map(Number); const born = Date.UTC(y, m - 1, d);
+  if (!isFinite(born) || y < 1900 || y > 2100) { out.textContent = "Enter a birthday between 1900 and 2100."; return; }
+  const t = born + 1e9 * 1000, days = Math.round((t - todayUTC()) / DAY);
+  const when = new Date(t).toLocaleDateString("en-US", { timeZone: "UTC", month: "long", day: "numeric", year: "numeric" });
+  out.innerHTML = `<span class="chip"></span>` + (days > 0 ? `You turn a billion seconds old on ${when}, ${nf(days)} days from now.` : days === 0 ? `You turn a billion seconds old today, ${when}.` : `You turned a billion seconds old on ${when}, ${nf(-days)} days ago.`) + " Your birthday stays on your device.";
+});
+
+/* ---------- Chart 4: the grids ---------- */
+function drawGrid(id, labels) {
+  const host = document.getElementById(id), W = widthOf(host), lw = labels ? 82 : 0;
+  const cols = 20, rows = 50, gap = labels ? 2 : 1;
+  const sq = Math.max(4, Math.min(labels ? 22 : 9, Math.floor((W - lw - gap * (cols - 1)) / cols)));
+  const H = rows * (sq + gap) - gap + (labels ? 0 : 0);
+  const s = svg(lw + cols * (sq + gap) - gap, H);
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      el("rect", { x: lw + c * (sq + gap), y: r * (sq + gap), width: sq, height: sq, rx: sq > 8 ? 2 : 1, fill: i === 0 ? css("--amber") : css("--ghost") }, s);
+    }
+    if (labels && (r + 1) % 5 === 0) el("text", { x: lw - 8, y: r * (sq + gap) + sq - 2, "text-anchor": "end" }, s, (r + 1) % 50 === 0 ? "1 billion" : ((r + 1) * 20) + " million");
+  }
+  if (labels) el("text", { x: lw - 8, y: sq - 4, "text-anchor": "end", class: "lbl-strong" }, s, "1 million →");
+  s.style.maxWidth = (lw + cols * (sq + gap)) + "px";
+  host.replaceChildren(s);
+}
+
+/* ---------- Chart 5: landmarks ---------- */
+const UNIT = { "people": "people", "checkpoint screenings": "trips", "passenger boardings": "boardings", "dollars (nominal)": "dollars" };
+function drawMarks() {
+  const host = document.getElementById("marks"), W = widthOf(host);
+  const maxSq = Math.ceil(Math.max(...D.landmarks.map(m => m.squares)));
+  const sq = Math.max(14, Math.min(28, Math.floor((W - 60) / (maxSq + 1)) - 4));
+  const row = (label, unit, valTxt, squares, meta, ref) => {
+    const full = Math.floor(squares), frac = squares - full;
+    let cells = "";
+    for (let i = 0; i < full; i++) cells += `<i class="${ref ? "ref" : ""}"></i>`;
+    if (frac > 0.005) cells += `<i class="part" style="--fill:${(frac * 100).toFixed(1)}%"></i>`;
+    return `<div class="mark-row"><div class="mark-head"><b>${label}</b>${unit ? `<span class="unit">${unit}</span>` : ""}<span class="v">${valTxt}</span></div>` +
+      `<div class="mark-sq" style="--sq:${sq}px">${cells}<span class="n">${squares < 10 ? squares.toFixed(2) : squares.toFixed(1)}</span></div>` +
+      (meta ? `<div class="mark-meta">${meta}</div>` : "") + `</div>`;
+  };
+  let html = row("One billion", "", "1,000,000,000", 1, "The whole first grid, as one square.", true);
+  D.landmarks.forEach(m => {
+    const est = m.id === "midterm_ads_2026" ? "AdImpact estimate, spent or reserved as of Oct 29, 2026" : m.period;
+    const val = (m.unit.startsWith("dollars") ? "$" : "") + nf(m.value);
+    html += row(m.label, UNIT[m.unit] || m.unit, val, m.squares, est);
+  });
+  host.innerHTML = html;
+  document.getElementById("marks-table").innerHTML = D.landmarks.map(m =>
+    `<tr><td>${m.label}</td><td>${(m.unit.startsWith("dollars") ? "$" : "") + nf(m.value)}</td><td>${m.squares.toFixed(2)}</td><td>${m.period}</td><td><a href="${m.link}">${m.source.split(",")[0]}</a></td></tr>`).join("");
+}
+
+/* ---------- Chart 6: explorer ---------- */
+function parseNum(s) {
+  const t = String(s).toLowerCase().replace(/[$,\s]+/g, " ").trim();
+  const m = t.match(/^(-?\d*\.?\d+)\s*(thousand|k|million|mn|m|billion|bn|b|trillion|tn|t)?(?:\s+\w+)*$/);
+  if (!m) return NaN;
+  const mult = { thousand: 1e3, k: 1e3, million: 1e6, mn: 1e6, m: 1e6, billion: 1e9, bn: 1e9, b: 1e9, trillion: 1e12, tn: 1e12, t: 1e12 }[m[2]] || 1;
+  return parseFloat(m[1]) * mult;
+}
+function drawRuler(v) {
+  const host = document.getElementById("ruler"), W = widthOf(host), H = 96, x0 = 12, x1 = W - 12, y = 46;
+  const lo = 6, hi = 12, X = n => x0 + (x1 - x0) * (Math.log10(Math.max(1e6, Math.min(1e12, n))) - lo) / (hi - lo);
+  const s = svg(W, H);
+  el("line", { x1: x0, x2: x1, y1: y, y2: y, stroke: css("--ghost"), "stroke-width": 3, "stroke-linecap": "round" }, s);
+  [[1e6, "1 million"], [1e9, "1 billion"], [1e12, "1 trillion"]].forEach(([n, lab], i) => {
+    const x = X(n); el("line", { x1: x, x2: x, y1: y - 8, y2: y + 8, stroke: css("--ink-3"), "stroke-width": 1.5 }, s);
+    el("text", { x, y: y + 26, "text-anchor": i === 0 ? "start" : i === 2 ? "end" : "middle" }, s, lab);
+  });
+  [1e7, 1e8, 1e10, 1e11].forEach(n => { const x = X(n); el("line", { x1: x, x2: x, y1: y - 4, y2: y + 4, stroke: css("--ghost"), "stroke-width": 1 }, s); });
+  D.landmarks.forEach(m => el("circle", { cx: X(m.value), cy: y, r: 4, fill: css("--surface"), stroke: css("--ink-3"), "stroke-width": 1.5 }, s));
+  if (isFinite(v)) {
+    const x = X(v), off = v < 1e6 || v > 1e12;
+    el("circle", { cx: x, cy: y, r: 7, fill: css("--amber") }, s);
+    const lab = words(v) + (v < 1e6 ? " (off the left end)" : v > 1e12 ? " (off the right end)" : "");
+    el("text", { x: Math.max(x0, Math.min(x1, x)), y: y - 16, "text-anchor": x < W * .2 ? "start" : x > W * .8 ? "end" : "middle", class: "lbl-strong" }, s, lab);
+  }
+  host.replaceChildren(s);
+}
+function explore() {
+  const raw = document.getElementById("num").value, v = parseNum(raw), err = document.getElementById("num-err");
+  if (!(v > 0)) { err.textContent = "Enter a positive number, like 4.2 billion or 750,000,000."; return; }
+  if (v > 1e15) { err.textContent = "Enter a number up to a quadrillion."; return; }
+  err.textContent = "";
+  const yd = D.yearDays;
+  document.getElementById("ex-head").innerHTML = `<span class="chip"></span><strong>${words(v)}</strong> is ${nf(v / 1e6, v < 1e7 ? 2 : 0)} millions, or ${(v / 1e9).toLocaleString("en-US", { maximumSignificantDigits: 3 })} billion-squares.`;
+  document.getElementById("ex-sec").textContent = span(v / 86400 / yd);
+  document.getElementById("ex-beat").textContent = span(v / D.beatsPerMin / 60 / 24 / yd);
+  document.getElementById("ex-pay").textContent = span(Math.ceil(v / D.perDay) / yd);
+  const below = D.landmarks.filter(m => m.value <= v).pop(), above = D.landmarks.find(m => m.value > v);
+  const near = [];
+  const lc = t => t.charAt(0).toLowerCase() + t.slice(1);
+  if (below) near.push(`above ${lc(below.label)} (${words(below.value)})`);
+  if (above) near.push(`below ${lc(above.label)} (${words(above.value)})`);
+  document.getElementById("ex-near").textContent = near.length ? "On the ruler, it sits " + near.join(" and ") + "." : "";
+  drawRuler(v);
+}
+document.getElementById("num").addEventListener("input", explore);
+document.querySelectorAll(".examples button").forEach(b => b.addEventListener("click", () => { document.getElementById("num").value = b.dataset.n; explore(); }));
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  billion: ["Billion", "In U.S. and most English-language news today, a billion is a thousand million (1,000,000,000). Older British and European usage once meant a million million.", null],
+  linear: ["Linear scale", "Equal distances on the chart stand for equal amounts. The gap from 0 to 1 billion is the same width as from 1 billion to 2 billion.", null],
+  log: ["Log scale", "Each step along the axis is a multiple, not an amount: here, each mark is 10 times the one before. Good for fitting very different sizes on one line, but it hides how big the gaps really are.", null],
+  bsq: ["Billion-square", "One square standing for one billion of something: the whole 1,000-square grid above, shrunk down. 0.5 of a square is half a billion.", null],
+  proj: ["Projection", "An estimate from a population model, not a head count. The UN projects the world's population from censuses, surveys and birth and death records.", null],
+  nominal: ["Nominal dollars", "Dollars as spent at the time, not adjusted for inflation.", null],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { drawLine(1); drawLine(2); drawPay(); drawSec(); drawGrid("grid1", true); drawMarks(); explore(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+<script>
+/* Light/dark toggle: copy of tallorderdigital-site/assets/theme.js (first visit follows the system; the choice is saved as tod-theme). */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  function current() { var t = root.dataset.theme; if (t === "light" || t === "dark") return t; return media && media.matches ? "dark" : "light"; }
+  function sync() {
+    var theme = current(), next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) { btn.setAttribute("aria-label", "Switch to " + next + " mode"); btn.setAttribute("title", "Switch to " + next + " mode"); btn.dataset.showing = theme; });
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle"); if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark"; root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) { try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {} }
+  });
+  if (media && media.addEventListener) media.addEventListener("change", sync);
+  sync();
+})();
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
+/* site-header:end */
+</script>
+<!-- analytics:start -->
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  // This story also sends guess/<page>/<round>/<range> (see the story script above).
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+<!-- analytics:end -->
+</body>
+</html>
