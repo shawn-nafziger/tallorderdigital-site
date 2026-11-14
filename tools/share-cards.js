@@ -708,6 +708,31 @@ function blockbustersCard(D) {
   </div>`;
 }
 
+function craigCard(D) {
+  // Craig Wood's feature films by year, one mark each, stacked: orange = directed by Gore Verbinski, sky = other directors.
+  const F = [...D.films].sort((a, b) => a.year - b.year || (a.director === "Gore Verbinski" ? -1 : 1));
+  const y0 = Math.min(...F.map((f) => f.year)), y1 = Math.max(...F.map((f) => f.year)), n = F.filter((f) => f.director === "Gore Verbinski").length;
+  const W = 520, Ht = 300, L = 24, R = 24, B = 230, step = 44;
+  const x = (yr) => L + (yr - 1987) * (W - L - R) / (2027 - 1987), stack = {};
+  const dots = F.map((f) => { const k = stack[f.year] = (stack[f.year] || 0) + 1; return `<rect x="${(x(f.year) - 5).toFixed(1)}" y="${B - 4 - k * step}" width="10" height="${step - 6}" rx="2" fill="${f.director === "Gore Verbinski" ? C.orange : C.sky}"/>`; }).join("");
+  const ticks = [1990, 2000, 2010, 2020].map((t) => `<text x="${x(t)}" y="${B + 34}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 36px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 64px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 23px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Culture · Movies</p><h1>You've seen his work. You probably don't know his name.</h1>
+      <p class="dek">Film editor Craig Wood: ${F.length} feature films, ${y0}–${y1}. Orange: the ${n} directed by Gore Verbinski.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - R}" y1="${B}" y2="${B}" stroke="${C.rule}" stroke-width="2"/>${dots}${ticks}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function houseplantsCard(D) {
   // Each plant's driest month at home (humidity), as bars per 5-point band, against a heated January living room (orange).
   const vals = D.plants.filter((p) => p.driest != null).map((p) => p.driest);
@@ -843,6 +868,8 @@ function homeCard() {
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
   const bb = fs.readFileSync(path.join(ROOT, "culture/blockbusters-got-longer/index.html"), "utf8");
   const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
+  const cw = fs.readFileSync(path.join(ROOT, "culture/craig-wood-film-editor/index.html"), "utf8");
+  const CW = JSON.parse(cw.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
   const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
@@ -871,6 +898,7 @@ function homeCard() {
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
+    ["culture/craig-wood-film-editor/share.png", craigCard(CW)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
     ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
