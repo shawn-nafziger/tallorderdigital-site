@@ -338,7 +338,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         No chip: within normal chance wobble.<br>
         <span style="color:var(--navy);font-weight:600">Teal bars</span>: Miami's opponents (4 games).<br>
         <strong>Tick mark</strong>: league average.<br>
-        Source: NBA Stats API shot locations.</p>
+        Source: NBA.com shot locations.</p>
     </figure>
   </section>
 
@@ -359,7 +359,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span>: at the edge (at least 80% of the way there).<br>
         <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble. Miami is labeled, whatever its color.<br>
         <span style="display:inline-block;width:14px;height:6px;border-radius:3px;background:var(--funnel);vertical-align:middle;margin-right:4px"></span><strong>Light band</strong>: how far a typical defense can land from the line by chance (90%).<br>
-        Source: NBA Stats API shot locations; expected values use 2025-26 league make rates by zone.</p>
+        Source: NBA.com shot locations; expected values use 2025-26 league make rates by zone.</p>
     </figure>
   </section>
 
@@ -385,7 +385,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> every regular-season shot from the NBA Stats API via the open-source <code>nba_api</code> client: 2025-26, and 2026-27 through Oct 27 (4 Heat games), matching the games in Kram's article.</li>
+      <li><strong>Data:</strong> every regular-season shot from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client: 2025-26, and 2026-27 through Oct 27 (4 Heat games), matching the games in Kram's article.</li>
       <li><strong>Expected eFG%:</strong> each shot is valued at the league's 2025-26 make rate for its zone (at the rim, rest of the paint, midrange, corner 3, above-the-break 3), times 1.5 for threes. It knows location, not defender distance, shot type or shooter.</li>
       <li><strong>Chance:</strong> the gap's <button type="button" class="term" data-term="se">standard error</button> comes from the shot-by-shot spread (3.3 points for Miami's opponents). The midrange swing is a 90% range around the league rate on 42 shots. With 30 defenses, two or three will land beyond 2 standard errors by chance alone, so a colored dot this early is a "watch this," not proof.</li>
       <li><strong>Carry-over:</strong> for each 2025-26 defense, its first 4 games vs the rest of its season, correlated across the 30 teams.</li>
@@ -418,7 +418,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>

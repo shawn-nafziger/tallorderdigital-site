@@ -337,7 +337,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <div class="legend"><span><i style="background:var(--amber)"></i>3-point attempt rate</span><span><i style="background:var(--ghost)"></i>3-point percentage</span></div>
       </div>
       <div class="chart" id="curve"></div>
-      <p class="source">Games 1–k vs games k+1–82, regular seasons 2021-22 to 2025-26, from team totals. Source: NBA Stats API.</p>
+      <p class="source">Games 1–k vs games k+1–82, regular seasons 2021-22 to 2025-26, from team totals. Source: NBA.com statistics.</p>
     </figure>
   </section>
 
@@ -386,7 +386,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <div class="zone-list" id="zones"></div>
       <p class="teamnote" id="zone-note"></p>
       <div class="tablewrap"><table class="ptable" id="ptable"><thead><tr><th>Player</th><th class="g">Games</th><th>3PA per game</th><th>2025-26</th><th>Change</th></tr></thead><tbody></tbody></table></div>
-      <p class="source">3-point attempts per game played, from box scores. 2025-26 counts every team the player played for. Source: NBA Stats API.</p>
+      <p class="source">3-point attempts per game played, from box scores. 2025-26 counts every team the player played for. Source: NBA.com statistics.</p>
     </figure>
     <p class="callout">These are choices, so they can change again with an injury, a new lineup or a trade. But they are signals, not noise, and that's rare in week 1.</p>
   </section>
@@ -394,7 +394,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> team game logs for every regular-season game from 2021-22 to 2025-26, and 2026-27 through Oct 27 (56 games). Shot locations: 219,131 shots from 2025-26 and 9,993 from 2026-27, from the NBA Stats API via the open-source <code>nba_api</code> client.</li>
+      <li><strong>Data:</strong> team game logs for every regular-season game from 2021-22 to 2025-26, and 2026-27 through Oct 27 (56 games). Shot locations: 219,131 shots from 2025-26 and 9,993 from 2026-27, from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client.</li>
       <li><strong>3-point attempt rate</strong> = 3PA ÷ FGA, from season totals (free throws aren't included). <strong>3P%</strong> = 3PM ÷ 3PA, also from totals.</li>
       <li><strong>Predictive test:</strong> Pearson correlation across the 30 teams between games 1–k and games k+1–82, averaged over five seasons, so early games never appear on both sides.</li>
       <li><strong>Wobble:</strong> the standard deviation of (3PA rate over a team's first 4 games − its full-season rate), pooled over 150 team-seasons: 3.5 pp. For scale, teams' rates change by a typical 3.7 pp from one season to the next.</li>
@@ -428,7 +428,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>
