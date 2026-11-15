@@ -110,6 +110,7 @@ page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboar
 page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
 page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
+page("explained/true-shooting/", "explained/true-shooting/index.html", "True shooting percentage: formula, calculator and what counts as good", "ts% ts true shooting percentage calculator formula 0.44 efficiency what is a good true shooting league average fg% efg");
 page("explained/charts/", "explained/charts/index.html", "Charts, explained: which chart should you use?", "chart types which chart should I use visualization graph guide reference");
 page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
