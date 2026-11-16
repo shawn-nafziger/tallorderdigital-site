@@ -23,6 +23,8 @@
 - In color-blind simulations (protanopia, deuteranopia, tritanopia), teal and orange stay far apart (ΔE 67-86), and Sky vs Orange stays at ΔE 81 or more. Signal, edge and noise also stay distinct (ΔE ≥ 20), because they differ in lightness as well as hue.
 - **One exception:** Mint and Blush look nearly identical to people with deuteranopia, the most common type (ΔE 3.4). That's why the status tints must always carry an icon and a word.
 
+**Exception: showpieces (Nov 16, 2026).** Pages in the `showpiece` series are deliberately built outside this playbook's palette and type, with only data-viz best practice as the rule (see `brand-decisions.md` → Showpieces). They still use the site shell, the accessibility rules in §6 (table views, keyboard focus, reduce motion, no color-only meaning) and the SEO standards. Everything else follows this playbook.
+
 ## 1. Color palette
 
 Shawn's palette (12 swatches, adopted Oct 29, 2026; Sky added the same day) is the base for the website and most data visualization. A few **derived** shades (marked †) fill roles the swatches can't fill safely, especially for dark mode. Every role below passed contrast and color-blind separation checks.
