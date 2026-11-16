@@ -1,4 +1,4 @@
-"""Puts the sitewide header pieces into pages: the whole menu (NBA, Weather, More stories, About, Subscribe, the
+"""Puts the sitewide header pieces into pages: the whole menu (Data stories, Weather, NBA, About, Subscribe, the
 search icon and the light/dark button; Nov 8, 2026), the saved-theme line in <head>, the animated logo intro
 (its guard line in <head>, its code in the header script; Nov 9, 2026), the sticky-header CSS, the phone
 hide-on-scroll script and the light/dark script. Claude runs this; Shawn doesn't need to.
@@ -47,7 +47,7 @@ SCRIPT = re.compile(r"<script>\s*/\* site-header:start \*/.*?/\* site-header:end
 
 
 def section_of(path):
-    """Which menu item a page belongs to: "nba", "weather", "stories" (More stories), "about", "subscribe",
+    """Which menu item a page belongs to: "nba", "weather", "stories" (Data stories), "about", "subscribe",
     "search" or "" (none). Pages in this repo go by their folder; story templates in the data repos go by
     the repo they live in."""
     p = pathlib.Path(path).resolve()
@@ -68,14 +68,16 @@ def section_of(path):
 
 
 def menu(root, here):
-    """The whole menu, written fresh every time (Nov 8, 2026): NBA, Weather, More stories, | About, Subscribe,
-    then the search icon and the light/dark button. A thin divider before About (Nov 9, 2026) separates the topics
-    from the site links (.nav-about in assets/site-header.css). The section the page belongs to is marked as current."""
+    """The whole menu, written fresh every time: Data stories, Weather, NBA (order and label from Nov 16, 2026;
+    "Stories" on narrow phones), | About, Subscribe, then the search icon and the light/dark button. The three topics
+    carry .nav-topic, a faint underline each so they read as three separate items. A thin divider before About
+    (Nov 9, 2026) separates the topics from the site links (.nav-about in assets/site-header.css). The section the
+    page belongs to is marked as current."""
     cur = lambda s: ' aria-current="page"' if here == s else ""
     return ('<nav class="site-nav" aria-label="Site">'
-            f'<a href="{root}nba/"{cur("nba")}>NBA</a>'
-            f'<a href="{root}weather/"{cur("weather")}>Weather</a>'
-            f'<a href="{root}stories/" aria-label="More stories"{cur("stories")}>More<span class="nav-long"> stories</span></a>'
+            f'<a class="nav-topic" href="{root}stories/" aria-label="Data stories"{cur("stories")}><span class="nav-long">Data </span>stories</a>'
+            f'<a class="nav-topic" href="{root}weather/"{cur("weather")}>Weather</a>'
+            f'<a class="nav-topic" href="{root}nba/"{cur("nba")}>NBA</a>'
             f'<a class="nav-about" href="{root}about/"{cur("about")}>About</a>'
             f'<a class="nav-sub" href="{root}subscribe/"{cur("subscribe")}><span class="t">Subscribe</span>{MAIL}</a>'
             f'<a class="nav-search" href="{root}search/" aria-label="Search"{cur("search")}>{ICON}</a>'
