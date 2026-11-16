@@ -108,6 +108,12 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 .timeline .handle{fill:rgba(255,255,255,.5)}
 .tip{position:absolute;pointer-events:none;background:rgba(9,13,30,.95);border:1px solid #2c3a64;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:180px;max-width:260px;opacity:0;transition:opacity .08s;z-index:5}
 .tip .t{font:600 13.5px Inter,sans-serif}
+.tip.sticky{pointer-events:auto}
+.tip .near-l{font:400 12px "JetBrains Mono",monospace;color:var(--ink);margin-top:2px}
+.tip .pinbtn{all:unset;cursor:pointer;display:block;margin-top:8px;padding:8px 10px;border-radius:8px;border:1px solid #3a4a7a;font:500 12.5px Inter,sans-serif;color:var(--ink);text-align:center}
+.tip .pinbtn:hover,.tip .pinbtn:focus-visible{border-color:var(--hot)}
+.tltip{position:absolute;pointer-events:none;top:4px;background:rgba(9,13,30,.95);border:1px solid #2c3a64;border-radius:8px;padding:5px 9px;font:400 12px/1.45 "JetBrains Mono",monospace;color:var(--ink2);white-space:nowrap;opacity:0;transition:opacity .08s;z-index:4}
+.tltip b{color:var(--ink);font-weight:500}
 .tip .m{font:400 12px "JetBrains Mono",monospace;color:var(--ink2)}
 .chip{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
 .legend{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;margin:12px 0 0;font:400 12.5px Inter,sans-serif;color:var(--ink3)}
@@ -400,7 +406,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <svg id="ov" role="img" aria-labelledby="ovDesc"><desc id="ovDesc">A map of the Atlantic and eastern Pacific Oceans with every recorded tropical storm and hurricane track, colored by strength. A chosen place shows as a pin with a 50-mile circle.</desc></svg>
     <div class="tip" id="tip"></div>
   </div>
-  <div class="timeline" id="timeline"><svg id="tl" aria-label="Storms per year, 1851 to 2025; drag to choose years"></svg></div>
+  <div class="timeline" id="timeline"><svg id="tl" aria-label="Storms per year, 1851 to 2025; drag to choose years"></svg><div class="tltip" id="tltip" aria-hidden="true"></div></div>
   <div class="legend" id="legend" role="group" aria-label="Color key; pick a category to show it and stronger">
     <button type="button" class="k" data-min="34" aria-pressed="true"><i style="background:var(--c-ts)"></i>Tropical storm</button>
     <button type="button" class="k" data-min="64" aria-pressed="false"><i style="background:var(--c-1)"></i>Cat 1</button>
@@ -410,7 +416,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <button type="button" class="k" data-min="137" aria-pressed="false"><i style="background:var(--c-5)"></i>Cat 5</button>
     <span class="k"><i style="background:var(--c-td)"></i>Depression</span>
     <span class="k"><i style="background:var(--c-x)"></i>Post-tropical</span>
-    <span class="hint">Tap a category to show only storms that reached it.</span>
+    <span class="hint" id="legHint">Tap a category to show only storms that reached it.</span>
   </div>
 
   <div class="legend" id="legend2" hidden>
@@ -748,6 +754,15 @@ function hitsNow(){
   if (!state.place.hits) state.place.hits = state.place.kind === 'state' ? STATES[state.place.id].hits : pointHits(state.place.lat, state.place.lon);
   return state.place.hits;
 }
+// strength test: with a place chosen, "at least" means the strength within 50 miles of it; otherwise the storm's peak
+function passes(s, near){
+  if (state.durOnly && s.tsH > 48) return false;
+  if (near){
+    const h = near.get(s.i); if (!h) return false;
+    return state.min <= 34 || (h[2] && h[1] >= state.min);
+  }
+  return s.peak >= state.min;
+}
 function selection(){
   // shown: in basin/year filter. lit: shown AND passes strength filter AND (near the place, if one is chosen) AND (short-lived, in step 3)
   const hits = hitsNow(), near = hits ? new Map(hits.map(h => [h[0], h])) : null;
@@ -755,9 +770,7 @@ function selection(){
   for (const s of storms){
     if (!inFilter(s)) continue;
     shown.push(s);
-    if (s.peak < state.min) continue;
-    if (state.durOnly && s.tsH > 48) continue;
-    if (near && !near.has(s.i)) continue;
+    if (!passes(s, near)) continue;
     lit.push(s);
   }
   return { shown, lit, near, hits };
@@ -820,11 +833,12 @@ function buildBins(){
     }
   }
 }
-function nearestStorm(mx, my){
+function nearestStorm(mx, my, reach = 12){
   if (!binGrid) return null;
   const { cell, cols } = binGrid, cx = Math.floor(mx / cell), cy = Math.floor(my / cell);
-  let best = null, bd = 12 * 12;
-  for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++){
+  let best = null, bd = reach * reach;
+  const span = Math.ceil(reach / cell);
+  for (let dx = -span; dx <= span; dx++) for (let dy = -span; dy <= span; dy++){
     const a = binGrid.b.get((cy + dy) * cols + (cx + dx)); if (!a) continue;
     for (let q = 0; q < a.length; q += 2){
       const s = storms[a[q]], i = a[q+1], j = Math.min(i + 1, s.n - 1);
@@ -896,10 +910,12 @@ function drawTimeline(){
   for (const s of storms){
     if (!(state.basin === 'both' || s.basin === state.basin) || s.peak < 34) continue;
     // the timeline shows every year, so test the lit rules without the year filter
-    if (s.peak < state.min) continue; if (state.durOnly && s.tsH > 48) continue;
-    if (SEL.near && !SEL.near.has(s.i)) continue;
+    if (!passes(s, SEL.near)) continue;
     litBy.get(s.year).push(s);
   }
+  const hurBy = new Map(years.map(y => [y, 0]));
+  for (const s of storms){ if ((state.basin === 'both' || s.basin === state.basin) && s.peak >= 64 && hurBy.has(s.year)) hurBy.set(s.year, hurBy.get(s.year) + 1); }
+  tlStats = { years, by: new Map(years.map(y => [y, { n: shownBy.get(y), hur: hurBy.get(y), lit: litBy.get(y).length }])) };
   const maxN = d3.max(years, y => shownBy.get(y)) || 1;
   const yS = d3.scaleLinear([0, maxN], [tlH - m.b, m.t]);
   const g = tl.append('g');
@@ -972,22 +988,27 @@ function panel(){
     const P = state.place.name;
     const L = SEL.shown.filter(s => SEL.near.has(s.i)).map(s => [s, SEL.near.get(s.i)]);
     const ts = L.filter(([, h]) => h[2] && h[1] >= 34), hur = L.filter(([, h]) => h[2] && h[1] >= 64), maj = L.filter(([, h]) => h[2] && h[1] >= 96);
-    const top = L.filter(([s, h]) => h[2] && s.peak >= state.min).sort((a, b) => b[1][1] - a[1][1]);
+    const top = L.filter(([s, h]) => h[2] && (state.min <= 34 || h[1] >= state.min)).sort((a, b) => b[1][1] - a[1][1]);
     const last = hur.slice().sort((a, b) => b[0].t[0] - a[0].t[0])[0];
-    setCell(1, 'Within 50 miles', nf(L.length), `storms in any stage, ${yt}`);
+    if (state.min > 34){
+      const c = MINCAT[state.min];
+      setCell(1, c === 5 ? 'Cat 5 within 50 miles' : `Cat ${c}+ within 50 miles`, nf(top.length), `of ${nf(L.length)} storms in any stage, ${yt}`);
+    } else setCell(1, 'Within 50 miles', nf(L.length), `storms in any stage, ${yt}`);
     setCell(2, 'Hurricanes nearby', nf(hur.length), `${nf(ts.length)} at tropical-storm strength or more`);
     setCell(3, 'Major hurricanes', nf(maj.length), 'Category 3+ within 50 miles');
     setCell(4, last ? 'Latest hurricane' : 'Strongest nearby', last ? `${last[0].name}` : top[0] ? `${mph(top[0][1][1])} mph` : '—',
       last ? `${last[0].year}, ${mph(last[1][1])} mph nearby` : top[0] ? `${top[0][0].name} (${top[0][0].year})` : 'none in these years');
     nearList = top.slice(0, 10).map(([s, h]) => [s, h[1]]);
-    document.getElementById('nearH').textContent = `Strongest within 50 miles of ${P}`;
+    document.getElementById('nearH').textContent = state.min > 34 ? `${MINCAT[state.min] === 5 ? 'Category 5' : 'Cat ' + MINCAT[state.min] + '+'} within 50 miles of ${P}` : `Strongest within 50 miles of ${P}`;
     stepFive(L, ts, hur, maj, top);
   }
   const ul = d3.select('#near'); ul.selectAll('*').remove();
   ul.selectAll('li').data(nearList).join('li').append('button').attr('type', 'button')
     .attr('aria-pressed', d => d[0].i === state.pickStorm ? 'true' : 'false')
     .html(d => `<span class="chip" style="background:${CATCOL[cls(d[1], 'H')]}"></span>${d[0].name} ${d[0].year} · ${catShort(d[1])}`)
-    .on('click', (ev, d) => { state.pickStorm = state.pickStorm === d[0].i ? -1 : d[0].i; drawHi(); drawOverlay(); panelPressed(); });
+    .on('click', (ev, d) => { state.pickStorm = state.pickStorm === d[0].i ? -1 : d[0].i; state.hoverStorm = -1; drawHi(); drawOverlay(); panelPressed(); })
+    .on('mouseenter focus', (ev, d) => { state.hoverStorm = d[0].i; drawHi(); })
+    .on('mouseleave blur', () => { state.hoverStorm = -1; drawHi(); drawOverlay(); });
 }
 function panelPressed(){ d3.selectAll('#near button').attr('aria-pressed', d => d[0].i === state.pickStorm ? 'true' : 'false'); }
 function stepFive(L, ts, hur, maj, top){
@@ -998,7 +1019,13 @@ function stepFive(L, ts, hur, maj, top){
   if (!L.length){ lead.innerHTML = `No storm in the record passed within 50 miles of <b>${P}</b>${allYears ? '' : ' in ' + yearsText()}.`; }
   else {
     const strongest = top[0] ? ` The strongest nearby was <b>${top[0][0].name} (${top[0][0].year})</b>, at ${mph(top[0][1][1])} mph.` : '';
-    lead.innerHTML = `${allYears ? 'Since ' + (state.basin === 'EP' ? 1949 : 1851) : 'In ' + yearsText()}, <b>${nf(L.length)}</b> storm${L.length === 1 ? '' : 's'} passed within 50 miles of <b>${P}</b> in some stage, <b>${nf(ts.length)}</b> at tropical-storm strength or more and <b>${nf(hur.length)}</b> as hurricane${hur.length === 1 ? '' : 's'}; ${nf(maj.length)} ${maj.length === 1 ? 'was a major hurricane' : 'were major hurricanes'}.${strongest}`;
+    let extra = '';
+    if (state.min > 34){
+      const c = MINCAT[state.min], n = top.length, names = top.slice(0, 5).map(([s]) => `${s.name} (${s.year})`);
+      const list = names.length > 1 ? names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] : names[0];
+      extra = n ? ` <b>${nf(n)}</b> ${n === 1 ? 'was' : 'were'} Category ${c}${c < 5 ? ' or stronger' : ''} within 50 miles${n <= 5 ? ': ' + list : ', the strongest ' + list}.` : ` None was Category ${c}${c < 5 ? ' or stronger' : ''} within 50 miles.`;
+    }
+    lead.innerHTML = `${allYears ? 'Since ' + (state.basin === 'EP' ? 1949 : 1851) : 'In ' + yearsText()}, <b>${nf(L.length)}</b> storm${L.length === 1 ? '' : 's'} passed within 50 miles of <b>${P}</b> in some stage, <b>${nf(ts.length)}</b> at tropical-storm strength or more and <b>${nf(hur.length)}</b> as hurricane${hur.length === 1 ? '' : 's'}; ${nf(maj.length)} ${maj.length === 1 ? 'was a major hurricane' : 'were major hurricanes'}.${extra || strongest}`;
   }
 }
 
@@ -1018,11 +1045,7 @@ function placeFrom(spec){
 }
 function goStep(k){
   stopAnim();
-  state.step = k; const S = STEPS[k];
-  document.querySelectorAll('.step').forEach((a, i) => a.classList.toggle('on', i === k));
-  d3.selectAll('#dots button').attr('aria-current', (d, i) => i === k ? 'true' : 'false');
-  document.getElementById('prev').disabled = k === 0;
-  document.getElementById('next').textContent = k === STEPS.length - 1 ? 'Start over ↺' : 'Next ›';
+  const S = STEPS[k]; showCard(k); hideTip();
   state.basin = S.basin; state.min = S.min; state.y0 = S.y0; state.y1 = S.y1; state.mode = S.mode; state.durOnly = S.durOnly;
   state.pickStorm = -1;
   if (S.place === 'keep') state.place = userPlace || PLACES.find(p => p.kind === 'state' && p.id === '12');
@@ -1070,15 +1093,27 @@ function syncControls(){
   document.querySelectorAll('[data-min]').forEach(b => { b.setAttribute('aria-pressed', +b.dataset.min === state.min); if (b.classList.contains('k')) b.classList.toggle('off', +b.dataset.min < state.min); });
   document.getElementById('y0').value = state.y0; document.getElementById('y1').value = state.y1;
   inPlace.value = state.place ? state.place.name : ''; clr.hidden = !state.place;
+  document.getElementById('legHint').textContent = state.place ? `Tap a category to show only storms that were that strong within 50 miles of ${state.place.name}.` : 'Tap a category to show only storms that reached it.';
   document.getElementById('legend').hidden = state.mode === 'dur'; document.getElementById('legend2').hidden = state.mode !== 'dur';
 }
-function refresh(){ fitProjection(); drawBase(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel(); }
+function refresh(){ hideTip(); fitProjection(); drawBase(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel(); }
 function setYears(a, b){
   a = Math.max(1851, Math.min(2025, a | 0)); b = Math.max(1851, Math.min(2025, b | 0)); if (a > b) [a, b] = [b, a];
-  stopAnim(); state.y0 = a; state.y1 = b; state.pickStorm = -1; syncControls(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel();
+  stopAnim(); hideTip(); state.y0 = a; state.y1 = b; state.pickStorm = -1; syncControls(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel();
 }
 function setPlace(p){
-  stopAnim(); state.place = p; if (p) userPlace = p; state.pickStorm = -1; setFocus(); syncControls(); refresh();
+  stopAnim(); state.place = p; if (p) userPlace = p; state.pickStorm = -1; setFocus();
+  // keep the story card in step with the picture: a place shows step 5 ("near you"), clearing it from there shows step 1
+  if (p && state.step !== 4){ showCard(4); state.durOnly = false; state.mode = 'cat'; }
+  else if (!p && state.step === 4) showCard(0);
+  syncControls(); refresh();
+}
+function showCard(k){
+  state.step = k;
+  document.querySelectorAll('.step').forEach((a, i) => a.classList.toggle('on', i === k));
+  d3.selectAll('#dots button').attr('aria-current', (d, i) => i === k ? 'true' : 'false');
+  document.getElementById('prev').disabled = k === 0;
+  document.getElementById('next').textContent = k === STEPS.length - 1 ? 'Start over ↺' : 'Next ›';
 }
 document.querySelectorAll('[data-basin]').forEach(b => b.addEventListener('click', () => { stopAnim(); state.basin = b.dataset.basin; if (state.basin === 'EP' && state.y0 < 1949 && state.y1 >= 1949 && state.y0 === 1851) state.y0 = 1851; state.pickStorm = -1; setFocus(); syncControls(); refresh(); }));
 document.querySelectorAll('[data-min]').forEach(b => b.addEventListener('click', () => {
@@ -1113,29 +1148,72 @@ inPlace.addEventListener('keydown', e => {
   else if (e.key === 'Escape'){ closeList(); inPlace.blur(); }
 });
 
-// map interaction: hover shows the nearest track; a click or tap drops a pin there
-function showTip(best, mx, my){
-  if (!best){ tip.style.opacity = 0; if (state.hoverStorm !== -1){ state.hoverStorm = -1; drawHi(); } return; }
+// map interaction. Mouse: hover shows the nearest track, a click drops a pin. Touch: a tap shows the nearest
+// track in a tooltip that stays put, with a button to drop a pin there (so reading a storm never moves the map).
+let lastPointer = 'mouse', pending = null;
+stage.addEventListener('pointerdown', e => { lastPointer = e.pointerType || 'mouse'; });
+function hideTip(){ tip.style.opacity = 0; tip.classList.remove('sticky'); pending = null; if (state.hoverStorm !== -1){ state.hoverStorm = -1; if (ctxH) drawHi(); } }
+function placeTip(mx, my){
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  tip.style.left = Math.min(W - tw - 6, Math.max(6, mx + 14)) + 'px';
+  tip.style.top = Math.max(6, my + th + 20 > H ? my - th - 14 : my + 14) + 'px';
+}
+function stormHtml(best){
   const s = best.s, i = best.i, j = Math.min(i + 1, s.n - 1);
   const w = Math.round(Math.max(0, s.w[i]) * (1 - best.f) + Math.max(0, s.w[j]) * best.f), st = best.f < .5 ? s.st[i] : s.st[j];
   const when = new Date(s.t[i] + (s.t[j] - s.t[i]) * best.f);
   const here = TROP.has(st) ? `${catLabel(w)}, ${mph(w)} mph` : `Post-tropical, ${mph(w)} mph`;
-  tip.innerHTML = `<div class="t">${s.name === 'Unnamed' ? 'Unnamed storm' : s.name} (${s.year})</div><div class="m">${s.basin === 'AL' ? 'Atlantic' : 'Pacific'} · peak ${catShort(s.peak)}, ${mph(s.peak)} mph</div><div class="m">Here: ${here}</div><div class="m">${fmtDate(when)}</div>`;
-  tip.style.opacity = 1;
-  const tw = tip.offsetWidth, th = tip.offsetHeight;
-  tip.style.left = Math.min(W - tw - 6, Math.max(6, mx + 14)) + 'px'; tip.style.top = (my + th + 20 > H ? my - th - 14 : my + 14) + 'px';
-  if (state.hoverStorm !== s.i){ state.hoverStorm = s.i; drawHi(); }
+  const h = SEL && SEL.near && SEL.near.get(s.i);
+  const nearLine = h ? `<div class="near-l"><span class="chip" style="background:${h[2] ? CATCOL[cls(h[1], 'H')] : CATCOL.x}"></span>Near ${state.place.name}: ${h[2] ? catShort(h[1]) + ', ' : 'post-tropical, '}${mph(h[1])} mph</div>` : '';
+  return `<div class="t">${s.name === 'Unnamed' ? 'Unnamed storm' : s.name} (${s.year})</div><div class="m">${s.basin === 'AL' ? 'Atlantic' : 'Pacific'} · peak ${catShort(s.peak)}, ${mph(s.peak)} mph</div><div class="m">Here: ${here} · ${fmtDate(when)}</div>${nearLine}`;
 }
-stage.addEventListener('mousemove', e => { if (animId) return; const r = stage.getBoundingClientRect(); const mx = e.clientX - r.left, my = e.clientY - r.top; showTip(nearestStorm(mx, my), mx, my); });
-stage.addEventListener('mouseleave', () => showTip(null));
-stage.addEventListener('click', e => {
-  const r = stage.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
-  const ll = proj.invert([mx, my]); if (!ll || !isFinite(ll[0])) return;
+function showTip(best, mx, my){
+  if (!best){ hideTip(); return; }
+  tip.classList.remove('sticky'); tip.innerHTML = stormHtml(best); tip.style.opacity = 1; placeTip(mx, my);
+  if (state.hoverStorm !== best.s.i){ state.hoverStorm = best.s.i; drawHi(); }
+}
+function pointAt(mx, my){
+  const ll = proj.invert([mx, my]); if (!ll || !isFinite(ll[0])) return null;
   const lon = ll[0] > 60 ? ll[0] - 360 : ll[0], lat = ll[1];
   const name = `${Math.abs(lat).toFixed(1)}°${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon > 180 ? lon - 360 : lon < -180 ? lon + 360 : lon).toFixed(1)}°${(lon < 0 && lon > -180) || lon > 180 ? 'W' : 'E'}`;
-  setPlace({ kind: 'point', name, lat, lon, sub: 'Point' });
-  if (e.pointerType !== 'mouse') showTip(nearestStorm(mx, my), mx, my);
+  return { kind: 'point', name, lat, lon, sub: 'Point' };
+}
+stage.addEventListener('mousemove', e => {
+  if (animId || lastPointer !== 'mouse' || tip.classList.contains('sticky')) return;
+  const r = stage.getBoundingClientRect(); const mx = e.clientX - r.left, my = e.clientY - r.top; showTip(nearestStorm(mx, my), mx, my);
 });
+stage.addEventListener('mouseleave', () => { if (!tip.classList.contains('sticky')) hideTip(); });
+stage.addEventListener('click', e => {
+  if (tip.contains(e.target)) return;
+  const r = stage.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  const pt = pointAt(mx, my); if (!pt) return;
+  if (lastPointer === 'mouse'){ setPlace(pt); return; }
+  // touch: show what's under the finger first
+  stopAnim();
+  const best = nearestStorm(mx, my, 22);
+  pending = pt;
+  tip.innerHTML = (best ? stormHtml(best) : `<div class="t">${pt.name}</div>`) + `<button type="button" class="pinbtn">Storms within 50 miles of this spot</button>`;
+  tip.classList.add('sticky'); tip.style.opacity = 1; placeTip(mx, my);
+  state.hoverStorm = best ? best.s.i : -1; drawHi();
+  tip.querySelector('.pinbtn').addEventListener('click', ev => { ev.stopPropagation(); const p = pending; hideTip(); if (p) setPlace(p); });
+});
+document.addEventListener('pointerdown', e => { if (tip.classList.contains('sticky') && !stage.contains(e.target)) hideTip(); });
+
+// timeline: hovering a year shows its counts
+const tlWrap = document.getElementById('timeline'), tltip = document.getElementById('tltip');
+let tlStats = null;
+tlWrap.addEventListener('mousemove', e => {
+  if (!tlX || !tlStats) return;
+  const r = tlWrap.getBoundingClientRect(), mx = e.clientX - r.left;
+  const y = tlStats.years.find(y => mx >= tlX(y) - 1 && mx <= tlX(y) + tlX.step() + 1);
+  if (!y){ tltip.style.opacity = 0; return; }
+  const st = tlStats.by.get(y);
+  const near = state.place ? `<br>${st.lit} within 50 mi of ${state.place.name}${state.min > 34 ? ` at Cat ${MINCAT[state.min]}${MINCAT[state.min] < 5 ? '+' : ''}` : ''}` : state.min > 34 || state.durOnly ? `<br>${st.lit} ${state.durOnly ? 'lasted two days or less' : `reached Cat ${MINCAT[state.min]}${MINCAT[state.min] < 5 ? '+' : ''}`}` : '';
+  tltip.innerHTML = `<b>${y}</b> · ${st.n} storm${st.n === 1 ? '' : 's'}, ${st.hur} hurricane${st.hur === 1 ? '' : 's'}${near}`;
+  tltip.style.opacity = 1;
+  const tw = tltip.offsetWidth; tltip.style.left = Math.min(r.width - tw - 4, Math.max(4, mx - tw / 2)) + 'px';
+});
+tlWrap.addEventListener('mouseleave', () => { tltip.style.opacity = 0; });
 
 // step nav
 const dots = d3.select('#dots');
