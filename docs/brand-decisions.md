@@ -105,7 +105,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Site menu "Stories · Dashboards · About" with one mixed, filterable story list on the home page (Nov 2-7, 2026): replaced by the topic pages above, because daily NBA pieces would bury everything else.
 
 ## Featured visual pill: DECIDED (Nov 16, 2026)
-- A small "Featured visual" pill under the home page intro links the newest showpiece (first: "A Year of Daylight, Every Minute of It"). A stand-in until the `/featured/` collection page exists (two or three showpieces); then the pill points there. Ink outline like Subscribe; orange only on hover.
+- A small "Featured visual" pill under the home page intro links the newest showpiece (first: "A Year of Daylight, Every Minute of It"). A stand-in until the `/featured/` collection page exists (two or three showpieces); then the pill points there. Thin orange outline (Shawn's call, Nov 16, 2026): the one decorative use of the signal color, so the featured piece stands out; the text stays ink.
 
 ## Evergreen story dates: DECIDED (Nov 16, 2026)
 - Stories not tied to a moment show **"Updated <date>"** and their data range instead of a publish date, and sort by the updated date, so refreshing one brings it back up. First five (Shawn confirmed Nov 16): Phoenix After Dark, Record Lows Are Disappearing, Why your houseplants survive your living room, Movies didn't get longer. Blockbusters did., and The later you fly, the more likely you'll be late.
