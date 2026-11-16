@@ -42,6 +42,8 @@ const SERIES = {
     { key: "month-in-review", name: "Month in review", one: "Month in review", dek: "How last month ranked against every year on record." },
     { key: "record-watch", name: "Record watch", one: "Record watch", dek: "A record broken, or a streak still running." },
     { key: "focus", name: "Focus stories", one: "Focus story", dek: "A longer look at one weather question." },
+    // Showpieces (Nov 16, 2026): one big interactive visual with its own look, outside the usual playbook style.
+    { key: "showpiece", name: "Showpieces", one: "Showpiece", dek: "One big interactive picture that rewards exploring." },
   ],
 };
 // How many pieces each topic page's Latest list shows before "Show all" (assets/topic-filter.js reads data-limit).

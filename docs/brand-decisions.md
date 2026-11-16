@@ -18,7 +18,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 
 - **Menu:** NBA · Weather · More stories | About · Subscribe (a thin divider before About since Nov 9, 2026, setting the topics apart from the site links; Shawn chose it over moving About after Subscribe or a plain wider gap), then search and the light/dark button. "More stories" shortens to "More" on narrow phones. Dashboards left the menu: each topic page shows its own, and the home page links the dashboards hub (`dashboards/`), which stays live.
 - **Strict split:** NBA content appears only under NBA, weather only under Weather. **More stories** (`stories/`) holds everything else (politics and travel today) and is expected to grow quickly.
-- **Series:** every NBA and weather story carries a series (NBA: Check the Take, Weird Stat, Focus stories; weather: Month in review, Record watch, Focus stories; names to be settled once the real mix is known). Each topic page lists every piece newest first with a series filter, and adds "By series" once two or more series have pieces. The existing non-Check-the-Take stories are Focus stories.
+- **Series:** every NBA and weather story carries a series (NBA: Check the Take, Weird Stat, Focus stories; weather: Month in review, Record watch, Focus stories, Showpieces; names to be settled once the real mix is known). Each topic page lists every piece newest first with a series filter, and adds "By series" once two or more series have pieces. The existing non-Check-the-Take stories are Focus stories.
 - **NBA page (`nba/`):** Latest Tall Take box, the full NBA list, Browse by series (one small card per series that links to all of it; no story lists, so nothing repeats the Latest list; Nov 8, 2026), the NBA dashboards, the email sign-up. A predictions scorecard is added only once there are graded predictions.
   - Tall Takes moved to `nba/takes/`; every old `takes/` address redirects.
   - Check the Take has a series page at `nba/check-the-take/`; its stories stay at `nba/<slug>/`.
@@ -28,6 +28,12 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - **Reader's city (when the live weather blocks arrive):** chosen once and remembered in the browser (`localStorage`, like `tod-theme`), never a cookie sent to the server and never in a URL; no location or IP detection; a "Change city" control always visible.
 - Later, maybe: per-topic options for the weekly email (Buttondown tags).
 - Design canvas (Home, NBA, Check the Take, Weather; light and dark): https://claude.ai/artifact/Txb3Rr3KS4HA6iekMaBn7G. The built pages use the site's existing look (story cards with chart previews) rather than the canvas's cards.
+
+## Showpieces: DECIDED (Nov 16, 2026)
+- A **showpiece** is one big interactive visual with its own look, built with no rules beyond data-viz best practice (no playbook palette or type), to see how far a single picture can go. It's a series label (`showpiece`), not a section: each showpiece lives under its topic (`weather/year-of-daylight-hours/`), so addresses follow the subject and never move.
+- First: "A year of daylight, every minute of it" (`weather/year-of-daylight-hours/`), published Nov 16, 2026. Dark-only; keeps the site header, footer, share and subscribe parts in the dark palette, with no light/dark button on that page.
+- Later, once there are two or three: a `/featured/` collection page listing showpieces across topics (a hub of links, not a folder they live in), linked from the home page and from shawnnafziger.com.
+- Sister page: the T15 story "Shortest Day of the Year" (`weather/shortest-day-of-the-year/`, in progress) owns the "shortest day" searches; the showpiece owns "hours of daylight", day length, polar night and Alaska daylight. Link them both ways when T15 publishes.
 
 ## Copyright and reuse: DECIDED (Nov 9, 2026)
 - **Owner:** Tall Order Digital LLC (a registered LLC). Use the exact legal name from the state filing.
