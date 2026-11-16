@@ -433,11 +433,11 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <tbody>
 <tr><td>Fairbanks, AK</td><td>65.2°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
 <tr><td>Anchorage, AK</td><td>61.1°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
-<tr><td>Duluth, MN</td><td>55.9°N</td><td>2.5</td><td>3,636</td><td>202</td></tr>
-<tr><td>Marquette, MI</td><td>55.7°N</td><td>2.6</td><td>3,636</td><td>202</td></tr>
-<tr><td>Seattle, WA</td><td>52.9°N</td><td>4.1</td><td>3,636</td><td>202</td></tr>
-<tr><td>Minneapolis, MN</td><td>54.2°N</td><td>3.4</td><td>3,636</td><td>202</td></tr>
-<tr><td>Fargo, ND</td><td>55.8°N</td><td>2.6</td><td>3,636</td><td>202</td></tr>
+<tr><td>Duluth, MN</td><td>55.9°N</td><td>2.5</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Marquette, MI</td><td>55.7°N</td><td>2.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Seattle, WA</td><td>52.9°N</td><td>4.1</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Minneapolis, MN</td><td>54.2°N</td><td>3.4</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Fargo, ND</td><td>55.8°N</td><td>2.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
 <tr><td>Boston, MA</td><td>49.9°N</td><td>5.5</td><td>1,690</td><td>80</td></tr>
 <tr><td>Chicago, IL</td><td>51.3°N</td><td>4.8</td><td>2,857</td><td>152</td></tr>
 <tr><td>South Bend, IN</td><td>51.1°N</td><td>5.0</td><td>2,857</td><td>152</td></tr>
@@ -452,9 +452,9 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <tr><td>Los Angeles, CA</td><td>40.5°N</td><td>above 9</td><td>0 (beyond Kp 9)</td><td>0</td></tr>
 <tr><td>Miami, FL</td><td>35.7°N</td><td>above 9</td><td>0 (beyond Kp 9)</td><td>0</td></tr>
 <tr><td>Reykjavík, Iceland</td><td>64.2°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
-<tr><td>Edinburgh, UK</td><td>53.1°N</td><td>3.9</td><td>3,636</td><td>202</td></tr>
+<tr><td>Edinburgh, UK</td><td>53.1°N</td><td>3.9</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
 <tr><td>London, UK</td><td>47.7°N</td><td>6.6</td><td>688</td><td>33</td></tr>
-<tr><td>Hobart, Australia</td><td>53.7°S</td><td>3.6</td><td>3,636</td><td>202</td></tr>
+<tr><td>Hobart, Australia</td><td>53.7°S</td><td>3.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
     </tbody>
   </table></div>
 
@@ -1004,9 +1004,11 @@ function setK(k, html){ document.querySelectorAll(`[data-k="${k}"]`).forEach(el 
 function liveNumbers(){
   const p = state.place, { ml, need } = placeMag(), tn = tonight(), hemi = p.lat >= 0 ? 'northern' : 'southern';
   // Kp now
-  if (state.kp1m){ const k = state.kp1m.kp; document.getElementById('lvKp').textContent = k.toFixed(1);
-    const gl = k >= 9 ? 'G5 extreme storm' : k >= 8 ? 'G4 severe storm' : k >= 7 ? 'G3 strong storm' : k >= 6 ? 'G2 moderate storm' : k >= 5 ? 'G1 minor storm' : k >= 4 ? 'Active' : 'Quiet';
-    document.getElementById('lvKpS').textContent = `${gl} · estimated ${fmtTime(state.kp1m.t, p.tz)}`; }
+  // the current three-hour Kp (observed or estimated) is the official number; the 1-minute estimate only fills in when it's missing
+  const cur = state.fc && state.fc.find(r => Date.now() >= r.t && Date.now() < r.t + 3*HOUR && r.kind !== 'predicted');
+  if (cur || state.kp1m){ const k = cur ? cur.kp : state.kp1m.kp; document.getElementById('lvKp').textContent = kpStr(k);
+    const gl = k >= 8.99 ? 'G5 extreme storm' : k >= 7.66 ? 'G4 severe storm' : k >= 6.66 ? 'G3 strong storm' : k >= 5.66 ? 'G2 moderate storm' : k >= 4.66 ? 'G1 minor storm' : k >= 3.66 ? 'Active' : 'Quiet';
+    document.getElementById('lvKpS').textContent = cur ? `${gl} · ${cur.kind === 'observed' ? 'observed' : 'estimated so far'}, ${fmtTime(new Date(cur.t), p.tz)}–${fmtTime(new Date(cur.t + 3*HOUR), p.tz)}` : `${gl} · 1-minute estimate, ${fmtTime(state.kp1m.t, p.tz)}`; }
   else if (state.ovErr) document.getElementById('lvKpS').textContent = 'NOAA feed unavailable';
   // tonight
   const [vw, vs] = verdict(tn.kp, need);
