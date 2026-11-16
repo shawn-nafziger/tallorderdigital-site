@@ -106,7 +106,7 @@ button:focus-visible,input:focus-visible,.ghost:focus-visible{outline:2px solid 
 .badge{position:absolute;left:14px;top:12px;font:500 11px/1.4 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:rgba(4,9,18,.72);border:1px solid var(--line);border-radius:8px;padding:6px 9px;pointer-events:none;max-width:calc(100% - 28px)}
 .badge b{color:var(--ink);font-weight:500}
 .badge.model{color:#e9d5ff;border-color:#4b3a72}
-.tip{position:absolute;pointer-events:none;background:rgba(6,13,26,.95);border:1px solid #24405a;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:170px;max-width:260px;opacity:0;transition:opacity .08s;z-index:3}
+.tip{position:absolute;pointer-events:none;box-shadow:0 10px 28px rgba(0,0,0,.45);background:rgba(6,13,26,.95);border:1px solid #24405a;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:170px;max-width:260px;opacity:0;transition:opacity .08s;z-index:3}
 .tip .t{font:600 13px Inter,sans-serif}
 .tip .m{font:400 12px "JetBrains Mono",monospace;color:var(--ink2)}
 .legend{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;margin:12px 0 0;font:400 12.5px Inter,sans-serif;color:var(--ink3)}
@@ -348,7 +348,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <article class="step on">
         <div class="n">1 of 5</div>
         <h2>Where is the aurora right now?</h2>
-        <p>The glowing ring is NOAA’s forecast of where the aurora is likely to be overhead about half an hour to an hour and a half from now<span data-k="fcLine"></span>. It circles the <b>magnetic</b> pole in the Canadian Arctic, not the North Pole, which is why North America sees the aurora farther south than Europe or Asia at the same latitude. Brighter and warmer colors mean a higher chance; drag the globe to turn it.</p>
+        <p>The glowing ring is NOAA’s forecast of where the aurora is likely to be overhead about half an hour to an hour and a half from now<span data-k="fcLine"></span>. It circles the <b>magnetic</b> pole in the Canadian Arctic, not the North Pole, which is why North America sees the aurora farther south than Europe or Asia at the same latitude. Brighter and warmer colors mean a higher chance. Hover or tap anywhere for the odds there; drag the globe to turn it.</p>
       </article>
       <article class="step">
         <div class="n">2 of 5</div>
@@ -368,7 +368,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <article class="step">
         <div class="n">5 of 5</div>
         <h2>How often does the aurora come that far south?</h2>
-        <p>Each streak is one of the <b>3,636</b> geomagnetic storms since 1932, drawn down to how far south its aurora could be seen. They come in waves with the sun’s 11-year cycle, and the 1950s were the wildest: 48 severe or extreme storms, against 7 in the 2010s. <span data-k="histLine">South Bend, IN, needs about Kp <b>5.0</b>: <b>2,857</b> storms since 1932 reached that, <b>152</b> of them since 2020.</span></p>
+        <p>Each streak is one of the <b>3,636</b> geomagnetic storms since 1932, drawn down to how far south its aurora could be seen; hover or tap one for its date and reach. They come in waves with the sun’s 11-year cycle, and the 1950s were the wildest: 48 severe or extreme storms, against 7 in the 2010s. <span data-k="histLine">South Bend, IN, needs about Kp <b>5.0</b>: <b>2,857</b> storms since 1932 reached that, <b>152</b> of them since 2020.</span></p>
       </article>
     </div>
     <div class="stepnav">
@@ -934,7 +934,7 @@ function histHover(mx, my){
   const x = HIST.x; if (!x) return null;
   let best = null;
   for (const s of STORM){ const X = x(new Date(s.ms)), Y = HIST.y(viewLat(s.kp)); if (my > Y + 12) continue;
-    const d = Math.abs(X - mx); if (d < 4 && (!best || s.t > best.t || (s.t === best.t && d < best.d))) best = Object.assign({ d }, s); }
+    const d = Math.abs(X - mx); if (d < 6 && (!best || s.t > best.t || (s.t === best.t && d < best.d))) best = Object.assign({ d }, s); }
   return best;
 }
 
@@ -1081,10 +1081,16 @@ function drawKp(){
     if (hh === 0){ kpsvg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', h - m.b).attr('y2', h - m.b + 4).attr('stroke','rgba(255,255,255,.3)');
       kpsvg.append('text').attr('x', x(t) + 3).attr('y', h - 6).text(fmtDay(new Date(t + HOUR), p.tz)); }
   }
-  kpsvg.on('pointermove', ev => { const [mx] = d3.pointer(ev), t = x.invert(mx), r = rows.find(q => t >= q.t && t < q.t + 3*HOUR); if (!r){ kptip.style.opacity = 0; return; }
-    kptip.innerHTML = `<div class="t">Kp ${kpStr(r.kp)} <span class="m">(${r.kp.toFixed(2)})</span></div><div class="m">${fmtDay(new Date(r.t), p.tz)} ${fmtTime(new Date(r.t), p.tz)}–${fmtTime(new Date(r.t + 3*HOUR), p.tz)}</div><div>${r.kind === 'predicted' ? 'NOAA forecast' : r.kind === 'estimated' ? 'Estimated' : 'Observed'}${r.scale ? ' · ' + r.scale : ''}</div>`;
-    kptip.style.opacity = 1; kptip.style.left = Math.min(mx + 18, w - 180) + 'px'; kptip.style.top = '30px'; })
-    .on('pointerleave', () => kptip.style.opacity = 0);
+  const kpShow = ev => { const [mx, my] = d3.pointer(ev), t = x.invert(mx), r = rows.find(q => t >= q.t && t < q.t + 3*HOUR);
+    kpsvg.selectAll('.khl').remove(); if (!r){ kptip.style.opacity = 0; return; }
+    kpsvg.append('rect').attr('class','khl').attr('x', x(r.t)).attr('y', m.t).attr('width', x(r.t + 3*HOUR) - x(r.t)).attr('height', h - m.b - m.t).attr('fill','none').attr('stroke','#fff').attr('stroke-opacity', .5).attr('pointer-events','none');
+    const dark = sunAlt(r.t + 1.5*HOUR, p.lat, p.lon) < -12, gap = r.kp - need;
+    const cmp = need <= 0 ? 'Enough for ' + p.name.split(',')[0] : need > 9 ? 'Beyond Kp 9 needed in ' + p.name.split(',')[0] : gap >= 0 ? `Enough for ${p.name.split(',')[0]} (needs about ${need.toFixed(1)})` : `${(-gap).toFixed(1)} short of the ${need.toFixed(1)} ${p.name.split(',')[0]} needs`;
+    kptip.innerHTML = `<div class="t">Kp ${kpStr(r.kp)} <span class="m">(${r.kp.toFixed(2)})${r.scale ? ' · ' + r.scale + ' storm' : ''}</span></div><div class="m">${fmtDay(new Date(r.t), p.tz)} ${fmtTime(new Date(r.t), p.tz)}–${fmtTime(new Date(r.t + 3*HOUR), p.tz)} ${p.name.split(',')[0]} time</div><div>${r.kind === 'predicted' ? 'NOAA forecast' : r.kind === 'estimated' ? 'Estimated so far' : 'Observed'} · ${dark ? 'dark there' : 'not dark there'}</div><div class="m">${cmp}</div>`;
+    placeTip(kptip, mx + 12, my, w + 24, h + 40); };
+  kpsvg.on('pointermove', ev => { if (ev.pointerType === 'mouse') kpShow(ev); })
+    .on('pointerup', ev => { if (ev.pointerType !== 'mouse') kpShow(ev); })
+    .on('pointerleave', ev => { if (ev.pointerType === 'mouse'){ kptip.style.opacity = 0; kpsvg.selectAll('.khl').remove(); } });
 }
 
 // ---------------- feeds ----------------
@@ -1190,27 +1196,80 @@ document.getElementById('locate').addEventListener('click', () => {
   }, () => { document.getElementById('locate').textContent = 'Location unavailable'; }, { maximumAge: 6e5, timeout: 10000 });
 });
 
-// ---------------- globe drag and hover ----------------
+// ---------------- tooltips: hover on desktop, tap on phones ----------------
+// placeTip keeps a tooltip inside its box: it flips left of the pointer near the right edge and above it near the bottom.
+function placeTip(el, mx, my, bw, bh){
+  el.style.opacity = 1; const tw = el.offsetWidth, th = el.offsetHeight;
+  let x = mx + 16, y = my + 16;
+  if (x + tw > bw - 6) x = Math.max(6, mx - tw - 16);
+  if (y + th > bh - 6) y = Math.max(6, my - th - 16);
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+}
+function nearestPlace(lat, lon){
+  let best = null;
+  for (const p of PLACES.values()){ if (p.grp === 'Here') continue; const d = d3.geoDistance([lon, lat], [p.lon, p.lat]); if (!best || d < best.d) best = { d, p }; }
+  return best && best.d < 3.5*RAD ? best.p : null;
+}
+function cityAtMag(v){ // a familiar place near a magnetic latitude, for "seen down to about ..."
+  const c = [['Fairbanks',65.2],['Anchorage',61.1],['Edmonton',61.5],['Duluth',55.9],['Minneapolis',54.2],['Seattle',52.9],['Chicago',51.3],['Boston',49.9],['Indianapolis',49.3],['New York',48.9],['Denver',48.1],['London',47.7],['Washington',47.6],['Kansas City',48.5],['Nashville',45.6],['Atlanta',43.5],['San Francisco',43.3],['Dallas',42.3],['Los Angeles',40.5],['Houston',39.1],['Miami',35.7]];
+  return c.reduce((a, b) => Math.abs(b[1] - v) < Math.abs(a[1] - v) ? b : a)[0];
+}
+function globeTip(mx, my){
+  const [cx, cy] = proj.translate(), dx = mx - cx, dy = my - cy; if (dx*dx + dy*dy >= proj.scale()**2) return null;
+  const ll = proj.invert([mx, my]); if (!ll) return null;
+  const [lon, lat] = ll, now = Date.now(), pl = state.place;
+  const pin = proj([pl.lon, pl.lat]), onPin = pin && Math.hypot(pin[0] - mx, pin[1] - my) < 14;
+  const LAT = onPin ? pl.lat : lat, LON = onPin ? pl.lon : lon;
+  const model = isModel(), [ml, mo] = cgm(LAT, LON);
+  const p = model ? modelP(ml, mltOf(mo, mssLon(now)), currentKpForModel()) : ovAt(state.ov.g, LAT, LON);
+  const near = onPin ? pl : nearestPlace(LAT, LON), need = needKp(ml), sa = sunAlt(now, LAT, LON);
+  const vl = viewLineFor(LAT >= 0), q = vl.filter(Boolean).reduce((a, b) => !a || Math.abs(((b[0] - LON + 540) % 360) - 180) < Math.abs(((a[0] - LON + 540) % 360) - 180) ? b : a, null);
+  const inside = q && (LAT >= 0 ? LAT >= q[1] : LAT <= q[1]);
+  const head = near ? `${near.name}` : `${fmtLat(LAT)}, ${Math.abs(LON).toFixed(1)}°${LON >= 0 ? 'E' : 'W'}`;
+  return `<div class="t">${head}</div>
+    <div class="m">${model ? 'Sketch' : 'NOAA forecast'}: ${pct(p)} chance overhead</div>
+    <div class="m">${q ? (inside ? 'Inside the horizon line' : 'Outside the horizon line') : ''}</div>
+    <div class="m">Magnetic lat. ${Math.abs(ml).toFixed(1)}° · ${need <= 0 ? 'any Kp will do' : need > 9 ? 'needs more than Kp 9' : 'needs about Kp ' + need.toFixed(1)}</div>
+    <div class="m">${sa < -12 ? 'Dark now' : sa < 0 ? 'Twilight now' : 'Daylight now'}</div>`;
+}
+function histTip(mx, my){
+  const s = histHover(mx, my);
+  ov.selectAll('.hl').remove();
+  if (!s) return null;
+  const X = HIST.x(new Date(s.ms)), Y = HIST.y(viewLat(s.kp)), reach = viewLat(s.kp);
+  const hl = ov.append('g').attr('class','hl');
+  hl.append('line').attr('x1', X).attr('x2', X).attr('y1', HIST.y(reach + 7)).attr('y2', Y).attr('stroke','#fff').attr('stroke-width', 1.5);
+  hl.append('circle').attr('cx', X).attr('cy', Y).attr('r', 4).attr('fill','#fff');
+  const d = new Date(s.ms).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', timeZone:'UTC' });
+  const pm = Math.abs(cgm(state.place.lat, state.place.lon)[0]), seen = pm >= reach;
+  const G = ['', 'minor', 'moderate', 'strong', 'severe', 'extreme'][gOf(s.t)];
+  return `<div class="t">${d}</div><div class="m">Peak Kp ${kpStr(s.kp)} · G${gOf(s.t)} ${G} · ${s.len} day${s.len > 1 ? 's' : ''}</div>
+    <div>Seen low on the horizon down to about ${reach.toFixed(0)}° magnetic latitude, around ${cityAtMag(reach)}${s.t === 27 ? ' or farther: Kp tops out at 9' : ''}.</div>
+    <div class="m">${state.place.name.split(',')[0]}: ${seen ? 'within reach' : 'out of reach'}</div>`;
+}
+function stageTip(mx, my){
+  const html = state.view === 'hist' ? histTip(mx, my) : globeTip(mx, my);
+  if (!html){ tip.style.opacity = 0; return; }
+  tip.innerHTML = html; placeTip(tip, mx, my, W, H);
+}
+function hideStageTip(){ tip.style.opacity = 0; ov.selectAll('.hl').remove(); }
+
+// ---------------- globe drag ----------------
 let drag = null;
-stage.addEventListener('pointerdown', ev => { if (state.view === 'hist') return; drag = { x: ev.clientX, y: ev.clientY, rot: state.rot.slice() }; });
-addEventListener('pointerup', () => { if (drag){ drag = null; render(); } });
+stage.addEventListener('pointerdown', ev => { drag = { x: ev.clientX, y: ev.clientY, rot: state.rot.slice(), type: ev.pointerType, moved: false }; });
+addEventListener('pointerup', ev => {
+  if (!drag) return; const d = drag; drag = null;
+  if (d.type !== 'mouse' && !d.moved){ const r = stage.getBoundingClientRect(); stageTip(ev.clientX - r.left, ev.clientY - r.top); return; } // tap shows the tooltip
+  if (d.moved && state.view !== 'hist') render();
+});
 stage.addEventListener('pointermove', ev => {
   const r = stage.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
-  if (drag && ev.pointerType === 'mouse'){ const k = 70/proj.scale()*1.6; state.rot = [drag.rot[0] + (ev.clientX - drag.x)*k, Math.max(-90, Math.min(90, drag.rot[1] - (ev.clientY - drag.y)*k))]; render(true); tip.style.opacity = 0; return; }
-  let html = null;
-  if (state.view === 'hist'){ const s = histHover(mx, my); if (s){ const d = new Date(s.ms).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', timeZone:'UTC' });
-      html = `<div class="t">${d}</div><div class="m">Peak Kp ${kpStr(s.kp)} · G${gOf(s.t)} · ${s.len} day${s.len > 1 ? 's' : ''}</div><div>Seen on the horizon down to about ${viewLat(s.kp).toFixed(0)}° magnetic latitude</div>`; } }
-  else { const dx = mx - proj.translate()[0], dy = my - proj.translate()[1];
-    if (dx*dx + dy*dy < proj.scale()**2){ const ll = proj.invert([mx, my]); if (ll){
-      const [lon, lat] = ll, now = Date.now();
-      let p; if (isModel()){ const [ml, mo] = cgm(lat, lon); p = modelP(ml, mltOf(mo, mssLon(now)), currentKpForModel()); } else p = ovAt(state.ov.g, lat, lon);
-      html = `<div class="t">${fmtLat(lat)}, ${Math.abs(lon).toFixed(1)}°${lon >= 0 ? 'E' : 'W'}</div><div class="m">${isModel() ? 'Sketch' : 'NOAA'}: ${pct(p)} chance overhead</div><div class="m">${sunAlt(now, lat, lon) < -12 ? 'Dark now' : sunAlt(now, lat, lon) < 0 ? 'Twilight now' : 'Daylight now'}</div>`; } } }
-  if (!html){ tip.style.opacity = 0; return; }
-  tip.innerHTML = html; tip.style.opacity = 1;
-  tip.style.left = Math.min(mx + 16, W - 230) + 'px'; tip.style.top = Math.min(my + 16, H - 90) + 'px';
+  if (drag && Math.hypot(ev.clientX - drag.x, ev.clientY - drag.y) > 6) drag.moved = true;
+  if (drag && drag.moved && drag.type === 'mouse' && state.view !== 'hist'){ const k = 70/proj.scale()*1.6; state.rot = [drag.rot[0] + (ev.clientX - drag.x)*k, Math.max(-90, Math.min(90, drag.rot[1] - (ev.clientY - drag.y)*k))]; render(true); hideStageTip(); return; }
+  if (ev.pointerType === 'mouse') stageTip(mx, my);
 });
-stage.addEventListener('pointerleave', () => tip.style.opacity = 0);
-
+stage.addEventListener('pointerleave', ev => { if (ev.pointerType === 'mouse') hideStageTip(); });
+document.addEventListener('pointerdown', ev => { if (!stage.contains(ev.target)) hideStageTip(); if (!document.getElementById('kpchart').contains(ev.target)) kptip.style.opacity = 0; });
 // ---------------- start ----------------
 layout(); sel.value = state.place.name; syncKp();
 const t0 = viewTarget(); state.rot = t0.rot; state.scale = t0.scale;
