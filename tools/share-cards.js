@@ -677,6 +677,28 @@ function flightDelaysCard(D) {
   </div>`;
 }
 
+function dominoCard(D) {
+  // Flight delays Part 2: of every 100 handed-down minutes, those still on board past the next flight in orange.
+  const w = D.hops.w, beyond = 100 - w.hop_1, s = 30, g = 6;
+  const sq = Array.from({ length: 100 }, (_, i) => `<rect x="${(i % 10) * (s + g)}" y="${Math.floor(i / 10) * (s + g)}" width="${s}" height="${s}" rx="4" fill="${i >= w.hop_1 ? C.orange : C.slateDark}"/>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 354px; grid-template-rows: 1fr auto; column-gap: 56px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 66px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; display: grid; gap: 14px; }
+    .chart p { font-size: 20px; color: ${C.sub}; } .chart b { color: ${C.mist}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · US flights · Part 2</p><h1>How a late plane spreads delay across the country</h1>
+      <p class="dek">Big hubs send delay out; smaller airports take it in. Plus Delta's and Southwest's meltdowns, day by day.</p></div>
+    <div class="chart"><svg width="354" height="354" viewBox="0 0 354 354">${sq}</svg>
+      <p><b>${beyond} of every 100</b> handed-down minutes ride on past the plane's next flight</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function blockbustersCard(D) {
   // Typical running time by five-year period: big live-action hits (orange) pull away from the typical U.S. film (sky).
   const P = D.table.filter((t) => t.label.includes("–")).map((t) => ({ ...t, mid: +t.label.slice(0, 4) + 2 }));
@@ -883,6 +905,8 @@ function homeCard() {
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
+  const dm = fs.readFileSync(path.join(ROOT, "travel/flight-delays-domino-effect/index.html"), "utf8");
+  const DM = JSON.parse(dm.match(/const D = (\{.*?\});\n/s)[1]);
   const bb = fs.readFileSync(path.join(ROOT, "culture/blockbusters-got-longer/index.html"), "utf8");
   const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
@@ -914,6 +938,7 @@ function homeCard() {
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
+    ["travel/flight-delays-domino-effect/share.png", dominoCard(DM)],
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
