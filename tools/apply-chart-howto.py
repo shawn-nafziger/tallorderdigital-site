@@ -24,7 +24,7 @@ NAMES = {  # guide page -> the name in the link ("How to read a <name>")
     "slope-chart": "slope chart", "heatmap": "heatmap", "waffle-chart": "waffle chart", "beeswarm": "beeswarm",
     "scatter-plot": "scatter plot", "dot-map": "dot map", "tile-grid-map": "tile grid map", "histogram": "histogram",
     "choropleth": "choropleth map",
-    "stacked-bar": "100% stacked bar",
+    "stacked-bar": "100% stacked bar", "waterfall": "waterfall chart",
 }
 LINKS = {
     "culture/blockbusters-got-longer": [("The gap between big hits and ordinary films more than tripled", "line-chart"),
@@ -35,6 +35,7 @@ LINKS = {
                                         ("Which one's readership grew the most", "line-chart")],
     "nba/check-the-take-heat-luck": [("Opponent shooting vs what their shot locations predict", "scatter-plot")],
     "nba/check-the-take-luka-unguardable": [("Shot making, every qualified player", "beeswarm")],
+    "nba/check-the-take-kessler-field-goal-percentage": [("split into shot location and finishing", "waterfall"), ("Finishing: eFG% minus expected", "beeswarm")],
     "nba/early-season-mirage-net-rating": [("Net rating after each game", "line-chart"),
                                            ("Net-rating rank after 4 games vs. final rank", "slope-chart")],
     "nba/every-season-starts-fast-pace-fouls": [("Pace: the first", "dumbbell")],  # day count changes when the story is updated

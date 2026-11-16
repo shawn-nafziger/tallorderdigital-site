@@ -271,6 +271,40 @@ ${rows}</svg>
   </div>`;
 }
 
+function takeKesslerCard(D) {
+  // eFG% waterfall: league average + shot location (outlined: a choice) + finishing (gray, luck band) = Kessler.
+  const P = D.split, W = 470, x = (v) => 10 + v * (W - 90) / 80;
+  const rows = [["League average", 0, P.lg, "total"], ["+ shot location", P.lg, P.x, "loc"], ["+ finishing", P.x, P.efg, "make"], ["= Kessler", 0, P.efg, "total"]];
+  const bars = rows.map(([lab, a, b, k], i) => { const y = 52 + i * 84, w = x(b) - x(a);
+    const band = k === "make" ? `<rect x="${x(P.x + P.make - 2 * P.se)}" y="${y - 16}" width="${x(P.x + P.make + 2 * P.se) - x(P.x + P.make - 2 * P.se)}" height="32" rx="16" fill="${C.sky}" fill-opacity=".28"/>` : "";
+    const bar = k === "total" ? `<rect x="${x(a)}" y="${y - 12}" width="${w}" height="24" rx="4" fill="${C.sky}"/>`
+      : k === "loc" ? `<rect x="${x(a) + 1.5}" y="${y - 10.5}" width="${w - 3}" height="21" rx="4" fill="none" stroke="${C.mist}" stroke-width="3"/>`
+      : `<rect x="${x(a)}" y="${y - 12}" width="${w}" height="24" rx="4" fill="${C.slateDark}" stroke="${C.sub}" stroke-width="1.5"/>`;
+    const txt = k === "total" ? b.toFixed(1) + "%" : (b - a > 0 ? "+" : "−") + Math.abs(b - a).toFixed(1);
+    const tx = k === "make" ? x(P.x + P.make + 2 * P.se) + 10 : x(b) + 10;
+    return `<text x="0" y="${y - 22}" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">${lab}</text>${band}${bar}
+      <text x="${tx}" y="${y + 8}" font-family="IBM Plex Mono" font-size="22" font-weight="600" fill="${C.mist}">${txt}</text>`; }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 80px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .verdict { font: 600 22px/1.35 "IBM Plex Mono"; color: ${C.mist}; margin-top: 18px; }
+    .chart { align-self: center; }
+    .key { font: 500 18px "IBM Plex Mono"; color: ${C.sub}; margin-top: 6px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Check the Take · NBA</p><h1>Kessler's ${P.efg.toFixed(0)}%: finishing or the shots?</h1>
+      <p class="dek">An average player taking Walker Kessler's shots would make ${P.x.toFixed(1)}%.</p>
+      <p class="verdict">Verdict: holds up, mostly because of where he shoots</p></div>
+    <div class="chart"><svg width="470" height="340" viewBox="0 0 470 340">
+${bars}</svg>
+      <p class="key">eFG% · band = luck range for finishing</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function startsFastCard(D) {
   // Pace dumbbells, one row per season: filled sky = first N days, open ring = rest of season.
   const S = D.seasons, days = D.model.days, vals = S.flatMap((r) => [r.early.pace, r.rest ? r.rest.pace : r.early.pace]);
@@ -871,6 +905,8 @@ function homeCard() {
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
   const tl = fs.readFileSync(path.join(ROOT, "nba/check-the-take-luka-unguardable/index.html"), "utf8");
   const TL = JSON.parse(tl.match(/const D = (\{.*?\});\n/s)[1]);
+  const tk = fs.readFileSync(path.join(ROOT, "nba/check-the-take-kessler-field-goal-percentage/index.html"), "utf8");
+  const TK = JSON.parse(tk.match(/const D = (\{.*?\});\n/s)[1]);
   const sf = fs.readFileSync(path.join(ROOT, "nba/every-season-starts-fast-pace-fouls/index.html"), "utf8");
   const SF = JSON.parse(sf.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
@@ -902,6 +938,7 @@ function homeCard() {
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
     ["nba/check-the-take-luka-unguardable/share.png", takeLukaCard(TL)],
+    ["nba/check-the-take-kessler-field-goal-percentage/share.png", takeKesslerCard(TK)],
     ["nba/every-season-starts-fast-pace-fouls/share.png", startsFastCard(SF)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
