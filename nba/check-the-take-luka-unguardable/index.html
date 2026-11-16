@@ -343,7 +343,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <strong>Outlined bar</strong>: more shooting chances. That's a choice, not luck, so it gets no luck color.<br>
         <span style="color:var(--ink-3);font-weight:600">Gray bar</span>: better shooting than last season. Within normal <button type="button" class="term" data-term="se">chance wobble</button> of his own standard (see below).<br>
         Shooting chances: field-goal attempts plus 0.44 × free-throw attempts, from season totals.<br>
-        Source: NBA Stats API box scores.</p>
+        Source: NBA.com box scores.</p>
     </figure>
   </section>
 
@@ -366,7 +366,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         No chip: within normal chance wobble, or fewer than 10 shots.<br>
         <span style="color:var(--navy);font-weight:600">Teal bars</span>: Dončić's FG%.<br>
         <strong>Tick mark</strong>: league FG% in that zone.<br>
-        Source: NBA Stats API shot locations.</p>
+        Source: NBA.com shot locations.</p>
     </figure>
     <div class="prose">
       <p>He also tops the league. Of the 78 qualified players with 100 or more shots, nobody beats what his shot locations predict by more. One honest caveat: with 78 players, about 3.5 would land beyond the luck line by chance alone, and 3 did: Dončić and two players running cold. A leaderboard this early is mostly noise. What makes Dončić's spot believable is last season: +5.7 pp on 1,457 shots, 3.6 times the wobble. He's a great shot-maker, and he was before this hot start.</p>
@@ -383,7 +383,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble.<br>
         <strong>Dots</strong>: one per player (78); Dončić is labeled.<br>
         Expected values: this season's league make rate in each zone, times 1.5 for threes.<br>
-        Source: NBA Stats API shot locations.</p>
+        Source: NBA.com shot locations.</p>
     </figure>
   </section>
 
@@ -424,7 +424,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble.<br>
         <strong>Dots</strong>: one per qualified player (309); Dončić and the leader are labeled.<br>
         <strong><button type="button" class="term" data-term="onoff">On/off</button></strong>: the team's <button type="button" class="term" data-term="net">net rating</button> with him on the floor minus without him.<br>
-        Source: NBA Stats API box scores (plus-minus and possessions).</p>
+        Source: NBA.com box scores (plus-minus and possessions).</p>
     </figure>
     <p class="callout">Lowe's take holds up where it matters: Dončić carries more of his offense than anyone and makes shots an average player wouldn't, and he did both last season too. What's not proven is the leap. The jump from 33.5 to 40.1 points a game leans on shooting that's within chance of his own normal, so expect something closer to last year's Luka. That's still the league's heaviest load, carried by an elite shot-maker.</p>
   </section>
@@ -432,7 +432,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> NBA Stats API box scores and shot locations via the open-source <code>nba_api</code> client, 2025-26 and 2026-27 through Nov 6. The numbers are frozen at that date from the site's Player Profile and Hot and Cold Shooters dashboards, which use the same data and math.</li>
+      <li><strong>Data:</strong> NBA.com box scores and shot locations via the open-source <code>nba_api</code> client, 2025-26 and 2026-27 through Nov 6. The numbers are frozen at that date from the site's Player Profile and Hot and Cold Shooters dashboards, which use the same data and math.</li>
       <li><strong>Usage:</strong> the NBA's per-game usage (share of team plays a player finishes while on the floor), weighted by minutes. A move of 4+ points counts as a role change.</li>
       <li><strong>Where the points come from:</strong> points = 2 × true shooting × shooting chances (FGA + 0.44 × FTA), all from season totals. Volume = the change in chances at last season's true shooting; shooting = this season's chances times the change in true shooting.</li>
       <li><strong>Shot making:</strong> actual eFG% minus expected eFG%, where each shot is valued at its own season's league make rate for its zone (rim, rest of paint, midrange, corner 3, above-the-break 3). It knows location, not defender distance or shot type. Its <button type="button" class="term" data-term="se">standard error</button> comes from the shot-by-shot spread (4.3 pp this season, 1.6 last season); the gap with himself combines both (4.6 pp). Beyond luck = more than 2 standard errors.</li>
@@ -466,7 +466,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>

@@ -351,7 +351,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <p class="source">Share of field-goal attempts by zone (free throws not included).<br>
         <span class="amber">Orange</span>: a change bigger than normal week-1 wobble for that zone.<br>
         <span class="amber-soft">Light orange</span>, "at the edge": at least 80% of the way there; probably real, not yet certain.<br>
-        Source: NBA Stats API shot data.</p>
+        Source: NBA.com shot data.</p>
     </figure>
   </section>
 
@@ -389,7 +389,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> every shot location from the 2025-26 regular season and 2026-27 through Oct 27 (56 games), from the NBA Stats API via the open-source <code>nba_api</code> client.</li>
+      <li><strong>Data:</strong> every shot location from the 2025-26 regular season and 2026-27 through Oct 27 (56 games), from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client.</li>
       <li><strong>Zones</strong> use the NBA's shot-zone labels: Rim = restricted area; Paint = the rest of the lane; Midrange = other 2s; corner and above-break 3s. Shares are of field-goal attempts, from totals. Backcourt heaves are left out.</li>
       <li><strong>Predictive test:</strong> 156 players with 40+ games and 30+ shots in their first 4 games of 2025-26; correlation between their first 4 games and games 5 to 82.</li>
       <li><strong>Wobble:</strong> how far a player's zone shares over his first 4 games typically sit from his full season (standard deviation): rim 8, paint 6, midrange 5, corner 3 5, above-break 3 7 percentage points. A change more than twice that is shown in orange; one at least 80% of the way there is light orange, "at the edge".</li>
@@ -423,7 +423,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>

@@ -344,7 +344,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 22 days.<br>
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
         No chip: within normal chance wobble.<br>
-        Source: NBA Stats API team box scores.</p>
+        Source: NBA.com team box scores.</p>
     </figure>
   </section>
 
@@ -366,7 +366,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 22 days.<br>
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
         No chip: within normal chance wobble.<br>
-        Source: NBA Stats API team box scores.</p>
+        Source: NBA.com team box scores.</p>
     </figure>
   </section>
 
@@ -390,7 +390,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
         No chip: within normal chance wobble.<br>
         Personal fouls include offensive fouls; technicals aren't counted.<br>
-        Source: NBA Stats API team box scores.</p>
+        Source: NBA.com team box scores.</p>
     </figure>
     <p class="callout">Judge a new season against the same days of past seasons, not against whole seasons. By that measure, 2026-27 is slower than last year and more three-heavy, and its whistles are within chance of last year's. We'll check again at the quarter mark.</p>
     <details>
@@ -402,7 +402,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> every regular-season team box score from the NBA Stats API via the open-source <code>nba_api</code> client: 2021-22 to 2025-26, and 2026-27 through Nov 10.</li>
+      <li><strong>Data:</strong> every regular-season team box score from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client: 2021-22 to 2025-26, and 2026-27 through Nov 10.</li>
       <li><strong>Windows:</strong> "the first 22 days" runs from each season's opening night through the same number of days 2026-27 has had (Oct 20 to Nov 10 this season). Each opening window has 157 to 164 games. "The rest of the season" is every later game.</li>
       <li><strong>Rates come from <button type="button" class="term" data-term="totals">totals</button></strong>, never averages of per-game rates. Possessions are estimated from the box score (FGA + 0.44 × FTA − offensive rebounds + turnovers, averaged over both teams), the same formula for every season. That estimate runs about 1.1% above the NBA's own count, so it's scaled to match the NBA's count over the full 2025-26 season. The scaling is the same for every season, so it can't change a comparison.</li>
       <li><strong>Fouls and free throws</strong> are per team per 100 possessions. Free-throw rate here is FTr = FTA ÷ FGA, not FT ÷ FGA.</li>
@@ -436,7 +436,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>

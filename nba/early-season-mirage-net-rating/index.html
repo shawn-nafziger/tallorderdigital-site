@@ -312,7 +312,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       </div>
       <div class="chart" id="fan"></div>
       <div class="legend"><span><i style="background:var(--amber)"></i><span id="fan-legend-team">Chicago Bulls</span></span><span><i style="background:var(--ghost);opacity:.6"></i>Other teams</span><span><i class="bar"></i><button type="button" class="term" data-term="range">90% range</button> for an average team, from luck alone</span></div>
-      <p class="source">Net rating = 100 × (points − opponent points) ÷ possessions, from cumulative totals. Source: NBA Stats API.</p>
+      <p class="source">Net rating = 100 × (points − opponent points) ÷ possessions, from cumulative totals. Source: NBA.com statistics.</p>
     </figure>
   </section>
 
@@ -333,7 +333,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       </div>
       <div class="chart" id="curve"></div>
       <div class="legend"><span><i id="curve-key" style="background:var(--s1)"></i>Five-season average</span><span><i style="background:var(--ghost);opacity:.6"></i>Single seasons, 2021-22 to 2025-26</span></div>
-      <p class="source">Correlation of each team's rating over games 1–k with its rating over games k+1–82, regular seasons 2021-22 to 2025-26. Source: NBA Stats API.</p>
+      <p class="source">Correlation of each team's rating over games 1–k with its rating over games k+1–82, regular seasons 2021-22 to 2025-26. Source: NBA.com statistics.</p>
     </figure>
   </section>
 
@@ -399,7 +399,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> every regular-season game from 2021-22 to 2025-26 (6,150 games) and 2026-27 through Oct 27 (56 games), from the NBA Stats API via the open-source <code>nba_api</code> client. 2019-20 and 2020-21 are excluded (bubble, shortened schedules, empty arenas).</li>
+      <li><strong>Data:</strong> every regular-season game from 2021-22 to 2025-26 (6,150 games) and 2026-27 through Oct 27 (56 games), from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client. 2019-20 and 2020-21 are excluded (bubble, shortened schedules, empty arenas).</li>
       <li><strong>Ratings</strong> are built from cumulative totals, never averages of single-game ratings. Possessions are estimated as FGA + 0.44 × FTA − offensive rebounds + turnovers. Against the NBA's own possession counts for 2025-26, season net ratings differ by at most 0.15 and every team's rank is identical.</li>
       <li><strong>Predictive test:</strong> Pearson correlation across the 30 teams between games 1–k and games k+1–82, so the early games never appear on both sides.</li>
       <li><strong>Noise model:</strong> a team's single-game net rating varies by about <span id="m-noise">14.4</span> points (standard deviation), while true team quality varies by about <span id="m-true">5.0</span>. Signal and noise are equal at about <span id="m-khalf">8</span> games, consistent with the correlation curve.</li>
@@ -433,7 +433,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>

@@ -332,7 +332,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <p class="source"><span class="amber">Orange</span>: Lendeborg, this season.<br>
         <span style="color:var(--navy);font-weight:600">Teal</span>: the 17 rookies who averaged 30+ minutes; hollow rings are this season's rookies so far.<br>
         <span style="color:var(--ink-3);font-weight:600">Gray</span>: every other rookie with 40+ games.<br>
-        Source: NBA Stats API.</p>
+        Source: NBA.com statistics.</p>
     </figure>
   </section>
 
@@ -390,7 +390,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <div class="legend"><span><i class="dot" style="background:var(--navy)"></i>A 2025-26 rookie</span><span><i style="background:var(--amber);width:3px;height:12px"></i>Lendeborg's first five games</span></div>
       <div class="panels two" id="five"></div>
       <p class="source"><strong><button type="button" class="term" data-term="r">Correlation</button></strong>: runs from 0 (no relationship) to 1 (the first five games predict the rest exactly).<br>
-        Source: NBA Stats API box scores.</p>
+        Source: NBA.com box scores.</p>
     </figure>
     <p class="callout">History says a 24-year-old rookie arrives as a role player and doesn't change much. Five games in, Lendeborg's minutes say otherwise. Watch whether the scoring holds.</p>
   </section>
@@ -398,7 +398,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> NBA Stats API season totals, 2020-21 to 2025-26 and 2026-27 through Oct 28, with each player's age, debut season and draft pick, via the open-source <code>nba_api</code> client.</li>
+      <li><strong>Data:</strong> NBA.com season totals, 2020-21 to 2025-26 and 2026-27 through Oct 28, with each player's age, debut season and draft pick, via the open-source <code>nba_api</code> client.</li>
       <li><strong>Rookie</strong> = a player's first season with an NBA appearance. <strong>Age</strong> is the age the NBA reports for that season.</li>
       <li><strong>Rates come from totals:</strong> points per 36 = 36 × points ÷ minutes; true shooting = points ÷ (2 × (FGA + 0.44 × FTA)); usage is weighted by minutes.</li>
       <li><strong>Growth:</strong> change in points per 36 from year 1 to year 3, for players with 500+ minutes in both seasons. The "per extra year of age" figure is a regression of that change on age at entry and draft position; it's about twice its standard error (0.24), so a modest but real effect.</li>
@@ -432,7 +432,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
   <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
   <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
   <p><a href="../../">More stories</a></p>
