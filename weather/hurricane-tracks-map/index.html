@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hurricane Tracks Map: Every Storm Since 1851 · Tall Order Digital</title>
+<meta name="description" content="Every Atlantic storm since 1851 and Pacific storm since 1949, 2,927 in all, on one map. 144 hurricanes passed within 50 miles of Florida.">
+<link rel="canonical" href="https://tallorderdigital.com/weather/hurricane-tracks-map/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Every hurricane since 1851">
+<meta property="og:description" content="Every Atlantic storm since 1851 and Pacific storm since 1949, 2,927 in all, on one map. 144 hurricanes passed within 50 miles of Florida.">
+<meta property="og:url" content="https://tallorderdigital.com/weather/hurricane-tracks-map/">
+<meta property="og:image" content="https://tallorderdigital.com/weather/hurricane-tracks-map/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Every Atlantic and eastern Pacific tropical storm and hurricane track from 1851 to 2025 on a dark map, colored by strength. Thousands of lines curve west through the Caribbean and Gulf of Mexico and bend northeast along the US East Coast, while Pacific storms run west off Mexico.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every hurricane since 1851">
+<meta name="twitter:description" content="Every Atlantic storm since 1851 and Pacific storm since 1949, 2,927 in all, on one map. 144 hurricanes passed within 50 miles of Florida.">
+<meta name="twitter:image" content="https://tallorderdigital.com/weather/hurricane-tracks-map/share.png">
+<meta name="twitter:image:alt" content="Every Atlantic and eastern Pacific tropical storm and hurricane track from 1851 to 2025 on a dark map, colored by strength. Thousands of lines curve west through the Caribbean and Gulf of Mexico and bend northeast along the US East Coast, while Pacific storms run west off Mexico.">
+<meta name="theme-color" content="#050914">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Site-shell tokens, fixed to dark: this showpiece is dark-only, so the shared header, share row, subscribe card
+     and footer use the dark palette whatever the reader's theme (same rule as the daylight showpiece). */
+  --ink-2:#DDDAD3;--ink-3:#9FB1B8;--rule:#1E3A44;--surface:#0c1324;--amber:#F99A2B;--ghost:#3A5762;--navy:#7FC4D6;--funnel:rgba(127,196,214,.28);
+  --logo-2:#7FC4D6;--logo-3:#4F8D9E;--logo-4:#2E6272;--logo-ink:#F3F4EF;--logo-sub:#DDDAD3;
+  --font-body:Inter,system-ui,sans-serif;--font-data:"JetBrains Mono",monospace;--font-display:"Barlow Semi Condensed",sans-serif;
+  --bg:#050914;--bg2:#0c1324;--line:#1d2742;--ink:#eef1fb;--ink2:#b9c0d9;--ink3:#8a93b2;
+  --hot:#ff9a3c;--sky:#8fd0ff;
+  /* Saffir-Simpson colors (strength at each point of a track) */
+  --c-x:#5d6b8a;--c-td:#4f86c6;--c-ts:#5fd0f0;--c-1:#fff3a6;--c-2:#ffd060;--c-3:#ff9a3c;--c-4:#ff5149;--c-5:#ff4fd8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1200px 600px at 75% -10%,#13254a 0%,transparent 60%),var(--bg);color:var(--ink);font:400 16.5px/1.6 Inter,system-ui,sans-serif;min-height:100vh}
+a{color:var(--sky)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+h1{font:700 clamp(36px,5.6vw,66px)/1.02 Fraunces,Georgia,serif;letter-spacing:-.02em;margin:22px 0 18px;max-width:1100px}
+h1 span{background:linear-gradient(90deg,#5fd0f0,#fff3a6 35%,#ff9a3c 65%,#ff4fd8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.answer{font-size:clamp(17px,2vw,19px);color:var(--ink);max-width:780px;margin:0 0 12px}
+.deck{font-size:clamp(16px,2vw,18px);color:var(--ink2);max-width:740px;margin:0 0 18px}
+.byline{font:400 13px "JetBrains Mono",monospace;color:var(--ink3);margin:0 0 6px}
+.crumbrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 0}
+.crumbs{font:400 13px Inter,sans-serif;color:var(--ink3)}
+.crumbs a{color:var(--ink2);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:22px 0 14px}
+.ctl-label{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.combo{position:relative}
+.combo input{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;width:250px}
+.combo input::placeholder{color:var(--ink3)}
+.combo .clear{all:unset;cursor:pointer;position:absolute;right:4px;top:4px;width:36px;height:36px;display:grid;place-items:center;color:var(--ink3);font-size:18px;border-radius:8px}
+.combo .clear:hover{color:var(--ink)}
+.combo .clear[hidden]{display:none}
+.combo ul{position:absolute;z-index:20;top:48px;left:0;width:300px;max-height:340px;overflow-y:auto;margin:0;padding:6px;list-style:none;background:#0e1630;border:1px solid #2c3a64;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.combo li{padding:9px 10px;border-radius:7px;cursor:pointer;font:400 14.5px Inter,sans-serif;color:var(--ink2);display:flex;justify-content:space-between;gap:10px}
+.combo li small{font:400 11px "JetBrains Mono",monospace;color:var(--ink3);align-self:center;white-space:nowrap}
+.combo li[aria-selected="true"]{background:#22305a;color:var(--ink)}
+.combo li.none{cursor:default;color:var(--ink3)}
+@media (max-width:520px){.combo input{width:min(260px,62vw)}.combo ul{width:min(300px,86vw)}}
+.seg{display:inline-flex;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:3px;height:44px}
+.seg button{all:unset;cursor:pointer;padding:0 12px;border-radius:7px;font:500 14px Inter,sans-serif;color:var(--ink2);display:flex;align-items:center;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:#22305a;color:var(--ink)}
+.yearbox{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 10px}
+.yearbox input{font:500 14px "JetBrains Mono",monospace;width:64px;height:32px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:6px;text-align:center;-moz-appearance:textfield}
+.yearbox input::-webkit-inner-spin-button{display:none}
+.yearbox .to{color:var(--ink3);font-size:13px}
+.yearbox button{all:unset;cursor:pointer;font:500 12px "JetBrains Mono",monospace;color:var(--ink3);padding:4px 6px;border-radius:6px}
+.yearbox button:hover{color:var(--ink)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.story{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;background:linear-gradient(180deg,rgba(34,48,90,.55),rgba(18,26,52,.55));border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 14px;min-height:118px}
+.story .n{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--hot)}
+.story p{margin:0;color:var(--ink2);font-size:15.5px;max-width:800px}
+.story p b{color:var(--ink)}
+.step h2{font:700 22px/1.2 Fraunces,Georgia,serif;margin:4px 0 4px}
+.js .step{display:none}.js .step.on{display:block}
+.step + .step{margin-top:18px}.js .step + .step{margin-top:0}
+.stepnav{display:flex;align-items:center;gap:8px}
+.dots{display:flex;gap:6px;margin-right:6px}
+.dots button{all:unset;cursor:pointer;width:10px;height:10px;border-radius:50%;background:#2c3a64;padding:0}
+.dots button[aria-current="true"]{background:var(--hot);box-shadow:0 0 10px rgba(255,154,60,.7)}
+.navbtn{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink);font-size:18px;background:var(--bg2)}
+.navbtn.primary{background:var(--hot);color:#1a0e03;border-color:var(--hot);width:auto;padding:0 20px;border-radius:999px;font:600 15px Inter,sans-serif;gap:6px}
+@media (max-width:720px){.stepnav{justify-content:space-between}}
+.stage{position:relative;border-radius:16px 16px 0 0;overflow:hidden;background:#03060f;border:1px solid var(--line);border-bottom:0;box-shadow:0 30px 80px rgba(0,0,0,.45);touch-action:pan-y}
+.stage canvas{position:absolute;left:0;top:0}
+.stage svg{position:relative;display:block}
+#still{display:block;width:100%;height:auto}
+.stage.live #still{display:none}
+.stage .yr{font:700 44px Fraunces,Georgia,serif;fill:rgba(238,241,251,.9)}
+.stage .lbl{font:500 12px Inter,sans-serif;fill:var(--ink);paint-order:stroke;stroke:rgba(3,6,15,.9);stroke-width:4px;stroke-linejoin:round}
+.stage .lbl-s{font:400 11px "JetBrains Mono",monospace;fill:var(--ink2);paint-order:stroke;stroke:rgba(3,6,15,.9);stroke-width:4px;stroke-linejoin:round}
+.pin{fill:#fff;stroke:#03060f;stroke-width:2}
+.ring{fill:rgba(255,255,255,.05);stroke:#fff;stroke-width:1.2;stroke-dasharray:4 3}
+.stateline{fill:rgba(255,255,255,.04);stroke:#fff;stroke-width:1.2}
+.timeline{position:relative;background:#03060f;border:1px solid var(--line);border-top:1px solid #121a33;border-radius:0 0 16px 16px;padding:6px 0 0;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.timeline svg{display:block}
+.timeline text{font:400 10.5px "JetBrains Mono",monospace;fill:var(--ink3)}
+.timeline .ann{stroke:rgba(255,255,255,.35);stroke-dasharray:2 3}
+.timeline .ann-t{fill:var(--ink2)}
+.timeline .selection{fill:rgba(255,255,255,.07);stroke:rgba(255,255,255,.4)}
+.timeline .handle{fill:rgba(255,255,255,.5)}
+.tip{position:absolute;pointer-events:none;background:rgba(9,13,30,.95);border:1px solid #2c3a64;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:180px;max-width:260px;opacity:0;transition:opacity .08s;z-index:5}
+.tip .t{font:600 13.5px Inter,sans-serif}
+.tip .m{font:400 12px "JetBrains Mono",monospace;color:var(--ink2)}
+.chip{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.legend{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap;margin:12px 0 0;font:400 12.5px Inter,sans-serif;color:var(--ink3)}
+.legend .k{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.legend[hidden]{display:none!important}
+.legend .k i{display:inline-block;width:22px;height:4px;border-radius:2px}
+.panel{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0 8px}
+.cell{background:var(--bg2);padding:14px 16px}
+.cell .k{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.cell .v{font:700 clamp(22px,3vw,30px)/1.1 Fraunces,Georgia,serif;margin:5px 0 3px}
+.cell .s{font-size:13px;color:var(--ink2);line-height:1.4}
+@media (max-width:820px){.panel{grid-template-columns:repeat(2,1fr)}}
+.near{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 0;padding:0;list-style:none}
+.near button{all:unset;cursor:pointer;font:400 13px Inter,sans-serif;color:var(--ink2);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:6px 11px;min-height:20px}
+.near button:hover,.near button[aria-pressed="true"]{color:var(--ink);border-color:#56628c}
+.near-h{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:14px 0 0}
+.controls,.stepnav,.legend,.panel,.near-wrap,.timeline{display:none}.js .controls,.js .stepnav,.js .legend{display:flex}.js .panel{display:grid}.js .near-wrap,.js .timeline{display:block}
+.js .stage{border-radius:16px 16px 0 0}.stage{border-radius:16px;border-bottom:1px solid var(--line)}.js .stage{border-bottom:0}
+h2.sec{font:700 26px/1.2 Fraunces,Georgia,serif;margin:46px 0 10px}
+.prose{max-width:720px;color:var(--ink2)}
+.prose b{color:var(--ink)}
+details{border-top:1px solid var(--line);padding:6px 0;margin-top:26px}
+summary{cursor:pointer;font:600 15px Inter,sans-serif;padding:12px 0;min-height:44px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 10px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font:500 11px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left}
+td{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink2)}
+td small{color:var(--ink3)}
+#keys td,#keys th{white-space:normal}#keys td:first-child{font-family:Inter,sans-serif;color:var(--ink)}
+#keys td{text-align:left}
+.tw{overflow-x:auto}
+.tw.tall{max-height:520px;overflow-y:auto}
+caption{caption-side:top;text-align:left;font-size:14px;color:var(--ink2);padding:0 0 8px}
+.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.related a{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.related a span{display:block;font-size:13.5px;color:var(--ink2);margin-top:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.theme-toggle{display:none!important}
+/* Site chrome: shared with the rest of tallorderdigital.com */
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+/* Phone: with three nav items, the header wraps under the logo (same rule as assets/site.css). */
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+/* Showpiece overrides of the shared chrome: wider column, side padding, footer centered */
+.site-bar, .site-foot { max-width: 1136px; padding-left: 22px; padding-right: 22px; box-sizing: content-box; }
+@media (max-width: 1180px) { .site-bar, .site-foot { margin-left: 0; margin-right: 0; max-width: none; } }
+.site-foot { margin-top: 50px; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.subscribe h2 { font: 700 clamp(26px, 4vw, 32px)/.95 var(--font-display); text-transform: uppercase; margin: 0; }
+/* this page's <main> is not a grid, so space the end-of-story parts here (the shared rules assume a 56px grid gap) */
+main .share-row { margin: 44px 0 20px; }
+main .subscribe.sub-end { margin-top: 0; }
+.site-foot p { margin: 0; }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
+/* site-header:end */
+/* theme-toggle:start */
+/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+/* theme-toggle:end */
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
+</style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-16">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/weather/hurricane-tracks-map/#article","headline":"Every hurricane since 1851","description":"Every Atlantic storm since 1851 and Pacific storm since 1949, 2,927 in all, on one map. 144 hurricanes passed within 50 miles of Florida.","image":["https://tallorderdigital.com/weather/hurricane-tracks-map/share.png"],"datePublished":"2026-11-16","dateModified":"2026-11-16","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/weather/hurricane-tracks-map/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/weather/hurricane-tracks-map/#webpage","url":"https://tallorderdigital.com/weather/hurricane-tracks-map/","name":"Every hurricane since 1851","description":"Every Atlantic storm since 1851 and Pacific storm since 1949, 2,927 in all, on one map. 144 hurricanes passed within 50 miles of Florida.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/weather/hurricane-tracks-map/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"Weather","item":"https://tallorderdigital.com/weather/"},{"@type":"ListItem","position":3,"name":"Every hurricane since 1851","item":"https://tallorderdigital.com/weather/hurricane-tracks-map/"}],"@id":"https://tallorderdigital.com/weather/hurricane-tracks-map/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/" aria-current="page">Weather</a><a class="nav-topic" href="../../nba/">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main class="wrap">
+
+  <div class="crumbrow"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> › <a href="../">Weather</a> › Every hurricane since 1851</nav></div>
+  <h1>Every hurricane <span>since 1851</span></h1>
+  <p class="answer">NOAA’s hurricane database holds <b>2,927</b> tropical storms and hurricanes: 1,773 in the Atlantic from 1851 to 2025 and 1,154 in the eastern and central Pacific from 1949 to 2025. <b>1,583</b> became hurricanes and 602 became major hurricanes, Category 3 or stronger. Florida is the most exposed state: <b>144 hurricanes</b> have passed within 50 miles of it. The early record is incomplete, though: before satellites began watching in 1966, storms that were brief or stayed far out at sea were often missed.</p>
+  <p class="deck">The map below draws every one of those tracks, 87,631 positions in all, each segment colored by the storm’s strength at that moment. Pick a state or a city, or tap anywhere on the map, to see every storm that passed within 50 miles; drag across the timeline to pick a year or an era.</p>
+  <p class="byline">By Shawn Nafziger · Published <time datetime="2026-11-16">Nov. 16, 2026</time> · Data: NOAA National Hurricane Center HURDAT2, through the 2025 season</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
+
+  <div class="controls">
+    <label class="ctl-label" id="placeLbl" for="place">Near</label>
+    <div class="combo">
+      <input id="place" type="text" role="combobox" aria-expanded="false" aria-controls="placeList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="A state or city">
+      <button class="clear" id="placeClear" type="button" aria-label="Clear place" hidden>×</button>
+      <ul id="placeList" role="listbox" aria-labelledby="placeLbl" hidden></ul>
+    </div>
+    <div class="seg" role="group" aria-label="Ocean">
+      <button data-basin="both" aria-pressed="true">Both</button>
+      <button data-basin="AL" aria-pressed="false">Atlantic</button>
+      <button data-basin="EP" aria-pressed="false">Pacific</button>
+    </div>
+    <div class="seg" role="group" aria-label="Strength">
+      <button data-min="34" aria-pressed="true">All storms</button>
+      <button data-min="64" aria-pressed="false">Hurricanes</button>
+      <button data-min="96" aria-pressed="false">Major</button>
+    </div>
+    <div class="yearbox"><span class="ctl-label">Years</span><input id="y0" type="number" min="1851" max="2025" value="1851" aria-label="From year"><span class="to">to</span><input id="y1" type="number" min="1851" max="2025" value="2025" aria-label="To year"><button id="yAll" type="button">All</button></div>
+  </div>
+
+  <section class="story" aria-live="polite">
+    <div class="steps">
+      <article class="step on">
+        <div class="n">1 of 5</div>
+        <h2>What do 175 years of hurricanes look like?</h2>
+        <p>This. Every line is one storm, 2,927 of them, colored by strength: cyan for tropical storms, then yellow through red to pink for Category 1 to 5 hurricanes. Atlantic storms form off Africa or in the Caribbean, run west, then curve north and east along the US coast as the westerlies catch them. Pacific storms form off Mexico and mostly run west into open ocean. Hover over any track for its name and year.</p>
+      </article>
+      <article class="step">
+        <div class="n">2 of 5</div>
+        <h2>Where do the strongest hurricanes go?</h2>
+        <p>These are the 602 storms that became <b>major hurricanes</b>, Category 3 or stronger: 342 in the Atlantic and 260 in the Pacific. The hottest colors pile up in the Caribbean, the Gulf of Mexico and off southern Mexico, over the warmest water. The strongest winds in either record belong to Pacific Hurricane Patricia (2015), 215 mph; the Atlantic’s strongest are Allen (1980) and Melissa (2025), both 190 mph.</p>
+      </article>
+      <article class="step">
+        <div class="n">3 of 5</div>
+        <h2>How many storms did the old record miss?</h2>
+        <p>Many, and mostly small ones. Highlighted here are Atlantic storms that lasted <b>two days or less</b> at tropical-storm strength. From 1878 to 1943, before aircraft flew into storms, the database lists <b>0.8</b> of these a year; from 2001 to 2025 it lists <b>4.5</b>. Researchers trace most of that jump to better detection, not more storms: ships and coastlines saw few brief storms, satellites (from 1966) see all of them. Longer-lived storms rose less, from 7.6 to 11.8 a year, and estimates suggest up to about three hurricanes a year went unrecorded in the earliest decades.</p>
+      </article>
+      <article class="step">
+        <div class="n">4 of 5</div>
+        <h2>How often do hurricanes reach Hawaii?</h2>
+        <p>Rarely. Since 1949, 23 storms in any stage have passed within 50 miles of the islands, 10 of them at tropical-storm strength or more, and only <b>5 as hurricanes</b>: Dot (1959), Iwa (1982), <b>Iniki (1992)</b>, the only major hurricane, Douglas (2020) and Hone (2024). Most Pacific hurricanes weaken over cooler water before they get there. The Pacific record before 1971 is thin, too: it lists 4.1 hurricanes a year from 1949 to 1970 and 9.3 a year since.</p>
+      </article>
+      <article class="step">
+        <div class="n">5 of 5</div>
+        <h2>How many have passed near you?</h2>
+        <p><span data-k="lead">In <b data-k="place">Florida</b>, <b data-k="any">349</b> storms have passed within 50 miles in some stage, <b data-k="ts">322</b> of them at tropical-storm strength or more and <b data-k="hur">144</b> as hurricanes; <span data-k="major">58</span> were major hurricanes.</span> <span data-k="tail">Pick any state or city above, or tap the map, to see your own count; the chips under the map list the strongest.</span></p>
+      </article>
+    </div>
+    <div class="stepnav">
+      <div class="dots" id="dots"></div>
+      <button class="navbtn" id="prev" aria-label="Previous step">‹</button>
+      <button class="navbtn primary" id="next" aria-label="Next step">Next ›</button>
+    </div>
+  </section>
+
+  <div class="stage" id="stage">
+    <img id="still" src="map-all-storms.webp" width="1136" height="545" fetchpriority="high" alt="Every Atlantic tropical storm and hurricane since 1851 and eastern Pacific storm since 1949, 2,927 tracks on a dark map colored by strength. They sweep west through the Caribbean and Gulf of Mexico, curve northeast along the US East Coast, and run west off Mexico into the Pacific.">
+    <canvas id="base" aria-hidden="true"></canvas>
+    <canvas id="tracks" aria-hidden="true"></canvas>
+    <canvas id="hi" aria-hidden="true"></canvas>
+    <svg id="ov" role="img" aria-labelledby="ovDesc"><desc id="ovDesc">A map of the Atlantic and eastern Pacific Oceans with every recorded tropical storm and hurricane track, colored by strength. A chosen place shows as a pin with a 50-mile circle.</desc></svg>
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="timeline" id="timeline"><svg id="tl" aria-label="Storms per year, 1851 to 2025; drag to choose years"></svg></div>
+  <div class="legend" id="legend">
+    <span class="k"><i style="background:var(--c-ts)"></i>Tropical storm</span>
+    <span class="k"><i style="background:var(--c-1)"></i>Cat 1</span>
+    <span class="k"><i style="background:var(--c-2)"></i>Cat 2</span>
+    <span class="k"><i style="background:var(--c-3)"></i>Cat 3</span>
+    <span class="k"><i style="background:var(--c-4)"></i>Cat 4</span>
+    <span class="k"><i style="background:var(--c-5)"></i>Cat 5</span>
+    <span class="k"><i style="background:var(--c-td)"></i>Depression</span>
+    <span class="k"><i style="background:var(--c-x)"></i>Post-tropical</span>
+  </div>
+
+  <div class="legend" id="legend2" hidden>
+    <span class="k"><i style="background:#ff9a3c"></i>Lasted two days or less at tropical-storm strength</span>
+    <span class="k"><i style="background:#6f7fa8;opacity:.6"></i>Lasted longer</span>
+  </div>
+
+  <div class="panel" aria-live="polite">
+    <div class="cell"><div class="k" id="pK1">Storms shown</div><div class="v" id="pV1">—</div><div class="s" id="pS1"></div></div>
+    <div class="cell"><div class="k" id="pK2">Hurricanes</div><div class="v" id="pV2">—</div><div class="s" id="pS2"></div></div>
+    <div class="cell"><div class="k" id="pK3">Major hurricanes</div><div class="v" id="pV3">—</div><div class="s" id="pS3"></div></div>
+    <div class="cell"><div class="k" id="pK4">Strongest</div><div class="v" id="pV4">—</div><div class="s" id="pS4"></div></div>
+  </div>
+  <div class="near-wrap"><p class="near-h" id="nearH">Strongest storms shown</p><ul class="near" id="near"></ul></div>
+
+  <h2 class="sec">How many storms are in the hurricane record?</h2>
+  <p class="prose">2,927 tropical storms and hurricanes, through the 2025 season, or 3,266 systems in all once tropical depressions that never grew into storms are counted. The Atlantic list starts in 1851 and the eastern and central Pacific list in 1949; both are kept by NOAA’s National Hurricane Center as HURDAT2, and both were last updated Feb. 27, 2026. Wind speeds are 1-minute sustained winds, rounded as the National Hurricane Center rounds them.</p>
+  <div class="tw"><table id="keys">
+    <caption>The two records side by side. A major hurricane is Category 3 or stronger.</caption>
+    <thead><tr><th></th><th>Atlantic</th><th>Eastern and central Pacific</th></tr></thead>
+    <tbody>
+<tr><td>Years in the record</td><td>1851–2025 (175 seasons)</td><td>1949–2025 (77 seasons)</td></tr>
+<tr><td>Tropical storms and hurricanes</td><td>1,773</td><td>1,154</td></tr>
+<tr><td>Hurricanes (74 mph or more)</td><td>980</td><td>603</td></tr>
+<tr><td>Major hurricanes (Category 3+, 111 mph or more)</td><td>342</td><td>260</td></tr>
+<tr><td>Category 5 (157 mph or more)</td><td>45</td><td>24</td></tr>
+<tr><td>Strongest winds</td><td>Melissa (2025) and Allen (1980): 190 mph</td><td>Patricia (2015): 215 mph</td></tr>
+<tr><td>Lowest pressure</td><td>Wilma (2005): 882 mb</td><td>Patricia (2015): 872 mb</td></tr>
+<tr><td>Busiest season</td><td>2020: 30 storms, 14 hurricanes</td><td>1992: 27 storms, 16 hurricanes</td></tr>
+<tr><td>Longest at tropical-storm strength or more</td><td>Unnamed (1899): 27.9 days</td><td>John (1994): 28.8 days</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">Which states get the most hurricanes?</h2>
+  <p class="prose">Florida, by a wide margin: 144 hurricanes have passed within 50 miles of it since 1851, 58 of them major. Louisiana, North Carolina and Texas follow. The counts include storms that brushed the coast without making landfall, and the first column counts every stage, including depressions and the post-tropical remnants that carry rain far inland; that’s how Indiana logs 43 storms. “Strongest nearby” is the highest wind recorded within 50 miles of the state.</p>
+  <div class="tw tall"><table id="states">
+    <caption>Storms whose center passed within 50 miles of each state or territory, 1851–2025 (Hawaii: 1949–2025).</caption>
+    <thead><tr><th>State</th><th>Any stage</th><th>Tropical storm+</th><th>Hurricanes</th><th>Major</th><th>Strongest nearby</th></tr></thead>
+    <tbody>
+<tr><td>Florida</td><td>349</td><td>322</td><td>144</td><td>58</td><td>Unnamed (1935), 185 mph</td></tr>
+<tr><td>Louisiana</td><td>177</td><td>160</td><td>79</td><td>26</td><td>Camille (1969), 175 mph</td></tr>
+<tr><td>North Carolina</td><td>259</td><td>188</td><td>76</td><td>13</td><td>Helene (1958), 140 mph</td></tr>
+<tr><td>Texas</td><td>161</td><td>140</td><td>73</td><td>25</td><td>Unnamed (1880), 150 mph</td></tr>
+<tr><td>South Carolina</td><td>210</td><td>146</td><td>53</td><td>12</td><td>Helene (1958), 150 mph</td></tr>
+<tr><td>Georgia</td><td>219</td><td>164</td><td>50</td><td>11</td><td>Michael (2018), 155 mph</td></tr>
+<tr><td>Alabama</td><td>167</td><td>127</td><td>49</td><td>15</td><td>Michael (2018), 150 mph</td></tr>
+<tr><td>Mississippi</td><td>147</td><td>114</td><td>45</td><td>10</td><td>Camille (1969), 175 mph</td></tr>
+<tr><td>Puerto Rico</td><td>87</td><td>78</td><td>41</td><td>15</td><td>Irma (2017), 175 mph</td></tr>
+<tr><td>U.S. Virgin Islands</td><td>71</td><td>64</td><td>34</td><td>15</td><td>Irma (2017), 180 mph</td></tr>
+<tr><td>Virginia</td><td>165</td><td>94</td><td>26</td><td>0</td><td>Unnamed (1879), 110 mph</td></tr>
+<tr><td>Massachusetts</td><td>113</td><td>63</td><td>22</td><td>5</td><td>Gerda (1969), 120 mph</td></tr>
+<tr><td>New York</td><td>105</td><td>56</td><td>15</td><td>3</td><td>Unnamed (1938), 120 mph</td></tr>
+<tr><td>Maryland</td><td>112</td><td>56</td><td>14</td><td>0</td><td>Unnamed (1879), 105 mph</td></tr>
+<tr><td>Connecticut</td><td>73</td><td>45</td><td>13</td><td>3</td><td>Unnamed (1938), 120 mph</td></tr>
+<tr><td>Rhode Island</td><td>67</td><td>40</td><td>13</td><td>3</td><td>Unnamed (1869), 115 mph</td></tr>
+<tr><td>New Jersey</td><td>73</td><td>42</td><td>11</td><td>0</td><td>Unnamed (1944), 110 mph</td></tr>
+<tr><td>New Hampshire</td><td>64</td><td>32</td><td>10</td><td>0</td><td>Carol (1954), 105 mph</td></tr>
+<tr><td>Delaware</td><td>72</td><td>40</td><td>7</td><td>0</td><td>Unnamed (1879), 100 mph</td></tr>
+<tr><td>Maine</td><td>85</td><td>32</td><td>7</td><td>0</td><td>Unnamed (1869), 105 mph</td></tr>
+<tr><td>Hawaii</td><td>23</td><td>10</td><td>5</td><td>1</td><td>Iniki (1992), 135 mph</td></tr>
+<tr><td>Pennsylvania</td><td>84</td><td>35</td><td>4</td><td>0</td><td>Unnamed (1878), 90 mph</td></tr>
+<tr><td>Vermont</td><td>42</td><td>17</td><td>3</td><td>0</td><td>Unnamed (1938), 100 mph</td></tr>
+<tr><td>West Virginia</td><td>67</td><td>17</td><td>2</td><td>0</td><td>Unnamed (1878), 95 mph</td></tr>
+<tr><td>Arkansas</td><td>88</td><td>28</td><td>1</td><td>0</td><td>Unnamed (1909), 75 mph</td></tr>
+<tr><td>Washington, D.C.</td><td>35</td><td>14</td><td>1</td><td>0</td><td>Unnamed (1878), 95 mph</td></tr>
+<tr><td>Tennessee</td><td>97</td><td>21</td><td>0</td><td>0</td><td>Hugo (1989), 70 mph</td></tr>
+<tr><td>Missouri</td><td>55</td><td>7</td><td>0</td><td>0</td><td>Unnamed (1888), 60 mph</td></tr>
+<tr><td>Kentucky</td><td>69</td><td>7</td><td>0</td><td>0</td><td>Unnamed (1888), 60 mph</td></tr>
+<tr><td>Oklahoma</td><td>39</td><td>5</td><td>0</td><td>0</td><td>Unnamed (1900), 55 mph</td></tr>
+<tr><td>Ohio</td><td>49</td><td>5</td><td>0</td><td>0</td><td>Unnamed (1888), 50 mph</td></tr>
+<tr><td>Arizona</td><td>12</td><td>4</td><td>0</td><td>0</td><td>Nora (1997), 60 mph</td></tr>
+<tr><td>New Mexico</td><td>11</td><td>2</td><td>0</td><td>0</td><td>Unnamed (1929), 50 mph</td></tr>
+<tr><td>California</td><td>9</td><td>2</td><td>0</td><td>0</td><td>Nora (1997), 60 mph</td></tr>
+<tr><td>Indiana</td><td>43</td><td>1</td><td>0</td><td>0</td><td>Unnamed (1888), 55 mph</td></tr>
+<tr><td>Kansas</td><td>9</td><td>1</td><td>0</td><td>0</td><td>Unnamed (1900), 40 mph</td></tr>
+<tr><td>Illinois</td><td>47</td><td>1</td><td>0</td><td>0</td><td>Unnamed (1941), 40 mph</td></tr>
+<tr><td>Iowa</td><td>4</td><td>1</td><td>0</td><td>0</td><td>Unnamed (1900), 40 mph</td></tr>
+<tr><td>Michigan</td><td>23</td><td>1</td><td>0</td><td>0</td><td>Connie (1955), 45 mph</td></tr>
+<tr><td>Alaska</td><td>1</td><td>0</td><td>0</td><td>0</td><td>–</td></tr>
+<tr><td>Minnesota</td><td>1</td><td>0</td><td>0</td><td>0</td><td>–</td></tr>
+<tr><td>Wisconsin</td><td>6</td><td>0</td><td>0</td><td>0</td><td>–</td></tr>
+<tr><td>Nebraska</td><td>3</td><td>0</td><td>0</td><td>0</td><td>–</td></tr>
+<tr><td>Nevada</td><td>2</td><td>0</td><td>0</td><td>0</td><td>–</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">Hurricanes that passed within 50 miles of Hawaii</h2>
+  <p class="prose">Five since 1949, and one of them, Iniki, struck Kauai as a Category 4 on Sept. 11, 1992. The winds below are the strongest the record shows within 50 miles of the islands, read between the database’s six-hourly positions.</p>
+  <div class="tw"><table id="hawaii">
+    <thead><tr><th>Storm</th><th>Strongest within 50 mi</th><th>Strength there</th></tr></thead>
+    <tbody>
+<tr><td>Iniki (1992)</td><td>135 mph</td><td>Category 4</td></tr>
+<tr><td>Iwa (1982)</td><td>90 mph</td><td>Category 1</td></tr>
+<tr><td>Douglas (2020)</td><td>90 mph</td><td>Category 1</td></tr>
+<tr><td>Dot (1959)</td><td>90 mph</td><td>Category 1</td></tr>
+<tr><td>Hone (2024)</td><td>85 mph</td><td>Category 1</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">How much of the old record is missing?</h2>
+  <p class="prose">Some, and the gap is largest where storms were small, short or far from ships and land. Before 1944 storms were known only from ship logs and coastal reports; aircraft reconnaissance began that year and satellites in 1966, and modern satellite intensity estimates arrived in the 1970s. In the Atlantic, storms that lasted two days or less went from fewer than one a year in the late 1800s to about five a year since 2000, a jump researchers at NOAA attribute mainly to better detection. A 2021 study estimated that up to about three hurricanes a year may be missing from the earliest Atlantic decades. In the Pacific the record is considered reliable only from 1971. So a rising line in the table below is partly the ocean and partly the eyes on it.</p>
+  <div class="tw"><table id="decades">
+    <caption>Storms per decade in HURDAT2. “Short” means two days or less at tropical-storm strength or more. The 2020s cover 2020–2025.</caption>
+    <thead><tr><th rowspan="2">Decade</th><th colspan="4">Atlantic</th><th colspan="4">Pacific</th></tr>
+    <tr><th>Storms</th><th>Hurricanes</th><th>Major</th><th>Short</th><th>Storms</th><th>Hurricanes</th><th>Major</th><th>Short</th></tr></thead>
+    <tbody>
+<tr><td>1851–59</td><td>53</td><td>39</td><td>9</td><td>19</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1860–69</td><td>72</td><td>49</td><td>4</td><td>29</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1870–79</td><td>75</td><td>55</td><td>14</td><td>7</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1880–89</td><td>89</td><td>63</td><td>15</td><td>5</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1890–99</td><td>82</td><td>50</td><td>16</td><td>7</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1900–09</td><td>84</td><td>42</td><td>12</td><td>4</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1910–19</td><td>61</td><td>37</td><td>14</td><td>4</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1920–29</td><td>71</td><td>41</td><td>15</td><td>11</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1930–39</td><td>115</td><td>52</td><td>22</td><td>19</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
+<tr><td>1940–49 <small>(Pacific from 1949)</small></td><td>104</td><td>53</td><td>19</td><td>19</td><td>6</td><td>2</td><td>0</td><td>4</td></tr>
+<tr><td>1950–59</td><td>128</td><td>68</td><td>29</td><td>36</td><td>96</td><td>45</td><td>5</td><td>35</td></tr>
+<tr><td>1960–69</td><td>115</td><td>64</td><td>23</td><td>26</td><td>107</td><td>39</td><td>2</td><td>33</td></tr>
+<tr><td>1970–79</td><td>99</td><td>52</td><td>16</td><td>27</td><td>150</td><td>86</td><td>37</td><td>41</td></tr>
+<tr><td>1980–89</td><td>93</td><td>52</td><td>17</td><td>23</td><td>186</td><td>100</td><td>46</td><td>44</td></tr>
+<tr><td>1990–99</td><td>110</td><td>64</td><td>25</td><td>23</td><td>157</td><td>101</td><td>57</td><td>25</td></tr>
+<tr><td>2000–09</td><td>151</td><td>74</td><td>36</td><td>46</td><td>160</td><td>72</td><td>29</td><td>49</td></tr>
+<tr><td>2010–19</td><td>155</td><td>72</td><td>30</td><td>37</td><td>186</td><td>109</td><td>59</td><td>49</td></tr>
+<tr><td>2020–25</td><td>116</td><td>53</td><td>26</td><td>34</td><td>106</td><td>49</td><td>25</td><td>30</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">How to read the map</h2>
+  <div class="prose">
+    <p>Each line joins a storm’s recorded positions, usually every six hours, and each piece of line takes the color of the storm’s strength at its start: blue for a tropical depression, cyan for a tropical storm, then yellow, gold, orange, red and pink for hurricanes of Category 1 to 5. Gray marks the storm after it lost its tropical character. Where hundreds of tracks overlap, the colors stack up and glow.</p>
+    <p>“Within 50 miles” means the storm’s center passed within 50 miles of the place, or of any part of the state. A hurricane’s winds can reach well beyond that, and its rain much farther, so the counts are a measure of how often storms come close, not of damage.</p>
+  </div>
+
+  <details>
+    <summary>How this was made, and what the record can’t tell you</summary>
+    <div class="prose">
+      <p>The tracks are NOAA National Hurricane Center’s best-track database, HURDAT2: the Atlantic file for 1851–2025 and the Northeast and North Central Pacific file for 1949–2025, both released Feb. 27, 2026. Every position is drawn as recorded; nothing is smoothed or added. Strength categories follow the Saffir-Simpson scale applied to each position’s 1-minute sustained wind. Distances are measured from the storm’s center along the straight line between positions, sampled every five miles or so, and the wind “within 50 miles” is read along that line.</p>
+      <p><b>What the early record misses.</b> Before satellites, a storm was recorded only if a ship, an island or a coast met it. Landsea and colleagues (Journal of Climate, 2010) found that the rise in Atlantic storm counts since the late 1800s comes mainly from very short-lived storms, which earlier observers rarely caught; Vecchi and Knutson (2008, 2011) used historical ship tracks to estimate how many storms and hurricanes were likely missed between 1878 and 1965, and Vecchi and colleagues (Nature Communications, 2021) extended the estimate back to 1851. Wind speeds before reconnaissance aircraft are estimates, often from damage or pressure, and many are rounded. In 1851–1877, 31 Atlantic storms are known from a single position, shown as dots. Tropical depressions that never became storms appear in the Atlantic list only from 1966 and in the Pacific list only from 1988. The Pacific record before 1971, when steady satellite pictures began, is sparse; the National Hurricane Center treats 1971 as the start of its more reliable record.</p>
+      <p>So compare eras with care: the map shows where storms were seen, which before the 1960s is not the same as where storms were.</p>
+    </div>
+  </details>
+
+  <h2 class="sec">Related</h2>
+  <div class="related">
+    <a href="../year-of-daylight-hours/">A year of daylight, every minute of it<span>Every minute of a year of daylight, twilight and night for any place, in one live chart.</span></a>
+    <a href="../almanac/">Weather Almanac<span>Records, normals and today’s weather for hundreds of US places.</span></a>
+    <a href="../">All weather stories<span>More data stories about the weather and the sky.</span></a>
+  </div>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
+</main>
+
+<footer class="site-foot">
+  <p>Data: <a href="https://www.nhc.noaa.gov/data/#hurdat">NOAA National Hurricane Center, HURDAT2</a> (Atlantic 1851–2025, eastern and central Pacific 1949–2025). Map outlines: Natural Earth and US Census Bureau. Analysis: Tall Order Digital.</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../">More weather stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function(){
+"use strict";
+if (!window.d3 || !window.fetch) return;
+document.documentElement.classList.add('js');
+const STILL = /[?&]still\b/.test(location.search);
+const KT2MPH = 1.15078, R50 = 80.4672; // 50 miles in km
+const mph = kt => Math.round(kt * KT2MPH / 5) * 5;
+const CATCOL = { x:'#5d6b8a', td:'#4f86c6', ts:'#5fd0f0', 1:'#fff3a6', 2:'#ffd060', 3:'#ff9a3c', 4:'#ff5149', 5:'#ff4fd8' };
+const ORDER = ['x','td','ts',1,2,3,4,5];
+const WIDTH = { x:.7, td:.8, ts:.9, 1:1.1, 2:1.2, 3:1.4, 4:1.6, 5:1.8 };
+const ALPHA = { x:.22, td:.32, ts:.42, 1:.6, 2:.7, 3:.82, 4:.92, 5:1 };
+const TROP = new Set(['H','T','D','S','s']);
+function cls(w, st){ if (!TROP.has(st)) return 'x'; if (w < 34) return 'td'; if (w < 64) return 'ts'; return w < 83 ? 1 : w < 96 ? 2 : w < 113 ? 3 : w < 137 ? 4 : 5; }
+function catLabel(w){ if (w == null || w < 34) return 'Tropical depression'; if (w < 64) return 'Tropical storm'; return 'Category ' + (w < 83 ? 1 : w < 96 ? 2 : w < 113 ? 3 : w < 137 ? 4 : 5); }
+function catShort(w){ if (w < 34) return 'TD'; if (w < 64) return 'TS'; return 'Cat ' + (w < 83 ? 1 : w < 96 ? 2 : w < 113 ? 3 : w < 137 ? 4 : 5); }
+const MON = ['Jan.','Feb.','March','April','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+const fmtDate = d => MON[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
+const nf = d3.format(',');
+
+// ---------------- places ----------------
+const CITIES = [
+ ["Brownsville, TX",25.90,-97.50],["Corpus Christi, TX",27.80,-97.40],["San Antonio, TX",29.42,-98.49],["Austin, TX",30.27,-97.74],["Houston, TX",29.76,-95.37],["Galveston, TX",29.30,-94.80],["Beaumont, TX",30.08,-94.10],["Dallas, TX",32.78,-96.80],["El Paso, TX",31.76,-106.49],
+ ["Lake Charles, LA",30.23,-93.22],["Lafayette, LA",30.22,-92.02],["Baton Rouge, LA",30.45,-91.15],["New Orleans, LA",29.95,-90.07],
+ ["Jackson, MS",32.30,-90.18],["Gulfport, MS",30.37,-89.09],["Biloxi, MS",30.40,-88.89],["Mobile, AL",30.69,-88.04],["Birmingham, AL",33.52,-86.80],
+ ["Pensacola, FL",30.42,-87.22],["Panama City, FL",30.16,-85.66],["Tallahassee, FL",30.44,-84.28],["Jacksonville, FL",30.33,-81.66],["Daytona Beach, FL",29.21,-81.02],["Orlando, FL",28.54,-81.38],["Tampa, FL",27.95,-82.46],["St. Petersburg, FL",27.77,-82.64],["Sarasota, FL",27.34,-82.53],["Fort Myers, FL",26.64,-81.87],["Naples, FL",26.14,-81.79],["West Palm Beach, FL",26.71,-80.05],["Fort Lauderdale, FL",26.12,-80.14],["Miami, FL",25.76,-80.19],["Key West, FL",24.56,-81.78],
+ ["Atlanta, GA",33.75,-84.39],["Savannah, GA",32.08,-81.09],["Charleston, SC",32.78,-79.93],["Columbia, SC",34.00,-81.03],["Myrtle Beach, SC",33.69,-78.89],
+ ["Wilmington, NC",34.23,-77.94],["Cape Hatteras, NC",35.25,-75.53],["Raleigh, NC",35.78,-78.64],["Charlotte, NC",35.23,-80.84],["Asheville, NC",35.60,-82.55],
+ ["Norfolk, VA",36.85,-76.29],["Virginia Beach, VA",36.85,-75.98],["Richmond, VA",37.54,-77.44],["Washington, DC",38.91,-77.04],["Baltimore, MD",39.29,-76.61],["Ocean City, MD",38.34,-75.08],
+ ["Philadelphia, PA",39.95,-75.17],["Pittsburgh, PA",40.44,-80.00],["Atlantic City, NJ",39.36,-74.42],["New York, NY",40.71,-74.01],["Albany, NY",42.65,-73.75],["Hartford, CT",41.76,-72.67],["Providence, RI",41.82,-71.41],["Boston, MA",42.36,-71.06],["Hyannis, MA",41.65,-70.29],["Burlington, VT",44.48,-73.21],["Portland, ME",43.66,-70.26],["Bar Harbor, ME",44.39,-68.20],
+ ["Nashville, TN",36.16,-86.78],["Memphis, TN",35.15,-90.05],["Louisville, KY",38.25,-85.76],["Cincinnati, OH",39.10,-84.51],["Cleveland, OH",41.50,-81.69],["Indianapolis, IN",39.77,-86.16],["South Bend, IN",41.68,-86.25],["Chicago, IL",41.88,-87.63],["Detroit, MI",42.33,-83.05],["St. Louis, MO",38.63,-90.20],["Little Rock, AR",34.75,-92.29],["Oklahoma City, OK",35.47,-97.52],
+ ["San Diego, CA",32.72,-117.16],["Los Angeles, CA",34.05,-118.24],["Phoenix, AZ",33.45,-112.07],["Tucson, AZ",32.22,-110.97],["Yuma, AZ",32.69,-114.63],["Las Vegas, NV",36.17,-115.14],["Albuquerque, NM",35.08,-106.65],
+ ["Honolulu, HI",21.31,-157.86],["Hilo, HI",19.72,-155.08],["Kailua-Kona, HI",19.64,-155.99],["Kahului, HI",20.89,-156.47],["Lihue, HI",21.98,-159.37],
+ ["San Juan, Puerto Rico",18.47,-66.11],["Ponce, Puerto Rico",18.01,-66.61],["St. Thomas, USVI",18.34,-64.93],["St. Croix, USVI",17.75,-64.70],
+ ["Havana, Cuba",23.11,-82.37],["Nassau, Bahamas",25.05,-77.35],["Freeport, Bahamas",26.53,-78.70],["Kingston, Jamaica",17.97,-76.79],["Montego Bay, Jamaica",18.47,-77.92],["Santo Domingo, Dominican Rep.",18.49,-69.93],["Port-au-Prince, Haiti",18.54,-72.34],["George Town, Cayman Islands",19.29,-81.38],["Cockburn Town, Turks and Caicos",21.46,-71.14],
+ ["Hamilton, Bermuda",32.29,-64.78],["Philipsburg, Sint Maarten",18.03,-63.05],["St. John’s, Antigua",17.12,-61.85],["Pointe-à-Pitre, Guadeloupe",16.24,-61.53],["Fort-de-France, Martinique",14.60,-61.07],["Bridgetown, Barbados",13.10,-59.62],["Port of Spain, Trinidad",10.65,-61.52],["Willemstad, Curaçao",12.11,-68.93],
+ ["Cancún, Mexico",21.16,-86.85],["Cozumel, Mexico",20.42,-86.92],["Mérida, Mexico",20.97,-89.62],["Belize City, Belize",17.50,-88.20],["Roatán, Honduras",16.32,-86.53],["Veracruz, Mexico",19.17,-96.13],["Tampico, Mexico",22.25,-97.86],["Matamoros, Mexico",25.87,-97.50],["Monterrey, Mexico",25.69,-100.32],
+ ["Acapulco, Mexico",16.85,-99.88],["Manzanillo, Mexico",19.05,-104.32],["Puerto Vallarta, Mexico",20.65,-105.23],["Mazatlán, Mexico",23.25,-106.41],["La Paz, Mexico",24.14,-110.31],["Cabo San Lucas, Mexico",22.89,-109.91],
+ ["Halifax, Nova Scotia",44.65,-63.57],["St. John’s, Newfoundland",47.56,-52.71],["Ponta Delgada, Azores",37.74,-25.67]
+];
+const fold = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+
+// ---------------- state ----------------
+const state = { basin:'both', min:34, y0:1851, y1:2025, place:null, mode:'cat', durOnly:false, step:0, focus:null, hoverStorm:-1, pickStorm:-1 };
+let DATA, BASE, storms = [], STATES = {};
+const stage = document.getElementById('stage');
+const cBase = document.getElementById('base'), cTr = document.getElementById('tracks'), cHi = document.getElementById('hi');
+const svg = d3.select('#ov'), tip = document.getElementById('tip');
+let W = 0, H = 0, DPR = 1, proj, path, ctxB, ctxT, ctxH;
+
+Promise.all([fetch('tracks.json').then(r => r.json()), fetch('basemap.json').then(r => r.json())]).then(([t, b]) => {
+  DATA = t; BASE = b; decode(); buildPlaces(); setup();
+}).catch(e => { console.error(e); });
+
+function decode(){
+  const F = DATA.fields;
+  storms = DATA.storms.map((r, idx) => {
+    const o = {}; F.forEach((f, i) => o[f] = r[i]);
+    const n = o.dlat10.length, lat = new Float32Array(n), lon = new Float32Array(n), t = new Float64Array(n);
+    let a = 0, b = 0, tm = Date.UTC(+o.start.slice(0,4), +o.start.slice(4,6) - 1, +o.start.slice(6,8), +o.start.slice(8,10));
+    for (let i = 0; i < n; i++){ a += o.dlat10[i]; b += o.dlon10[i]; lat[i] = a / 10; lon[i] = b / 10; tm += o.dmin[i] * 6e4; t[i] = tm; }
+    const basin = o.id.slice(0,2) === 'AL' ? 'AL' : 'EP';
+    return { i: idx, id: o.id, name: o.name, year: +o.id.slice(-4), basin, peak: o.peak, minp: o.minp, tsH: o.tsHours, lat, lon, t, w: o.wind, st: o.stage, n };
+  });
+  for (const [sid, [name, hits]] of Object.entries(DATA.states)) STATES[sid] = { name, hits };
+}
+
+// ---------------- geometry helpers ----------------
+function pointHits(plat, plon){
+  // storms whose track passed within 50 miles of the point; returns [index, max wind within 50 mi, tropical?]
+  const out = [], kx = 111.32 * Math.cos(plat * Math.PI / 180), ky = 110.57;
+  const dLat = 1.2, dLon = 1.2 / Math.max(.2, Math.cos(plat * Math.PI / 180));
+  for (const s of storms){
+    let best = null;
+    for (let i = 0; i < s.n; i++){
+      const j = Math.min(i + 1, s.n - 1);
+      if (Math.min(s.lat[i], s.lat[j]) > plat + dLat || Math.max(s.lat[i], s.lat[j]) < plat - dLat) continue;
+      if (Math.min(s.lon[i], s.lon[j]) > plon + dLon || Math.max(s.lon[i], s.lon[j]) < plon - dLon) continue;
+      const steps = j === i ? 1 : 12;
+      for (let k = 0; k < steps; k++){
+        const f = j === i ? 0 : k / steps;
+        const la = s.lat[i] + (s.lat[j] - s.lat[i]) * f, lo = s.lon[i] + (s.lon[j] - s.lon[i]) * f;
+        const dx = (lo - plon) * kx, dy = (la - plat) * ky;
+        if (dx*dx + dy*dy <= R50*R50){
+          const w = Math.max(0, s.w[i]) * (1 - f) + Math.max(0, s.w[j]) * f;
+          const trop = TROP.has(f < .5 ? s.st[i] : s.st[j]);
+          const key = trop ? w : -1;
+          if (!best || key > best[3]) best = [s.i, Math.round(w), trop ? 1 : 0, key];
+        }
+      }
+    }
+    if (best) out.push(best.slice(0,3));
+  }
+  return out;
+}
+
+// ---------------- places list ----------------
+let PLACES = [];
+function buildPlaces(){
+  const sp = Object.entries(STATES).filter(([,v]) => v.hits.length).map(([id, v]) => ({ kind:'state', id, name: v.name === 'United States Virgin Islands' ? 'U.S. Virgin Islands' : v.name, sub:'State', n: v.hits.length }));
+  sp.forEach(p => { if (p.id === '72' || p.id === '78') p.sub = 'Territory'; if (p.id === '11') p.sub = 'District'; });
+  const cp = CITIES.map(([name, lat, lon]) => ({ kind:'point', name, lat, lon, sub:'City' }));
+  PLACES = sp.sort((a,b) => a.name.localeCompare(b.name)).concat(cp);
+}
+
+// ---------------- layout and projection ----------------
+const VIEWS = { both:[-182,12,3,60], AL:[-106,-6,6,56], EP:[-182,-84,2,40] };
+const VIEWS_PHONE = { both:[-138,-12,5,50], AL:[-100,-10,8,50], EP:[-165,-88,5,36] };
+function viewBox(){
+  if (state.focus) return state.focus;
+  return (W < 640 ? VIEWS_PHONE : VIEWS)[state.basin];
+}
+function layout(){
+  const r = stage.getBoundingClientRect();
+  W = Math.round(r.width); H = Math.round(W < 640 ? W * .7 : Math.max(300, Math.min(640, W * .48)));
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  for (const c of [cBase, cTr, cHi]){ c.width = W * DPR; c.height = H * DPR; c.style.width = W + 'px'; c.style.height = H + 'px'; }
+  ctxB = cBase.getContext('2d'); ctxT = cTr.getContext('2d'); ctxH = cHi.getContext('2d');
+  svg.attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+  stage.classList.add('live');
+  fitProjection();
+}
+function fitProjection(){
+  const [l0, l1, b0, b1] = viewBox();
+  const pts = []; for (let i = 0; i <= 10; i++) for (let j = 0; j <= 6; j++) pts.push([l0 + (l1 - l0) * i / 10, b0 + (b1 - b0) * j / 6]);
+  const cx = (l0 + l1) / 2;
+  proj = d3.geoNaturalEarth1().rotate([-cx, 0]).fitExtent([[8, 8], [W - 8, H - 8]], { type:'MultiPoint', coordinates: pts });
+  path = d3.geoPath(proj);
+  projectAll();
+}
+function projectAll(){
+  for (const s of storms){
+    const xy = s.xy || (s.xy = new Float32Array(s.n * 2));
+    for (let i = 0; i < s.n; i++){ const p = proj([s.lon[i], s.lat[i]]); xy[2*i] = p[0]; xy[2*i+1] = p[1]; }
+  }
+}
+
+// ---------------- base map ----------------
+function drawBase(){
+  const c = ctxB; c.setTransform(DPR, 0, 0, DPR, 0, 0);
+  const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#040814'); g.addColorStop(1, '#071022');
+  c.fillStyle = g; c.fillRect(0, 0, W, H);
+  const p = d3.geoPath(proj, c);
+  c.beginPath(); p(d3.geoGraticule().step([10, 10])()); c.strokeStyle = 'rgba(120,140,200,.07)'; c.lineWidth = .6; c.stroke();
+  c.beginPath(); p(BASE.land); c.fillStyle = '#0c1629'; c.fill(); c.strokeStyle = '#25395f'; c.lineWidth = .7; c.stroke();
+  c.beginPath(); p(BASE.countries); c.strokeStyle = 'rgba(70,95,150,.55)'; c.lineWidth = .5; c.stroke();
+  c.beginPath(); p(BASE.states); c.strokeStyle = 'rgba(70,95,150,.35)'; c.lineWidth = .4; c.stroke();
+}
+
+// ---------------- which storms are shown / highlighted ----------------
+function inFilter(s){
+  return (state.basin === 'both' || s.basin === state.basin) && s.year >= state.y0 && s.year <= state.y1 && s.peak >= 34;
+}
+function hitsNow(){
+  if (!state.place) return null;
+  if (!state.place.hits) state.place.hits = state.place.kind === 'state' ? STATES[state.place.id].hits : pointHits(state.place.lat, state.place.lon);
+  return state.place.hits;
+}
+function selection(){
+  // shown: in basin/year filter. lit: shown AND passes strength filter AND (near the place, if one is chosen) AND (short-lived, in step 3)
+  const hits = hitsNow(), near = hits ? new Map(hits.map(h => [h[0], h])) : null;
+  const shown = [], lit = [];
+  for (const s of storms){
+    if (!inFilter(s)) continue;
+    shown.push(s);
+    if (s.peak < state.min) continue;
+    if (state.durOnly && s.tsH > 48) continue;
+    if (near && !near.has(s.i)) continue;
+    lit.push(s);
+  }
+  return { shown, lit, near, hits };
+}
+
+// ---------------- tracks ----------------
+let SEL = null, binGrid = null;
+function strokeStorms(c, list, colorOf, alphaMul, widthMul){
+  // batch segments by class so we stroke each color once
+  const buckets = new Map(ORDER.map(k => [k, []]));
+  const dots = new Map(ORDER.map(k => [k, []]));
+  for (const s of list){
+    if (s.n === 1){ dots.get(cls(s.w[0], s.st[0])).push(s); continue; }
+    for (let i = 0; i < s.n - 1; i++) buckets.get(cls(s.w[i], s.st[i])).push(s, i);
+  }
+  for (const k of ORDER){
+    const arr = buckets.get(k); if (!arr.length && !dots.get(k).length) continue;
+    c.beginPath();
+    for (let q = 0; q < arr.length; q += 2){ const s = arr[q], i = arr[q+1]; c.moveTo(s.xy[2*i], s.xy[2*i+1]); c.lineTo(s.xy[2*i+2], s.xy[2*i+3]); }
+    c.strokeStyle = CATCOL[k]; c.globalAlpha = Math.min(1, ALPHA[k] * alphaMul); c.lineWidth = WIDTH[k] * widthMul; c.stroke();
+    if (dots.get(k).length){ c.fillStyle = CATCOL[k]; for (const s of dots.get(k)){ c.beginPath(); c.arc(s.xy[0], s.xy[1], 1.6, 0, 6.3); c.fill(); } }
+  }
+  c.globalAlpha = 1;
+}
+function strokeFlat(c, list, color, alpha, width){
+  c.beginPath();
+  for (const s of list){ c.moveTo(s.xy[0], s.xy[1]); for (let i = 1; i < s.n; i++) c.lineTo(s.xy[2*i], s.xy[2*i+1]); }
+  c.strokeStyle = color; c.globalAlpha = alpha; c.lineWidth = width; c.stroke(); c.globalAlpha = 1;
+}
+function zoomMul(){ const [l0, l1] = viewBox(); return Math.max(1, Math.min(2.2, Math.sqrt(120 / (l1 - l0)))); }
+function drawTracks(){
+  SEL = selection();
+  const c = ctxT; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, W, H);
+  const zm = zoomMul(), many = SEL.lit.length > 600, dim = SEL.lit.length < SEL.shown.length;
+  if (dim){ const litSet = new Set(SEL.lit); strokeFlat(c, SEL.shown.filter(s => !litSet.has(s)), '#6f7fa8', .1, .6 * zm); }
+  if (state.mode === 'dur'){
+    strokeFlat(c, SEL.lit, '#ff9a3c', .8, 1.1 * zm);
+  } else {
+    // dense views: low alpha so piled-up tracks build color instead of burning to white
+    const n = SEL.lit.length, am = (n > 1500 ? .26 : n > 600 ? .36 : n > 150 ? .6 : 1.1) * (DPR > 1.4 ? 1.4 : 1);
+    c.globalCompositeOperation = 'lighter';
+    strokeStorms(c, SEL.lit, null, am, (n > 600 ? 1 : 1.3) * zm);
+    c.globalCompositeOperation = 'source-over';
+  }
+  buildBins();
+}
+function buildBins(){
+  const cell = 14, cols = Math.ceil(W / cell) + 1, rows = Math.ceil(H / cell) + 1;
+  binGrid = { cell, cols, rows, b: new Map() };
+  const pool = SEL.lit.length ? SEL.lit : SEL.shown;
+  for (const s of pool){
+    for (let i = 0; i < s.n; i++){
+      const x = s.xy[2*i], y = s.xy[2*i+1]; if (x < -20 || y < -20 || x > W + 20 || y > H + 20) continue;
+      const j = Math.min(i + 1, s.n - 1);
+      const xa = Math.min(x, s.xy[2*j]), xb = Math.max(x, s.xy[2*j]), ya = Math.min(y, s.xy[2*j+1]), yb = Math.max(y, s.xy[2*j+1]);
+      for (let cx = Math.max(0, Math.floor(xa / cell)); cx <= Math.min(cols - 1, Math.floor(xb / cell)); cx++)
+        for (let cy = Math.max(0, Math.floor(ya / cell)); cy <= Math.min(rows - 1, Math.floor(yb / cell)); cy++){
+          const k = cy * cols + cx; let a = binGrid.b.get(k); if (!a) binGrid.b.set(k, a = []); a.push(s.i, i);
+        }
+    }
+  }
+}
+function nearestStorm(mx, my){
+  if (!binGrid) return null;
+  const { cell, cols } = binGrid, cx = Math.floor(mx / cell), cy = Math.floor(my / cell);
+  let best = null, bd = 12 * 12;
+  for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++){
+    const a = binGrid.b.get((cy + dy) * cols + (cx + dx)); if (!a) continue;
+    for (let q = 0; q < a.length; q += 2){
+      const s = storms[a[q]], i = a[q+1], j = Math.min(i + 1, s.n - 1);
+      const x1 = s.xy[2*i], y1 = s.xy[2*i+1], x2 = s.xy[2*j], y2 = s.xy[2*j+1];
+      const vx = x2 - x1, vy = y2 - y1, L = vx*vx + vy*vy;
+      let f = L ? ((mx - x1) * vx + (my - y1) * vy) / L : 0; f = Math.max(0, Math.min(1, f));
+      const ex = x1 + vx * f - mx, ey = y1 + vy * f - my, d = ex*ex + ey*ey;
+      // prefer stronger storms on ties so the famous ones are easy to find
+      const dd = d - s.peak / 400;
+      if (dd < bd){ bd = dd; best = { s, i, f }; }
+    }
+  }
+  return best;
+}
+function drawHi(){
+  const c = ctxH; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, W, H);
+  const k = state.hoverStorm >= 0 ? state.hoverStorm : state.pickStorm; if (k < 0) return;
+  const s = storms[k], zm = zoomMul();
+  c.lineCap = 'round'; c.lineJoin = 'round';
+  c.beginPath(); c.moveTo(s.xy[0], s.xy[1]); for (let i = 1; i < s.n; i++) c.lineTo(s.xy[2*i], s.xy[2*i+1]);
+  c.strokeStyle = 'rgba(3,6,15,.85)'; c.lineWidth = 6 * zm; c.stroke();
+  for (let i = 0; i < s.n - 1; i++){
+    const kk = cls(s.w[i], s.st[i]);
+    c.beginPath(); c.moveTo(s.xy[2*i], s.xy[2*i+1]); c.lineTo(s.xy[2*i+2], s.xy[2*i+3]);
+    c.strokeStyle = CATCOL[kk]; c.lineWidth = 3 * zm; c.stroke();
+  }
+  // start dot and name
+  c.fillStyle = '#fff'; c.beginPath(); c.arc(s.xy[0], s.xy[1], 3, 0, 6.3); c.fill();
+}
+
+// ---------------- overlay ----------------
+function drawOverlay(){
+  svg.selectAll('*:not(desc)').remove();
+  const p = state.place;
+  if (p && p.kind === 'state'){
+    const g = BASE.stateShapes[p.id];
+    if (g) svg.append('path').attr('class', 'stateline').attr('d', path(g));
+  }
+  if (p && p.kind === 'point'){
+    const circ = d3.geoCircle().center([p.lon, p.lat]).radius(R50 / 111.195)();
+    svg.append('path').attr('class', 'ring').attr('d', path(circ));
+    const [x, y] = proj([p.lon, p.lat]);
+    svg.append('circle').attr('class', 'pin').attr('cx', x).attr('cy', y).attr('r', 4.5);
+    const lab = p.name.replace(/, (Mexico|Cuba|Bahamas|Jamaica)$/, '');
+    svg.append('text').attr('class', 'lbl').attr('x', x + 9).attr('y', y - 9).attr('text-anchor', x > W - 140 ? 'end' : 'start').attr('dx', x > W - 140 ? -18 : 0).text(lab);
+  }
+  // annotate the hovered/picked storm
+  const k = state.hoverStorm >= 0 ? state.hoverStorm : state.pickStorm;
+  if (k >= 0 && state.hoverStorm < 0){
+    const s = storms[k]; let bi = 0; for (let i = 0; i < s.n; i++) if (s.w[i] > s.w[bi]) bi = i;
+    const x = s.xy[2*bi], y = s.xy[2*bi+1];
+    if (x > 0 && x < W && y > 0 && y < H)
+      svg.append('text').attr('class', 'lbl').attr('x', x).attr('y', y - 10).attr('text-anchor', x > W - 120 ? 'end' : x < 120 ? 'start' : 'middle').text(`${s.name} (${s.year}) · ${mph(s.peak)} mph peak`);
+  }
+  if (state.yearLabel != null) svg.append('text').attr('class', 'yr').attr('x', 24).attr('y', H - 22).text(state.yearLabel);
+}
+
+// ---------------- timeline ----------------
+const tl = d3.select('#tl');
+let tlX, brush, tlH = 112;
+function drawTimeline(){
+  const w = W, m = { l: 34, r: 12, t: 22, b: 22 }; tlH = W < 640 ? 96 : 112;
+  tl.attr('width', w).attr('height', tlH); tl.selectAll('*').remove();
+  const Y0 = state.basin === 'EP' ? 1949 : 1851, years = d3.range(Y0, 2026);
+  tlX = d3.scaleBand(years, [m.l, w - m.r]).paddingInner(W < 640 || Y0 === 1851 ? (W < 640 ? 0 : .15) : .2);
+  const shownBy = new Map(years.map(y => [y, 0])), litBy = new Map(years.map(y => [y, []]));
+  for (const s of storms){ if (!(state.basin === 'both' || s.basin === state.basin) || s.peak < 34) continue; shownBy.set(s.year, shownBy.get(s.year) + 1); }
+  const litSet = new Set(SEL.lit.map(s => s.i));
+  for (const s of storms){
+    if (!(state.basin === 'both' || s.basin === state.basin) || s.peak < 34) continue;
+    // the timeline shows every year, so test the lit rules without the year filter
+    if (s.peak < state.min) continue; if (state.durOnly && s.tsH > 48) continue;
+    if (SEL.near && !SEL.near.has(s.i)) continue;
+    litBy.get(s.year).push(s);
+  }
+  const maxN = d3.max(years, y => shownBy.get(y)) || 1;
+  const yS = d3.scaleLinear([0, maxN], [tlH - m.b, m.t]);
+  const g = tl.append('g');
+  // ghost bars: everything in the ocean filter
+  g.append('g').selectAll('rect').data(years).join('rect')
+    .attr('x', y => tlX(y)).attr('width', Math.max(1, tlX.bandwidth())).attr('y', y => yS(shownBy.get(y))).attr('height', y => yS(0) - yS(shownBy.get(y)))
+    .attr('fill', '#1b2647');
+  // lit bars stacked by peak class (or short-lived in step 3)
+  const bars = g.append('g');
+  for (const y of years){
+    const arr = litBy.get(y).slice().sort((a, b) => a.peak - b.peak); let acc = 0;
+    const inRange = y >= state.y0 && y <= state.y1;
+    for (const s of arr){
+      const k = state.mode === 'dur' ? null : cls(s.peak, 'H');
+      bars.append('rect').attr('x', tlX(y)).attr('width', Math.max(1, tlX.bandwidth())).attr('y', yS(acc + 1)).attr('height', Math.max(.5, yS(acc) - yS(acc + 1) - (tlX.bandwidth() > 3 ? .4 : 0)))
+        .attr('fill', k == null ? '#ff9a3c' : CATCOL[k]).attr('opacity', inRange ? .95 : .25);
+      acc++;
+    }
+  }
+  // axis
+  const ticks = (Y0 === 1949 ? [1950, 1970, 1990, 2010] : W < 640 ? [1860, 1900, 1950, 2000] : [1860, 1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020]);
+  g.append('g').selectAll('text').data(ticks).join('text').attr('x', y => tlX(y) + tlX.bandwidth() / 2).attr('y', tlH - 6).attr('text-anchor', 'middle').text(y => y);
+  g.append('text').attr('x', m.l - 6).attr('y', yS(maxN) + 4).attr('text-anchor', 'end').text(maxN);
+  g.append('text').attr('x', m.l - 6).attr('y', yS(0)).attr('text-anchor', 'end').text(0);
+  // milestones
+  const ann = state.basin === 'EP' ? [[1966, 'Satellites'], [1971, 'Reliable record']] : [[1944, 'Aircraft'], [1966, 'Satellites']];
+  if (state.basin === 'both') ann.push([1949, W < 640 ? '' : 'Pacific record']);
+  for (const [y, t] of ann){
+    const x = tlX(y);
+    g.append('line').attr('class', 'ann').attr('x1', x).attr('x2', x).attr('y1', m.t - 12).attr('y2', tlH - m.b);
+    const left = y === 1944 || (y === 1966 && state.basin === 'EP');
+    if (t) g.append('text').attr('class', 'ann-t').attr('x', x + (left ? -4 : 4)).attr('y', m.t - 6).attr('text-anchor', left ? 'end' : 'start').text(t);
+  }
+  // brush to choose years
+  brush = d3.brushX().extent([[m.l, 4], [w - m.r, tlH - m.b]]).on('end', ev => {
+    if (!ev.sourceEvent) return;
+    if (!ev.selection){
+      // a click without a drag picks the year under the pointer
+      const [mx] = d3.pointer(ev.sourceEvent, tl.node()); const y = years.find(y => mx >= tlX(y) - 1 && mx <= tlX(y) + tlX.step() + 1);
+      if (y) setYears(y, y); return;
+    }
+    const [a, b] = ev.selection, ys = years.filter(y => tlX(y) + tlX.bandwidth() >= a && tlX(y) <= b);
+    if (ys.length) setYears(ys[0], ys[ys.length - 1]);
+  });
+  const bg = tl.append('g').call(brush);
+  if ((state.y0 > Y0 || state.y1 !== 2025) && state.y1 >= Y0) bg.call(brush.move, [tlX(Math.max(Y0, state.y0)), tlX(state.y1) + tlX.bandwidth()]);
+}
+
+// ---------------- panel ----------------
+function setCell(n, k, v, s){ document.getElementById('pK'+n).textContent = k; document.getElementById('pV'+n).textContent = v; document.getElementById('pS'+n).textContent = s || ''; }
+function yearsText(){ const a = state.basin === 'EP' && state.y1 >= 1949 ? Math.max(state.y0, 1949) : state.y0; return (a === state.y1 ? String(a) : `${a}–${state.y1}`) + (state.basin === 'EP' && state.y1 < 1949 ? ' (Pacific record starts in 1949)' : ''); }
+function basinText(){ return state.basin === 'AL' ? 'Atlantic' : state.basin === 'EP' ? 'Pacific' : 'Atlantic and Pacific'; }
+let nearList = [];
+function panel(){
+  const yt = yearsText(), sub = `${basinText()}, ${yt}`;
+  if (!SEL.near){
+    const L = SEL.shown;
+    const hur = L.filter(s => s.peak >= 64).length, maj = L.filter(s => s.peak >= 96).length;
+    const top = L.slice().sort((a, b) => b.peak - a.peak || (a.minp || 9999) - (b.minp || 9999));
+    setCell(1, 'Storms shown', nf(L.length), sub);
+    setCell(2, 'Hurricanes', nf(hur), L.length ? Math.round(hur / L.length * 100) + '% of storms' : '');
+    setCell(3, 'Major hurricanes', nf(maj), 'Category 3 or stronger');
+    setCell(4, 'Strongest', top[0] ? mph(top[0].peak) + ' mph' : '—', top[0] ? `${top[0].name} (${top[0].year})` : '');
+    nearList = top.slice(0, 10).map(s => [s, s.peak]);
+    document.getElementById('nearH').textContent = 'Strongest storms shown';
+  } else {
+    const P = state.place.name;
+    const L = SEL.shown.filter(s => SEL.near.has(s.i)).map(s => [s, SEL.near.get(s.i)]);
+    const ts = L.filter(([, h]) => h[2] && h[1] >= 34), hur = L.filter(([, h]) => h[2] && h[1] >= 64), maj = L.filter(([, h]) => h[2] && h[1] >= 96);
+    const top = L.filter(([, h]) => h[2]).sort((a, b) => b[1][1] - a[1][1]);
+    const last = hur.slice().sort((a, b) => b[0].t[0] - a[0].t[0])[0];
+    setCell(1, 'Within 50 miles', nf(L.length), `storms in any stage, ${yt}`);
+    setCell(2, 'Hurricanes nearby', nf(hur.length), `${nf(ts.length)} at tropical-storm strength or more`);
+    setCell(3, 'Major hurricanes', nf(maj.length), 'Category 3+ within 50 miles');
+    setCell(4, last ? 'Latest hurricane' : 'Strongest nearby', last ? `${last[0].name}` : top[0] ? `${mph(top[0][1][1])} mph` : '—',
+      last ? `${last[0].year}, ${mph(last[1][1])} mph nearby` : top[0] ? `${top[0][0].name} (${top[0][0].year})` : 'none in these years');
+    nearList = top.slice(0, 10).map(([s, h]) => [s, h[1]]);
+    document.getElementById('nearH').textContent = `Strongest within 50 miles of ${P}`;
+    stepFive(L, ts, hur, maj, top);
+  }
+  const ul = d3.select('#near'); ul.selectAll('*').remove();
+  ul.selectAll('li').data(nearList).join('li').append('button').attr('type', 'button')
+    .attr('aria-pressed', d => d[0].i === state.pickStorm ? 'true' : 'false')
+    .html(d => `<span class="chip" style="background:${CATCOL[cls(d[1], 'H')]}"></span>${d[0].name} ${d[0].year} · ${catShort(d[1])}`)
+    .on('click', (ev, d) => { state.pickStorm = state.pickStorm === d[0].i ? -1 : d[0].i; drawHi(); drawOverlay(); panelPressed(); });
+}
+function panelPressed(){ d3.selectAll('#near button').attr('aria-pressed', d => d[0].i === state.pickStorm ? 'true' : 'false'); }
+function stepFive(L, ts, hur, maj, top){
+  const art = document.querySelectorAll('.step')[4], P = state.place.name;
+  const set = (k, v) => art.querySelectorAll(`[data-k="${k}"]`).forEach(e => e.textContent = v);
+  const allYears = state.y0 <= 1851 && state.y1 >= 2025;
+  const lead = art.querySelector('[data-k="lead"]');
+  if (!L.length){ lead.innerHTML = `No storm in the record passed within 50 miles of <b>${P}</b>${allYears ? '' : ' in ' + yearsText()}.`; }
+  else {
+    const strongest = top[0] ? ` The strongest nearby was <b>${top[0][0].name} (${top[0][0].year})</b>, at ${mph(top[0][1][1])} mph.` : '';
+    lead.innerHTML = `${allYears ? 'Since ' + (state.basin === 'EP' ? 1949 : 1851) : 'In ' + yearsText()}, <b>${nf(L.length)}</b> storm${L.length === 1 ? '' : 's'} passed within 50 miles of <b>${P}</b> in some stage, <b>${nf(ts.length)}</b> at tropical-storm strength or more and <b>${nf(hur.length)}</b> as hurricane${hur.length === 1 ? '' : 's'}; ${nf(maj.length)} ${maj.length === 1 ? 'was a major hurricane' : 'were major hurricanes'}.${strongest}`;
+  }
+}
+
+// ---------------- steps ----------------
+const STEPS = [
+  { basin:'both', min:34, y0:1851, y1:2025, place:null, mode:'cat', durOnly:false, animate:true },
+  { basin:'both', min:96, y0:1851, y1:2025, place:null, mode:'cat', durOnly:false },
+  { basin:'AL', min:34, y0:1851, y1:2025, place:null, mode:'dur', durOnly:true },
+  { basin:'EP', min:34, y0:1949, y1:2025, place:{ kind:'state', id:'15' }, mode:'cat', durOnly:false },
+  { basin:'both', min:34, y0:1851, y1:2025, place:'keep', mode:'cat', durOnly:false },
+];
+let userPlace = null;
+function placeFrom(spec){
+  if (!spec) return null;
+  if (spec.kind === 'state') return PLACES.find(p => p.kind === 'state' && p.id === spec.id);
+  return spec;
+}
+function goStep(k){
+  stopAnim();
+  state.step = k; const S = STEPS[k];
+  document.querySelectorAll('.step').forEach((a, i) => a.classList.toggle('on', i === k));
+  d3.selectAll('#dots button').attr('aria-current', (d, i) => i === k ? 'true' : 'false');
+  document.getElementById('prev').disabled = k === 0;
+  document.getElementById('next').textContent = k === STEPS.length - 1 ? 'Start over ↺' : 'Next ›';
+  state.basin = S.basin; state.min = S.min; state.y0 = S.y0; state.y1 = S.y1; state.mode = S.mode; state.durOnly = S.durOnly;
+  state.pickStorm = -1;
+  if (S.place === 'keep') state.place = userPlace || PLACES.find(p => p.kind === 'state' && p.id === '12');
+  else state.place = placeFrom(S.place);
+  setFocus();
+  syncControls(); refresh();
+  if (S.animate && !STILL) animate();
+}
+function setFocus(){
+  const p = state.place;
+  if (!p){ state.focus = null; return; }
+  if (p.kind === 'state'){
+    const g = BASE.stateShapes[p.id], b = d3.geoBounds(g);
+    let [l0, b0] = b[0], [l1, b1] = b[1]; if (l1 < l0) l1 += 360; // Alaska crosses the dateline
+    const padL = Math.max(6, (l1 - l0) * .6), padB = Math.max(4, (b1 - b0) * .6);
+    state.focus = [l0 - padL, l1 + padL, Math.max(-2, b0 - padB), b1 + padB];
+  } else state.focus = [p.lon - 13, p.lon + 13, p.lat - 9, p.lat + 9];
+}
+
+// ---------------- animation (step 1 draws the record year by year) ----------------
+let animId = 0;
+function stopAnim(){ if (animId){ cancelAnimationFrame(animId); animId = 0; state.yearLabel = null; } }
+function animate(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduce) return;
+  const list = SEL.lit.slice().sort((a, b) => a.t[0] - b.t[0]);
+  const c = ctxT; c.setTransform(DPR, 0, 0, DPR, 0, 0); c.clearRect(0, 0, W, H);
+  const t0 = performance.now(), dur = 6500; let k = 0;
+  const zm = zoomMul();
+  const tick = now => {
+    const f = Math.min(1, (now - t0) / dur), yr = Math.floor(1851 + f * 174.999);
+    const batch = [];
+    while (k < list.length && list[k].year <= yr) batch.push(list[k++]);
+    c.globalCompositeOperation = 'lighter'; strokeStorms(c, batch, null, (list.length > 1500 ? .26 : .5) * (DPR > 1.4 ? 1.4 : 1), zm); c.globalCompositeOperation = 'source-over';
+    state.yearLabel = yr; drawOverlay();
+    if (f < 1) animId = requestAnimationFrame(tick); else { animId = 0; state.yearLabel = null; drawTracks(); drawOverlay(); }
+  };
+  animId = requestAnimationFrame(tick);
+}
+
+// ---------------- controls ----------------
+const inPlace = document.getElementById('place'), list = document.getElementById('placeList'), clr = document.getElementById('placeClear');
+let opts = [], active = -1;
+function syncControls(){
+  document.querySelectorAll('[data-basin]').forEach(b => b.setAttribute('aria-pressed', b.dataset.basin === state.basin));
+  document.querySelectorAll('[data-min]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.min === state.min));
+  document.getElementById('y0').value = state.y0; document.getElementById('y1').value = state.y1;
+  inPlace.value = state.place ? state.place.name : ''; clr.hidden = !state.place;
+  document.getElementById('legend').hidden = state.mode === 'dur'; document.getElementById('legend2').hidden = state.mode !== 'dur';
+}
+function refresh(){ fitProjection(); drawBase(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel(); }
+function setYears(a, b){
+  a = Math.max(1851, Math.min(2025, a | 0)); b = Math.max(1851, Math.min(2025, b | 0)); if (a > b) [a, b] = [b, a];
+  stopAnim(); state.y0 = a; state.y1 = b; state.pickStorm = -1; syncControls(); drawTracks(); drawHi(); drawOverlay(); drawTimeline(); panel();
+}
+function setPlace(p){
+  stopAnim(); state.place = p; if (p) userPlace = p; state.pickStorm = -1; setFocus(); syncControls(); refresh();
+}
+document.querySelectorAll('[data-basin]').forEach(b => b.addEventListener('click', () => { stopAnim(); state.basin = b.dataset.basin; if (state.basin === 'EP' && state.y0 < 1949 && state.y1 >= 1949 && state.y0 === 1851) state.y0 = 1851; state.pickStorm = -1; setFocus(); syncControls(); refresh(); }));
+document.querySelectorAll('[data-min]').forEach(b => b.addEventListener('click', () => { stopAnim(); state.min = +b.dataset.min; state.durOnly = false; state.mode = 'cat'; syncControls(); refresh(); }));
+document.getElementById('y0').addEventListener('change', e => setYears(+e.target.value, state.y1));
+document.getElementById('y1').addEventListener('change', e => setYears(state.y0, +e.target.value));
+document.getElementById('yAll').addEventListener('click', () => setYears(1851, 2025));
+clr.addEventListener('click', () => { userPlace = null; setPlace(null); inPlace.focus(); });
+
+function renderList(q){
+  const f = fold(q.trim());
+  opts = (f ? PLACES.filter(p => fold(p.name).includes(f)).sort((a, b) => (fold(a.name).startsWith(f) ? 0 : 1) - (fold(b.name).startsWith(f) ? 0 : 1)) : PLACES.filter(p => p.kind === 'state').sort((a, b) => b.n - a.n).slice(0, 12)).slice(0, 40);
+  list.innerHTML = '';
+  if (!opts.length){ const li = document.createElement('li'); li.className = 'none'; li.textContent = 'No match. Tap the map to pick any spot.'; list.appendChild(li); }
+  opts.forEach((p, i) => { const li = document.createElement('li'); li.id = 'opt' + i; li.setAttribute('role', 'option'); li.innerHTML = `<span>${p.name}</span><small>${p.sub}</small>`; li.addEventListener('mousedown', e => { e.preventDefault(); choose(i); }); list.appendChild(li); });
+  active = opts.length ? 0 : -1; mark(); list.hidden = false; inPlace.setAttribute('aria-expanded', 'true');
+}
+function mark(){ [...list.children].forEach((li, i) => li.setAttribute('aria-selected', i === active)); if (active >= 0){ inPlace.setAttribute('aria-activedescendant', 'opt' + active); list.children[active].scrollIntoView({ block: 'nearest' }); } }
+function closeList(){ list.hidden = true; inPlace.setAttribute('aria-expanded', 'false'); inPlace.removeAttribute('aria-activedescendant'); }
+function choose(i){ const p = opts[i]; closeList(); if (!p) return; setPlace(p); inPlace.blur(); }
+inPlace.addEventListener('focus', () => { inPlace.select(); renderList(''); });
+inPlace.addEventListener('input', () => renderList(inPlace.value));
+inPlace.addEventListener('blur', () => { setTimeout(closeList, 120); setTimeout(() => { inPlace.value = state.place ? state.place.name : ''; }, 150); });
+inPlace.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown'){ active = Math.min(opts.length - 1, active + 1); mark(); e.preventDefault(); }
+  else if (e.key === 'ArrowUp'){ active = Math.max(0, active - 1); mark(); e.preventDefault(); }
+  else if (e.key === 'Enter'){ if (active >= 0) choose(active); e.preventDefault(); }
+  else if (e.key === 'Escape'){ closeList(); inPlace.blur(); }
+});
+
+// map interaction: hover shows the nearest track; a click or tap drops a pin there
+function showTip(best, mx, my){
+  if (!best){ tip.style.opacity = 0; if (state.hoverStorm !== -1){ state.hoverStorm = -1; drawHi(); } return; }
+  const s = best.s, i = best.i, j = Math.min(i + 1, s.n - 1);
+  const w = Math.round(Math.max(0, s.w[i]) * (1 - best.f) + Math.max(0, s.w[j]) * best.f), st = best.f < .5 ? s.st[i] : s.st[j];
+  const when = new Date(s.t[i] + (s.t[j] - s.t[i]) * best.f);
+  const here = TROP.has(st) ? `${catLabel(w)}, ${mph(w)} mph` : `Post-tropical, ${mph(w)} mph`;
+  tip.innerHTML = `<div class="t">${s.name === 'Unnamed' ? 'Unnamed storm' : s.name} (${s.year})</div><div class="m">${s.basin === 'AL' ? 'Atlantic' : 'Pacific'} · peak ${catShort(s.peak)}, ${mph(s.peak)} mph</div><div class="m">Here: ${here}</div><div class="m">${fmtDate(when)}</div>`;
+  tip.style.opacity = 1;
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  tip.style.left = Math.min(W - tw - 6, Math.max(6, mx + 14)) + 'px'; tip.style.top = (my + th + 20 > H ? my - th - 14 : my + 14) + 'px';
+  if (state.hoverStorm !== s.i){ state.hoverStorm = s.i; drawHi(); }
+}
+stage.addEventListener('mousemove', e => { if (animId) return; const r = stage.getBoundingClientRect(); const mx = e.clientX - r.left, my = e.clientY - r.top; showTip(nearestStorm(mx, my), mx, my); });
+stage.addEventListener('mouseleave', () => showTip(null));
+stage.addEventListener('click', e => {
+  const r = stage.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+  const ll = proj.invert([mx, my]); if (!ll || !isFinite(ll[0])) return;
+  const lon = ll[0] > 60 ? ll[0] - 360 : ll[0], lat = ll[1];
+  const name = `${Math.abs(lat).toFixed(1)}°${lat >= 0 ? 'N' : 'S'}, ${Math.abs(lon > 180 ? lon - 360 : lon < -180 ? lon + 360 : lon).toFixed(1)}°${(lon < 0 && lon > -180) || lon > 180 ? 'W' : 'E'}`;
+  setPlace({ kind: 'point', name, lat, lon, sub: 'Point' });
+  if (e.pointerType !== 'mouse') showTip(nearestStorm(mx, my), mx, my);
+});
+
+// step nav
+const dots = d3.select('#dots');
+dots.selectAll('button').data(STEPS).join('button').attr('type', 'button').attr('aria-label', (d, i) => `Step ${i + 1}`).on('click', (e, d) => goStep(STEPS.indexOf(d)));
+document.getElementById('prev').addEventListener('click', () => { if (state.step > 0) goStep(state.step - 1); });
+document.getElementById('next').addEventListener('click', () => goStep(state.step < STEPS.length - 1 ? state.step + 1 : 0));
+
+function setup(){
+  layout();
+  goStep(0);
+  let rz, lastW = W; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (Math.round(stage.getBoundingClientRect().width) === lastW) return; stopAnim(); layout(); lastW = W; refresh(); }, 150); });
+  window.__hurr = { state, storms, pointHits, goStep, setPlace, PLACES, setYears };
+}
+})();
+</script>
+<script>
+/* theme-toggle:start */
+/* Tall Order Digital: light/dark toggle.
+   - First visit follows the reader's system setting.
+   - Clicking a .theme-toggle button switches theme and remembers it (localStorage "tod-theme").
+   - Each page also carries a one-line script in <head> that applies the saved choice
+     before anything draws, so there's no flash of the wrong theme:
+       <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}<\/script>
+   - The CSS reads :root[data-theme="light" | "dark"]; story charts already redraw when data-theme changes. */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function current() {
+    var t = root.dataset.theme;
+    if (t === "light" || t === "dark") return t;
+    return media && media.matches ? "dark" : "light";
+  }
+
+  function sync() {
+    var theme = current();
+    var next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+      btn.dataset.showing = theme;
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle");
+    if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {}
+    }
+  });
+
+  if (media) {
+    var onChange = function () { if (!root.dataset.theme) sync(); };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync);
+  else sync();
+})();
+/* theme-toggle:end */
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
+/* site-header:end */
+</script>
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>
+
