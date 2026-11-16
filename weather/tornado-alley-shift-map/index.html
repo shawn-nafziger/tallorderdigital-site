@@ -177,6 +177,8 @@ summary{cursor:pointer;font:600 15px Inter,sans-serif;padding:12px 0;min-height:
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (prefers-reduced-motion:reduce){.dots button{box-shadow:none}}
 
+#tests th:nth-child(2),#tests td:nth-child(2){text-align:left}
+
 /* Site chrome: shared with the rest of tallorderdigital.com */
 .site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
 .site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
@@ -765,7 +767,7 @@ function drawMap() {
 }
 
 // ---------- overlay
-let gTracks, gRegions, gHover, gSel, gTrail, gInset, gYear;
+let gTracks, gRegions, gHover, gSel, gTrail, gInset, gYear, gDim, gMark;
 function buildOverlay() {
   const vb = D.vb;
   ov.attr("viewBox", `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
@@ -773,9 +775,11 @@ function buildOverlay() {
   ov.append("path").attr("class", "mesh").attr("d", D.meta.mesh);
   ov.append("path").attr("class", "nation").attr("d", D.meta.nation);
   gRegions = ov.append("g");
+  gDim = ov.append("rect").attr("x", vb.x).attr("y", vb.y).attr("width", vb.w).attr("height", vb.h).attr("fill", "rgba(3,6,11,.5)").attr("display", "none").style("pointer-events", "none");
   gHover = ov.append("path").attr("class", "cty-hover").attr("d", "");
   gSel = ov.append("path").attr("class", "cty-sel").attr("d", "");
   gTracks = ov.append("g").attr("stroke", "#fff").attr("stroke-linecap", "round");
+  gMark = ov.append("g").style("pointer-events", "none");
   gTrail = ov.append("g"); gInset = ov.append("g"); gYear = ov.append("g");
   const yx = vb.x + vb.w * 0.655, yy = vb.y + vb.h - 16;
   gYear.append("text").attr("class", "yearsub").attr("x", yx).attr("y", yy - 34).attr("id", "ysub");
@@ -820,7 +824,7 @@ function drawTrail() {
   // inset geometry: frame all decades of this class so the box doesn't jump while playing
   const all = decs.map(d => d[key].xy);
   const ex = d3.extent(all, p => p[0]), ey = d3.extent(all, p => p[1]);
-  const vb = D.vb, bw = 196, bh = 132, bx = vb.x + 6, by = vb.y + vb.h - bh - 6;
+  const vb = D.vb, bw = 250, bh = 140, bx = vb.x + 6, by = vb.y + vb.h - bh - 6;
   const cx = (ex[0] + ex[1]) / 2, cy = (ey[0] + ey[1]) / 2;
   const mag = Math.min((bw - 40) / Math.max(ex[1] - ex[0], 8), (bh - 50) / Math.max(ey[1] - ey[0], 8), 5);
   const tx = x => bx + bw / 2 + (x - cx) * mag, ty = y => by + bh / 2 + 6 + (y - cy) * mag;
@@ -836,15 +840,23 @@ function drawTrail() {
   for (const [nm, x, y] of D.meta.cities) {
     const X = tx(x), Y = ty(y);
     if (X < bx + 4 || X > bx + bw - 4 || Y < by + 14 || Y > by + bh - 4) continue;
-    if (all.some(p => Math.hypot(tx(p[0]) - X, ty(p[1]) - Y) < 9)) continue; // keep the trail readable
+    if (all.some(p => Math.hypot(tx(p[0]) - X, ty(p[1]) - Y) < 16)) continue; // keep the trail readable
     inner.append("circle").attr("cx", X).attr("cy", Y).attr("r", 1.2).attr("fill", "rgba(190,210,235,.6)");
     inner.append("text").attr("class", "inset-t").attr("x", X + 3).attr("y", Y + 2.5).style("text-transform", "none").style("font-size", "7px").text(nm);
   }
   inner.append("path").attr("class", "trail " + key).attr("d", d3.line()(pts.map(p => [tx(p[0]), ty(p[1])])));
+  // every decade gets a short label, placed where it doesn't hit a dot, the ring or another label
+  const boxes = shown.map(d => { const p = d[key].xy, X = tx(p[0]), Y = ty(p[1]); return [X - 3, Y - 3, X + 3, Y + 3]; });
+  if (roll) { const X = tx(roll[0]), Y = ty(roll[1]); boxes.push([X - 5, Y - 5, X + 5, Y + 5]); }
+  const hit = b => boxes.some(q => b[0] < q[2] && b[2] > q[0] && b[1] < q[3] && b[3] > q[1]);
   shown.forEach((d, i) => {
-    const p = d[key].xy;
-    inner.append("circle").attr("class", "tdot " + key).attr("cx", tx(p[0])).attr("cy", ty(p[1])).attr("r", 2.4);
-    if (i === 0 || i === shown.length - 1) inner.append("text").attr("class", "tlbl").attr("x", tx(p[0]) + (i ? -2 : -6)).attr("y", ty(p[1]) + (i ? -6 : 11)).attr("text-anchor", i ? "end" : "start").text(d.label);
+    const p = d[key].xy, X = tx(p[0]), Y = ty(p[1]);
+    inner.append("circle").attr("class", "tdot " + key).attr("cx", X).attr("cy", Y).attr("r", 2.4);
+    const t = d.label.replace(/^(19|20)(\d\d)/, "’$2"), w = t.length * 4.8;
+    const cands = [[X - w / 2, Y - 13], [X - w / 2, Y + 5], [X + 5, Y - 4], [X - 5 - w, Y - 4], [X - w / 2, Y - 21], [X - w / 2, Y + 13]];
+    const c = cands.find(([x0, y0]) => !hit([x0, y0, x0 + w, y0 + 8.5])) || cands[0];
+    boxes.push([c[0], c[1], c[0] + w, c[1] + 8.5]);
+    inner.append("text").attr("class", "tlbl").attr("x", c[0]).attr("y", c[1] + 7).text(t);
   });
   if (roll) inner.append("circle").attr("class", "roll").attr("cx", tx(roll[0])).attr("cy", ty(roll[1])).attr("r", 4.5);
   gInset.append("text").attr("class", "inset-t").attr("x", bx + 7).attr("y", by + 11).text(key === "ef2" ? "Center of strong tornadoes" : "Center of all tornadoes");
@@ -888,7 +900,15 @@ function countyTracks(c) {
 function selectCounty(c, fromSearch) {
   S.county = c;
   gSel.attr("d", c ? c.d : "");
-  gTracks.selectAll("*").remove();
+  gTracks.selectAll("*").remove(); gMark.selectAll("*").remove();
+  gDim.attr("display", c ? null : "none");
+  if (c) { // ring and name, so a small county is easy to find on the national map
+    const u = ui(), b = c.bb, cx = (b[0] + b[2]) / 2, cy = (b[1] + b[3]) / 2, r = Math.max((b[2] - b[0]) / 2, (b[3] - b[1]) / 2, 4) + 7 * u;
+    gMark.append("circle").attr("cx", cx).attr("cy", cy).attr("r", r).attr("fill", "none").attr("stroke", "#fff").attr("stroke-width", 1.2 * u).attr("stroke-opacity", .9);
+    const left = cx > D.vb.x + D.vb.w * 0.72;
+    gMark.append("text").attr("class", "rlbl").attr("x", cx + (left ? -1 : 1) * (r + 4 * u)).attr("y", cy + 3.5 * u).attr("text-anchor", left ? "end" : "start")
+      .style("font-size", 11 * u + "px").text(`${c.name}, ${c.st}`);
+  }
   if (!c) { $("cName").textContent = "Pick a county"; $("cEmpty").hidden = false; $("cBody").hidden = true; return; }
   const idx = countyTracks(c);
   gTracks.selectAll("line").data(idx).join("line")
