@@ -1,9 +1,9 @@
 /* site-header:start */
 /* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
    On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
-   (assets/site-header.js). Menu (Nov 8, 2026): NBA, Weather, More stories ("More" on narrow phones), About,
-   Subscribe (outlined; an envelope icon on phones), then the search icon and the light/dark button. The menu itself
-   is written by tools/apply-header.py.
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
    Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
    carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
 :root { --header-h: 76px; }
@@ -32,7 +32,12 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   .nav-sub svg { display: block; }
   .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
 }
-/* "More stories" shortens to "More" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
 @media (max-width: 480px) { .nav-long { display: none; } }
 /* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
 .site-nav .nav-about { position: relative; margin-left: 14px; }

@@ -31,7 +31,7 @@ const meta = (h, name) => { const m = h.match(new RegExp(`<meta name="${name}" c
 
 const items = [];
 
-// Stories, from the story cards on the topic pages (NBA, Weather, More stories; Nov 8, 2026), newest first overall.
+// Stories, from the story cards on the topic pages (Data stories, Weather, NBA), newest first overall.
 // Card links are relative to their page's folder, so each becomes a path from the site root.
 const stories = [];
 for (const [file, dir] of [["nba/index.html", "nba/"], ["weather/index.html", "weather/"], ["stories/index.html", "stories/"]]) {
@@ -103,7 +103,7 @@ if (fs.existsSync(path.join(ROOT, "explained/charts/index.html"))) {
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
 page("nba/", "nba/index.html", "NBA", "nba basketball stories check the take focus stories latest");
 page("weather/", "weather/index.html", "Weather", "weather almanac climate records cities stories");
-page("stories/", "stories/index.html", "More stories", "politics travel culture movies nature houseplants plants other stories more");
+page("stories/", "stories/index.html", "Data stories", "politics travel culture movies nature houseplants plants other stories more");
 page("nba/check-the-take/", "nba/check-the-take/index.html", "Check the Take", "check the take series claims tested verdict");
 page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");

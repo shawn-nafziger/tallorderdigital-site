@@ -7,7 +7,7 @@
  * Where story cards live (the one place each card is written by hand):
  *   nba/index.html      NBA stories      <a class="story" data-topic="nba" data-series="..." href="<slug>/">
  *   weather/index.html  weather stories  <a class="story" data-topic="weather" data-series="..." href="<slug>/">
- *   stories/index.html  More stories     <a class="story" data-topic="politics" href="../politics/...">
+ *   stories/index.html  Data stories     <a class="story" data-topic="politics" href="../politics/...">
  * Cards go between the "cards:start" / "cards:end" markers, anywhere in the list: this tool sorts them newest
  * first by the date in each card's kicker ("Check the Take · NBA · Nov 7, 2026"; every card needs one).
  *
@@ -17,7 +17,7 @@
  *   - nba/check-the-take/: every Check the Take card
  *   - nba/: the Latest Tall Take box (the first card on nba/takes/index.html) and the NBA dashboards list
  *     (from the cards on nba/dashboards/index.html)
- *   - index.html: the three doors (NBA, Weather, More stories), three pieces each, all the same size. The NBA door
+ *   - index.html: the three doors (Data stories, Weather, NBA; menu order since Nov 16, 2026), three pieces each, all the same size. The NBA door
  *     shows its two daily pages (game summaries, the weird stat) and the newest focus story; Tall Takes and Check the
  *     Take stay on the NBA page (Nov 8, 2026; "extra" and "homeSeries" in PAGES).
  * A new series: add it to SERIES below and a button to that page's filter. A new topic page: add it to PAGES.
@@ -48,17 +48,18 @@ const SERIES = {
 };
 // How many pieces each topic page's Latest list shows before "Show all" (assets/topic-filter.js reads data-limit).
 const LIMIT = 5;
+// Topic pages, in menu and home-door order (Nov 16, 2026: Data stories, Weather, NBA).
 const PAGES = [
+  { key: "stories", file: "stories/index.html", dir: "stories/", name: "Data stories", dek: "Politics, travel and everything else with data too good to pass up." },
+  { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
+    extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://tallorderdigital.com/weather/almanac/" } },
   { key: "nba", file: "nba/index.html", dir: "nba/", name: "NBA", dek: "Stories, popular takes checked against the data, opinion columns and dashboards that update every morning.",
     homeSeries: ["focus"],
     // Daily pages lead the NBA door, game summaries first (Nov 8, 2026): they're what brings readers back every morning.
     extra: [
       { k: "Game summaries · Every morning", t: "Last night's games, and what decided each one", href: "nba/dashboards/game-overview/" },
       { k: "Weird stat of the day · New every morning", t: "The strangest thing in last night's box scores", href: "nba/weird-stat/" },
-    ] },
-  { key: "weather", file: "weather/index.html", dir: "weather/", name: "Weather", dek: "Each city's weather against its own official record, and how the climate has changed.",
-    extra: { k: "Weather Almanac · Updated daily", t: "Your city, against its own record", href: "https://tallorderdigital.com/weather/almanac/" } },
-  { key: "stories", file: "stories/index.html", dir: "stories/", name: "More stories", dek: "Politics, travel and everything else with data too good to pass up." },
+    ] }
 ];
 const TOPIC_NAMES = { politics: "Politics", travel: "Travel", culture: "Culture", nature: "Nature" };
 
@@ -85,13 +86,36 @@ function parseCards(page) {
     if (!d) throw new Error(`${page.file}: no date in the kicker of the card for ${card.href}`);
     card.date = d[0];
     card.t = Date.parse(`${d[1]} ${d[2]}, ${d[3]}`);
+    // Evergreen stories (Nov 16, 2026): the card says "Updated <date>" and sorts by it. The date is the later of the
+    // publish date (kept in data-published, YYYY-MM-DD, added on the first run) and the story page's
+    // <meta property="article:modified_time">, which its data-repo template carries and moves when the story is refreshed.
+    if (/\sdata-evergreen[\s>=]/.test(h.match(/^<a [^>]*>/)[0])) {
+      let pub = attr("data-published");
+      if (!pub) {
+        pub = new Date(card.t).toISOString().slice(0, 10);
+        card.html = card.html.replace(/^<a class="story"/, `<a class="story" data-published="${pub}"`);
+      }
+      let shown = pub;
+      try {
+        const story = read(path.join(page.dir, card.href, "index.html"));
+        const mod = (story.match(/<meta property="article:modified_time" content="(\d{4}-\d{2}-\d{2})"/) || [])[1];
+        if (mod && mod > pub) shown = mod;
+      } catch (e) { /* story page not in this repo: keep the publish date */ }
+      const [y, mo, da] = shown.split("-").map(Number);
+      card.t = Date.UTC(y, mo - 1, da);
+      card.date = `${["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][mo - 1]} ${da}, ${y}`;
+      card.evergreen = true;
+      if (!SERIES[page.key]) {
+        card.html = card.html.replace(/(<p class="kicker">[\s\S]*?)(?:Updated )?[A-Z][a-z]{2} \d{1,2}, \d{4}/, `$1Updated ${card.date}`);
+      }
+    }
     if (SERIES[page.key]) {
       if (card.topic !== page.key) throw new Error(`${page.file}: card ${card.href} has data-topic="${card.topic}"`);
       const s = SERIES[page.key].find((x) => x.key === card.series);
       if (!s) throw new Error(`${page.file}: card ${card.href} needs a data-series from: ${SERIES[page.key].map((x) => x.key).join(", ")}`);
-      card.html = card.html.replace(/<p class="kicker">[\s\S]*?<\/p>/, `<p class="kicker">${s.one} · ${card.date || d[0]}</p>`);
+      card.html = card.html.replace(/<p class="kicker">[\s\S]*?<\/p>/, `<p class="kicker">${s.one} · ${card.evergreen ? "Updated " : ""}${card.date}</p>`);
     } else if (card.topic === "nba" || card.topic === "weather") {
-      throw new Error(`${page.file}: ${card.topic} stories belong on ${card.topic}/, not More stories (${card.href})`);
+      throw new Error(`${page.file}: ${card.topic} stories belong on ${card.topic}/, not Data stories (${card.href})`);
     }
     return card;
   });
@@ -174,12 +198,22 @@ for (const page of PAGES) {
     const extras = [].concat(p.extra || []);
     const items = pool.slice(0, 3 - extras.length).map((c) => ({
       href: p.key === "stories" ? c.href.replace(/^\.\.\//, "") : p.dir + c.href,
-      k: `${series[c.series] || TOPIC_NAMES[c.topic] || c.topic} · ${c.date}`, t: c.title }));
+      k: `${series[c.series] || TOPIC_NAMES[c.topic] || c.topic} · ${c.evergreen ? "Updated " : ""}${c.date}`, t: c.title }));
     items.unshift(...extras);
     return `    <div class="door">\n      <h2><a href="${p.dir}">${p.name}</a></h2>\n      <p class="dek">${p.dek}</p>\n` +
-      mini(items, "      ") + `\n      <a class="more-link" href="${p.dir}">All ${p.name === "More stories" ? "more stories" : p.name} →</a>\n    </div>`;
+      mini(items, "      ") + `\n      <a class="more-link" href="${p.dir}">All ${p.name === "Data stories" ? "data stories" : p.name} →</a>\n    </div>`;
   }).join("\n");
   out[f] = fill(get(f), "doors", doors, "    ");
+
+  // Featured visual (Nov 16, 2026): a pill under the home intro pointing to the newest showpiece on any topic page.
+  // Once a /featured/ collection page exists (decided for when there are two or three), point the pill there instead.
+  const shows = PAGES.flatMap((p) => lists[p.key].filter((c) => c.series === "showpiece")
+    .map((c) => ({ ...c, link: p.key === "stories" ? c.href.replace(/^\.\.\//, "") : p.dir + c.href })))
+    .sort((a, b) => b.t - a.t);
+  const pill = shows.length
+    ? `    <a class="featured-pill" href="${shows[0].link}"><span class="fp-k">Featured visual</span><span class="fp-t">${shows[0].title}</span><span class="fp-go" aria-hidden="true">→</span></a>`
+    : "";
+  out[f] = fill(out[f], "featured", pill, "    ");
 }
 
 let stale = 0;
