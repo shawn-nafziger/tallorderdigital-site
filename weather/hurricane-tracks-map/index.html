@@ -50,10 +50,10 @@ h1 span{background:linear-gradient(90deg,#5fd0f0,#fff3a6 35%,#ff9a3c 65%,#ff4fd8
 .crumbrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 0}
 .crumbs{font:400 13px Inter,sans-serif;color:var(--ink3)}
 .crumbs a{color:var(--ink2);text-decoration:none}.crumbs a:hover{text-decoration:underline}
-.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:22px 0 14px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin:22px 0 14px}
 .ctl-label{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .combo{position:relative}
-.combo input{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;width:250px}
+.combo input{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;width:220px}
 .combo input::placeholder{color:var(--ink3)}
 .combo .clear{all:unset;cursor:pointer;position:absolute;right:4px;top:4px;width:36px;height:36px;display:grid;place-items:center;color:var(--ink3);font-size:18px;border-radius:8px}
 .combo .clear:hover{color:var(--ink)}
@@ -114,6 +114,18 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 .legend .k{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
 .legend[hidden]{display:none!important}
 .legend .k i{display:inline-block;width:22px;height:4px;border-radius:2px}
+.legend button.k{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;min-height:32px;padding:0 8px;margin:0 -8px;border-radius:999px;transition:opacity .15s}
+.legend button.k:hover{color:var(--ink)}
+.legend button.k:focus-visible{outline:2px solid var(--hot);outline-offset:0}
+.legend button.k.off{opacity:.35}
+.legend button.k[aria-pressed="true"]{color:var(--ink);background:#16203d}
+.legend .hint{flex-basis:100%;font-size:11.5px;color:var(--ink3);margin-top:-2px}
+.seg.strength{align-items:center;padding-left:10px;gap:2px}
+.seg.strength .ctl-label{margin-right:6px}
+.seg.strength button{min-width:22px;justify-content:center;padding:0 8px;font-family:"JetBrains Mono",monospace}
+.seg.strength .ctl-label{white-space:nowrap}
+@media (max-width:420px){.seg.strength button{padding:0 9px}}
+.seg.strength button[data-min="34"]{font-family:Inter,sans-serif}
 .panel{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0 8px}
 .cell{background:var(--bg2);padding:14px 16px}
 .cell .k{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
@@ -333,10 +345,14 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
       <button data-basin="AL" aria-pressed="false">Atlantic</button>
       <button data-basin="EP" aria-pressed="false">Pacific</button>
     </div>
-    <div class="seg" role="group" aria-label="Strength">
-      <button data-min="34" aria-pressed="true">All storms</button>
-      <button data-min="64" aria-pressed="false">Hurricanes</button>
-      <button data-min="96" aria-pressed="false">Major</button>
+    <div class="seg strength" role="group" aria-labelledby="minLbl">
+      <span class="ctl-label" id="minLbl">At least</span>
+      <button data-min="34" aria-pressed="true" aria-label="All storms">All</button>
+      <button data-min="64" aria-pressed="false" aria-label="Category 1 or stronger">1</button>
+      <button data-min="83" aria-pressed="false" aria-label="Category 2 or stronger">2</button>
+      <button data-min="96" aria-pressed="false" aria-label="Category 3 or stronger">3</button>
+      <button data-min="113" aria-pressed="false" aria-label="Category 4 or stronger">4</button>
+      <button data-min="137" aria-pressed="false" aria-label="Category 5">5</button>
     </div>
     <div class="yearbox"><span class="ctl-label">Years</span><input id="y0" type="number" min="1851" max="2025" value="1851" aria-label="From year"><span class="to">to</span><input id="y1" type="number" min="1851" max="2025" value="2025" aria-label="To year"><button id="yAll" type="button">All</button></div>
   </div>
@@ -385,15 +401,16 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
     <div class="tip" id="tip"></div>
   </div>
   <div class="timeline" id="timeline"><svg id="tl" aria-label="Storms per year, 1851 to 2025; drag to choose years"></svg></div>
-  <div class="legend" id="legend">
-    <span class="k"><i style="background:var(--c-ts)"></i>Tropical storm</span>
-    <span class="k"><i style="background:var(--c-1)"></i>Cat 1</span>
-    <span class="k"><i style="background:var(--c-2)"></i>Cat 2</span>
-    <span class="k"><i style="background:var(--c-3)"></i>Cat 3</span>
-    <span class="k"><i style="background:var(--c-4)"></i>Cat 4</span>
-    <span class="k"><i style="background:var(--c-5)"></i>Cat 5</span>
+  <div class="legend" id="legend" role="group" aria-label="Color key; pick a category to show it and stronger">
+    <button type="button" class="k" data-min="34" aria-pressed="true"><i style="background:var(--c-ts)"></i>Tropical storm</button>
+    <button type="button" class="k" data-min="64" aria-pressed="false"><i style="background:var(--c-1)"></i>Cat 1</button>
+    <button type="button" class="k" data-min="83" aria-pressed="false"><i style="background:var(--c-2)"></i>Cat 2</button>
+    <button type="button" class="k" data-min="96" aria-pressed="false"><i style="background:var(--c-3)"></i>Cat 3</button>
+    <button type="button" class="k" data-min="113" aria-pressed="false"><i style="background:var(--c-4)"></i>Cat 4</button>
+    <button type="button" class="k" data-min="137" aria-pressed="false"><i style="background:var(--c-5)"></i>Cat 5</button>
     <span class="k"><i style="background:var(--c-td)"></i>Depression</span>
     <span class="k"><i style="background:var(--c-x)"></i>Post-tropical</span>
+    <span class="hint">Tap a category to show only storms that reached it.</span>
   </div>
 
   <div class="legend" id="legend2" hidden>
@@ -591,6 +608,7 @@ function catShort(w){ if (w < 34) return 'TD'; if (w < 64) return 'TS'; return '
 const MON = ['Jan.','Feb.','March','April','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
 const fmtDate = d => MON[d.getUTCMonth()] + ' ' + d.getUTCDate() + ', ' + d.getUTCFullYear();
 const nf = d3.format(',');
+const MINCAT = { 64:1, 83:2, 96:3, 113:4, 137:5 };
 
 // ---------------- places ----------------
 const CITIES = [
@@ -938,20 +956,23 @@ let nearList = [];
 function panel(){
   const yt = yearsText(), sub = `${basinText()}, ${yt}`;
   if (!SEL.near){
-    const L = SEL.shown;
-    const hur = L.filter(s => s.peak >= 64).length, maj = L.filter(s => s.peak >= 96).length;
+    const A = SEL.shown, L = state.durOnly ? A : SEL.lit;
+    const hur = A.filter(s => s.peak >= 64).length, maj = A.filter(s => s.peak >= 96).length;
     const top = L.slice().sort((a, b) => b.peak - a.peak || (a.minp || 9999) - (b.minp || 9999));
-    setCell(1, 'Storms shown', nf(L.length), sub);
-    setCell(2, 'Hurricanes', nf(hur), L.length ? Math.round(hur / L.length * 100) + '% of storms' : '');
+    if (state.min > 34){
+      const c = MINCAT[state.min];
+      setCell(1, c === 5 ? 'Category 5 storms' : `Cat ${c} or stronger`, nf(L.length), `${A.length ? Math.round(L.length / A.length * 100) : 0}% of ${nf(A.length)} storms, ${yt}`);
+    } else setCell(1, 'Storms shown', nf(A.length), sub);
+    setCell(2, 'Hurricanes', nf(hur), A.length ? Math.round(hur / A.length * 100) + '% of storms' : '');
     setCell(3, 'Major hurricanes', nf(maj), 'Category 3 or stronger');
     setCell(4, 'Strongest', top[0] ? mph(top[0].peak) + ' mph' : '—', top[0] ? `${top[0].name} (${top[0].year})` : '');
     nearList = top.slice(0, 10).map(s => [s, s.peak]);
-    document.getElementById('nearH').textContent = 'Strongest storms shown';
+    document.getElementById('nearH').textContent = state.min > 34 ? `Strongest of the ${MINCAT[state.min] === 5 ? 'Category 5 storms' : 'Cat ' + MINCAT[state.min] + '+ storms'} shown` : 'Strongest storms shown';
   } else {
     const P = state.place.name;
     const L = SEL.shown.filter(s => SEL.near.has(s.i)).map(s => [s, SEL.near.get(s.i)]);
     const ts = L.filter(([, h]) => h[2] && h[1] >= 34), hur = L.filter(([, h]) => h[2] && h[1] >= 64), maj = L.filter(([, h]) => h[2] && h[1] >= 96);
-    const top = L.filter(([, h]) => h[2]).sort((a, b) => b[1][1] - a[1][1]);
+    const top = L.filter(([s, h]) => h[2] && s.peak >= state.min).sort((a, b) => b[1][1] - a[1][1]);
     const last = hur.slice().sort((a, b) => b[0].t[0] - a[0].t[0])[0];
     setCell(1, 'Within 50 miles', nf(L.length), `storms in any stage, ${yt}`);
     setCell(2, 'Hurricanes nearby', nf(hur.length), `${nf(ts.length)} at tropical-storm strength or more`);
@@ -1046,7 +1067,7 @@ const inPlace = document.getElementById('place'), list = document.getElementById
 let opts = [], active = -1;
 function syncControls(){
   document.querySelectorAll('[data-basin]').forEach(b => b.setAttribute('aria-pressed', b.dataset.basin === state.basin));
-  document.querySelectorAll('[data-min]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.min === state.min));
+  document.querySelectorAll('[data-min]').forEach(b => { b.setAttribute('aria-pressed', +b.dataset.min === state.min); if (b.classList.contains('k')) b.classList.toggle('off', +b.dataset.min < state.min); });
   document.getElementById('y0').value = state.y0; document.getElementById('y1').value = state.y1;
   inPlace.value = state.place ? state.place.name : ''; clr.hidden = !state.place;
   document.getElementById('legend').hidden = state.mode === 'dur'; document.getElementById('legend2').hidden = state.mode !== 'dur';
@@ -1060,7 +1081,12 @@ function setPlace(p){
   stopAnim(); state.place = p; if (p) userPlace = p; state.pickStorm = -1; setFocus(); syncControls(); refresh();
 }
 document.querySelectorAll('[data-basin]').forEach(b => b.addEventListener('click', () => { stopAnim(); state.basin = b.dataset.basin; if (state.basin === 'EP' && state.y0 < 1949 && state.y1 >= 1949 && state.y0 === 1851) state.y0 = 1851; state.pickStorm = -1; setFocus(); syncControls(); refresh(); }));
-document.querySelectorAll('[data-min]').forEach(b => b.addEventListener('click', () => { stopAnim(); state.min = +b.dataset.min; state.durOnly = false; state.mode = 'cat'; syncControls(); refresh(); }));
+document.querySelectorAll('[data-min]').forEach(b => b.addEventListener('click', () => {
+  stopAnim(); const m = +b.dataset.min;
+  // tapping the legend key that's already chosen goes back to all storms
+  state.min = b.classList.contains('k') && m === state.min ? 34 : m;
+  state.durOnly = false; state.mode = 'cat'; syncControls(); refresh();
+}));
 document.getElementById('y0').addEventListener('change', e => setYears(+e.target.value, state.y1));
 document.getElementById('y1').addEventListener('change', e => setYears(state.y0, +e.target.value));
 document.getElementById('yAll').addEventListener('click', () => setYears(1851, 2025));
