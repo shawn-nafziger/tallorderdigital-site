@@ -802,6 +802,48 @@ function firstFreezeCard(D) {
   </div>`;
 }
 
+function shortestDayCard(D) {
+  // The default city's sunset clock time, Nov 1 to Jan 31: the low point (orange, the signal) comes about two weeks
+  // before the shortest day (dashed line). Sky line = sunset time.
+  const c = D.cities.find((x) => x.name + ", " + x.st === D.default);
+  const a = D.days.indexOf("2026-11-01"), z = D.days.indexOf("2027-01-31"), sol = D.days.indexOf("2026-12-21");
+  const es = D.days.indexOf(c.es), W = 560, Ht = 360, L = 110, R = 10, T = 40, B = 300;
+  const vals = c.set.slice(a, z + 1), lo = Math.min(...vals), hi = Math.max(...vals);
+  const X = (i) => L + (i - a) / (z - a) * (W - L - R), Y = (v) => B - (v - lo) / (hi - lo) * (B - T);
+  const path = vals.map((v, k) => (k ? "L" : "M") + X(a + k).toFixed(1) + "," + Y(v).toFixed(1)).join(" ");
+  const clock = (m) => { const t = Math.round(m), h = Math.floor(t / 60) % 24; return (h % 12 || 12) + ":" + String(t % 60).padStart(2, "0") + (h < 12 ? " a.m." : " p.m."); };
+  const MON = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+  const md = (s) => { const [, m, d] = s.split("-").map(Number); return MON[m - 1] + " " + d; };
+  const gap = sol - es;
+  const mon = [["Nov. 1", "2026-11-01"], ["Jan. 1", "2027-01-01"]].map(([m, d]) =>
+    `<text x="${X(D.days.indexOf(d))}" y="${B + 34}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${m}</text>`).join("");
+  const ticks = [lo, hi].map((v) => `<text x="${L - 12}" y="${Y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="16" fill="${C.sub}">${clock(v)}</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 64px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .dek b { color: ${C.orange}; font-weight: 600; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.cities.length} US cities</p><h1>The shortest day isn't your darkest evening</h1>
+      <p class="dek">In ${c.name}, the earliest sunset comes <b>${md(c.es)}</b>, ${gap} days before Dec. 21.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - R}" y1="${B + 8}" y2="${B + 8}" stroke="${C.rule}" stroke-width="2"/>${ticks}${mon}
+      <line x1="${X(sol)}" x2="${X(sol)}" y1="${T - 10}" y2="${B + 8}" stroke="${C.mist}" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="${X(sol) - 10}" y="${T + 40}" text-anchor="end" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Shortest day</text>
+      <text x="${X(sol) - 10}" y="${T + 62}" text-anchor="end" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Dec. 21</text>
+      <path d="${path}" fill="none" stroke="${C.sky}" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="${X(es)}" cy="${Y(c.set[es])}" r="9" fill="${C.orange}"/>
+      <line x1="${X(es)}" x2="${X(es)}" y1="${Y(c.set[es]) + 10}" y2="${B + 14}" stroke="${C.orange}" stroke-width="2"/>
+      <text x="${X(es)}" y="${B + 34}" text-anchor="middle" font-family="IBM Plex Mono" font-size="18" fill="${C.orange}">${md(c.es)}</text>
+      <text x="${L}" y="${T - 14}" font-family="IBM Plex Mono" font-size="16" fill="${C.sub}">${c.name} sunset time</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
@@ -847,6 +889,8 @@ function homeCard() {
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
   const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
   const FF = JSON.parse(ff.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const sd2 = fs.readFileSync(path.join(ROOT, "weather/shortest-day-of-the-year/index.html"), "utf8");
+  const SDY = JSON.parse(sd2.match(/const DATA = (\{.*?\});\n/s)[1]);
   const hp = fs.readFileSync(path.join(ROOT, "nature/houseplants-native-homes/index.html"), "utf8");
   const HP = JSON.parse(hp.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
@@ -873,6 +917,7 @@ function homeCard() {
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
+    ["weather/shortest-day-of-the-year/share.png", shortestDayCard(SDY)],
     ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
     ["assets/share-home.png", homeCard()],
   ];
