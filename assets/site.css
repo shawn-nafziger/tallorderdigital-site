@@ -209,6 +209,16 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .feature:hover .feature-title { color: var(--amber); }
 .feature:hover .feature-go { background: var(--amber); }
 .feature:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+/* Home: "Featured visual" pill under the intro (Nov 16, 2026), linking the newest showpiece (tools/build-hubs.js).
+   Thin orange outline (Shawn's call, Nov 16): the one decorative use of the signal color, so the featured piece stands out.
+   Text stays ink; on hover the title and arrow turn orange too. */
+.featured-pill { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; max-width: 100%; min-height: 44px; box-sizing: border-box;
+  margin-top: 20px; padding: 9px 16px; border: 1px solid var(--amber); border-radius: 999px; text-decoration: none; color: var(--ink); }
+.featured-pill .fp-k { font: 500 11px/1.2 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.featured-pill .fp-t { font: 600 15px/1.3 var(--font-body); }
+.featured-pill:hover { box-shadow: inset 0 0 0 1px var(--amber); }
+.featured-pill:hover .fp-t, .featured-pill:hover .fp-go { color: var(--amber); }
+.featured-pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 /* hubs:end */
 
 /* Visually hidden, still read by screen readers (form labels, live status). */
