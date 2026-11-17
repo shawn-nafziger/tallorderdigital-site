@@ -112,6 +112,13 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 - Timely pieces keep their publish date: every NBA story so far (Check the Take included), Tall Takes, Record watch, the midterms pieces and the seaweed story. Reference pages (Stats, explained, About, the Almanac) show no story date.
 - Search engines still get the original publish date (`datePublished`) and the updated date (`dateModified`).
 
+## Weather trivia: DECIDED (Nov 17, 2026)
+- **What:** a daily trivia game at `trivia/` ("Weather trivia"): **Today's 5** (the same five questions for everyone each day, a shareable row of squares, orange for right and gray for wrong) and **Keep playing** (a streak drawn from the whole bank). Shawn chose both modes, Nov 16, 2026.
+- **Data first, no hand-written questions:** every question and answer is generated from the Weather Almanac's own numbers (1991–2020 normals, all-time records, record lows since 2000) and NOAA's solar equations for daylight, with minimum gaps so no answer hinges on rounding. Each reveal shows the numbers as a small chart and links the city's Almanac page or the story it came from. NBA questions can join later from facts compiled by hand (facts aren't copyrighted); no automated NBA.com feed.
+- **Not in the menu (Shawn, Nov 16, 2026: the menu is getting crowded).** It has its own top-level address so links never change, a second pill under the home page's Featured visual ("Weather trivia · Play today's 5"), and a card under the Almanac on the Weather page. Promote it to the menu later if people play it; that's a one-line change in `tools/apply-header.py`.
+- **Privacy:** answers and scores stay in the reader's browser (localStorage); the About page's privacy section says so. GoatCounter gets `trivia/daily-done/<score>`, `trivia/endless` and `share/trivia` events.
+- Generator and page source: the Tall Order Digital project, `claude/weather-trivia/` (README there).
+
 ## Open items
 - Sign a written IP assignment from Shawn to Tall Order Digital LLC covering existing and future site content, charts, code and the logo.
 - Each January, update the footer year (or switch to a range, "© 2026–2027") across the site, the data-repo templates and the Almanac templates.

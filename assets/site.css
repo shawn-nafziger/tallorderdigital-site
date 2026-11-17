@@ -220,6 +220,10 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .featured-pill:hover .fp-t, .featured-pill:hover .fp-go { color: var(--amber); }
 .featured-pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
 /* hubs:end */
+/* Daily trivia links (Nov 17, 2026): a second pill on the home page, a card under the Almanac on the weather page. */
+.featured-pill.trivia-pill { border-color: var(--navy); }
+.featured-pill.trivia-pill:hover { box-shadow: inset 0 0 0 1px var(--navy); }
+.almanac.trivia-card { margin-top: -40px; }
 
 /* Visually hidden, still read by screen readers (form labels, live status). */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
