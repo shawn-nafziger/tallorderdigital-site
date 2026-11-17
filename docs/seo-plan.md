@@ -93,7 +93,7 @@ Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a pa
 
 Opportunities spotted: "alaska state size comparison" gets 1,900 a month on its own, so a page per state (`numbers/state-vs-country-size/<state>/`) could each rank for its state. The chart pages draw their example charts with scripts; **done Nov 11, 2026:** each chart's takeaway, readout and data table are now written into the HTML (Indiana, the default state) by `misc-analytics/analysis/chart_guide/prerender.py`, and every guide page shows "Published Nov 11, 2026 · Data through 2025", which `tools/structured-data.js` now reads as the page's dates (the hub is a `CollectionPage`).
 
-Weather trivia (`trivia/`, Nov 16, 2026): title "Daily Weather Trivia, From Real Records". weather trivia 590 (difficulty 24) · weather trivia questions 140 (26) · weather trivia questions and answers 140 (23) · daily trivia game 1,900 (63, out of reach). The page carries ten sample questions with answers in the HTML for the "questions and answers" searches; they're kept out of the daily sets.
+Weather trivia (`trivia/weather/`, Nov 16, 2026): title "Daily Weather Trivia, From Real Records". weather trivia 590 (difficulty 24) · weather trivia questions 140 (26) · weather trivia questions and answers 140 (23) · daily trivia game 1,900 (63, out of reach). The page carries ten sample questions with answers in the HTML for the "questions and answers" searches; they're kept out of the daily sets.
 
 ## Keyword strategy: long tail first
 
