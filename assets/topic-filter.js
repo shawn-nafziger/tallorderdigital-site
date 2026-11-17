@@ -1,5 +1,5 @@
 /* Tall Order Digital: filter buttons and "Show all" for a list of story cards.
-   - Used on More stories (stories/, by topic: politics, travel, ...) and on the NBA and Weather pages (by series:
+   - Used on Data stories (stories/, by topic: politics, travel, ...) and on the NBA and Weather pages (by series:
      Check the Take, Focus stories, ...). The group says which: <div class="topic-filter" data-filter="series">.
      Without data-filter it filters by topic.
    - Each story card carries data-topic / data-series; each button's data-topic names a value or "all".

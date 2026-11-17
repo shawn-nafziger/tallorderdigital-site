@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hours of Daylight All Year, From the Equator to Polar Night · Tall Order Digital</title>
+<meta name="description" content="Every minute of a year of daylight in one live chart. On Dec. 21, Seattle gets 8h 26m and Miami 10h 32m; north of about 67.4°N the sun doesn't rise at all.">
+<link rel="canonical" href="https://tallorderdigital.com/weather/year-of-daylight-hours/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="A year of daylight, every minute of it">
+<meta property="og:description" content="Every minute of a year of daylight in one live chart. On Dec. 21, Seattle gets 8h 26m and Miami 10h 32m; north of about 67.4°N the sun doesn't rise at all.">
+<meta property="og:url" content="https://tallorderdigital.com/weather/year-of-daylight-hours/">
+<meta property="og:image" content="https://tallorderdigital.com/weather/year-of-daylight-hours/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A year of daylight in South Bend, Indiana, as a glowing band: days run July to June, the clock runs top to bottom, and the band is narrowest on Dec. 21 with 9 hours 9 minutes of daylight. The earliest sunset, Dec. 8, comes before the shortest day.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A year of daylight, every minute of it">
+<meta name="twitter:description" content="Every minute of a year of daylight in one live chart. On Dec. 21, Seattle gets 8h 26m and Miami 10h 32m; north of about 67.4°N the sun doesn't rise at all.">
+<meta name="twitter:image" content="https://tallorderdigital.com/weather/year-of-daylight-hours/share.png">
+<meta name="twitter:image:alt" content="A year of daylight in South Bend, Indiana, as a glowing band: days run July to June, the clock runs top to bottom, and the band is narrowest on Dec. 21 with 9 hours 9 minutes of daylight. The earliest sunset, Dec. 8, comes before the shortest day.">
+<meta name="theme-color" content="#060914">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Site-shell tokens, fixed to dark: this showpiece is dark-only, so the shared header, share row, subscribe card
+     and footer use the dark palette whatever the reader's theme (decided Nov 16, 2026). */
+  --ink-2:#DDDAD3;--ink-3:#9FB1B8;--rule:#1E3A44;--surface:#0c1124;--amber:#F99A2B;--ghost:#3A5762;--navy:#7FC4D6;--funnel:rgba(127,196,214,.28);
+  --logo-2:#7FC4D6;--logo-3:#4F8D9E;--logo-4:#2E6272;--logo-ink:#F3F4EF;--logo-sub:#DDDAD3;
+  --font-body:Inter,system-ui,sans-serif;--font-data:"JetBrains Mono",monospace;--font-display:"Barlow Semi Condensed",sans-serif;
+  --bg:#060914;--bg2:#0c1124;--line:#1f2745;--ink:#eef1fb;--ink2:#b9c0d9;--ink3:#7f88a8;
+  --sun:#ffc861;--sun2:#ff8a4c;--sky:#8fd0ff;--accent:#ffc861;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#18204a 0%,transparent 60%),var(--bg);color:var(--ink);font:400 16.5px/1.6 Inter,system-ui,sans-serif;min-height:100vh}
+a{color:var(--sky)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.live-pill{display:none;align-items:center;gap:7px}.js .live-pill{display:inline-flex}
+.live-pill i{width:7px;height:7px;border-radius:50%;background:#5cf2a0;box-shadow:0 0 0 0 rgba(92,242,160,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,242,160,.55)}70%{box-shadow:0 0 0 8px rgba(92,242,160,0)}100%{box-shadow:0 0 0 0 rgba(92,242,160,0)}}
+h1{font:700 clamp(36px,5.6vw,66px)/1.02 Fraunces,Georgia,serif;letter-spacing:-.02em;margin:22px 0 18px;max-width:1100px}
+h1 span{background:linear-gradient(90deg,#ffd27a,#ff8a4c 55%,#c86bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.deck{font-size:clamp(17px,2.1vw,20px);color:var(--ink2);max-width:720px;margin:0 0 26px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:0 0 14px}
+.ctl-label{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.combo{position:relative}
+.combo input{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;width:250px;background-image:linear-gradient(45deg,transparent 50%,var(--ink3) 50%),linear-gradient(135deg,var(--ink3) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat}
+.combo input::placeholder{color:var(--ink3)}
+.combo ul{position:absolute;z-index:10;top:48px;left:0;width:280px;max-height:320px;overflow-y:auto;margin:0;padding:6px;list-style:none;background:#0e1430;border:1px solid #2c3664;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.combo li{padding:9px 10px;border-radius:7px;cursor:pointer;font:400 14.5px Inter,sans-serif;color:var(--ink2);display:flex;justify-content:space-between;gap:10px}
+.combo li small{font:400 11px "JetBrains Mono",monospace;color:var(--ink3);align-self:center}
+.combo li[aria-selected="true"]{background:#232c55;color:var(--ink)}
+.combo li.grp{cursor:default;font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);padding:8px 10px 4px}
+.combo li.none{cursor:default;color:var(--ink3)}
+@media (max-width:520px){.combo input{width:min(250px,60vw)}}
+select{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink3) 50%),linear-gradient(135deg,var(--ink3) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat}
+.seg{display:inline-flex;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:3px;height:44px}
+.seg button{all:unset;cursor:pointer;padding:0 14px;border-radius:7px;font:500 14px Inter,sans-serif;color:var(--ink2);display:flex;align-items:center}
+.seg button[aria-pressed="true"]{background:#232c55;color:var(--ink)}
+.latbox{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 12px}
+.latbox output{font:500 14px "JetBrains Mono",monospace;min-width:64px;color:var(--ink)}
+input[type=range]{accent-color:var(--sun);width:150px;height:36px}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+.story{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;background:linear-gradient(180deg,rgba(35,44,85,.55),rgba(20,26,52,.55));border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 14px;min-height:112px}
+.story .n{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--sun)}
+.story p{margin:0;color:var(--ink2);font-size:15.5px;max-width:760px}
+.story p b{color:var(--ink)}
+.stepnav{display:flex;align-items:center;gap:8px}
+.dots{display:flex;gap:6px;margin-right:6px}
+.dots button{all:unset;cursor:pointer;width:10px;height:10px;border-radius:50%;background:#2c3664;padding:0}
+.dots button[aria-current="true"]{background:var(--sun);box-shadow:0 0 10px rgba(255,200,97,.7)}
+.navbtn{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink);font-size:18px;background:var(--bg2)}
+.navbtn.primary{background:var(--sun);color:#1a1205;border-color:var(--sun);font-weight:700}
+.navbtn.primary{width:auto;padding:0 20px;border-radius:999px;font:600 15px Inter,sans-serif;gap:6px}
+@media (max-width:720px){.stepnav{justify-content:space-between}}
+.stage{position:relative;border-radius:16px;overflow:hidden;background:#04060e;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.stage canvas{position:absolute;image-rendering:auto}
+.stage svg{position:relative;display:block}
+.stage text{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink3)}
+.stage .lbl{font-family:Inter,sans-serif;font-size:12.5px;fill:var(--ink);paint-order:stroke;stroke:rgba(4,6,14,.85);stroke-width:4px;stroke-linejoin:round}
+.stage .lbl-s{font-family:Inter,sans-serif;font-size:11.5px;fill:var(--ink2);paint-order:stroke;stroke:rgba(4,6,14,.85);stroke-width:4px;stroke-linejoin:round}
+.stage .lbl-b{font-weight:600}
+.evline{fill:none;stroke:rgba(255,255,255,.85);stroke-width:1.4}
+.noonline{fill:none;stroke:rgba(255,255,255,.35);stroke-width:1;stroke-dasharray:2 4}
+.grid line{stroke:rgba(255,255,255,.07)}
+.todayline{stroke:#5cf2a0;stroke-width:1.5;stroke-dasharray:3 3}
+.today-t{fill:#5cf2a0!important;font-weight:500}
+.shortband{fill:rgba(255,200,97,.07);stroke:var(--sun);stroke-width:1.2;stroke-dasharray:4 3}
+.mk{fill:var(--sun);stroke:#04060e;stroke-width:2}
+.mk-ring{fill:none;stroke:var(--sun);stroke-width:1.5}
+.lenarea{fill:url(#lenGrad)}
+.lenline{fill:none;stroke:var(--sun);stroke-width:1.5}
+.dim .mk,.dim .mk-ring,.dim .shortband{opacity:.35}
+.emph-short .shortband{fill:rgba(255,200,97,.16);stroke-width:2}
+.tip{position:absolute;pointer-events:none;background:rgba(9,13,30,.94);border:1px solid #2c3664;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:190px;opacity:0;transition:opacity .08s;backdrop-filter:blur(6px);z-index:3}
+.tip .t{font:600 13px Inter,sans-serif}
+.tip .m{font:400 12px "JetBrains Mono",monospace;color:var(--ink2)}
+.tip .ph{display:inline-block;margin-top:3px;font:500 11px "JetBrains Mono",monospace;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:4px;color:#04060e}
+.legend{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:12px 0 0;font:400 12.5px Inter,sans-serif;color:var(--ink3)}
+.ramp{height:10px;width:min(380px,82vw);border-radius:5px}
+.ramp-l{display:flex;justify-content:space-between;width:min(380px,82vw);font:400 10.5px "JetBrains Mono",monospace;color:var(--ink3);margin-top:3px}
+.livegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0}
+.cell{background:var(--bg2);padding:14px 16px}
+.cell .k{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.cell .v{font:700 clamp(22px,3vw,30px)/1.1 Fraunces,Georgia,serif;margin:5px 0 3px}
+.cell .s{font-size:13px;color:var(--ink2);line-height:1.4}
+@media (max-width:820px){.livegrid{grid-template-columns:repeat(2,1fr)}}
+h3{font:700 26px/1.2 Fraunces,Georgia,serif;margin:46px 0 10px}
+.prose{max-width:700px;color:var(--ink2)}
+.prose b{color:var(--ink)}
+details{border-top:1px solid var(--line);padding:6px 0;margin-top:26px}
+summary{cursor:pointer;font:600 15px Inter,sans-serif;padding:12px 0;min-height:44px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 10px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font:500 11px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+th:first-child,td:first-child{text-align:left}
+td{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink2)}
+.tw{overflow-x:auto}
+.controls,.stepnav,.livegrid,.legend{display:none}.js .controls,.js .stepnav,.js .legend{display:flex}.js .livegrid{display:grid}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){.live-pill i{animation:none}}
+.crumbrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 0}
+.crumbs{font:400 13px Inter,sans-serif;color:var(--ink3)}
+.live-pill{font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.theme-toggle{display:none!important}
+.crumbs a{color:var(--ink2);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.byline{font:400 13px "JetBrains Mono",monospace;color:var(--ink3);margin:-10px 0 24px}
+.answer{font-size:clamp(17px,2vw,19px);color:var(--ink);max-width:760px;margin:0 0 12px}
+.step h2{font:700 22px/1.2 Fraunces,Georgia,serif;margin:4px 0 4px}
+.js .step{display:none}.js .step.on{display:block}
+.step + .step{margin-top:18px}.js .step + .step{margin-top:0}
+#still{display:block;width:100%;height:auto}
+.stage.live #still{display:none}
+h2.sec{font:700 26px/1.2 Fraunces,Georgia,serif;margin:46px 0 10px}
+.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.related a{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.related a span{display:block;font-size:13.5px;color:var(--ink2);margin-top:4px}
+caption{caption-side:top;text-align:left;font-size:14px;color:var(--ink2);padding:0 0 8px}
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+/* Phone: with three nav items, the header wraps under the logo (same rule as assets/site.css). */
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+/* Showpiece overrides of the shared chrome: wider column, side padding, footer centered */
+.site-bar, .site-foot { max-width: 1136px; padding-left: 22px; padding-right: 22px; box-sizing: content-box; }
+@media (max-width: 1180px) { .site-bar, .site-foot { margin-left: 0; margin-right: 0; max-width: none; } }
+.site-foot { margin-top: 50px; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.subscribe h2 { font: 700 clamp(26px, 4vw, 32px)/.95 var(--font-display); text-transform: uppercase; margin: 0; }
+/* this page's <main> is not a grid, so space the end-of-story parts here (the shared rules assume a 56px grid gap) */
+main .share-row { margin: 44px 0 20px; }
+main .subscribe.sub-end { margin-top: 0; }
+.site-foot p { margin: 0; }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
+/* site-header:end */
+/* theme-toggle:start */
+/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+/* theme-toggle:end */
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
+</style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-16">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/weather/year-of-daylight-hours/#article","headline":"A year of daylight, every minute of it","description":"Every minute of a year of daylight in one live chart. On Dec. 21, Seattle gets 8h 26m and Miami 10h 32m; north of about 67.4°N the sun doesn't rise at all.","image":["https://tallorderdigital.com/weather/year-of-daylight-hours/share.png"],"datePublished":"2026-11-16","dateModified":"2026-11-16","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/weather/year-of-daylight-hours/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/weather/year-of-daylight-hours/#webpage","url":"https://tallorderdigital.com/weather/year-of-daylight-hours/","name":"A year of daylight, every minute of it","description":"Every minute of a year of daylight in one live chart. On Dec. 21, Seattle gets 8h 26m and Miami 10h 32m; north of about 67.4°N the sun doesn't rise at all.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/weather/year-of-daylight-hours/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"Weather","item":"https://tallorderdigital.com/weather/"},{"@type":"ListItem","position":3,"name":"A year of daylight, every minute of it","item":"https://tallorderdigital.com/weather/year-of-daylight-hours/"}],"@id":"https://tallorderdigital.com/weather/year-of-daylight-hours/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/" aria-current="page">Weather</a><a class="nav-topic" href="../../nba/">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main class="wrap">
+
+  <div class="crumbrow"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> › <a href="../">Weather</a> › A year of daylight</nav><span class="live-pill"><i></i><span id="clockPill">Live</span></span></div>
+  <h1>A year of daylight, <span>every minute of it</span></h1>
+  <p class="answer">On the shortest day of the year, Dec. 21, 2026, daylight in the Lower 48 runs from <b>8h 26m</b> in Seattle to <b>10h 32m</b> in Miami, and from 3h 41m in Fairbanks, Alaska, to 10h 50m in Honolulu. Yet the earliest sunset comes days or weeks before the shortest day (Dec. 8 in New York and Chicago), and the latest sunrise comes weeks after. North of about 67.4° latitude the sun doesn’t rise at all around the December solstice: 48 days in Tromsø, Norway, and 112 in Longyearbyen, Svalbard.</p>
+  <p class="deck">The chart below holds a whole year of daylight, twilight and night. Each column is a day, each row is a minute, and each pixel is colored by where the sun was at that moment. Pick any of 65 places, from Utqiaġvik, Alaska, to Singapore, or any latitude; it’s all calculated live in your browser.</p>
+  <p class="byline">By Shawn Nafziger · Published <time datetime="2026-11-16">Nov. 16, 2026</time> · Figures for July 2026–June 2027, from NOAA solar equations</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
+
+  <div class="controls">
+    <label class="ctl-label" id="cityLbl" for="city">Place</label>
+    <div class="combo">
+      <input id="city" type="text" role="combobox" aria-expanded="false" aria-controls="cityList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Type a city">
+      <ul id="cityList" role="listbox" aria-labelledby="cityLbl" hidden></ul>
+    </div>
+    <div class="seg" role="group" aria-label="Time on the vertical axis">
+      <button id="tClock" aria-pressed="true">Clock time</button>
+      <button id="tSun" aria-pressed="false">Sun time</button>
+    </div>
+    <div class="latbox"><span class="ctl-label">Anywhere</span><input type="range" id="lat" min="-80" max="80" step="0.5" value="40" aria-label="Latitude"><output id="latOut">40.0°N</output></div>
+  </div>
+
+  <section class="story" aria-live="polite">
+    <div class="steps">
+      <article class="step on">
+        <div class="n">1 of 5</div>
+        <h2>What does a year of daylight look like?</h2>
+        <p><span class="nopn">In <span data-k="place">South Bend, IN</span>, daylight runs from <b data-k="shortLen">9h 09m</b> on the shortest day to <b data-k="longLen">15h 12m</b> on the longest.</span><span class="pn" hidden>In <span data-k="place"></span>, the sun doesn’t rise at all for <b data-k="pnDays"></b> in winter, and doesn’t set for <b data-k="pdDays"></b> in summer.</span> In the chart, days run left to right (<span data-k="range">July to June</span>) and the clock runs top to bottom, midnight to midnight. Deep blue is night, purple and orange are twilight, pale blue is full daylight. The green dot is <b>right now</b>; hover anywhere to read the sun’s height at that minute.</p>
+      </article>
+      <article class="step">
+        <div class="n">2 of 5</div>
+        <h2>How short does the shortest day get?</h2>
+        <p class="pn" hidden><span data-k="hemi"></span> In <span data-k="place"></span>, there’s no shortest day to measure: the sun stays below the horizon from <b data-k="pnStart"></b> to <b data-k="pnEnd"></b>, and twilight is the only light. The gold strip above the chart traces day length all year; the flat stretch at zero is the polar night.</p>
+        <p class="nopn"><span data-k="hemi">In the Northern Hemisphere it’s Dec. 21, 2026, the winter solstice.</span> <span data-k="place">South Bend, IN</span> gets <b data-k="shortLen">9h 09m</b> of daylight on <b data-k="shortDate">Dec. 21</b>, against <span data-k="longLen">15h 12m</span> on <span data-k="longDate">June 21</span>. The gold strip above the chart traces day length all year; the shortest day is its lowest point.</p>
+      </article>
+      <article class="step">
+        <div class="n">3 of 5</div>
+        <h2>Why does the daylight band lean in midwinter?</h2>
+        <p class="norm">Because clocks and the sun keep different time. In <span data-k="place">South Bend, IN</span>, the earliest sunset is <b data-k="esDate">Dec. 8</b> (<span data-k="esTime">5:14 p.m.</span>), <span data-k="esGap">13 days</span> before the shortest day, and the latest sunrise isn’t until <b data-k="lrDate">Jan. 4</b> (<span data-k="lrTime">8:12 a.m.</span>). Around the solstice the day barely changes length, but solar noon, the moment the sun is highest, drifts about half a minute later each day, so the whole band of daylight slides later on the clock.</p>
+        <p class="polar" hidden>Here the sun doesn’t rise at all around the solstice, so there’s no earliest sunset to find. Pick a place farther from the pole to see the lopsided edges.</p>
+      </article>
+      <article class="step">
+        <div class="n">4 of 5</div>
+        <h2>Is the lopsided sunset the sun or the clock?</h2>
+        <p>The clock. On <b>sun time</b>, where noon is reset each day to the moment the sun is highest, the light becomes a perfect mirror around noon, the daylight-saving steps vanish, and the earliest sunset and latest sunrise both land on the shortest day. Over a year the sun runs up to 16 minutes ahead of or behind clock time; astronomers call that drift the equation of time.</p>
+      </article>
+      <article class="step">
+        <div class="n">5 of 5</div>
+        <h2>Where can the polar night be seen?</h2>
+        <p>Only north of about 67.4°N or south of about 67.4°S, a little beyond the Arctic and Antarctic Circles, because the atmosphere bends sunlight over the horizon. There the sun doesn’t rise at all around the winter solstice: 48 days in Tromsø, Norway (Nov. 28–Jan. 14), and 112 in Longyearbyen, Svalbard (Oct. 27–Feb. 15). Fairbanks, Alaska, still gets 3h 41m on Dec. 21; Utqiaġvik, the northernmost town in the US, goes 65 days without a sunrise. The animation sweeps from the equator, where every day is about 12 hours, to 78°N; drag the <b>Anywhere</b> slider to try any latitude.</p>
+      </article>
+    </div>
+    <div class="stepnav">
+      <div class="dots" id="dots"></div>
+      <button class="navbtn" id="prev" aria-label="Previous step">‹</button>
+      <button class="navbtn primary" id="next" aria-label="Next step">Next ›</button>
+    </div>
+  </section>
+
+  <div class="stage" id="stage">
+    <img id="still" src="chart-south-bend.webp" width="1136" height="651" fetchpriority="high" alt="A year of daylight in South Bend, Indiana, as a glowing band: days run July to June, the clock runs top to bottom, and the band is narrowest on Dec. 21 with 9 hours 9 minutes of daylight. The earliest sunset, Dec. 8, comes before the shortest day.">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <svg id="ov" role="img" aria-labelledby="ovDesc"><desc id="ovDesc">A year of sun positions for the chosen place: days run left to right from July to June, clock time runs top to bottom, and color shows the sun's height from night through twilight to full day. White lines mark sunrise and sunset.</desc></svg>
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="legend">
+    <div>
+      <div class="ramp" id="ramp"></div>
+      <div class="ramp-l"><span>Night</span><span>Twilight</span><span>Golden</span><span>Day</span><span>Sun high</span></div>
+    </div>
+    <span>White lines: sunrise and sunset · dotted: sun at its highest · <span style="color:#5cf2a0">green: today and now</span></span>
+  </div>
+
+  <div class="livegrid" aria-live="polite">
+    <div class="cell"><div class="k">The sun right now</div><div class="v" id="lvAlt">—</div><div class="s" id="lvAltS"></div></div>
+    <div class="cell"><div class="k">Today’s daylight</div><div class="v" id="lvLen">—</div><div class="s" id="lvLenS"></div></div>
+    <div class="cell"><div class="k">Change since yesterday</div><div class="v" id="lvChg">—</div><div class="s" id="lvChgS"></div></div>
+    <div class="cell"><div class="k" id="lvNextK">Next solstice</div><div class="v" id="lvNext">—</div><div class="s" id="lvNextS"></div></div>
+  </div>
+
+  <h2 class="sec">Hours of daylight in 30 places, from Singapore to the polar night</h2>
+  <p class="prose">Every place here north of the equator that sees the sun in December gets its shortest day on Dec. 21 or 22, 2026, but its earliest sunset and latest sunrise land days or weeks to either side. The closer to the equator, the wider the gap: 25 days before the solstice in Honolulu, 3 in Fairbanks. Southern places are shown for their June 2027 winter. For sunrise and sunset on the shortest day in 51 US cities, see <a href="../shortest-day-of-the-year/">The shortest day of the year isn’t your darkest evening</a>.</p>
+  <div class="tw"><table id="keys">
+    <caption>Clock times, July 2026–June 2027 (southern places: 2027). Daylight is sunrise to sunset.</caption>
+    <thead><tr><th>Place</th><th>Shortest day</th><th>Daylight</th><th>Earliest sunset</th><th>Latest sunrise</th><th>Longest day</th></tr></thead>
+    <tbody>
+<tr><td>Utqiaġvik, AK</td><td colspan="4">Polar night: no sunrise Nov. 19–Jan. 22 (65 days)</td><td>Midnight sun</td></tr>
+<tr><td>Fairbanks, AK</td><td>Dec. 21</td><td>3h 41m</td><td>Dec. 18, 2:39 p.m.</td><td>Dec. 24, 10:59 a.m.</td><td>21h 50m</td></tr>
+<tr><td>Anchorage, AK</td><td>Dec. 21</td><td>5h 27m</td><td>Dec. 16, 3:40 p.m.</td><td>Dec. 26, 10:16 a.m.</td><td>19h 22m</td></tr>
+<tr><td>Seattle, WA</td><td>Dec. 21</td><td>8h 26m</td><td>Dec. 10, 4:18 p.m.</td><td>Jan. 1, 7:58 a.m.</td><td>15h 59m</td></tr>
+<tr><td>Minneapolis, MN</td><td>Dec. 21</td><td>8h 46m</td><td>Dec. 9, 4:31 p.m.</td><td>Jan. 2, 7:51 a.m.</td><td>15h 37m</td></tr>
+<tr><td>Boston, MA</td><td>Dec. 21</td><td>9h 05m</td><td>Dec. 8, 4:11 p.m.</td><td>Jan. 3, 7:14 a.m.</td><td>15h 17m</td></tr>
+<tr><td>Detroit, MI</td><td>Dec. 21</td><td>9h 05m</td><td>Dec. 8, 5:00 p.m.</td><td>Jan. 3, 8:01 a.m.</td><td>15h 17m</td></tr>
+<tr><td>Chicago, IL</td><td>Dec. 21</td><td>9h 08m</td><td>Dec. 8, 4:19 p.m.</td><td>Jan. 3, 7:18 a.m.</td><td>15h 14m</td></tr>
+<tr><td>South Bend, IN</td><td>Dec. 21</td><td>9h 09m</td><td>Dec. 8, 5:14 p.m.</td><td>Jan. 4, 8:12 a.m.</td><td>15h 12m</td></tr>
+<tr><td>New York, NY</td><td>Dec. 21</td><td>9h 15m</td><td>Dec. 8, 4:28 p.m.</td><td>Jan. 4, 7:20 a.m.</td><td>15h 06m</td></tr>
+<tr><td>Indianapolis, IN</td><td>Dec. 21</td><td>9h 21m</td><td>Dec. 7, 5:20 p.m.</td><td>Jan. 4, 8:06 a.m.</td><td>14h 59m</td></tr>
+<tr><td>Denver, CO</td><td>Dec. 21</td><td>9h 21m</td><td>Dec. 7, 4:35 p.m.</td><td>Jan. 4, 7:21 a.m.</td><td>14h 59m</td></tr>
+<tr><td>Washington, DC</td><td>Dec. 21</td><td>9h 26m</td><td>Dec. 7, 4:46 p.m.</td><td>Jan. 5, 7:27 a.m.</td><td>14h 54m</td></tr>
+<tr><td>San Francisco, CA</td><td>Dec. 21</td><td>9h 33m</td><td>Dec. 6, 4:51 p.m.</td><td>Jan. 5, 7:25 a.m.</td><td>14h 47m</td></tr>
+<tr><td>Atlanta, GA</td><td>Dec. 21</td><td>9h 55m</td><td>Dec. 4, 5:29 p.m.</td><td>Jan. 8, 7:43 a.m.</td><td>14h 24m</td></tr>
+<tr><td>Phoenix, AZ</td><td>Dec. 21</td><td>9h 56m</td><td>Dec. 4, 5:20 p.m.</td><td>Jan. 8, 7:33 a.m.</td><td>14h 22m</td></tr>
+<tr><td>Los Angeles, CA</td><td>Dec. 21</td><td>9h 53m</td><td>Dec. 4, 4:43 p.m.</td><td>Jan. 7, 6:59 a.m.</td><td>14h 26m</td></tr>
+<tr><td>Dallas, TX</td><td>Dec. 21</td><td>10h 00m</td><td>Dec. 4, 5:21 p.m.</td><td>Jan. 8, 7:30 a.m.</td><td>14h 19m</td></tr>
+<tr><td>Houston, TX</td><td>Dec. 21</td><td>10h 14m</td><td>Dec. 2, 5:22 p.m.</td><td>Jan. 10, 7:18 a.m.</td><td>14h 04m</td></tr>
+<tr><td>Miami, FL</td><td>Dec. 21</td><td>10h 32m</td><td>Nov. 29, 5:29 p.m.</td><td>Jan. 13, 7:09 a.m.</td><td>13h 45m</td></tr>
+<tr><td>Honolulu, HI</td><td>Dec. 21</td><td>10h 50m</td><td>Nov. 26, 5:48 p.m.</td><td>Jan. 16, 7:12 a.m.</td><td>13h 26m</td></tr>
+<tr><td>Longyearbyen, Svalbard</td><td colspan="4">Polar night: no sunrise Oct. 27–Feb. 15 (112 days)</td><td>Midnight sun</td></tr>
+<tr><td>Tromsø, Norway</td><td colspan="4">Polar night: no sunrise Nov. 28–Jan. 14 (48 days)</td><td>Midnight sun</td></tr>
+<tr><td>Reykjavík, Iceland</td><td>Dec. 21</td><td>4h 07m</td><td>Dec. 18, 3:29 p.m.</td><td>Dec. 25, 11:23 a.m.</td><td>21h 09m</td></tr>
+<tr><td>London, UK</td><td>Dec. 21</td><td>7h 50m</td><td>Dec. 12, 3:51 p.m.</td><td>Dec. 30, 8:06 a.m.</td><td>16h 38m</td></tr>
+<tr><td>Madrid, Spain</td><td>Dec. 21</td><td>9h 17m</td><td>Dec. 8, 5:48 p.m.</td><td>Jan. 4, 8:38 a.m.</td><td>15h 04m</td></tr>
+<tr><td>Tokyo, Japan</td><td>Dec. 22</td><td>9h 45m</td><td>Dec. 6, 4:28 p.m.</td><td>Jan. 7, 6:52 a.m.</td><td>14h 35m</td></tr>
+<tr><td>Singapore</td><td>Dec. 21</td><td>12h 03m</td><td>Nov. 5, 6:50 p.m.</td><td>Feb. 10, 7:17 a.m.</td><td>12h 12m</td></tr>
+<tr><td>Sydney, Australia</td><td>June 22</td><td>9h 54m</td><td>June 12, 4:53 p.m.</td><td>July 1, 7:01 a.m.</td><td>14h 25m</td></tr>
+<tr><td>Ushuaia, Argentina</td><td>June 21</td><td>7h 12m</td><td>June 17, 5:11 p.m.</td><td>June 25, 9:59 a.m.</td><td>17h 20m</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">How many hours of daylight does Alaska get?</h2>
+  <p class="prose">Anywhere from none to 24, depending on where and when. On Dec. 21, 2026, Juneau gets 6h 22m of daylight, Anchorage 5h 27m and Fairbanks 3h 41m, while in Utqiaġvik the sun doesn’t rise at all from Nov. 19 to Jan. 22. Around the June solstice it flips: Fairbanks gets 21h 50m, Anchorage 19h 22m, and Utqiaġvik’s sun doesn’t set from May 11 to Aug. 1, 2027. Twice a year, near the equinoxes, all four get about 12 hours.</p>
+  <div class="tw"><table id="alaska">
+    <caption>Daylight (sunrise to sunset) on the 21st of each month. 0h: the sun doesn’t rise; 24h: it doesn’t set.</caption>
+    <thead><tr><th>Date</th><th>Utqiaġvik</th><th>Fairbanks</th><th>Anchorage</th><th>Juneau</th></tr></thead>
+    <tbody>
+<tr><td>July 21, 2026</td><td>24h</td><td>19h 25m</td><td>18h 00m</td><td>17h 12m</td></tr>
+<tr><td>Aug. 21, 2026</td><td>17h 34m</td><td>15h 51m</td><td>15h 15m</td><td>14h 53m</td></tr>
+<tr><td>Sept. 21, 2026</td><td>12h 31m</td><td>12h 23m</td><td>12h 20m</td><td>12h 18m</td></tr>
+<tr><td>Oct. 21, 2026</td><td>7h 47m</td><td>9h 03m</td><td>9h 30m</td><td>9h 48m</td></tr>
+<tr><td>Nov. 21, 2026</td><td>0h</td><td>5h 38m</td><td>6h 46m</td><td>7h 27m</td></tr>
+<tr><td>Dec. 21, 2026</td><td>0h</td><td>3h 41m</td><td>5h 27m</td><td>6h 22m</td></tr>
+<tr><td>Jan. 21, 2027</td><td>0h</td><td>5h 45m</td><td>6h 52m</td><td>7h 31m</td></tr>
+<tr><td>Feb. 21, 2027</td><td>8h 03m</td><td>9h 13m</td><td>9h 39m</td><td>9h 55m</td></tr>
+<tr><td>March 21, 2027</td><td>12h 31m</td><td>12h 23m</td><td>12h 20m</td><td>12h 18m</td></tr>
+<tr><td>April 21, 2027</td><td>17h 40m</td><td>15h 54m</td><td>15h 18m</td><td>14h 55m</td></tr>
+<tr><td>May 21, 2027</td><td>24h</td><td>19h 23m</td><td>17h 59m</td><td>17h 11m</td></tr>
+<tr><td>June 21, 2027</td><td>24h</td><td>21h 50m</td><td>19h 22m</td><td>18h 17m</td></tr>
+    </tbody></table></div>
+
+  <h2 class="sec">How to read the chart</h2>
+  <div class="prose">
+    <p>The bright shape in the middle is daylight. Where it pinches in, the days are short; where it swells, they’re long. Its top edge is sunrise and its bottom edge is sunset, so a dip in the bottom edge means an earlier sunset. The purple and orange fringes are twilight, which lasts much longer the farther you are from the equator.</p>
+    <p><b>Clock time</b> is what your phone says, including daylight saving time (the sudden step in spring and fall). <b>Sun time</b> resets noon to the moment the sun is highest, which strips out time zones, daylight saving and the sun’s own drift. Flip between them to see how much of the picture is the clock rather than the sky.</p>
+  </div>
+
+  <details>
+    <summary>The numbers for <span id="tblCity">South Bend, IN</span>, month by month</summary>
+    <div class="tw"><table id="tbl"><thead><tr><th>Date</th><th>Sunrise</th><th>Sunset</th><th>Daylight</th></tr></thead><tbody>
+<tr><td>July 1, 2026</td><td>6:14 a.m.</td><td>9:23 p.m.</td><td>15h 09m</td></tr>
+<tr><td>Aug. 1, 2026</td><td>6:39 a.m.</td><td>9:03 p.m.</td><td>14h 23m</td></tr>
+<tr><td>Sept. 1, 2026</td><td>7:11 a.m.</td><td>8:18 p.m.</td><td>13h 07m</td></tr>
+<tr><td>Oct. 1, 2026</td><td>7:42 a.m.</td><td>7:27 p.m.</td><td>11h 45m</td></tr>
+<tr><td>Nov. 1, 2026</td><td>7:17 a.m.</td><td>5:39 p.m.</td><td>10h 22m</td></tr>
+<tr><td>Dec. 1, 2026</td><td>7:53 a.m.</td><td>5:15 p.m.</td><td>9h 23m</td></tr>
+<tr><td>Dec. 21, 2026 · shortest</td><td>8:09 a.m.</td><td>5:18 p.m.</td><td>9h 09m</td></tr>
+<tr><td>Jan. 1, 2027</td><td>8:12 a.m.</td><td>5:25 p.m.</td><td>9h 13m</td></tr>
+<tr><td>Feb. 1, 2027</td><td>7:57 a.m.</td><td>6:00 p.m.</td><td>10h 03m</td></tr>
+<tr><td>March 1, 2027</td><td>7:20 a.m.</td><td>6:35 p.m.</td><td>11h 15m</td></tr>
+<tr><td>April 1, 2027</td><td>7:28 a.m.</td><td>8:10 p.m.</td><td>12h 42m</td></tr>
+<tr><td>May 1, 2027</td><td>6:42 a.m.</td><td>8:43 p.m.</td><td>14h 01m</td></tr>
+<tr><td>June 1, 2027</td><td>6:13 a.m.</td><td>9:13 p.m.</td><td>15h 00m</td></tr>
+</tbody></table></div>
+  </details>
+  <details>
+    <summary>How this is calculated</summary>
+    <div class="prose">
+      <p>Every pixel is computed in your browser from NOAA’s solar position equations (based on Jean Meeus’s <i>Astronomical Algorithms</i>): the sun’s declination and the equation of time for each day, then its height above the horizon for each minute. Sunrise and sunset are when the top of the sun meets a flat horizon, with normal atmospheric refraction; hills and buildings can shift what you see by a few minutes. The same equations, checked against an independent library, agree to within seconds for US cities.</p>
+      <p>Clock times use each place’s official time zone rules from your browser, so daylight saving dates are always current. Twilight bands follow the standard definitions: civil (sun 0–6° below the horizon), nautical (6–12°) and astronomical (12–18°). Nothing is stored or sent anywhere; the page needs no data feed, so it never goes out of date.</p>
+    </div>
+  </details>
+  <h2 class="sec">Related</h2>
+  <div class="related">
+    <a href="../shortest-day-of-the-year/">The shortest day of the year isn’t your darkest evening<span>Sunrise, sunset and the earliest sunset for 51 US cities, and why it comes before Dec. 21.</span></a>
+    <a href="../almanac/">Weather Almanac<span>Records, normals and today’s weather for hundreds of US places.</span></a>
+    <a href="../">All weather stories<span>More data stories about the weather and the sky.</span></a>
+  </div>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
+</main>
+
+<footer class="site-foot">
+  <p>Data: computed from NOAA Global Monitoring Laboratory solar equations. Analysis: Tall Order Digital.</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../">More weather stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function(){
+"use strict";
+const RAD = Math.PI/180, DAY = 864e5;
+// ---------------- places ----------------
+const US = [
+ ["Fairbanks, AK",64.8378,-147.7164,"America/Anchorage"],["Anchorage, AK",61.2181,-149.9003,"America/Anchorage"],
+ ["Seattle, WA",47.6062,-122.3321,"America/Los_Angeles"],["Minneapolis, MN",44.9778,-93.2650,"America/Chicago"],
+ ["Boston, MA",42.3601,-71.0589,"America/New_York"],["Detroit, MI",42.3314,-83.0458,"America/Detroit"],
+ ["Chicago, IL",41.8781,-87.6298,"America/Chicago"],["South Bend, IN",41.6764,-86.2520,"America/Indiana/Indianapolis"],
+ ["New York, NY",40.7128,-74.0060,"America/New_York"],["Indianapolis, IN",39.7684,-86.1581,"America/Indiana/Indianapolis"],
+ ["Denver, CO",39.7392,-104.9903,"America/Denver"],["Washington, DC",38.9072,-77.0369,"America/New_York"],
+ ["San Francisco, CA",37.7749,-122.4194,"America/Los_Angeles"],["Atlanta, GA",33.7490,-84.3880,"America/New_York"],
+ ["Phoenix, AZ",33.4484,-112.0740,"America/Phoenix"],["Los Angeles, CA",34.0522,-118.2437,"America/Los_Angeles"],
+ ["Dallas, TX",32.7767,-96.7970,"America/Chicago"],["Houston, TX",29.7604,-95.3698,"America/Chicago"],
+ ["Miami, FL",25.7617,-80.1918,"America/New_York"],["Honolulu, HI",21.3069,-157.8583,"Pacific/Honolulu"],
+ ["Juneau, AK",58.3019,-134.4197,"America/Juneau"],
+ ["Spokane, WA",47.6588,-117.426,"America/Los_Angeles"],
+ ["Fargo, ND",46.8772,-96.7898,"America/Chicago"],
+ ["Portland, OR",45.5152,-122.6784,"America/Los_Angeles"],
+ ["Billings, MT",45.7833,-108.5007,"America/Denver"],
+ ["Burlington, VT",44.4759,-73.2121,"America/New_York"],
+ ["Portland, ME",43.6591,-70.2568,"America/New_York"],
+ ["Boise, ID",43.615,-116.2023,"America/Boise"],
+ ["Milwaukee, WI",43.0389,-87.9065,"America/Chicago"],
+ ["Buffalo, NY",42.8864,-78.8784,"America/New_York"],
+ ["Cleveland, OH",41.4993,-81.6944,"America/New_York"],
+ ["Salt Lake City, UT",40.7608,-111.891,"America/Denver"],
+ ["Pittsburgh, PA",40.4406,-79.9959,"America/New_York"],
+ ["Philadelphia, PA",39.9526,-75.1652,"America/New_York"],
+ ["Columbus, OH",39.9612,-82.9988,"America/New_York"],
+ ["Kansas City, MO",39.0997,-94.5786,"America/Chicago"],
+ ["St. Louis, MO",38.627,-90.1994,"America/Chicago"],
+ ["Louisville, KY",38.2527,-85.7585,"America/Kentucky/Louisville"],
+ ["Las Vegas, NV",36.1699,-115.1398,"America/Los_Angeles"],
+ ["Nashville, TN",36.1627,-86.7816,"America/Chicago"],
+ ["Charlotte, NC",35.2271,-80.8431,"America/New_York"],
+ ["Oklahoma City, OK",35.4676,-97.5164,"America/Chicago"],
+ ["Albuquerque, NM",35.0844,-106.6504,"America/Denver"],
+ ["Memphis, TN",35.1495,-90.049,"America/Chicago"],
+ ["San Diego, CA",32.7157,-117.1611,"America/Los_Angeles"],
+ ["El Paso, TX",31.7619,-106.485,"America/Denver"],
+ ["Jacksonville, FL",30.3322,-81.6557,"America/New_York"],
+ ["Austin, TX",30.2672,-97.7431,"America/Chicago"],
+ ["New Orleans, LA",29.9511,-90.0715,"America/Chicago"],
+ ["San Antonio, TX",29.4241,-98.4936,"America/Chicago"],
+ ["Tampa, FL",27.9506,-82.4572,"America/New_York"],
+ ["Utqiaġvik, AK",71.2906,-156.7886,"America/Anchorage"]
+];
+const WORLD = [
+ ["Longyearbyen, Svalbard",78.2232,15.6267,"Arctic/Longyearbyen"],["Tromsø, Norway",69.6492,18.9553,"Europe/Oslo"],
+ ["Reykjavík, Iceland",64.1466,-21.9426,"Atlantic/Reykjavik"],["London, UK",51.5074,-0.1278,"Europe/London"],
+ ["Madrid, Spain",40.4168,-3.7038,"Europe/Madrid"],["Tokyo, Japan",35.6762,139.6503,"Asia/Tokyo"],
+ ["Singapore",1.3521,103.8198,"Asia/Singapore"],["Sydney, Australia",-33.8688,151.2093,"Australia/Sydney"],
+ ["Ushuaia, Argentina",-54.8019,-68.3030,"America/Argentina/Ushuaia"],
+ ["Murmansk, Russia",68.9585,33.0827,"Europe/Moscow"],["Helsinki, Finland",60.1699,24.9384,"Europe/Helsinki"],
+ ["Stockholm, Sweden",59.3293,18.0686,"Europe/Stockholm"],["Edinburgh, UK",55.9533,-3.1883,"Europe/London"]
+];
+const PLACES = new Map();
+[...US.map(p => [...p,'US']), ...WORLD.map(p => [...p,'World'])].forEach(([name,lat,lon,tz,grp]) => PLACES.set(name,{name,lat,lon,tz,grp}));
+
+// ---------------- solar math (NOAA) ----------------
+function sunParams(ms){
+  const T = (ms/DAY + 2440587.5 - 2451545.0)/36525;
+  const L0 = ((280.46646 + T*(36000.76983 + T*0.0003032)) % 360 + 360) % 360;
+  const M = 357.52911 + T*(35999.05029 - 0.0001537*T), e = 0.016708634 - T*(0.000042037 + 0.0000001267*T);
+  const Mr = M*RAD;
+  const C = Math.sin(Mr)*(1.914602 - T*(0.004817 + 0.000014*T)) + Math.sin(2*Mr)*(0.019993 - 0.000101*T) + Math.sin(3*Mr)*0.000289;
+  const om = 125.04 - 1934.136*T, lam = L0 + C - 0.00569 - 0.00478*Math.sin(om*RAD);
+  const eps = 23 + (26 + (21.448 - T*(46.815 + T*(0.00059 - T*0.001813)))/60)/60 + 0.00256*Math.cos(om*RAD);
+  const decl = Math.asin(Math.sin(eps*RAD)*Math.sin(lam*RAD))/RAD;
+  const y = Math.tan(eps*RAD/2)**2, L = L0*RAD;
+  const eqt = 4/RAD*(y*Math.sin(2*L) - 2*e*Math.sin(Mr) + 4*e*y*Math.sin(Mr)*Math.cos(2*L) - 0.5*y*y*Math.sin(4*L) - 1.25*e*e*Math.sin(2*Mr));
+  return [decl, eqt];
+}
+// minutes after UTC midnight of dayMs for rise/set; null if none
+function eventUTC(dayMs, lat, lon, kind){
+  let g = 720 - 4*lon;
+  for (let k = 0; k < 3; k++){
+    const [d, eq] = sunParams(dayMs + g*6e4), noon = 720 - 4*lon - eq;
+    if (kind === 'noon'){ g = noon; continue; }
+    const c = Math.cos(90.833*RAD)/(Math.cos(lat*RAD)*Math.cos(d*RAD)) - Math.tan(lat*RAD)*Math.tan(d*RAD);
+    if (c > 1 || c < -1) return null;
+    const ha = Math.acos(c)/RAD; g = kind === 'rise' ? noon - 4*ha : noon + 4*ha;
+  }
+  return g;
+}
+function altitudeAt(ms, lat, lon){
+  const [d, eq] = sunParams(ms), utcMin = ((ms % DAY) + DAY) % DAY / 6e4;
+  const ha = (utcMin + eq + 4*lon)/4 - 180;
+  return Math.asin(Math.sin(lat*RAD)*Math.sin(d*RAD) + Math.cos(lat*RAD)*Math.cos(d*RAD)*Math.cos(ha*RAD))/RAD;
+}
+const fmtCache = {};
+function tzOff(tz, ms){
+  if (!tz) return 0;
+  const f = fmtCache[tz] || (fmtCache[tz] = new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric'}));
+  const p = {}; for (const x of f.formatToParts(new Date(Math.floor(ms/6e4)*6e4))) p[x.type] = x.value;
+  return Math.round((Date.UTC(+p.year, +p.month-1, +p.day, +p.hour % 24, +p.minute) - Math.floor(ms/6e4)*6e4)/6e4);
+}
+
+// ---------------- color ramp ----------------
+const STOPS = [[-90,[3,5,14]],[-18,[8,12,34]],[-12,[22,28,76]],[-6,[60,48,122]],[-3,[132,66,128]],[-0.833,[232,110,82]],
+  [2,[255,160,80]],[6,[255,206,120]],[14,[172,214,236]],[32,[118,186,236]],[60,[84,160,230]],[90,[70,146,222]]];
+const LUT = new Uint8ClampedArray(721*3);
+for (let k = 0; k <= 720; k++){ const a = -90 + k*0.25; let j = 0; while (j < STOPS.length - 2 && a > STOPS[j+1][0]) j++;
+  const [a0,c0] = STOPS[j], [a1,c1] = STOPS[j+1], t = Math.max(0, Math.min(1, (a - a0)/(a1 - a0)));
+  for (let ch = 0; ch < 3; ch++) LUT[k*3+ch] = c0[ch] + (c1[ch] - c0[ch])*t; }
+const colorOf = a => { const k = Math.max(0, Math.min(720, Math.round((a + 90)*4))); return `rgb(${LUT[k*3]},${LUT[k*3+1]},${LUT[k*3+2]})`; };
+document.getElementById('ramp').style.background = 'linear-gradient(90deg,' + [-24,-15,-9,-4.5,-1,2,6,14,40,80].map(a => colorOf(a)).join(',') + ')';
+function phase(a){ if (a >= 6) return ['Daylight','#ffe3a3']; if (a >= -0.833) return ['Golden hour','#ffb15c']; if (a >= -6) return ['Civil twilight','#e58aa8'];
+  if (a >= -12) return ['Nautical twilight','#9a8cf0']; if (a >= -18) return ['Astronomical twilight','#6f7fd6']; return ['Night','#8a93b8']; }
+
+// ---------------- formatting ----------------
+const MON = ['Jan.','Feb.','March','April','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+const fDate = ms => { const d = new Date(ms); return MON[d.getUTCMonth()] + ' ' + d.getUTCDate(); };
+function fClock(m){ if (m == null) return '—'; let t = Math.round(((m % 1440) + 1440) % 1440); if (t === 1440) t = 0;
+  const h = Math.floor(t/60), mi = t % 60; return (h % 12 || 12) + ':' + String(mi).padStart(2,'0') + (h < 12 ? ' a.m.' : ' p.m.'); }
+const fDur = m => { const t = Math.round(m); return Math.floor(t/60) + 'h ' + String(t % 60).padStart(2,'0') + 'm'; };
+const fTickY = m => m === 0 || m === 1440 ? 'midnight' : m === 720 ? 'noon' : (m/60 % 12) + (m < 720 ? ' a.m.' : ' p.m.');
+
+// ---------------- state ----------------
+const now0 = Date.now();
+const nowD = new Date(now0);
+const seasonY = nowD.getUTCMonth() >= 6 ? nowD.getUTCFullYear() : nowD.getUTCFullYear() - 1;
+let SY, SM, START, NDAYS;
+function setSeason(lat){ SY = lat >= 0 ? seasonY : nowD.getUTCFullYear(); SM = lat >= 0 ? 6 : 0;
+  START = Date.UTC(SY, SM, 1); NDAYS = Math.round((Date.UTC(SY + 1, SM, 1) - START)/DAY); }
+const state = { place: PLACES.get('South Bend, IN'), latMode: false, lat: 40, sun: false, step: 0 };
+try { const k = localStorage.getItem('sky-place'); if (k && PLACES.has(k)) state.place = PLACES.get(k); } catch(e) {}
+const loc = () => state.latMode ? { name: fmtLat(state.lat), lat: state.lat, lon: 0, tz: null } : state.place;
+function fmtLat(l){ return Math.abs(l).toFixed(1) + '°' + (l >= 0 ? 'N' : 'S'); }
+
+// ---------------- season model ----------------
+let model = null;
+function buildModel(){ model = makeModel(loc(), state.sun || !loc().tz); }
+const textCache = new Map();
+function textModel(){ const p = state.place; if (!textCache.has(p.name)) textCache.set(p.name, makeModel(p, false)); return textCache.get(p.name); }
+function makeModel(L, sun){
+  const days = []; setSeason(L.lat);
+  for (let i = 0; i < NDAYS; i++){
+    const ms = START + i*DAY, solarNoonUTC = ms + (720 - 4*L.lon)*6e4;
+    const off = sun ? 0 : tzOff(L.tz, solarNoonUTC);
+    const [decl, eqt] = sunParams(solarNoonUTC);
+    let rise, set, noon;
+    if (sun){
+      const c = Math.cos(90.833*RAD)/(Math.cos(L.lat*RAD)*Math.cos(decl*RAD)) - Math.tan(L.lat*RAD)*Math.tan(decl*RAD);
+      if (c > 1 || c < -1){ rise = set = null; } else { const ha = Math.acos(c)/RAD; rise = 720 - 4*ha; set = 720 + 4*ha; }
+      noon = 720;
+    } else {
+      const r = eventUTC(ms, L.lat, L.lon, 'rise'), s = eventUTC(ms, L.lat, L.lon, 'set');
+      rise = r == null ? null : r + off; set = s == null ? null : s + off; noon = eventUTC(ms, L.lat, L.lon, 'noon') + off;
+    }
+    let len;
+    if (rise != null && set != null) len = set - rise;
+    else { const c = Math.cos(90.833*RAD)/(Math.cos(L.lat*RAD)*Math.cos(decl*RAD)) - Math.tan(L.lat*RAD)*Math.tan(decl*RAD);
+      len = c < -1 ? 1440 : c > 1 ? 0 : 8*Math.acos(c)/RAD; }
+    days.push({ ms, off, decl, eqt, rise, set, noon, len });
+  }
+  // key dates
+  let decMin = 0, decMax = 0; days.forEach((d,i) => { if (d.decl < days[decMin].decl) decMin = i; if (d.decl > days[decMax].decl) decMax = i; });
+  const winter = L.lat >= 0 ? decMin : decMax;  // local winter solstice
+  let shortest = 0, longest = 0; days.forEach((d,i) => { if (d.len < days[shortest].len) shortest = i; if (d.len > days[longest].len) longest = i; });
+  let es = null, lr = null;
+  if (days[winter].rise != null){
+    for (let i = Math.max(0, winter - 50); i <= Math.min(NDAYS - 1, winter + 50); i++){
+      const d = days[i]; if (d.set == null || d.rise == null) continue;
+      if (Math.abs(d.off - days[winter].off) > 0) continue;
+      if (es == null || d.set < days[es].set) es = i; if (lr == null || d.rise > days[lr].rise) lr = i;
+    }
+  }
+  const runs = test => { const out = []; let a = null;
+    days.forEach((d,i) => { if (test(d)){ if (a == null) a = i; } else if (a != null){ out.push([a, i - 1]); a = null; } });
+    if (a != null) out.push([a, NDAYS - 1]); return out; };
+  const polarNight = runs(d => d.len === 0), polarDay = runs(d => d.len === 1440);
+  const equinoxes = []; for (let i = 1; i < NDAYS; i++) if (Math.sign(days[i].decl) !== Math.sign(days[i-1].decl)) equinoxes.push(i);
+  const dst = []; for (let i = 1; i < NDAYS; i++) if (days[i].off !== days[i-1].off) dst.push({ i, back: days[i].off < days[i-1].off });
+  return { L, sun, days, decMin, decMax, winter, shortest, longest, es, lr, polarNight, polarDay, equinoxes, dst, SY, SM, START, NDAYS };
+}
+
+// ---------------- render: field ----------------
+const stage = document.getElementById('stage'), canvas = document.getElementById('field'), ctx = canvas.getContext('2d');
+const svg = d3.select('#ov');
+let geo = null;
+function layout(){
+  const W = stage.clientWidth, narrow = W < 640;
+  const mL = narrow ? 44 : 66, mR = narrow ? 10 : 18, mT = narrow ? 76 : 96, mB = 30, lenH = narrow ? 40 : 56;
+  const plotH = narrow ? 400 : Math.min(560, Math.max(420, W*0.46));
+  geo = { W, H: mT + plotH + mB, mL, mR, mT, mB, lenH, plotW: W - mL - mR, plotH, narrow };
+  canvas.style.left = mL + 'px'; canvas.style.top = mT + 'px';
+  canvas.style.width = geo.plotW + 'px'; canvas.style.height = plotH + 'px';
+  svg.attr('width', W).attr('height', geo.H).attr('viewBox', `0 0 ${W} ${geo.H}`);
+}
+function drawField(rows){
+  const L = model.L, sun = model.sun;
+  rows = rows || Math.min(480, Math.round(geo.plotH * Math.min(2, devicePixelRatio || 1)));
+  canvas.width = NDAYS; canvas.height = rows;
+  const img = ctx.createImageData(NDAYS, rows), px = img.data;
+  const sl = Math.sin(L.lat*RAD), cl = Math.cos(L.lat*RAD);
+  for (let i = 0; i < NDAYS; i++){
+    const d = model.days[i], sd = Math.sin(d.decl*RAD), cd = Math.cos(d.decl*RAD);
+    const shift = sun ? 0 : (-d.off + d.eqt + 4*L.lon);
+    for (let r = 0; r < rows; r++){
+      const m = (r + 0.5)/rows*1440, ha = ((m + shift)/4 - 180)*RAD;
+      const a = Math.asin(sl*sd + cl*cd*Math.cos(ha))/RAD;
+      const k = Math.max(0, Math.min(720, Math.round((a + 90)*4)))*3, o = (r*NDAYS + i)*4;
+      px[o] = LUT[k]; px[o+1] = LUT[k+1]; px[o+2] = LUT[k+2]; px[o+3] = 255;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+  const still = document.getElementById('still'); if (still) still.style.display = 'none';
+  stage.classList.add('live');
+}
+
+// ---------------- render: overlays ----------------
+const X = i => geo.mL + (i + 0.5)/NDAYS*geo.plotW;
+const Y = m => geo.mT + m/1440*geo.plotH;
+function todayIndex(){ return Math.floor((Date.now() - START)/DAY); }
+function nowMinute(){ const L = model.L, t = Date.now();
+  if (model.sun){ const [, eq] = sunParams(t); const utc = ((t % DAY) + DAY) % DAY/6e4; return (((utc + eq + 4*L.lon) % 1440) + 1440) % 1440; }
+  const off = tzOff(L.tz, t); return ((((t % DAY) + DAY) % DAY)/6e4 + off + 1440) % 1440; }
+function drawOverlay(){
+  const g = geo, M = model, days = M.days; svg.selectAll('g.layer').remove();
+  if (!svg.select('defs').size()){
+    const defs = svg.append('defs');
+    const lg = defs.append('linearGradient').attr('id','lenGrad').attr('x1',0).attr('x2',0).attr('y1',0).attr('y2',1);
+    lg.append('stop').attr('offset','0%').attr('stop-color','#ffc861').attr('stop-opacity',.55);
+    lg.append('stop').attr('offset','100%').attr('stop-color','#ffc861').attr('stop-opacity',.02);
+    const gl = defs.append('filter').attr('id','glow').attr('x','-200%').attr('y','-200%').attr('width','500%').attr('height','500%');
+    gl.append('feGaussianBlur').attr('stdDeviation', 4).attr('result','b');
+    const mg = gl.append('feMerge'); mg.append('feMergeNode').attr('in','b'); mg.append('feMergeNode').attr('in','SourceGraphic');
+  }
+  const L = svg.append('g').attr('class','layer ' + (state.step === 1 ? 'emph-short' : '') + (state.step >= 3 ? ' dim' : ''));
+  // grid + y axis
+  const yt = g.narrow ? [0,360,720,1080,1440] : [0,180,360,540,720,900,1080,1260,1440];
+  const gr = L.append('g').attr('class','grid');
+  gr.selectAll('line').data(yt).join('line').attr('x1', g.mL).attr('x2', g.W - g.mR).attr('y1', Y).attr('y2', Y);
+  L.append('g').selectAll('text').data(yt).join('text').attr('x', g.mL - 8).attr('y', m => Y(m) + 4).attr('text-anchor','end').text(m => g.narrow ? ({0:'12 am',360:'6 am',720:'noon',1080:'6 pm',1440:'12 am'})[m] : fTickY(m));
+  // months
+  const months = d3.range(12).map(k => { const ms = Date.UTC(SY, SM + k, 1); return { i: Math.round((ms - START)/DAY), ms }; });
+  L.append('g').selectAll('line').data(months).join('line').attr('x1', d => X(d.i) - 0.5*g.plotW/NDAYS).attr('x2', d => X(d.i) - 0.5*g.plotW/NDAYS)
+    .attr('y1', g.mT + g.plotH).attr('y2', g.mT + g.plotH + 5).attr('stroke', '#3a4473');
+  L.append('g').selectAll('text').data(months).join('text').attr('x', d => X(d.i + 15)).attr('y', g.mT + g.plotH + 19).attr('text-anchor','middle')
+    .text(d => g.narrow ? MON[new Date(d.ms).getUTCMonth()][0] : MON[new Date(d.ms).getUTCMonth()].replace('.',''));
+  // daylight length strip
+  const maxLen = Math.max(60, d3.max(days, d => d.len));
+  const ly = d3.scaleLinear([0, maxLen], [g.mT - 12, g.mT - 12 - g.lenH]);
+  const area = d3.area().x((d,i) => X(i)).y0(ly(0)).y1(d => ly(d.len)).curve(d3.curveMonotoneX);
+  L.append('path').attr('class','lenarea').attr('d', area(days));
+  L.append('path').attr('class','lenline').attr('d', d3.line().x((d,i) => X(i)).y(d => ly(d.len)).curve(d3.curveMonotoneX)(days));
+  L.append('text').attr('x', g.mL - 8).attr('y', ly(maxLen/2) + 4).attr('text-anchor','end').text(g.narrow ? 'day' : 'daylight');
+  // shortest-day band
+  const s = M.shortest, sb = L.append('g');
+  if (days[s].len > 0){
+    sb.append('rect').attr('class','shortband').attr('x', X(s) - 5).attr('width', 10).attr('y', ly(days[s].len) - 4).attr('height', g.mT + g.plotH - ly(days[s].len) + 4).attr('rx', 3);
+    const right = X(s) < g.W*(g.narrow ? 0.5 : 0.62);
+    sb.append('text').attr('class','lbl lbl-b').attr('x', X(s) + (right ? 10 : -10)).attr('y', g.mT + 20).attr('text-anchor', right ? 'start' : 'end')
+      .text((g.narrow ? 'Shortest · ' : 'Shortest day · ') + fDate(days[s].ms) + ' · ' + fDur(days[s].len));
+  }
+  // sunrise/sunset/noon lines (break at gaps and clock jumps)
+  const seg = key => d3.line().defined((d,i) => d[key] != null && (i === 0 || days[i-1][key] == null || Math.abs(d[key] - days[i-1][key]) < 30))
+    .x((d,i) => X(i)).y(d => Y(Math.max(-5, Math.min(1445, d[key])))).curve(d3.curveMonotoneX);
+  L.append('path').attr('class','noonline').attr('d', seg('noon')(days));
+  L.append('path').attr('class','evline').attr('d', seg('rise')(days));
+  L.append('path').attr('class','evline').attr('d', seg('set')(days));
+  // DST steps
+  if (!M.sun && !g.narrow) M.dst.forEach(ev => { const d = days[ev.i]; if (d.rise == null) return;
+    L.append('text').attr('class','lbl-s').attr('x', X(ev.i) + (ev.back ? 6 : -6)).attr('y', Math.min(Y(d.rise), Y(days[ev.i-1].rise)) - 12).attr('text-anchor', ev.back ? 'start' : 'end')
+      .text(ev.back ? 'Clocks fall back' : 'Clocks spring forward'); });
+  // polar labels
+  const edge = ([a,b]) => a === 0 || b === NDAYS - 1;
+  M.polarNight.forEach(r => { const [a,b] = r, c = (a + b)/2;
+    L.append('text').attr('class','lbl lbl-b').attr('x', X(c)).attr('y', Y(720) + 4).attr('text-anchor','middle')
+      .text(edge(r) ? 'Polar night' : 'Polar night: no sunrise for ' + (b - a + 1) + ' days'); });
+  M.polarDay.forEach(r => { const [a,b] = r, c = Math.max(26, Math.min(NDAYS - 27, (a + b)/2));
+    L.append('text').attr('class','lbl lbl-b').attr('x', X(c)).attr('y', Y(720) + 4).attr('text-anchor','middle')
+      .text(edge(r) || g.narrow ? 'Midnight sun' : 'Midnight sun: no sunset for ' + (b - a + 1) + ' days'); });
+  // earliest sunset / latest sunrise
+  const marks = L.append('g').attr('class','marks');
+  if (M.es != null && M.lr != null && M.es !== M.lr){
+    const em = days[M.es], lm = days[M.lr], emph = state.step === 2 || state.step === 3;
+    [[M.es, em.set, 'Earliest sunset', 1], [M.lr, lm.rise, 'Latest sunrise', -1]].forEach(([i, m, t, dir]) => {
+      marks.append('circle').attr('class','mk-ring').attr('cx', X(i)).attr('cy', Y(m)).attr('r', emph ? 11 : 8).attr('opacity', emph ? 1 : .8);
+      marks.append('circle').attr('class','mk').attr('cx', X(i)).attr('cy', Y(m)).attr('r', 4.5).attr('filter', emph ? 'url(#glow)' : null);
+      const ty = Y(m) + dir*(emph ? 30 : 26);
+      marks.append('text').attr('class','lbl lbl-b').attr('x', X(i)).attr('y', ty).attr('text-anchor','middle').text(t + ' · ' + fDate(days[i].ms));
+      marks.append('text').attr('class','lbl-s').attr('x', X(i)).attr('y', ty + 15).attr('text-anchor','middle').text(fClock(m));
+    });
+  }
+  // today + now
+  const ti = todayIndex(), nowG = L.append('g').attr('class','now');
+  if (ti >= 0 && ti < NDAYS){
+    nowG.append('line').attr('class','todayline').attr('x1', X(ti)).attr('x2', X(ti)).attr('y1', g.mT - 12 - g.lenH).attr('y2', g.mT + g.plotH);
+    { const nearR = X(ti) > g.W - g.mR - 60; nowG.append('text').attr('class','today-t').attr('x', X(ti) + (nearR ? -5 : 5)).attr('y', g.mT - 12 - g.lenH + 14).attr('text-anchor', nearR ? 'end' : 'start').text('today'); }
+    const nm = nowMinute();
+    nowG.append('circle').attr('cx', X(ti)).attr('cy', Y(nm)).attr('r', 6).attr('fill','#5cf2a0').attr('filter','url(#glow)');
+    nowG.append('circle').attr('cx', X(ti)).attr('cy', Y(nm)).attr('r', 3).attr('fill','#04060e');
+    nowG.append('text').attr('class','lbl-s').attr('x', X(ti) + 11).attr('y', Y(nm) + 4).text('now');
+  }
+  // place label
+  L.append('text').attr('class','lbl lbl-b').attr('x', g.mL).attr('y', 20).style('font-size','14px')
+    .text(M.L.name + (M.sun ? ' · sun time' : ' · clock time'));
+  if (!g.narrow) L.append('text').attr('class','lbl-s').attr('x', g.W - g.mR).attr('y', 20).attr('text-anchor','end')
+    .text(fDate(START) + ', ' + SY + ' – ' + fDate(START + (NDAYS - 1)*DAY) + ', ' + new Date(START + (NDAYS - 1)*DAY).getUTCFullYear());
+}
+
+// ---------------- hover ----------------
+const tip = document.getElementById('tip');
+stage.addEventListener('pointermove', ev => {
+  const r = stage.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top, g = geo;
+  if (x < g.mL || x > g.W - g.mR || y < g.mT || y > g.mT + g.plotH){ tip.style.opacity = 0; return; }
+  const i = Math.max(0, Math.min(NDAYS - 1, Math.floor((x - g.mL)/g.plotW*NDAYS))), m = (y - g.mT)/g.plotH*1440;
+  const d = model.days[i], L = model.L, shift = model.sun ? 0 : (-d.off + d.eqt + 4*L.lon);
+  const ha = ((m + shift)/4 - 180)*RAD;
+  const a = Math.asin(Math.sin(L.lat*RAD)*Math.sin(d.decl*RAD) + Math.cos(L.lat*RAD)*Math.cos(d.decl*RAD)*Math.cos(ha))/RAD;
+  const [pn, pc] = phase(a);
+  tip.innerHTML = `<div class="t">${fDate(d.ms)}, ${fClock(m)}${model.sun ? ' <span class="m">sun time</span>' : ''}</div>
+    <div class="m">Sun ${a >= 0 ? a.toFixed(1) + '° above' : (-a).toFixed(1) + '° below'} the horizon</div>
+    <span class="ph" style="background:${pc}">${pn}</span>
+    <div class="m" style="margin-top:6px">${d.rise == null ? (d.len ? 'Sun up all day' : 'Sun never rises') : 'Sunrise ' + fClock(d.rise) + ' · Sunset ' + fClock(d.set)}<br>${fDur(d.len)} of daylight</div>`;
+  tip.style.opacity = 1;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = (x + 16 + w > g.W ? x - w - 16 : x + 16) + 'px';
+  tip.style.top = Math.max(4, Math.min(g.H - h - 4, y - h/2)) + 'px';
+});
+stage.addEventListener('pointerleave', () => tip.style.opacity = 0);
+
+// ---------------- live panel ----------------
+function liveNumbers(){
+  const L = model.L, t = Date.now(), a = altitudeAt(t, L.lat, L.lon), [pn] = phase(a);
+  document.getElementById('lvAlt').textContent = (a >= 0 ? '+' : '−') + Math.abs(a).toFixed(1) + '°';
+  document.getElementById('lvAltS').textContent = pn + (L.tz ? ' in ' + L.name.split(',')[0] + ' at ' + fClock(nowMinute()) : ' at ' + fClock(nowMinute()) + ' sun time');
+  // today/yesterday using local date of the place
+  const off = L.tz ? tzOff(L.tz, t) : Math.round(4*L.lon);
+  const local = new Date(t + off*6e4), dayMs = Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate());
+  const len = ms => { const r = eventUTC(ms, L.lat, L.lon, 'rise'), s = eventUTC(ms, L.lat, L.lon, 'set');
+    if (r == null || s == null){ const [dd] = sunParams(ms + 432e5); const c = Math.cos(90.833*RAD)/(Math.cos(L.lat*RAD)*Math.cos(dd*RAD)) - Math.tan(L.lat*RAD)*Math.tan(dd*RAD);
+      return c < -1 ? 1440 : c > 1 ? 0 : 8*Math.acos(c)/RAD; } return s - r; };
+  const lt = len(dayMs), ly = len(dayMs - DAY), r = eventUTC(dayMs, L.lat, L.lon, 'rise'), s = eventUTC(dayMs, L.lat, L.lon, 'set');
+  const o2 = L.tz ? tzOff(L.tz, dayMs + (720 - 4*L.lon)*6e4) : 0;
+  document.getElementById('lvLen').textContent = fDur(lt);
+  document.getElementById('lvLenS').textContent = r == null ? (lt ? 'The sun doesn’t set today' : 'The sun doesn’t rise today') : 'Sunrise ' + fClock(r + o2) + ' · sunset ' + fClock(s + o2) + (L.tz ? '' : ' (sun time)');
+  const dsec = Math.round((lt - ly)*60), am = Math.abs(dsec);
+  document.getElementById('lvChg').textContent = (dsec > 0 ? '+' : dsec < 0 ? '−' : '') + (am >= 60 ? Math.floor(am/60) + 'm ' + String(am % 60).padStart(2,'0') + 's' : am + 's');
+  document.getElementById('lvChgS').textContent = dsec < 0 ? 'Days are getting shorter' : dsec > 0 ? 'Days are getting longer' : 'Holding steady';
+  // next solstice (any hemisphere): scan decl extremes ahead
+  let best = null; const [d0] = sunParams(t); let prev = d0, dir = 0;
+  for (let k = 1; k < 200; k++){ const [dk] = sunParams(t + k*DAY); const nd = Math.sign(dk - prev); if (dir && nd && nd !== dir){ best = k - 1; break; } if (nd) dir = nd; prev = dk; }
+  const sms = t + best*DAY, sd = new Date(sms + off*6e4);
+  const isDec = sd.getUTCMonth() === 11 || sd.getUTCMonth() === 0;
+  const winterHere = (isDec && L.lat >= 0) || (!isDec && L.lat < 0);
+  document.getElementById('lvNextK').textContent = 'Next solstice';
+  document.getElementById('lvNext').textContent = best <= 1 ? 'Today' : best + ' days';
+  document.getElementById('lvNextS').textContent = MON[sd.getUTCMonth()] + ' ' + sd.getUTCDate() + ': the ' + (winterHere ? 'shortest' : 'longest') + ' day here';
+  document.getElementById('clockPill').textContent = innerWidth < 520 ? 'Live' : 'Live · ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+}
+
+// ---------------- table ----------------
+function table(){
+  const L = model.L; document.getElementById('tblCity').textContent = L.name + (model.sun ? ' (sun time)' : '');
+  const rows = []; for (let k = 0; k < 12; k++){ const i = Math.round((Date.UTC(SY, SM + k, 1) - START)/DAY); rows.push(i); }
+  if (!rows.includes(model.shortest)) rows.push(model.shortest); rows.sort((a,b) => a - b);
+  document.querySelector('#tbl tbody').innerHTML = rows.map(i => { const d = model.days[i];
+    return `<tr><td>${fDate(d.ms)}, ${new Date(d.ms).getUTCFullYear()}${i === model.shortest ? ' · shortest' : ''}</td><td>${d.rise == null ? '—' : fClock(d.rise)}</td><td>${d.set == null ? '—' : fClock(d.set)}</td><td>${fDur(d.len)}</td></tr>`; }).join('');
+}
+
+// ---------------- story steps ----------------
+const STEPS = [
+  () => { state.latMode = false; state.sun = false; },
+  () => { state.latMode = false; state.sun = false; },
+  () => { state.latMode = false; state.sun = false; },
+  () => { state.latMode = false; state.sun = true; },
+  () => { state.latMode = true; state.sun = true; sweep(); }
+];
+const stepEls = [...document.querySelectorAll('.step')];
+const dotsEl = document.getElementById('dots');
+STEPS.forEach((s,k) => { const b = document.createElement('button'); b.setAttribute('aria-label','Step ' + (k + 1)); b.addEventListener('click', () => goStep(k)); dotsEl.appendChild(b); });
+function renderStepText(){
+  const T = textModel(); buildModel();   // textModel may reset the season window; rebuild the live one after
+  const d = T.days, sh = d[T.shortest], lo = d[T.longest], north = T.L.lat >= 0;
+  const yr = ms => new Date(ms).getUTCFullYear();
+  const vals = {
+    place: T.L.name, range: north ? 'July to June' : 'January to December',
+    shortDate: fDate(sh.ms), shortLen: fDur(sh.len), longDate: fDate(lo.ms), longLen: fDur(lo.len),
+    hemi: north ? 'In the Northern Hemisphere it’s Dec. 21, ' + yr(d[T.decMin].ms) + ', the winter solstice.'
+                : 'In the Southern Hemisphere it’s the June solstice, ' + fDate(d[T.decMax].ms) + ', ' + yr(d[T.decMax].ms) + '.',
+    esDate: T.es != null ? fDate(d[T.es].ms) : '', esTime: T.es != null ? fClock(d[T.es].set) : '',
+    esGap: T.es != null ? Math.round((sh.ms - d[T.es].ms)/DAY) + ' days' : '',
+    lrDate: T.lr != null ? fDate(d[T.lr].ms) : '', lrTime: T.lr != null ? fClock(d[T.lr].rise) : ''
+  };
+  document.querySelectorAll('.story [data-k]').forEach(el => { if (el.dataset.k in vals) el.textContent = vals[el.dataset.k]; });
+  const pnRun = T.polarNight.reduce((a,r) => (!a || r[1]-r[0] > a[1]-a[0]) ? r : a, null);
+  const pdDays = T.polarDay.reduce((s,r) => s + r[1] - r[0] + 1, 0);
+  Object.assign(vals, pnRun ? { pnDays: (pnRun[1]-pnRun[0]+1) + ' days', pnStart: fDate(d[pnRun[0]].ms), pnEnd: fDate(d[pnRun[1]].ms),
+    pdDays: pdDays ? pdDays + ' days' : 'none of the year' } : {});
+  document.querySelectorAll('.story [data-k]').forEach(el => { if (el.dataset.k in vals) el.textContent = vals[el.dataset.k]; });
+  document.querySelectorAll('.step .pn').forEach(p => p.hidden = !pnRun);
+  document.querySelectorAll('.step .nopn').forEach(p => p.hidden = !!pnRun);
+  const polar = T.es == null || T.lr == null || T.es === T.lr;
+  document.querySelectorAll('.step .norm').forEach(p => p.hidden = polar);
+  document.querySelectorAll('.step .polar').forEach(p => p.hidden = !polar);
+  stepEls.forEach((el,k) => el.classList.toggle('on', k === state.step));
+  dotsEl.querySelectorAll('button').forEach((b,k) => b.setAttribute('aria-current', String(k === state.step)));
+  document.getElementById('prev').disabled = state.step === 0;
+  document.getElementById('next').textContent = state.step === STEPS.length - 1 ? 'Start over ↺' : 'Next ›';
+}
+function goStep(k){ stopSweep(); state.step = k; STEPS[k](); syncControls(); if (!sweeping) refresh(); renderStepText(); }
+document.getElementById('prev').addEventListener('click', () => state.step > 0 && goStep(state.step - 1));
+document.getElementById('next').addEventListener('click', () => goStep(state.step === STEPS.length - 1 ? 0 : state.step + 1));
+
+// ---------------- latitude sweep ----------------
+let sweeping = null;
+function stopSweep(){ if (sweeping){ cancelAnimationFrame(sweeping); sweeping = null; } }
+function sweep(){
+  stopSweep(); const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce){ state.lat = 70; syncControls(); refresh(); return; }
+  const t0 = performance.now(), dur = 7000, a = 0, b = 78;
+  const frame = t => { const p = Math.min(1, (t - t0)/dur), e = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
+    state.lat = Math.round((a + (b - a)*e)*2)/2; syncControls(); buildModel(); drawField(180); drawOverlay();
+    if (p < 1) sweeping = requestAnimationFrame(frame); else { sweeping = null; refresh(); renderStepText(); } };
+  sweeping = requestAnimationFrame(frame);
+}
+
+// ---------------- controls ----------------
+const sel = document.getElementById('city'), list = document.getElementById('cityList');
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ø/g,'o').replace(/æ/g,'ae').toLowerCase();
+const sortedPlaces = [...PLACES.values()].sort((a,b) => a.name.localeCompare(b.name));
+let matches = [], active = -1;
+function openList(q){
+  const nq = norm(q || '');
+  matches = sortedPlaces.filter(p => !nq || norm(p.name).includes(nq));
+  if (nq) matches.sort((a,b) => (norm(a.name).startsWith(nq) ? 0 : 1) - (norm(b.name).startsWith(nq) ? 0 : 1) || a.name.localeCompare(b.name));
+  const html = [];
+  if (!matches.length) html.push('<li class="none" role="presentation">No match. Try the Anywhere slider.</li>');
+  else if (!nq){ [['United States','US'],['Around the world','World']].forEach(([lab,grp]) => {
+      html.push(`<li class="grp" role="presentation">${lab}</li>`);
+      matches.filter(p => p.grp === grp).forEach(p => html.push(opt(p))); });
+    matches = [...matches.filter(p => p.grp === 'US'), ...matches.filter(p => p.grp === 'World')]; }
+  else matches.forEach(p => html.push(opt(p)));
+  list.innerHTML = html.join(''); list.hidden = false; sel.setAttribute('aria-expanded','true');
+  active = matches.indexOf(state.place); if (nq) active = matches.length ? 0 : -1; highlight();
+}
+function opt(p){ return `<li role="option" id="opt-${slug(p.name)}" data-name="${p.name}" aria-selected="false">${p.name}<small>${fmtLat(p.lat)}</small></li>`; }
+const slug = s => norm(s).replace(/[^a-z0-9]+/g,'-');
+function highlight(){
+  list.querySelectorAll('[role=option]').forEach(li => li.setAttribute('aria-selected', String(matches[active] && li.dataset.name === matches[active].name)));
+  const cur = matches[active]; if (cur){ const li = document.getElementById('opt-' + slug(cur.name)); sel.setAttribute('aria-activedescendant', li.id); li.scrollIntoView({ block: 'nearest' }); }
+  else sel.removeAttribute('aria-activedescendant');
+}
+function closeList(){ list.hidden = true; sel.setAttribute('aria-expanded','false'); sel.removeAttribute('aria-activedescendant'); }
+function choose(p){ closeList(); if (!p) { sel.value = state.place.name; return; }
+  stopSweep(); state.place = p; state.latMode = false; try { localStorage.setItem('sky-place', p.name); } catch(e) {}
+  syncControls(); refresh(); renderStepText(); sel.blur(); }
+sel.addEventListener('focus', () => { sel.select(); openList(''); });
+sel.addEventListener('input', () => openList(sel.value));
+sel.addEventListener('keydown', ev => {
+  if (ev.key === 'ArrowDown'){ ev.preventDefault(); if (list.hidden) openList(''); active = Math.min(matches.length - 1, active + 1); highlight(); }
+  else if (ev.key === 'ArrowUp'){ ev.preventDefault(); active = Math.max(0, active - 1); highlight(); }
+  else if (ev.key === 'Enter'){ ev.preventDefault(); choose(matches[active]); }
+  else if (ev.key === 'Escape'){ closeList(); sel.value = state.place.name; }
+});
+sel.addEventListener('blur', () => setTimeout(() => { if (document.activeElement !== sel){ closeList(); sel.value = state.place.name; } }, 120));
+list.addEventListener('mousedown', ev => ev.preventDefault());
+list.addEventListener('click', ev => { const li = ev.target.closest('[role=option]'); if (li) choose(PLACES.get(li.dataset.name)); });
+sel.addEventListener('change', () => { if (PLACES.has(sel.value)) choose(PLACES.get(sel.value)); });
+const latIn = document.getElementById('lat'), latOut = document.getElementById('latOut');
+function syncControls(){
+  if (document.activeElement !== sel) sel.value = state.latMode ? '' : state.place.name; sel.placeholder = state.latMode ? fmtLat(state.lat) + ' (Anywhere)' : 'Type a city';
+  latIn.value = state.lat; latOut.textContent = fmtLat(state.lat);
+  document.getElementById('tClock').setAttribute('aria-pressed', String(!state.sun)); document.getElementById('tSun').setAttribute('aria-pressed', String(state.sun));
+  document.getElementById('tClock').disabled = state.latMode;
+}
+sel.addEventListener('change', () => { stopSweep(); state.place = PLACES.get(sel.value); state.latMode = false; try { localStorage.setItem('sky-place', sel.value); } catch(e) {} syncControls(); refresh(); renderStepText(); });
+latIn.addEventListener('input', () => { stopSweep(); state.latMode = true; state.sun = true; state.lat = +latIn.value; syncControls(); buildModel(); drawField(220); drawOverlay(); renderStepText(); });
+latIn.addEventListener('change', () => refresh());
+document.getElementById('tClock').addEventListener('click', () => { if (state.latMode) return; state.sun = false; syncControls(); refresh(); renderStepText(); });
+document.getElementById('tSun').addEventListener('click', () => { state.sun = true; syncControls(); refresh(); renderStepText(); });
+
+function refresh(){ buildModel(); layout(); drawField(); drawOverlay(); liveNumbers(); table(); }
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); drawField(); drawOverlay(); }, 150); });
+setInterval(() => { if (!sweeping){ drawOverlay(); liveNumbers(); } }, 30000);
+syncControls(); refresh(); renderStepText();
+})();
+</script>
+<script>
+/* theme-toggle:start */
+/* Tall Order Digital: light/dark toggle.
+   - First visit follows the reader's system setting.
+   - Clicking a .theme-toggle button switches theme and remembers it (localStorage "tod-theme").
+   - Each page also carries a one-line script in <head> that applies the saved choice
+     before anything draws, so there's no flash of the wrong theme:
+       <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}<\/script>
+   - The CSS reads :root[data-theme="light" | "dark"]; story charts already redraw when data-theme changes. */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function current() {
+    var t = root.dataset.theme;
+    if (t === "light" || t === "dark") return t;
+    return media && media.matches ? "dark" : "light";
+  }
+
+  function sync() {
+    var theme = current();
+    var next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+      btn.dataset.showing = theme;
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle");
+    if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {}
+    }
+  });
+
+  if (media) {
+    var onChange = function () { if (!root.dataset.theme) sync(); };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync);
+  else sync();
+})();
+/* theme-toggle:end */
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
+/* site-header:end */
+</script>
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>

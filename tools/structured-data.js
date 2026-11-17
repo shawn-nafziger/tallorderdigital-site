@@ -51,9 +51,9 @@ const PERSON = { "@type": "Person", "@id": PERSON_ID, name: "Shawn Nafziger" };
 
 // Topic pages whose story cards carry the published dates, and what each one is called in a breadcrumb.
 const HUBS = {
-  "nba/": "NBA", "weather/": "Weather", "stories/": "More stories", "nba/takes/": "Tall Takes",
+  "nba/": "NBA", "weather/": "Weather", "stories/": "Data stories", "nba/takes/": "Tall Takes",
 };
-// Pages that sit under "More stories" rather than under a folder with its own topic page.
+// Pages that sit under "Data stories" rather than under a folder with its own topic page.
 const UNDER_STORIES = /^(politics|travel|numbers|culture|nature)\//;
 // Breadcrumb names for site pages that aren't topic pages.
 const NAMES = {
@@ -87,7 +87,9 @@ for (const hub of Object.keys(HUBS)) {
     const d = k && text(k[1]).match(/([A-Z][a-z]{2}) (\d{1,2}), (\d{4})/);
     if (!d || /^https?:/.test(m[1])) continue;
     const rel = path.posix.normalize(hub + m[1]).replace(/\/?$/, "/");
-    const date = iso(d[1], d[2], d[3]);
+    // Evergreen cards (Nov 16, 2026) show "Updated <date>"; their publish date is kept in data-published.
+    const pub = (m[0].match(/^<a [^>]*\sdata-published="(\d{4}-\d{2}-\d{2})"/) || [])[1];
+    const date = pub || iso(d[1], d[2], d[3]);
     published[rel] = date;
     if (!newest[hub] || date > newest[hub]) newest[hub] = date;
     if (date > newest[""]) newest[""] = date;

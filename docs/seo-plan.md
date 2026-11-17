@@ -44,7 +44,7 @@ Checked before the move (Nov 10, 2026):
 - **Fixed in the setup steps:** the old `weather.` name points at a Cloudflare placeholder instead of GitHub, and the domain is verified in GitHub, so no one else can claim it. The Cloudflare certificate is checked before the old name is proxied, so old links never show a certificate warning.
 - **Known trade-off:** the site now publishes through one workflow. If the Almanac's build branch were missing, nothing would publish (dashboard commits included) until it's fixed; the live site stays as it was meanwhile. Each morning's dashboard commit also republishes with the newest Almanac, so the Almanac stays current even if the republish request ever fails.
 - **Size:** about 180 KB per place. The Almanac tops out around 1,000 places (Shawn, Nov 10, 2026), about 180 MB, well inside GitHub Pages' 1 GB site limit, with room left for NBA pages.
-- **Small things:** GoatCounter counts Almanac visits under `/weather/almanac/` from Nov 10, so its history splits on that day. The two weather stories link to the old address until their weather-intelligence templates are updated (the links redirect meanwhile).
+- **Small things:** GoatCounter counts Almanac visits under `/weather/almanac/` from Nov 10, so its history splits on that day. Record Lows Are Disappearing and Phoenix After Dark still link to the old address until their weather-intelligence templates are updated (the links redirect meanwhile). Fall's First Freeze was moved to relative `../almanac/` links on Nov 16, 2026, along with its SEO pass (title, description, chart tables and default-place summary in the HTML, published date).
 
 Guard rail for growth: add Almanac pages only when they carry real, checked, city-specific data. Thousands of similar pages that Google judged thin could drag on the whole domain, which is the one real argument for a subdomain.
 
@@ -58,6 +58,16 @@ The plan is an NBA reference built like the Almanac:
 - **Same rules as the Almanac:** every sentence checked, honest samples ("over 11 games", totals not averages), and no page for a player without enough minutes to say something real.
 - **Hosting:** the Almanac pattern: nba-analytics publishes the built pages to a branch and this repo's publish workflow adds them under `nba/`, so daily pages never pile up in git history.
 - **First, check the NBA data source's terms** for republishing derived stats daily (an open item in `brand-decisions.md`).
+
+### Decided: NBA team and player pages (Nov 14, 2026)
+- **Go ahead** with daily team and player pages. The terms were checked (Nov 10): NBA.com's Terms of Use, Section 9, allow its stats for news reporting or private, non-commercial use with prominent credit to NBA.com, and bar "a database of comprehensive, regularly updated statistics" without consent. Shawn accepts that risk, as the daily dashboards already do, on these conditions: the pages stay analytical (sentences and a few derived numbers, not full box-score dumps); every NBA page names NBA.com as the source; no ads, sponsors, betting, odds or fantasy angles on NBA pages; game pages use zone tables, not shot-by-shot charts (the terms bar "archived play-by-play" depictions).
+- **Don't ask the NBA for consent.**
+- **Addresses use full names:** `nba/teams/indiana-pacers/`, `nba/players/pascal-siakam/`. If two players ever share a name, the newer one gets their NBA ID added, and a committed registry keeps every address permanent.
+- **Player page minimum:** 5 games and 100 minutes this season before a page is first published (287 players on Nov 9). Once published, a player page is never dropped.
+- **Hosting:** a small public repo, `nba-pages`, holds the built pages on a branch that is replaced each morning (one commit, no history), and this repo's publish workflow copies it in, like the Almanac.
+- **Order** (with the stats hub plan, decided Nov 11): League page first, then team pages, player pages with Leaders, and game pages. Hub sections are `nba/teams/`, `nba/players/`, `nba/games/` and `nba/league/`; tabs are separate addresses, never `#`.
+- **Quick wins, started Nov 14:** NBA.com named in every NBA footer and chart note, Team Ratings retitled "NBA Net Rating Rankings", and a True shooting explainer with a calculator.
+- Proposal and mock-ups: "NBA team, player and game pages: SEO proposal" and "NBA team and player pages: mock-ups" (private claude.ai artifacts).
 - **Stories:** phrase Check the Take titles and section headings as the question people ask ("Are the Pacers really a top-10 defense?") and answer it in the first sentence.
 
 ## Done: structured data and sitemap dates (PR, Nov 9, 2026)
@@ -127,7 +137,7 @@ Titles live in the story templates in the data repos, so the change is made ther
 - [ ] Decide: author data links to shawnnafziger.com (`sameAs`), yes or no
 - [x] Decide: when the Almanac comes out of preview (Nov 9, 2026: now)
 - [x] Decide: Almanac as a folder, not a subdomain (Nov 10, 2026)
-- [ ] Decide: go ahead with NBA team, player and game pages (after checking the data terms)
+- [x] Decide: go ahead with NBA team, player and game pages (Nov 14, 2026: yes, after checking the data terms; see "Decided: NBA team and player pages")
 - [ ] Decide: a formal license for the data and charts (CC BY 4.0 says what the footer already says). Google Dataset Search flags datasets without one; the Almanac's structured data leaves it out until you decide
 
 **Claude (PRs)**
