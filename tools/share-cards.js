@@ -711,6 +711,28 @@ function flightDelaysCard(D) {
   </div>`;
 }
 
+function dominoCard(D) {
+  // Flight delays Part 2: of every 100 handed-down minutes, those still on board past the next flight in orange.
+  const w = D.hops.w, beyond = 100 - w.hop_1, s = 30, g = 6;
+  const sq = Array.from({ length: 100 }, (_, i) => `<rect x="${(i % 10) * (s + g)}" y="${Math.floor(i / 10) * (s + g)}" width="${s}" height="${s}" rx="4" fill="${i >= w.hop_1 ? C.orange : C.slateDark}"/>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 354px; grid-template-rows: 1fr auto; column-gap: 56px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 66px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; display: grid; gap: 14px; }
+    .chart p { font-size: 20px; color: ${C.sub}; } .chart b { color: ${C.mist}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · US flights · Part 2</p><h1>How a late plane spreads delay across the country</h1>
+      <p class="dek">Big hubs send delay out; smaller airports take it in. Plus Delta's and Southwest's meltdowns, day by day.</p></div>
+    <div class="chart"><svg width="354" height="354" viewBox="0 0 354 354">${sq}</svg>
+      <p><b>${beyond} of every 100</b> handed-down minutes ride on past the plane's next flight</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function blockbustersCard(D) {
   // Typical running time by five-year period: big live-action hits (orange) pull away from the typical U.S. film (sky).
   const P = D.table.filter((t) => t.label.includes("–")).map((t) => ({ ...t, mid: +t.label.slice(0, 4) + 2 }));
@@ -738,6 +760,33 @@ function blockbustersCard(D) {
       <path d="${path("live")}" fill="none" stroke="${C.orange}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
       <text x="${x(b.mid)}" y="${y(b.all) + 34}" text-anchor="end" font-family="IBM Plex Sans" font-size="20" fill="${C.sub}">typical film ${Math.round(b.all)} min</text>
       ${dot(a, `${Math.round(a.live + 0.01)} min`, true)}${dot(b, `${Math.round(b.live)} min`, false)}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function billionCard() {
+  // The story's opening guess, unanswered: a line from 0 to 1 billion with a question mark where readers tend to put a million.
+  const W = 500, L = 24, R = 476, Y = 170;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Numbers · Big numbers</p><h1>How much is a billion?</h1>
+      <p class="dek">Most of us file a million and a billion in the same mental drawer. Where would you put a million?</p></div>
+    <div class="chart"><svg width="${W}" height="300" viewBox="0 0 ${W} 300">
+      <text x="${W / 2}" y="${Y - 62}" text-anchor="middle" font-family="IBM Plex Sans" font-weight="600" font-size="26" fill="${C.mist}">Where does 1 million go?</text>
+      <line x1="${L}" x2="${R}" y1="${Y}" y2="${Y}" stroke="${C.slateDark}" stroke-width="10" stroke-linecap="round"/>
+      <line x1="${L}" x2="${L}" y1="${Y - 22}" y2="${Y + 22}" stroke="${C.sub}" stroke-width="3"/>
+      <line x1="${R}" x2="${R}" y1="${Y - 22}" y2="${Y + 22}" stroke="${C.sub}" stroke-width="3"/>
+      <circle cx="${W / 2}" cy="${Y}" r="24" fill="${C.ink}" stroke="${C.orange}" stroke-width="5"/>
+      <text x="${W / 2}" y="${Y + 11}" text-anchor="middle" font-family="IBM Plex Sans" font-weight="700" font-size="30" fill="${C.mist}">?</text>
+      <text x="${L}" y="${Y + 58}" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">0</text>
+      <text x="${R}" y="${Y + 58}" text-anchor="end" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">1 billion</text></svg></div>
     <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
   </div>`;
 }
@@ -919,6 +968,8 @@ function homeCard() {
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
+  const dm = fs.readFileSync(path.join(ROOT, "travel/flight-delays-domino-effect/index.html"), "utf8");
+  const DM = JSON.parse(dm.match(/const D = (\{.*?\});\n/s)[1]);
   const bb = fs.readFileSync(path.join(ROOT, "culture/blockbusters-got-longer/index.html"), "utf8");
   const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
@@ -951,11 +1002,13 @@ function homeCard() {
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
+    ["travel/flight-delays-domino-effect/share.png", dominoCard(DM)],
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
     ["weather/shortest-day-of-the-year/share.png", shortestDayCard(SDY)],
     ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
+    ["numbers/how-much-is-a-billion/share.png", billionCard()],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).

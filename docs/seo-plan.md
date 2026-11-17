@@ -44,7 +44,7 @@ Checked before the move (Nov 10, 2026):
 - **Fixed in the setup steps:** the old `weather.` name points at a Cloudflare placeholder instead of GitHub, and the domain is verified in GitHub, so no one else can claim it. The Cloudflare certificate is checked before the old name is proxied, so old links never show a certificate warning.
 - **Known trade-off:** the site now publishes through one workflow. If the Almanac's build branch were missing, nothing would publish (dashboard commits included) until it's fixed; the live site stays as it was meanwhile. Each morning's dashboard commit also republishes with the newest Almanac, so the Almanac stays current even if the republish request ever fails.
 - **Size:** about 180 KB per place. The Almanac tops out around 1,000 places (Shawn, Nov 10, 2026), about 180 MB, well inside GitHub Pages' 1 GB site limit, with room left for NBA pages.
-- **Small things:** GoatCounter counts Almanac visits under `/weather/almanac/` from Nov 10, so its history splits on that day. The two weather stories link to the old address until their weather-intelligence templates are updated (the links redirect meanwhile).
+- **Small things:** GoatCounter counts Almanac visits under `/weather/almanac/` from Nov 10, so its history splits on that day. Record Lows Are Disappearing and Phoenix After Dark still link to the old address until their weather-intelligence templates are updated (the links redirect meanwhile). Fall's First Freeze was moved to relative `../almanac/` links on Nov 16, 2026, along with its SEO pass (title, description, chart tables and default-place summary in the HTML, published date).
 
 Guard rail for growth: add Almanac pages only when they carry real, checked, city-specific data. Thousands of similar pages that Google judged thin could drag on the whole domain, which is the one real argument for a subdomain.
 
@@ -87,11 +87,13 @@ Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a pa
 | --- | --- | --- |
 | Chart guide hub (`explained/charts/`) | Types of Charts and When to Use Them | types of charts 6,600 · different types of charts 1,900 · types of charts and graphs 1,000 |
 | Chart pages | "[Chart]: when to use it" (kept) | when to use a bar chart 880 |
-| How much is a billion? | How Much Is a Billion? Dollars, Time and Things to Scale | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
+| How much is a billion? (`numbers/how-much-is-a-billion/`, Nov 14) | How Much Is a Billion? In Dollars and Seconds (shortened from "Dollars, Time and Things to Scale" to fit 70 characters with "· Tall Order Digital"; keeps both secondary phrases) | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
 | How big is your state, really? | US State Size Comparison: Your State vs. Any Country | state size comparison 880 · us state size comparison 880 |
 | Why your houseplants survive your living room (`nature/houseplants-native-homes/`, Nov 11) | Low-Light Houseplants: Why They Survive Indoors | low light houseplants 33,100 (difficulty 53) · best low light houseplants 9,900 (19) · houseplant humidity 20 · where do houseplants come from 10 |
 
 Opportunities spotted: "alaska state size comparison" gets 1,900 a month on its own, so a page per state (`numbers/state-vs-country-size/<state>/`) could each rank for its state. The chart pages draw their example charts with scripts; **done Nov 11, 2026:** each chart's takeaway, readout and data table are now written into the HTML (Indiana, the default state) by `misc-analytics/analysis/chart_guide/prerender.py`, and every guide page shows "Published Nov 11, 2026 · Data through 2025", which `tools/structured-data.js` now reads as the page's dates (the hub is a `CollectionPage`).
+
+Weather trivia (`trivia/weather/`, Nov 16, 2026): title "Daily Weather Trivia, From Real Records". weather trivia 590 (difficulty 24) · weather trivia questions 140 (26) · weather trivia questions and answers 140 (23) · daily trivia game 1,900 (63, out of reach). The page carries ten sample questions with answers in the HTML for the "questions and answers" searches; they're kept out of the daily sets.
 
 ## Keyword strategy: long tail first
 
