@@ -87,7 +87,7 @@ Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a pa
 | --- | --- | --- |
 | Chart guide hub (`explained/charts/`) | Types of Charts and When to Use Them | types of charts 6,600 · different types of charts 1,900 · types of charts and graphs 1,000 |
 | Chart pages | "[Chart]: when to use it" (kept) | when to use a bar chart 880 |
-| How much is a billion? | How Much Is a Billion? Dollars, Time and Things to Scale | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
+| How much is a billion? (`numbers/how-much-is-a-billion/`, Nov 14) | How Much Is a Billion? In Dollars and Seconds (shortened from "Dollars, Time and Things to Scale" to fit 70 characters with "· Tall Order Digital"; keeps both secondary phrases) | how much is a billion 3,600 · ... dollars 2,400 · ... seconds 880 |
 | How big is your state, really? | US State Size Comparison: Your State vs. Any Country | state size comparison 880 · us state size comparison 880 |
 | Why your houseplants survive your living room (`nature/houseplants-native-homes/`, Nov 11) | Low-Light Houseplants: Why They Survive Indoors | low light houseplants 33,100 (difficulty 53) · best low light houseplants 9,900 (19) · houseplant humidity 20 · where do houseplants come from 10 |
 
