@@ -51,6 +51,9 @@ LINKS = {
     "weather/record-lows-disappearing": [("Record lows set since 2000, compared with chance", "dot-map"),
                                          ("Records since 2000 for every 100 chance would give, by group", "dot-plot")],
     "weather/first-freeze-running-late": [("This fall's first freeze, place by place", "dot-map")],
+    "weather/shortest-day-of-the-year": [("Sunset and sunrise in", "line-chart"),
+                                         ("The farther south, the earlier the earliest sunset", "dumbbell"),
+                                         ("Daylight gained since the solstice", "line-chart")],
 }
 BLOCK = re.compile(r"<!-- chart-howto:start -->.*?<!-- chart-howto:end -->\n?", re.S)
 SUB = re.compile(r'<p class="(?:fig-sub|sub)"[^>]*>.*?</p>', re.S)
