@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Every Season Starts Fast · Tall Order Digital</title>
-<meta name="description" content="The first 13 days of 2026-27 brought a fast pace and a lot of fouls. Next to the same days of the last five seasons, they look ordinary, and openings like this fade every year.">
+<title>NBA Pace and Fouls to Start the 2026-27 Season · Tall Order Digital</title>
+<meta name="description" content="Through Nov 10, the 2026-27 NBA season is slower than last year's start (100.3 vs 102.2 possessions per 48), with a record 43.0% of shots from three.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Tall Order Digital">
 <meta property="og:title" content="Every season starts fast">
-<meta property="og:description" content="The first 13 days of 2026-27 brought a fast pace and a lot of fouls. Next to the same days of the last five seasons, they look ordinary, and openings like this fade every year.">
+<meta property="article:modified_time" content="2026-11-11">
+<meta property="og:description" content="Through Nov 10, the 2026-27 NBA season is slower than last year's start (100.3 vs 102.2 possessions per 48), with a record 43.0% of shots from three.">
 <link rel="canonical" href="https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/">
 <meta property="og:url" content="https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/">
 <meta property="og:image" content="https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/share.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="League pace and fouls in the first 13 days of each season since 2021-22, compared with the rest of the season.">
+<meta property="og:image:alt" content="NBA pace by season, the first 22 days vs the rest of each season since 2021-22. 2026-27's opening is the slowest of the six.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../../favicon.ico" sizes="48x48">
 <link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
@@ -74,6 +77,9 @@ strong { font-weight: 600; color: var(--ink); }
 .stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
 .stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
 .stat b { font: 700 clamp(34px, 5.6vw, 50px)/.95 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat b .chip { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-left: 10px; vertical-align: .3em; }
+.chip.big { background: var(--amber); } .chip.near { background: var(--edge); }
+.takeaway { margin: 0 0 6px; font-size: 15px; line-height: 1.5; color: var(--ink); max-width: 64ch; }
 .stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
 @media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
 
@@ -163,8 +169,9 @@ body { margin: 0; }
 /* site-header:start */
 /* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
    On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
-   (assets/site-header.js). Menu: Stories, Dashboards (to the dashboards hub, dashboards/; set as DASHBOARDS in
-   tools/apply-header.py), About, then the search icon and the light/dark button.
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
    Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
    carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
 :root { --header-h: 76px; }
@@ -179,13 +186,118 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 .site-bar .nav-search:hover { color: var(--amber); }
 .site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
 .site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
 /* site-header:end */
+/* theme-toggle:start */
+/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+/* theme-toggle:end */
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
 </style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-03">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/#article","headline":"Every season starts fast","description":"Through Nov 10, the 2026-27 NBA season is slower than last year's start (100.3 vs 102.2 possessions per 48), with a record 43.0% of shots from three.","image":["https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/share.png"],"datePublished":"2026-11-03","dateModified":"2026-11-11","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/#webpage","url":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/","name":"Every season starts fast","description":"Through Nov 10, the 2026-27 NBA season is slower than last year's start (100.3 vs 102.2 possessions per 48), with a record 43.0% of shots from three.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"NBA","item":"https://tallorderdigital.com/nba/"},{"@type":"ListItem","position":3,"name":"Every season starts fast","item":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/"}],"@id":"https://tallorderdigital.com/nba/every-season-starts-fast-pace-fouls/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
 </head>
 <body>
 <header class="site-bar">
   <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
-  <nav class="site-nav" aria-label="Site"><a href="../../#stories">Stories</a><a href="../../dashboards/">Dashboards</a><a href="../../about/">About</a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a></nav>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/">Weather</a><a class="nav-topic" href="../../nba/" aria-current="page">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
 </header>
 
 
@@ -193,122 +305,151 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <header class="col">
     <p class="kicker">NBA · Nov 3, 2026</p>
     <h1>Every season starts fast</h1>
-    <p class="dek">The first 13 days of 2026-27 looked like the fastest, most whistle-happy basketball in years. Next to the same 13 days of the last five seasons, they look ordinary, and openings like this have faded every year.</p>
-    <p class="byline">By Shawn Nafziger · Games through Nov 1 (the first 13 days, 92 games)</p>
+    <p class="dek">Through the first 22 days of 2026-27 (160 games), the NBA is playing slower than at the same point last season, not faster: 100.3 possessions per 48 minutes against 102.2. What has changed is the three: 43.0% of shots, a record for the opening weeks.</p>
+    <p class="byline">By Shawn Nafziger · Published Nov 3, 2026 · Updated Nov 11, 2026 with games through Nov 10 (the first 22 days, 160 games)</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
   </header>
 
   <div class="stats">
-    <div class="stat"><b>101.3</b><span><button type="button" class="term" data-term="pace">Pace</button> so far.<br>Same days last season: 102.4</span></div>
-    <div class="stat"><b>22.3</b><span>Fouls per 100 <button type="button" class="term" data-term="per100">possessions</button>.<br>Same days last season: 21.7</span></div>
-    <div class="stat"><b>42.8%</b><span>Share of shots from three.<br>Same days last season: 42.0%</span></div>
+    <div class="stat"><b>100.3<i class="chip big" title="More than twice the chance wobble"></i></b><span><button type="button" class="term" data-term="pace">Pace</button> so far.<br>Same days last season: 102.2</span></div>
+    <div class="stat"><b>43.0%<i class="chip big" title="More than twice the chance wobble"></i></b><span>Share of shots from three.<br>Same days last season: 41.7%</span></div>
+    <div class="stat"><b>21.9</b><span>Fouls per 100 <button type="button" class="term" data-term="per100">possessions</button>.<br>Same days last season: 21.4</span></div>
   </div>
-  <p class="stats-note"><strong>How to read these:</strong> each number is compared with the same 13 days a year ago, not with a whole season.<br>
-    None of the three gaps is too big to be a fluke (more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button>).<br>
-    Pace comes closest, and it's slower than last year, not faster.</p>
+  <p class="stats-note"><strong>How to read these:</strong> each number is compared with the same 22 days a year ago, not with a whole season.<br>
+    <span class="amber">Orange</span> chip: a gap too big to be a fluke (more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button>).<br>
+    No chip: within normal chance wobble.</p>
 
   <div class="verdict">
     <p class="vk">The short answer</p>
-    <p class="vh">Not different yet</p>
+    <p class="vh">Different, but not faster</p>
     <ul>
-      <li><b>Pace</b><span>Slower than last season's first 13 days. It only looks like a record when it's compared with whole seasons, and pace has slowed after the opening every year.</span></li>
-      <li><b>Whistles</b><span>Fouls are a shade above last year's start, within chance wobble. Free throws are down.</span></li>
-      <li><b>Threes</b><span>The highest opening share in six seasons, but only 0.8 points above last year. This is the one number that doesn't fade.</span></li>
-      <li><b>Check again</b><span>Around game 20, when each team has played about a quarter of its season.</span></li>
+      <li><b>Pace</b><span>Slower than last season's first 22 days by 1.9 possessions, about 3.7 times the chance wobble: too big to be a fluke. It's the slowest opening of the last six seasons.</span></li>
+      <li><b>Threes</b><span>43.0% of shots, a record for the opening weeks and 1.3 points above last year, just past the line for a real change. The 3-point share set early tends to hold all season.</span></li>
+      <li><b>Whistles</b><span>The most fouls of any opening (21.9 per 100 possessions), but only 0.5 above last year, within chance wobble. Free throws aren't up.</span></li>
+      <li><b>Check again</b><span>At the quarter mark, when each team has played about 20 games.</span></li>
     </ul>
   </div>
 
   <section>
     <div class="prose">
-      <h2>Fast starts are normal</h2>
-      <p>Early reports called this the fastest pace in about 40 years (<a href="https://www.thescore.com/nba/news/3637944/10-observations-from-the-first-10-days-of-the-nba-season">theScore</a>). Through Nov 1, teams are averaging 101.3 possessions per 48 minutes. That's higher than any full season in our five seasons of history (the fastest was 100.9).</p>
-      <p>But that compares two weeks with whole seasons. Last season's first 13 days ran at 102.4, 1.2 possessions faster than this season's. That gap is about 1.6 times the normal chance wobble: at the edge, not quite enough to call this start slower for sure.</p>
-      <p>Fast openings fade. In each of the last five seasons, the pace slowed after the first 13 days, by 0.7 to 2.0 possessions a game, and in four of the five the drop was too big to be a fluke. Last season went from 102.4 to 100.8.</p>
+      <h2>Is this the fastest NBA pace in 40 years?</h2>
+      <p>No. Through Nov 10, NBA teams are averaging 100.3 possessions per 48 minutes, the slowest opening of the last six seasons and 1.9 below the same 22 days last season (102.2). That gap is about 3.7 times the normal chance wobble, too big to be a fluke. This season's start is now below even last season's full-season pace (100.9).</p>
+      <p>Ten days in, early reports called it the fastest pace in about 40 years (<a href="https://www.thescore.com/nba/news/3637944/10-observations-from-the-first-10-days-of-the-nba-season">theScore</a>, Oct 30). That compared two weeks with whole seasons, and fast openings fade. In each of the last five seasons, the pace slowed after the first 22 days, by 0.6 to 1.6 possessions a game, and in three of the five the drop was too big to be a fluke. Last season went from 102.2 to 100.7.</p>
     </div>
     <figure class="figure" style="margin:0">
       <div class="fig-head"><div>
-        <p class="fig-title">Pace: the first 13 days vs the rest of the season</p>
+        <p class="fig-title">Pace: the first 22 days vs the rest of the season</p>
         <p class="fig-sub">Possessions per 48 minutes, league-wide. Hover or tap a season for details.</p>
+<!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/dumbbell/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a dumbbell chart →</a></p><!-- chart-howto:end -->
       </div></div>
+      <p class="takeaway">In every season, the open ring sits left of the dot: pace slowed after the opening. This season's opening, 100.3, is the slowest of the six.</p>
       <div class="chart" id="pace"></div>
-      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 13 days of the season.<br>
+      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 22 days of the season.<br>
         <strong>Open ring</strong>: the rest of that season.<br>
-        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 13 days.<br>
+        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 22 days.<br>
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
         No chip: within normal chance wobble.<br>
-        Source: NBA Stats API team box scores.</p>
+        Source: NBA.com team box scores.</p>
     </figure>
   </section>
 
   <section>
     <div class="prose">
-      <h2>A few more whistles, not more free throws</h2>
-      <p>Before the season, the league told referees to call off-arm push-offs, illegal screens and contact away from the ball more tightly, and said to expect more whistles early (<a href="https://bleacherreport.com/articles/25504531-nba-drops-video-announcing-new-points-emphasis-referees-during-2026-27-season">Bleacher Report</a>). Fouls are up a little: 22.3 per 100 possessions, the most of any opening in six seasons, against 21.7 a year ago. That gap of 0.5 is about 1.2 times the normal chance wobble. To count as real, it would need to be about 0.9.</p>
-      <p>Free throws aren't up. Teams are taking 24.8 free throws per 100 possessions, down from 25.3, and the <button type="button" class="term" data-term="ftr">free-throw rate</button> (FTA ÷ FGA) is .286, down from .295. More fouls with fewer free throws would fit a crackdown on offensive fouls, such as push-offs and illegal screens, which never send anyone to the line. Checking that needs play-by-play data we haven't pulled, so for now it's a hint, not a finding.</p>
-      <p>And early whistles fade. In each of the last two seasons, fouls fell by more than 2 per 100 possessions after the first 13 days (2.3 in 2024-25, 2.3 in 2025-26), too much to be a fluke both times.</p>
+      <h2>Are NBA teams shooting more threes this season?</h2>
+      <p>Yes. So far 43.0% of shots are threes, a record for the opening weeks and 1.3 <button type="button" class="term" data-term="pp">points</button> more than at this point last season (41.7%). That's about 2.2 times the normal chance wobble, just past the line for a real change.</p>
+      <p>And it should last. Unlike pace and fouls, the opening 3-point share hardly moves over the rest of a season: by less than 1 point in every one of the last five. How many threes a team takes is a choice coaches make, and it shows up right away (more in <a href="../shot-diet-three-point-rate/">The Shot Diet</a>).</p>
     </div>
     <figure class="figure" style="margin:0">
       <div class="fig-head"><div>
-        <p class="fig-title">Fouls: the first 13 days vs the rest of the season</p>
+        <p class="fig-title">Share of shots from three: the first 22 days vs the rest of the season</p>
+        <p class="fig-sub"><button type="button" class="term" data-term="three">3-point attempts</button> ÷ all field-goal attempts, league-wide.</p>
+      </div></div>
+      <p class="takeaway">In every season, the dot and ring nearly touch: the 3-point share set in the opening weeks holds. This season's opening, 43.0%, is the highest of the six.</p>
+      <div class="chart" id="three"></div>
+      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 22 days of the season.<br>
+        <strong>Open ring</strong>: the rest of that season.<br>
+        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 22 days.<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
+        No chip: within normal chance wobble.<br>
+        Source: NBA.com team box scores.</p>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Are referees calling more fouls this season?</h2>
+      <p>A few more, but not enough to rule out chance. Teams have been called for 21.9 fouls per 100 possessions, the most of any opening in six seasons, against 21.4 a year ago. That gap of 0.5 is about 1.3 times the normal chance wobble. To count as real, it would need to be about 0.7.</p>
+      <p>Before the season, the league told referees to call off-arm push-offs, illegal screens and contact away from the ball more tightly, and said to expect more whistles early (<a href="https://bleacherreport.com/articles/25504531-nba-drops-video-announcing-new-points-emphasis-referees-during-2026-27-season">Bleacher Report</a>, Sep 29). Free throws aren't up: teams are taking 24.8 per 100 possessions, against 25.1 last season, and the <button type="button" class="term" data-term="ftr">free-throw rate</button> (FTA ÷ FGA) is .284, against .290. A few more fouls without more free throws would fit a crackdown on offensive fouls, such as push-offs and illegal screens, which never send anyone to the line. Checking that needs play-by-play data we haven't pulled, so for now it's a hint, not a finding.</p>
+      <p>Early whistles usually fade. In four of the last five seasons, the foul rate fell after the first 22 days, by too much to be a fluke each time; last season it dropped 2.1 per 100 possessions. The thing to watch is whether this season's rate holds where past seasons' fell.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Fouls: the first 22 days vs the rest of the season</p>
         <p class="fig-sub">Personal fouls per team per 100 possessions, league-wide.</p>
       </div></div>
+      <p class="takeaway">Fouls fell after the opening in four of the five past seasons. This season's opening, 21.9, is the highest of the six, within chance of last year's 21.4.</p>
       <div class="chart" id="fouls"></div>
-      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 13 days of the season.<br>
+      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 22 days of the season.<br>
         <strong>Open ring</strong>: the rest of that season.<br>
-        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 13 days.<br>
+        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 22 days.<br>
         <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
         No chip: within normal chance wobble.<br>
         Personal fouls include offensive fouls; technicals aren't counted.<br>
-        Source: NBA Stats API team box scores.</p>
+        Source: NBA.com team box scores.</p>
     </figure>
-  </section>
-
-  <section>
-    <div class="prose">
-      <h2>The three-point share is the number that sticks</h2>
-      <p>Threes are the exception. So far 42.8% of shots are threes, the highest opening share of the six seasons, though only 0.8 <button type="button" class="term" data-term="pp">points</button> above last year's 42.0%, within chance wobble.</p>
-      <p>Unlike pace and fouls, the opening share hardly moves over the rest of the season: by less than 1 point in every one of the last five seasons. How many threes a team takes is a choice coaches make, and it shows up right away (more in <a href="../shot-diet-three-point-rate/">The Shot Diet</a>).</p>
-    </div>
-    <figure class="figure" style="margin:0">
-      <div class="fig-head"><div>
-        <p class="fig-title">Share of shots from three: the first 13 days vs the rest of the season</p>
-        <p class="fig-sub"><button type="button" class="term" data-term="three">3-point attempts</button> ÷ all field-goal attempts, league-wide.</p>
-      </div></div>
-      <div class="chart" id="three"></div>
-      <p class="source"><span style="color:var(--navy);font-weight:600">Teal dot</span>: the first 13 days of the season.<br>
-        <strong>Open ring</strong>: the rest of that season.<br>
-        <span class="amber">Orange</span> chip on 2026-27: more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> away from last season's first 13 days.<br>
-        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: close to that line (at least 1.6 times the wobble).<br>
-        No chip: within normal chance wobble.<br>
-        Source: NBA Stats API team box scores.</p>
-    </figure>
-    <p class="callout">Judge a new season against the same days of past seasons, not against whole seasons. By that measure, 2026-27 isn't faster than last year, and its whistles are within chance of last year's. We'll check again around game 20.</p>
+    <p class="callout">Judge a new season against the same days of past seasons, not against whole seasons. By that measure, 2026-27 is slower than last year and more three-heavy, and its whistles are within chance of last year's. We'll check again at the quarter mark.</p>
     <details>
       <summary>All five numbers, every season</summary>
-      <div class="tablewrap" id="table"></div>
+      <div class="tablewrap"><table><thead><tr><th>Season</th><th>Window</th><th>Games</th><th>Pace</th><th>Fouls / 100</th><th>FTA / 100</th><th>FTr</th><th>3PA share</th></tr></thead><tbody><tr><td>2021-22</td><td>First 22 days</td><td>157</td><td>100.5</td><td>18.7</td><td>19.5</td><td>.222</td><td>40.2%</td></tr><tr><td>2021-22</td><td>Rest of season</td><td>1073</td><td>99.3</td><td>19.8</td><td>22.2</td><td>.252</td><td>39.9%</td></tr><tr><td>2022-23</td><td>First 22 days</td><td>158</td><td>101.0</td><td>20.6</td><td>22.8</td><td>.262</td><td>38.7%</td></tr><tr><td>2022-23</td><td>Rest of season</td><td>1072</td><td>100.4</td><td>19.6</td><td>23.3</td><td>.267</td><td>38.8%</td></tr><tr><td>2023-24</td><td>First 22 days</td><td>157</td><td>101.3</td><td>19.6</td><td>22.4</td><td>.255</td><td>39.3%</td></tr><tr><td>2023-24</td><td>Rest of season</td><td>1073</td><td>99.6</td><td>18.5</td><td>21.5</td><td>.243</td><td>39.5%</td></tr><tr><td>2024-25</td><td>First 22 days</td><td>164</td><td>100.8</td><td>19.7</td><td>22.5</td><td>.257</td><td>41.9%</td></tr><tr><td>2024-25</td><td>Rest of season</td><td>1066</td><td>100.2</td><td>18.2</td><td>21.3</td><td>.241</td><td>42.1%</td></tr><tr><td>2025-26</td><td>First 22 days</td><td>162</td><td>102.2</td><td>21.4</td><td>25.1</td><td>.290</td><td>41.7%</td></tr><tr><td>2025-26</td><td>Rest of season</td><td>1068</td><td>100.7</td><td>19.3</td><td>22.8</td><td>.260</td><td>41.5%</td></tr><tr><td>2026-27</td><td>First 22 days</td><td>160</td><td>100.3</td><td>21.9</td><td>24.8</td><td>.284</td><td>43.0%</td></tr></tbody></table></div>
     </details>
   </section>
 
   <section class="method">
     <h3>Method</h3>
     <ul>
-      <li><strong>Data:</strong> every regular-season team box score from the NBA Stats API via the open-source <code>nba_api</code> client: 2021-22 to 2025-26, and 2026-27 through Nov 1.</li>
-      <li><strong>Windows:</strong> "the first 13 days" runs from each season's opening night through the same number of days 2026-27 has had (Oct 20 to Nov 1 this season). Each opening window has 91 to 95 games. "The rest of the season" is every later game.</li>
+      <li><strong>Data:</strong> every regular-season team box score from the <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <code>nba_api</code> client: 2021-22 to 2025-26, and 2026-27 through Nov 10.</li>
+      <li><strong>Windows:</strong> "the first 22 days" runs from each season's opening night through the same number of days 2026-27 has had (Oct 20 to Nov 10 this season). Each opening window has 157 to 164 games. "The rest of the season" is every later game.</li>
       <li><strong>Rates come from <button type="button" class="term" data-term="totals">totals</button></strong>, never averages of per-game rates. Possessions are estimated from the box score (FGA + 0.44 × FTA − offensive rebounds + turnovers, averaged over both teams), the same formula for every season. That estimate runs about 1.1% above the NBA's own count, so it's scaled to match the NBA's count over the full 2025-26 season. The scaling is the same for every season, so it can't change a comparison.</li>
       <li><strong>Fouls and free throws</strong> are per team per 100 possessions. Free-throw rate here is FTr = FTA ÷ FGA, not FT ÷ FGA.</li>
       <li><strong>Chance:</strong> each window's <button type="button" class="term" data-term="se">standard error</button> comes from the game-to-game spread. A gap counts as real when it's more than 2 standard errors of the difference, and "at the edge" at 1.6.</li>
       <li><strong>Not checked:</strong> which kinds of fouls are up (that needs play-by-play), and why pace slows after the opening.</li>
     </ul>
   </section>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
 </main>
 
 <footer class="site-foot">
-  <p>Data: NBA Stats API via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
-  <p>© 2026 Tall Order Digital · <a href="../../">More stories</a></p>
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../../">More stories</a></p>
   <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
 </footer>
 
 <script>
-const D = {"seasons":[{"season":"2021-22","opener":"Oct 19, 2021","early":{"games":93,"pace":101.299,"pace_se":0.406,"fouls_100":18.942,"fouls_100_se":0.247,"fta_100":19.51,"fta_100_se":0.438,"ftr":22.224,"ftr_se":0.541,"three":39.995,"three_se":0.607},"rest":{"games":1137,"pace":99.344,"pace_se":0.13,"fouls_100":19.683,"fouls_100_se":0.089,"fta_100":22.046,"fta_100_se":0.151,"ftr":25.032,"ftr_se":0.192,"three":39.924,"three_se":0.165,"pace_gap":-1.955,"pace_z":-4.59,"fouls_100_gap":0.74,"fouls_100_z":2.82,"fta_100_gap":2.536,"fta_100_z":5.47,"ftr_gap":2.808,"ftr_z":4.89,"three_gap":-0.072,"three_z":-0.11},"full":{"games":1230,"pace":99.493,"pace_se":0.125,"fouls_100":19.625,"fouls_100_se":0.085,"fta_100":21.85,"fta_100_se":0.145,"ftr":24.816,"ftr_se":0.183,"three":39.929,"three_se":0.16}},{"season":"2022-23","opener":"Oct 18, 2022","early":{"games":95,"pace":101.074,"pace_se":0.451,"fouls_100":21.051,"fouls_100_se":0.298,"fta_100":23.565,"fta_100_se":0.439,"ftr":26.95,"ftr_se":0.575,"three":38.572,"three_se":0.46},"rest":{"games":1135,"pace":100.403,"pace_se":0.136,"fouls_100":19.629,"fouls_100_se":0.09,"fta_100":23.22,"fta_100_se":0.15,"ftr":26.621,"ftr_se":0.192,"three":38.761,"three_se":0.155,"pace_gap":-0.671,"pace_z":-1.43,"fouls_100_gap":-1.422,"fouls_100_z":-4.57,"fta_100_gap":-0.344,"fta_100_z":-0.74,"ftr_gap":-0.329,"ftr_z":-0.54,"three_gap":0.189,"three_z":0.39},"full":{"games":1230,"pace":100.455,"pace_se":0.13,"fouls_100":19.74,"fouls_100_se":0.086,"fta_100":23.247,"fta_100_se":0.143,"ftr":26.646,"ftr_se":0.183,"three":38.747,"three_se":0.147}},{"season":"2023-24","opener":"Oct 24, 2023","early":{"games":91,"pace":101.439,"pace_se":0.407,"fouls_100":19.485,"fouls_100_se":0.247,"fta_100":21.739,"fta_100_se":0.463,"ftr":24.807,"ftr_se":0.592,"three":39.055,"three_se":0.533},"rest":{"games":1139,"pace":99.725,"pace_se":0.133,"fouls_100":18.583,"fouls_100_se":0.093,"fta_100":21.62,"fta_100_se":0.153,"ftr":24.4,"ftr_se":0.192,"three":39.52,"three_se":0.141,"pace_gap":-1.715,"pace_z":-4.0,"fouls_100_gap":-0.901,"fouls_100_z":-3.42,"fta_100_gap":-0.119,"fta_100_z":-0.24,"ftr_gap":-0.406,"ftr_z":-0.65,"three_gap":0.465,"three_z":0.84},"full":{"games":1230,"pace":99.852,"pace_se":0.128,"fouls_100":18.651,"fouls_100_se":0.088,"fta_100":21.629,"fta_100_se":0.146,"ftr":24.431,"ftr_se":0.183,"three":39.485,"three_se":0.137}},{"season":"2024-25","opener":"Oct 22, 2024","early":{"games":93,"pace":101.427,"pace_se":0.438,"fouls_100":20.607,"fouls_100_se":0.367,"fta_100":23.694,"fta_100_se":0.623,"ftr":27.232,"ftr_se":0.837,"three":42.036,"three_se":0.477},"rest":{"games":1137,"pace":100.221,"pace_se":0.141,"fouls_100":18.258,"fouls_100_se":0.094,"fta_100":21.305,"fta_100_se":0.146,"ftr":24.045,"ftr_se":0.184,"three":42.122,"three_se":0.148,"pace_gap":-1.206,"pace_z":-2.62,"fouls_100_gap":-2.348,"fouls_100_z":-6.2,"fta_100_gap":-2.389,"fta_100_z":-3.73,"ftr_gap":-3.187,"ftr_z":-3.72,"three_gap":0.086,"three_z":0.17},"full":{"games":1230,"pace":100.312,"pace_se":0.135,"fouls_100":18.438,"fouls_100_se":0.093,"fta_100":21.488,"fta_100_se":0.144,"ftr":24.285,"ftr_se":0.183,"three":42.115,"three_se":0.142}},{"season":"2025-26","opener":"Oct 21, 2025","early":{"games":94,"pace":102.438,"pace_se":0.487,"fouls_100":21.715,"fouls_100_se":0.306,"fta_100":25.343,"fta_100_se":0.547,"ftr":29.455,"ftr_se":0.716,"three":42.005,"three_se":0.607},"rest":{"games":1136,"pace":100.794,"pace_se":0.146,"fouls_100":19.402,"fouls_100_se":0.093,"fta_100":22.962,"fta_100_se":0.158,"ftr":26.103,"ftr_se":0.202,"three":41.468,"three_se":0.157,"pace_gap":-1.644,"pace_z":-3.23,"fouls_100_gap":-2.313,"fouls_100_z":-7.24,"fta_100_gap":-2.382,"fta_100_z":-4.18,"ftr_gap":-3.352,"ftr_z":-4.51,"three_gap":-0.537,"three_z":-0.86},"full":{"games":1230,"pace":100.92,"pace_se":0.14,"fouls_100":19.582,"fouls_100_se":0.09,"fta_100":23.147,"fta_100_se":0.153,"ftr":26.359,"ftr_se":0.196,"three":41.509,"three_se":0.152}},{"season":"2026-27","opener":"Oct 20, 2026","early":{"games":92,"pace":101.264,"pace_se":0.522,"fouls_100":22.263,"fouls_100_se":0.336,"fta_100":24.828,"fta_100_se":0.55,"ftr":28.586,"ftr_se":0.751,"three":42.803,"three_se":0.518},"rest":null,"full":null}],"vs_last":{"pace":{"gap":-1.174,"se":0.714,"z":-1.65,"tier":"near","rank":5},"fouls_100":{"gap":0.548,"se":0.454,"z":1.21,"tier":"noise","rank":1},"fta_100":{"gap":-0.516,"se":0.776,"z":-0.66,"tier":"noise","rank":2},"ftr":{"gap":-0.869,"se":1.038,"z":-0.84,"tier":"noise","rank":2},"three":{"gap":0.798,"se":0.798,"z":1.0,"tier":"noise","rank":1}},"metrics":{"pace":"Pace","fouls_100":"Fouls per 100 possessions","fta_100":"Free-throw attempts per 100 possessions","ftr":"FTr (FTA ÷ FGA)","three":"3-point attempt share"},"model":{"cutoff":"2026-11-01","days":13,"k":0.9892,"current":"2026-27","baseline":"2025-26"}};
+const D = {"seasons":[{"season":"2021-22","opener":"Oct 19, 2021","early":{"games":157,"pace":100.489,"pace_se":0.342,"fouls_100":18.714,"fouls_100_se":0.202,"fta_100":19.541,"fta_100_se":0.347,"ftr":22.225,"ftr_se":0.424,"three":40.213,"three_se":0.458},"rest":{"games":1073,"pace":99.347,"pace_se":0.133,"fouls_100":19.76,"fouls_100_se":0.092,"fta_100":22.192,"fta_100_se":0.156,"ftr":25.199,"ftr_se":0.198,"three":39.887,"three_se":0.17,"pace_gap":-1.143,"pace_z":-3.11,"fouls_100_gap":1.047,"fouls_100_z":4.71,"fta_100_gap":2.651,"fta_100_z":6.97,"ftr_gap":2.974,"ftr_z":6.36,"three_gap":-0.326,"three_z":-0.67},"full":{"games":1230,"pace":99.493,"pace_se":0.125,"fouls_100":19.625,"fouls_100_se":0.085,"fta_100":21.85,"fta_100_se":0.145,"ftr":24.816,"ftr_se":0.183,"three":39.929,"three_se":0.16}},{"season":"2022-23","opener":"Oct 18, 2022","early":{"games":158,"pace":101.039,"pace_se":0.345,"fouls_100":20.606,"fouls_100_se":0.229,"fta_100":22.757,"fta_100_se":0.352,"ftr":26.231,"ftr_se":0.457,"three":38.686,"three_se":0.392},"rest":{"games":1072,"pace":100.369,"pace_se":0.141,"fouls_100":19.611,"fouls_100_se":0.093,"fta_100":23.32,"fta_100_se":0.155,"ftr":26.708,"ftr_se":0.198,"three":38.756,"three_se":0.159,"pace_gap":-0.67,"pace_z":-1.8,"fouls_100_gap":-0.995,"fouls_100_z":-4.03,"fta_100_gap":0.563,"fta_100_z":1.46,"ftr_gap":0.477,"ftr_z":0.96,"three_gap":0.07,"three_z":0.17},"full":{"games":1230,"pace":100.455,"pace_se":0.13,"fouls_100":19.74,"fouls_100_se":0.086,"fta_100":23.247,"fta_100_se":0.143,"ftr":26.646,"ftr_se":0.183,"three":38.747,"three_se":0.147}},{"season":"2023-24","opener":"Oct 24, 2023","early":{"games":157,"pace":101.273,"pace_se":0.332,"fouls_100":19.559,"fouls_100_se":0.222,"fta_100":22.392,"fta_100_se":0.38,"ftr":25.548,"ftr_se":0.487,"three":39.309,"three_se":0.414},"rest":{"games":1073,"pace":99.644,"pace_se":0.137,"fouls_100":18.516,"fouls_100_se":0.095,"fta_100":21.516,"fta_100_se":0.157,"ftr":24.266,"ftr_se":0.197,"three":39.511,"three_se":0.144,"pace_gap":-1.629,"pace_z":-4.54,"fouls_100_gap":-1.043,"fouls_100_z":-4.32,"fta_100_gap":-0.876,"fta_100_z":-2.13,"ftr_gap":-1.282,"ftr_z":-2.44,"three_gap":0.202,"three_z":0.46},"full":{"games":1230,"pace":99.852,"pace_se":0.128,"fouls_100":18.651,"fouls_100_se":0.088,"fta_100":21.629,"fta_100_se":0.146,"ftr":24.431,"ftr_se":0.183,"three":39.485,"three_se":0.137}},{"season":"2024-25","opener":"Oct 22, 2024","early":{"games":164,"pace":100.848,"pace_se":0.351,"fouls_100":19.697,"fouls_100_se":0.264,"fta_100":22.453,"fta_100_se":0.425,"ftr":25.74,"ftr_se":0.557,"three":41.947,"three_se":0.361},"rest":{"games":1066,"pace":100.23,"pace_se":0.146,"fouls_100":18.243,"fouls_100_se":0.098,"fta_100":21.338,"fta_100_se":0.152,"ftr":24.063,"ftr_se":0.193,"three":42.141,"three_se":0.154,"pace_gap":-0.619,"pace_z":-1.63,"fouls_100_gap":-1.454,"fouls_100_z":-5.17,"fta_100_gap":-1.115,"fta_100_z":-2.47,"ftr_gap":-1.677,"ftr_z":-2.85,"three_gap":0.194,"three_z":0.49},"full":{"games":1230,"pace":100.312,"pace_se":0.135,"fouls_100":18.438,"fouls_100_se":0.093,"fta_100":21.488,"fta_100_se":0.144,"ftr":24.285,"ftr_se":0.183,"three":42.115,"three_se":0.142}},{"season":"2025-26","opener":"Oct 21, 2025","early":{"games":162,"pace":102.167,"pace_se":0.356,"fouls_100":21.432,"fouls_100_se":0.235,"fta_100":25.109,"fta_100_se":0.401,"ftr":29.025,"ftr_se":0.531,"three":41.745,"three_se":0.408},"rest":{"games":1068,"pace":100.731,"pace_se":0.151,"fouls_100":19.297,"fouls_100_se":0.095,"fta_100":22.845,"fta_100_se":0.163,"ftr":25.955,"ftr_se":0.208,"three":41.473,"three_se":0.164,"pace_gap":-1.437,"pace_z":-3.72,"fouls_100_gap":-2.135,"fouls_100_z":-8.41,"fta_100_gap":-2.264,"fta_100_z":-5.23,"ftr_gap":-3.07,"ftr_z":-5.38,"three_gap":-0.272,"three_z":-0.62},"full":{"games":1230,"pace":100.92,"pace_se":0.14,"fouls_100":19.582,"fouls_100_se":0.09,"fta_100":23.147,"fta_100_se":0.153,"ftr":26.359,"ftr_se":0.196,"three":41.509,"three_se":0.152}},{"season":"2026-27","opener":"Oct 20, 2026","early":{"games":160,"pace":100.253,"pace_se":0.382,"fouls_100":21.896,"fouls_100_se":0.269,"fta_100":24.829,"fta_100_se":0.443,"ftr":28.445,"ftr_se":0.589,"three":42.989,"three_se":0.402},"rest":null,"full":null}],"vs_last":{"pace":{"gap":-1.914,"se":0.522,"z":-3.67,"tier":"big","rank":6},"fouls_100":{"gap":0.464,"se":0.357,"z":1.3,"tier":"noise","rank":1},"fta_100":{"gap":-0.279,"se":0.598,"z":-0.47,"tier":"noise","rank":2},"ftr":{"gap":-0.58,"se":0.793,"z":-0.73,"tier":"noise","rank":2},"three":{"gap":1.244,"se":0.572,"z":2.17,"tier":"big","rank":1}},"metrics":{"pace":"Pace","fouls_100":"Fouls per 100 possessions","fta_100":"Free-throw attempts per 100 possessions","ftr":"FTr (FTA ÷ FGA)","three":"3-point attempt share"},"model":{"cutoff":"2026-11-10","days":22,"k":0.9892,"current":"2026-27","baseline":"2025-26"}};
 const NS = "http://www.w3.org/2000/svg";
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
@@ -433,7 +574,7 @@ document.addEventListener("click", closeTerm);
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
 window.addEventListener("resize", closeTerm);
 
-function drawAll() { drawDumbbell("pace", "pace"); drawDumbbell("fouls", "fouls_100"); drawDumbbell("three", "three"); drawTable(); }
+function drawAll() { drawDumbbell("pace", "pace"); drawDumbbell("fouls", "fouls_100"); drawDumbbell("three", "three"); }
 drawAll();
 let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
@@ -466,7 +607,237 @@ new MutationObserver(drawAll).observe(document.documentElement, { attributes: tr
   if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
   measure();
 })();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
 /* site-header:end */
+</script>
+<script>
+/* theme-toggle:start */
+/* Tall Order Digital: light/dark toggle.
+   - First visit follows the reader's system setting.
+   - Clicking a .theme-toggle button switches theme and remembers it (localStorage "tod-theme").
+   - Each page also carries a one-line script in <head> that applies the saved choice
+     before anything draws, so there's no flash of the wrong theme:
+       <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}<\/script>
+   - The CSS reads :root[data-theme="light" | "dark"]; story charts already redraw when data-theme changes. */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function current() {
+    var t = root.dataset.theme;
+    if (t === "light" || t === "dark") return t;
+    return media && media.matches ? "dark" : "light";
+  }
+
+  function sync() {
+    var theme = current();
+    var next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+      btn.dataset.showing = theme;
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle");
+    if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {}
+    }
+  });
+
+  if (media) {
+    var onChange = function () { if (!root.dataset.theme) sync(); };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync);
+  else sync();
+})();
+/* theme-toggle:end */
+</script>
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
 </script>
 <!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
 <script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>

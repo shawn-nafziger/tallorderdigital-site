@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>True Shooting Percentage: Formula &amp; Calculator · Tall Order Digital</title>
+<meta name="description" content="True shooting percentage (TS%) measures points per shot, counting threes and free throws. The formula, a calculator, and what counts as good in the NBA.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="True Shooting Percentage: Formula &amp; Calculator">
+<meta property="og:description" content="True shooting percentage (TS%) measures points per shot, counting threes and free throws. The formula, a calculator, and what counts as good in the NBA.">
+<link rel="canonical" href="https://tallorderdigital.com/explained/true-shooting/">
+<meta property="og:url" content="https://tallorderdigital.com/explained/true-shooting/">
+<meta property="og:image" content="https://tallorderdigital.com/assets/share-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tall Order Digital logo: data stories and visualization, starting with the NBA.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/site-header.css">
+<script src="../../assets/theme.js" defer></script>
+<script src="../../assets/site-header.js" defer></script>
+<style>
+/* Stats, Explained: page-only styles, built from the shared tokens */
+.toc { display: flex; flex-wrap: wrap; gap: 6px 8px; margin: 18px 0 8px; padding: 0; list-style: none; }
+.toc a { display: inline-block; font: 500 13px/1 var(--font-data); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.toc a:hover { border-color: var(--ink-3); }
+/* Link to the chart-types guide (added Nov 9, 2026) */
+.charts-link { display: grid; gap: 4px; margin: 14px 0 6px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); text-decoration: none; max-width: 640px; }
+.charts-link:hover { border-color: var(--ink-3); }
+.charts-link:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.charts-link b { font: 600 16px/1.3 var(--font-body); }
+.charts-link span { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.entry { scroll-margin-top: 16px; border-top: 1px solid var(--rule); padding-top: 26px; margin-top: 34px; }
+.entry h2 { margin-bottom: 4px; }
+.entry .aka { font: 500 12px/1.4 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
+.entry .short { font-size: 19px; line-height: 1.45; }
+.entry .eg { border-left: 3px solid var(--navy); padding: 2px 0 2px 14px; margin: 14px 0; }
+.entry .eg b { font: 600 11px/1.6 var(--font-data); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); display: block; }
+.entry details { margin-top: 10px; font-size: 15px; }
+.entry summary { cursor: pointer; font: 500 13px/1.6 var(--font-data); color: var(--ink-2); }
+.entry code, .entry .f { font: 400 14px/1.5 var(--font-data); }
+.widget { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; margin: 16px 0; }
+.widget .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.widget button { font: 500 13px/1 var(--font-data); padding: 9px 12px; border-radius: 6px; border: 1px solid var(--ink-3); background: var(--bg); color: var(--ink); cursor: pointer; }
+.widget button:hover { border-color: var(--ink); }
+.widget button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.widget .out { font: 500 14px/1.5 var(--font-data); color: var(--ink-2); min-height: 42px; }
+.widget .out b { color: var(--ink); }
+.widget svg { width: 100%; height: auto; display: block; }
+.widget svg text { font: 400 11px var(--font-data); fill: var(--ink-3); }
+.widget svg .zl text { font: 600 17px var(--font-data); fill: var(--ink); }
+.widget .note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); margin: 8px 0 0; }
+.minis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.minis figure { margin: 0; }
+.minis figcaption { font: 500 12px/1.4 var(--font-data); color: var(--ink-2); text-align: center; margin-top: 4px; }
+.chip { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+.keyline { display: block; margin: 4px 0; }
+@media (max-width: 520px) { .minis { grid-template-columns: 1fr 1fr 1fr; gap: 6px; } .entry .short { font-size: 17px; } }
+</style>
+<style>
+/* True shooting explainer (Nov 14, 2026) */
+.ts table { width: 100%; border-collapse: collapse; font: 400 14px/1.45 var(--font-data); }
+.ts caption { text-align: left; font: 400 12px/1.5 var(--font-body); color: var(--ink-3); padding-bottom: 6px; }
+.ts th, .ts td { padding: 6px 8px; border-bottom: 1px solid var(--rule); text-align: right; }
+.ts th[scope=row], .ts thead th:first-child { text-align: left; font-family: var(--font-body); font-weight: 500; }
+.ts thead th { font-weight: 500; color: var(--ink-3); }
+.ts .tbl { overflow-x: auto; }
+.ts .formula { font: 500 18px/1.5 var(--font-data); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 14px 16px; }
+.ts .calc label { display: grid; gap: 4px; font: 500 12px/1.3 var(--font-data); color: var(--ink-2); }
+.ts .calc .fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+.ts .calc input { font: 500 16px/1 var(--font-data); padding: 9px 10px; border-radius: 6px; border: 1px solid var(--ink-3); background: var(--bg); color: var(--ink); width: 100%; }
+.ts .calc input:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
+.ts .calc .big { font: 700 34px/1.1 var(--font-display); color: var(--ink); display: block; margin-bottom: 4px; }
+.ts figcaption { font: 400 13px/1.5 var(--font-body); color: var(--ink-2); margin-top: 6px; }
+.ts figcaption strong { color: var(--ink); font-weight: 600; }
+.ts .related a { font-weight: 500; }
+@media (max-width: 520px) { .ts .calc .fields { grid-template-columns: 1fr 1fr 1fr; gap: 6px; } .ts .calc input { padding: 8px 6px; font-size: 15px; } }
+</style>
+<!-- seo:start -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tallorderdigital.com/explained/true-shooting/#webpage","url":"https://tallorderdigital.com/explained/true-shooting/","name":"True shooting percentage","description":"True shooting percentage (TS%) measures points per shot, counting threes and free throws. The formula, a calculator, and what counts as good in the NBA.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/explained/true-shooting/#breadcrumb"},"datePublished":"2026-11-14","dateModified":"2026-11-14","image":["https://tallorderdigital.com/assets/share-home.png"],"publisher":{"@id":"https://tallorderdigital.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"Stats, explained","item":"https://tallorderdigital.com/explained/"},{"@type":"ListItem","position":3,"name":"True shooting percentage","item":"https://tallorderdigital.com/explained/true-shooting/"}],"@id":"https://tallorderdigital.com/explained/true-shooting/#breadcrumb"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar wrap">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/">Weather</a><a class="nav-topic" href="../../nba/">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+<main class="wrap">
+  <article class="prose ts">
+    <p class="kicker"><a href="../">Stats, explained</a></p>
+    <h1>True shooting percentage</h1>
+    <p class="meta">Published <time datetime="2026-11-14">Nov 14, 2026</time> · League numbers through Nov 13, 2026</p>
+    <p class="lede">True shooting percentage (TS%) measures how efficiently a player scores: points per shooting attempt, counting threes at their full value and counting free throws. The NBA average was 58.1% last season (2025-26) and is 57.3% so far this season, through Nov 13, 2026.</p>
+
+    <h2>The true shooting formula</h2>
+    <p class="formula">TS% = points ÷ (2 × (FGA + 0.44 × FTA))</p>
+    <p>FGA is field-goal attempts (every two and three) and FTA is free-throw attempts. The bottom of the formula counts a player's shooting attempts, and dividing by 2 puts the result on the same scale as field-goal percentage: a player who only ever shoots twos, and never gets to the line, has a TS% equal to his FG%.</p>
+    <p><strong>Why 0.44?</strong> Free throws come in ones, twos and threes. Two free throws use one possession, a fouled three-point shot uses one for three free throws, and an and-one adds a free throw to a shot already counted. Across a season, each free-throw attempt works out to about 0.44 of a shooting attempt, so FGA + 0.44 × FTA is close to the number of times a player tried to score.</p>
+    <p>True shooting is always worked out from a player's <a href="../#totals">totals</a> for the season, not by averaging his game-by-game percentages.</p>
+
+    <h2>True shooting percentage calculator</h2>
+    <div class="widget calc" id="calc">
+      <div class="fields">
+        <label>Points<input type="number" inputmode="numeric" min="0" step="1" id="c-pts" value="2117"></label>
+        <label>Field-goal attempts<input type="number" inputmode="numeric" min="0" step="1" id="c-fga" value="1321"></label>
+        <label>Free-throw attempts<input type="number" inputmode="numeric" min="0" step="1" id="c-fta" value="614"></label>
+      </div>
+      <div class="out" id="c-out" aria-live="polite"><span class="big">66.5%</span>True shooting. That's 8.4 percentage points above last season's league average of 58.1%, and better than 98% of 2025-26's 138 regulars.</div>
+      <p class="note">Filled in with Shai Gilgeous-Alexander's 2025-26 season: 2,117 points, 1,321 field-goal attempts and 614 free-throw attempts. Use season or career totals; a few games of shots swing a lot.</p>
+    </div>
+
+    <h2>What is a good true shooting percentage?</h2>
+    <p>Among the 138 players who played 40+ games and took 10+ shooting attempts a game in 2025-26, the middle player was at 58.0%, the top quarter were at 60.8% or better and the top 10% at 62.7% or better. Below 56.5% was the bottom quarter. The league average, 58.1%, sits almost exactly in the middle.</p>
+    <div class="tbl"><table>
+      <caption>True shooting among 2025-26's regulars: 138 players with 40+ games and 10+ shooting attempts (FGA + 0.44 × FTA) a game. From season totals.</caption>
+      <thead><tr><th scope="col">Group</th><th scope="col">True shooting</th></tr></thead>
+      <tbody><tr><th scope='row'>Top 10%</th><td>62.7% or better</td></tr><tr><th scope='row'>Top quarter</th><td>60.8% or better</td></tr><tr><th scope='row'>Middle player</th><td>58.0%</td></tr><tr><th scope='row'>Bottom quarter</th><td>below 56.5%</td></tr><tr><th scope='row'>Bottom 10%</th><td>below 54.1%</td></tr></tbody></table></div>
+    <p>A rule of thumb for what a point of true shooting is worth: for a player taking 20 shooting attempts a game, each extra percentage point of TS% is worth about 0.4 points a game.</p>
+
+    <h2>True shooting vs field-goal percentage</h2>
+    <p>In 2025-26, Stephen Curry made 46.8% of his shots and Nikola Jokić 56.9%, a gap of 10.1 percentage points. Count Curry&#x27;s 190 threes and 221 free-throw attempts and the gap in true shooting shrinks to 3.3 (67.0% vs 63.7%). Field-goal percentage treats a three like a two and ignores free throws; true shooting counts both, which is why it's the better single number for scoring efficiency.</p>
+    <div class="tbl"><table>
+      <caption>Four high-volume scorers, 2025-26 regular season, from season totals.</caption>
+      <thead><tr><th scope="col">Player</th><th scope="col">Points</th><th scope="col">FGA</th><th scope="col">FTA</th><th scope="col">FG%</th><th scope="col">TS%</th></tr></thead>
+      <tbody><tr><th scope='row'>Nikola Jokić</th><td>1,799</td><td>1,132</td><td>480</td><td>56.9%</td><td>67.0%</td></tr><tr><th scope='row'>Shai Gilgeous-Alexander</th><td>2,117</td><td>1,321</td><td>614</td><td>55.3%</td><td>66.5%</td></tr><tr><th scope='row'>Kevin Durant</th><td>2,026</td><td>1,376</td><td>467</td><td>52.0%</td><td>64.1%</td></tr><tr><th scope='row'>Stephen Curry</th><td>1,142</td><td>799</td><td>221</td><td>46.8%</td><td>63.7%</td></tr></tbody></table></div>
+    <p>Effective field-goal percentage (<a href="../#efg">eFG%</a>) sits between the two: it gives threes their extra value but still leaves out free throws.</p>
+
+    <h2>NBA average true shooting by season</h2>
+    <p>League true shooting has stayed between 56.6% and 58.1% in each of the last 5 seasons. This season&#x27;s 57.3% after 183 games is inside that range.</p>
+    <figure>
+      <svg viewBox="0 0 480 240" role="img" aria-labelledby="trend-cap" style="max-width:640px">
+<line x1="48" x2="464" y1="186.0" y2="186.0" stroke="var(--rule)" stroke-width="1"/><text x="40" y="190.0" text-anchor="end" style="font-size:15px;fill:var(--ink-3)">55%</text>
+<line x1="48" x2="464" y1="146.5" y2="146.5" stroke="var(--rule)" stroke-width="1"/><text x="40" y="150.5" text-anchor="end" style="font-size:15px;fill:var(--ink-3)">56%</text>
+<line x1="48" x2="464" y1="107.0" y2="107.0" stroke="var(--rule)" stroke-width="1"/><text x="40" y="111.0" text-anchor="end" style="font-size:15px;fill:var(--ink-3)">57%</text>
+<line x1="48" x2="464" y1="67.5" y2="67.5" stroke="var(--rule)" stroke-width="1"/><text x="40" y="71.5" text-anchor="end" style="font-size:15px;fill:var(--ink-3)">58%</text>
+<line x1="48" x2="464" y1="28.0" y2="28.0" stroke="var(--rule)" stroke-width="1"/><text x="40" y="32.0" text-anchor="end" style="font-size:15px;fill:var(--ink-3)">59%</text>
+<polyline points="82.7,122.8 152.0,62.5 221.3,67.5 290.7,82.6 360.0,62.0" fill="none" stroke="var(--navy)" stroke-width="2"/>
+<line x1="360.0" y1="62.0" x2="429.3" y2="93.6" stroke="var(--navy)" stroke-width="2" stroke-dasharray="4 4"/>
+<circle cx="82.7" cy="122.8" r="6" fill="var(--navy)"><title>2021-22: 56.6%</title></circle>
+<text x="82.7" y="110.8" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">56.6%</text>
+<text x="82.7" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">21-22</text>
+<circle cx="152.0" cy="62.5" r="6" fill="var(--navy)"><title>2022-23: 58.1%</title></circle>
+<text x="152.0" y="50.5" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">58.1%</text>
+<text x="152.0" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">22-23</text>
+<circle cx="221.3" cy="67.5" r="6" fill="var(--navy)"><title>2023-24: 58.0%</title></circle>
+<text x="221.3" y="55.5" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">58.0%</text>
+<text x="221.3" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">23-24</text>
+<circle cx="290.7" cy="82.6" r="6" fill="var(--navy)"><title>2024-25: 57.6%</title></circle>
+<text x="290.7" y="70.6" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">57.6%</text>
+<text x="290.7" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">24-25</text>
+<circle cx="360.0" cy="62.0" r="6" fill="var(--navy)"><title>2025-26: 58.1%</title></circle>
+<text x="360.0" y="50.0" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">58.1%</text>
+<text x="360.0" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">25-26</text>
+<circle cx="429.3" cy="93.6" r="6" fill="var(--surface)" stroke="var(--navy)" stroke-width="2.5"><title>2026-27: 57.3%</title></circle>
+<text x="429.3" y="81.6" text-anchor="middle" style="fill:var(--ink);font-weight:500;font-size:15px">57.3%</text>
+<text x="429.3" y="208" text-anchor="middle" style="font-size:15px;fill:var(--ink-3)">26-27</text>
+<text x="429.3" y="224" text-anchor="middle" style="font-size:14px;fill:var(--ink-3)">so far</text>
+</svg>
+      <figcaption id="trend-cap"><strong>League true shooting, from all teams' totals, 2021-22 to 2026-27.</strong><br>
+        Dots: one season each (21-22 is 2021-22).<br>
+        Hollow dot: 2026-27 so far (183 games through Nov 13, 2026).<br>
+        The axis starts at 55%, so the gaps look bigger than they are: the full range is 1.5 percentage points.</figcaption>
+    </figure>
+    <div class="tbl"><table>
+      <caption>League true shooting by season, regular season, from team totals.</caption>
+      <thead><tr><th scope="col">Season</th><th scope="col">True shooting</th><th scope="col">Games</th></tr></thead>
+      <tbody><tr><th scope='row'>2021-22</th><td>56.6%</td><td>1,230</td></tr><tr><th scope='row'>2022-23</th><td>58.1%</td><td>1,230</td></tr><tr><th scope='row'>2023-24</th><td>58.0%</td><td>1,230</td></tr><tr><th scope='row'>2024-25</th><td>57.6%</td><td>1,230</td></tr><tr><th scope='row'>2025-26</th><td>58.1%</td><td>1,230</td></tr><tr><th scope='row'>2026-27 (so far)</th><td>57.3%</td><td>183</td></tr></tbody></table></div>
+
+    <h2>How long until a player's true shooting means something?</h2>
+    <p>Months. A player's true shooting after his first 4 games barely predicts the rest of his season (a correlation of about 0.21 in 2025-26), because a few dozen shots carry a lot of <a href="../#chance-wobble">chance wobble</a>. That's why our dashboards and stories don't call an early-season jump in TS% real until it's well beyond the normal wobble.</p>
+
+    <h2>Where to see it</h2>
+    <p class="related">Every qualified player's true shooting, updated daily: <a href="../../nba/dashboards/player-profile/">Player Profile</a>. Who's shooting hot or cold against the shots they take: <a href="../../nba/dashboards/hot-cold/">Hot and Cold Shooters</a>. The shorter definition, next to eFG%: <a href="../#efg">Stats, explained</a>.</p>
+
+    <p class="note" style="font:400 12px/1.6 var(--font-data);color:var(--ink-3)">League averages come from all 30 teams' season totals (regular season).<br>
+      Regulars: 40+ games and 10+ shooting attempts a game in 2025-26.<br>
+      Source: NBA.com statistics.</p>
+  </article>
+</main>
+<footer class="site-foot wrap">
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../">Stats, explained</a> · <a href="../../">Home</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+<script>
+(function () {
+  var REG = [49.75, 51.44, 51.79, 52.46, 52.56, 52.8, 52.89, 52.96, 53.08, 53.35, 53.48, 53.72, 53.97, 54.03, 54.1, 54.23, 54.33, 54.36, 54.53, 54.57, 54.6, 54.62, 54.78, 54.89, 55.14, 55.36, 55.44, 55.93, 55.94, 56.1, 56.19, 56.22, 56.41, 56.41, 56.43, 56.53, 56.59, 56.64, 56.68, 56.74, 56.75, 56.84, 56.89, 56.97, 56.99, 57.03, 57.21, 57.21, 57.27, 57.28, 57.28, 57.38, 57.39, 57.39, 57.41, 57.45, 57.46, 57.48, 57.53, 57.56, 57.59, 57.73, 57.75, 57.81, 57.82, 57.82, 57.94, 58.0, 58.03, 58.06, 58.12, 58.22, 58.28, 58.28, 58.44, 58.44, 58.45, 58.46, 58.48, 58.48, 58.52, 58.54, 58.56, 58.63, 58.66, 58.69, 58.77, 59.02, 59.09, 59.18, 59.18, 59.35, 59.36, 59.39, 59.4, 59.51, 59.53, 59.62, 59.97, 59.99, 60.1, 60.39, 60.67, 60.8, 60.8, 60.84, 60.87, 60.92, 61.02, 61.05, 61.14, 61.26, 61.3, 61.3, 61.46, 61.55, 61.72, 61.89, 61.89, 62.03, 62.17, 62.19, 62.35, 62.6, 62.91, 63.02, 63.29, 63.71, 63.75, 64.05, 64.15, 64.33, 64.35, 65.32, 66.52, 66.89, 66.97, 68.79], LG = 58.14, LAST = "2025-26";
+  function v(id) { var x = parseFloat(document.getElementById(id).value); return isFinite(x) && x >= 0 ? x : NaN; }
+  function run() {
+    var p = v("c-pts"), a = v("c-fga"), f = v("c-fta"), out = document.getElementById("c-out");
+    if (isNaN(p) || isNaN(a) || isNaN(f)) { out.textContent = "Enter points, field-goal attempts and free-throw attempts (whole numbers, 0 or more)."; return; }
+    if (a + f === 0) { out.textContent = "True shooting needs at least one shot or free throw."; return; }
+    if (p > 3 * a + f) { out.textContent = "That's more points than those shots can produce (at most 3 per field goal and 1 per free throw). Check the numbers."; return; }
+    var t = 100 * p / (2 * (a + 0.44 * f)), gap = t - LG, below = 0;
+    for (var i = 0; i < REG.length; i++) if (REG[i] < t) below++;
+    var pct = Math.round(100 * below / REG.length);
+    out.innerHTML = '<span class="big">' + t.toFixed(1) + '%</span>True shooting. That\u2019s ' + Math.abs(gap).toFixed(1) +
+      (gap >= 0 ? " percentage points above" : " percentage points below") + " last season\u2019s league average of " + LG.toFixed(1) + "%, and better than " +
+      pct + "% of " + LAST + "\u2019s " + REG.length + " regulars." + (a + f < 150 ? " With this few shots, expect it to move a lot." : "");
+  }
+  ["c-pts", "c-fga", "c-fta"].forEach(function (id) { document.getElementById(id).addEventListener("input", run); });
+})();
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>

@@ -19,12 +19,13 @@ Data stories and visualization by Shawn Nafziger. Live at **tallorderdigital.com
 | `explained/` | Stats, explained: plain-language reference for the numbers in every story (anchors per concept; story pop-ups link here) |
 | `weather/` | One folder per weather story |
 | `nba/` | One folder per NBA story |
-| `dashboards/` | Dashboards hub: NBA dashboards and the Weather Almanac (weather.tallorderdigital.com); the menu's Dashboards link |
+| `dashboards/` | Dashboards hub: NBA dashboards and the Weather Almanac (`weather/almanac/`, added at publish time from weather-live); the menu's Dashboards link |
 | `nba/dashboards/` | Index of the daily NBA dashboards; `team-ratings/`, `game-overview/`, `team-profile/`, `player-profile/` and `hot-cold/` are generated in `nba-analytics` and committed to `main` each morning (see CLAUDE.md) |
 | `stories/` | Redirect pages only, for stories that moved (old NBA addresses → `nba/...`, `phoenix-after-dark` → `weather/...`) |
 | `assets/brand/` | Logo kit: mark, full logo, app icon (favicon.ico sits at the root) |
 | `assets/site.css` | Shared styles for home and About (story pages carry their own) |
 | `404.html` | Page-not-found |
+| `tools/sort-home.js` | Puts the home page story cards in date order, newest first. Claude runs it when a story is added. |
 | `tools/search-index.js` | Rebuilds the search index in `search/index.html`. Claude runs it when stories or dashboards are added. |
 | `tools/apply-header.py` | Copies the header's search icon, sticky CSS and script into pages and templates. |
 | `tools/share-cards.js` | Builds the link-preview images (`share.png` per story and per dashboard, `assets/share-home.png`). Claude runs it. |

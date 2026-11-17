@@ -55,7 +55,8 @@ p { margin: 0; }
 .site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
 .site-foot a { color: var(--ink-2); }
 
-main { padding-block: 56px 72px; display: grid; gap: 64px; }
+main { padding-block: 56px 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 64px; }
+/* minmax(0, 1fr): a wide child (e.g. the topic filter) can't stretch the column past the screen. */
 .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
 h1, h2 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0; line-height: .95; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(34px, 6vw, 56px); }
@@ -82,6 +83,16 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .story { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 28px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
 .story:hover h2 { color: var(--amber); }
 .story .dek { color: var(--ink-2); margin-top: 12px; max-width: 30em; }
+/* Latest Tall Take (home page, Nov 5, 2026; NBA filter only since Nov 7): a compact strip at the top of the story list, shown only while the NBA topic is chosen. Ink text; orange only on hover. */
+.latest-take[hidden] { display: none; }
+.latest-take { margin: 22px 0 6px; display: grid; gap: 6px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--ink); border-radius: 6px; max-width: 680px; }
+.latest-take .kicker { margin: 0; }
+.latest-take .lt-title { font: 700 clamp(24px, 3.6vw, 30px)/1.05 var(--font-display); text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.latest-take .lt-title::after { content: " →"; }
+.latest-take .lt-title:hover { color: var(--amber); }
+.latest-take .lt-dek { font-size: 15px; color: var(--ink-2); margin: 0; }
+.latest-take .lt-dek a { color: var(--ink-2); }
+.latest-take a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
 .story .meta { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); margin-top: 14px; }
 .spark { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 12px; }
 .spark svg { display: block; width: 100%; height: auto; }
@@ -109,6 +120,9 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .theme-toggle[data-showing="dark"] .i-sun { display: block; }
 .theme-toggle[data-showing="dark"] .i-moon { display: none; }
 .site-nav { align-items: center; }
+/* Let the menu drop under the logo whenever the two don't fit on one line (not only at 420px and below). */
+.site-bar { flex-wrap: wrap; row-gap: 4px; }
+.site-nav { margin-left: auto; }
 @media (max-width: 420px) {
   .site-bar { flex-wrap: wrap; gap: 4px 8px; }
   .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; }
@@ -117,5 +131,142 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
   .wm-2 { font-size: 7.3px; }
 }
 
+/* hubs:start */
+/* Topic pages (nba/, weather/), More stories (stories/), series pages and the home page's doors (Nov 8, 2026).
+   The lists inside them are written by tools/build-hubs.js from the story cards on each topic page. */
+.crumb { font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 22px; }
+.crumb a { color: var(--ink-2); text-decoration: none; display: inline-block; padding: 14px 0; margin: -14px 0; }
+.crumb a:hover { color: var(--amber); }
+.note { color: var(--ink-3); font-size: 15px; max-width: 34em; }
+.more-link { display: inline-flex; align-items: center; min-height: 44px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; }
+.more-link:hover { color: var(--amber); }
+/* Compact list of pieces: kicker (series · date), then the title. Used by series sections, doors and dashboards rows. */
+.mini { list-style: none; margin: 0; padding: 0; }
+.mini li { border-top: 1px solid var(--rule); }
+.mini a { display: grid; gap: 4px; padding: 12px 0; text-decoration: none; }
+.mini a:hover .t { color: var(--amber); }
+.mini .k { font: 400 12px/1.3 var(--font-data); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.mini .t { font: 600 17px/1.35 var(--font-body); color: var(--ink); }
+/* By series: one block per series, newest two pieces each. */
+.series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+.series { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 20px 8px; display: grid; align-content: start; gap: 8px; text-decoration: none; color: inherit; }
+.series:hover { border-color: var(--ink-3); }
+.series:hover h3, .series:hover .more-link { color: var(--amber); }
+.series h3 { font: 700 26px/1 var(--font-display); text-transform: uppercase; margin: 0; }
+.series .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 4px; }
+/* Home: one door per topic (NBA, Weather, More stories). */
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.door { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 20px 10px; display: grid; align-content: start; gap: 8px; }
+.door h2 { font-size: clamp(32px, 5vw, 40px); }
+.door h2 a { text-decoration: none; }
+.door h2 a:hover { color: var(--amber); }
+.door .dek { color: var(--ink-2); font-size: 15px; margin-bottom: 6px; }
+.door .more-link { margin-top: 2px; }
+/* Weather page: the Almanac, first thing under the title. */
+.almanac { display: grid; gap: 10px; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 22px 20px; text-decoration: none; max-width: 680px; }
+.almanac:hover h2 { color: var(--amber); }
+.almanac .kicker { margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.almanac .dek { color: var(--ink-2); }
+.almanac .go { font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); margin-top: 4px; }
+.almanac:hover .go { color: var(--amber); }
+/* Status tag: ink text in an outline, never colored. */
+.tag { font: 500 10px/1 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2);
+  border: 1px solid var(--ink-3); border-radius: 3px; padding: 4px 6px 3px; }
+/* Series page: how each piece works, three numbered steps. */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 32px 1fr; gap: 0 12px; color: var(--ink-2); font-size: 15px; }
+.steps li::before { content: counter(step); grid-row: span 2; width: 32px; height: 32px; border: 1px solid var(--ink-3); border-radius: 50%; display: grid; place-items: center; font: 500 14px/1 var(--font-data); color: var(--ink); }
+.steps b { color: var(--ink); font-size: 17px; }
+/* NBA page top (Nov 8, 2026): Latest Tall Take and Dashboards side by side right under the intro (stacked on phones),
+   so neither sits below the story list. Pulled up a little so the intro and the boxes read as one block. */
+.top-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; align-items: start; margin-top: -24px; }
+.box { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 20px 8px; display: grid; gap: 8px; }
+.box .kicker { margin: 0; }
+.box-title { font: 700 clamp(24px, 3.4vw, 28px)/1.05 var(--font-display); text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.box-title::after { content: " →"; }
+.box-title:hover { color: var(--amber); }
+.box .dek { color: var(--ink-2); font-size: 15px; }
+.mini.tight a { padding: 8px 0; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 12px; }
+.mini.tight .t { font-size: 16px; grid-column: 1; grid-row: 1; }
+.mini.tight .k { grid-column: 2; grid-row: 1; text-align: right; }
+/* Latest list: the newest few, then "Show all" (assets/topic-filter.js, data-limit). */
+.show-all { margin-top: 16px; min-height: 44px; padding: 0 18px; border: 1px solid var(--ink-3); border-radius: 999px; background: transparent; cursor: pointer;
+  font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); }
+.show-all:hover { border-color: var(--amber); color: var(--amber); }
+.show-all:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.show-all[hidden] { display: none; }
+.story:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+/* NBA page feature (Nov 8, 2026): the weird stat of the day, a full-width card first under the intro. Ink edge and an
+   ink button so it stands out without orange (orange is reserved for data meaning). Button drops under the text on phones. */
+.feature { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; margin-top: -24px;
+  padding: 20px 22px; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--ink); border-radius: 8px; text-decoration: none; }
+.feature-text { display: grid; gap: 6px; flex: 1 1 320px; min-width: 0; }
+.feature .kicker { margin: 0; }
+.feature-title { font: 700 clamp(30px, 5vw, 40px)/1 var(--font-display); text-transform: uppercase; color: var(--ink); }
+.feature .dek { color: var(--ink-2); font-size: 15px; max-width: 34em; }
+.feature-go { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 6px; background: var(--ink); color: var(--bg);
+  font: 600 15px/1 var(--font-body); white-space: nowrap; }
+.feature:hover .feature-title { color: var(--amber); }
+.feature:hover .feature-go { background: var(--amber); }
+.feature:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+/* Home: "Featured visual" pill under the intro (Nov 16, 2026), linking the newest showpiece (tools/build-hubs.js).
+   Thin orange outline (Shawn's call, Nov 16): the one decorative use of the signal color, so the featured piece stands out.
+   Text stays ink; on hover the title and arrow turn orange too. */
+.featured-pill { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; max-width: 100%; min-height: 44px; box-sizing: border-box;
+  margin-top: 20px; padding: 9px 16px; border: 1px solid var(--amber); border-radius: 999px; text-decoration: none; color: var(--ink); }
+.featured-pill .fp-k { font: 500 11px/1.2 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.featured-pill .fp-t { font: 600 15px/1.3 var(--font-body); }
+.featured-pill:hover { box-shadow: inset 0 0 0 1px var(--amber); }
+.featured-pill:hover .fp-t, .featured-pill:hover .fp-go { color: var(--amber); }
+.featured-pill:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+/* hubs:end */
+
 /* Visually hidden, still read by screen readers (form labels, live status). */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */

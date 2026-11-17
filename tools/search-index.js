@@ -6,9 +6,12 @@
  *   node tools/search-index.js --check   (exit 1 if the index is out of date; changes nothing)
  *
  * What it reads (all from this repo, so nothing is typed twice):
- *   - home page story cards (index.html): title, summary, topic, date, plus each story's meta description
+ *   - story cards on the topic pages (nba/, weather/, stories/): title, summary, topic, date, plus each story's meta description
+ *   - Tall Takes cards (nba/takes/index.html)
  *   - dashboards index cards (nba/dashboards/index.html) and off-site dashboards on the hub (dashboards/index.html)
  *   - each Stats, explained section (explained/index.html): heading, "also called" line, summary, and its text
+ *   - Charts, explained (explained/charts/, added Nov 11, 2026): the hub, then each chart page and Charts to avoid
+ *     (built in misc-analytics/analysis/chart_guide/): heading, the question it answers, and its meta description
  *   - the About, Stats explained and Dashboards pages themselves
  * Daily dashboard refreshes don't change titles or summaries, so they don't need a rebuild.
  */
@@ -28,16 +31,34 @@ const meta = (h, name) => { const m = h.match(new RegExp(`<meta name="${name}" c
 
 const items = [];
 
-// Stories, from the home page cards (newest first, as on the home page).
-const home = read("index.html");
-for (const m of home.matchAll(/<a class="story" data-topic="([a-z-]+)" href="([^"]+)">([\s\S]*?)<\/a>\s*(?=<a class="story"|<p class="soon"|<\/section>)/g)) {
-  const [, topic, href, body] = m;
+// Stories, from the story cards on the topic pages (Data stories, Weather, NBA), newest first overall.
+// Card links are relative to their page's folder, so each becomes a path from the site root.
+const stories = [];
+for (const [file, dir] of [["nba/index.html", "nba/"], ["weather/index.html", "weather/"], ["stories/index.html", "stories/"]]) {
+  const h = read(file);
+  for (const m of h.matchAll(/<a class="story" data-topic="([a-z-]+)"(?: data-series="[a-z-]+")? href="([^"]+)">([\s\S]*?)<\/a>\s*(?=<a class="story"|<!-- cards:end -->)/g)) {
+    const [, topic, rel, body] = m;
+    const href = path.posix.normalize(dir + rel);
+    const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
+    const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
+    let desc = "";
+    try { desc = meta(read(path.join(href, "index.html")), "description"); } catch (e) { /* card points outside this repo */ }
+    stories.push({ type: "Story", topic, title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
+      kw: kicker.replace(date, "").replace(/[·\s]+$/, ""), body: desc, url: href, date, t: Date.parse(date) || 0 });
+  }
+}
+stories.sort((a, b) => b.t - a.t).forEach((s) => { delete s.t; items.push(s); });
+
+// Tall Takes (opinion columns), from the takes index cards (nba/takes/ since Nov 8, 2026).
+const takes = read("nba/takes/index.html");
+for (const m of takes.matchAll(/<a class="take-card" href="([^"]+)">([\s\S]*?)<\/a>/g)) {
+  const [, href, body] = m;
   const kicker = pick(body, /<p class="kicker">([\s\S]*?)<\/p>/);
   const date = (kicker.match(/[A-Z][a-z]{2} \d{1,2}, \d{4}/) || [""])[0];
   let desc = "";
-  try { desc = meta(read(path.join(href, "index.html")), "description"); } catch (e) { /* card points outside this repo */ }
-  items.push({ type: "Story", topic, title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
-    kw: kicker.replace(date, "").replace(/[·\s]+$/, ""), body: desc, url: href, date });
+  try { desc = meta(read(path.join("nba/takes", href, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
+  items.push({ type: "Take", topic: "nba", title: pick(body, /<h2>([\s\S]*?)<\/h2>/), sum: pick(body, /<p class="dek">([\s\S]*?)<\/p>/),
+    kw: "tall takes opinion column " + kicker.replace(date, ""), body: desc, url: "nba/takes/" + href, date });
 }
 
 // Dashboards, from the dashboards index.
@@ -66,12 +87,32 @@ for (const m of ex.matchAll(/<section class="entry" id="([^"]+)">([\s\S]*?)<\/se
     kw: [pick(body, /<p class="aka">([\s\S]*?)<\/p>/), toc[id] || "", ...ids].join(" "), body: text(body).slice(0, 1800), url: "explained/#" + id, date: "" });
 }
 
+// Charts, explained: one entry per chart page, from the cards on the guide's hub.
+if (fs.existsSync(path.join(ROOT, "explained/charts/index.html"))) {
+  const ch = read("explained/charts/index.html");
+  for (const m of ch.matchAll(/<a class="card keep-state" href="([a-z0-9-]+)\/">([\s\S]*?)<\/a>/g)) {
+    const [, slug, body] = m;
+    let desc = "";
+    try { desc = meta(read(path.join("explained/charts", slug, "index.html")), "description"); } catch (e) { /* missing page: still index the card */ }
+    items.push({ type: "Charts, explained", topic: "", title: pick(body, /<b>([\s\S]*?)<\/b>/), sum: pick(body, /<span>([\s\S]*?)<\/span>/),
+      kw: "chart type when to use visualization graph " + slug.replace(/-/g, " "), body: desc, url: "explained/charts/" + slug + "/", date: "" });
+  }
+}
+
 // Pages.
 const page = (url, file, title, kw) => { const h = read(file); items.push({ type: "Page", topic: "", title, sum: meta(h, "description"), kw, body: "", url, date: "" }); };
+page("nba/", "nba/index.html", "NBA", "nba basketball stories check the take focus stories latest");
+page("weather/", "weather/index.html", "Weather", "weather almanac climate records cities stories");
+page("stories/", "stories/index.html", "Data stories", "politics travel numbers billion culture movies nature houseplants plants other stories more");
+page("nba/check-the-take/", "nba/check-the-take/index.html", "Check the Take", "check the take series claims tested verdict");
 page("dashboards/", "dashboards/index.html", "Dashboards", "dashboards daily updated every day nba weather almanac");
 page("nba/dashboards/", "nba/dashboards/index.html", "NBA dashboards", "dashboards daily updated every morning");
+page("nba/takes/", "nba/takes/index.html", "Tall Takes", "takes opinion columns claude's read predictions");
+page("nba/weird-stat/", "nba/weird-stat/index.html", "Weird stat of the day", "weird stat of the day daily strange rare oddity fluke legit on purpose last night box scores");
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
-page("about/", "about/index.html", "About", "Shawn Nafziger contact email privacy cookies hire");
+page("explained/true-shooting/", "explained/true-shooting/index.html", "True shooting percentage: formula, calculator and what counts as good", "ts% ts true shooting percentage calculator formula 0.44 efficiency what is a good true shooting league average fg% efg");
+page("explained/charts/", "explained/charts/index.html", "Charts, explained: which chart should you use?", "chart types which chart should I use visualization graph guide reference");
+page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
 for (const it of items) if (!it.title) throw new Error("search index: an entry has no title: " + JSON.stringify(it));
 

@@ -241,6 +241,36 @@ function takeHeatCard(D) {
   </div>`;
 }
 
+function takeLukaCard(D) {
+  // Three luck-range rows: shot making vs an average shooter (this season, last season) and vs himself.
+  const W = 470, x = (v) => 10 + (v + 5) * (W - 100) / 27, x0 = x(0);
+  const rows = D.ranges.map((r, i) => { const y = 70 + i * 110, c = r.tier === "big" ? C.orange : C.slateDark;
+    const lab = ["This season vs an average shooter", "Last season vs an average shooter", "This season vs himself"][i];
+    return `<line x1="${x0}" x2="${x0}" y1="${y - 16}" y2="${y + 16}" stroke="${C.sub}" stroke-width="2"/><text x="0" y="${y - 26}" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">${lab}</text>
+      <rect x="${x(r.v - 2 * r.se)}" y="${y - 10}" width="${x(r.v + 2 * r.se) - x(r.v - 2 * r.se)}" height="20" rx="10" fill="${C.sky}" fill-opacity=".28"/>
+      <circle cx="${x(r.v)}" cy="${y}" r="13" fill="${c}" stroke="${C.ink}" stroke-width="3"/>
+      <text x="${x(r.v + 2 * r.se) + 12}" y="${y + 8}" font-family="IBM Plex Mono" font-size="22" font-weight="600" fill="${C.mist}">${r.v > 0 ? "+" : "−"}${Math.abs(r.v).toFixed(1)}</text>`; }).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .verdict { font: 600 22px/1.35 "IBM Plex Mono"; color: ${C.mist}; margin-top: 18px; }
+    .chart { align-self: center; }
+    .key { font: 500 18px "IBM Plex Mono"; color: ${C.sub}; margin-top: 6px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Check the Take · NBA</p><h1>Is Luka unguardable?</h1>
+      <p class="dek">A pundit calls him the MVP favorite. We checked his workload, shot making and on/off.</p>
+      <p class="verdict">Verdict: holds up. The leap from last season is too early to call</p></div>
+    <div class="chart"><svg width="470" height="330" viewBox="0 0 470 330">
+${rows}</svg>
+      <p class="key">Shot making, pp of eFG% · line = 0<br>band = luck range</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function startsFastCard(D) {
   // Pace dumbbells, one row per season: filled sky = first N days, open ring = rest of season.
   const S = D.seasons, days = D.model.days, vals = S.flatMap((r) => [r.early.pace, r.rest ? r.rest.pace : r.early.pace]);
@@ -264,7 +294,7 @@ function startsFastCard(D) {
   </style>
   <div class="wrap">
     <div><p class="kicker">NBA · pace and fouls</p><h1>Every season starts fast</h1>
-      <p class="dek">This season's first ${days} days look fast and whistle-happy. So did every season's. The fair comparison is the same days of past seasons.</p></div>
+      <p class="dek">2026-27 started slower than last season, not faster. Every season's first ${days} days run fast; the fair comparison is the same days of past seasons.</p></div>
     <div class="chart"><svg width="470" height="370" viewBox="0 0 470 370">${rows}</svg>
       <p class="key">● first ${days} days &nbsp; ○ rest of season · pace</p></div>
     <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
@@ -491,6 +521,37 @@ function resultsCard() {
   </div>`;
 }
 
+function districtsCard(DV) {
+  // Part 2's headline chart in miniature: all 435 House seats as dots, grouped by kind of place, colored by AP's call
+  // (solid), the leader in the count (faded) or neither (gray). Reads the page's own data.
+  const COLS = { d: "#7b9fe0", r: "#e8746e", dl: "rgba(123,159,224,.45)", rl: "rgba(232,116,110,.45)", "": "#3a5762" };
+  const ORDER = { d: 0, dl: 1, "": 2, rl: 3, r: 4 };
+  const groups = [["metro", "Mostly big metro"], ["city", "Mostly mid-size cities"], ["rural", "Mostly small towns and rural"]];
+  const cols = 30, pitch = 14.5, W = 470;
+  let y = 4, svg = "";
+  groups.forEach(([k, lab]) => {
+    const ds = DV.dists.filter((d) => d.kind === k).sort((a, b) => ORDER[a.s] - ORDER[b.s]);
+    svg += `<text x="0" y="${y + 14}" class="lab">${lab}</text>`;
+    ds.forEach((d, i) => { svg += `<circle cx="${6 + (i % cols) * pitch}" cy="${y + 30 + Math.floor(i / cols) * pitch}" r="5.4" fill="${COLS[d.s]}"/>`; });
+    y += 30 + Math.ceil(ds.length / cols) * pitch + 6;
+  });
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 48px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 44px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.sub}; margin-bottom: 22px; }
+    h1 { font: 700 80px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .chart .lab { font: 600 17px "IBM Plex Sans"; fill: ${C.sub}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 22px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Politics · 2026 midterms</p><h1>The House, district by district</h1>
+      <p class="dek">All 435 seats, sorted by who lives there: big cities or small towns, richer or poorer. Plus a profile of every district.</p></div>
+    <svg class="chart" width="${W}" height="${y}" viewBox="0 0 ${W} ${y}">${svg}</svg>
+    <div class="foot">${lockup(56)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function seaweedCard(CMP) {
   // Mini version of the story's "Mexico or the Caribbean?" chart: share of summer weeks with seaweed off each coast.
   // Colors: the story's seaweed ramp, dark-mode version (proposed exception to the palette, see the story's PR).
@@ -602,13 +663,284 @@ function hotColdCard() {
   </div>`;
 }
 
+function weirdStatCard() {
+  // Three rubber stamps, one per tag: Legit in orange (the only signal), On purpose in Paper, Fluke in slate.
+  // No names or numbers, so the card never goes out of date.
+  const stamp = (t, color, rot, x, y, size) => `<div class="stamp" style="color:${color};left:${x}px;top:${y}px;font-size:${size}px;transform:rotate(${rot}deg)">${t}</div>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: minmax(0, 1fr) 420px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 20px; }
+    h1 { font: 700 96px/.92 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 26px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .stamps { position: relative; }
+    .stamp { position: absolute; font-family: "Barlow Semi Condensed"; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+      line-height: 1; padding: .18em .3em .14em; border: .09em solid currentColor; border-radius: .14em; white-space: nowrap; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">NBA · New every morning</p><h1>Weird stat of the day</h1>
+      <p class="dek">The strangest thing in last night's box scores, and one word on whether it means anything.</p></div>
+    <div class="stamps">
+      ${stamp("Fluke", "#9fb1b8", 6, 210, 20, 58)}
+      ${stamp("On purpose", C.mist, -3, 10, 120, 58)}
+      ${stamp("Legit", C.orange, -7, 120, 228, 84)}
+    </div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function flightDelaysCard(D) {
+  // Share of flights arriving late by departure hour: sky line, 6 a.m. and 7 p.m. marked in orange.
+  const H = D.hours, W = 500, Ht = 330, L = 50, B = 290, T = 30;
+  const ymax = Math.ceil(Math.max(...H.map((d) => d.late)) / 10) * 10;
+  const x = (h) => L + (h - 5) * (W - L - 20) / 18, y = (v) => B - v * (B - T) / ymax;
+  const line = H.map((d, i) => `${i ? "L" : "M"}${x(d.h).toFixed(1)},${y(d.late).toFixed(1)}`).join("");
+  const grid = [0, 10, 20, 30].filter((v) => v <= ymax).map((v) => `<line x1="${L}" x2="${W - 20}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}%</text>`).join("");
+  const six = H.find((d) => d.h === 6), sev = H.find((d) => d.h === 19);
+  const mark = (d, lab, right) => `<circle cx="${x(d.h)}" cy="${y(d.late)}" r="11" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(d.h) + (right ? 18 : -18)}" y="${y(d.late) + (right ? 30 : -18)}" text-anchor="${right ? "start" : "end"}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab}: ${Math.round(d.late)}%</text>`;
+  const ticks = [[6, "6 a.m."], [12, "noon"], [18, "6 p.m."]].map(([h, t]) => `<text x="${x(h)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 500px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · US flights</p><h1>The later you fly, the more likely you'll be late</h1>
+      <p class="dek">Share of flights arriving 15+ minutes late, by departure time. Plus: look up your own route.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht + 20}" viewBox="0 0 ${W} ${Ht + 20}">${grid}${ticks}
+      <path d="${line}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${mark(six, "6 a.m.", true)}${mark(sev, "7 p.m.", false)}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function dominoCard(D) {
+  // Flight delays Part 2: of every 100 handed-down minutes, those still on board past the next flight in orange.
+  const w = D.hops.w, beyond = 100 - w.hop_1, s = 30, g = 6;
+  const sq = Array.from({ length: 100 }, (_, i) => `<rect x="${(i % 10) * (s + g)}" y="${Math.floor(i / 10) * (s + g)}" width="${s}" height="${s}" rx="4" fill="${i >= w.hop_1 ? C.orange : C.slateDark}"/>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 354px; grid-template-rows: 1fr auto; column-gap: 56px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 66px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; display: grid; gap: 14px; }
+    .chart p { font-size: 20px; color: ${C.sub}; } .chart b { color: ${C.mist}; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Travel · US flights · Part 2</p><h1>How a late plane spreads delay across the country</h1>
+      <p class="dek">Big hubs send delay out; smaller airports take it in. Plus Delta's and Southwest's meltdowns, day by day.</p></div>
+    <div class="chart"><svg width="354" height="354" viewBox="0 0 354 354">${sq}</svg>
+      <p><b>${beyond} of every 100</b> handed-down minutes ride on past the plane's next flight</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function blockbustersCard(D) {
+  // Typical running time by five-year period: big live-action hits (orange) pull away from the typical U.S. film (sky).
+  const P = D.table.filter((t) => t.label.includes("–")).map((t) => ({ ...t, mid: +t.label.slice(0, 4) + 2 }));
+  const W = 500, Ht = 330, L = 64, R = 24, B = 290, T = 30;
+  const x = (yr) => L + (yr - 1982) * (W - L - R) / 40, y = (m) => B - (m - 80) * (B - T) / 70;
+  const path = (k) => P.map((p, i) => `${i ? "L" : "M"}${x(p.mid).toFixed(1)},${y(p[k]).toFixed(1)}`).join("");
+  const grid = [90, 120, 150].map((v) => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${{ 90: "1½ hr", 120: "2 hr", 150: "2½ hr" }[v]}</text>`).join("");
+  const ticks = [1980, 2000, 2020].map((t) => `<text x="${x(t)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  const a = P[0], b = P[P.length - 1];
+  const dot = (p, lab, right) => `<circle cx="${x(p.mid)}" cy="${y(p.live)}" r="11" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(p.mid) + (right ? 18 : -18)}" y="${y(p.live) + (right ? 38 : -18)}" text-anchor="${right ? "start" : "end"}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab}</text>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 500px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Culture · Movies</p><h1>Movies didn't get longer. Blockbusters did.</h1>
+      <p class="dek">Typical running time: the year's biggest live-action hits vs the typical U.S. film, 1980–2024.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht + 20}" viewBox="0 0 ${W} ${Ht + 20}">${grid}${ticks}
+      <path d="${path("all")}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${path("live")}" fill="none" stroke="${C.orange}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <text x="${x(b.mid)}" y="${y(b.all) + 34}" text-anchor="end" font-family="IBM Plex Sans" font-size="20" fill="${C.sub}">typical film ${Math.round(b.all)} min</text>
+      ${dot(a, `${Math.round(a.live + 0.01)} min`, true)}${dot(b, `${Math.round(b.live)} min`, false)}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function billionCard() {
+  // The story's opening guess, unanswered: a line from 0 to 1 billion with a question mark where readers tend to put a million.
+  const W = 500, L = 24, R = 476, Y = 170;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 22px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Numbers · Big numbers</p><h1>How much is a billion?</h1>
+      <p class="dek">Most of us file a million and a billion in the same mental drawer. Where would you put a million?</p></div>
+    <div class="chart"><svg width="${W}" height="300" viewBox="0 0 ${W} 300">
+      <text x="${W / 2}" y="${Y - 62}" text-anchor="middle" font-family="IBM Plex Sans" font-weight="600" font-size="26" fill="${C.mist}">Where does 1 million go?</text>
+      <line x1="${L}" x2="${R}" y1="${Y}" y2="${Y}" stroke="${C.slateDark}" stroke-width="10" stroke-linecap="round"/>
+      <line x1="${L}" x2="${L}" y1="${Y - 22}" y2="${Y + 22}" stroke="${C.sub}" stroke-width="3"/>
+      <line x1="${R}" x2="${R}" y1="${Y - 22}" y2="${Y + 22}" stroke="${C.sub}" stroke-width="3"/>
+      <circle cx="${W / 2}" cy="${Y}" r="24" fill="${C.ink}" stroke="${C.orange}" stroke-width="5"/>
+      <text x="${W / 2}" y="${Y + 11}" text-anchor="middle" font-family="IBM Plex Sans" font-weight="700" font-size="30" fill="${C.mist}">?</text>
+      <text x="${L}" y="${Y + 58}" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">0</text>
+      <text x="${R}" y="${Y + 58}" text-anchor="end" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">1 billion</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function houseplantsCard(D) {
+  // Each plant's driest month at home (humidity), as bars per 5-point band, against a heated January living room (orange).
+  const vals = D.plants.filter((p) => p.driest != null).map((p) => p.driest);
+  const home = D.home[0].rh_in, bins = {};
+  vals.forEach((v) => { const k = Math.floor(v / 5) * 5; bins[k] = (bins[k] || 0) + 1; });
+  const top = Math.max(...Object.values(bins)), W = 520, Ht = 330, L = 20, R = 20, B = 270, T = 40;
+  const x = (v) => L + v * (W - L - R) / 100, h = (n) => n * (B - T - 72) / top, bw = (W - L - R) / 20 - 4;
+  const bars = Object.entries(bins).map(([k, n]) => `<rect x="${x(+k) + 2}" y="${B - h(n)}" width="${bw}" height="${h(n)}" rx="3" fill="${C.sky}"/>`).join("");
+  const ticks = [0, 50, 100].map((v) => `<text x="${x(v)}" y="${B + 32}" text-anchor="${v ? (v === 100 ? "end" : "middle") : "start"}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}%</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 36px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 66px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 23px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Nature · Houseplants</p><h1>Why your houseplants survive your living room</h1>
+      <p class="dek">A heated home in January: ${home}% humidity. Every one of ${vals.length} popular houseplants has a driest month at home at least twice that.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - R}" y1="${B}" y2="${B}" stroke="${C.rule}" stroke-width="2"/>${bars}${ticks}
+      <line x1="${x(home)}" x2="${x(home)}" y1="${T - 10}" y2="${B}" stroke="${C.orange}" stroke-width="5" stroke-linecap="round"/>
+      <text x="${x(home) + 14}" y="${T + 8}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">Your living room: ${home}%</text>
+      <text x="${W - R}" y="${T + 44}" text-anchor="end" font-family="IBM Plex Sans" font-size="19" fill="${C.sub}">Bars: plants' driest month at home</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function recordLowsCard(D) {
+  // Records per 100 by chance, by decade: lows in orange (the signal), highs in sky, dashed line at chance.
+  const R = D.decades, W = 520, Ht = 340, L = 56, Rt = 136, B = 300, T = 24, top = 200;
+  const x = (i) => L + i * (W - L - Rt) / (R.length - 1), y = (v) => B - v * (B - T) / top;
+  const path = (k) => R.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(d[k] * 100).toFixed(1)}`).join("");
+  const grid = [0, 100, 200].map((v) => `<line x1="${L}" x2="${W - Rt}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"${v === 100 ? ` stroke-dasharray="6 6" stroke="${C.sub}" stroke-opacity=".6"` : ""}/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}</text>`).join("");
+  const ticks = R.map((d, i) => (R.length - 1 - i) % 4 === 0 ? `<text x="${x(i)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${d.d}s</text>` : "").join("");
+  const last = R[R.length - 1], n = R.length - 1;
+  const end = (v, col, lab) => `<circle cx="${x(n)}" cy="${y(v)}" r="9" fill="${col}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="${x(n) + 16}" y="${y(v) + 8}" font-family="IBM Plex Sans" font-weight="600" font-size="24" fill="${C.mist}">${lab} ${Math.round(v)}</text>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 76px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.places.length} US cities</p><h1>Record lows are disappearing</h1>
+      <p class="dek">Daily records set each decade, for every 100 chance alone would give.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">${grid}${ticks}
+      <path d="${path("rhi")}" fill="none" stroke="${C.sky}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${path("rlo")}" fill="none" stroke="${C.orange}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${end(last.rhi * 100, C.sky, "Highs")}${end(last.rlo * 100, C.orange, "Lows")}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function firstFreezeCard(D) {
+  // Each place stacked by the week of its typical first freeze: orange = still waiting, unusually late (the signal),
+  // sky = has frozen, rings = still waiting, nothing unusual. Dashed line = the latest day in the records.
+  const FROM = 45, TO = 229, NB = Math.ceil((TO - FROM) / 7), W = 560, Ht = 360, L = 6, B = 316;
+  const order = { frozen: 0, late: 1, edge: 2, waiting: 3 };
+  const bins = Array.from({ length: NB }, () => []);
+  D.places.filter((p) => p.med !== null && p.status in order).forEach((p) => bins[Math.max(0, Math.min(NB - 1, Math.floor((p.med - FROM) / 7)))].push(p));
+  bins.forEach((b) => b.sort((a, c) => order[a.status] - order[c.status] || a.med - c.med));
+  const colW = (W - 2 * L) / NB, r = 4.6, per = 2, col = { frozen: C.sky, late: C.orange, edge: "#8f6230" };
+  const dots = bins.map((b, i) => b.map((p, j) => {
+    const cx = L + i * colW + colW / 2 + ((j % per) - .5) * (2 * r + 1), cy = B - r - 2 - Math.floor(j / per) * (2 * r + 1);
+    return p.status === "waiting" ? `<circle cx="${cx}" cy="${cy}" r="${r - .8}" fill="none" stroke="${C.slateDark}" stroke-width="1.6"/>` : `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${col[p.status]}"/>`;
+  }).join("")).join("");
+  const tx = L + (D.now + .5 - FROM) / 7 * colW;
+  const mon = [["Sep", 62], ["Oct", 92], ["Nov", 123], ["Dec", 153], ["Jan", 184], ["Feb", 215]].map(([m, o]) => `<text x="${L + (o - FROM) / 7 * colW}" y="${B + 30}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${m}</text>`).join("");
+  const late = D.places.filter((p) => p.status === "late").length;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 70px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .dek b { color: ${C.orange}; font-weight: 600; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.places.length} US places</p><h1>Fall's first freeze is running late</h1>
+      <p class="dek"><b>${late} places</b> are still waiting, later than 9 falls in 10.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - L}" y1="${B + 3}" y2="${B + 3}" stroke="${C.rule}" stroke-width="2"/>${dots}${mon}
+      <line x1="${tx}" x2="${tx}" y1="40" y2="${B + 3}" stroke="${C.mist}" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="${tx + 8}" y="52" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Nov 8</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
+function shortestDayCard(D) {
+  // The default city's sunset clock time, Nov 1 to Jan 31: the low point (orange, the signal) comes about two weeks
+  // before the shortest day (dashed line). Sky line = sunset time.
+  const c = D.cities.find((x) => x.name + ", " + x.st === D.default);
+  const a = D.days.indexOf("2026-11-01"), z = D.days.indexOf("2027-01-31"), sol = D.days.indexOf("2026-12-21");
+  const es = D.days.indexOf(c.es), W = 560, Ht = 360, L = 110, R = 10, T = 40, B = 300;
+  const vals = c.set.slice(a, z + 1), lo = Math.min(...vals), hi = Math.max(...vals);
+  const X = (i) => L + (i - a) / (z - a) * (W - L - R), Y = (v) => B - (v - lo) / (hi - lo) * (B - T);
+  const path = vals.map((v, k) => (k ? "L" : "M") + X(a + k).toFixed(1) + "," + Y(v).toFixed(1)).join(" ");
+  const clock = (m) => { const t = Math.round(m), h = Math.floor(t / 60) % 24; return (h % 12 || 12) + ":" + String(t % 60).padStart(2, "0") + (h < 12 ? " a.m." : " p.m."); };
+  const MON = ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+  const md = (s) => { const [, m, d] = s.split("-").map(Number); return MON[m - 1] + " " + d; };
+  const gap = sol - es;
+  const mon = [["Nov. 1", "2026-11-01"], ["Jan. 1", "2027-01-01"]].map(([m, d]) =>
+    `<text x="${X(D.days.indexOf(d))}" y="${B + 34}" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${m}</text>`).join("");
+  const ticks = [lo, hi].map((v) => `<text x="${L - 12}" y="${Y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="16" fill="${C.sub}">${clock(v)}</text>`).join("");
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 64px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 24px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .dek b { color: ${C.orange}; font-weight: 600; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.cities.length} US cities</p><h1>The shortest day isn't your darkest evening</h1>
+      <p class="dek">In ${c.name}, the earliest sunset comes <b>${md(c.es)}</b>, ${gap} days before Dec. 21.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">
+      <line x1="${L}" x2="${W - R}" y1="${B + 8}" y2="${B + 8}" stroke="${C.rule}" stroke-width="2"/>${ticks}${mon}
+      <line x1="${X(sol)}" x2="${X(sol)}" y1="${T - 10}" y2="${B + 8}" stroke="${C.mist}" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="${X(sol) - 10}" y="${T + 40}" text-anchor="end" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Shortest day</text>
+      <text x="${X(sol) - 10}" y="${T + 62}" text-anchor="end" font-family="IBM Plex Mono" font-size="18" fill="${C.mist}">Dec. 21</text>
+      <path d="${path}" fill="none" stroke="${C.sky}" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="${X(es)}" cy="${Y(c.set[es])}" r="9" fill="${C.orange}"/>
+      <line x1="${X(es)}" x2="${X(es)}" y1="${Y(c.set[es]) + 10}" y2="${B + 14}" stroke="${C.orange}" stroke-width="2"/>
+      <text x="${X(es)}" y="${B + 34}" text-anchor="middle" font-family="IBM Plex Mono" font-size="18" fill="${C.orange}">${md(c.es)}</text>
+      <text x="${L}" y="${T - 14}" font-family="IBM Plex Mono" font-size="16" fill="${C.sub}">${c.name} sunset time</text></svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function homeCard() {
   return `${base}<style>
     .wrap { position: absolute; inset: 0 96px; display: grid; align-content: center; gap: 46px; }
     .tag { font-size: 34px; color: ${C.sub}; line-height: 1.35; }
     .url { position: absolute; left: 96px; bottom: 56px; }
   </style>
-  <div class="wrap">${lockup(200)}<p class="tag">Data stories &amp; visualization, starting with the NBA.</p></div>
+  <div class="wrap">${lockup(200)}<p class="tag">Data stories &amp; visualization: the NBA, the weather, and more.</p></div>
   <span class="url">tallorderdigital.com</span>`;
 }
 
@@ -627,16 +959,34 @@ function homeCard() {
   const RN = JSON.parse(rn.match(/const D = (\{.*?\});\n/s)[1]);
   const th = fs.readFileSync(path.join(ROOT, "nba/check-the-take-heat-luck/index.html"), "utf8");
   const TH = JSON.parse(th.match(/const D = (\{.*?\});\n/s)[1]);
+  const tl = fs.readFileSync(path.join(ROOT, "nba/check-the-take-luka-unguardable/index.html"), "utf8");
+  const TL = JSON.parse(tl.match(/const D = (\{.*?\});\n/s)[1]);
   const sf = fs.readFileSync(path.join(ROOT, "nba/every-season-starts-fast-pace-fouls/index.html"), "utf8");
   const SF = JSON.parse(sf.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
   const TR = JSON.parse(tr.match(/const D = (\{.*?\});\n/s)[1]);
   const mt = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/index.html"), "utf8");
   const MT = JSON.parse(mt.match(/const D = (\{.*?\});\n/s)[1]);
+  const dv = fs.readFileSync(path.join(ROOT, "politics/midterms-2026/districts/index.html"), "utf8");
+  const DV = JSON.parse(dv.match(/const D = (\{.*?\});\n/s)[1]);
   const sw = fs.readFileSync(path.join(ROOT, "travel/seaweed-beaches-sargassum/index.html"), "utf8");
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const sc = fs.readFileSync(path.join(ROOT, "numbers/state-vs-country-size/index.html"), "utf8");
   const SC = JSON.parse(sc.match(/const D = (\{.*?\});\n/s)[1]);
+  const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
+  const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
+  const dm = fs.readFileSync(path.join(ROOT, "travel/flight-delays-domino-effect/index.html"), "utf8");
+  const DM = JSON.parse(dm.match(/const D = (\{.*?\});\n/s)[1]);
+  const bb = fs.readFileSync(path.join(ROOT, "culture/blockbusters-got-longer/index.html"), "utf8");
+  const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
+  const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
+  const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
+  const FF = JSON.parse(ff.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const sd2 = fs.readFileSync(path.join(ROOT, "weather/shortest-day-of-the-year/index.html"), "utf8");
+  const SDY = JSON.parse(sd2.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const hp = fs.readFileSync(path.join(ROOT, "nature/houseplants-native-homes/index.html"), "utf8");
+  const HP = JSON.parse(hp.match(/const D = (\{.*?\});\n/s)[1]);
   const cards = [
     ["nba/early-season-mirage-net-rating/share.png", storyCard(D.curve5.avg)],
     ["nba/shot-diet-three-point-rate/share.png", shotDietCard(SD.curve.avg)],
@@ -645,16 +995,27 @@ function homeCard() {
     ["nba/injury-tax-missing-stars/share.png", injuryCard(IT.stars, IT.tiers.star.median)],
     ["nba/ready-now-rookie-age/share.png", readyNowCard(RN)],
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
+    ["nba/check-the-take-luka-unguardable/share.png", takeLukaCard(TL)],
     ["nba/every-season-starts-fast-pace-fouls/share.png", startsFastCard(SF)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
     ["nba/dashboards/team-profile/share.png", teamProfileCard()],
     ["nba/dashboards/player-profile/share.png", playerProfileCard()],
     ["nba/dashboards/hot-cold/share.png", hotColdCard()],
+    ["nba/weird-stat/share.png", weirdStatCard()],
     ["politics/midterms-2026/share.png", midtermsCard(MT)],
     ["politics/midterms-2026/results/share.png", resultsCard()],
+    ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["numbers/state-vs-country-size/share.png", stateCard(SC)],
+    ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
+    ["travel/flight-delays-domino-effect/share.png", dominoCard(DM)],
+    ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
+    ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
+    ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
+    ["weather/shortest-day-of-the-year/share.png", shortestDayCard(SDY)],
+    ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
+    ["numbers/how-much-is-a-billion/share.png", billionCard()],
     ["assets/share-home.png", homeCard()],
   ];
   // Only build the cards named on the command line, if any (e.g. node tools/share-cards.js nba/dashboards).
