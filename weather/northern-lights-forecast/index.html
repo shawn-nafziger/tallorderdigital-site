@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Northern Lights Forecast Tonight: Will You See the Aurora? · Tall Order Digital</title>
+<meta name="description" content="Live NOAA aurora forecast for your city tonight, plus every geomagnetic storm since 1932: 3,636 reached Kp 5, but only 23 hit Kp 9, the latest in May 2024.">
+<link rel="canonical" href="https://tallorderdigital.com/weather/northern-lights-forecast/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Will you see the northern lights tonight?">
+<meta property="og:description" content="Live NOAA aurora forecast for your city tonight, plus every geomagnetic storm since 1932: 3,636 reached Kp 5, but only 23 hit Kp 9, the latest in May 2024.">
+<meta property="og:url" content="https://tallorderdigital.com/weather/northern-lights-forecast/">
+<meta property="og:image" content="https://tallorderdigital.com/weather/northern-lights-forecast/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Every geomagnetic storm since 1932 drawn as a glowing streak reaching down to how far south its aurora could be seen. The streaks come in waves with the 11-year solar cycle, and the deepest, the Kp 9 storms of 1989, 2003 and May 2024, reach the southern US.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Will you see the northern lights tonight?">
+<meta name="twitter:description" content="Live NOAA aurora forecast for your city tonight, plus every geomagnetic storm since 1932: 3,636 reached Kp 5, but only 23 hit Kp 9, the latest in May 2024.">
+<meta name="twitter:image" content="https://tallorderdigital.com/weather/northern-lights-forecast/share.png">
+<meta name="twitter:image:alt" content="Every geomagnetic storm since 1932 drawn as a glowing streak reaching down to how far south its aurora could be seen. The streaks come in waves with the 11-year solar cycle, and the deepest, the Kp 9 storms of 1989, 2003 and May 2024, reach the southern US.">
+<meta name="theme-color" content="#040912">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://services.swpc.noaa.gov" crossorigin>
+<style>
+:root{
+  /* Site-shell tokens, fixed to dark: this showpiece is dark-only (like the daylight showpiece), so the shared header,
+     share row, subscribe card and footer use the dark palette whatever the reader's theme. */
+  --ink-2:#DDDAD3;--ink-3:#9FB1B8;--rule:#1E3A44;--surface:#0a1322;--amber:#F99A2B;--ghost:#3A5762;--navy:#7FC4D6;--funnel:rgba(127,196,214,.28);
+  --logo-2:#7FC4D6;--logo-3:#4F8D9E;--logo-4:#2E6272;--logo-ink:#F3F4EF;--logo-sub:#DDDAD3;
+  --font-body:Inter,system-ui,sans-serif;--font-data:"JetBrains Mono",monospace;--font-display:"Barlow Semi Condensed",sans-serif;
+  --bg:#040912;--bg2:#0a1322;--line:#1b2a3f;--ink:#eef3f8;--ink2:#b7c4d4;--ink3:#8494a8;
+  --green:#5cf2a0;--violet:#b98cff;--gold:#ffd76a;--accent:#5cf2a0;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1100px 560px at 75% -8%,rgba(46,160,120,.20) 0%,transparent 60%),radial-gradient(900px 500px at 10% -12%,rgba(130,90,220,.16) 0%,transparent 60%),var(--bg);color:var(--ink);font:400 16.5px/1.6 Inter,system-ui,sans-serif;min-height:100vh}
+a{color:#8fe8c0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.crumbrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 0}
+.crumbs{font:400 13px Inter,sans-serif;color:var(--ink3)}
+.crumbs a{color:var(--ink2);text-decoration:none}.crumbs a:hover{text-decoration:underline}
+.live-pill{display:none;align-items:center;gap:7px;font:500 12px/1 "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.js .live-pill{display:inline-flex}
+.live-pill i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.live-pill.off i{background:#ff8a6a;animation:none}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(92,242,160,.55)}70%{box-shadow:0 0 0 8px rgba(92,242,160,0)}100%{box-shadow:0 0 0 0 rgba(92,242,160,0)}}
+h1{font:700 clamp(40px,6.4vw,76px)/.98 "Barlow Semi Condensed",sans-serif;letter-spacing:-.005em;margin:22px 0 18px;max-width:1000px}
+h1 span{background:linear-gradient(92deg,#7dffc0 0%,#5cf2a0 35%,#9fd6ff 65%,#c79bff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.answer{font-size:clamp(17px,2vw,19px);color:var(--ink);max-width:780px;margin:0 0 12px}
+.answer b{color:#fff}
+.deck{font-size:clamp(16px,1.9vw,18px);color:var(--ink2);max-width:760px;margin:0 0 26px}
+.byline{font:400 13px "JetBrains Mono",monospace;color:var(--ink3);margin:-10px 0 24px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:0 0 14px}
+.ctl-label{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.combo{position:relative}
+.combo input{font:500 15px Inter,sans-serif;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 34px 0 12px;width:240px;background-image:linear-gradient(45deg,transparent 50%,var(--ink3) 50%),linear-gradient(135deg,var(--ink3) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat}
+.combo input::placeholder{color:var(--ink3)}
+.combo ul{position:absolute;z-index:10;top:48px;left:0;width:290px;max-height:320px;overflow-y:auto;margin:0;padding:6px;list-style:none;background:#0b1526;border:1px solid #24405a;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.combo li{padding:9px 10px;border-radius:7px;cursor:pointer;font:400 14.5px Inter,sans-serif;color:var(--ink2);display:flex;justify-content:space-between;gap:10px}
+.combo li small{font:400 11px "JetBrains Mono",monospace;color:var(--ink3);align-self:center}
+.combo li[aria-selected="true"]{background:#16304a;color:var(--ink)}
+.combo li.grp{cursor:default;font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);padding:8px 10px 4px}
+.combo li.none{cursor:default;color:var(--ink3)}
+@media (max-width:520px){.combo input{width:min(240px,58vw)}}
+.ghost{all:unset;cursor:pointer;height:44px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);font:500 14px Inter,sans-serif;color:var(--ink2);display:inline-flex;align-items:center;gap:7px}
+.ghost:hover{color:var(--ink);border-color:#2c4766}
+.ghost svg{width:16px;height:16px}
+.seg{display:inline-flex;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:3px;height:44px}
+.seg button{all:unset;cursor:pointer;padding:0 13px;border-radius:7px;font:500 14px Inter,sans-serif;color:var(--ink2);display:flex;align-items:center}
+.seg button[aria-pressed="true"]{background:#16304a;color:var(--ink)}
+.kpbox{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--line);border-radius:10px;height:44px;padding:0 12px}
+.kpbox output{font:500 14px "JetBrains Mono",monospace;min-width:44px;color:var(--ink)}
+input[type=range]{accent-color:var(--green);width:150px;height:36px}
+button:focus-visible,input:focus-visible,.ghost:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.story{display:grid;grid-template-columns:1fr;gap:14px;align-items:start;background:linear-gradient(180deg,rgba(22,48,74,.55),rgba(12,26,42,.55));border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 14px;min-height:112px}
+.story .n{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--green)}
+.story p{margin:0;color:var(--ink2);font-size:15.5px;max-width:800px}
+.story p b{color:var(--ink)}
+.step h2{font:700 25px/1.15 "Barlow Semi Condensed",sans-serif;margin:4px 0 6px;letter-spacing:.005em}
+.js .step{display:none}.js .step.on{display:block}
+.step + .step{margin-top:18px}.js .step + .step{margin-top:0}
+.stepnav{display:flex;align-items:center;gap:8px}
+.dots{display:flex;gap:6px;margin-right:6px}
+.dots button{all:unset;cursor:pointer;width:10px;height:10px;border-radius:50%;background:#24405a;padding:0}
+.dots button[aria-current="true"]{background:var(--green);box-shadow:0 0 10px rgba(92,242,160,.7)}
+.navbtn{all:unset;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--ink);font-size:18px;background:var(--bg2)}
+.navbtn.primary{background:var(--green);color:#03140c;border-color:var(--green);width:auto;padding:0 20px;border-radius:999px;font:600 15px Inter,sans-serif}
+@media (max-width:720px){.stepnav{justify-content:space-between}}
+.stage{position:relative;border-radius:16px;overflow:hidden;background:#02050b;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45);touch-action:pan-y}
+.stage canvas{position:absolute;left:0;top:0}
+.stage svg{position:absolute;left:0;top:0;overflow:visible}
+#still{display:block;width:100%;height:auto}
+.stage.live #still{visibility:hidden}
+.stage .lbl{font:500 12.5px Inter,sans-serif;fill:var(--ink);paint-order:stroke;stroke:rgba(2,5,11,.9);stroke-width:4px;stroke-linejoin:round}
+.stage .lbl-s{font:400 11.5px Inter,sans-serif;fill:var(--ink2);paint-order:stroke;stroke:rgba(2,5,11,.9);stroke-width:4px;stroke-linejoin:round}
+.stage .mono{font:400 11px "JetBrains Mono",monospace;fill:var(--ink3)}
+.stage .gold{fill:var(--gold)}
+.stage .grn{fill:var(--green)}
+.badge{position:absolute;left:14px;top:12px;font:500 11px/1.4 "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:rgba(4,9,18,.72);border:1px solid var(--line);border-radius:8px;padding:6px 9px;pointer-events:none;max-width:calc(100% - 28px)}
+.badge b{color:var(--ink);font-weight:500}
+.badge.model{color:#e9d5ff;border-color:#4b3a72}
+.tip{position:absolute;pointer-events:none;box-shadow:0 10px 28px rgba(0,0,0,.45);background:rgba(6,13,26,.95);border:1px solid #24405a;border-radius:10px;padding:9px 11px;font:400 12.5px/1.5 Inter,sans-serif;color:var(--ink);min-width:170px;max-width:260px;opacity:0;transition:opacity .08s;z-index:3}
+.tip .t{font:600 13px Inter,sans-serif}
+.tip .m{font:400 12px "JetBrains Mono",monospace;color:var(--ink2)}
+.legend{display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;margin:12px 0 0;font:400 12.5px Inter,sans-serif;color:var(--ink3)}
+.ramp{height:10px;width:min(300px,80vw);border-radius:5px;background:linear-gradient(90deg,rgba(30,140,90,.25),#2cdc78 25%,#8cff96 45%,#e6f57a 65%,#ff9a7a 82%,#ff5aa8)}
+.ramp-l{display:flex;justify-content:space-between;width:min(300px,80vw);font:400 10.5px "JetBrains Mono",monospace;color:var(--ink3);margin-top:3px}
+.key-vl{display:inline-flex;align-items:center;gap:8px}
+.key-vl i{display:inline-block;width:30px;border-top:2px dashed var(--gold)}
+.key-pin{display:inline-flex;align-items:center;gap:8px}
+.key-pin i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
+.livegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;margin:18px 0}
+.livegrid .cell:first-child{border-radius:13px 0 0 13px}.livegrid .cell:last-child{border-radius:0 13px 13px 0}
+.cell{background:var(--bg2);padding:14px 16px}
+.cell{position:relative}
+.info{all:unset;cursor:help;display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--ink3);font:600 10px/1 Inter,sans-serif;color:var(--ink2);margin-left:5px;vertical-align:1px}
+.info:hover,.info:focus-visible{border-color:var(--green);color:var(--green)}
+.infotip{position:absolute;left:10px;width:min(320px,80vw);top:34px;z-index:5;background:rgba(6,13,26,.97);border:1px solid #24405a;border-radius:10px;padding:10px 12px;font:400 13px/1.5 Inter,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .1s}
+.cell:has(.info:hover) .infotip,.cell:has(.info:focus) .infotip,.infotip.on{opacity:1}
+.cell .k{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.cell .v{font:700 clamp(24px,3vw,32px)/1.1 "Barlow Semi Condensed",sans-serif;margin:5px 0 3px}
+.cell .s{font-size:13px;color:var(--ink2);line-height:1.4}
+@media (max-width:820px){.livegrid{grid-template-columns:repeat(2,1fr)}.livegrid .cell:first-child{border-radius:13px 0 0 0}.livegrid .cell:nth-child(2){border-radius:0 13px 0 0}.livegrid .cell:nth-child(3){border-radius:0 0 0 13px}.livegrid .cell:last-child{border-radius:0 0 13px 0}}
+.kpchart{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px;margin:0 0 18px}
+.kpchart h3{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:2px 4px 6px}
+.kpchart svg{display:block;width:100%;overflow:visible}
+.kpchart text{font:400 10.5px "JetBrains Mono",monospace;fill:var(--ink3)}
+.kpchart .now text{fill:var(--green)}
+.kpchart.hl{border-color:var(--green);box-shadow:0 0 0 1px rgba(92,242,160,.35)}
+.feednote{font:400 13px Inter,sans-serif;color:#ffb39a;margin:8px 0 0}
+.controls,.stepnav,.livegrid,.legend,.kpchart{display:none}.js .controls,.js .stepnav,.js .legend{display:flex}.js .livegrid,.js .kpchart{display:grid}.js .kpchart{display:block}
+h2.sec{font:700 30px/1.15 "Barlow Semi Condensed",sans-serif;margin:50px 0 10px}
+.prose{max-width:720px;color:var(--ink2)}
+.prose b{color:var(--ink)}
+details{border-top:1px solid var(--line);padding:6px 0;margin-top:26px}
+summary{cursor:pointer;font:600 15px Inter,sans-serif;padding:12px 0;min-height:44px}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 10px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{font:500 11px "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);vertical-align:bottom}
+th:first-child,td:first-child{text-align:left}
+td{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--ink2)}
+td:first-child{font-family:Inter,sans-serif;color:var(--ink)}
+caption{caption-side:top;text-align:left;font-size:14px;color:var(--ink2);padding:0 0 8px}
+.tw{overflow-x:auto}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}.cols>div{min-width:0}
+th{white-space:normal}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.related a{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--ink)}
+.related a span{display:block;font-size:13.5px;color:var(--ink2);margin-top:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.theme-toggle{display:none!important}
+@media (prefers-reduced-motion:reduce){.live-pill i{animation:none}}
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+/* Phone: with three nav items, the header wraps under the logo (same rule as assets/site.css). */
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: var(--font-display); text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+/* Showpiece overrides of the shared chrome: wider column, side padding, footer centered */
+.site-bar, .site-foot { max-width: 1136px; padding-left: 22px; padding-right: 22px; box-sizing: content-box; }
+@media (max-width: 1180px) { .site-bar, .site-foot { margin-left: 0; margin-right: 0; max-width: none; } }
+.site-foot { margin-top: 50px; text-align: center; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.subscribe h2 { font: 700 clamp(26px, 4vw, 32px)/.95 var(--font-display); text-transform: uppercase; margin: 0; }
+/* this page's <main> is not a grid, so space the end-of-story parts here (the shared rules assume a 56px grid gap) */
+main .share-row { margin: 44px 0 20px; }
+main .subscribe.sub-end { margin-top: 0; }
+.site-foot p { margin: 0; }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
+/* site-header:end */
+/* theme-toggle:start */
+/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+/* theme-toggle:end */
+
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
+</style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-16">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/weather/northern-lights-forecast/#article","headline":"Will you see the northern lights tonight?","description":"Live NOAA aurora forecast for your city tonight, plus every geomagnetic storm since 1932: 3,636 reached Kp 5, but only 23 hit Kp 9, the latest in May 2024.","image":["https://tallorderdigital.com/weather/northern-lights-forecast/share.png"],"datePublished":"2026-11-16","dateModified":"2026-11-16","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/weather/northern-lights-forecast/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/weather/northern-lights-forecast/#webpage","url":"https://tallorderdigital.com/weather/northern-lights-forecast/","name":"Will you see the northern lights tonight?","description":"Live NOAA aurora forecast for your city tonight, plus every geomagnetic storm since 1932: 3,636 reached Kp 5, but only 23 hit Kp 9, the latest in May 2024.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/weather/northern-lights-forecast/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"Weather","item":"https://tallorderdigital.com/weather/"},{"@type":"ListItem","position":3,"name":"Will you see the northern lights tonight?","item":"https://tallorderdigital.com/weather/northern-lights-forecast/"}],"@id":"https://tallorderdigital.com/weather/northern-lights-forecast/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/" aria-current="page">Weather</a><a class="nav-topic" href="../../nba/">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main class="wrap">
+
+  <div class="crumbrow"><nav class="crumbs" aria-label="Breadcrumb"><a href="../../">Home</a> › <a href="../">Weather</a> › Northern lights forecast</nav><span class="live-pill" id="livePill"><i></i><span id="livePillT">Live from NOAA</span></span></div>
+  <h1>Will you see the <span>northern lights tonight?</span></h1>
+  <p class="answer">The northern lights reach the northern US only during geomagnetic storms. Since 1932 there have been <b>3,636</b> strong enough (Kp 5 or more) to put the aurora low on the horizon along the Canadian border, about 38 a year, and they come in waves with the sun’s 11-year cycle: 2025 had 43, as many as any year since 2003. Only <b>23</b> reached Kp 9, the top of the scale, when the aurora can be seen as far south as Alabama or Florida; the latest was May 10–11, 2024.</p>
+  <p class="deck">The globe below is NOAA’s live aurora forecast, the chance of the aurora being overhead in the next half hour or so, refreshed every few minutes. Pick your place to see whether it reaches you tonight and how often it has since 1932.</p>
+  <p class="byline">By Shawn Nafziger · Published <time datetime="2026-11-16">Nov. 16, 2026</time> · Live forecast from NOAA’s Space Weather Prediction Center; storm history from GFZ Kp, Jan. 1932–Nov. 15, 2026</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
+
+  <div class="controls">
+    <label class="ctl-label" id="cityLbl" for="city">Place</label>
+    <div class="combo">
+      <input id="city" type="text" role="combobox" aria-expanded="false" aria-controls="cityList" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="Type a city">
+      <ul id="cityList" role="listbox" aria-labelledby="cityLbl" hidden></ul>
+    </div>
+    <button class="ghost" id="locate" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>My location</button>
+    <div class="seg" role="group" aria-label="What the picture shows">
+      <button id="vNow" aria-pressed="true">Now</button>
+      <button id="vTonight" aria-pressed="false">Tonight</button>
+      <button id="vHist" aria-pressed="false">Since 1932</button>
+    </div>
+    <div class="kpbox"><label class="ctl-label" for="kp">What if Kp =</label><input type="range" id="kp" min="0" max="9" step="0.333" value="5"><output id="kpOut">5</output></div>
+  </div>
+
+  <section class="story" aria-live="polite">
+    <div class="steps">
+      <article class="step on">
+        <div class="n">1 of 5</div>
+        <h2>Where is the aurora right now?</h2>
+        <p>The glowing ring is NOAA’s forecast of where the aurora is likely to be overhead about half an hour to an hour and a half from now<span data-k="fcLine"></span>. It circles the <b>magnetic</b> pole in the Canadian Arctic, not the North Pole, which is why North America sees the aurora farther south than Europe or Asia at the same latitude. Brighter and warmer colors mean a higher chance. Hover or tap anywhere for the odds there; drag the globe to turn it.</p>
+      </article>
+      <article class="step">
+        <div class="n">2 of 5</div>
+        <h2>Can you see it from where you are?</h2>
+        <p><span data-k="place">South Bend, IN</span> sits at <b data-k="mlat">51.1°</b> magnetic latitude. <span data-k="nowLine">The aurora is high in the sky, so it can be seen low on the horizon from hundreds of miles beyond the ring: the dashed gold line marks that limit, and anywhere poleward of it has a chance if the sky is dark and clear.</span></p>
+      </article>
+      <article class="step">
+        <div class="n">3 of 5</div>
+        <h2>What about tonight?</h2>
+        <p><span data-k="tonightLine">From <span data-k="place">South Bend, IN</span> you typically need a Kp of about <b data-k="need">5</b>, a minor geomagnetic storm, to see the aurora low on the northern horizon.</span> The bars below the globe are NOAA’s three-day Kp forecast; the shaded columns are your dark hours. The globe now shows the ring modeled for tonight’s highest forecast Kp. Clouds and city lights matter as much as the forecast, and a phone camera on night mode often picks up a glow your eyes miss.</p>
+      </article>
+      <article class="step">
+        <div class="n">4 of 5</div>
+        <h2>How far south can it reach?</h2>
+        <p>Each step up the Kp scale pushes the aurora about 2° of magnetic latitude, roughly 140 miles, toward the equator. At Kp 9, the top of the scale, it can be overhead in the northern US and low on the horizon across the South. On May 10–11, 2024, the strongest storm in 21 years, it was photographed from Florida, Mexico and Puerto Rico. Drag the <b>What if Kp</b> slider to try any level.</p>
+      </article>
+      <article class="step">
+        <div class="n">5 of 5</div>
+        <h2>How often does the aurora come that far south?</h2>
+        <p>Each streak is one of the <b>3,636</b> geomagnetic storms since 1932, drawn down to how far south its aurora could be seen; hover or tap one for its date and reach. They come in waves with the sun’s 11-year cycle, and the 1950s were the wildest: 48 severe or extreme storms, against 7 in the 2010s. <span data-k="histLine">South Bend, IN, needs about Kp <b>5.0</b>: <b>2,857</b> storms since 1932 reached that, <b>152</b> of them since 2020.</span></p>
+      </article>
+    </div>
+    <div class="stepnav">
+      <div class="dots" id="dots"></div>
+      <button class="navbtn" id="prev" aria-label="Previous step">‹</button>
+      <button class="navbtn primary" id="next" aria-label="Next step">Next ›</button>
+    </div>
+  </section>
+
+  <div class="stage" id="stage">
+    <img id="still" src="aurora-oval.webp" width="1136" height="658" fetchpriority="high" alt="Illustration: a globe seen from above North America with the aurora drawn as a glowing green ring around the magnetic pole for a strong storm (Kp 7), reaching over the northern US, and a dashed gold line across the middle of the country marking how far south it could be seen low on the horizon.">
+    <canvas id="globe" aria-hidden="true"></canvas>
+    <canvas id="hist" aria-hidden="true"></canvas>
+    <svg id="ov" role="img" aria-labelledby="ovDesc"><desc id="ovDesc">A globe seen from above the Arctic with the aurora forecast drawn as a glowing ring around the magnetic pole, a dashed line showing how far from the ring it can be seen on the horizon, and a pin at the chosen place.</desc></svg>
+    <div class="badge" id="badge">NOAA aurora forecast</div>
+    <div class="tip" id="tip"></div>
+  </div>
+  <div class="legend" id="legend">
+    <div>
+      <div class="ramp"></div>
+      <div class="ramp-l"><span>Low</span><span>10%</span><span>30%</span><span>50%</span><span>70%+</span></div>
+    </div>
+    <span>Chance of aurora overhead</span>
+    <span class="key-vl"><i></i>Seen low on the horizon up to this line</span>
+    <span class="key-pin"><i></i>Your place</span>
+    <span>Shaded: daylight side</span>
+  </div>
+  <p class="feednote" id="feednote" hidden></p>
+
+  <div class="livegrid" aria-live="polite">
+    <div class="cell"><div class="k">Kp right now <button class="info" type="button" aria-describedby="kpInfo" aria-label="What is Kp?">?</button><span class="infotip" id="kpInfo" role="tooltip">Kp measures how hard the solar wind is shaking Earth’s magnetic field, from 0 (quiet) to 9 (extreme), every three hours. 5 or more is a geomagnetic storm (NOAA G1–G5), and each step pushes the aurora about 2° of magnetic latitude, roughly 140 miles, toward the equator. Values come in thirds: 4− is 3.67, 4+ is 4.33.</span></div><div class="v" id="lvKp">—</div><div class="s" id="lvKpS">Loading from NOAA…</div></div>
+    <div class="cell"><div class="k" id="lvTonK">Tonight</div><div class="v" id="lvTon">—</div><div class="s" id="lvTonS"></div></div>
+    <div class="cell"><div class="k">Chance overhead now</div><div class="v" id="lvP">—</div><div class="s" id="lvPS"></div></div>
+    <div class="cell"><div class="k">Dark enough to look</div><div class="v" id="lvDark">—</div><div class="s" id="lvDarkS"></div></div>
+  </div>
+
+  <div class="kpchart" id="kpchart">
+    <h3 id="kpTitle">Kp index: last day observed, next three days forecast</h3>
+    <svg id="kpsvg" aria-label="Kp index by three-hour period, observed and forecast"></svg>
+    <div class="tip" id="kptip"></div>
+  </div>
+
+  <h2 class="sec">How far south does each level of storm reach?</h2>
+  <p class="prose">NOAA rates geomagnetic storms from G1 to G5 by the Kp index, a 0–9 measure of how hard the solar wind is shaking Earth’s magnetic field, taken every three hours. Each level pushes the aurora toward the equator. These are typical limits in magnetic latitude, at the darkest hours around midnight; a storm’s peak can run past them for an hour or two.</p>
+  <div class="tw"><table>
+    <caption>Geomagnetic storms since Jan. 1, 1932, by NOAA level (a storm is a run of days with Kp 5− or more, rated by its highest Kp)</caption>
+    <thead><tr><th>Level</th><th>Kp</th><th>Aurora overhead down to</th><th>Low on the horizon down to</th><th>Storms since 1932</th><th>Latest</th></tr></thead>
+    <tbody>
+<tr><td>G1 Minor</td><td>5</td><td>56°</td><td>51°</td><td>1,946</td><td>Nov. 7, 2026</td></tr>
+<tr><td>G2 Moderate</td><td>6</td><td>54°</td><td>49°</td><td>1,002</td><td>Oct. 31, 2026</td></tr>
+<tr><td>G3 Strong</td><td>7</td><td>52°</td><td>47°</td><td>422</td><td>Oct. 10, 2026</td></tr>
+<tr><td>G4 Severe</td><td>8, 9−</td><td>50°</td><td>45°</td><td>243</td><td>Jan. 19, 2026</td></tr>
+<tr><td>G5 Extreme</td><td>9</td><td>48°</td><td>43°</td><td>23</td><td>May 11, 2024</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 class="sec">What Kp do you need to see the northern lights?</h2>
+  <p class="prose">It depends on your magnetic latitude, which differs from your map latitude because the magnetic pole sits in the Canadian Arctic: Seattle and London are at almost the same map latitude, but Seattle is about 5° farther north magnetically. A rule of thumb from NOAA: the aurora’s edge sits near 66° magnetic latitude when Kp is 0 and moves about 2° toward the equator for each step of Kp, and you can see it low on the horizon from about 5° beyond the edge.</p>
+  <div class="tw"><table>
+    <caption>Kp needed to see the aurora on the horizon, and how many storms since 1932 reached it</caption>
+    <thead><tr><th>Place</th><th>Magnetic latitude</th><th>Kp needed</th><th>Storms since 1932</th><th>Since 2020</th></tr></thead>
+    <tbody>
+<tr><td>Fairbanks, AK</td><td>65.2°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
+<tr><td>Anchorage, AK</td><td>61.1°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
+<tr><td>Duluth, MN</td><td>55.9°N</td><td>2.5</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Marquette, MI</td><td>55.7°N</td><td>2.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Seattle, WA</td><td>52.9°N</td><td>4.1</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Minneapolis, MN</td><td>54.2°N</td><td>3.4</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Fargo, ND</td><td>55.8°N</td><td>2.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>Boston, MA</td><td>49.9°N</td><td>5.5</td><td>1,690</td><td>80</td></tr>
+<tr><td>Chicago, IL</td><td>51.3°N</td><td>4.8</td><td>2,857</td><td>152</td></tr>
+<tr><td>South Bend, IN</td><td>51.1°N</td><td>5.0</td><td>2,857</td><td>152</td></tr>
+<tr><td>New York, NY</td><td>48.9°N</td><td>6.1</td><td>961</td><td>46</td></tr>
+<tr><td>Indianapolis, IN</td><td>49.3°N</td><td>5.9</td><td>1,292</td><td>56</td></tr>
+<tr><td>Denver, CO</td><td>48.1°N</td><td>6.4</td><td>688</td><td>33</td></tr>
+<tr><td>Washington, DC</td><td>47.6°N</td><td>6.7</td><td>515</td><td>24</td></tr>
+<tr><td>St. Louis, MO</td><td>48.2°N</td><td>6.4</td><td>688</td><td>33</td></tr>
+<tr><td>San Francisco, CA</td><td>43.3°N</td><td>8.8</td><td>23</td><td>1</td></tr>
+<tr><td>Atlanta, GA</td><td>43.5°N</td><td>8.7</td><td>23</td><td>1</td></tr>
+<tr><td>Dallas, TX</td><td>42.3°N</td><td>above 9</td><td>0 (beyond Kp 9)</td><td>0</td></tr>
+<tr><td>Los Angeles, CA</td><td>40.5°N</td><td>above 9</td><td>0 (beyond Kp 9)</td><td>0</td></tr>
+<tr><td>Miami, FL</td><td>35.7°N</td><td>above 9</td><td>0 (beyond Kp 9)</td><td>0</td></tr>
+<tr><td>Reykjavík, Iceland</td><td>64.2°N</td><td>any</td><td>most dark, clear nights</td><td>—</td></tr>
+<tr><td>Edinburgh, UK</td><td>53.1°N</td><td>3.9</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+<tr><td>London, UK</td><td>47.7°N</td><td>6.6</td><td>688</td><td>33</td></tr>
+<tr><td>Hobart, Australia</td><td>53.7°S</td><td>3.6</td><td>all 3,636, plus quieter nights</td><td>all 202</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="cols">
+    <div>
+      <h2 class="sec">Every Kp 9 storm since 1932</h2>
+      <p class="prose">Twenty-three storms since 1932 have reached Kp 9, and 14 of them came before 1961, seven in the four years around the peak of solar cycle 19 (1957–1960). Since then there have been nine, the last two on Oct. 29–31, 2003, and May 10–11, 2024.</p>
+      <div class="tw"><table>
+        <caption>Storms that reached Kp 9 (NOAA G5, “extreme”), newest first; days are consecutive days with Kp 5− or more</caption>
+        <thead><tr><th>Peak day (UTC)</th><th>Year</th><th>Days</th></tr></thead>
+        <tbody>
+<tr><td>May 11, 2024</td><td>2024</td><td>4</td></tr>
+<tr><td>Oct. 29, 2003</td><td>2003</td><td>5</td></tr>
+<tr><td>July 15, 2000</td><td>2000</td><td>4</td></tr>
+<tr><td>March 13, 1989</td><td>1989</td><td>8</td></tr>
+<tr><td>Feb. 8, 1986</td><td>1986</td><td>3</td></tr>
+<tr><td>July 13, 1982</td><td>1982</td><td>10</td></tr>
+<tr><td>Aug. 4, 1972</td><td>1972</td><td>4</td></tr>
+<tr><td>March 8, 1970</td><td>1970</td><td>4</td></tr>
+<tr><td>May 25, 1967</td><td>1967</td><td>2</td></tr>
+<tr><td>Nov. 13, 1960</td><td>1960</td><td>6</td></tr>
+<tr><td>Oct. 7, 1960</td><td>1960</td><td>11</td></tr>
+<tr><td>April 30, 1960</td><td>1960</td><td>5</td></tr>
+<tr><td>July 15, 1959</td><td>1959</td><td>5</td></tr>
+<tr><td>July 8, 1958</td><td>1958</td><td>3</td></tr>
+<tr><td>Feb. 11, 1958</td><td>1958</td><td>3</td></tr>
+<tr><td>Sept. 4, 1957</td><td>1957</td><td>9</td></tr>
+<tr><td>Sept. 22, 1946</td><td>1946</td><td>4</td></tr>
+<tr><td>July 27, 1946</td><td>1946</td><td>3</td></tr>
+<tr><td>Sept. 19, 1941</td><td>1941</td><td>4</td></tr>
+<tr><td>July 5, 1941</td><td>1941</td><td>4</td></tr>
+<tr><td>March 1, 1941</td><td>1941</td><td>5</td></tr>
+<tr><td>March 24, 1940</td><td>1940</td><td>12</td></tr>
+<tr><td>April 16, 1938</td><td>1938</td><td>4</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <h2 class="sec">Storms by solar cycle</h2>
+      <p class="prose">The sun’s activity rises and falls over about 11 years, and storms follow. Cycle 19, which peaked in 1958, was the strongest on record; cycle 24 was the weakest in a century. Cycle 25 peaked around late 2024, so big storms stay likely through 2026 and 2027 before tapering off.</p>
+      <div class="tw"><table>
+        <caption>Geomagnetic storms per solar cycle (cycle dates from solar minimum to minimum)</caption>
+        <thead><tr><th>Cycle</th><th>Dates</th><th>Storms</th><th>G4 or G5</th><th>G5</th></tr></thead>
+        <tbody>
+<tr><td>17</td><td>Sept. 1933–Feb. 1944</td><td>417</td><td>31</td><td>5</td></tr>
+<tr><td>18</td><td>Feb. 1944–Apr. 1954</td><td>477</td><td>37</td><td>2</td></tr>
+<tr><td>19</td><td>Apr. 1954–Oct. 1964</td><td>489</td><td>54</td><td>7</td></tr>
+<tr><td>20</td><td>Oct. 1964–Mar. 1976</td><td>433</td><td>31</td><td>3</td></tr>
+<tr><td>21</td><td>Mar. 1976–Sept. 1986</td><td>480</td><td>33</td><td>2</td></tr>
+<tr><td>22</td><td>Sept. 1986–Aug. 1996</td><td>422</td><td>26</td><td>1</td></tr>
+<tr><td>23</td><td>Aug. 1996–Dec. 2008</td><td>414</td><td>32</td><td>2</td></tr>
+<tr><td>24</td><td>Dec. 2008–Dec. 2019</td><td>246</td><td>7</td><td>0</td></tr>
+<tr><td>25 (so far)</td><td>Dec. 2019–now</td><td>202</td><td>13</td><td>1</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <details>
+    <summary>How this works, and what it can’t tell you</summary>
+    <div class="prose">
+      <p><b>The live forecast</b> is NOAA Space Weather Prediction Center’s OVATION Prime model, which turns solar-wind measurements from satellites about a million miles upstream into the chance of visible aurora on a one-degree grid, 30 to 90 minutes ahead. Your browser downloads it directly from NOAA every five minutes, along with the latest Kp and NOAA’s three-day Kp forecast; nothing is stored.</p>
+      <p><b>The horizon line</b> on the live view follows Case, MacDonald and Viereck (2016, <i>Space Weather</i>), who checked NOAA’s forecast against about 500 sightings and found people often saw the aurora farther south than NOAA’s own line suggested. Their best-fitting line, used here, sits 8° of latitude plus a little more for brighter displays toward the equator from the forecast’s peak at each longitude. On the “Tonight” and “What if” views, the ring is not NOAA’s model but a simple sketch built on NOAA’s Kp rule of thumb (edge at 66° magnetic latitude minus 2° per Kp, visible about 5° beyond it), so it shows where a storm of that strength typically reaches, not a forecast.</p>
+      <p><b>Magnetic latitudes</b> come from the AACGM-v2 model at 110 km, the height of the aurora’s lower edge. <b>Storm history</b> is the Kp index from GFZ Potsdam, the official source since 1932; the last few weeks are preliminary. Kp tops out at 9, so the biggest storms (1989, 2003, 2024) tie on this scale even though some reached farther than “Kp 9” suggests. How far south each storm reached is estimated from its highest Kp, not from sightings, and darkness, weather and the hour of the peak decided what people actually saw.</p>
+      <p><b>What it can’t tell you:</b> whether it will be cloudy, how much light pollution you have, or exactly when a storm will arrive. Forecasts of Kp more than a day ahead are often off by a level or two, especially when a solar eruption’s arrival time is uncertain.</p>
+    </div>
+  </details>
+  <h2 class="sec">Related</h2>
+  <div class="related">
+    <a href="../year-of-daylight-hours/">A year of daylight, every minute of it<span>Sunrise, sunset and twilight for any place, all year, computed live.</span></a>
+    <a href="../shortest-day-of-the-year/">The shortest day of the year isn’t your darkest evening<span>Why the earliest sunset comes before Dec. 21.</span></a>
+    <a href="../">All weather stories<span>More data stories about the weather and the sky.</span></a>
+  </div>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
+</main>
+
+<footer class="site-foot">
+  <p>Data: live aurora (OVATION) and Kp forecasts from <a href="https://www.swpc.noaa.gov/products/aurora-30-minute-forecast">NOAA Space Weather Prediction Center</a>; Kp since 1932 from <a href="https://kp.gfz.de/">GFZ Helmholtz Centre for Geosciences</a> (Matzka et al., 2021; CC BY 4.0); magnetic latitudes from AACGM-v2; map from Natural Earth. Analysis: Tall Order Digital.</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../">More weather stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script src="../../assets/vendor/d3-7.9.0.min.js"></script>
+<script>
+(function(){
+"use strict";
+if (!window.d3) return;
+const RAD = Math.PI/180, DAY = 864e5, HOUR = 36e5;
+const STORMS = "B11A16C3kD27A26A1aC13C18C13E55C18A23G97C2aC26B4aC39B1eK3eB111D1aA2hC13H4nD19B12D3hC2kD25B13D19B1fD1sC12A1uB15B14B13D6nA17F7kD5uD14J3aB13A12A1cB2dD2dB1qC2fA13G29D18A15A13G2jE34A1mA12C25A16B1jA12A2qA15C1nB113D17E2hA12A14B1bC23B16B24C2sF29E27A1jC1rD1rB1sA12B1oF23A12B2rA1eF2rA1lD44C1jC2bA13C22E2bE3tA1gD5cF2kB1jF5iF1bB1kC2hB1xF2fB26E48A15A1gA12E32E24C13A19A28A1kA2bB1eB1rA12A1eC27C13B5zA28A1dH76A1dC16C12A16B1bB34E27I2aC1dD14C24E1jD121F27C17C17C23A16A12H2iD1tD1aG1rC1gD2aD14D3aB2cI14B22A1aL5eA15H24D4nD29B17B17C17B2cC15E25E45F39K1kE2jG2kJ24H57B24F28B13A1dA2aB14D37A1jF25C1cC44D25L74M28A14E12G66D18B1fD24F3jF12C2bA15N45D17H1bM57A1dE25B14A16C24A1jE23C16H45E1fI54E18E2cI3nJ3dI23H26C5iB2fB18B2fD18D38A14A116C24A15I2dD46B17B1cG47A14B13C36K47M47E13G34G56B19A14C42C26A24H1dG12A2aB13I46A26C13C12I45D25J4hJ24A13J23E2cC16H18C22C17I28F22G13K74C2vB1cE3cA19A16J3cB14D43G28B2dB1kB15F1dB13A27Nc5A1tK23D1nJ36D23C2aF28B14L27B28B17J23A19A18F24F16D1hB16C16C17J3cH15A12H24A1fC24A19G29A14C35F23C14B13E3iF4aB17D2bD37A1aC24C38A12D44N58B1aH23E57J49B4bF29G35C15C1iB34E2kE23C14C13N4fB15E1bC1cL42E5nB1bD46N46D35A15G2cF1bJ2aC25A24D39A14F15J23B1fB1jA1dC12B2hE3iK46H24F23A13C22C27C16A13I36A14D13F23F23C16E15D27B19B2eA1eA18C1jE23C14A16A15C1fG16A13E34B1aB14G86C38G3cE6aC37I4aG4qA14C2bB1cB12A13C29C1dG33G1sB19C14A12B27D15D14C23H26D55F28A1aE25F35A1bD13D32E17B14A2bD15C17A12A16D38D43A1lD24J36E24F65C16B12L95E48B15A15A23H89F39C1bB12G92E1dGbdC2dB13E6eB2dA14D75A18E3kG27A16D1dC53B15F27I28B22L74D18D16E3fB13E1pA2oF216D1fB1aA15C1jC13E16E1bF23C1mA1fB1oL32D2bD2eE15H3eA17A1bC2aC17A13F24G23E15I38H24E34F26B13A11hE2pD15A1bC16B17B13F1qA17A18F36A19A1aC15E2cF24F1cG2zE35C48H27C18B2cM2gC12E24E36A13D26C23F26M8fB17E18G26M38G4dG15F4bA19I27B15E25B12A18G12A14C14A12B15A12F22B15N34H22B19B24F33J1hB1aJ48N44I56C1bB1bG27A15A15C26A17B12E23C1pA12A14A2aF1cF39B2eF29B22L3cJ35A14I43F38G55D2bM49A18A1iB22J39B24D14E44H29E13A18K4mA1aLcqC13I29G34B14F63J4bG37A15E82F2aH4lC1fA17A15A13E2pD1eD1hC2dB17A15D32L5eA1hE15A18H28C17B13E15F22B14H23F45C18C13A1kB15C18B1vJ64D1cA13A16E23C13B13A15C23C17B33C14F32B14F15H24L83E1aF36A1gF23B33A1cC28A17D33E27G12A15B13B13A15M47F2aC23C1aF25B12C13B24C16I57J36I2gE45A1fC12H34M39G2iG45E29B1tB14H3iG15C26E2kD19C12C4aA16I47L48D37E25E35C1aB15F33C2aC1aG21aD29M6iB1fD18I14B22C23B13G79B17B13D25D14C16E43C1cC28H34A25E15C13F3fG26E24H38F2dB28J65C17L45A1aH45D45A15C13D34F44G78A1aE42I5eF17F16C12A16D14G44E3iB16F52B1cB18A15E36A15G24E16C52F4fH24GaeC24E25A13A12C12F77B15E33J95I4dI38A16A22E16H23B14D17D28K33D18J47D4dE27B14C12E33D1dF33F85A1fMklG4bD26H54B15C14M12C27C22E47D14A18A13B16F44B17B13C24H26D23E35E6aF3eD13G89F26B13H55K9bA1bH66Jc8C1dB54L24Ib8E2jK79D1dC15A12D38K36F25B24E2cD1dA13B16C25D1dE33A13F42B17D17I69G44B14B32A18C13E15E34F2mE26G37E19C2bG13B22G27C2eD56A1gA16E76F28G46G7gA16E15A17C15C34B13D3dJ39B14A13C15E46A1iF49A17A16D1bE34B1eD22G9cI5aD18B14G74A18A14A16I88A19D4kC16B14B1iB1mB2gC1sB12A12E33F24A1bC35B14E24A1dI27B1gA12aB1zB12B23D35D15D18G16C29F12E23C12D2cE36B13B13E23A1lA17A1iB19A1dB22J37A1hA17A1aE17E17B12A19F24F39A15B1jJ33E39C1aG49B1eA1fC19C2aA13C1kC12E1mB16A12A17G2iD15E2kC26B14A18J67A19C13B3pA16B13E37D27D44F26C2fL5dI37E27H5cF27A22C13C14B1aI25M65G2gL33F24H44D15B18B23A16G3aA12A22A1bB24E4aC25A12A19C12A16D14J43C17K22A14L12C25E38A1bC13C2fG36J8kA13D34H13C23B1cA2fA13A12C13B18M5bD29E26F18A16C12H23L36H18E16B25E14J44B15D22G35D15J32A17B33A1cB1hC14D44B1cC24A13H24L74A1jD23F2cD13A13D14C18N9eM29A13M57M26A14F2bG17B12A17H28B23A18G48D15A34D36A14A12A23F3cA1dB14G33B15A39A14N33B13B64G6fHg7D1iC13D32E5dA19C33D3eG4dK35J27E22C26F26K28B12A22N35I6dA13B13C14I2hD15J22G13M38C24C18H29A15H3oF33C16B19C1lH23E18H35D2iF34E1hC39B15F22F45I69A1bL7jJ4eG2dB26F26C13L24E24B12I26B17B14E17E2dF45G2cN54C49B2aB13A13La7J5iC2aHc8H6dC1eB28F76A1dA14D15K25E42J15C28E1aD34A19D25F25D13E23B2fC29D62A1bA23D2aG25M8gG49E45G39N56L38G13F15D27J36E13F33A14A16H7gL4gE23A14D38B19B22J76A1aH23K75B29A15B16A13NbaA14C17J87D2aN69E28C24B23K33D26E28B13B23F36B1dD16E35H4fB19G65G2gH14C46E13E18A15E12F16C12J34D1hC33A14C14C13D19D27C25H2fF18F36L98B1aL24F16A12A14A13E4jB1dE12E2aA13M24B1bC18M48F4aA17F24J3dF114B1pC18D14A1aD28F3xB22B2bB1fB1pA29A1pF4mE16B37B47C17F5cB13I26E27D17C13D22A24F43A16D12B23C67B19B12D29B27C18C1bG46A19C3iA24D2eD2aC34C2mF22A1mD24A1aF2fB1dD1gH29B1bD28D1aC1fC22B27H4lC28A13B1bH43A15M83A1fD45I2cK25B14E45A1aB27D16D33A1hG1dA27B17A19B16C26D12B15C27D15E28A18E3bD17I22A1aB27E5dC2aE44F2aG2gB1aA1hD2aA1cF16A17A2kB26J1gD16A12B14A1fC17A16A18A1eC2nD111D3gA1eA12B12E27B1jB12J1oC1hC1bH3vA1kA14A1iF3lC1tD2cA1aA1sA11dA12A19C2iB1wI2jA15H14D13H22C24A16H11dF25C2oE3fA115I4bM24A13D12A17B1dE36E1cB3gC3tA24H3aB2dC15G27J26A1mF22K29F2uA1eB13C3jH3aA14A16N2cH46K36E3kA1rB17B1cB16A1fB1cI38C37C2bC3jC16D28D2lB13C13D2bA14E38A1tA15F27A13C12A13E22C28D3hA14B3cH24B29D1cA16G15D15A16B23B13K5iC26A1cA14C17E23A2vE23A18D2fD45A1aD39F2aE1hL53A16A19A12A12C2fB1kA1oD28K27F29F1gE2dD25C22K34A17D12C12A14B17A14I1aB12F12J4dB13A1mB13D12B1hA1dH2dA13E2sA29B13A17A13K3cC12D212C11iA1fA1gA1rN47A2jF14B16A13L6cH211C14C1hA13E16F26I36D1cJ34E14C3bM38B2fA1cA16A12D1dC18G36B25G1fC2bD13A1hL16A1aC1aA1fC12E57E2kF3aE4eA17A2cC14E35J25F27B17A14F24G2bB1dC23C1nB14C1mD15A17C1fB1eA1dG25F38A24B13E46B2kE4pI2oD2uD35C15C12A1gC36C15I3bB1aA18C46B22A1hA13D38J2gC1dL3lB19D2rN4bL15C2iK3iB13B1cA3cD18B1aK43C1fA14A12B14C1hG22B28B2dB13B32E2aB25D23A1cA18Ia4D1dHadL4dA1aJ23F82E4dA12J6dH27A1cF48C28B16F35C2gC2bB15E3oB23J2dH5eI2aB17A12C34C25H48B16D13B2aD14D24E29C3gA1fB1eF37A15D3dE7bA16A12C36H17G65A16B22E65B37F78B38D47B14D4aD37E37E2bD14A15F47M39D12A14C12H69E3cA32E6eD39C24B22K2cF55C43E28A14D13H94F1bC33D2cH43A29B14C1fA14A25A17A12B18J33B26B24A1bB24D49B16E17A12A14B14H65C16A12F29E9dE2cA12E3dB14A14D12B23B27D26B1bD2hG2aB12E1eA1bA13A12A1aC19C2cA12G5qC1nG42F27F2dB47A29C2jI3fA1bA12C17A12C25B13B23A15C19E12B22E84A18K2cB13L83A1lL2bC1qC26C17A26B17G26D1fD213B1aE1gE22A16C16A1aD44C2fC4cB1qF1aF1bB1dC4hC1lB16C2dA12B1fA13C16H32F2dD16F37D2aA15D21eA18B12B14G19E17A14B12D16B12C16C1jI58D26B2fA22E25B13I26D3hC3cH16A22D28B15I8iA1eA18F24I1gA17F66C18A37A18G23H49J67D38E25L57J38A14E48B19I43E28C1bD35J23K35D2aB14D1hA12B16E16L7aD2bK5lC1jC29A13B18B13E12B1aH23F2kD23D17B44A14D22F13A12B1aD65G3sD16B15A12H24D17G15A14K98A1bA12D36K13D44A13A1hC13C33H14H28C1gB14E2aA27A17D26B13A13I2cH47A24J25H1kC23A16E49A2xC25B1cB15B2tB13A1cC3fC19H39D114C2bD55A14A1oE32F1eA26F8bG211H27A1cF1aD23B18B212E26E2dC18A14A17A14A1dB23A1bJ17A12A1lB1kA12G24C13E3hB23I14A12E37A13D28C16L4dA14F63I26A13H3bH45F15C15G3dA1iE14A13E1fL68A1cA24A15B22F26C14C14E2jB27F26F55K27H66B2jG24B22B23B18A1hE2hA15A1fA14H9bF5bGa9K27A14A14A14F29E4cH37B17C25G23D88A1cC13F69B16G7aB17E35C33G13A16Na7A19G42C36F13J25C44A16B15B24D33M58G13L7dI24E25D16E26C1dC13F42I6oE24A16F43I8aA1aL2eA15C23B16B25K57E77E38H5aI4aD36F27D53D69G49F49E15E12D24E46I16K67F2hJ13D15B24A1eB27A15E36C19J36B24E3bE22A14B22C17C3aF12C26B17G12B12A12C25F24B35B26E25H57E58B19A23B17E35A1fC44E25B3pE36E67E1gF33D35A14C13B15A17J9aI35C15B16J36A23D16C25E97F2hA16G27D32D26A17A1aH52A1gH33B18A25A15B26E32J28B26E19H54C1aE34C43A15G93D1eB16B23K46E2eB12B12E39D32C4dD34E38D3eE25D29B34H3iA13F42C1rA12F26L3cI59E12C2zF23B1bA16B15E13B12G26B15C1eF2cB1aB13B16F3eE25B27H39A27C13B16E2cA14B14E13A14B12A18I33C1dD16C19E12B12F25A13D1cC14C22N3cA13A13C37D15B12A13D33B2gC23A1gI5nC21jE2rB13A27C6jC28M3dB37E14C22C17G2bA16A18F38A17G3eB2iA1aA111B2mA1fA1kA18D21fA14B18A113H2eB12A13D1aE4cD36F2aB43F29E23E35E13D18D33A13C27D24C25A17B23C2bA14C1dD16C1hC12E22B16I23A13B1iA2aI37A1dB12H5iK48C2jI2eB2bB213B24B1hD25B1uE12A1aE2aE27A14D1eJ14B18C2fA16F1mA13B19F35B19D1aF26D44G35E5bA16A1aD2eC23D23N85E39Ha7A19D37G6cG29E12A1dI33A1aB12H56E24C16F1bA14E210G84C19I36E26D13F28K24A13H14L5oB25B15B33B17C14K24B2aE54C1lB14G33B15B2lB26B22C23B13G78C49E24B16I36I69E35K24K7bE27E57C12D24D2aF18C34I24B14C18D22L33A1fA1mC17J22B14C3dH59G13G36A1aA12B23C14A1eE36A15B15B14D26G2sB11aA2cD28B3xD24F13G28M43A16A12G23A1lG64D2fE23D48C24I33Ma4I2cA14E22A2aM7aF76F7eI2aC22J55G18F43A16H34F4gI26E13G34C12B2bLb7E37M24B13B14F34G32C2qA14F46B16B19B12C23B1bJ47H45A19K89G23C19A12A16B44E1dD33C1cB1dM49B13C15F24A17F6eF16A16G26A12D1kB16D28C12B17K49A16E46I45I28B15G47C1aF63B1fA12E23B13F15A16D18A17B27A13D17F3bC36A14E23A23A16C26E36C57G1aE35D49G76D46C26I13B35J36D25D24C22D36F4jA14B13E2iH16C2dE29B19B1iC26H3cE1bD27J3aC28B12B36G4aF4gG3aE2eA18G36F26B1nC5bB36A19FcbJ3fC2aHc4B4eIddL2eB12HbcD3eA29H44B16A17A19D29B24E3eB1bB2iE4oC2iH68F4jH37D38A14B2aF26A14A22C14A19A19A13C27F2eF3cA14C12C24D45D4fF24E58D1eA13D24K55B3hF13F65E2eD27D37A14D3gA16C25E2gC18B1fA16C18D2fF12D23A12B12H2cG87A18G36B15A47A35F1nA14A13C1cB16B12C3lB1sC2dD1gB12D28B23A1jH22C33D23qB1cB22B13D55F16A1dB14C25I25C2mA1aB2fE3wA1gA12D2bH2jD2tG2eC26C25A12F27G1eE1cD1dA1iB111A1bF2kA17B18B13H1aF29C4eH2eI2gA111F18G216B1aI2aB15F16A14A14D4qM4aB1dG2cA1cA1aF16B1aE1aC27D39I25K4lC1mL27C26D16G3cA18J3cE25C1sB1iH3fB1aG3qD8bF19D1jI2jA2bB1fB15E315B14A2jJ29C4hD14D23B27E5dK2aD55D8dK4cC26B3aA14F12B3bB1aD19D2iC1bF2cB25C2aG15C12A17A13A17A1tB14M23C1hA14B25E1eK37B15B28H12B13D24C28E13C2fN44E15E13A13D22C13B15J47D2hD16L5dB17A12F14J35A16G22A19E37B16H32F14G4jD1oA2vB16A1fB2kI2fB13F35M33C14H34L33I17F14E16C2bC23C1lD27C19B2lB1mB15C18H14A1aA1hE1aI22H58A15E24J39G17B14M35L1iA1uA16B2bA1nB23E2nC2jE15I4oE16A15G2dB13C14L15A14A11aB15A14A12E3aA18C15F45A16F19I23B24A18I6cE27A16D12F58B16C44B17G3bB25D3pA13E23B27A1hC23D22D68C1gB19C24A13E5aB25B12F78C25A23C28A15C24G46G69B24E27L88E4bG59A13F37B15G29E54E4aD25G37A15I96B1bB2cH57D17A19IabG1aN55H16D12Ea5M49D2fD86A19A2bA13E33C34A16H46D16A12A17F25A14C2eF4aC3hF47A16A1lA1cB11oE16M6aH2yC2fB24A12B1nM6qC1yA1gA12D13A12J23C15B12K67A1aD37F1bD4hA17A15H2hB27A18B2aL28A15L22B15J2aD15I38B24H17F5hC28B23C27A19A1fM23H17G32J49H14A2mB1oA13A1qA12A1aC1gC1uA1pA1iF29C1hE14H25A18A1cB22C2vB1tE1nD1aE2cB13A15D18A1eB25B18C1cA1fE2dC1kB37C15L23A25A1dB3dC1eD1fA1lB17A1bB28B1mB34B1aD2hB11cC13D2nA1rB3pA1sA14C1mA122A18C2jD19B2hB2aC1iA19D117C11kA19E1hF111A149B12vD1sD113J262D17B12E2iC2rA16G21oA1mB11nA1jA1gB115D2sC1aB14C1bD3aB1qB16B18C29F2tF28B11jJ26D2zA23C15F49A15I2oA17B22bC1nD24C28K4bF13F33B2cB2hG4bA1fA1eD1bC28F35A1eG19H46B1iA16D2qD12A1eG1cG28D14A1jF2dA29B12qG1gB1aC22B1qA12D15C1hD26H18D26F2mA17A15C24A13A1hC1cB1bJ110D26B1wA12E1rA11qB18F23C18A118B18A1iC1fF1gA1aC11qA19F1fA17B1pB16A1fA17A1qC1fA14A13C37F12B2pB2gC17C25J4gF15A1bC18E36C1kD17C25E1lL2eD13C29A26D13C1aB1fE28C18F34F3bH14A13H26B1fI32B15A16C2hE13C33B18B1cB1aC24G26E2cA15D2fA1dB15D39F2iC15C44B1iD25B35A1bD19F26A1dC2fF19A18A1fB2cA15B29C2mE39A13D4mB17F29B13F39C14A1cA13C2cA1eE2cA15B211A1nD25B15C1fF26A14A14A15D4bH212B1eB15C1nE27B4zA22C19A12A12L24D57G2dD5fA2bF2eB1eB1eA1cA1sA1wC1cE1jE1xD2fA1rB2oA1aI21gE2gA1bC1fA13D2qB11pC1qA1sA2gB11kF13C1pB2vC1rD3qC2rC2sA14yA13mA13D1oC33A1qA1uA11sA1dD3mB1dD26B15B3mB19H1hC18A16B1kA11cB1qC1kA1nF12J3nC1qB1jB1kD26C25C2fB17A1aA12C2bF38A1iA12G18E24B1dB2uA1hA2cA17C25A1cC12C12D2fG3aF3iC1nD26A1cC17A17B15B14C1lC22A17A1gD13A14A15B1bC2vG3cD1gK29B16A1jL25E1dC14C12D38E2rB19A1jA13A19F1aC2sC2aF27D35B1bB1gA15A13I47B18C19F13G26C2gF125A1iL33C1nH13B17G16C14N45E25F2mA18J1dB1sC34H15K28F15D1bA22H2dI15A18H3dM32B19A19D2dC111K2fC13A210B26B14A15D23D2aC35A15D23D24D4aA14J37C35C5cA36F28F2cJ43G4cC2dB2aA29A27D2iA1aD2dB15C13G26H5fB2cF26C2cG47M26A2cG29E47A17A24B1cD28B26M43B19C18D3bC26B19E2bH47B14F29C4fA1cE24E2bE2lA16B1eA15H14B1jD1aE16C2aB2lD2qI16A1bD2aB27";
+const LAND = "-596,-800,-3,-5,-3,-5,-21,1,-22,0,-12,3,0,1,-6,2,23,0,21,-1,8,4,5,4,10,-4|-1592,-795,-19,-1,-13,3,-6,4,-1,0,-6,3,6,4,19,-2,10,-3,7,-3,3,-5|-452,-780,13,-5,4,-6,1,-4,1,-5,-16,-3,-16,-3,-19,-2,-21,-2,-24,0,-13,4,2,4,21,3,9,3,6,4,5,4,6,3,6,5,5,0,15,2,15,-2|-1212,-735,13,-2,12,2,-6,-3,-9,-3,-14,1,-10,3,2,4,12,-2|-1256,-735,16,-4,-6,1,-13,1,-14,2,7,3,10,-3|-990,-719,11,-2,11,1,6,-5,-8,1,-12,-1,-12,1,-14,-1,-10,2,-5,4,6,2,13,-2,14,0|-685,-710,2,-4,-2,-4,-3,-4,-12,-1,-11,-2,-13,0,5,4,-12,-1,-11,-2,-8,3,0,4,11,4,7,1,11,0,3,5,1,4,0,8,5,5,9,1,6,-4,2,-3,4,-5,4,-4,2,-5|-1800,-847,1,0,8,6,18,-4,2,1,2,1,4,1,3,1,1,0,2,0,1,0,14,-4,13,4,2,0,29,2,10,-2,5,-1,15,-4,28,-2,23,-3,38,-3,29,3,43,-2,24,-3,26,3,28,3,2,4,-39,1,-33,2,-8,4,-27,2,2,5,4,4,3,3,-2,5,-16,2,-8,4,-15,3,24,-1,23,2,15,-3,17,3,17,3,8,4,-4,4,-13,2,-14,3,-21,1,-18,1,-19,1,-7,4,-13,3,-8,4,-3,11,5,-1,9,-3,17,1,16,1,8,-4,16,1,13,2,13,3,11,3,15,1,0,4,-4,4,3,3,13,2,6,-3,15,2,12,2,14,0,13,1,14,3,11,2,12,2,8,-1,7,0,14,1,14,-2,13,0,14,2,13,-1,15,-1,14,0,14,0,15,0,14,0,10,3,12,2,13,-2,12,1,11,4,6,-3,4,-4,6,-3,10,3,12,-4,14,-1,11,-3,15,1,12,2,15,-1,14,-1,14,-2,5,4,-7,4,-5,3,-12,1,-6,4,-2,3,-4,8,8,-2,13,0,13,0,12,-1,10,-3,4,-4,14,0,13,1,13,2,13,1,10,-2,13,1,9,7,8,-4,11,-2,13,1,8,-4,13,0,12,-1,12,-3,8,4,4,4,10,-4,14,1,10,-2,7,-4,13,1,10,2,11,3,12,1,14,2,13,1,9,2,6,3,3,5,-2,4,-3,4,-3,3,-3,4,-3,4,0,4,1,4,4,3,4,5,2,3,-2,5,-1,4,4,4,6,3,6,4,7,3,8,3,4,4,6,3,6,3,10,0,6,3,7,2,8,1,7,3,6,3,8,1,6,-2,-4,-4,-10,-3,-4,-2,-8,2,-8,-1,-7,-2,-7,-3,-5,-3,-1,-4,0,-4,5,-3,-7,-2,-9,-1,-6,-3,-6,-3,-6,-5,-2,-4,4,-4,5,-3,8,-2,8,-3,4,-4,2,-4,3,-4,5,-3,3,-4,1,-9,3,-4,1,-4,3,-4,-1,-5,-6,-4,-6,-3,-13,-2,-4,-3,-7,-4,-15,-3,-13,-2,-12,-2,-14,-2,-8,-4,-16,-1,-18,1,-16,-1,-16,0,3,-4,15,-2,11,-3,6,-3,-11,-3,-17,1,-14,-3,-1,-4,0,-4,12,-3,2,-4,12,-4,22,-1,18,-3,14,-3,18,-3,25,-2,24,-2,17,-3,19,-4,10,-4,5,-4,12,3,16,3,18,3,21,3,17,3,25,0,25,-1,20,-3,6,4,14,3,26,1,19,2,19,2,21,1,22,2,15,3,-7,3,-4,4,0,3,-19,0,-21,-2,-19,0,-3,4,1,8,5,2,14,2,17,2,12,3,12,3,9,4,14,2,13,1,7,1,16,1,14,1,13,2,12,2,11,3,14,3,9,3,9,3,3,4,-11,2,4,4,7,4,10,1,11,3,10,3,8,4,5,5,7,2,12,0,5,-4,12,0,0,4,5,4,11,-1,3,-4,12,-1,13,2,12,1,11,0,5,-4,11,3,10,2,11,1,11,1,11,3,11,1,8,3,6,3,8,-2,10,1,8,-5,5,-3,12,2,4,4,10,2,13,0,4,-4,8,4,11,1,12,0,11,0,11,-1,11,-1,4,-3,7,-3,11,2,11,0,12,0,11,0,10,2,11,1,8,3,10,1,10,1,8,3,5,6,6,3,10,-2,4,-3,9,-2,10,0,7,-3,7,-3,11,3,3,4,9,2,11,3,9,1,12,2,8,2,8,3,8,2,9,-1,9,3,7,3,9,0,9,2,1,4,9,3,8,1,10,2,9,1,9,-1,10,-1,8,-2,1,-5,8,-3,6,-3,12,-1,7,-3,8,-3,10,0,8,2,9,4,9,-2,10,-1,9,-2,10,0,10,0,8,-11,0,-2,-1,-5,-10,-2,-8,-4,1,-4,12,0,-2,-4,-5,-3,-5,-5,8,-3,12,-1,11,2,6,4,3,4,6,3,6,3,2,3,6,5,6,1,11,1,10,1,10,1,5,4,3,4,7,4,10,2,8,2,6,4,6,1,7,2,10,-1,9,1,10,1,11,0,7,2,5,7,4,-3,4,-5,9,-1,9,-1,10,1,10,-1,9,0,7,1,8,-1,8,-2,9,2,11,0,9,1,10,-1,7,3,5,3,7,3,12,7,7,-1,7,-3,7,-3,13,-6,10,-1,9,0,11,2,10,1,9,3,6,3,12,0,7,2,8,-2,5,-3,7,-3,11,0,7,-2,12,-3,12,-1,11,1,8,3,6,3,9,1,9,-1,11,-1,9,1,9,0,9,-1,9,-1,9,2,11,2,10,0,11,0,10,1,9,1,2,5,1,4,6,-3,2,-4,3,-4,4,-4,9,-2,11,1,13,0,9,1,13,0,10,0,13,0,11,-1,7,-3,-2,-4,6,-3,11,-2,11,-3,13,-2,14,-1,10,-2,11,0,7,3,9,-2,7,-3,9,-3,12,-1,12,-1,5,-4,11,-2,8,-4,11,-1,11,0,11,-1,12,0,12,0,11,-2,11,-2,10,-2,7,-3,-1,-4,-5,-3,-5,-5,-3,-3,-5,-5,-13,-1,-6,-4,-13,-2,-5,-4,-6,-3,-8,-4,-4,-4,-2,-3,-1,-5,0,-4,6,-4,2,-3,4,-4,19,-1,4,-5,-18,-1,-15,-2,-19,-1,-9,-5,-2,-5,-4,-4,-5,-3,13,-4,5,-4,9,-4,12,-3,14,-3,15,-3,23,-3,5,-5,29,-2,2,-1,7,-3,28,2,23,-3,-3583,-2|-678,-538,13,-7,14,-2,-4,-5,-10,0,-5,3,-3,-4,-8,-3,-11,1,-8,3,-10,1,-13,6,-10,5,-14,12,9,-2,14,-7,13,-4,5,5,3,7,10,4,7,-1,3,-5,5,-7|-585,-511,8,-4,-3,-4,-14,-3,-4,4,-9,-5,-5,5,12,5,8,-2,7,4|703,-497,-16,-1,0,6,2,4,0,2,7,-3,9,-2,1,-2,-3,-4|1454,-408,10,-3,5,1,8,2,6,-1,1,-12,-4,-3,-1,-8,-3,3,-7,-7,-2,0,-7,1,-6,8,-1,7,-6,8,0,5,7,-1|1730,-409,2,-4,8,4,2,-4,0,-5,-3,-4,-7,-8,-5,-4,4,-5,-8,0,-8,-3,-3,-7,-6,-10,-8,-5,-5,-2,-9,0,-6,3,-11,1,-2,3,5,8,13,10,6,2,8,3,8,6,6,5,5,7,4,3,1,5,7,5,2,-4|1746,-362,7,-10,1,7,4,-3,2,-8,8,-3,6,-1,6,4,5,-1,-2,-9,-3,-6,-8,1,-3,-3,1,-5,-1,-2,-4,-5,-5,-7,-8,-4,-1,3,-4,1,5,8,-3,6,-11,4,1,4,7,3,1,8,0,6,-4,7,0,2,-5,4,-7,9,-5,7,4,0,6,-5,7,-3,3,-9|1671,-222,-4,-2,-5,3,-7,4,-7,6,-6,7,-2,3,5,0,5,-4,5,-3,3,-3,8,-6,5,-5|1784,-173,3,-3,-1,-6,-7,-1,-5,1,-1,5,4,3,4,-1,3,2|-1800,-166,3594,-2,-7,-2,-1,4,5,2,3,0,-3594,3,2,1,-1,-5,-1,-1|1678,-165,-3,-1,-3,4,0,3,6,-6|1671,-149,2,-8,-3,1,-2,-1,-1,3,-1,8,5,-3|501,-136,1,-12,3,-4,-1,-5,-2,-3,-3,6,-2,-3,2,-8,-1,-4,-3,-2,-1,-9,-4,-11,-5,-14,-6,-19,-4,-14,-4,-11,-8,-3,-9,-4,-6,3,-8,3,-2,5,-1,9,-4,8,0,7,1,8,5,1,0,4,5,7,1,7,-3,4,-2,7,0,9,3,5,1,7,5,0,6,2,4,2,4,0,6,6,8,6,3,5,-1,4,4,-1,5,7,1,6,3,5,3,-5,3,-4,3,-7|1436,-138,3,-7,7,3,3,-4,5,-4,-1,-4,2,-9,1,-5,3,-1,3,-9,-1,-5,3,-7,11,-5,7,-5,6,-4,-1,-2,6,-7,4,-10,4,2,4,-5,2,2,2,-11,7,-6,5,-4,8,-8,2,-8,1,-5,-1,-7,5,-8,-1,-9,-2,-5,-2,-9,0,-5,-2,-7,-5,-10,-7,-4,-4,-8,-3,-5,-3,-9,-4,-5,-2,-7,-2,-7,1,-3,-6,-4,-11,0,-9,-4,-5,-4,-6,-4,-8,4,-6,2,1,5,-5,-2,-9,-7,-9,3,-5,1,-6,1,-10,3,-6,6,-2,8,-2,5,-5,4,-10,1,3,5,-2,7,-5,-7,-9,-2,6,6,1,6,4,5,-1,7,-8,-9,-6,-3,-4,-8,-8,4,0,6,-6,7,-5,4,2,2,-13,6,-7,0,-10,5,-18,-1,-13,-3,-11,-4,-10,1,-10,-5,-9,-3,-2,-5,-3,-4,-9,0,-6,-1,-9,2,-7,-1,-7,-1,-6,-5,-3,0,-5,-2,-5,-4,-7,1,-7,0,-10,6,-6,2,0,6,5,1,2,2,0,4,1,7,-1,6,-5,10,-2,6,0,5,-4,7,0,3,-4,4,-2,8,-5,8,-2,4,5,-4,-4,9,5,-3,3,-4,0,5,-5,8,-1,3,-2,3,1,6,2,2,1,5,-1,6,4,7,1,-7,4,7,9,3,4,4,8,4,5,1,2,-1,8,3,6,1,2,3,3,0,5,0,11,3,5,5,3,5,5,5,1,4,0,5,7,9,4,-9,5,2,-4,5,3,5,5,-2,1,7,5,5,3,4,5,2,0,3,4,-1,0,2,5,1,5,2,7,-5,6,-6,6,0,6,-1,-2,6,5,8,4,2,-1,3,4,6,6,3,5,-1,9,2,0,5,-8,3,6,2,6,-3,6,-4,8,-2,3,1,6,-3,6,2,4,0,2,1,5,-5,-3,-5,-4,-4,-3,0,1,-4,-3,-5,-4,-5,1,-3,8,-6,8,-3,5,-3,7,-6,3,0,5,-3,2,-3,9,-3,7,3,2,6,2,4,1,6,3,8,-1,4,0,3,-1,6,2,8,1,2,-1,3,2,5,2,6,0,3,4,3,3,-5,1,-6,2,-1,1,-4,3,-5,1,-6,0,-4|1621,-105,3,-3,-7,0,-4,6,6,-2,2,-1|1207,-102,-4,-1,-13,7,9,2,5,-3,4,-3,-1,-2|1609,-99,-4,0,-6,1,-3,2,1,4,7,-2,3,-2,2,-3|1617,-96,-2,-2,-7,9,-2,6,3,0,4,-8,4,-5|1244,-101,-8,-3,-1,2,1,3,4,6,10,4,1,2,8,3,7,0,4,1,3,-1,-3,-3,-11,-4,-8,-3,-7,-7|1179,-81,4,-3,6,1,2,-4,-11,-2,-7,-1,-6,0,4,5,5,1,3,3|1229,-81,-1,-6,-15,-2,-14,1,0,4,8,2,6,-3,7,0,9,4|1599,-83,0,-2,-8,4,-5,3,-4,4,2,1,4,-3,8,-4,3,-3|1575,-73,-2,-1,-4,2,-4,4,0,2,6,-4,4,-3|1086,-68,19,-1,3,4,18,-4,4,-7,15,-2,12,-6,-11,-4,-11,5,-9,-1,-11,1,-9,2,-12,4,-7,1,-4,-2,-18,4,-2,5,-9,0,7,10,12,-1,8,-3,4,-1,1,-4|1347,-62,-5,-7,-1,8,2,3,2,4,2,-3,0,-5|1559,-68,-3,-1,-4,4,-5,6,-2,8,2,1,1,-3,3,-3,4,-6,5,-3,-1,-3|1520,-55,-5,-1,-2,-2,-5,-3,-6,-2,-5,0,-8,3,-6,3,1,3,9,-2,5,1,2,5,1,0,1,-5,6,0,3,4,5,3,-1,6,6,1,2,-2,0,-6,-3,-6|1272,-35,-3,-3,-7,2,-2,4,10,1,2,-4|1305,-31,3,-8,-8,5,-8,0,-6,0,-7,0,2,6,13,0,11,-3|1531,-45,-3,-3,-2,6,-2,4,-4,3,-6,5,-7,3,2,2,6,-3,3,-2,4,-2,4,-5,4,-3,1,-5|1341,-12,3,-16,11,-6,8,11,11,6,9,0,9,-4,7,-3,11,-2,17,-7,19,-6,7,-5,5,-5,2,-6,16,-6,3,-5,-9,-1,2,-7,9,-6,6,-11,6,0,0,-4,7,-2,-3,-2,11,-4,-1,-3,-7,-1,-2,3,-9,1,-10,2,-8,6,-5,6,-6,8,-13,5,-8,-3,-6,-3,1,-8,-8,-3,-5,1,-11,1,-9,8,-10,2,-2,-3,-13,0,4,8,7,3,-3,11,-5,8,-19,9,-8,0,-15,10,-3,-5,-4,-1,-2,4,0,4,-8,5,11,3,7,0,-1,3,-15,0,-4,6,-9,2,-4,5,14,2,5,3,16,-4,1,-4|1252,14,-8,-10,-7,-2,-10,2,-16,0,-9,-2,-2,-7,9,-9,6,4,18,4,0,-5,-5,2,-4,-6,-9,-4,10,-13,-2,-3,9,-12,0,-6,-6,-3,-4,3,5,8,-10,-4,-2,3,1,4,-7,6,1,10,-7,-3,1,-12,0,-14,-6,-2,-4,3,3,9,-2,10,-4,0,-3,7,4,7,1,7,5,16,2,4,9,7,8,-3,12,-1,12,0,10,7,1,-2|1287,11,-1,-8,-5,1,-1,-7,4,-5,-3,-1,-4,6,-3,13,2,8,3,4,1,-6,6,-1,1,-4|1058,-59,-11,0,-8,9,-13,8,-4,6,-8,8,-5,7,-8,14,-8,9,-3,8,-4,8,-9,7,-5,8,-8,6,-10,11,-1,5,6,-1,16,-2,9,-9,7,-7,6,-4,9,-11,11,0,8,-7,6,-8,7,-5,-4,-8,6,-4,4,0,1,-7,4,-5,7,-1,5,-7,-2,-12,-1,-16|1179,18,11,-9,-12,-1,-3,-7,0,-9,-9,-7,-1,-10,-4,-15,-1,3,-11,-4,-4,6,-7,1,-5,3,-12,-4,-4,5,-7,0,-8,1,-1,13,-5,3,-5,8,-1,9,1,9,6,7,7,-3,8,2,2,8,4,2,12,2,7,8,5,6,4,4,9,5,7,7,5,8,4,0,5,-5,1,-4,6,-3,9,-3,-1,-4,-7,0,2,-5,-7,-4,-6,-9,7,-9,-1,-5|1264,84,1,-6,0,-6,-3,-9,-4,10,-4,-5,3,-8,-3,-4,-12,6,-3,7,3,5,-6,4,-3,-4,-5,1,-7,-6,-2,3,4,8,6,3,6,4,3,-5,8,3,2,5,7,0,-1,8,8,-5,1,-5,1,-4|812,62,-9,-2,-4,8,-2,14,4,16,7,-5,5,-7,5,-11,-2,-10,-4,-3|-609,101,-9,-1,-2,1,3,3,0,4,6,1,2,0,0,-8|1240,103,-4,-4,-3,-6,-3,-3,-6,7,2,3,2,3,1,6,6,0,-2,-6,8,9,-1,-9|1185,93,-13,-9,5,7,7,6,6,7,5,10,2,-8,-7,-6,-5,-7|1219,119,6,-3,6,0,0,-4,-5,-5,-6,-3,0,5,0,5,-1,5|1255,122,3,-12,-8,3,0,-3,3,-6,-5,-3,0,7,-3,1,-2,6,6,-1,0,4,-6,8,9,-1,3,-3|1215,131,-2,-9,-5,5,-5,8,9,-1,3,-3|1213,185,6,-3,3,3,1,-3,-1,-4,3,-7,-2,-8,-6,-4,-2,-8,2,-8,6,-1,4,1,13,-5,-1,-6,3,-2,-1,-5,-8,5,-4,6,-2,-4,-7,6,-9,-2,-5,3,1,4,3,2,-3,3,-1,-4,-5,6,-2,4,0,10,4,-4,1,16,3,9,6,0|-656,182,-2,-2,-8,0,-6,-1,0,5,1,1,8,0,5,-1,2,-2|-769,179,-3,-2,-6,2,-5,3,1,3,4,0,2,0,7,-1,5,-2,2,-3,-7,0|-726,199,9,-2,1,2,8,0,6,-3,2,0,2,-3,6,0,-1,-3,5,0,5,-4,-4,-4,-5,2,-4,0,-4,0,-1,-2,-4,0,-2,2,-3,-1,-4,-7,-3,2,0,2,-7,2,-4,-1,-7,1,-4,-2,-6,3,1,4,10,-2,7,-1,4,3,-5,4,0,4,-6,1,2,3,6,0|1103,187,-8,-5,-8,3,-1,9,5,4,11,3,6,0,2,-4,-4,-4,-3,-6|-1555,191,-2,-2,-2,2,0,2,-2,4,1,1,1,2,0,2,0,1,1,-1,4,-1,2,-1,1,-1,3,-4,-4,-3,-3,-1|-1561,206,-3,0,-2,2,-1,1,1,1,3,-1,3,-1,-1,-2|-1568,212,0,-1,-5,0,0,1,5,0|-1577,213,-1,0,-3,0,-2,2,0,1,3,1,1,0,2,-4|-1593,220,-2,-1,-3,2,1,0,1,1,2,0,1,-2|-797,228,4,-4,10,1,3,-2,9,-6,6,-5,3,0,6,-2,-1,-3,8,0,7,-4,-1,-2,-7,-2,-6,0,-7,1,-15,-1,7,5,-4,3,-6,0,-4,3,-2,6,-6,0,-9,2,-3,2,-13,2,-4,2,4,2,-10,1,-7,-5,-4,0,-2,-3,-4,-1,-5,1,6,3,2,4,4,2,5,2,8,1,2,1,9,-1,8,0,9,-3|-775,238,-3,-1,-2,6,-4,3,2,6,3,0,4,-9,0,-5|1212,228,-5,-8,-5,8,-1,8,6,9,8,8,5,-3,-2,-6,-6,-16|-778,266,-11,-2,-1,4,5,1,7,-1,0,-2|-770,266,-2,-7,-2,1,1,5,-5,4,0,1,8,-4|1346,341,2,-3,-6,-6,-4,3,-5,-2,-3,-6,-6,3,0,5,5,6,6,-2,4,5,7,-3|346,357,-7,-5,1,-1,0,-1,-10,-4,-5,1,-2,4,4,0,1,0,1,3,8,0,9,3|237,357,5,-3,8,0,8,0,-1,-2,6,1,-1,-3,-15,-1,0,2,-12,2,2,4|155,382,-3,-8,1,-3,-2,-5,-8,4,-5,1,-14,5,2,5,11,-1,11,1,7,1|92,412,6,-7,-1,-13,-5,0,-4,-3,-4,3,0,12,-2,6,5,-1,5,3|1410,371,-4,-8,2,-5,-5,-7,-13,-4,-18,-1,-14,-11,-7,3,0,8,-18,-2,-11,-5,-12,0,10,-8,-7,-16,-6,-5,-5,4,2,9,-6,3,-4,7,10,3,5,6,10,6,7,6,20,3,11,-2,10,18,7,-5,15,10,5,4,7,12,-2,12,4,6,11,2,5,-14,0,-8,-9,-10,0,-11|96,422,-4,-8,-4,2,-3,7,2,3,7,4,2,-8|1439,442,7,-2,7,4,2,-11,-14,-3,-9,-10,-16,7,-5,-11,-11,0,-2,10,5,7,11,1,3,14,3,8,11,-11,8,-3|-637,465,8,-1,9,0,-5,-4,-4,0,-12,4,-3,3,4,3,3,-5|-618,491,-5,0,-13,3,-9,5,3,1,13,-3,11,-4,0,-2|-1235,485,-5,-1,-17,4,-3,4,-8,3,-2,3,-11,2,-3,5,0,3,11,-2,6,-2,9,-1,4,-4,5,-4,10,-4,4,-6|-561,507,-7,-9,7,3,6,-2,-3,-3,9,-3,4,3,10,-4,-3,-7,7,2,1,-5,4,-7,-5,-8,-4,-1,-7,2,2,8,-2,2,-12,-9,-6,0,7,5,-10,2,-10,0,-20,0,-1,3,6,4,-4,2,8,6,10,16,7,6,8,3,5,0,-2,-3,-5,-6|-1327,540,10,1,-4,-11,9,-8,-4,0,-6,4,-4,5,-5,3,-1,5,0,3,5,-2|1436,507,11,-17,-15,3,-6,-14,9,-11,0,-7,-8,6,-6,-7,-2,8,1,10,-1,11,2,7,1,14,-6,9,1,14,9,5,-4,4,5,2,2,-7,4,-10,-1,-9,4,-11|-68,523,-18,-6,-14,1,8,11,-5,10,14,8,7,4,9,1,10,-6,-5,-7,2,-7,-8,-9|127,556,-6,-8,-11,6,-1,4,15,3,3,-5|-1530,571,-10,-4,-5,3,-2,5,9,3,6,2,6,-1,5,-3,-9,-5|-30,586,-11,-10,10,1,11,0,-2,-8,-9,-9,10,-1,10,-13,7,-1,6,-12,3,-4,12,-2,-1,-6,-6,-3,4,-5,-9,-5,-13,0,-17,-3,-5,2,-6,-5,-9,1,-7,-3,-6,2,15,10,9,2,-16,2,-3,4,11,3,-6,5,2,7,15,-1,2,6,-7,6,-12,2,-3,3,4,4,-3,3,-6,-5,0,10,-6,5,4,10,8,8,8,0,12,0|-1656,599,-6,-1,-6,1,-7,3,10,2,8,-1,1,-4|-793,622,-4,-6,-4,1,-3,3,1,1,4,3,4,0,2,-2|-819,627,-12,-5,-7,0,-2,3,8,4,13,0,0,-2|-1717,638,6,-2,6,1,8,-3,10,-1,-1,-1,-7,-2,-8,2,-4,2,-9,-1,-2,1,1,4|-852,657,2,-5,5,2,6,-3,11,-3,12,-3,0,-5,8,1,7,-4,-9,-3,-15,3,-6,4,-10,-5,-14,-5,-4,5,-13,-1,8,5,2,8,3,9,7,0|-145,665,-2,-7,11,-7,-13,-7,-29,-7,-9,-2,-13,1,-28,4,10,4,-22,5,18,2,0,3,-21,2,6,7,16,1,15,-7,15,6,13,-3,16,5,17,0|-759,671,-11,0,-2,5,4,5,9,2,8,-3,0,-4,-1,-2,-7,-3|-1800,690,25,-8,26,-10,-1,-6,7,-3,-3,8,27,-2,20,-9,-10,-5,-16,-1,-1,-9,-4,-2,-9,0,-8,3,-13,3,-2,5,-10,1,-12,-1,-5,3,2,4,-12,-2,5,-5,-6,-4,3600,0,-13,-5,-13,1,9,-5,6,-8,5,-3,1,-4,-3,-3,-18,2,-28,-7,-9,-1,-16,-8,-14,-6,-4,-4,-14,7,-26,-8,-5,4,-9,-5,-14,2,-3,-7,-12,-10,1,-4,11,-2,-1,-14,-10,-1,-4,-8,4,-4,-17,-6,-4,-11,-15,-2,-3,-11,-14,-9,-4,7,-4,15,-6,22,5,14,9,6,0,4,16,3,17,12,18,10,18,8,8,15,-12,-1,-6,-9,-26,-11,-8,13,-26,-4,-25,-16,8,-7,-22,-2,-15,-1,0,7,-15,2,-13,-5,-30,1,-33,-3,-32,-19,-39,-24,16,-1,5,-6,10,-2,6,5,11,-1,14,-11,1,-9,-8,-10,-1,-12,-4,-16,-15,-14,-4,-7,-13,-12,-14,-11,-6,-6,-14,-6,-6,0,-6,5,-14,-7,-1,-4,-4,1,-4,-4,-3,-3,0,-7,-5,-2,-2,-2,-4,-3,-6,-2,-5,-2,0,-5,-1,-1,4,-1,6,-5,8,-12,3,-6,0,-12,-4,-5,-9,-2,-8,-4,-9,-1,-1,5,2,8,-5,10,8,2,-7,8,-5,2,-1,-1,-3,-1,-1,2,-2,0,-3,2,3,4,2,2,-1,1,3,6,-1,2,-6,1,-4,2,-14,-3,-8,-4,-10,-3,5,5,-2,4,8,6,-6,5,-8,-3,-12,-7,-6,-6,-10,-1,-5,-5,6,-6,8,-2,0,-5,8,-2,11,7,9,-4,7,0,1,-6,-14,-2,-5,-6,-9,-5,-5,-7,10,-5,4,-10,6,-9,7,-8,0,-8,-6,-2,2,-6,6,-3,-2,-8,-2,-8,-6,-1,-7,-10,-8,-14,-9,-12,-14,-9,-14,-8,-11,-1,-6,-5,-4,3,-6,-4,-14,-5,-10,-2,-4,-11,-5,0,-3,7,3,4,-14,3,-5,-1,-13,-9,-8,-9,-2,-7,7,-11,10,-13,9,-6,6,-8,4,-19,-1,-17,-8,-7,-12,-6,-8,-9,-12,-9,-4,6,3,7,-8,6,-8,1,-4,6,-5,10,-9,4,-9,0,2,8,-9,0,-1,-11,-5,-15,-3,-8,0,-8,7,0,4,-9,2,-9,5,-5,6,-2,5,-5,3,-1,6,-6,4,-6,0,-7,-1,-5,1,-3,1,-6,4,-3,3,-9,0,-3,-7,-1,-9,8,-12,8,-1,5,-6,6,-1,9,-4,5,1,7,-2,5,-4,3,-2,5,-5,6,-5,5,-2,-6,-2,5,2,7,3,9,-1,8,3,7,-4,6,1,11,-4,5,-3,12,-2,13,-4,8,-7,-5,-11,-7,-6,1,-6,2,3,13,-2,9,-8,12,2,3,-6,2,-7,8,-3,5,-1,5,-2,5,-4,6,-9,0,1,-4,-3,-6,-5,2,-1,-1,-3,1,-4,1,-1,-4,-7,0,-12,-2,0,-8,-5,-5,-14,-7,-12,-12,-7,-6,-10,-7,0,-4,-5,-3,-9,-3,-5,-1,-3,-8,2,-13,1,-8,-4,-9,0,-17,-6,-1,-4,-8,3,-3,-9,-3,-4,-6,-4,-3,-9,9,-5,14,-4,10,-3,5,-5,9,-3,13,-2,6,-9,14,-4,19,-3,13,0,12,-2,10,-14,-6,-7,1,-13,12,4,4,-3,3,-11,9,-8,2,-3,8,-7,7,-19,-2,-16,0,-14,-1,-19,3,-11,2,-11,1,-4,13,-5,1,-8,-1,-10,-5,-12,3,-10,8,-10,3,-6,9,-8,13,-5,-1,-7,3,-3,-4,-6,1,2,-5,-1,-2,3,-7,4,-9,5,-2,2,-4,7,-4,0,-4,-1,-4,1,-3,3,-3,2,-3,1,-2,-1,7,3,5,3,1,3,-3,0,-6,-2,-6,2,-4,2,1,0,-3,8,2,8,0,6,-1,7,7,7,6,7,7,3,3,1,-1,-1,-4,-1,-2,1,-8,4,-7,6,-3,7,-2,6,-1,5,-6,2,-3,4,-2,0,-2,-4,-6,-1,-3,-4,-3,-4,-7,-5,1,-2,-3,-1,-5,1,-6,-1,-2,-5,0,-6,-3,-1,-5,-2,-2,-6,0,-4,-3,0,-4,-5,-3,-6,1,-6,-3,-5,0,-7,-3,-2,-5,0,-3,-10,-4,-16,-5,-9,-7,-5,-1,-3,1,-5,-4,-7,-2,-8,-1,-3,0,-2,-3,-3,0,-1,-3,-5,0,-3,-1,-7,0,-3,6,1,6,-2,3,-2,7,-3,4,2,1,-1,4,1,2,0,4,-1,5,-4,3,0,4,-5,3,-6,9,-3,8,-7,7,-4,1,-7,10,-1,7,1,6,-6,11,-5,4,-5,2,-3,6,0,2,-3,5,-3,2,-3,8,-7,8,-5,7,-5,0,2,5,0,4,2,4,-1,1,-3,-4,-2,-8,-2,-5,-3,-2,-3,4,-5,4,-7,15,-1,-1,4,-11,6,-10,8,-16,4,-5,3,-6,9,-11,-2,-1,0,-7,12,-9,2,-2,3,-10,-2,-2,1,-10,4,-12,4,-2,5,-4,6,-12,3,-9,5,-5,14,-9,5,-6,6,-6,3,-3,5,-3,2,-3,0,-4,-6,-3,4,-2,4,-2,2,-4,4,-5,5,0,10,3,10,1,9,3,5,1,4,2,5,0,4,0,4,2,6,1,4,3,4,0,0,-3,-1,-5,0,-6,-2,-3,-2,-11,-5,-11,-6,-13,-9,-15,-9,-11,-11,-13,-10,-9,-15,-9,-10,-8,-11,-12,-2,-5,-2,-3,-7,-4,-3,-4,-3,-1,-2,-7,-3,-4,-2,-6,-4,-4,-5,-12,1,-6,6,-3,1,-3,-3,-6,1,-3,-1,-5,3,-6,5,-10,3,-2,2,-5,-1,-10,2,-8,0,-16,2,-5,-3,-7,-4,-7,-6,-6,-10,-4,-11,-5,-11,-11,-4,-1,-7,-8,-4,-2,-1,-7,5,-8,2,-5,0,-3,2,0,-1,-10,-1,-4,2,-2,-1,-4,-5,-4,-8,-3,-12,-6,-4,-3,1,-4,2,-1,-1,-5,-2,-8,-1,-8,-3,-5,-7,-5,-2,-1,-4,-5,-3,-5,-5,-7,-12,-11,-7,-6,-7,-4,-11,-4,-5,-1,-1,-2,-6,1,-5,-2,-11,2,-6,-1,-4,0,-11,-4,-8,-1,-6,-4,-5,0,-4,3,-3,1,-5,4,0,-1,-2,2,1,6,-4,7,3,2,0,7,-6,10,-5,8,-8,13,-7,8,-4,7,-2,10,-3,7,-3,15,0,12,-1,6,-4,4,-5,8,-6,12,-2,7,-8,9,-1,8,-1,6,2,9,3,9,1,5,3,9,2,4,6,6,3,5,1,7,0,6,-3,3,-3,6,-2,6,0,2,3,4,-3,10,-2,7,-5,6,1,2,-1,3,-3,8,-8,10,-10,10,-7,9,-6,10,0,3,2,3,3,8,2,7,-2,2,3,11,2,8,-4,6,-5,2,-2,5,-2,1,0,3,-10,-4,-4,1,-4,-3,-8,1,-5,6,-4,7,-7,7,-7,0,-9,0,-8,-2,-8,-2,-16,-6,-6,-3,-9,-3,-9,3,-4,0,-7,2,-6,0,-12,-2,-7,-3,-10,-4,-2,1,-3,0,-10,4,-9,8,-9,5,-6,7,-3,1,-7,4,-5,5,-2,4,-1,7,-5,6,-4,4,-2,1,-3,2,-1,5,-1,2,-3,1,-6,5,-4,0,-2,3,0,2,-3,2,-1,2,-1,8,1,4,-4,8,-5,3,4,2,5,7,2,5,-1,6,3,5,2,9,-2,10,-1,5,1,5,-2,5,-6,4,1,4,0,5,4,3,3,5,0,3,3,7,6,7,3,1,3,6,0,5,4,7,6,3,7,10,5,4,9,1,8,7,5,3,8,8,-2,13,4,8,1,6,6,6,10,5,8,4,7,10,3,7,7,0,6,-5,10,1,10,-2,4,0,10,5,11,2,6,4,10,3,17,2,16,1,5,-2,10,4,10,0,4,-2,7,0,11,5,7,-2,0,-5,8,4,1,-2,-5,-5,0,-5,3,-2,-1,-9,-6,-5,1,-5,6,0,2,-5,4,-2,12,-3,4,1,8,-2,13,-4,5,-9,9,-2,14,-4,11,-5,5,2,5,5,-3,8,3,4,8,5,6,1,14,-2,3,-4,4,0,3,-2,10,-1,3,-3,13,0,10,-3,9,-3,5,-1,8,3,4,3,9,1,7,-2,3,-5,2,4,8,-3,8,0,5,2,3,3,-1,1,3,5,2,7,1,3,4,8,5,7,-1,8,2,4,-3,5,4,4,-6,-1,-9,2,-7,-6,-15,-1,-8,5,-11,1,-2,-4,-7,-2,-10,6,-11,0,-6,10,-7,5,5,8,-6,5,11,9,15,1,4,7,19,-1,12,6,12,3,17,0,17,-7,14,-4,12,2,9,-1,12,5,1,5,-2,6,-6,4,-6,1,-3,3,-13,9,-12,4,-8,5,7,2,8,8,-5,4,14,4,0,3,-9,-2,-8,-1,-6,-3,-10,-1,-8,-3,0,-6,5,-3,10,1,-2,-4,-11,-2,-13,-5,-6,2,2,4,-10,3,1,2,10,4,-3,2,-16,2,0,4,-10,-1,-3,-6,-8,-7,0,-3,-5,-2,-3,1,-2,-12,-6,-4,-3,-7,3,-6,1,-4,9,-3,-2,-2,-12,-1,-4,-3,-8,-5,-4,4,1,2,-7,1,-5,0,-12,-2,7,-6,-5,-1,-6,0,-5,5,-2,-2,3,-6,5,-5,-4,-2,5,-5,5,-3,0,-5,-9,2,3,-5,-6,-1,4,-9,-7,0,-8,4,-4,8,-2,7,-4,5,-5,5,0,3,-2,1,0,2,-6,4,-1,4,1,7,1,3,-1,2,-2,1,-3,3,-5,2,-9,3,-6,4,-9,3,-8,7,2,1,-5,4,0,4,-6,1,-3,-4,-3,3,0,4,2,1,-8,1,-8,-3,1,-5,-1,-3,3,-5,9,-5,5,-8,11,-8,8,0,3,-3,-3,-2,9,-3,7,-3,9,-5,1,-2,-2,-4,-6,5,-8,1,-4,-6,7,-4,-1,-5,-5,-1,-5,-8,-4,-1,0,3,2,6,2,2,-4,5,-3,5,-4,2,-3,4,-6,2,-5,4,-7,1,-8,4,-9,7,-7,5,-3,10,-5,1,-8,4,-5,-2,-6,-4,-4,-1,-9,-6,-19,3,-15,-3,-1,-6,0,-6,-9,-7,-13,-2,-1,-3,-6,-6,-4,-8,4,-6,-6,-4,-2,-7,-7,-2,-7,-7,-13,0,-10,0,-6,-4,-4,-4,-5,1,-3,4,-3,5,-10,2,-4,-3,-5,2,-5,-1,2,8,-1,6,-5,1,-2,3,1,7,4,4,0,4,2,6,0,4,-2,3,0,4,0,7,-4,4,14,7,12,-1,14,0,11,-2,8,1,16,-1,5,6,2,20,-10,11,-8,5,-15,4,-1,7,13,2,17,-3,-3,12,9,-5,23,8,3,8,9,2,8,2,5,3,9,15,14,4,8,0,2,2,8,0,2,-2,7,5,-2,4,-1,6,-4,5,0,10,2,3,2,3,9,1,4,2,8,3,-1,-5,-2,-3,1,-3,5,-1,-2,-4,-3,1,-8,-7,3,-5,0,-4,10,-2,0,-4,11,2,5,3,11,-4,5,-3,7,3,16,4,12,4,10,-2,1,-3,10,0,2,5,14,3,-2,8,0,8,5,6,9,4,8,-8,8,0,2,8,1,6,-3,-1,-7,3,-1,6,13,3,13,1,10,-2,11,1,11,5,-10,5,-18,-1,-18,-3,-16,-3,-6,6,-10,3,2,10,-4,9,4,6,9,6,23,11,7,2,-1,4,-14,5,-17,-3,-10,-7,2,-6,-16,-8,-20,-9,-7,-14,7,-7,10,-5,-9,-11,-11,-3,-4,-17,-5,-9,-12,1,-6,-8,-12,0,-3,9,-8,11,-8,15,-6,6,-20,-12,-13,-2,-14,5,-4,11,-3,23,9,6,27,9,19,10,19,14,24,19,16,8,28,12,22,5,16,-1,15,8,19,0,18,2,31,-7,-13,-3,11,-6,10,3,17,-6,27,-2,38,-12,8,-4,0,-7,-11,-5,-16,-3,-45,8,-7,-2,16,-7,1,-15,13,-3,8,-2,1,4,-6,5,7,3,24,-6,8,3,-6,7,23,10,9,-1,10,-3,5,7,-8,6,5,6,-7,6,28,-4,5,-5,-12,-1,0,-6,7,-3,16,2,2,6,21,5,35,9,8,-1,-10,-6,12,-1,7,3,19,1,15,4,11,-6,12,6,-11,6,6,4,29,-4,14,-3,36,-11,7,5,-10,5,-1,3,-12,1,4,4,-6,8,0,3,18,9,7,9,7,2,27,-2,2,-6,-10,-8,7,-3,3,-7,-2,-14,11,-6,-5,-7,-19,-14,11,-1,4,3,11,3,3,5,9,5,-6,5,4,7,-11,1,-2,5,8,10,-13,8,18,7,-2,7,5,1,5,-6,-4,-10,11,-1,-5,7,17,4,21,0,18,-6,-9,9,-1,10,18,3,24,-1,21,1,-8,6,12,6,11,0,20,5,26,2,3,2,27,1,8,-2,22,5,19,0,2,5,10,4,24,4,17,-3,-14,-3,23,-1,2,-5,10,2,29,0,22,-5,8,-4,-2,-5,-11,-3,-26,-5,-8,-3,12,-2,15,-2,9,2,5,-7,5,3,16,2,32,-2,2,-5,42,-1,1,7,21,-1,16,0,16,-6,5,-6,-6,-4,12,-8,16,-4,10,10,16,-4,17,3,19,-4,7,3,17,-1,-8,9,14,4,90,-6,9,-6,26,-8,40,2,20,-1,8,-4,-1,-8,12,-3,14,2,18,1,18,-2,19,1,18,-9,12,3,-8,7,5,4,31,-3,21,1,29,-5,-3586,-4;491,413,5,-7,5,-1,3,-2,-8,-1,-2,-8,-2,-4,-3,-2,0,-5,3,-7,9,-2,7,-5,15,-2,15,3,1,2,-2,7,2,11,-8,3,3,7,-7,0,2,9,10,-3,8,4,-7,6,-3,5,-8,-2,-1,-8,-3,7,-1,2,3,4,-2,4,-12,3,-4,9,-6,3,0,3,10,-1,0,7,9,2,8,-1,2,9,-2,7,-10,-1,-8,2,-12,-4,-9,-2,-5,-6,-9,-2,-10,-10,9,-9,-1,-7,11,-12,5,-5|-956,691,-7,-3,-13,3,-8,-1,-14,4,9,3,7,4,10,-2,6,-2,3,-2,7,-4|-1800,715,3600,-7,-11,0,-2,3,-3587,4|-1800,715,1,1,9,0,14,-3,-1,-2,-10,-2,-13,-1,0,7|-905,695,0,-10,13,8,12,-7,-3,-7,10,-7,10,7,7,9,1,11,14,-1,15,-1,13,-5,1,-5,-8,-6,7,-5,-1,-5,-19,-7,-14,-1,-11,3,-3,-5,-9,-9,-3,-4,-12,-7,-14,-1,-8,-4,-1,-6,-11,-2,-13,-8,-10,-11,-4,-8,-1,-12,15,-1,4,-10,5,-7,14,2,19,-4,10,-4,7,-5,12,-3,11,-4,16,-1,11,-1,-1,-8,3,-10,7,-11,15,-10,8,3,5,11,-5,15,-7,6,16,4,11,7,6,7,-1,7,-7,9,-12,7,12,11,-5,9,-3,15,7,3,17,-3,10,-1,9,2,9,-3,12,-6,3,-4,18,0,0,-9,3,-12,9,-2,7,-6,15,6,10,11,6,4,8,-9,13,-12,11,-12,-4,-7,13,-5,9,-6,16,-3,7,-3,4,-8,7,-2,4,-3,1,-12,-7,-3,-7,-4,-17,-3,-12,-9,-17,-1,-22,2,-15,0,-10,-1,-8,-7,-13,-4,-15,-14,-11,-9,8,2,16,13,21,8,15,1,9,-5,-9,-6,3,-11,3,-8,13,-5,17,2,10,11,0,-7,7,-4,-12,-6,-23,-6,-9,-4,-12,-8,-7,1,-1,9,18,8,-16,0,-11,-2,1,-3,-10,-5,-11,-3,-10,-3,-6,-7,-1,-1,0,-6,3,-5,4,0,-1,3,3,-2,-1,-3,-6,-1,-5,0,-8,-2,-4,0,-6,-1,-8,-3,15,2,3,-2,-14,-3,-7,0,0,2,-3,-3,3,-1,-2,-7,-7,-8,-1,3,-2,0,-3,3,2,-5,2,-2,0,-4,-3,-4,-5,-8,-1,1,3,6,-5,4,-2,8,-1,-4,2,-6,-7,1,7,-3,0,-9,3,-1,1,-3,2,-10,-7,-8,-10,-3,-7,-6,-5,0,-5,-4,-1,-3,-11,-7,-6,-5,-4,-6,-2,-7,2,-7,3,-8,5,-7,0,-5,4,-11,0,-7,0,-4,-3,-6,-3,-1,-5,1,-1,4,-4,3,-5,8,-5,8,-2,4,2,7,-2,5,-8,8,-4,2,-10,-5,-2,1,-5,5,-6,2,-11,-1,-9,1,-8,-1,-4,-1,2,-3,0,-4,2,-2,-2,-1,-4,1,-4,-2,-7,0,-7,6,-9,-1,-7,2,-6,-1,-9,-2,-9,-8,-10,-4,-5,-5,-3,-4,0,-7,1,-5,2,-3,-4,-9,-2,-7,-1,-14,-1,-5,2,-5,3,-5,2,-8,7,-7,2,-6,4,-5,11,-2,4,-5,9,3,7,1,8,2,6,2,6,4,3,6,0,8,2,3,7,3,11,2,8,0,6,0,3,-2,0,-5,-6,-5,-2,-7,2,-1,-2,-5,-2,-7,-3,2,-2,0,0,-1,2,-1,0,-2,-2,-5,1,-1,-1,-4,1,-1,-2,-5,-2,-2,-1,-1,-2,-3,3,-2,1,2,3,-2,1,0,2,2,3,0,1,-1,1,0,5,0,5,0,3,1,1,1,3,0,3,-1,2,0,2,1,5,-1,1,-1,3,-2,3,-2,4,-1,3,-3,-1,-1,-1,-2,1,-4,-2,-3,-1,-4,-1,-5,1,-2,0,-5,-1,-1,-1,-4,0,-3,-2,-2,1,-3,1,-2,3,-5,4,-4,5,-4,3,-4,0,-2,4,0,1,0,3,-2,5,1,4,2,6,2,3,3,6,0,-1,-1,6,-1,4,-2,4,-3,3,-2,6,-1,7,7,4,1,0,4,2,8,6,5,6,0,1,2,8,-1,8,5,4,3,4,4,4,0,3,-3,-2,-3,-1,-3,-5,-1,3,-4,0,-6,-5,-5,4,-8,4,0,3,8,-4,3,0,8,12,4,-1,4,4,4,3,-7,7,-1,7,-5,0,-3,9,-1,11,1,5,-4,8,-1,6,3,0,2,12,1,12,0,-8,-3,3,-5,8,0,8,-5,1,-8,5,0,4,-2,7,-4,6,-7,0,-5,4,0,6,-5,4,-3,12,-2,1,2,8,0,10,-2,4,-2,7,-2,11,-8,1,-4,4,0,2,-6,6,-17,5,-2,1,-7,-8,-8,3,-3,18,-1,0,-10,8,6,12,-3,17,-7,5,-5,-2,-6,12,3,19,-5,15,0,15,-8,13,-11,7,-3,9,0,4,-4,3,-12,2,-6,-4,-17,-5,-6,-14,-14,-7,-12,-7,-8,-3,-1,-3,-7,1,-19,-3,-15,-1,-7,-3,-4,-2,-13,-10,-13,-1,-10,-9,-5,-2,-6,-11,0,-15,-4,-8,-4,-11,-3,-11,-8,-9,-10,-1,-7,1,-6,-2,-10,-2,-5,-7,-5,-11,-18,-9,-8,-7,-4,-4,-10,-7,-6,-4,-6,-11,-6,-8,2,-5,-1,-9,5,-7,-1,-6,6,-1,-5,13,-9,-2,-7,7,-4,-1,-5,-9,-13,-15,-5,-20,-2,-11,1,2,-6,-2,-8,2,-5,-6,-3,-11,-2,-9,4,-4,-3,1,-10,7,-3,5,4,3,-6,-9,-3,-8,-6,-1,-10,-3,-5,-9,0,-8,-6,-3,-7,10,-7,10,-2,-4,-9,-12,-6,-6,-12,-9,-4,-4,-4,3,-11,6,-6,-4,1,-9,0,-4,-2,-9,-4,-2,-9,-4,-1,-12,4,-11,7,-12,5,-4,7,3,6,-5,6,-1,17,4,10,11,8,-15,3,9,8,3,17,12,-4,5,21,-7,3,-3,-13,-6,2,3,14,3,19,5,6,-3,10,-1,11,4,1,6,16,7,16,5,15,-3,15,3,8,-1,12,6,13,2,19,3,21,3,22,-1,16,-2,15,-10,5,-1,4,-19,10,-18,11,-8,7,-4,8,1,3,-8,13,-10,18,-9,20,-4,5,-4,7,-7,7,-8,4,4,4,-5,10,3,7,8,6,5,7,-2,5,-4,-5,-6,5,2,2,-1,9,3,2,2,6,4,7,-1,4,6,2,6,4,-1,3,4,1,-1,5,3,3,5,1,4,6,4,5,-4,3,2,6,-2,9,2,2,-2,9,-4,5,-3,3,-2,6,2,2,-2,1,-2,3,-5,3,-5,-1,-2,-3,-4,-3,-2,0,-1,-2,5,-6,-3,-1,-1,-1,-5,-1,-2,6,-1,-2,-3,1,-2,4,-4,1,-3,1,-4,0,0,-2,-2,1,-5,2,-2,3,1,1,0,3,-3,2,-4,2,-3,1,-1,3,-3,2,1,-3,-2,-2,-2,2,-4,1,-1,2,0,3,1,4,-2,1,2,2,-4,3,-4,4,-2,3,-5,4,-5,4,1,2,2,-2,1,1,-2,3,-3,1,-1,-3,-6,1,-3,1,-5,2,-5,0,-3,2,-5,2,-6,0,-5,2,-5,4,-12,11,-5,3,-8,3,-6,-1,-8,-3,-5,-1,-7,2,-7,2,-9,5,-8,1,-11,5,-9,4,-2,3,-6,1,-10,3,-4,4,-11,6,-5,6,-2,5,3,1,-1,3,2,3,0,3,-3,5,-1,4,-3,5,-9,10,-10,7,-5,7,-9,4,-1,2,1,6,-5,3,-6,5,-2,7,-6,0,-6,6,-4,5,-1,3,-5,7,-4,8,1,4,-8,4,-3,-1,-6,3,-1,-4,1,-5,1,-7,4,-4,7,-7,2,-3,1,0,2,-4,1,0,2,-6,3,-3,3,-3,6,-5,3,-10,3,-4,3,-5,0,-5,5,0,4,-5,4,-4,0,-2,-5,-4,-1,0,-3,6,-7,6,-7,5,-5,2,0,8,-1,5,-5,3,-7,5,-1,-2,-2,3,-7,2,-6,6,1,1,4,-1,4,4,0,5,-7,7,-6,3,-4,6,-4,6,-4,8,-4,9,-2,5,-6,6,-5,1,-1,3,-6,1,-3,2,-10,1,-2,2,-1,6,-10,10,-8,14,0,2,-5,3,-7,9,-2,8,-5,5,2,8,0,9,-3,8,4,9,2,18,-2,14,-3,8,-3,5,1,2,15,-4,5,-9,3,3,-2,8,-3,8,-2,0,-19,10,-7,4,-18,4,-6,9,2,6,-13,5,-2,8,-12,7,0,5,-6,4,-9,3,-2,9,-13,8,-6,9,-9,1,-16,0,-12,3,-21,10,-9,2,-18,4,-14,-1,-19,5,-12,4,-11,-2,2,-7,-6,-1,-11,-2,-9,-3,-11,-2,-2,5,5,10,11,3,-3,3,-13,-6,-7,-6,-14,-7,7,-5,-9,-8,-11,-4,-10,-3,-3,-4,-15,-5,-3,-5,-12,-4,-7,0,-9,-2,-10,-4,-9,-3,-17,-3,-1,2,11,4,9,3,11,6,12,1,5,4,14,6,2,2,8,4,1,7,6,6,-12,-3,-3,2,-6,-4,-6,5,-3,-3,-4,5,-10,-4,-6,0,-1,6,2,3,-6,4,-13,-2,-9,5,-6,2,-1,6,-7,4,4,6,8,5,3,5,8,1,7,-1,8,4,8,0,7,3,-2,4,-5,2,7,4,-6,0,-11,-2,-3,-3,-7,3,-15,-2,-14,3,-4,4,-13,6,14,4,22,5,8,0,-1,-5,21,0,-8,6,-12,4,-7,5,-10,4,-14,4,6,5,18,0,12,5,3,5,10,4,10,1,19,5,9,-1,15,6,15,-3,8,-4,4,2,17,-1,-1,-2,16,-2,10,1,21,-3,19,-1,8,-1,13,2,15,-3,11,-2,19,-2,16,-5,10,-1,9,4,12,3,15,-1,15,4,16,3,7,-4,7,2,3,5,7,-1,16,-9,14,7,1,-8,12,2,4,3,12,-1,16,-4,23,-4,14,-2,10,1,13,-5,-14,-5,18,-2,27,1,9,2,10,-6,11,5,-10,4,6,4,12,0,9,1,8,-2,10,-6,11,1,17,-5,16,2,15,0,-2,6,9,2,16,-4,0,-9,6,8,8,0,5,10,-11,6,-12,4,1,11,12,7,13,-1,10,-5,14,-11,-9,-5,19,-2|-1142,731,-5,-4,23,3,13,-5,12,5,9,-4,8,-9,5,4,-7,10,9,1,10,-1,11,-4,6,-10,3,-7,17,-5,18,-5,-1,-4,-16,-1,6,-4,-3,-3,-18,1,-18,3,-11,-1,-19,-3,-30,-2,-13,-1,-6,5,-13,3,-9,-1,-12,8,6,1,16,1,14,0,13,2,-19,2,-22,-1,-14,0,-5,4,23,4,-16,0,-17,3,8,7,7,4,27,6,10,-2|-1045,734,-9,-6,-15,7,3,1,13,0,8,-2|-763,731,0,-3,-10,1,-11,0,-11,-2,-3,1,-11,5,1,4,4,1,23,-1,18,-6|-866,732,8,-7,9,8,26,5,17,-11,-2,-6,20,3,10,4,22,-6,14,-4,1,-5,19,3,10,-7,24,-4,9,-4,9,-9,-18,-5,23,-6,16,-3,15,-9,15,0,-3,-7,-17,-12,-12,4,-16,10,-13,-1,-1,-6,10,-6,14,-5,4,-2,6,-10,-3,-7,-13,2,-25,8,14,-8,11,-6,1,-4,-27,4,-21,6,-12,5,3,3,-15,5,-14,5,0,-3,-29,-2,-9,4,7,7,19,0,20,2,-3,3,4,5,12,10,-2,4,-4,4,-15,5,-21,3,7,2,-11,7,-9,0,-8,4,-5,-3,-18,-2,-36,3,-22,3,-16,1,-8,4,10,4,-14,0,-3,10,8,9,10,4,26,3,-8,-6|-1004,738,12,-2,18,2,3,-3,-10,-5,16,-4,-2,-9,-17,-4,-9,1,-7,3,-25,8,0,3,21,-1,-11,7,11,4|1436,732,-15,0,-21,1,-1,1,9,4,13,1,14,-4,1,-3|-932,728,-11,-8,-11,1,-6,8,0,5,5,5,10,2,21,0,19,-2,-15,-9,-12,-2|-1205,714,-26,-5,-5,4,-23,6,3,3,8,8,9,7,-10,6,34,1,14,-2,25,0,10,-3,11,-4,-13,-3,-24,-7,-13,-7,0,-4|1507,751,-11,-4,-16,1,-19,4,3,3,18,-2,25,-2|-936,750,-6,-4,-14,1,-12,2,5,5,14,2,9,-3,4,-3|1451,756,-8,-8,-37,0,-16,-2,-20,7,5,6,13,2,27,0,36,-5|-985,767,8,-4,0,-6,-5,-7,-16,-1,-11,2,0,5,-16,0,-1,7,11,0,15,3,14,0,1,1|-1082,762,4,-4,9,2,10,0,2,-5,-6,-5,-34,-1,-25,-5,-15,0,-2,3,21,5,-45,-2,-14,2,14,10,9,3,28,-4,18,-6,17,0,-14,9,9,4,10,-1,4,-5|575,707,-6,-1,-32,2,-3,4,-18,3,-1,5,10,2,-1,6,20,8,-9,2,24,8,-3,5,23,5,33,7,33,1,17,4,20,1,7,-4,-7,-3,-36,-5,-30,-4,-31,-10,-15,-10,-16,-9,2,-9,19,-8|-947,771,11,-3,20,0,9,-3,-3,-4,12,-3,6,-2,14,0,14,-1,16,2,20,1,17,-1,10,-4,3,-4,-7,-2,-14,-3,-13,2,-29,-2,-20,0,-17,1,-26,3,-4,6,-1,5,-10,4,-21,1,-11,4,4,4,20,-1|-1162,776,-1,-7,-8,-4,-9,0,-19,-4,-16,-2,-14,2,17,8,21,6,15,0,14,1|-938,775,-5,0,-19,1,-2,2,20,0,7,-2,-1,-1|-1102,777,-19,-3,-14,3,8,4,14,1,14,-2,-3,-3|247,779,-22,-5,-18,3,7,2,-6,4,21,2,4,-4,14,-2|-1097,786,-12,-2,-16,0,0,2,10,3,5,-1,13,-2|-958,781,-15,-3,-8,3,-5,4,0,4,13,-1,5,0,12,-4,-2,-3|-1001,783,4,-4,-16,1,-16,3,-23,1,10,3,-12,2,-1,4,20,-1,27,-4,7,-5|1051,783,-57,-4,19,13,8,1,7,0,26,-6,-3,-4|183,797,32,-7,-25,-4,-5,-8,-9,-2,-5,-8,-12,0,-21,6,9,3,-15,3,-20,9,-8,8,28,3,5,-3,14,0,4,3,15,1,13,-4|254,804,20,-3,-15,-6,-29,-1,-29,2,-2,2,-14,1,-11,4,31,3,14,-2,10,3,25,-3|511,805,-13,-1,-9,-1,-1,-1,-12,-2,-11,2,6,4,-23,0,20,2,15,0,2,-3,6,3,9,1,15,-2,-4,-2|999,789,-21,-1,-28,2,-17,4,-8,7,-13,2,26,7,21,3,20,-6,23,-9,-3,-9|-870,797,12,-4,-14,-3,-18,-7,-18,-1,-21,1,-11,5,1,3,8,3,-19,0,-11,3,-6,5,7,4,7,3,10,1,-4,2,23,1,13,-6,17,-2,16,-2,8,-6|-685,831,27,-1,21,-1,18,-3,0,-2,-24,-5,-25,-2,-9,-2,22,0,-23,-6,-17,-3,-17,-8,-20,-2,-7,-2,-30,-1,14,-1,-7,-2,8,-5,-9,-3,-16,-3,-5,-4,-14,-3,2,-2,17,0,0,-2,-27,-6,-26,3,-29,-2,-15,1,-19,1,-1,5,18,2,-5,7,7,1,26,-5,-13,7,-17,2,8,4,18,2,3,3,-14,4,-4,6,27,-1,8,-1,16,4,-23,1,-35,-1,-18,4,-8,4,-12,3,-2,3,15,2,12,0,19,2,15,4,12,-1,11,-3,8,6,13,1,18,1,30,1,6,-1,29,1,21,0,22,-1|-271,835,63,-8,-19,-4,-38,0,-54,-1,5,-2,35,1,31,-3,19,3,8,-4,-11,-5,26,3,48,4,30,-2,6,-4,-41,-7,-5,-3,-32,-1,23,-1,-12,-7,-8,-6,0,-12,12,-6,-15,-1,-17,-3,19,-5,2,-9,-11,0,13,-9,-22,-1,12,-4,-4,-3,-14,-2,-14,0,13,-7,0,-4,-20,4,-5,-3,14,-2,13,-6,3,-8,-17,-2,-8,4,-12,5,3,-6,-12,-6,27,0,14,-1,-27,-8,-27,-8,-30,-4,-11,0,-10,-4,-14,-10,-22,-7,-6,-1,-14,-2,-14,-2,-9,-7,0,-7,-5,-6,-16,-8,4,-8,-5,-8,-5,-10,-14,-1,-15,9,-20,0,-9,5,-7,10,-17,12,-5,7,-2,9,-14,9,4,7,-7,4,10,12,15,3,4,4,2,8,-11,-3,-6,-2,-9,-1,-12,3,-1,7,4,5,10,0,20,-2,-17,6,-9,3,-10,-1,-8,3,11,9,-6,4,-8,7,-12,10,-13,4,0,4,-27,6,-21,1,-27,-1,-24,0,-12,3,-17,6,26,3,20,1,-42,2,-23,4,1,4,38,5,37,5,4,4,-27,3,9,4,34,7,15,1,-4,5,23,2,31,2,31,0,11,-3,26,5,24,-3,14,-1,21,-3,-24,5,1,4,34,6,35,0,13,3,35,1,80,-1";
+const BORDERS = "403,-103,-8,-6,-11,-4,-6,0,-3,-3,-7,0,-3,-1,-12,3,-7,-1,-3,13,-4,5,-2,3,-9,2,-6,3,-6,1,-4,2,-5,3,-5,12,-6,6,-2,6,1,5,-2,9,5,0,3,4,4,5,3,2,-1,4,-2,2,0,4,3,1,0,6,-4,6,4,1,11,0,20,0,2,-1,36,-20,1,-6,14,-10;-170,214,22,1,2,4,4,4,3,14,14,11,5,12,3,1,3,8,9,1,3,-1,5,0,3,2,6,0,0,6,1,0,0,-1,0,-2,0,-15,-33,0,1,-25,-10,-1,-2,-5,2,-15,-39,0,-3,-3;-1305,548,5,5,0,6,-17,7,-10,11,-7,7,-9,5,-6,4,-6,5,-10,-3,-10,-6,-8,7,-7,4,-10,3,-10,0,0,57,0,37;-671,451,-7,6,0,14,-4,3,-7,-2,-3,2,-8,-7,-3,-8,-4,-4,-4,-2,-3,0,-1,-3,-18,0,-16,0,-4,-2,-11,-7,-1,-1,-3,-4,-9,0,-10,0,-5,-1,2,-2,1,-3,0,-1,-13,-5,-11,-2,-11,-5,-3,0,-3,1,-1,2,0,1,2,3,5,6,3,6,-2,8,-3,9,-10,5,1,2,-1,1,-3,0,-2,2,0,2,-2,-1,-3,0,1,1,-3,1,-1,3,-8,3,-8,4,-9,3,-10,4,-9,-3,-3,0,-12,3,-8,-2,-10,4,-10,1,-7,1,-3,1,-2,6,-4,0,0,-4,-20,0,-35,0,-34,0,-29,0,-31,0,-29,0,-30,0,-10,0,-30,0,-28,0;-971,259,-4,-1,-7,3,-8,3,-3,4,-2,7,-6,6,-4,6,-5,7,-7,4,-8,0,-6,-8,-8,3,-6,3,-2,5,-3,5,-6,5,-5,3,-4,4,-17,0,0,-5,-8,0,-20,0,-23,7,-15,5,1,2,-13,-1,-11,-1;491,464,-5,2,1,5,-6,6,-8,0,-8,7,5,8,-2,2,8,11,10,-6,1,7,21,11,15,0,22,-7,12,-4,11,4,16,1,12,-6,3,3,14,0,3,5,-16,7,9,4,-2,3,10,3,-7,7,4,3,38,4,5,2,25,4,9,4,18,-2,3,-11,10,3,13,-4,-1,-5,10,0,25,10,-4,-3,13,-8,22,-25,6,5,13,-6,15,3,5,-2,5,-6,7,-2,4,-4,13,1,6,-6,-8,-7,-8,0,-1,-10,-5,-5,-20,3,-7,-18,-6,-2,-19,-4,9,-17,-7,-3,1,-5,-7,1,-5,4,-14,1,-17,0,-4,-1,-14,4,-6,-2,-1,-6,-17,3,-6,-1,-2,-4,-6,-2,-13,-7,-5,-7,-3,0,-3,4,-13,1,-2,8,-5,0,1,10,-12,7,-17,-1,-12,-1,-9,9,-9,4,-15,7,-2,1,-26,-6,1,-37,-5,0,-7,7,-7,3,-12,-2,-4,-3;710,423,3,-1,-9,-7,8,-4,7,3,12,-5,-13,-8,-8,1,-4,0,-1,3,2,5,-14,-3,-3,-6,-5,-6,-8,1,-3,-5,8,-2,2,-7,-6,-11,-7,3,-6,0,0,6,-13,4,-10,5,-7,5,-11,7,-5,10,-4,2,-10,-1,-4,2,-1,8,-14,6,-8,-6,-9,-4,2,-5,-11,0;1410,-91,0,32,0,33;1250,-89,1,-2,0,-3;1097,20,1,-7,7,-5,7,2,6,-1,6,5,5,1,9,-3,8,2,5,14,4,4,4,11,11,0,9,-2;-670,-549,-6,0,-10,0,0,23;-686,-523,-9,2,-24,1,-4,6,0,7,-7,0,-3,3,-1,11,8,4,3,7,-1,5,5,8,3,13,-1,6,5,2,-1,4,-5,2,3,4,-4,4,-3,11,5,2,-2,13,2,10,3,9,6,3,-3,10,0,9,7,7,0,8,6,10,0,9,-3,2,-4,17,6,11,-1,9,3,9,7,10,7,6,-3,4,2,3,0,17,11,5,3,10,-1,3,8,9,13,-3,6,-7,4,8,12,0,1,-2,19,-17,8,-1,12,-8,10,-4,2,-4,-10,-15,10,-3,11,-1,8,1,9,8,2,9,5,2,5,-6,0,-8,-9,-6,-7,-4,-11,-10,-13,-13,-3,-8,-2,-10,0,-10,-3,-3,0,-6;-704,-183,5,2,3,5,5,-7,1,-7,6,-4,-4,-10,6,-11,4,-14,7,2;307,-83,-4,1,-13,-2,-3,-1,-3,-7,3,-4,-2,-12,-1,-10,2,-2,7,-4,3,2,1,-11,-8,1,-4,5,-3,4,-8,2,-2,5,-6,-3,-8,1,-4,5,-6,1,-5,-1,0,3,-4,1,-4,0,-7,-1,-4,0,-2,-1,0,12,-3,4,-1,6,1,6,-2,4,0,6,-12,0,1,4,-5,0,-1,-2,-6,-1,-2,-5,-2,-3,-5,2,-4,-2,-6,-1,-4,6,-2,3,-3,6,-3,7,-29,0,-4,-1,-3,0,-4,-1;122,-58,2,1,1,5,1,2,4,2,3,-1,3,4,5,0,1,-3,4,-2,6,7,6,4,2,4,0,8,4,10,5,5,6,5,1,3,1,3,1,4,0,6,1,8,2,7,3,5,1,6,0,7,4,5,6,3,8,-3,6,-4,8,-1,7,-2,3,6,1,1,5,-1,11,5,4,-2,3,0,2,3,4,1,7,-1,6,-1,4,1,6,-8,4,-1,3,2,5,-1,5,2,3,-4,8,-7,0,-12,4,-1,-3,-4,-4,-2,-4,-5,-2,-5,-1,-8,-2,-4,0,-7,-3,-3,0,-6,-2,-1,-1,-5,3,-5,0,-12;416,-17,-6,8,0,37,9,11,2,3,7,1,9,7,13,0,28,30,7,8,4,7,0,5,0,10,0,4;339,-10,0,11,3,4,5,7,3,7,-4,12,-1,5,-5,7,6,5,7,7,5,-2,0,-5,4,-4,7,0,12,-8,3,0,3,0,2,-1,7,-1,3,4,9,5,4,-4,7,0;384,180,-5,-6,-7,-1,-3,-3,-1,-7,-5,-15,1,-4,-1,-8,-4,-10,-6,-5,-5,-8,-1,-4,-4,-3,-3,-10,0,-9,0,8,-2,0,0,5,-1,3,-5,4,-1,7,1,8,-5,0,0,-2,-6,0,2,-3,1,-6,-5,-6,-5,-7,-6,-1,-8,6,-4,-2,-1,-3,-5,-2,0,-2,-10,0,-2,2,-7,0,-3,-1,-3,1,-5,5,-2,3,-7,-1,-3,-5,-3,-9,-3,-2,-3,-1,7,-4,-8,5,-3,3,-1,3,2,4,0,4,-6,6,-1,4,0,3,-4,3,0,6,-2,3,-4,0,1,4,3,4,-1,4,3,3,-2,2,3,6,4,8,9,-1,-1,40,0,4,12,0,0,20,40,0,39,0,40,0;229,111,-7,-1,-5,-4,-7,-11,-9,-5,-10,1,-3,-1,1,-4,-5,-3,-4,-4,-13,-4,-2,2,-2,1,-2,-3,-8,-1,1,3,-3,7,-1,4,-5,2,-5,5,2,5,4,-1,3,1,6,0,-6,9,1,7,-1,6,-4,7,1,4,-6,1,0,6,-5,4,5,13,12,9,1,13,4,21,2,4,-4,3,0,3,-4,3,-2,16,10,5,39,-19,40,-19;-717,197,1,-5,-1,-4,-2,-2,2,-3,0,-3;213,552,10,-2,5,-1,-2,-3,1,-3,-18,0,-12,1;1308,422,-2,2,0,5,5,0,2,12,-3,9,9,3,12,-2,7,10,3,11,4,4,5,9,-16,-3,-9,-4,-15,0,-4,9,-12,7,-17,4,-4,9,-4,7,-3,4,-7,10,-8,4,-15,3,-14,-1,-12,-1,-8,-5,5,-3,0,-5,-5,-4,-9,-10,0,-5,-14,-6,-12,4,-12,-1,-5,3,-6,1,-15,-7,-13,-1,-9,-3,-13,2,-9,0,-6,5,-10,5,-10,1,-13,-1,-9,-2,-14,4,-2,8,-12,2,-9,1,-11,4,-11,-10,4,-6,-9,-7,-15,3,-10,0,-7,5,-10,0,-9,3,-15,-5,-19,-8,-10,-2,-4,-1;486,418,-6,-4,-2,-2,-4,0,-7,6,-3,1,-6,2,-3,4,-10,2,-6,-1,-1,1,-14,5,-15,2,-8,2,-1,-2;382,471,1,4,5,3,9,1,2,3,-2,6,4,5,0,3,-15,3,-6,0,-6,5,-8,-2,-12,4,0,2,-4,4,-8,1,-1,3,3,2,-6,5,-11,-1,-3,1,-2,-2,-4,0,-3,6,-2,4,2,1,8,-1,4,3,-3,2,-7,2,1,2,-4,2,-6,6,2,3,-1,5,-10,2,-5,-1,-2,2,-10,3,-3,6,-1,4,-5,3,4,3,-3,9,7,6,-1,2;281,605,21,13,9,6,4,5,-15,7,4,6,-9,7,7,9,-11,11,9,8,-16,7,2,7,8,1,17,4;334,460,3,2,7,-2,3,0,2,-2,1,-1;286,691,4,7,-13,4,-15,-4,-5,-7,-10,-5,-10,3,-13,-1,-12,6,-6,-3,-6,0,-1,-7,-19,2,-3,-6,-9,0,-7,-7,-10,-11,-15,-14,3,-4,-3,-4,-10,1,-7,-10,1,-13,6,-5,-3,-12,-8,-7,-5,-5;163,-286,5,5,4,-3,2,-4,4,-1,7,-1,5,0,9,5,0,37,3,-1,6,-10,-1,-6,2,-3,7,1,5,4,5,3,2,5,5,2,4,-1,5,-3,8,0,7,2,1,3,1,5,6,1,3,4,3,6,9,8,14,7,4,0,5,-2,4,1,5,-1,5,-14,2,-7,-1,-11,0,-3,-5,1,-3,0,0,-3,-3,-4,0,-3,6,-6,6,1,2,5,7,0;290,-290,-5,4,-4,-3,-6,-3,-5,-7,8,-7,3,1,2,3,5,1,2,4,3,4,-3,3;-883,185,-2,0,-3,-6,-2,1,-1,0,0,-2,-10,0,-9,0,0,-5,-5,0,4,-4,4,-2,1,-2,2,-1,-1,-3,-12,0,-5,-8,1,-2,-1,-3,0,-3;-576,-302,6,1,10,-8,4,0,10,-6,8,-5,6,-7,-4,-5,2,-6;-546,-257,2,5,1,6,0,6,-4,2,-3,-2,-4,0,-1,4,-1,9,-2,3,-7,3,-4,-2,-10,2,0,14,-3,5,3,2,-1,6,3,4,2,8,-2,6,-6,3,-1,4,2,6,-20,0,-3,12,2,0,0,5,-2,2,0,6,-6,3,-6,0,-4,3,-7,2,-4,4,-11,1,-11,9,1,7,-1,4,1,7,-13,-1,-6,-4,-8,-4,-3,-3,-5,0,-7,0,-6,-1,-4,1,0,15,-8,-6,-9,0,-4,6,-6,0,2,5,-6,6,-4,9,3,2,0,4,6,3,-1,5,2,4,1,4,12,7,8,2,1,1,9,0,5,27,0,5,-2,6,-4,3,0,7,5,2,2,-1,1,4,-6,1,0,6,19,0,4,3,2,-3,2,-6,2,2,6,-6,8,1,1,3,8,2,4,2,1,4,7,3,0,2,-9,1,-1,6,0,7,-4,3,2,0,7,-1,8,-2,3,2,7,2,11,3,4,4,-1,3,5,0,2,-2,-1,-4,3,-2,3,-4,-3,-4,-2,-8,3,-6,1,-4,6,-5,5,0,1,2,3,0,4,2,4,2,5,0,3,0,5,-1,1,2,-2,2,1,3,4,-1,5,1,6,-2,4,-2,3,3,2,-1,2,-2,5,0,3,4,4,7,5,10;-582,-202,0,3,-9,5,-9,1,-18,-3,-5,-9,0,-6,-4,-11;-696,-176,6,11,-4,8,2,4,-1,3,4,5,0,9,0,7,2,3,-8,16;-803,-34,1,-4,-3,-3,1,-3,4,1,4,-2,4,-5,6,5,1,6,7,9,12,4,11,10,3,7,-2,7,3,1,7,-4,3,-5,4,-3,6,-10,8,-1,5,2,4,-1,6,0,8,-4,-7,-10,3,-1,5,-5;-754,-2,-4,3,-5,3,-3,-1,-8,1,-3,4,-2,0,-10,6;-779,72,1,5,4,-1,2,3,-3,6,1,2;-713,118,-7,-2,-2,-5,-4,-3,-3,-3,-1,-8,-3,-5,5,-1,1,-5,3,-2,0,-4,-1,-4,1,-2,2,-1,2,-3,13,1,6,-1,7,-9,4,1,7,0,6,1,4,-2,-2,-5,-2,-4,-1,-7,2,-7,3,-3,0,-2,-5,-5,4,-2,2,-4,3,-9;-830,82,1,2,1,2,-1,2,2,1,-2,2,0,4,4,1;-857,111,1,1,7,-2,2,1,3,-1,2,-2,3,-1,2,2;-873,130,3,0,1,3,2,0,-1,5,3,0,2,0,2,2,3,-2,1,2,2,1,3,3,1,2,2,2,1,0,2,-1,2,-1,2,1,2,0,4,2,1,1,4,0;-878,134,1,4,-2,1,-2,1,-4,-2,0,2,-3,1,-3,2,-3,1,3,3,-1,2,0,2,5,2,5,4;-901,137,0,2,4,2,2,1,-1,2,2,0;-891,178,0,-8,-1,-11,3,0;-598,84,-8,-6,0,-4,3,-4,-2,-1,-7,-2,1,-5,-3,-2,7,-8;-571,60,-2,-9,-6,-3,0,-2,-1,-5,4,-8,3,0,2,-5,6,-9;-540,58,-5,-9,1,-7,4,-6,-2,-4,-1,-5,-2,-4;25,511,2,-3,4,0,5,-4,7,-5,5,1,9,-5,2,-1,3,1,5,-3,14,-2,-5,-7,-1,-7,-3,-2,-5,1,1,-2,-8,-6,0,-4,5,1,3,-4,0,-3,3,-4,-4,-3,3,-7,6,-2,-2,-4;30,425,-12,-2,-11,5,-4,-2,-18,4,-4,4;294,-221,-6,5,-8,1,-3,6,0,4,-4,1,-11,11,-3,6,-3,2,-3,8,11,-1,3,-2,3,1,6,6,9,8,3,1,1,4,6,4,8,1,0,-4,9,0,4,-2,3,-2,4,-1,5,-3,0,-13,-1,-7,-1,-7,2,-3,-1,-6,-2,-1,-3,-7,-10,-12;199,-248,0,30,10,0,0,35,8,1,15,3,4,-4,6,4,3,0,6,2,2,0;117,-173,5,2,6,2,7,-1,6,-4,1,0,41,1,7,-5,24,-1,18,4,8,2,7,-1,4,-2,0,-1;-165,161,4,4,5,-1,5,2,5,0,5,-3,7,-3,6,-7,6,-7,1,-6,2,-6,3,-3,1,-3,0,-4,-2,0,-5,1,-1,-1,-2,-1,-7,3,-5,0,-18,0,-3,-1,-3,0,-6,-1;-168,132,9,-1,2,2,2,0,4,2,4,-2,4,0,5,2,-2,3,-4,-2,-3,0,-4,3,-3,0,-2,-3,-11,0;-122,146,4,2,1,6,4,0,6,-3,6,2,4,0,2,2,40,0,2,7,-2,1,-5,43,-5,44,16,0,34,-22,33,-22,3,-5,6,-2,4,-2,1,-6,11,1,0,-23,-6,-7,-1,-6,-9,-2,-13,-1,-4,-3,-6,-1,-7,0,-2,2,-6,-1,-9,-4,-2,-4,-8,-4,-1,-3,-4,-2,-5,2,-3,-3,-1,-7,-8,-8,0,-3,-3,-4,1,-6,-4,-2,-2,-1,-2,4,-3,-1,-2,0,-1,-3,-8,0,-3,2,-1,-1,-3,3,0,3,-1,1,-2,-1,0,3,2,3,-4,4,-1,3,-2,2,-2,0,-3,-1,-3,-1,-3,-3,-4,1,-3,3,-1,0,-3,-1,-2,0,0,3;-87,274,38,-24;19,61,-3,7,1,23,-2,2,-1,5,-3,4,-3,3,1,5,3,1,2,4,5,1,3,3,3,3,3,0,8,-5,0,-4,2,-6,-2,-4,1,-2,-5,-7,-3,-3,-2,-6,0,-6,0,-16;145,129,-3,-1,0,-3,-2,0,-7,11,-2,0,-8,-6,-8,3,-5,1,-3,-2,-6,1,-6,-4,-5,-1,-12,5,-5,-2,-5,0,-4,4,-10,4,-10,-2,-3,-2,-1,-5,-3,-4,-1,-9;22,119,0,7,-12,3,0,4,-6,7,-1,4,1,5;43,192,14,4,29,20,34,19,16,-5,5,-5,8,4;142,125,4,-4,-1,-2,-1,-3,-8,-8,-3,-6,-1,-6,-2,-2,-2,-7,-6,-4,-1,-5,-3,-4,-1,-4,-6,-4,-6,5,-4,-1,-6,-5,-3,-1,-4,-9,-3,-7;153,74,-5,-10,-3,-2,0,-7,1,-5,-1,-3,5,-5,0,-3,4,-6,5,-3,0,-4,1,-3,-1,-6,-8,3,-8,2,-12,1,-1,0,-6,-1,-6,1,-5,0,-17,0;11,59,-3,4,-2,6,-1,5,2,9,-2,4,-1,8,0,7,-4,5,0,3,9,0;-29,50,1,4,-4,9,2,11,4,8,-2,14,-2,8,1,6,17,0,4,-1,4,2,4,-1;-54,104,4,-2,2,-4,5,-2,3,3,5,0,7,-3;-77,44,1,8,1,1,-1,4,-4,4,-3,1,-3,3,2,4,-1,5,1,3,1,0,1,4,-1,2,1,2,4,1,-3,8,-2,4,1,3,2,1;-84,77,-3,0,-2,-4,-3,0,-2,2,1,4,-5,6,-2,-1,-2,0,-3,-1,0,4,-2,3,1,3,-2,4,-3,3,-8,0,-3,-1,-2,-1,-2,-2,-1,-3,-5,-4;-151,110,4,5,3,0,3,2,2,0,2,1,-1,3,1,1,0,4;-114,68,2,3,1,3,4,5,5,5;185,35,-7,1,-7,1,-6,-5,-5,-9;246,82,5,-4,0,-3,7,-5,4,-5,3,-6,7,-3,2,-4;130,-48,-4,4,-3,-2,-4,-4;111,-40,8,6,-4,6,3,3,7,1,1,5,5,-5,9,-1,3,5,1,7,-1,7,-5,6,5,12,-3,2,-7,-1,-3,5,1,5;95,10,3,1,15,0,0,12;328,-92,4,-5,3,-8,-2,-3,-2,-8,2,-8,-3,-4,-3,-9,5,-3,-30,-8,1,-7;232,-175,-6,6,-7,8,0,32,21,0,-1,3,2,4,-2,5,1,5,-1,3;346,-115,-3,-8,3,-13,3,0,4,-3,4,-7,1,-13,-5,-2,-3,-7,-6,6,-1,7,2,5,0,4,-4,2,-3,-1,-6,5;321,-267,-1,4,-2,5;290,-28,6,-1,3,6,6,-1;351,331,4,0,1,2,2,0,0,-4,-1,-2,-2,-3,-3,1,-2,-6,2,-1,-2,-2,-1,-2,5,1,0,-4,-5,-16,-1,3,-5,14;360,346,4,0,2,-4,-5,-4,-3,-5;355,324,0,-6,-1,-3;115,331,-1,-7,-5,-3,-3,-3,-7,-4,2,-4,-1,-5,-5,-2,-4,18,-7,4,0,2,-8,6,-1,8,6,6,3,8,-2,9,2,5;-87,277,0,11,16,8,10,1,9,3,3,5,12,4,1,7,5,1,5,4,13,2,2,4,-3,2,-3,10,-1,6,-4,7;95,303,3,-9,1,-4,-2,-9,1,-4,-2,-6,1,-6,-4,-4,6,-7,0,-5,4,-5,5,2,8,-5,4,-6;357,327,11,-4,20,11,4,-12,-2,-2,-20,-5,10,-10,-3,-2,-2,-3,-8,-1,-2,-4,-4,-3,-11,2;561,261,2,-4;564,249,-5,0,-1,-6,2,-2,-5,-2,0,-4,-3,-4,0,-4,-2,-2,-30,5,-4,10,0,2;514,246,-3,0,-3,2;484,286,-7,-1,-2,5,-9,1,7,10,7,-1;388,334,22,10,4,12,-1,8,5,2,5,6,5,2,11,-1,4,-3,5,2,6,-12,7,-3,1,-6,-5,-4,-3,-7,7,-10,12,-5,5,-8,-1,-7,3,0,0,-5,6,-6;466,291,-19,1,-28,20,-15,7,-12,3;531,167,-3,6,-8,17,30,10,7,20,-5,7;1026,122,-3,12,7,8,13,2,9,-1,8,-4,5,7,9,-4,2,-7,-1,-12,-17,-7,4,-6,-10,-1,-9,-4;1021,62,-3,-4,-6,-1,-1,5,-8,4,-2,-1;986,99,4,11,6,9,-4,9,0,5,-1,5,-7,8,-2,5,3,2,4,9,-4,6,-6,8,-5,8,4,2,5,11,7,1,5,4,6,2,4,-3,1,-6,7,0,-3,-11,1,-9,10,6,3,-2,6,1,2,3,8,-1,7,-8,1,-10,8,-8,-1,-9,-3,-4;1001,204,2,4,9,6,1,-2,5,0,-1,11,5,2,6,-8,4,-9,12,0,4,-9,-6,-3,-3,-3,12,-6,8,-12,7,-9,7,-7,3,-7,-2,-10;924,207,-1,8,4,-2,0,7,5,3,-1,4,2,3,0,11,8,-2,5,8,0,5,6,8,-1,6,13,7,7,-2,0,6,3,2,-1,4,6,0,3,-6,5,-2,0,-8,0,-8,-10,-8,-1,-12,11,2,2,-10,6,-2,-3,-8,8,-4,4,-1,7,2,1,-4;1022,225,5,2,8,0,10,1,8,6,5,-4,9,-2,-1,-6,4,-4,10,-2;1284,386,-2,-2,-4,-1,-7,0,-4,-5,-5,0,0,-1;1243,399,8,7,11,5,7,7,4,-3,9,0,-1,5,15,4,4,6,6,-6;1167,499,-5,-8,-7,-10,2,-4,6,2,10,-2,8,4,8,-4,9,-7,-1,-3,-8,1,-15,-1,-7,-3,-7,-7,-15,-4,-10,-5,-11,2,-5,1,-6,-6,4,-4,1,-4,-7,-3,-7,-5,-12,-4,-15,0,-16,-4,-11,-5,-5,3,-12,0,-15,6,-10,2,-13,-2,-20,2,-12,0,-5,6,-5,9,-6,2,-12,6,-14,1,-12,2,-3,4,4,12,-7,8,-14,4,-9,5,-2,7;927,220,-6,16,-2,0,-2,-6,-5,5,3,6,4,0,5,9,-6,1,-9,0,-10,2,-1,7,-4,0,-8,4,-4,-6,7,-6,-6,-3,-2,-4,6,-3,-2,-6,4,-7,1,-8;682,237,6,7,22,0,-2,8,-5,5,-1,8,-7,4,11,11,12,-1,10,11,6,10,10,10,0,7,9,6,-8,5,-4,6,-4,9,5,4,16,-2,11,2,9,8,11,-12,-1,-8,4,-5,0,-5,-7,1,2,-11,10,-6,14,-7,-6,-5,-4,-9,10,-4,9,-5,13,-5,14,-2,6,-5,7,-1,12,-2,9,0,1,4,-2,6,1,5,6,2,1,-8,0,-2,9,-4,7,2,8,-1,8,0,1,7,-4,3,8,1,9,7,12,7,8,-3,7,5,5,-7,-4,-4,11,-1;888,273,7,7,5,3,7,-2,6,-1,4,-2;811,302,4,2,8,-3,10,-6,6,-2,3,-5,8,-2,8,-4,12,-2,11,-1;615,251,4,11,14,6,-1,4,-4,2,-1,9,-9,4,-4,6,-5,5,16,-5,10,2,6,-2,2,3,7,-1,13,4,1,8,5,6,8,0,1,3,8,1,3,-1,4,3,0,6,4,6,6,3,-4,6,10,0,3,3,-1,4,5,5,-1,5,-2,4,5,4,11,2,12,1,5,2,6,1,7,-4,3,-8,16,-4;678,371,3,-1,8,3,3,-1,3,4,6,0,2,1,1,4,4,4,5,-2,-1,-3,3,-1,-1,-8,4,-4,4,2,4,1,7,5,7,-1,10,0,2,-3;609,298,9,9,-1,7,-8,1,0,7,-4,8,5,5,-5,2,3,7,4,12,10,-3,8,1,2,5,8,1,5,3,2,8,9,2,1,4,5,-3,3,0;710,402,-4,-3,-10,2,-1,-6,10,1,13,-3,19,1,2,-9,4,1,6,-2,-1,-4,2,-6;803,424,-2,-3,-16,-5,-3,-4,-13,-1,-4,-7,-10,2,-7,-2,-10,-5,2,-2,-3,-3;612,356,-1,9,-7,0,-12,9,-8,1,-11,5,-7,1,-4,-2,-7,1,-7,-6,-9,-2;448,372,-6,8,2,3,-3,11,7,3,2,-4,5,-4,6,-2,4,1,12,7,4,1,3,-3,-4,-5,6,-5,3,0;361,358,3,2,3,3,0,5,4,-2,11,3,5,-2,8,0,12,4,5,0,11,1;461,387,-4,6,0,2,-4,0,-3,2,-2,0,-4,3,-7,3,1,4,-2,4,14,1,2,-2,4,-2,-2,-2,5,-4,-3,-3,4,-3,5,-1,0,-7;206,691,14,-5,15,-7,1,-15,3,-4;318,521,-9,-1,-3,-2,0,-5,-4,1,-9,0,-3,2,-4,-2,-4,2,-7,0,-12,2,-10,1,-7,0,-6,-3,-5,0,0,4,-3,5,6,2,0,4,-3,4,0,4,9,0,11,4,3,5,8,4,-1,4,6,2,11,4;296,453,-4,2,-5,-2,-5,2,3,1,2,3,2,4,0,1,2,1,1,-1,6,-1,2,1,-2,1,1,2,-3,2,-2,4,-3,2,0,3,-4,3,-4,1,-8,3,-6,-1,-3,-2,-4,0,-3,-2,-7,-1,-3,-2,-5,3,-6,0,-7,1,-4,-2,-1,3,-5,2,2,4,3,3,2,-1,-3,5,9,8,5,1,1,3,-5,9;226,491,-10,4,-7,-2,-5,1,-6,-2,-5,4,-4,-2,0,1,-5,5,-8,0,0,4,-7,1,-2,-3,-5,2,0,3,-7,1,-5,3,-4,6,1,4,-3,5,-3,4,3,2,-3,6;227,543,5,-1,3,-3;227,479,-6,-2,-5,-7,-6,-7,-8,-2,-6,1,-8,-3,-3,-1,-9,2,-7,4,-3,1,-2,3,-2,1;170,481,-1,-4,-6,0,2,-2,-3,-6,-2,-2,-9,0,-5,-3,-8,1,-14,3,-2,3,-10,-2,-1,-1,-7,1,-5,0,-4,2,1,2,0,2,3,1,5,-3,1,3,9,-1,7,2,5,0,3,-2,1,1,-1,7,3,1,4,5,7,-3,6,4,4,0,7,-3,5,1,5,-2,-1,-1,1,-4,5,-2,4,-1,8,1,1,2,4,0,5,2,1,-1,4,1,3,3,3,0,11,-3,2,1;282,455,-1,4,1,5,-1,4,-5,6,-4,4,-3,3,-3,1;286,437,-6,1,-8,4,-11,-3,-5,-2,-15,0,-8,2,-4,-1,-2,4,-2,2,2,2,-2,1,-4,-2,-5,3,-1,4,-6,2,-1,3,-6,4;211,560,11,3,17,0,10,1,1,-2,5,-1,10,-5;243,578,9,2,4,-2,9,-3,8,0;150,511,-4,-1,-3,1,-2,-2,-8,-2,-3,-2,-8,-2,2,-3,1,-5,5,-2,6,-4;96,475,-11,3,-2,-2,-8,0;62,495,0,4,-2,2,2,7,-2,11,6,0,2,3,3,9,-2,4;85,550,8,-2,6,2;280,420,-9,1,-10,-3,0,-5,-9,-1,-7,4,-8,-3,-7,0,-1,7,-5,3,1,2,-1,1,2,3,4,3,-5,4,-1,4,3,2;261,418,5,-2,-3,-7,-2,-1;202,396,4,5,1,3,3,2,0,2,7,1,4,3,5,-1,2,2,2,0;416,415,10,1,10,-5;194,419,-1,3,4,5,1,-2,3,1,2,-3,2,-1,1,-3,-1,-4,1,-4,4,-3;188,459,3,-4,3,-3,-4,-3,-4,2,-7,0,-9,1,-5,0,-2,-2,-3,2,-3,-4,5,-4,3,-4,4,-3,4,-3,4,-4,9,-4,-2,-1;137,455,7,0,2,1,3,-1,4,0,0,2,4,1,1,4,8,3;104,469,0,-4,-5,-2,-7,1,-2,-4,-5,0,-2,2,-5,-4,-5,0,-5,2;57,495,1,6,2,0;33,513,7,0,10,2,6,-5,6,-2;-90,419,3,2,4,2,3,-5,6,0,1,1,6,0,3,-5,-5,-3,0,-8,-1,-1,-1,-5,-4,-1,4,-6,-3,-6,4,-3,-2,-3,-3,-4,0,-3;-76,551,2,-5,-2,-5,6,0,8,-2;138,465,-1,-5,2,-4;450,412,2,2,8,-3,5,0,1,1,-5,5,3,2;1142,45,5,-5,2,3,4,0,1,7,1,4;170,486,1,2,4,0,4,1,0,1,2,0,1,3,2,0,2,2,3,0;431,127,-3,-2,-4,0,-4,4,-4,6,-4,3,-3,3,-9,4,-7,0,-2,2,-6,-2,-6,5,-3,-8,-12,2;428,163,4,4,-1,4,3,5,4,-3,3,1,11,0,2,-1,10,-1,3,1,3,-4,5,2,7,11,9,4,29,4;340,351,-1,0,-2,-1,-2,0,0,1,-1,1,-2,0,-3,-1,-2,0;250,220,0,37,0,35,-3,8,3,7,-2,4,4,5;353,55,-6,11,-5,2,-1,4,-5,5,-6,1,3,6,5,0,2,3;424,125,-4,-4,-3,-5,0,-2,1,-3,5,-1,3,1,2,-2,-2,-3,3,-6,4,-5,4,-3,32,-12,9,0;431,115,-3,-6;304,-11,-6,-3,-2,1;308,35,4,3,7,-2,8,2,7,0,6,5;190,449,4,0,-3,-5,5,-4,-1,-4,-3,-1,-2,-1,-3,-2,-1,-6;206,419,1,-1,1,3,6,1,2,0,3,1,5,0;216,422,-1,1,2,1,1,3,-2,0,-2,2,-1,0,-2,2,-1,0,-2,2,-2,-1,-1,-3,-2,-1,0,1,-3,2,-4,1,-1,2,-3,1;203,428,-2,-2";
+const CGM = "Zr1uZv1rZy1oa01ma41la81kaC1laG1maK1oaO1raR1uaV1yaY20ab25ad2Aaf2Gah2Maj2Sak2Yal2fal2lam2sal2zal34ak3Aai3Hah3Naf3Tac3Zaa3eaX3jaU3oaR3saN3vaJ3yaG3-aC3_a840a440a03_Zy3zZu3wZr3tZn3oZk3jZi3dZf3XZd3PZc3HZa39Za31ZZ2uZa2lZa2dZc2UZd2MZf2FZi28Zl22Zo1zYy0lZ40fZC0cZK0aZS0ZZa0bZi0eZq0iZx0na20ua90_aF17aL1GaQ1QaV1aaZ1lac1waf25ah2Hai2Taj2faj2rai31ah3Daf3Pad3baa3maW3xaS46aN4HaI4RaC4aa64ia04qZv4wZn50Zg54ZY58ZR59ZJ59ZB58Z354Yy4_Yr4tYk4jYe4YYY4KYU44YQ3pYN3WYL3CYL2uYL2ZYN2FYQ1yYT1hYY1RYe1DYk11Yr0tY8tiYKtdYWtbYitbYuteZ4tkZGtqZRtzZcu7Zm01Zv0Da20QaA0daH0raN14aT1JaX1Yab1oae22af2Iag2Yag2paf33ad3Kab3aaX3qaT44aO4KaI4aaB4pa451Zy5FZq5SZh5eZX5pZN5zZC65Z16CYs6HYh6KYV6LYJ6JY86EXy66Xn5vXd5fXU5LXM4yXF4VXA3_X73RX62tX72IXA1kXE1DXL0mXT0MXc01Xnu1XytqXPsHXfsGXwsIYAsOYQsWYfsgYussZ6t3ZKtIZWtXZitnZtu2a104aA0MaI0eaO0xaT1EaY1Xab1rad28ad2Sad2mac35aZ3PaV3jaR41aL4LaF4fa84ya05GZt5YZj5qZZ66ZO6MZC6cY_6qYo71Ya7DYM7MY77UXu7ZXe7bXO7ZX97TWv7IWh70WT6eWG67W65TV-4hVu3nVs2qVu1sVz0xW508WFtkWStCWgspWvsYX9sNWnqoX5quXPr1XjrEY0rSYIriYarzYrsFZ5sZZJssZXtBZktWZvtra4uAaC0GaK0caQ0yaV1JaY1faa20aa2NaZ2kaX35aU3TaQ3qaK4BaE4Za64wZ-5HZq5eZg5_ZV6LZJ6gZ66_Yv7JYg7bYR7tYB88Xw8MXe8ZXL8kX28sWl8wWR8xW78rVq8eVX8HVF7jU_6vUo5nUg4MUc2jUf15UotvU-smVErxVWrOVpr1W8qrWSqnWFpKWdpZW-prXKq8XgqTX_qpYJrAYcrXYurvZ8sHZOsfZct2ZptQZ-tpa8uCaG0KaN0jaS16aV1VaX1uaX2IaW2haT35aP3VaJ3vaD4Ka54kZy59Zp5ZZe5-ZT6NZH6nZ47AYs7ZYd7wYN8HY68eXp8zXW9HXC9aWt9rWXA4WBAHVpAQVRAVV3ATUhAIUJ9tTz95Tf7jTR5UTM2UTStmThrcT-qHULpYUjpAV5p1VUp1Vtp9VqnyWEoLWdolX0pAXOpbXlq1Y4qSYPquYjrKY_rmZGsCZWsdZkt3ZwtUa5tvaD04aK0VaQ0waT1MaU1naU2DaR2eaO34aJ3XaC3-a44RZy4uZo5LZe5pZS6GZG6jZ37AYr7cYc82YM8UY48vXo9JXV9jXAA6WqAVWTAsW5BDViBZVHBtUsC9UQCOT-CYTXCaT5CJSfBRSG8lS61YSLpcSlnWTBmqTemgU4mmUXmzUznGVPnbVUmjVwnFWLnnWloIX9opXXpKXupqYEqKYZqqYtrJZ9roZQsGZfskZstCa1tfaBu6aI0JaN0maQ1DaR1gaQ28aN2baI33aC3Ya441Zy4XZo50Zd5WZS60ZG6XZ370Yr7WYc80YM8VY58zXp9SXW9wXCAOWsAsWUBKW6BnViCGVHCkUrDEUODkTwEGTREqSyFTSSGDRyHIRTJlRDZ4RfgYS8iASej6T8jqTdkTU6l3UaldV1mBVDleVgmIW6mwWYnXWyo7XLoiXkpGY5pqYRqNYmqvZ3rRZLryZbsSZpsyZ_tRa8twaG08aL0daO15aO1aaM23aI2YaC32a53ZZy44Zo4bZd57ZR5gZF6DZ26lYr7IYc7qYN8MY78uXr9QXZ9xXFATWwA-WZBWWBC3VnCcVNDBUwDoUTERT_F8TWFxT1GtSXI1S3JcRdM1RIQ9REWCRTbHRteHSLg9SqhUTJiYTojRUHkEUmkyV0kjVUlSVxmAWNmrWonVXCo8XbomXzpNYKpzYfqYYzr6ZGrfZXsCZlsjZytEa6tlaEuFaJ0UaL0-aL1UaI1-aD2Va530Zz3ZZp46Zd4fZR5EZF5oZ26NYq6yYc7XYN86Y88hXt9FXc9qXJAOW_AyWfBXWIC7VvCjVVDLV4E0UdEjU9FVThGNTCHMSkIYSGK0RrLxRVOXRHRwRGVpRSZMRmc6SBeASeflT6h1Tbi6U4j3UYjwUsjwVKkkVnlWWDmFWfmzX3nfXToJXsozYDpbYZqDYuqpZCrOZTrzZjsWZwt3a4tbaCu6aH0NaI0taH1OaD1wa72SZ-2_Zq3YZf47ZS4jZF5JZ15wYp6XYb78YN7mY88NXu8-Xe9bXMABX3AoWlBPWPC0W2CfVfDJVFE0UpElUMFYTvGQTRHPSzIYSWJtS5LURkNSRSPtRIShRIVfRSYTRkatS6csSXeUSzfsTRh2Twi5UOj2UljFVCk6VfkxW6ljWXmUWynCXMnvXlobY7pGYUpwYqqYZ7r9ZQrlZgsKZtsua2tRaAt-aE0FaG0naE1Ja91ra12OZt2zZh3YZU48ZG4mZ25OYp61Ya6gYM7KY77zXu8cXe9FXO9uX7AXWqBAWWBpWACTVpD8VQDrV0EbUaFOU8GGThHDTEIHSnJVSMKvR-MYRgOTRRQgRKT5RLVaRUXyRla5S4bySTdZSuezTLgCTphIUHiJUfigV6jaVZkRV_lFWRm2WsmpXGnYXfoGY2ozYPpeYlqJZ3qyZMrZZdsAZrsla0tJa8tsaC09aD0haA1Ea41nZw2LZl2xZX3XZJ49Z34oYq5SYa67YL6oY67UXt89Xe8qXO9VX8AAWtArWbBVWHCBVxCtVaDaVCEKUoF7UNFzTxGuTVHuT3J1SeKISFLjRvNMRePBRSRCRMTLROVWRXXcRmZYS4bISRcsSreGTHfWTkgfUBhhUaiAV1j6VUj-VwkrWLlfWmmSXBnDXanzXzohYKpOYgq4Y_qlZJrOZas0ZoscZ-tBa6tlaA03aA0ca619Z-1jZq2IZc2uZN3WZ749Ys4qYb5WYK6DY46wXr7dXc8LXN92X89kWuARWdB7WMBqW2CXVjDFVND-U-EmUbFbUAGUTlHRTKIUSwJfSXKxSAMNRsNzRdPiRTRaRPTWRSVURaXNRoZAS5apSRcKSqdiTFeyThg6U7hAUXhkUzihVPjbVrkTWHlJWim7X6mvXVnhXuoRYFp9YcptYxqZZFrDZXrsZmsUZxt4a3tfa7uDa70Xa215Zv1fZi2FZT2sZC3VYw4AYe4sYM5aY46IXp71Xa7mXK8VX69EWt9zWeAhWOBOW6C6VqCrVVDbV9EMUoFAUPG1T_GxTbHxTBJ0SoKBSRLUS6MvRqOSRdQ6RVRrRSTeRVVSReXCRrYtS7aRSSbuSqdETDeUTefeU4gjUUhLUwiJVMjFVnk8WDk-WdlqX1meXQnQXpoCYBoyYYpgYtqOZBr4ZTrkZjsMZvsza1tZa5u7a30SZz10Zp1bZb2CZK2qZ13UYj4AYP4uY65dXp6NXY78XI7vX38gWq9QWcAAWNAwW8BfVtCOVbD8VIDvUyEiUcFXUEGQTrHMTSINT3JTSiKfSMLyS3NLRqOrReQQRYS3RWTlRZVQRiX3RuYeS9a7STbYSqcsTDe5TdfFU2gKUSh0Uth-VJiwVkjqW9kiWZlYWzmNXMnBXlnzY6olYTpVYpqDZ7qwZQrcZgsFZsstZ-tTa2u3a00NZv0yZj1YZT29ZA2oYr3TYV4AYA4wXr5gXY6SXG7EX081Wm8pWY9bWLANW7B8VuBuVeCfVNDQV5ECUmF0UQFtU3GnTiHkTKImSzJtSdL3SJMLS2NjRqP9RgQgRbSERaTpRdVORmWxRyYSSCZtSVbFSrcXTCdlTcevU0f-UQgjUrhiVGieVhjYW6kRWWlIWvm8XImyXgnmY2oYYPpKYlq4Z3qoZMrUZds9ZpsnZytOZ_t-Zy0JZq0uZc1VZL27Z02mYf3SYI4BXx4xXb5jXG6XW-7LWj89WU8zWG9mW3AZVsBLVeC7VQCvV9DhUuEUUaFJUFGBTwH6TZI4TDJ7StKESYLQSGMhS1O1RrPRRiQuReSNReTtRiVNRqWrR_YHSFZgSXa_SscGTDdTTbecT_fhUPgSUphRVEiNVejIW3kBWSl3WrlvXEmlXcnZX-oNYKp9YgpwY_qfZIrNZZs2ZmsiZvtJZytwZu0FZl0rZW1SZC24Yr2lYT3SY44BXh4zXK5mW-6bWh7RWQ8GWB96V-9xVnAlVbBYVOCLVBD8UyDxUhElUPFbU5GUTmHPTRIOT6JRSoKZSVLkSEM-S1OIRsPfRlR3RiSURiTwRmVMRuWmS3Y9SIZUSZanStc1TDdCTbeLT_fQUOgCUohBVCi8Vcj3W0jzWPkrWoliXAmYXYnOXvoCYGo_YcpnYxqXZErGZVryZjscZstFZutrZq0CZg0oZP1PZ422Yh2kYG3RXr4CXR4_X35pWi6fWP7WW78OVv9FViA5VWAwVKBlV9CZUyDMUkEAUVF0UEFsTyGmTeHiTKIhT0JkSjKrSSM1SDNFS1OXRuPsRoRDRlSbRmTzRrVLRyWiS7Y1SLZKScabSvbpTEc-Tce6T-fAUNf-UngzVBhwVairVzjlWMkeWllWX7mMXUnCXro1YBosYXpfYsqQZAr9ZSrtZgsXZotAZrtoZm08Zb0lZI1NYx20YW2iY33RXd4DXB51Wo5tWQ6kW67cVr8VVc9NVPAFVEB5V4BxUvCmUkDaUXEPUJFFU4G6ToH0TWHzTEIySxK0SgL7SQMHSDNVS2OlRwQ1RrRLRpSgRrT_RvVKS0WeSBXxSOZCSeaRSwbdTFcnTcduT-eyUNfnUmgmV9hjVYifVxjZWKkSWilKX3mBXQn2XnnuY7oiYTpWYoqJZ6r3ZOrnZcsTZlt6ZntkZi05ZV0iZB1LYo1_YL2iXt3RXO4EWx53WX5wW96oVq7iVY8cVJ9VV7AOUzBGUpC7UgCyUWDoULEdU8FUTwGMTgHGTPIDT8JCStKGSdLMSOMWSCNiS3OxRyQBRvRTRuSlRvU1R-VJS5WaSEXrSRZ4SgaHSybTTGccTcdiT-emUMfbUlgaV8hXVXiTVvjNWHkGWfl9X0m1XNmuXjnkY3oaYOpOYjqBZ1qzZJriZYsOZit3ZkthZe03ZQ0gZ41JYf1-YA2hXg3SXA4FWi55WG5zVt6tVY7oVG8jV19dUrAXUiBQUZCIURD9UJD_U9ErT-FiTnGaTYHUTIIRT3JRSpKUSaLaSNMjSDNvS5P6R_QKRyRZRySpR-U2S2VIS9WXSIXlSUYzSja9S-bJTHcRTddXT-eaUMfQUlgPV7hMVViIVtjCWFk6Wck_WzltXJmkXfnbX-oRYJpHYeq5YzqtZFrdZUsKZes_ZgteZa00ZK0eYz1IYW1zX_2iXT3TWy4HWS58V_61Vc6xVG7tU-8pUl9lUaAgURBaUJCTUDDKU6EBTzF2TqFvTeGoTRHiTDIfS-JfSmKiSYLnSNMwSDO4S7PFS2QSS0RfS0StS3U4S7VHSDWUSMXhSXYtSla1T0bATJcITedNT-eQUMfGUkgFV6hCVUi7Vsj2WDjyWakrWwljXGmbXbnTXwoJYFp9YZp-YuqnZBrYZQsGZasyZctbZVuEZE0dYr1HYM1zXq2iXH3UWk4JWD5BVl65VL70U-7zUi8wUU9tUJApUBBkU4CeT_DWTvENToFETgG6TWG_TKHvT7ItSwJsSjKvSXL-SNN5SEOES9POS5QZS4RlS5SwS7U5SBVGSHWRSPXcSaYnSoZwT2b2TKc9TfdET_eGUNf7Ukg5V6h2VTh-VqivWBjoWYkiWtlaXCmTXXnKXroCYAp2YUpuYpqiZ6rTZMsCZXsvZZtZZRuDZ90cYk1HYD1zXf2jX43WWW4MV-5EVW69V575Uk83UR91UD9_U2AyTxBuTsCoToDhTjEZTeFQTYGITPHBTFI6T3J3StK2ShL4SWM9SNNFSGONSBPWS9QgS9RpSASzSCU6SGVFSLWPSTXYSdYiSqZqT3axTLc1Tgd5T_e7UNe-UkfyV6gvVThrVpimW9jgWVkZWrlSX9mKXTnDXno4Y5oyYQpoYkqcZ2rPZIs8ZTssZVtXZMuBZ30bYd1HY41-XU2lWu3YWJ4PVm5IVH6DUr7AUU88UB97TzA6TpB4TiC1TeCyTbDsTYEkTVFcTQGUTJHNTAIIS_JESqKESfLFSWMJSONOSIOWSEPdSDQmSDRuSES_SHU7SKVESPWMSWXVSgYdSsZkT5arTNbwThczU0d_UOesUlfqV5gnVShiVoidW8jXWTkRWolKX6mDXQn5XjnzY0orYKpiYfqXYzrKZEs5ZPspZRtVZHuAYz0bYV1HXx20XJ2nWi3bW64SVY5MV26IUc7FUF8ETy9ETkADTaBCTUCATRD5TPE0TOEvTMFnTJGfTDHYT5ITSyJPSoKOSfLPSWMSSPNXSKOdSHPkSGQrSHRxSJT1SMU7SPVESTWKSZXRSiYYSuZfT7alTObpTicsU1dtUPelUlfiV6gfVRhaVniVW6jQWRkJWllDX3m6XMm-XfntXyolYFpcYaqSYurGZ9s1ZKsmZMtUZCu9Yt0bYN1IXo21X92pWW3eVv4WVL5QUr6NUO7LU08KTj9KTWAKTMBKTHCITFDFTFE9TFF3TFFxTDGqT8HjT2IdSwJZSnKYSeLYSWMbSQNfSMOkSKPqSKQwSMR_SOT3SQU8STVDSXWISdXOSlYUSwZaT8afTPbjTjclU2dmUPeeUmfbV6gXVRhTVmiOW5jIWPkCWjl6X0l_XImuXanmXtofYApXYVqNYprCZ4r-ZGskZItSZ7u9Ym0cYG1KXe24W-2sWL3iVj4aV95VUe6SUB7QTp8QTW9RTJARTABRT5CQT4DNT5EIT7FCT8G5T7GzT4HsS_InSuJjSmKhSeLhSXMjSSNmSOOrSNPvSOQ-SQS2STT5SVU8SXVCSbWGSgXLSnYQSyZVTAaaTRbdTkcfU3dfUQeXUnfUV6gQVRhMVliHW3jBWNk5Wgk_WzluXEmnXWngXooZY5pSYPqJYjr8Y_rxZBsiZDtRZ2u9Yg0dY81MXV27Wq2wWA3mVY4fUz5aUS6XT_7WTe8WTL9XT7AYS_BYSxCXSwDVSyERS_FLT2GET3H7T1H_SzIvStJrSmKpSfLpSYMqSUNtSROwSQP-SSR2SVS4SYT7SaU8ScVBSeWESiXISqYNS-ZRTCaVTSbYTlcZU4dZUSeRUnfOV6gKVQhFVkiAW1j5WLj_WdkvWvloXAmhXRnbXioUX_pNYJqEYdr4YvruZ6sgZ7tQYyu9YZ0eX_1OXM2AWh2-W03rVO4kUp5gUI6dTr7cTT8cTB9dSzAeSrBfSoCeSoDcSrEZSvFTSzGMS_HFS_I8SxJ2SsJzSmKxSgLwSaMwSWNzSTO_SUQ2SWR5SZS7ScT8SeU9SgVAShWCSlXFSsYJT0ZNTDaRTTbTTncUU6dTUTeMUofIV7gDVQh9Vji4W0i-WIjvWbkpWsliX6mcXMnVXdoPXvpIYDqAYXr1YprsY_sfZ1tQYquAYR0gXt1RXD2EWY33Vt3wVF4qUg5lU96jTi7iTL8iT29jSrAkSjBlSgClShDjSkEgSqFbSvGUSyHNSzIGSwJ9SsK5SmL2ShM0ScN0SYO2SWP4SXQ6SaR8SeS9ShT9SjU9SjV9SlWASnXDStYGT1ZKTEaNTUbOTocPU7dOUTeGUpfCV7g8VQh3Vih-V-ivWGjpWXkjWoldX2mXXHnQXXoKXppEY6q6YPqzYhrpYtsdYvtPYiuBYI0iXk1VX42IWP38Vl40V74wUY5sU26pTb7oTE8oSy9pSlAqSdBrSaCrSbDpSfEmSlFhSsGbSwHUSyINSwJGSsKBSnL8SiM6SeN6SaO7SZP8SaQ9SeRASiSASlT9SnU8SnV8SnW9SqXBSvYDT2ZGTFaJTVbKTpcKU8dJUUeBUpf7V7g2VPgzVghuVyipWDjkWUkeWklYWymSXBnMXRoGXhp9X-q2YHqwYYrnYkscYltPYYuCY80lXb1ZWy2NWH3EVe46V150UT5yTz6vTX7uT98uSt9uSgAvSYBwSVCwSWDvSbEsSiFnSpGhSvHaSxITSwJMStKHSoLESkMBSgNBSdOBScPCSdQCShRDSmSCSpTASrU8SqV7SqW7SrX8SwYBT3ZDTGaFTWbGTpcGU8dEVRd4Vld-W1evWIfpWXgkWmhfW_iZXGjUXXkQXolMY4mKYNnIYfoIYypLZBqQZLrZZMskZCtxYq0uYB23XI3AW54BUZ58SR5___00__00__00__00__00__00__00__00__00RmE7SxF2TkF-UHGyUeHxUqIwUvJuUwKrUvLoUtMkUrNgUoObUnPWUmQRUnRNUnSJUmTFUiUBUcV7UUW2UOWyUKXrULYjUQZaUbaSUqbJV7cBVKd2VedxVxerWCfmWSggWhhbWxiVXCjQXUkMXmlIY3mGYMnFYfoGYwpJZ9qQZIrZZJsmZ8tzYm0xY926XH3DWA4EUp5BT662QZ6r__00__00__00__00__00__00__00R9DDSKE6TAF1TqF-UJGyUeHwUpIvUuJuUvKrUuLoUsMkUqNgUoObUmPWUlQSUmROUmSKUkTGUgUDUZV8URW3UKWzUFXrUGYjULZaUWaRUkbIV0c9VEd0VYduVreoW6fiWMgdWchXWtiRX9jMXRkIXklFY1mCYLnCYeoDYvpIZ8qPZGraZGsnZ5t_Yj0zY628XI3FWG4HV05DTb64Rx6tPY7e__00__00__00__00OzBVQtCLRuDDShE6TMF1TwFzUMGxUfHwUpIvUuJtUvKrUuLoUsMkUqNgUoObUmPXUlQSUlROUlSLUjTHUeUEUXVAUOW4UHWzUCXsUCYjUHZZURaQUfbGUxc7V8czVSdsVlelW1ffWHgZWYhTWpiNX6jIXPkEXilBY0m9YKn9YdoBYupGZ6qPZEraZDsoZ2u1Yg10Y52BXJ3IWL4JVD5GTz67Sf6wRK7gQ58QPE99PL9wQ5AiQvBWRgCMSLDDSzE6TXF1U0FzUPGxUgHvUqIuUuJtUvKrUuLoUtMkUrNgUoOcUnPXUmQTUmRPUlSMUiTIUdUFUVVBUNW5UFW-UAXsUAYjUEZZUNaPUabFUrc6V3cxVMdpVfeiVxfbWCgVWThPWliJX2jEXMk9Xgl6X_m5YJn6Yco9YtpFZ5qOZCrbZAsqY-u3Yd12Y32DXK3KWQ4MVP5IUI69TB6yS97iRL8RQv9BQt9xRBAjRfBXSBCMSiDETDE6ThF1U6FzUSGxUhHvUrIuUvJsUwKqUvLnUuMkUsNgUqOcUoPXUnQTUmRQUlSNUiTKUcUGUUVCULW7UDX0U8XtU8YjUBZZUKaOUWbEUnc4U-cvVHdnVaefVsfYW7gRWPhKWiiEW_j9XKk5Xel2Xzm1YIn2Ybo6YspDZ3qOZArbZ8srYyu5Ya14Y22FXL3MWW4OVa5KUb6BTd6-Sm7kS68TRk9DRh9zRsAlSBBYSaCNS_DETQE7TrF1UCFzUVGwUjHvUsIuUwJsUxKqUwLnUvMkUtNgUrOcUpPYUoQUUnRRUlSOUiTLUcUIUUVDULW8UDX1U7XuU6YkU9ZZUHaOUTbDUic3UvctVCdkVUecVnfUW3gNWLhGWeiAWyj4XHk0Xdk-XylzYHm_Yao4YrpCZ1qNZ7rcZ5ssYvu6YY15Y12HXN3OWb4PVk5LUr6CT-70TE7mSg8VSL9FSG9_SNAmScBZSwCOTGDFTdE7TzF1UIFzUZGwUlHvUtItUxJsUyKpUyLnUwMjUvNgUtOcUrPYUpQVUoRSUmSPUiTMUcUJUTVFUKW9UCX2U7XvU5YkU8ZZUFaOUQbCUec1UrcrV7dhVPeZVifQV-gJWHhCWbi5Wwj0XFjyXbkvXxlvYFmyYZo1YqpAZ0qNZ5rcZ3stYsu8YX17Y12JXP3QWh4RVu5NV46EUJ72Te7oT88YSr9HSkA1SoAoSzBbTCCQTVDGToE8U5F2UNF-UcGxUoHvUuItUyJrUzKpUzLmUyMjUwNgUuOcUtPZUrQVUpRTUnSQUiTNUcUKUTVGUKWAUCX3U7XvU4YlU7ZZUDaNUNbBUbc0UncpV3dfVLeVVdfNVwgFWDh7WYi0WtixXDjtXZkrXvlrYEmvYYn_Yop9Y-qMZ3rcZ0suYqu9YV19Y12KXR3RWm4TW15PVI6GUb74T_7qTX8aTF9JT7A3T9AqTHBdTTCRTiDITyE9UDF3UTF-UgGxUqHvUwItUzJrU_KpU-LmUzMjUyNgUwOcUuPZUsQWUqRUUnSRUjTPUcUMUUVHULWBUCX4U7XwU4YlU6ZZUBaNULbBUYb_UkcnU_ddVHeSVZfJVsgAWAh3WVhyWqisXBjoXYkmXulnYDmrYXnyYnp7YyqLZ1rcY-svYouAYU1AY12MXU3TWr4UWA5QVV6IUs76UJ7tTu8cTc9MTTA6TTAtTYBfTiCTTuDJU6EBUKF4UYF_UjGxUsHvUyItU_JrV0KoV0LmU_MjU-NgUyOdUwPaUuQXUsRVUoSSUjTQUcUNUUVIULWCUDX4U7XxU4YlU5ZZUAaNUJbAUVbzUhcmUxdaVDePVVfFVpg6W7g-WShtWoinX9jjXWkiXtljYCmoYVnwYlp5YwqLY_rcYysvYmuCYS1BY12NXW3UWw4WWI5SVg6KV578Ua7vUB8fTw9PTnA8TlAvToBiTvCWU3DLUFEDURF6UcG0UmGyUuHvUzItV0JqV1KoV1LlV1MiU_NgU-OdUyPaUvQYUtRWUpSTUkTRUdUOUUVKULWDUEX5U8XxU5YmU5ZZUAaMUIb9UTbyUfckUvdXVAeMVSfBVmg2W4gvWQhoWmiiX7jeXVkdXrlfYBmkYUntYkp4YuqKYzrcYwswYkuCYR1DY22PXY3WW_4XWQ5UVr6MVI7AUq7yUT8iUC9SU2ACT_AyU0BlU6CYUDDOUNEFUXF7UhG2UpGzUwHwU_ItV1JqV2KoV3LlV2MiV1NgU_OdUzPbUxQZUuRXUqSVUkTSUdUPUVVKUMWEUEX6U9XxU6YmU6ZZUAaMUHb8USbxUdciUsdVV7eJVPf8VjfzW2gqWOhjWkidX6jZXTkYXqlbY9mhYTnqYip2YsqJYxrcYuswYjuDYR1EY22QXa3XX34ZWX5WV_6OVV7DV37_Ui8lUS9VUIAFUDB0UDBoUHCbUNDQUUEHUdF9UlG3UsG-UyHwV0ItV2JqV4KnV4LlV3MiV2NgV1OdU_PbUyQZUvRYUrSWUlTTUeUQUVVLUNWFUFX6UAXyU7YmU7ZZUAaLUHb7URbvUccfUrdSV5eFVNf3VhfvW0glWMheWjiYX4jUXSkUXplWY8mdYRnnYgp0YqqHYvrbYrswYhuEYQ1FY32RXd3ZX84bWd5YW86RVg7GVG82Uw8pUg9ZUWAJUQB4UPBrURCfUVDTUbEKUiFCUpG5UvH0U-HxV1IuV4JqV5KoV5LlV5MiV4NgV2OeV0PcUzQaUwRYUrSXUlTUUeURUWVMUOWFUHX6UBXyU8YlU8ZYUBaKUHb6UQbtUccdUqdPV4eCVMe_VffqV-ggWKhYWhiSX3jPXRkPXolSY7mZYQnkYeozYoqGYsrbYpsxYguFYP1GY32TXf3bXC4dWj5aWG6TVq7JVR85V78sUt9dUiANUcB8UaBvUaCiUdDXUiENUnFEUsG7UxH1U_HzV3IuV5JrV6KoV6LlV6MiV5NgV3OeV1PdU-QbUxRZUsSXUmTVUfURUXVMUPWFUIX6UCXxU9YlU9ZXUCaJUHb4UQbrUccaUpdMV3e8VLexVeflVzgbWJhTWgiNX2jJXQkJXmlNY5mVYOnhYdoxYmqEYqraYnsxYe00YO1HY32UXh3dXF4fWp5dWN6WVz7MVc89VI8wV39hUuARUnBCUjB-UjCnUkDbUnEQUrFHUwGAU-H3V1H-V4IwV5JsV6KoV7LlV7MjV6NhV4OfV2PdU_QcUxRaUsSYUmTVUfURUYVMUQWFUJX5UEXwUBYkUBZWUDaHUIb2URbpUccXUqdIV3e4VKesVefgVygWWJhNWgiHX1jEXPkEXllIY4mRYMndYbouYkqDYorZYlsxYc00YO1IY42WXi3fXJ4iWu5gWU6aW57QVl8DVS8_VD9mV2AWUwBHUsC3UqCrUrDfUtEUUvFLUzGDV0H6V2I0V5IxV6JtV7KpV8LmV7MjV7NhV5OfV3PeV0QcUyRbUtSZUnTWUgURUZVMURWEULX5UGXvUDYiUCZUUFaFUKb0USbmUecTUqdEV3d_VKenVdfbVygQWIhHWfiBX0j8XOk8XklDY2mMYKnaYYorYiqBYmrYYjswYb01YN1KY42YXk3hXM4lWz5jWa6dWD7UVu8IVb94VN9rVBAcV3BMU-C8UxCwUwDkUxEZUzFPU_GGV1H9V4I2V5IzV7JuV8KqV8LnV8MkV7NiV6OgV3PfV0QdUyRbUtSZUnTWUgURUZVLUTWDUNX3UIXuUFYhUFZSUHaDUMazUTbjUfcPUsd9V4dwVLeiVefVVygKWIhBWfi5X0j2XNk2Xjl7Y1mHYInVYWooYfq9YjrXYhswYZ02YM1LY42aXl3kXO4oX15nWf6iWJ7ZV_8NVk99VV9xVJAhVBBSV5CEV1D0V0DpU_EdV0FTV1GKV3HCV5I5V6I_V7JwV8KsV8LoV8MlV7NjV6OhV4PfV0QeUyRcUtSZUoTVUhUQUaVKUUWCUOX2UKXsUHYeUHZQUJaAUOawUVbgUhcLUtd5V6drVMecVffPVzgDWIh4Weh-W_ixXMjyXhl1X_mBYGnRYUokYdq6YgrWYfswYX02YK1NY42dXm3nXR4sX45rWk6nWP7eW68TVr9GVcA1VRAoVIBZVBCKV7D6V4DvV3EjV3FYV4GOV4HGV5I8V7J2V7JyV8KuV8LqV8MnV7NkV6OiV3PgV0QeUyRcUtSZUoTVUiUPUbVJUVWAUQW_UMXpUKYcUKZNUMa7URasUYbcUkcGUwc_V8dlVOeWVgfIVzg6WIgzWehsW-ipXLjqXgkwXzm5YEnLYRogYaq3YerUYcswYV03YJ1PY32gXn3rXS4wX75xWo6sWU7kWC8ZVx9NVjA8VXAvVOBgVHCRVCDDV8E0V6EpV6FeV5GTV6HKV6ICV7J5V7J_V8KwV8LsV8MoV7NlV5OjV3PhV0QeUyRcUtSYUoTUUiUOUcVHUXW8USWzUPXmUNYYUNZJUPa3UTaoUabXUncAUycuVAdeVPeOVhfAV-f-WJgqWehkW-ihXJjiXekoXxl-YBnFYOobYXq0YbrSYZsvYT04YI1RY32jXn3vXU50XA61Ws6zWY7rWH8hW19UVpAGVdB1VTBoVMCZVGDLVCE7V9EwV8FkV7GZV7HQV7IHV7J9V7K3V7KzV7LuV7MqV6NnV5OkV2PiU_QfUyRcUtSYUoTTUjUMUdVEUYW5UUWvURXiUPYUUQZEUSZ-UXajUdbRUqc3U_cnVCdWVReGVif1V_frWJghWehaWziXXIjZXckgXvlsY9n8YLoVYUpxYYrQYWsvYQ06YG1VY22oXn3_XV56XB68Wu75Wc7-WL8qW59dVuAQViBBVYByVQCiVKDUVFEGVCF2VAFsV8GgV7HWV7INV7JEV7K7V7L1V7LyV6MtV5NpV4OmV1PiU-QfUxRbUtSXUoTRUjUKUeVBUaW1UWWrUTXeUSYPUTZ9UVZuUaadUhbLUtbwV2ceVFdNVTe6VketW0fhWJgWWehPWyiMXGjOXakVXsliY6m_YIoOYQpsYUrNYTsvYN08YD1YY02tXm46XV5EXD6GWx7EWf88WO8-W99oVyAaVmBMVcC6VUCtVNDeVIEPVEFBVBF-V9GoV8HdV7ITV6JKV6KCV6L5V5L_V5MwV4NsV2OnV0PjUzQfUwRbUsSVUoTPUjUHUfV7UbVzUYWmUWXYUVYJUWZ3UZZnUdaVUkbDUwbnV5cUVHdCVWdxVmeiW1fUWKgKWdhCWxi9XFjBXXkIXplWY2mrYEoGYNpmYQrKYQsuYK0AYB1dX-2-Xl4EXV5OXD6RWy7PWh8JWR9AWD9-V_AnVqBYVfCJVXD3VQDqVKEbVGFMVCG8VAGyV8HmV7IbV6JRV5KJV5LBV4M4V3M-V2NvV0OpU-PkUyQfUuRaUrSTUnTMUjUDUfV3UcVtUaWgUYXSUYYCUZYxUcZfUhaMUob4UzbbV8cIVKc_VYdkVneUW2fGWKg5WcgzWvhvXCixXVk3XmlIX-meYAo5YJpeYNrGYMsuYH0DY81kXy37Xk4PXU5aXE6fWz7eWj8YWT9PWFADW2B0VsBnViCXVaDHVSE1VMEoVHFZVDGKVAH7V8HwV6IkV5JaV4KQV3LHV2MAV1N2V0NyU-OsUyPmUwQfUtRZUqSRUmTIUjU9UgU-UdVnUbWZUaXKUbY3UcYoUfZVUkaCUravV1bNVBc3VMcmVadTVoeDW2e-WJfoWbggWuhcXAidXRjlXik_XwmNY6ntYEpUYJrAYIstYE0IY51tXw3JXi4eXT5qXD6wWz7vWk8qWV9hWHAWW4BIVvC3VkCpVcDYVUEIVOF2VIFoVEGYVAHKV8I6V6IwV4JkV3KZV1LPV0MGU_N8U-O0UyOvUwPnUuQfUrRXUoSOUlTEUjU3UgUtUeVfUdWQUcXAUdXvUfYcUjZJUoZ_UuahV4b6VDbnVOcTVbd9VpduW2eeWJfRWagIWrhDX7iEXOjMXekcXsm0Y2nZYApGYEr3YEstYA0PY223Xt3aXg4yXR6AXC7GWz8GWk9BWVA3WIAtW5BeVwCPVmD8VdDtVVEcVPFLVJG4VEGqVAHaV7ILV5J7V2JwV1KkU_LZU-MOUyNFUxO5UvOyUtPpUrQfUpRVUmSLUkT9UiTzUgUlUfVWUeWGUeW_UfXiUiYPUmZ5UrZmUxaRV6amVFbQVQc5VccmVpdTW2eCWHe-WXfpWogjX3hiXJiqXZk4XnlWXyn8Y5oxYAquYAstY60ZX-2LXp3yXd5OXP6eXA7lWx8mWj9gWVAXWIBKW6C5VxCrVnDZVeEHVWE_VPFiVJGQVEH9VAHuV6IeV3JOV1KAU_KyUzLlUxMYUvNNUuOBUsP0UqPrUoQfUmRTUkSHUjT3UhTrUgUcUfVLUfW3UgWnUhXTUkY8UoYpUtZTU-a7V8aLVHazVRbcVccFVpcwW0ddWFeMWUf9Wkg0W-g-XEi3XTjJXhkmXtmTY0oRY5qcY5stY20qXw2pXl4ZXZ62XL7KX78SWv9RWhALWTBAWHByW5ChVwDPVnE6VeEoVWFUVPGAVJGtVDHaV9IHV5I_V1JjU-KTUyLDUwLzUuMlUsNXUqOJUoP5UnPtUlQfUjRRUiSCUhSyUgThUfUQUfV7UfVqUhWVUjXAUmXpUqYSUwZ5V0ZjV9ZnVHaNVRazVbbaVncBV-cqWBdWWPeEWef1WtfvX6gwXLi5XZjXXmlIXwnTY0q3Y1suXz1LXr3hXg5bXT79XG8RX29WWqASWdBJWQC4WECpW3DWVvEBVlErVcFVVVG8VOGoVHHSVCI6V7InV3JSU_K8UyKrUvLYUsMGUqM-UoNjUmOSUlPBUjPwUiQfUgRNUfS5UeSpUeTVUeUBUeUsUgVWUhW9UkWnUnXOUsX_UxYbV1ZBV8Z0VGZYVPa4VZacVjb9VubjW5cHWHcuWVdYWjeGWxf4X9g2XOhFXbisXnlBXwoaXysxXt2nXk5lXY7nXK9EX7ALWwBGWjC4WWCoWKDSW9E4V_EhVrFIViFtVZGTVSH2VLHeVFIEV9IrV4JSV0K4UyKiUuLLUrL-UpMeUmNJUkNzUiOeUgPJUfP-UeQfUdRJUcRzUcSdUcTFUcTtUdUVUfV5UhVhUkWGUnWrUsXOUxXxV1YUV5XxVCYNVKYpVSZEVcZeVla3VwaSW5asWGbFWSbeWfc1WscQX3cpXGdDXTdfXheDXt4oXgC7XTCgXGD6X3DXWsDxWgELWVEmWKFAW9FcV_G1VsGUVjGxVbHOVTHsVMILVGIrVAJLV4JsV0KNUxKwUtLTUqM0UnMaUkN9UiNkUfOJUeOuUcPUUbQ3UaQfUZREUZRoUZSNUZSwUaTUUcU0UdUYUgV3UjVaUmW3UrWYUvX0U_XUU_WLV4WeVAWwVHXAVOXPVVXbVdXkVlXrVtXtW0XqW8XfWHXKWPWnWXVvWdUcWhSnWjQZWiOHWeMNWZKzWSK1WKJRWCJ5W4IwVyIsVqIvVjJ0VbJBVUJPVOJgVIJyVCKGV6KbV1KyUzLKUuLjUqM7UnMYUkM-UhNQUeNtUcOKUaOnUZPFUXPjUWQBUWQeUVR6UVRZUWS0UWSTUXSvUZTLUbTmUdUAUgUZUjUyUnVKUrVgUvW0UnTyUqU3UuU9UxUDU_UFV3UEV7UBVBU4VFTwVITjVMTRVPT6VSSiVUSFVWRkVXRBVYQcVYQ2VXPUVWOyVUOUVRO3VPNjVLNQVINCVEN2VBMxV7MtV3MtV0MvUyMzUuN4UrNCUoNMUlNXUiNkUfNxUdOAUbOQUZOgUXOxUWPDUUPUUTPnUSQ3USQMURQeURQxURRDUSRVUSRnUTS2UUSJUWSZUXSpUZT2UbTFUeTSUhTeUkTp";
+const FEED = 'https://services.swpc.noaa.gov/';
+
+// ---------------- places ----------------
+const US = [
+ ["Fairbanks, AK",64.8378,-147.7164,"America/Anchorage"],["Anchorage, AK",61.2181,-149.9003,"America/Anchorage"],["Juneau, AK",58.3019,-134.4197,"America/Juneau"],["Utqiaġvik, AK",71.2906,-156.7886,"America/Anchorage"],
+ ["Seattle, WA",47.6062,-122.3321,"America/Los_Angeles"],["Spokane, WA",47.6588,-117.426,"America/Los_Angeles"],["Portland, OR",45.5152,-122.6784,"America/Los_Angeles"],["Boise, ID",43.615,-116.2023,"America/Boise"],
+ ["Billings, MT",45.7833,-108.5007,"America/Denver"],["Fargo, ND",46.8772,-96.7898,"America/Chicago"],["Duluth, MN",46.7867,-92.1005,"America/Chicago"],["Minneapolis, MN",44.9778,-93.2650,"America/Chicago"],
+ ["Marquette, MI",46.5436,-87.3954,"America/Detroit"],["Milwaukee, WI",43.0389,-87.9065,"America/Chicago"],["Detroit, MI",42.3314,-83.0458,"America/Detroit"],["Chicago, IL",41.8781,-87.6298,"America/Chicago"],
+ ["South Bend, IN",41.6764,-86.2520,"America/Indiana/Indianapolis"],["Indianapolis, IN",39.7684,-86.1581,"America/Indiana/Indianapolis"],["Cleveland, OH",41.4993,-81.6944,"America/New_York"],["Columbus, OH",39.9612,-82.9988,"America/New_York"],
+ ["Buffalo, NY",42.8864,-78.8784,"America/New_York"],["Burlington, VT",44.4759,-73.2121,"America/New_York"],["Portland, ME",43.6591,-70.2568,"America/New_York"],["Boston, MA",42.3601,-71.0589,"America/New_York"],
+ ["New York, NY",40.7128,-74.0060,"America/New_York"],["Pittsburgh, PA",40.4406,-79.9959,"America/New_York"],["Philadelphia, PA",39.9526,-75.1652,"America/New_York"],["Washington, DC",38.9072,-77.0369,"America/New_York"],
+ ["Salt Lake City, UT",40.7608,-111.891,"America/Denver"],["Denver, CO",39.7392,-104.9903,"America/Denver"],["Kansas City, MO",39.0997,-94.5786,"America/Chicago"],["St. Louis, MO",38.627,-90.1994,"America/Chicago"],
+ ["Louisville, KY",38.2527,-85.7585,"America/Kentucky/Louisville"],["San Francisco, CA",37.7749,-122.4194,"America/Los_Angeles"],["Las Vegas, NV",36.1699,-115.1398,"America/Los_Angeles"],["Nashville, TN",36.1627,-86.7816,"America/Chicago"],
+ ["Charlotte, NC",35.2271,-80.8431,"America/New_York"],["Oklahoma City, OK",35.4676,-97.5164,"America/Chicago"],["Albuquerque, NM",35.0844,-106.6504,"America/Denver"],["Los Angeles, CA",34.0522,-118.2437,"America/Los_Angeles"],
+ ["Atlanta, GA",33.7490,-84.3880,"America/New_York"],["Phoenix, AZ",33.4484,-112.0740,"America/Phoenix"],["Dallas, TX",32.7767,-96.7970,"America/Chicago"],["Austin, TX",30.2672,-97.7431,"America/Chicago"],
+ ["Houston, TX",29.7604,-95.3698,"America/Chicago"],["New Orleans, LA",29.9511,-90.0715,"America/Chicago"],["Tampa, FL",27.9506,-82.4572,"America/New_York"],["Miami, FL",25.7617,-80.1918,"America/New_York"],["Honolulu, HI",21.3069,-157.8583,"Pacific/Honolulu"]
+];
+const WORLD = [
+ ["Yellowknife, Canada",62.4540,-114.3718,"America/Yellowknife"],["Whitehorse, Canada",60.7212,-135.0568,"America/Whitehorse"],["Calgary, Canada",51.0447,-114.0719,"America/Edmonton"],["Winnipeg, Canada",49.8951,-97.1384,"America/Winnipeg"],
+ ["Vancouver, Canada",49.2827,-123.1207,"America/Vancouver"],["Toronto, Canada",43.6532,-79.3832,"America/Toronto"],["Montréal, Canada",45.5019,-73.5674,"America/Toronto"],
+ ["Reykjavík, Iceland",64.1466,-21.9426,"Atlantic/Reykjavik"],["Tromsø, Norway",69.6492,18.9553,"Europe/Oslo"],["Abisko, Sweden",68.3495,18.8312,"Europe/Stockholm"],["Rovaniemi, Finland",66.5039,25.7294,"Europe/Helsinki"],
+ ["Murmansk, Russia",68.9585,33.0827,"Europe/Moscow"],["Oslo, Norway",59.9139,10.7522,"Europe/Oslo"],["Stockholm, Sweden",59.3293,18.0686,"Europe/Stockholm"],["Helsinki, Finland",60.1699,24.9384,"Europe/Helsinki"],
+ ["Edinburgh, UK",55.9533,-3.1883,"Europe/London"],["Dublin, Ireland",53.3498,-6.2603,"Europe/Dublin"],["London, UK",51.5074,-0.1278,"Europe/London"],["Amsterdam, Netherlands",52.3676,4.9041,"Europe/Amsterdam"],
+ ["Berlin, Germany",52.52,13.405,"Europe/Berlin"],["Paris, France",48.8566,2.3522,"Europe/Paris"],["Madrid, Spain",40.4168,-3.7038,"Europe/Madrid"],["Tokyo, Japan",35.6762,139.6503,"Asia/Tokyo"],
+ ["Hobart, Australia",-42.8821,147.3272,"Australia/Hobart"],["Melbourne, Australia",-37.8136,144.9631,"Australia/Melbourne"],["Sydney, Australia",-33.8688,151.2093,"Australia/Sydney"],
+ ["Dunedin, New Zealand",-45.8788,170.5028,"Pacific/Auckland"],["Christchurch, New Zealand",-43.5321,172.6362,"Pacific/Auckland"],["Ushuaia, Argentina",-54.8019,-68.3030,"America/Argentina/Ushuaia"]
+];
+const PLACES = new Map();
+[...US.map(p => [...p,'US']), ...WORLD.map(p => [...p,'World'])].forEach(([name,lat,lon,tz,grp]) => PLACES.set(name,{name,lat,lon,tz,grp}));
+
+// ---------------- sun (NOAA equations) ----------------
+function sunParams(ms){
+  const T = (ms/DAY + 2440587.5 - 2451545.0)/36525;
+  const L0 = ((280.46646 + T*(36000.76983 + T*0.0003032)) % 360 + 360) % 360;
+  const M = 357.52911 + T*(35999.05029 - 0.0001537*T), e = 0.016708634 - T*(0.000042037 + 0.0000001267*T);
+  const Mr = M*RAD;
+  const C = Math.sin(Mr)*(1.914602 - T*(0.004817 + 0.000014*T)) + Math.sin(2*Mr)*(0.019993 - 0.000101*T) + Math.sin(3*Mr)*0.000289;
+  const om = 125.04 - 1934.136*T, lam = L0 + C - 0.00569 - 0.00478*Math.sin(om*RAD);
+  const eps = 23 + (26 + (21.448 - T*(46.815 + T*(0.00059 - T*0.001813)))/60)/60 + 0.00256*Math.cos(om*RAD);
+  const decl = Math.asin(Math.sin(eps*RAD)*Math.sin(lam*RAD))/RAD;
+  const y = Math.tan(eps*RAD/2)**2, L = L0*RAD;
+  const eqt = 4/RAD*(y*Math.sin(2*L) - 2*e*Math.sin(Mr) + 4*e*y*Math.sin(Mr)*Math.cos(2*L) - 0.5*y*y*Math.sin(4*L) - 1.25*e*e*Math.sin(2*Mr));
+  return [decl, eqt];
+}
+function subsolar(ms){
+  const [d, eqt] = sunParams(ms);
+  const utMin = ((ms % DAY) + DAY) % DAY / 6e4;
+  let lon = -(utMin - 720 + eqt)/4; lon = ((lon + 540) % 360) - 180;
+  return [lon, d];
+}
+function sunAlt(ms, lat, lon){
+  const [sl, sd] = subsolar(ms);
+  const s = Math.sin(lat*RAD)*Math.sin(sd*RAD) + Math.cos(lat*RAD)*Math.cos(sd*RAD)*Math.cos((lon - sl)*RAD);
+  return Math.asin(Math.max(-1, Math.min(1, s)))/RAD;
+}
+
+// ---------------- magnetic coordinates ----------------
+// Dipole (IGRF 2025 pole, 80.8°N 72.6°W) for low latitudes and the subsolar point; AACGM-v2 (110 km) grid elsewhere.
+const PLAT = 80.8*RAD, PLON = -72.6*RAD;
+function dipole(lat, lon){
+  const la = lat*RAD, lo = lon*RAD;
+  const x = Math.cos(la)*Math.cos(lo), y = Math.cos(la)*Math.sin(lo), z = Math.sin(la);
+  const x1 = x*Math.cos(-PLON) - y*Math.sin(-PLON), y1 = x*Math.sin(-PLON) + y*Math.cos(-PLON);
+  const t = Math.PI/2 - PLAT, x2 = x1*Math.cos(t) - z*Math.sin(t), z2 = x1*Math.sin(t) + z*Math.cos(t);
+  return [Math.asin(Math.max(-1, Math.min(1, z2)))/RAD, Math.atan2(y1, x2)/RAD];
+}
+const B64 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
+const CG_N = 70*60, cgD = new Float32Array(CG_N), cgL = new Float32Array(CG_N), cgOK = new Uint8Array(CG_N);
+(function(){
+  const v = c => B64.indexOf(c);
+  for (let i = 0; i < CG_N; i++){
+    const o = i*4, d = v(CGM[o])*64 + v(CGM[o+1]), l = v(CGM[o+2])*64 + v(CGM[o+3]);
+    if (d === 4095){ cgOK[i] = 0; continue; }
+    cgOK[i] = 1; cgD[i] = (d - 2048)/20; cgL[i] = l/10;
+  }
+})();
+// rows: lat -88..-20 step 2 (rows 0-34), then 20..88 (rows 35-69); cols: lon -180..174 step 6
+function cgm(lat, lon){
+  if (Math.abs(lat) < 20) return dipole(lat, lon);
+  lon = ((lon + 540) % 360) - 180;
+  let r; const al = Math.min(88, Math.abs(lat));
+  if (lat < 0) r = (-al + 88)/2; else r = 35 + (al - 20)/2;
+  const r0 = Math.min(Math.floor(r), lat < 0 ? 33 : 68), fr = r - r0;
+  const c = (lon + 180)/6, c0 = Math.floor(c) % 60, c1 = (c0 + 1) % 60, fc = c - Math.floor(c);
+  const i00 = r0*60 + c0, i01 = r0*60 + c1, i10 = (r0+1)*60 + c0, i11 = (r0+1)*60 + c1;
+  if (!(cgOK[i00] && cgOK[i01] && cgOK[i10] && cgOK[i11])) return dipole(lat, lon);
+  const d = (cgD[i00]*(1-fc) + cgD[i01]*fc)*(1-fr) + (cgD[i10]*(1-fc) + cgD[i11]*fc)*fr;
+  const base = cgL[i00], un = x => { let q = x - base; if (q > 180) q -= 360; if (q < -180) q += 360; return base + q; };
+  const ml = (un(cgL[i00])*(1-fc) + un(cgL[i01])*fc)*(1-fr) + (un(cgL[i10])*(1-fc) + un(cgL[i11])*fc)*fr;
+  return [Math.max(-90, Math.min(90, lat + d)), ml];
+}
+// magnetic local time: AACGM longitude against the dipole longitude of the subsolar point
+function mssLon(ms){ const [sl, sd] = subsolar(ms); return dipole(sd, sl)[1]; }
+function mltOf(mlon, mss){ return (((mlon - mss)/15 + 12) % 24 + 24) % 24; }
+
+// ---------------- the Kp sketch (NOAA rule of thumb) ----------------
+const EDGE0 = 66, PER_KP = 2, VIEW_BEYOND = 5;
+function needKp(mlat){ return (EDGE0 - VIEW_BEYOND - Math.abs(mlat))/PER_KP; }
+function viewLat(kp){ return EDGE0 - VIEW_BEYOND - PER_KP*kp; }
+function modelP(mlat, mlt, kp){
+  const a = Math.abs(mlat), w = (1 + Math.cos(mlt/24*2*Math.PI))/2;
+  const edge = EDGE0 - PER_KP*kp + 8*(1 - w), width = 3 + (4 + 0.5*kp)*w;
+  const c = edge + 0.45*width, s = width/2.4, peak = Math.min(90, (12 + 6*kp)*(0.3 + 0.7*w));
+  const z = (a - c)/s; return peak*Math.exp(-z*z/2);
+}
+
+// ---------------- storm history ----------------
+const STORM = (function(){
+  const out = [], re = /([A-N])([0-9a-z])([0-9a-z]+?)(?=[A-N]|$)/g; let m, pk = 0;
+  const t0 = Date.UTC(1932,0,1);
+  while ((m = re.exec(STORMS))){ pk += parseInt(m[3],36); const t = m[1].charCodeAt(0) - 65 + 14;
+    out.push({ ms: t0 + pk*DAY, t, kp: t/3, len: parseInt(m[2],36) }); }
+  return out;
+})();
+function gOf(t){ return t <= 16 ? 1 : t <= 19 ? 2 : t <= 22 ? 3 : t <= 26 ? 4 : 5; }
+function kpStr(x){ const th = Math.round(x*3), b = Math.round(th/3), r = th - 3*b; return b + (r === 1 ? '+' : r === -1 ? '−' : ''); }
+
+// ---------------- map data ----------------
+function decodeRing(s){ const a = s.split(',').map(Number), out = []; let x = 0, y = 0;
+  for (let i = 0; i < a.length; i += 2){ x += a[i]; y += a[i+1]; out.push([x/10, y/10]); } return out; }
+const landGeo = { type:'MultiPolygon', coordinates: LAND.split('|').map(pg => pg.split(';').map(decodeRing)) };
+const bordGeo = { type:'MultiLineString', coordinates: BORDERS.split(';').map(decodeRing) };
+const grat = d3.geoGraticule10();
+const STARS = (function(){ let s = 7; const r = () => (s = (s*16807) % 2147483647)/2147483647; const a = [];
+  for (let i = 0; i < 420; i++) a.push([r(), r(), r()*r()]); return a; })();
+
+// ---------------- state ----------------
+const state = { place: PLACES.get('South Bend, IN'), view: 'now', kp: 5, step: 0,
+  rot: [86, -66], scale: 1, ov: null, ovErr: false, fc: null, kp1m: null, feedTime: null };
+try { const saved = localStorage.getItem('sky-place'); if (saved && PLACES.has(saved)) state.place = PLACES.get(saved); } catch(e) {}
+
+const stage = document.getElementById('stage'), gc = document.getElementById('globe'), hc = document.getElementById('hist');
+const ov = d3.select('#ov'), tip = document.getElementById('tip'), badge = document.getElementById('badge');
+let W = 0, H = 0, DPR = 1;
+function layout(){
+  W = stage.clientWidth; H = Math.round(W < 640 ? W*1.08 : Math.min(660, W*0.58));
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  for (const c of [gc, hc]){ c.width = Math.round(W*DPR); c.height = Math.round(H*DPR); c.style.width = W + 'px'; c.style.height = H + 'px'; }
+  stage.style.height = H + 'px'; ov.attr('width', W).attr('height', H);
+}
+
+// ---------------- OVATION grid ----------------
+function parseOvation(j){
+  const g = new Float32Array(360*181);
+  for (const c of j.coordinates){ const lo = ((Math.round(c[0]) % 360) + 360) % 360, la = Math.round(c[1]); if (la >= -90 && la <= 90) g[(la + 90)*360 + lo] = c[2]; }
+  return { g, obs: new Date(j['Observation Time']), fc: new Date(j['Forecast Time']) };
+}
+function ovAt(g, lat, lon){
+  lon = ((lon % 360) + 360) % 360; const y = lat + 90, x0 = Math.floor(lon), y0 = Math.max(0, Math.min(179, Math.floor(y)));
+  const fx = lon - x0, fy = y - y0, x1 = (x0 + 1) % 360;
+  return (g[y0*360 + x0]*(1-fx) + g[y0*360 + x1]*fx)*(1-fy) + (g[(y0+1)*360 + x0]*(1-fx) + g[(y0+1)*360 + x1]*fx)*fy;
+}
+// view line from the forecast: Case, MacDonald & Viereck (2016), the "Aurorasaurus" line: at each longitude, the latitude
+// of the forecast's peak, moved (peak/16 + 8)° toward the equator. Of the lines they tested against ~500 sightings, it fit best.
+function liveViewLine(g, north){
+  const raw = new Array(360).fill(null);
+  for (let lo = 0; lo < 360; lo++){
+    let pm = 0, lm = null;
+    for (let a = 30; a <= 89; a++){ const la = north ? a : -a, v = g[(la + 90)*360 + lo]; if (v > pm){ pm = v; lm = la; } }
+    if (pm >= 1) raw[lo] = north ? lm - (pm/16 + 8) : lm + (pm/16 + 8);
+  }
+  return raw.map((v, i) => { let s = 0, n = 0; for (let k = -2; k <= 2; k++){ const q = raw[(i + k + 360) % 360]; if (q !== null){ s += q; n++; } } return v === null || n < 3 ? null : s/n; });
+}
+// view line for the Kp sketch: the geographic latitude where magnetic latitude equals the target, by longitude
+function modelViewLine(kp, north){
+  const tgt = viewLat(kp), out = [];
+  for (let lo = -180; lo <= 180; lo += 2){
+    let a = north ? 20 : -89.5, b = north ? 89.5 : -20;
+    const f = la => Math.abs(cgm(la, lo)[0]) - tgt;
+    if (f(a)*f(b) > 0){ out.push(null); continue; }
+    for (let k = 0; k < 30; k++){ const m = (a + b)/2; if (f(a)*f(m) <= 0) b = m; else a = m; }
+    out.push([lo, (a + b)/2]);
+  }
+  return out;
+}
+
+// ---------------- aurora colors ----------------
+const RAMP = [[1,[20,120,80],0],[4,[30,190,110],.3],[10,[44,220,120],.58],[25,[100,255,150],.78],[45,[200,255,130],.9],[62,[255,226,120],.95],[78,[255,140,120],.97],[95,[255,90,170],1]];
+function ramp(p){
+  if (p < RAMP[0][0]) return null;
+  for (let i = 1; i < RAMP.length; i++){ if (p <= RAMP[i][0]){ const [p0,c0,a0] = RAMP[i-1], [p1,c1,a1] = RAMP[i], f = (p - p0)/(p1 - p0);
+    return [c0[0]+(c1[0]-c0[0])*f, c0[1]+(c1[1]-c0[1])*f, c0[2]+(c1[2]-c0[2])*f, a0+(a1-a0)*f]; } }
+  const l = RAMP[RAMP.length-1]; return [...l[1], l[2]];
+}
+
+// ---------------- the globe ----------------
+const proj = d3.geoOrthographic().clipAngle(90).precision(0.4);
+let auroraBuf = null;
+function viewTarget(){
+  const p = state.place, south = p.lat < 0;
+  if (state.view === 'now' && state.step === 0) return { rot: [-(p.lon), south ? 68 : -68], scale: 1 };
+  if (state.view === 'whatif' || state.step === 3) return { rot: [-(p.lon), south ? Math.max(30, -p.lat + 14) : Math.min(-30, -p.lat - 14)], scale: 1.45 };
+  return { rot: [-(p.lon), south ? Math.max(25, -p.lat + 12) : Math.min(-25, -p.lat - 12)], scale: 1.75 };
+}
+function setProj(){
+  const R0 = Math.min(W, H)*0.46;
+  proj.rotate([state.rot[0], state.rot[1], 0]).scale(R0*state.scale).translate([W/2, H/2 + (state.scale > 1 ? H*0.18*(state.scale - 1)/0.75 : 0)]);
+}
+function currentKpForModel(){ return state.view === 'tonight' ? (tonight().kp ?? state.kp) : state.kp; }
+function isModel(){ return state.view !== 'now' || !state.ov; }
+
+function drawGlobe(fast){
+  setProj();
+  const ctx = gc.getContext('2d'); ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
+  const path = d3.geoPath(proj, ctx), now = Date.now(), [sl, sd] = subsolar(now);
+  // space
+  const bg = ctx.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, Math.max(W,H)*0.75);
+  bg.addColorStop(0, '#060c1a'); bg.addColorStop(1, '#010309'); ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+  for (const s of STARS){ ctx.fillStyle = `rgba(220,230,255,${0.15 + s[2]*0.7})`; ctx.fillRect(s[0]*W, s[1]*H, s[2] > .6 ? 1.6 : 1, s[2] > .6 ? 1.6 : 1); }
+  const [cx, cy] = proj.translate(), R = proj.scale();
+  // atmosphere glow
+  const glow = ctx.createRadialGradient(cx, cy, R*0.96, cx, cy, R*1.12);
+  glow.addColorStop(0, 'rgba(90,170,255,.28)'); glow.addColorStop(1, 'rgba(90,170,255,0)');
+  ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, R*1.12, 0, 2*Math.PI); ctx.fill();
+  // sphere, graticule, land
+  ctx.beginPath(); path({type:'Sphere'}); ctx.fillStyle = '#0a1830'; ctx.fill();
+  ctx.beginPath(); path(grat); ctx.strokeStyle = 'rgba(160,190,230,.07)'; ctx.lineWidth = .7; ctx.stroke();
+  ctx.beginPath(); path(landGeo); ctx.fillStyle = '#16304b'; ctx.fill(); ctx.strokeStyle = 'rgba(150,190,230,.35)'; ctx.lineWidth = .6; ctx.stroke();
+  ctx.beginPath(); path(bordGeo); ctx.strokeStyle = 'rgba(150,190,230,.16)'; ctx.lineWidth = .5; ctx.stroke();
+  // daylight side shaded lighter and blue, night left dark: draw night as dark overlay in steps
+  const anti = [sl + 180, -sd];
+  for (const [r, a] of [[90, .30], [84, .22], [78, .22]]){ ctx.beginPath(); path(d3.geoCircle().center(anti).radius(r)()); ctx.fillStyle = `rgba(1,3,10,${a})`; ctx.fill(); }
+  ctx.beginPath(); path(d3.geoCircle().center([sl, sd]).radius(90)()); ctx.fillStyle = 'rgba(120,150,190,.10)'; ctx.fill();
+  // aurora
+  const scale = fast ? 4 : 2, bw = Math.ceil(W/scale), bh = Math.ceil(H/scale);
+  if (!auroraBuf || auroraBuf.width !== bw || auroraBuf.height !== bh){ auroraBuf = document.createElement('canvas'); auroraBuf.width = bw; auroraBuf.height = bh; }
+  const actx = auroraBuf.getContext('2d'), img = actx.createImageData(bw, bh), D = img.data;
+  const model = isModel(), kp = currentKpForModel(), mss = mssLon(now), g = state.ov && state.ov.g;
+  const loading = state.view === 'now' && !state.ov && !state.ovErr;
+  const sinD = Math.sin(sd*RAD), cosD = Math.cos(sd*RAD);
+  for (let y = 0; y < bh; y++){
+    const py = y*scale + scale/2;
+    for (let x = 0; x < bw; x++){
+      const px = x*scale + scale/2, dx = px - cx, dy = py - cy;
+      if (loading || dx*dx + dy*dy > R*R*0.995) continue;
+      const ll = proj.invert([px, py]); if (!ll) continue;
+      const [lon, lat] = ll; if (Math.abs(lat) < 25) continue;
+      let p;
+      if (model){ const [ml, mo] = cgm(lat, lon); p = modelP(ml, mltOf(mo, mss), kp); }
+      else p = ovAt(g, lat, lon);
+      const c = ramp(p); if (!c) continue;
+      const sa = sinD*Math.sin(lat*RAD) + cosD*Math.cos(lat*RAD)*Math.cos((lon - sl)*RAD);
+      const day = sa > 0.1 ? 0.25 : sa > -0.2 ? 0.25 + 0.75*(0.1 - sa)/0.3 : 1;
+      const i = (y*bw + x)*4; D[i] = c[0]; D[i+1] = c[1]; D[i+2] = c[2]; D[i+3] = 255*c[3]*day;
+    }
+  }
+  actx.putImageData(img, 0, 0);
+  ctx.save(); ctx.imageSmoothingEnabled = true; ctx.globalCompositeOperation = 'lighter';
+  ctx.filter = `blur(${fast ? 6 : 9}px)`; ctx.globalAlpha = .7; ctx.drawImage(auroraBuf, 0, 0, W, H);
+  ctx.filter = `blur(${fast ? 1.5 : 1.2}px)`; ctx.globalAlpha = .65; ctx.drawImage(auroraBuf, 0, 0, W, H);
+  ctx.restore();
+  // rim
+  ctx.beginPath(); path({type:'Sphere'}); ctx.strokeStyle = 'rgba(120,180,255,.35)'; ctx.lineWidth = 1; ctx.stroke();
+  drawGlobeOverlay();
+}
+function viewLineFor(north){
+  if (!isModel()) return liveViewLine(state.ov.g, north).map((v, lo) => v === null ? null : [lo > 180 ? lo - 360 : lo, v]);
+  return modelViewLine(currentKpForModel(), north);
+}
+function lineSegments(pts){
+  const segs = []; let cur = [];
+  for (const p of pts){ if (!p){ if (cur.length > 1) segs.push(cur); cur = []; } else cur.push(p); }
+  if (cur.length > 1) segs.push(cur);
+  // join wrap-around
+  if (segs.length > 1 && pts[0] && pts[pts.length-1]){ const last = segs.pop(); segs[0] = last.concat(segs[0].map(p => [p[0] + 360, p[1]])); }
+  return segs;
+}
+function drawGlobeOverlay(){
+  ov.selectAll('*').remove();
+  const p = state.place, north = p.lat >= 0, path = d3.geoPath(proj);
+  const loading = state.view === 'now' && !state.ov && !state.ovErr;
+  const vl = loading ? [] : viewLineFor(north), segs = lineSegments(vl);
+  ov.append('path').attr('d', path({ type:'MultiLineString', coordinates: segs })).attr('fill','none').attr('stroke','#ffd76a').attr('stroke-width', 1.8).attr('stroke-dasharray','6 5').attr('opacity', .95);
+  // magnetic pole
+  const mp = north ? [-72.6, 80.8] : [107.4, -80.8], mpx = proj(mp);
+  if (mpx && d3.geoDistance(mp, proj.invert([W/2, H/2]) || mp) < 1.5){
+    ov.append('circle').attr('cx', mpx[0]).attr('cy', mpx[1]).attr('r', 3).attr('fill','none').attr('stroke','rgba(220,230,255,.7)');
+    if (state.step === 0) ov.append('text').attr('class','lbl-s').attr('x', mpx[0] + 7).attr('y', mpx[1] + 4).text('Magnetic pole');
+  }
+  // place
+  const center = proj.invert([W/2, H/2]);
+  if (center && d3.geoDistance([p.lon, p.lat], center) < Math.PI/2 - 0.05){
+    const [x, y] = proj([p.lon, p.lat]);
+    ov.append('circle').attr('cx', x).attr('cy', y).attr('r', 9).attr('fill','none').attr('stroke','rgba(255,255,255,.4)').attr('stroke-width', 2);
+    ov.append('circle').attr('cx', x).attr('cy', y).attr('r', 4.5).attr('fill','#fff');
+    const right = x < W - 170;
+    ov.append('text').attr('class','lbl').attr('x', right ? x + 14 : x - 14).attr('y', y + 4).attr('text-anchor', right ? 'start' : 'end').text(p.name);
+    // label the line near the place
+    let best = null;
+    for (const q of vl){ if (!q) continue; const dl = Math.abs(((q[0] - p.lon + 540) % 360) - 180); if (dl < 12 && (!best || dl < best.dl)) best = { dl, q }; }
+    if (best){ const pp = proj([best.q[0], best.q[1]]);
+      const ly = pp ? pp[1] + (north ? 16 : -10) : 0;
+      if (pp && d3.geoDistance(best.q, center) < Math.PI/2 - 0.1 && Math.abs(ly - y) > 24)
+        ov.append('text').attr('class','lbl-s').attr('x', pp[0] + 10).attr('y', ly).attr('fill','#ffe7a0').style('fill','#ffe7a0').text(north ? 'Seen low in the north up to here' : 'Seen low in the south up to here');
+    }
+  }
+}
+
+// ---------------- history chart ----------------
+const HIST = { x: null, y: null };
+function drawHist(){
+  const ctx = hc.getContext('2d'); ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
+  ov.selectAll('*').remove();
+  const m = { l: W < 640 ? 34 : 46, r: W < 640 ? 92 : 130, t: W < 640 ? 92 : 84, b: 34 };
+  const x = d3.scaleTime().domain([new Date(1932,0,1), new Date(2027,0,1)]).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain([60, 33]).range([m.t, H - m.b]);
+  HIST.x = x; HIST.y = y; HIST.m = m;
+  const bg = ctx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#050b18'); bg.addColorStop(1, '#02050b'); ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+  // each storm is a curtain: bright at its lower edge (how far south it reached), fading upward
+  ctx.globalCompositeOperation = 'lighter';
+  const lw = Math.max(1, (W - m.l - m.r)/1100);
+  for (const s of STORM){
+    const X = x(new Date(s.ms)), Y = y(viewLat(s.kp)), g5 = s.t === 27, g4 = s.t >= 23, top = y(viewLat(s.kp) + 7);
+    const gr = ctx.createLinearGradient(0, top, 0, Y);
+    gr.addColorStop(0, 'rgba(60,200,120,0)');
+    gr.addColorStop(0.75, g5 ? 'rgba(255,110,170,.35)' : g4 ? 'rgba(200,255,140,.22)' : 'rgba(60,230,130,.09)');
+    gr.addColorStop(1, g5 ? 'rgba(255,160,205,1)' : g4 ? 'rgba(220,255,160,.7)' : s.t >= 17 ? 'rgba(90,255,160,.4)' : 'rgba(90,255,160,.22)');
+    ctx.strokeStyle = gr; ctx.lineWidth = g5 ? lw*2 : lw; ctx.beginPath(); ctx.moveTo(X, top); ctx.lineTo(X, Y); ctx.stroke();
+  }
+  ctx.globalCompositeOperation = 'source-over';
+  // axes (svg)
+  const g = ov.append('g');
+  [55, 50, 45, 40, 35].forEach(v => { g.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(v)).attr('y2', y(v)).attr('stroke','rgba(255,255,255,.07)');
+    g.append('text').attr('class','mono').attr('x', m.l - 6).attr('y', y(v) + 4).attr('text-anchor','end').text(v + '°'); });
+  const yrs = W < 640 ? [1940, 1960, 1980, 2000, 2020] : d3.range(1940, 2030, 10);
+  yrs.forEach(v => g.append('text').attr('class','mono').attr('x', x(new Date(v,0,1))).attr('y', H - m.b + 18).attr('text-anchor','middle').text(v));
+  // Kp 9 floor and what lies beyond it
+  const fy = y(viewLat(9));
+  g.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', fy).attr('y2', fy).attr('stroke','rgba(255,150,200,.45)').attr('stroke-dasharray','3 4');
+  const fl = g.append('text').attr('class','lbl-s').attr('x', m.l + 8).attr('y', y(38));
+  if (W < 640){ fl.append('tspan').text('Pink dashes: Kp 9, top of the scale.'); fl.append('tspan').attr('x', m.l + 8).attr('dy', 15).text('The biggest storms reached past it:'); fl.append('tspan').attr('x', m.l + 8).attr('dy', 15).text('Florida saw May 2024’s aurora.'); }
+  else { fl.append('tspan').text('Pink dashes: Kp 9, the top of the scale. The biggest storms reached past it:'); fl.append('tspan').attr('x', m.l + 8).attr('dy', 16).text('in May 2024 the aurora was photographed from Florida (dotted line).'); }
+  const xm = x(new Date(2024,4,11)), mia = Math.abs(cgm(25.76, -80.19)[0]);
+  g.append('line').attr('x1', xm).attr('x2', xm).attr('y1', fy).attr('y2', y(mia)).attr('stroke','#ffb3d4').attr('stroke-opacity', .6).attr('stroke-dasharray','1 3');
+  // cycle labels
+  [[1937.3,17],[1947.4,18],[1958.2,19],[1968.9,20],[1979.9,21],[1989.6,22],[2001.9,23],[2014.3,24],[2024.8,25]].forEach(([yr, c]) => {
+    const X = x(new Date(Math.floor(yr), Math.round((yr % 1)*12), 1));
+    if (W < 640 && c % 2 === 0) return;
+    g.append('text').attr('class','mono').attr('x', X).attr('y', m.t - 12).attr('text-anchor','middle').text((W < 640 ? 'C' : 'Cycle ') + c);
+  });
+  // famous storms
+  const fam = [['1938-01-25','Jan. 1938'],['1989-03-13','March 1989'],['2003-10-29','Oct. 2003'],['2024-05-11','May 2024']];
+  fam.forEach(([d, lab]) => { const t = Date.parse(d + 'T00:00Z'), s = STORM.find(q => Math.abs(q.ms - t) < 3*DAY) || { kp: 9 };
+    if (W < 640 && (lab === 'Oct. 2003' || lab === 'March 1989')) return;
+    const X = x(new Date(t)), Y = y(viewLat(s.kp));
+    g.append('circle').attr('cx', X).attr('cy', Y).attr('r', 3).attr('fill','#ffd1e6');
+    g.append('text').attr('class','lbl-s').attr('x', X).attr('text-anchor', X > W - m.r - 40 ? 'end' : X < m.l + 40 ? 'start' : 'middle').attr('y', fy + 18).text(lab); });
+  // place axis on the right
+  const cities = ['Fairbanks, AK','Seattle, WA','Chicago, IL','New York, NY','Denver, CO','Atlanta, GA','Dallas, TX','Miami, FL'].map(n => PLACES.get(n));
+  const items = cities.map(c => ({ name: c.name.split(',')[0], v: Math.abs(cgm(c.lat, c.lon)[0]) }));
+  const pv = Math.abs(cgm(state.place.lat, state.place.lon)[0]);
+  const used = [];
+  items.filter(it => it.v <= 64 && it.v >= 31).sort((a,b) => b.v - a.v).forEach(it => { const Y = y(it.v); if (used.some(u => Math.abs(u - Y) < 13) || Math.abs(y(pv) - Y) < 13) return; used.push(Y);
+    g.append('text').attr('class','mono').attr('x', W - m.r + 8).attr('y', Y + 4).text(it.name); g.append('line').attr('x1', W - m.r).attr('x2', W - m.r + 5).attr('y1', Y).attr('y2', Y).attr('stroke','rgba(255,255,255,.3)'); });
+  if (pv <= 64 && pv >= 31){
+    g.append('line').attr('x1', m.l).attr('x2', W - m.r + 5).attr('y1', y(pv)).attr('y2', y(pv)).attr('stroke','#fff').attr('stroke-opacity', .6).attr('stroke-dasharray','2 3');
+    g.append('text').attr('class','lbl').attr('x', W - m.r + 8).attr('y', y(pv) + 4).text(state.place.name.split(',')[0]);
+  }
+}
+function histHover(mx, my){
+  const x = HIST.x; if (!x) return null;
+  let best = null;
+  for (const s of STORM){ const X = x(new Date(s.ms)), Y = HIST.y(viewLat(s.kp)); if (my > Y + 12) continue;
+    const d = Math.abs(X - mx); if (d < 6 && (!best || s.t > best.t || (s.t === best.t && d < best.d))) best = Object.assign({ d }, s); }
+  return best;
+}
+
+// ---------------- render switch ----------------
+let anim = null;
+function render(fast){
+  const hist = state.view === 'hist';
+  gc.style.display = hist ? 'none' : ''; hc.style.display = hist ? '' : 'none';
+  document.getElementById('legend').style.visibility = hist ? 'hidden' : '';
+  if (hist){ drawHist(); badge.className = 'badge'; badge.innerHTML = W < 640 ? `<b>${STORM.length.toLocaleString()}</b> storms since 1932 · reach, magnetic lat.` : `<b>${STORM.length.toLocaleString()}</b> geomagnetic storms, 1932–2026 · how far south each could be seen, in magnetic latitude`; }
+  else { drawGlobe(fast); setBadge(); }
+  stage.classList.add('live');
+}
+function setBadge(){
+  if (state.view === 'now' && !state.ov && !state.ovErr){ badge.className = 'badge'; badge.innerHTML = 'Loading NOAA’s aurora forecast…'; return; }
+  if (state.view === 'now' && state.ov){ badge.className = 'badge'; badge.innerHTML = `NOAA aurora forecast · valid <b>${fmtTime(state.ov.fc, state.place.tz)}</b>`; return; }
+  const kp = currentKpForModel(); badge.className = 'badge model';
+  if (state.view === 'tonight') badge.innerHTML = `Sketch for tonight’s forecast peak, <b>Kp ${kp == null ? '—' : kpStr(kp)}</b> · not NOAA’s model`;
+  else if (state.view === 'now') badge.innerHTML = `NOAA feed unavailable · sketch for <b>Kp ${kpStr(kp)}</b>`;
+  else badge.innerHTML = `What if Kp = <b>${kpStr(kp)}</b> · typical reach, not a forecast`;
+}
+function animateTo(target, dur){
+  if (anim) cancelAnimationFrame(anim);
+  const r0 = state.rot.slice(), s0 = state.scale, t0 = performance.now();
+  let dl = target.rot[0] - r0[0]; dl = ((dl + 540) % 360) - 180;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !dur){ state.rot = [r0[0] + dl, target.rot[1]]; state.scale = target.scale; render(); return; }
+  const tick = now => { const f = Math.min(1, (now - t0)/dur), e = d3.easeCubicInOut(f);
+    state.rot = [r0[0] + dl*e, r0[1] + (target.rot[1] - r0[1])*e]; state.scale = s0 + (target.scale - s0)*e;
+    if (f < 1){ render(true); anim = requestAnimationFrame(tick); } else { anim = null; render(); } };
+  anim = requestAnimationFrame(tick);
+}
+
+// ---------------- formatting ----------------
+function fmtTime(d, tz){ try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, hour:'numeric', minute:'2-digit' }).format(d).replace('AM','a.m.').replace('PM','p.m.'); } catch(e){ return d.toTimeString().slice(0,5); } }
+function fmtDay(d, tz){ try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday:'short' }).format(d); } catch(e){ return ''; } }
+function pct(p){ return p < 1 ? 'under 1%' : Math.round(p) + '%'; }
+
+// ---------------- tonight ----------------
+function darkWindow(p){
+  const now = Date.now(), step = 10*6e4; let start = null, end = null;
+  const dark = t => sunAlt(t, p.lat, p.lon) < -12;
+  if (dark(now)) start = now;
+  for (let t = now; t < now + 36*HOUR; t += step){ if (start === null){ if (dark(t)) start = t; } else if (!dark(t)){ end = t; break; } }
+  if (start === null) return { none: true };
+  if (end === null) return { start, end: start + 24*HOUR, allDark: true };
+  return { start, end };
+}
+function tonight(){
+  const w = darkWindow(state.place); if (w.none || !state.fc) return { w, kp: null };
+  let kp = null;
+  for (const r of state.fc){ const t0 = r.t, t1 = r.t + 3*HOUR; if (t1 > w.start && t0 < w.end){ kp = Math.max(kp ?? 0, r.kp); } }
+  return { w, kp };
+}
+function verdict(kp, need){
+  if (need <= 0) return ['Good odds', 'You’re under the aurora’s usual path: on most clear, dark nights it’s somewhere in your sky.'];
+  if (kp == null) return ['—', ''];
+  if (kp >= need + 1) return ['Good chance', 'The forecast is well above what you need. Get away from city lights and look ' + (state.place.lat >= 0 ? 'north' : 'south') + '.'];
+  if (kp >= need) return ['Possible', 'Just enough: look low on the ' + (state.place.lat >= 0 ? 'northern' : 'southern') + ' horizon from somewhere dark.'];
+  if (kp >= need - 1.34) return ['Unlikely', 'Close, but the forecast is a bit short of what you need. Watch for an upgrade.'];
+  return ['Not likely', 'The forecast is well below what you need tonight.'];
+}
+
+// ---------------- live numbers and step text ----------------
+function placeMag(){ const p = state.place, ml = cgm(p.lat, p.lon)[0]; return { ml, need: needKp(ml) }; }
+function setK(k, html){ document.querySelectorAll(`[data-k="${k}"]`).forEach(el => el.innerHTML = html); }
+function liveNumbers(){
+  const p = state.place, { ml, need } = placeMag(), tn = tonight(), hemi = p.lat >= 0 ? 'northern' : 'southern';
+  // Kp now
+  // the current three-hour Kp (observed or estimated) is the official number; the 1-minute estimate only fills in when it's missing
+  const cur = state.fc && state.fc.find(r => Date.now() >= r.t && Date.now() < r.t + 3*HOUR);
+  if (cur || state.kp1m){ const k = cur ? cur.kp : state.kp1m.kp; document.getElementById('lvKp').textContent = kpStr(k);
+    const gl = k >= 8.99 ? 'G5 extreme storm' : k >= 7.66 ? 'G4 severe storm' : k >= 6.66 ? 'G3 strong storm' : k >= 5.66 ? 'G2 moderate storm' : k >= 4.66 ? 'G1 minor storm' : k >= 3.66 ? 'Active' : 'Quiet';
+    document.getElementById('lvKpS').textContent = cur ? `${gl} · ${cur.kind === 'observed' ? 'observed' : cur.kind === 'predicted' ? 'NOAA forecast' : 'estimated so far'}, ${fmtTime(new Date(cur.t), p.tz)}–${fmtTime(new Date(cur.t + 3*HOUR), p.tz)}` : `${gl} · 1-minute estimate, ${fmtTime(state.kp1m.t, p.tz)}`; }
+  else if (state.ovErr) document.getElementById('lvKpS').textContent = 'NOAA feed unavailable';
+  // tonight
+  const [vw, vs] = verdict(tn.kp, need);
+  document.getElementById('lvTonK').textContent = 'Tonight in ' + p.name.split(',')[0];
+  if (tn.w.none){ document.getElementById('lvTon').textContent = 'Too light'; document.getElementById('lvTonS').textContent = 'The sun doesn’t get 12° below the horizon in the next day and a half.'; }
+  else { document.getElementById('lvTon').textContent = vw;
+    document.getElementById('lvTonS').textContent = (tn.kp != null ? `Forecast peak Kp ${kpStr(tn.kp)} in your dark hours; ` : '') + (need > 9 ? 'you need a storm beyond Kp 9.' : need <= 0 ? 'any Kp will do.' : `you need about ${need.toFixed(1)}.`); }
+  // chance overhead
+  if (state.ov){ const pv = ovAt(state.ov.g, p.lat, p.lon); document.getElementById('lvP').textContent = pct(pv);
+    const vl = liveViewLine(state.ov.g, p.lat >= 0), lo = ((Math.round(p.lon) % 360) + 360) % 360, line = vl[lo];
+    const inside = line !== null && (p.lat >= 0 ? p.lat >= line : p.lat <= line);
+    document.getElementById('lvPS').textContent = (inside ? `Inside the horizon line: look ${hemi === 'northern' ? 'north' : 'south'} if it’s dark.` : 'Outside the horizon line right now.') + ` NOAA, valid ${fmtTime(state.ov.fc, p.tz)}`.replace(/\.?$/, '.'); }
+  // dark
+  if (tn.w.none){ document.getElementById('lvDark').textContent = 'Not tonight'; document.getElementById('lvDarkS').textContent = 'Twilight lasts all night here this time of year.'; }
+  else if (tn.w.allDark){ document.getElementById('lvDark').textContent = 'All day'; document.getElementById('lvDarkS').textContent = 'Polar night: dark around the clock.'; }
+  else { const a = new Date(tn.w.start), b = new Date(tn.w.end);
+    document.getElementById('lvDark').textContent = (tn.w.start <= Date.now() + 6e4 ? 'Now' : fmtTime(a, p.tz)) + '–' + fmtTime(b, p.tz);
+    document.getElementById('lvDarkS').textContent = 'Sun at least 12° below the horizon, ' + p.name.split(',')[0] + ' time.'; }
+  // step text
+  setK('place', p.name); setK('mlat', Math.abs(ml).toFixed(1) + '°'); setK('need', need <= 0 ? '0' : need > 9 ? 'more than 9' : need.toFixed(1));
+  if (state.ov){ const pk = d3.max(state.ov.g); setK('fcLine', ` (valid ${fmtTime(state.ov.fc, p.tz)} ${p.name.split(',')[0]} time). Its strongest spot is a <b>${Math.round(pk)}%</b> chance`); }
+  else setK('fcLine', state.ovErr ? ' (NOAA’s feed isn’t answering, so this is a sketch for the latest Kp instead)' : '');
+  if (state.ov){
+    const pv = ovAt(state.ov.g, p.lat, p.lon), vl = liveViewLine(state.ov.g, p.lat >= 0), lo = ((Math.round(p.lon) % 360) + 360) % 360, line = vl[lo];
+    const inside = line !== null && (p.lat >= 0 ? p.lat >= line : p.lat <= line), isDark = sunAlt(Date.now(), p.lat, p.lon) < -12;
+    setK('nowLine', `Right now the chance of aurora directly overhead there is <b>${pct(pv)}</b>. Because the aurora glows 60 to 200 miles up, it can be seen low on the horizon from hundreds of miles beyond the ring; the dashed gold line marks that limit, and ${p.name.split(',')[0]} is <b>${inside ? 'inside' : 'outside'}</b> it. ${isDark ? 'It’s dark there now.' : 'It isn’t dark there yet, so even a strong display would be hard to see.'}`);
+  }
+  if (need <= 0) setK('tonightLine', `${p.name} is under the aurora’s usual path, so on most clear, dark nights it’s somewhere in the sky.`);
+  else if (tn.w.none) setK('tonightLine', `In ${p.name} the sky doesn’t get dark enough tonight: twilight lasts all night this time of year.`);
+  else setK('tonightLine', `From ${p.name} you typically need a Kp of about <b>${need > 9 ? 'more than 9' : need.toFixed(1)}</b> to see the aurora low on the ${hemi} horizon. ${tn.kp != null ? `NOAA’s forecast peak during your dark hours tonight (${fmtTime(new Date(tn.w.start), p.tz)}–${fmtTime(new Date(tn.w.end), p.tz)}) is <b>Kp ${kpStr(tn.kp)}</b>: <b>${verdict(tn.kp, need)[0].toLowerCase()}</b>.` : ''}`);
+  // history line
+  if (need <= 0) setK('histLine', `${p.name} is under the aurora’s usual path, so it doesn’t need a storm at all.`);
+  else if (need > 9) setK('histLine', `${p.name} is beyond the reach of the Kp scale: only the most extreme storms, like May 2024, have brought the aurora into view there, and Kp can’t say which.`);
+  else if (need < 14/3) setK('histLine', `${p.name} only needs about Kp <b>${need.toFixed(1)}</b>, less than a storm: all ${STORM.length.toLocaleString()} storms since 1932 reached it, plus many quieter nights.`);
+  else { const ss = STORM.filter(s => s.kp >= need - 1e-9), since = ss.filter(s => s.ms >= Date.UTC(2020,0,1)).length, last = ss[ss.length - 1];
+    setK('histLine', `${p.name} needs about Kp <b>${need.toFixed(1)}</b>: <b>${ss.length.toLocaleString()}</b> storms since 1932 reached that, about ${(ss.length/94.9).toFixed(1)} a year, <b>${since}</b> of them since 2020. The latest peaked ${new Date(last.ms).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', timeZone:'UTC' })}.`); }
+}
+
+// ---------------- Kp chart ----------------
+const kpsvg = d3.select('#kpsvg'), kptip = document.getElementById('kptip');
+function kpColor(k){ return k >= 8.99 ? '#ff5aa8' : k >= 7.66 ? '#ff8a7a' : k >= 6.66 ? '#ffc46a' : k >= 5.66 ? '#e6f57a' : k >= 4.66 ? '#7dffb0' : '#3b6f8f'; }
+function drawKp(){
+  const box = document.getElementById('kpchart'), w = box.clientWidth - 24, h = 150;
+  kpsvg.attr('height', h).selectAll('*').remove();
+  if (!state.fc || !state.fc.length){ kpsvg.append('text').attr('x', 4).attr('y', 30).text(state.ovErr ? 'NOAA’s Kp forecast is unavailable right now.' : 'Loading NOAA’s Kp forecast…'); return; }
+  const now = Date.now(), rows = state.fc.filter(r => r.t + 3*HOUR > now - 30*HOUR);
+  const m = { l: 26, r: 34, t: 8, b: 22 };
+  const x = d3.scaleTime().domain([rows[0].t, rows[rows.length-1].t + 3*HOUR]).range([m.l, w - m.r]);
+  const y = d3.scaleLinear().domain([0, 9]).range([h - m.b, m.t]);
+  const p = state.place, { need } = placeMag();
+  // dark hours
+  const step = 15*6e4; let s0 = null;
+  for (let t = rows[0].t; t <= rows[rows.length-1].t + 3*HOUR; t += step){
+    const d = sunAlt(t, p.lat, p.lon) < -12;
+    if (d && s0 === null) s0 = t; if ((!d || t + step > rows[rows.length-1].t + 3*HOUR) && s0 !== null){ kpsvg.append('rect').attr('x', x(s0)).attr('y', m.t).attr('width', Math.max(0, x(t) - x(s0))).attr('height', h - m.b - m.t).attr('fill','rgba(130,110,255,.10)'); s0 = null; }
+  }
+  [0, 3, 5, 7, 9].forEach(v => { kpsvg.append('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(v)).attr('y2', y(v)).attr('stroke','rgba(255,255,255,.06)');
+    kpsvg.append('text').attr('x', m.l - 6).attr('y', y(v) + 3.5).attr('text-anchor','end').text(v); });
+  ['G1','G2','G3','G4','G5'].forEach((gl, i) => kpsvg.append('text').attr('x', w - m.r + 6).attr('y', y(5 + i) + 3.5).text(gl));
+  const bw = Math.max(2, x(rows[0].t + 3*HOUR) - x(rows[0].t) - 2);
+  kpsvg.append('g').selectAll('rect').data(rows).join('rect').attr('x', r => x(r.t) + 1).attr('width', bw).attr('y', r => y(r.kp)).attr('height', r => Math.max(1, y(0) - y(r.kp)))
+    .attr('rx', 2).attr('fill', r => kpColor(r.kp)).attr('opacity', r => r.kind === 'predicted' ? .55 : .95)
+    .attr('stroke', r => r.kind === 'predicted' ? kpColor(r.kp) : 'none').attr('stroke-dasharray','2 2');
+  if (need > 0 && need <= 9){ kpsvg.append('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(need)).attr('y2', y(need)).attr('stroke','#fff').attr('stroke-opacity', .7).attr('stroke-dasharray','5 4');
+    kpsvg.append('text').attr('x', m.l + 4).attr('y', y(need) - 5).style('fill','#eef3f8').text(`Needed in ${p.name.split(',')[0]}: about ${need.toFixed(1)}`); }
+  const nowG = kpsvg.append('g').attr('class','now');
+  nowG.append('line').attr('x1', x(now)).attr('x2', x(now)).attr('y1', m.t).attr('y2', h - m.b).attr('stroke','#5cf2a0').attr('stroke-width', 1.5);
+  nowG.append('text').attr('x', x(now) + 4).attr('y', m.t + 10).text('now');
+  // day ticks in place's time zone
+  for (let t = Math.ceil(rows[0].t/HOUR)*HOUR; t < rows[rows.length-1].t + 3*HOUR; t += HOUR){
+    let hh; try { hh = +new Intl.DateTimeFormat('en-US', { timeZone: p.tz, hour:'numeric', hourCycle:'h23' }).format(new Date(t)); } catch(e){ hh = new Date(t).getHours(); }
+    if (hh === 0){ kpsvg.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', h - m.b).attr('y2', h - m.b + 4).attr('stroke','rgba(255,255,255,.3)');
+      kpsvg.append('text').attr('x', x(t) + 3).attr('y', h - 6).text(fmtDay(new Date(t + HOUR), p.tz)); }
+  }
+  const kpShow = ev => { const [mx, my] = d3.pointer(ev), t = x.invert(mx), r = rows.find(q => t >= q.t && t < q.t + 3*HOUR);
+    kpsvg.selectAll('.khl').remove(); if (!r){ kptip.style.opacity = 0; return; }
+    kpsvg.append('rect').attr('class','khl').attr('x', x(r.t)).attr('y', m.t).attr('width', x(r.t + 3*HOUR) - x(r.t)).attr('height', h - m.b - m.t).attr('fill','none').attr('stroke','#fff').attr('stroke-opacity', .5).attr('pointer-events','none');
+    const dark = sunAlt(r.t + 1.5*HOUR, p.lat, p.lon) < -12, gap = r.kp - need;
+    const cmp = need <= 0 ? 'Enough for ' + p.name.split(',')[0] : need > 9 ? 'Beyond Kp 9 needed in ' + p.name.split(',')[0] : gap >= 0 ? `Enough for ${p.name.split(',')[0]} (needs about ${need.toFixed(1)})` : `${(-gap).toFixed(1)} short of the ${need.toFixed(1)} ${p.name.split(',')[0]} needs`;
+    kptip.innerHTML = `<div class="t">Kp ${kpStr(r.kp)} <span class="m">(${r.kp.toFixed(2)})${r.scale ? ' · ' + r.scale + ' storm' : ''}</span></div><div class="m">${fmtDay(new Date(r.t), p.tz)} ${fmtTime(new Date(r.t), p.tz)}–${fmtTime(new Date(r.t + 3*HOUR), p.tz)} ${p.name.split(',')[0]} time</div><div>${r.kind === 'predicted' ? 'NOAA forecast' : r.kind === 'estimated' ? 'Estimated so far' : 'Observed'} · ${dark ? 'dark there' : 'not dark there'}</div><div class="m">${cmp}</div>`;
+    placeTip(kptip, mx + 12, my, w + 24, h + 40); };
+  // full-height hit columns, so the empty space above a short bar answers too
+  kpsvg.append('g').selectAll('rect').data(rows).join('rect').attr('class','khit').attr('x', r => x(r.t)).attr('width', r => x(r.t + 3*HOUR) - x(r.t)).attr('y', m.t).attr('height', h - m.b - m.t)
+    .attr('fill','transparent').style('cursor','crosshair');
+  const kpHide = () => { kptip.style.opacity = 0; kpsvg.selectAll('.khl').remove(); };
+  kpsvg.on('pointermove', ev => { if (!ev.buttons) kpShow(ev); })
+    .on('mousemove', ev => kpShow(ev))
+    .on('click', ev => kpShow(ev))
+    .on('pointerleave mouseleave', ev => { if (!ev.buttons) kpHide(); });
+}
+
+// ---------------- feeds ----------------
+async function getJSON(u){ const r = await fetch(u, { cache: 'no-store' }); if (!r.ok) throw new Error(r.status); return r.json(); }
+function parseForecast(j){
+  let rows = [];
+  if (Array.isArray(j) && Array.isArray(j[0])){ const hd = j[0]; const it = hd.indexOf('time_tag'), ik = hd.indexOf('kp'), io = hd.indexOf('observed'), is = hd.indexOf('noaa_scale');
+    rows = j.slice(1).map(r => ({ t: Date.parse(r[it].replace(' ', 'T') + 'Z'), kp: +r[ik], kind: r[io], scale: r[is] })); }
+  else rows = j.map(r => ({ t: Date.parse(String(r.time_tag).replace(' ', 'T') + (/Z$/.test(r.time_tag) ? '' : 'Z')), kp: +(r.kp ?? r.Kp), kind: r.observed, scale: r.noaa_scale }));
+  return rows.filter(r => isFinite(r.t) && isFinite(r.kp)).sort((a, b) => a.t - b.t);
+}
+async function loadFeeds(first){
+  const pill = document.getElementById('livePill'), note = document.getElementById('feednote');
+  const [o, f, k] = await Promise.allSettled([getJSON(FEED + 'json/ovation_aurora_latest.json'), getJSON(FEED + 'products/noaa-planetary-k-index-forecast.json'), getJSON(FEED + 'json/planetary_k_index_1m.json')]);
+  if (o.status === 'fulfilled'){ try { state.ov = parseOvation(o.value); state.ovErr = false; } catch(e){ state.ovErr = true; } } else state.ovErr = !state.ov;
+  if (f.status === 'fulfilled'){ try { state.fc = parseForecast(f.value); } catch(e){} }
+  if (k.status === 'fulfilled' && k.value.length){ const l = k.value[k.value.length - 1]; state.kp1m = { kp: +(l.estimated_kp ?? l.kp_index), t: new Date(String(l.time_tag).replace(' ','T') + (/Z$/.test(l.time_tag) ? '' : 'Z')) }; }
+  if (!state.ov && state.kp1m && first){ state.kp = Math.round(state.kp1m.kp*3)/3; syncKp(); }
+  pill.classList.toggle('off', !state.ov); document.getElementById('livePillT').textContent = state.ov ? 'Live from NOAA' : 'NOAA feed offline';
+  note.hidden = !!state.ov; if (!state.ov) note.textContent = 'NOAA’s live aurora feed didn’t answer, so the globe shows a sketch for the latest Kp instead. It retries every five minutes.';
+  liveNumbers(); drawKp(); if (!anim) render();
+}
+
+// ---------------- steps ----------------
+const steps = [...document.querySelectorAll('.step')], dots = document.getElementById('dots');
+steps.forEach((s, i) => { const b = document.createElement('button'); b.setAttribute('aria-label', 'Step ' + (i + 1)); b.onclick = () => go(i); dots.appendChild(b); });
+const STEP_VIEW = ['now', 'now', 'tonight', 'whatif', 'hist'];
+let sweep = null;
+function go(i){
+  state.step = i; steps.forEach((s, j) => s.classList.toggle('on', j === i));
+  [...dots.children].forEach((d, j) => d.setAttribute('aria-current', String(j === i)));
+  document.getElementById('prev').disabled = i === 0; document.getElementById('next').textContent = i === steps.length - 1 ? 'Start over ↺' : 'Next ›';
+  document.getElementById('kpchart').classList.toggle('hl', i === 2);
+  if (sweep){ clearInterval(sweep); sweep = null; }
+  setView(STEP_VIEW[i], true);
+  if (i === 3 && !matchMedia('(prefers-reduced-motion: reduce)').matches){ state.kp = 3; syncKp(); let k = 3;
+    sweep = setInterval(() => { k += 1/3; if (k > 9.01){ clearInterval(sweep); sweep = null; return; } state.kp = Math.min(9, k); syncKp(); render(true); }, 160); }
+  else if (i === 3){ state.kp = 9; syncKp(); render(); }
+}
+function setView(v, fromStep){
+  state.view = v;
+  ['vNow','vTonight','vHist'].forEach(id => document.getElementById(id).setAttribute('aria-pressed', String((id === 'vNow' && v === 'now') || (id === 'vTonight' && v === 'tonight') || (id === 'vHist' && v === 'hist'))));
+  if (v === 'hist'){ render(); return; }
+  animateTo(viewTarget(), fromStep ? 1000 : 600);
+}
+document.getElementById('prev').onclick = () => go(Math.max(0, state.step - 1));
+document.getElementById('next').onclick = () => go(state.step === steps.length - 1 ? 0 : state.step + 1);
+document.getElementById('vNow').onclick = () => setView('now');
+document.getElementById('vTonight').onclick = () => setView('tonight');
+document.getElementById('vHist').onclick = () => setView('hist');
+const kpIn = document.getElementById('kp'), kpOut = document.getElementById('kpOut');
+function syncKp(){ kpIn.value = state.kp; kpOut.textContent = kpStr(state.kp); }
+kpIn.addEventListener('input', () => { if (sweep){ clearInterval(sweep); sweep = null; } state.kp = +kpIn.value; syncKp();
+  if (state.view !== 'whatif'){ state.view = 'whatif'; ['vNow','vTonight','vHist'].forEach(id => document.getElementById(id).setAttribute('aria-pressed','false')); animateTo(viewTarget(), 500); } else render(true); });
+kpIn.addEventListener('change', () => render());
+
+// ---------------- place picker ----------------
+const sel = document.getElementById('city'), list = document.getElementById('cityList');
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ø/g,'o').replace(/æ/g,'ae').toLowerCase();
+const slug = s => norm(s).replace(/[^a-z0-9]+/g,'-');
+const fmtLat = l => Math.abs(l).toFixed(1) + '°' + (l >= 0 ? 'N' : 'S');
+let matches = [], active = -1;
+function sortedPlaces(){ return [...PLACES.values()].filter(p => p.grp !== 'Here').sort((a,b) => a.name.localeCompare(b.name)); }
+function openList(q){
+  const nq = norm(q || ''), all = sortedPlaces(); matches = all.filter(p => !nq || norm(p.name).includes(nq));
+  if (nq) matches.sort((a,b) => (norm(a.name).startsWith(nq) ? 0 : 1) - (norm(b.name).startsWith(nq) ? 0 : 1) || a.name.localeCompare(b.name));
+  const html = [];
+  if (!matches.length) html.push('<li class="none" role="presentation">No match. Try “My location”.</li>');
+  else if (!nq){ [['United States','US'],['Canada and around the world','World']].forEach(([lab, grp]) => { html.push(`<li class="grp" role="presentation">${lab}</li>`); matches.filter(p => p.grp === grp).forEach(p => html.push(opt(p))); });
+    matches = [...matches.filter(p => p.grp === 'US'), ...matches.filter(p => p.grp === 'World')]; }
+  else matches.forEach(p => html.push(opt(p)));
+  list.innerHTML = html.join(''); list.hidden = false; sel.setAttribute('aria-expanded','true');
+  active = matches.indexOf(state.place); if (nq) active = matches.length ? 0 : -1; highlight();
+}
+function opt(p){ const ml = cgm(p.lat, p.lon)[0]; return `<li role="option" id="opt-${slug(p.name)}" data-name="${p.name}" aria-selected="false">${p.name}<small>mag ${fmtLat(ml)}</small></li>`; }
+function highlight(){
+  list.querySelectorAll('[role=option]').forEach(li => li.setAttribute('aria-selected', String(!!matches[active] && li.dataset.name === matches[active].name)));
+  const cur = matches[active]; if (cur){ const li = document.getElementById('opt-' + slug(cur.name)); if (li){ sel.setAttribute('aria-activedescendant', li.id); li.scrollIntoView({ block:'nearest' }); } }
+  else sel.removeAttribute('aria-activedescendant');
+}
+function closeList(){ list.hidden = true; sel.setAttribute('aria-expanded','false'); sel.removeAttribute('aria-activedescendant'); }
+function choose(p){ closeList(); if (!p){ sel.value = state.place.name; return; }
+  state.place = p; if (p.grp !== 'Here'){ try { localStorage.setItem('sky-place', p.name); } catch(e){} }
+  sel.value = p.name; sel.blur(); placeChanged(); }
+function placeChanged(){ liveNumbers(); drawKp(); if (state.view === 'hist') render(); else animateTo(viewTarget(), 700); }
+sel.addEventListener('focus', () => { sel.select(); openList(''); });
+sel.addEventListener('input', () => openList(sel.value));
+sel.addEventListener('keydown', ev => {
+  if (ev.key === 'ArrowDown'){ ev.preventDefault(); if (list.hidden) openList(''); active = Math.min(matches.length - 1, active + 1); highlight(); }
+  else if (ev.key === 'ArrowUp'){ ev.preventDefault(); active = Math.max(0, active - 1); highlight(); }
+  else if (ev.key === 'Enter'){ ev.preventDefault(); choose(matches[active]); }
+  else if (ev.key === 'Escape'){ closeList(); sel.value = state.place.name; }
+});
+sel.addEventListener('blur', () => setTimeout(() => { if (document.activeElement !== sel){ closeList(); sel.value = state.place.name; } }, 120));
+list.addEventListener('mousedown', ev => ev.preventDefault());
+list.addEventListener('click', ev => { const li = ev.target.closest('[role=option]'); if (li) choose(PLACES.get(li.dataset.name)); });
+document.getElementById('locate').addEventListener('click', () => {
+  if (!navigator.geolocation) return;
+  navigator.geolocation.getCurrentPosition(pos => {
+    const lat = Math.round(pos.coords.latitude*10)/10, lon = Math.round(pos.coords.longitude*10)/10;
+    let tz = 'UTC'; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch(e){}
+    const p = { name: 'Your location', lat, lon, tz, grp: 'Here' }; PLACES.set(p.name, p); choose(p);
+  }, () => { document.getElementById('locate').textContent = 'Location unavailable'; }, { maximumAge: 6e5, timeout: 10000 });
+});
+
+// ---------------- tooltips: hover on desktop, tap on phones ----------------
+// placeTip keeps a tooltip inside its box: it flips left of the pointer near the right edge and above it near the bottom.
+function placeTip(el, mx, my, bw, bh){
+  el.style.opacity = 1; const tw = el.offsetWidth, th = el.offsetHeight;
+  let x = mx + 16, y = my + 16;
+  if (x + tw > bw - 6) x = Math.max(6, mx - tw - 16);
+  if (y + th > bh - 6) y = Math.max(6, my - th - 16);
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+}
+function nearestPlace(lat, lon){
+  let best = null;
+  for (const p of PLACES.values()){ if (p.grp === 'Here') continue; const d = d3.geoDistance([lon, lat], [p.lon, p.lat]); if (!best || d < best.d) best = { d, p }; }
+  return best && best.d < 3.5*RAD ? best.p : null;
+}
+function cityAtMag(v){ // a familiar place near a magnetic latitude, for "seen down to about ..."
+  const c = [['Fairbanks',65.2],['Anchorage',61.1],['Edmonton',61.5],['Duluth',55.9],['Minneapolis',54.2],['Seattle',52.9],['Chicago',51.3],['Boston',49.9],['Indianapolis',49.3],['New York',48.9],['Denver',48.1],['London',47.7],['Washington',47.6],['Kansas City',48.5],['Nashville',45.6],['Atlanta',43.5],['San Francisco',43.3],['Dallas',42.3],['Los Angeles',40.5],['Houston',39.1],['Miami',35.7]];
+  return c.reduce((a, b) => Math.abs(b[1] - v) < Math.abs(a[1] - v) ? b : a)[0];
+}
+function globeTip(mx, my){
+  const [cx, cy] = proj.translate(), dx = mx - cx, dy = my - cy; if (dx*dx + dy*dy >= proj.scale()**2) return null;
+  const ll = proj.invert([mx, my]); if (!ll) return null;
+  const [lon, lat] = ll, now = Date.now(), pl = state.place;
+  const pin = proj([pl.lon, pl.lat]), onPin = pin && Math.hypot(pin[0] - mx, pin[1] - my) < 14;
+  const LAT = onPin ? pl.lat : lat, LON = onPin ? pl.lon : lon;
+  const model = isModel(), [ml, mo] = cgm(LAT, LON);
+  const p = model ? modelP(ml, mltOf(mo, mssLon(now)), currentKpForModel()) : ovAt(state.ov.g, LAT, LON);
+  const near = onPin ? pl : nearestPlace(LAT, LON), need = needKp(ml), sa = sunAlt(now, LAT, LON);
+  const vl = viewLineFor(LAT >= 0), q = vl.filter(Boolean).reduce((a, b) => !a || Math.abs(((b[0] - LON + 540) % 360) - 180) < Math.abs(((a[0] - LON + 540) % 360) - 180) ? b : a, null);
+  const inside = q && (LAT >= 0 ? LAT >= q[1] : LAT <= q[1]);
+  const head = near ? `${near.name}` : `${fmtLat(LAT)}, ${Math.abs(LON).toFixed(1)}°${LON >= 0 ? 'E' : 'W'}`;
+  return `<div class="t">${head}</div>
+    <div class="m">${model ? 'Sketch' : 'NOAA forecast'}: ${pct(p)} chance overhead</div>
+    <div class="m">${q ? (inside ? 'Inside the horizon line' : 'Outside the horizon line') : ''}</div>
+    <div class="m">Magnetic lat. ${Math.abs(ml).toFixed(1)}° · ${need <= 0 ? 'any Kp will do' : need > 9 ? 'needs more than Kp 9' : 'needs about Kp ' + need.toFixed(1)}</div>
+    <div class="m">${sa < -12 ? 'Dark now' : sa < 0 ? 'Twilight now' : 'Daylight now'}</div>`;
+}
+function histTip(mx, my){
+  const s = histHover(mx, my);
+  ov.selectAll('.hl').remove();
+  if (!s) return null;
+  const X = HIST.x(new Date(s.ms)), Y = HIST.y(viewLat(s.kp)), reach = viewLat(s.kp);
+  const hl = ov.append('g').attr('class','hl');
+  hl.append('line').attr('x1', X).attr('x2', X).attr('y1', HIST.y(reach + 7)).attr('y2', Y).attr('stroke','#fff').attr('stroke-width', 1.5);
+  hl.append('circle').attr('cx', X).attr('cy', Y).attr('r', 4).attr('fill','#fff');
+  const d = new Date(s.ms).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', timeZone:'UTC' });
+  const pm = Math.abs(cgm(state.place.lat, state.place.lon)[0]), seen = pm >= reach;
+  const G = ['', 'minor', 'moderate', 'strong', 'severe', 'extreme'][gOf(s.t)];
+  return `<div class="t">${d}</div><div class="m">Peak Kp ${kpStr(s.kp)} · G${gOf(s.t)} ${G} · ${s.len} day${s.len > 1 ? 's' : ''}</div>
+    <div>Seen low on the horizon down to about ${reach.toFixed(0)}° magnetic latitude, around ${cityAtMag(reach)}${s.t === 27 ? ' or farther: Kp tops out at 9' : ''}.</div>
+    <div class="m">${state.place.name.split(',')[0]}: ${seen ? 'within reach' : 'out of reach'}</div>`;
+}
+function stageTip(mx, my){
+  const html = state.view === 'hist' ? histTip(mx, my) : globeTip(mx, my);
+  if (!html){ tip.style.opacity = 0; return; }
+  tip.innerHTML = html; placeTip(tip, mx, my, W, H);
+}
+function hideStageTip(){ tip.style.opacity = 0; ov.selectAll('.hl').remove(); }
+
+// ---------------- globe drag ----------------
+let drag = null;
+stage.addEventListener('pointerdown', ev => { drag = { x: ev.clientX, y: ev.clientY, rot: state.rot.slice(), type: ev.pointerType, moved: false }; });
+addEventListener('pointerup', ev => {
+  if (!drag) return; const d = drag; drag = null;
+  if (d.type !== 'mouse' && !d.moved){ const r = stage.getBoundingClientRect(); stageTip(ev.clientX - r.left, ev.clientY - r.top); return; } // tap shows the tooltip
+  if (d.moved && state.view !== 'hist') render();
+});
+stage.addEventListener('pointermove', ev => {
+  const r = stage.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
+  if (drag && Math.hypot(ev.clientX - drag.x, ev.clientY - drag.y) > 6) drag.moved = true;
+  if (drag && drag.moved && drag.type === 'mouse' && state.view !== 'hist'){ const k = 70/proj.scale()*1.6; state.rot = [drag.rot[0] + (ev.clientX - drag.x)*k, Math.max(-90, Math.min(90, drag.rot[1] - (ev.clientY - drag.y)*k))]; render(true); hideStageTip(); return; }
+  if (!ev.buttons) stageTip(mx, my);
+});
+stage.addEventListener('pointerleave', ev => { if (!ev.buttons) hideStageTip(); });
+stage.addEventListener('click', ev => { const r = stage.getBoundingClientRect(); if (!drag) stageTip(ev.clientX - r.left, ev.clientY - r.top); });
+document.addEventListener('pointerdown', ev => { if (!stage.contains(ev.target)) hideStageTip(); if (!document.getElementById('kpchart').contains(ev.target)) kptip.style.opacity = 0; });
+document.querySelector('.info').addEventListener('click', ev => { ev.stopPropagation(); document.getElementById('kpInfo').classList.toggle('on'); });
+document.addEventListener('click', ev => { if (!ev.target.closest('.info')) document.getElementById('kpInfo').classList.remove('on'); });
+// ---------------- start ----------------
+layout(); sel.value = state.place.name; syncKp();
+const t0 = viewTarget(); state.rot = t0.rot; state.scale = t0.scale;
+go(0); liveNumbers(); drawKp();
+loadFeeds(true); setInterval(() => loadFeeds(false), 5*60*1000);
+setInterval(() => { if (!anim && !drag) { liveNumbers(); drawKp(); } }, 60*1000);
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); render(); drawKp(); }, 150); });
+window.__aurora = { state, render, go };
+})();
+</script>
+<script>
+/* theme-toggle:start */
+/* Tall Order Digital: light/dark toggle.
+   - First visit follows the reader's system setting.
+   - Clicking a .theme-toggle button switches theme and remembers it (localStorage "tod-theme").
+   - Each page also carries a one-line script in <head> that applies the saved choice
+     before anything draws, so there's no flash of the wrong theme:
+       <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}<\/script>
+   - The CSS reads :root[data-theme="light" | "dark"]; story charts already redraw when data-theme changes. */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function current() {
+    var t = root.dataset.theme;
+    if (t === "light" || t === "dark") return t;
+    return media && media.matches ? "dark" : "light";
+  }
+
+  function sync() {
+    var theme = current();
+    var next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+      btn.dataset.showing = theme;
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle");
+    if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {}
+    }
+  });
+
+  if (media) {
+    var onChange = function () { if (!root.dataset.theme) sync(); };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync);
+  else sync();
+})();
+/* theme-toggle:end */
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
+/* site-header:end */
+</script>
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+
+</body>
+</html>
