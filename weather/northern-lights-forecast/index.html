@@ -116,12 +116,18 @@ button:focus-visible,input:focus-visible,.ghost:focus-visible{outline:2px solid 
 .key-vl i{display:inline-block;width:30px;border-top:2px dashed var(--gold)}
 .key-pin{display:inline-flex;align-items:center;gap:8px}
 .key-pin i{display:inline-block;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25)}
-.livegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:18px 0}
+.livegrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;margin:18px 0}
+.livegrid .cell:first-child{border-radius:13px 0 0 13px}.livegrid .cell:last-child{border-radius:0 13px 13px 0}
 .cell{background:var(--bg2);padding:14px 16px}
+.cell{position:relative}
+.info{all:unset;cursor:help;display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--ink3);font:600 10px/1 Inter,sans-serif;color:var(--ink2);margin-left:5px;vertical-align:1px}
+.info:hover,.info:focus-visible{border-color:var(--green);color:var(--green)}
+.infotip{position:absolute;left:10px;width:min(320px,80vw);top:34px;z-index:5;background:rgba(6,13,26,.97);border:1px solid #24405a;border-radius:10px;padding:10px 12px;font:400 13px/1.5 Inter,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .1s}
+.cell:has(.info:hover) .infotip,.cell:has(.info:focus) .infotip,.infotip.on{opacity:1}
 .cell .k{font:500 10.5px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .cell .v{font:700 clamp(24px,3vw,32px)/1.1 "Barlow Semi Condensed",sans-serif;margin:5px 0 3px}
 .cell .s{font-size:13px;color:var(--ink2);line-height:1.4}
-@media (max-width:820px){.livegrid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:820px){.livegrid{grid-template-columns:repeat(2,1fr)}.livegrid .cell:first-child{border-radius:13px 0 0 0}.livegrid .cell:nth-child(2){border-radius:0 13px 0 0}.livegrid .cell:nth-child(3){border-radius:0 0 0 13px}.livegrid .cell:last-child{border-radius:0 0 13px 0}}
 .kpchart{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px;margin:0 0 18px}
 .kpchart h3{font:500 11px "JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:2px 4px 6px}
 .kpchart svg{display:block;width:100%;overflow:visible}
@@ -399,7 +405,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
   <p class="feednote" id="feednote" hidden></p>
 
   <div class="livegrid" aria-live="polite">
-    <div class="cell"><div class="k">Kp right now</div><div class="v" id="lvKp">—</div><div class="s" id="lvKpS">Loading from NOAA…</div></div>
+    <div class="cell"><div class="k">Kp right now <button class="info" type="button" aria-describedby="kpInfo" aria-label="What is Kp?">?</button><span class="infotip" id="kpInfo" role="tooltip">Kp measures how hard the solar wind is shaking Earth’s magnetic field, from 0 (quiet) to 9 (extreme), every three hours. 5 or more is a geomagnetic storm (NOAA G1–G5), and each step pushes the aurora about 2° of magnetic latitude, roughly 140 miles, toward the equator. Values come in thirds: 4− is 3.67, 4+ is 4.33.</span></div><div class="v" id="lvKp">—</div><div class="s" id="lvKpS">Loading from NOAA…</div></div>
     <div class="cell"><div class="k" id="lvTonK">Tonight</div><div class="v" id="lvTon">—</div><div class="s" id="lvTonS"></div></div>
     <div class="cell"><div class="k">Chance overhead now</div><div class="v" id="lvP">—</div><div class="s" id="lvPS"></div></div>
     <div class="cell"><div class="k">Dark enough to look</div><div class="v" id="lvDark">—</div><div class="s" id="lvDarkS"></div></div>
@@ -1005,10 +1011,10 @@ function liveNumbers(){
   const p = state.place, { ml, need } = placeMag(), tn = tonight(), hemi = p.lat >= 0 ? 'northern' : 'southern';
   // Kp now
   // the current three-hour Kp (observed or estimated) is the official number; the 1-minute estimate only fills in when it's missing
-  const cur = state.fc && state.fc.find(r => Date.now() >= r.t && Date.now() < r.t + 3*HOUR && r.kind !== 'predicted');
+  const cur = state.fc && state.fc.find(r => Date.now() >= r.t && Date.now() < r.t + 3*HOUR);
   if (cur || state.kp1m){ const k = cur ? cur.kp : state.kp1m.kp; document.getElementById('lvKp').textContent = kpStr(k);
     const gl = k >= 8.99 ? 'G5 extreme storm' : k >= 7.66 ? 'G4 severe storm' : k >= 6.66 ? 'G3 strong storm' : k >= 5.66 ? 'G2 moderate storm' : k >= 4.66 ? 'G1 minor storm' : k >= 3.66 ? 'Active' : 'Quiet';
-    document.getElementById('lvKpS').textContent = cur ? `${gl} · ${cur.kind === 'observed' ? 'observed' : 'estimated so far'}, ${fmtTime(new Date(cur.t), p.tz)}–${fmtTime(new Date(cur.t + 3*HOUR), p.tz)}` : `${gl} · 1-minute estimate, ${fmtTime(state.kp1m.t, p.tz)}`; }
+    document.getElementById('lvKpS').textContent = cur ? `${gl} · ${cur.kind === 'observed' ? 'observed' : cur.kind === 'predicted' ? 'NOAA forecast' : 'estimated so far'}, ${fmtTime(new Date(cur.t), p.tz)}–${fmtTime(new Date(cur.t + 3*HOUR), p.tz)}` : `${gl} · 1-minute estimate, ${fmtTime(state.kp1m.t, p.tz)}`; }
   else if (state.ovErr) document.getElementById('lvKpS').textContent = 'NOAA feed unavailable';
   // tonight
   const [vw, vs] = verdict(tn.kp, need);
@@ -1090,9 +1096,14 @@ function drawKp(){
     const cmp = need <= 0 ? 'Enough for ' + p.name.split(',')[0] : need > 9 ? 'Beyond Kp 9 needed in ' + p.name.split(',')[0] : gap >= 0 ? `Enough for ${p.name.split(',')[0]} (needs about ${need.toFixed(1)})` : `${(-gap).toFixed(1)} short of the ${need.toFixed(1)} ${p.name.split(',')[0]} needs`;
     kptip.innerHTML = `<div class="t">Kp ${kpStr(r.kp)} <span class="m">(${r.kp.toFixed(2)})${r.scale ? ' · ' + r.scale + ' storm' : ''}</span></div><div class="m">${fmtDay(new Date(r.t), p.tz)} ${fmtTime(new Date(r.t), p.tz)}–${fmtTime(new Date(r.t + 3*HOUR), p.tz)} ${p.name.split(',')[0]} time</div><div>${r.kind === 'predicted' ? 'NOAA forecast' : r.kind === 'estimated' ? 'Estimated so far' : 'Observed'} · ${dark ? 'dark there' : 'not dark there'}</div><div class="m">${cmp}</div>`;
     placeTip(kptip, mx + 12, my, w + 24, h + 40); };
-  kpsvg.on('pointermove', ev => { if (ev.pointerType === 'mouse') kpShow(ev); })
-    .on('pointerup', ev => { if (ev.pointerType !== 'mouse') kpShow(ev); })
-    .on('pointerleave', ev => { if (ev.pointerType === 'mouse'){ kptip.style.opacity = 0; kpsvg.selectAll('.khl').remove(); } });
+  // full-height hit columns, so the empty space above a short bar answers too
+  kpsvg.append('g').selectAll('rect').data(rows).join('rect').attr('class','khit').attr('x', r => x(r.t)).attr('width', r => x(r.t + 3*HOUR) - x(r.t)).attr('y', m.t).attr('height', h - m.b - m.t)
+    .attr('fill','transparent').style('cursor','crosshair');
+  const kpHide = () => { kptip.style.opacity = 0; kpsvg.selectAll('.khl').remove(); };
+  kpsvg.on('pointermove', ev => { if (!ev.buttons) kpShow(ev); })
+    .on('mousemove', ev => kpShow(ev))
+    .on('click', ev => kpShow(ev))
+    .on('pointerleave mouseleave', ev => { if (!ev.buttons) kpHide(); });
 }
 
 // ---------------- feeds ----------------
@@ -1268,10 +1279,13 @@ stage.addEventListener('pointermove', ev => {
   const r = stage.getBoundingClientRect(), mx = ev.clientX - r.left, my = ev.clientY - r.top;
   if (drag && Math.hypot(ev.clientX - drag.x, ev.clientY - drag.y) > 6) drag.moved = true;
   if (drag && drag.moved && drag.type === 'mouse' && state.view !== 'hist'){ const k = 70/proj.scale()*1.6; state.rot = [drag.rot[0] + (ev.clientX - drag.x)*k, Math.max(-90, Math.min(90, drag.rot[1] - (ev.clientY - drag.y)*k))]; render(true); hideStageTip(); return; }
-  if (ev.pointerType === 'mouse') stageTip(mx, my);
+  if (!ev.buttons) stageTip(mx, my);
 });
-stage.addEventListener('pointerleave', ev => { if (ev.pointerType === 'mouse') hideStageTip(); });
+stage.addEventListener('pointerleave', ev => { if (!ev.buttons) hideStageTip(); });
+stage.addEventListener('click', ev => { const r = stage.getBoundingClientRect(); if (!drag) stageTip(ev.clientX - r.left, ev.clientY - r.top); });
 document.addEventListener('pointerdown', ev => { if (!stage.contains(ev.target)) hideStageTip(); if (!document.getElementById('kpchart').contains(ev.target)) kptip.style.opacity = 0; });
+document.querySelector('.info').addEventListener('click', ev => { ev.stopPropagation(); document.getElementById('kpInfo').classList.toggle('on'); });
+document.addEventListener('click', ev => { if (!ev.target.closest('.info')) document.getElementById('kpInfo').classList.remove('on'); });
 // ---------------- start ----------------
 layout(); sel.value = state.place.name; syncKp();
 const t0 = viewTarget(); state.rot = t0.rot; state.scale = t0.scale;
