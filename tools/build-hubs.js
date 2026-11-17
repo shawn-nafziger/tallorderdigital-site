@@ -61,7 +61,7 @@ const PAGES = [
       { k: "Weird stat of the day · New every morning", t: "The strangest thing in last night's box scores", href: "nba/weird-stat/" },
     ] }
 ];
-const TOPIC_NAMES = { politics: "Politics", travel: "Travel", culture: "Culture", nature: "Nature" };
+const TOPIC_NAMES = { politics: "Politics", travel: "Travel", numbers: "Numbers", culture: "Culture", nature: "Nature" };
 
 const CARD = /<a class="story"[^>]*>[\s\S]*?<\/a>(?=\s*(?:<a class="story"|<!-- cards:end -->))/g;
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
