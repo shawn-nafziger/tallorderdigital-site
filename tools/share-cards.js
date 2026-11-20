@@ -616,8 +616,9 @@ function seaweedCard(CMP) {
   </div>`;
 }
 
-function stateCard(D) {
-  // Mini version of the story's headline chart: Indiana laid over Portugal (its land twin), both at true size,
+function stateCard(D, o = {}) {
+  // Mini version of the story's headline chart: a state laid over another place (Indiana over Portugal, its land twin;
+  // Alaska over Texas for the Alaska page, Nov 19, 2026), both at true size,
   // each in a Lambert equal-area view centered on itself (same method as the page, done here without d3).
   const pts = (id) => D.outlines[id].map((poly) => poly.map((r) => { const a = []; for (let i = 0; i < r.length; i += 2) a.push([r[i], r[i + 1]]); return a; }));
   const rad = Math.PI / 180;
@@ -629,7 +630,9 @@ function stateCard(D) {
   const main = (polys) => polys.reduce((a, b) => (b[0].length > a[0].length ? b : a)); // biggest piece sets the center
   const center = (polys) => { const r = main(polys)[0]; return [r.reduce((s, q) => s + q[0], 0) / r.length, r.reduce((s, q) => s + q[1], 0) / r.length]; };
   const proj = (id) => { const P = pts(id), f = laea(center(P)); return P.map((poly) => poly.map((r) => r.map(f))); };
-  const st = proj("US-Indiana"), ct = proj("PRT");
+  const o2 = { state: "US-Indiana", under: "PRT", sLabel: "Indiana", uLabel: "Portugal", kicker: "Numbers · Data story",
+    title: "How big is your state, really?", dek: "Lay your state on any country at true size. Indiana and Portugal have about the same land.", ...o };
+  const st = proj(o2.state), ct = proj(o2.under);
   const mainBox = (P) => { const xs = main(P)[0].map((q) => q[0]), ys = main(P)[0].map((q) => q[1]); return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)]; };
   const bs = mainBox(st), bc = mainBox(ct);
   const W = 400, H = 400, k = Math.min(W * 0.86 / Math.max(bs[2] - bs[0], bc[2] - bc[0]), H * 0.86 / Math.max(bs[3] - bs[1], bc[3] - bc[1]));
@@ -645,13 +648,13 @@ function stateCard(D) {
     .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
   </style>
   <div class="wrap">
-    <div><p class="kicker">Numbers · Data story</p><h1>How big is your state, really?</h1>
-      <p class="dek">Lay your state on any country at true size. Indiana and Portugal have about the same land.</p></div>
+    <div><p class="kicker">${o2.kicker}</p><h1>${o2.title}</h1>
+      <p class="dek">${o2.dek}</p></div>
     <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
       <path d="${path(keep(ct, bc), bc)}" fill="${C.slateDark}" stroke="${C.sub}" stroke-opacity=".7" stroke-width="1.5"/>
       <path d="${path(keep(st, bs), bs)}" fill="${C.orange}" fill-opacity=".14" stroke="${C.orange}" stroke-width="4" stroke-linejoin="round"/>
-      <text x="${W - 4}" y="24" text-anchor="end" fill="${C.orange}">Indiana</text>
-      <text x="${W - 4}" y="${H - 8}" text-anchor="end" fill="${C.sub}">Portugal</text>
+      <text x="${W - 4}" y="24" text-anchor="end" fill="${C.orange}">${o2.sLabel}</text>
+      <text x="${W - 4}" y="${H - 8}" text-anchor="end" fill="${C.sub}">${o2.uLabel}</text>
     </svg>
     <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
   </div>`;
@@ -1009,6 +1012,8 @@ function homeCard() {
   const SW = JSON.parse(sw.match(/const CMP = (\{.*?\});\n/s)[1]);
   const sc = fs.readFileSync(path.join(ROOT, "numbers/state-vs-country-size/index.html"), "utf8");
   const SC = JSON.parse(sc.match(/const D = (\{.*?\});\n/s)[1]);
+  const ak = fs.readFileSync(path.join(ROOT, "numbers/state-vs-country-size/alaska/index.html"), "utf8");
+  const AK = JSON.parse(ak.match(/const D = (\{.*?\});\n/s)[1]);
   const fd = fs.readFileSync(path.join(ROOT, "travel/flight-delays-us-airlines/index.html"), "utf8");
   const FD = JSON.parse(fd.match(/const D = (\{.*?\});\n/s)[1]);
   const dm = fs.readFileSync(path.join(ROOT, "travel/flight-delays-domino-effect/index.html"), "utf8");
@@ -1045,6 +1050,8 @@ function homeCard() {
     ["politics/midterms-2026/districts/share.png", districtsCard(DV)],
     ["travel/seaweed-beaches-sargassum/share.png", seaweedCard(SW)],
     ["numbers/state-vs-country-size/share.png", stateCard(SC)],
+    ["numbers/state-vs-country-size/alaska/share.png", stateCard(AK, { state: "US-Alaska", under: "US-Texas", sLabel: "Alaska", uLabel: "Texas",
+      kicker: "Numbers · State sizes", title: "How big is Alaska, really?", dek: `Alaska has ${AK.words.tx_x} times as much land as Texas, and about a fifth as much as the lower 48.` })],
     ["travel/flight-delays-us-airlines/share.png", flightDelaysCard(FD)],
     ["travel/flight-delays-domino-effect/share.png", dominoCard(DM)],
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
