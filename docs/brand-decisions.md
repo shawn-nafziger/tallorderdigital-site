@@ -32,6 +32,7 @@ Readers come for NBA, for weather, or for everything else, and NBA will publish 
 ## Showpieces: DECIDED (Nov 16, 2026)
 - A **showpiece** is one big interactive visual with its own look, built with no rules beyond data-viz best practice (no playbook palette or type), to see how far a single picture can go. It's a series label (`showpiece`), not a section: each showpiece lives under its topic (`weather/year-of-daylight-hours/`), so addresses follow the subject and never move.
 - First: "A year of daylight, every minute of it" (`weather/year-of-daylight-hours/`), published Nov 16, 2026. Dark-only; keeps the site header, footer, share and subscribe parts in the dark palette, with no light/dark button on that page.
+- "Every day since 1900, in your city" (`weather/every-day-since-1900/`), Nov 20, 2026. Dark-only. Each Almanac place has its own version at `weather/almanac/<place>/every-day/`, rebuilt every morning in weather-live; the showpiece page features Chicago and links every place.
 - Later, once there are two or three: a `/featured/` collection page listing showpieces across topics (a hub of links, not a folder they live in), linked from the home page and from shawnnafziger.com.
 - Sister page: the T15 story "Shortest Day of the Year" (`weather/shortest-day-of-the-year/`, in progress) owns the "shortest day" searches; the showpiece owns "hours of daylight", day length, polar night and Alaska daylight. Link them both ways when T15 publishes.
 
