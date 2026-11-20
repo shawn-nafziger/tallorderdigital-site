@@ -36,6 +36,7 @@ LINKS = {
                                         ("Which one's readership grew the most", "line-chart")],
     "nba/check-the-take-heat-luck": [("Opponent shooting vs what their shot locations predict", "scatter-plot")],
     "nba/check-the-take-luka-unguardable": [("Shot making, every qualified player", "beeswarm")],
+    "nba/check-the-take-wembanyama-rim-shots": [("shot diet, 2025-26 vs 2026-27", "dumbbell")],
     "nba/check-the-take-kessler-field-goal-percentage": [("split into shot location and finishing", "waterfall"), ("Finishing: eFG% minus expected", "beeswarm")],
     "nba/early-season-mirage-net-rating": [("Net rating after each game", "line-chart"),
                                            ("Net-rating rank after 4 games vs. final rank", "slope-chart")],

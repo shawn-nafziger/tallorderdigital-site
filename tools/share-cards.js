@@ -305,6 +305,42 @@ ${bars}</svg>
   </div>`;
 }
 
+function takeWembyCard(D) {
+  // Rim share dumbbell: ring = 2025-26, dot = 2026-27, band = chance range around last season; plus rim FG% vs league.
+  const r = D.zones.find((z) => z.key === "rim"), g = D.ranges[0], W = 470, x = (v) => 20 + (v - 25) * (W - 40) / 25;
+  const lo = r.sharePrev - 2 * r.se, hi = r.sharePrev + 2 * r.se;
+  const chart = `<text x="0" y="40" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">Share of his shots at the rim</text>
+    <rect x="${x(lo)}" y="72" width="${x(hi) - x(lo)}" height="32" rx="16" fill="${C.sky}" fill-opacity=".28"/>
+    <line x1="${x(r.sharePrev)}" x2="${x(r.share)}" y1="88" y2="88" stroke="${C.sub}" stroke-width="3"/>
+    <circle cx="${x(r.sharePrev)}" cy="88" r="12" fill="${C.ink}" stroke="${C.mist}" stroke-width="3.5"/>
+    <circle cx="${x(r.share)}" cy="88" r="14" fill="${C.sky}"/>
+    <text x="${x(r.sharePrev) - 6}" y="138" text-anchor="end" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">${r.sharePrev.toFixed(1)}%</text>
+    <text x="${x(r.share) + 6}" y="138" text-anchor="start" font-family="IBM Plex Mono" font-size="22" font-weight="600" fill="${C.mist}">${r.share.toFixed(1)}%</text>
+    <text x="0" y="200" font-family="IBM Plex Mono" font-size="20" fill="${C.sub}">Rim FG% vs the league</text>
+    <circle cx="22" cy="246" r="13" fill="${C.orange}" stroke="${C.ink}" stroke-width="3"/>
+    <text x="48" y="254" font-family="IBM Plex Mono" font-size="26" font-weight="600" fill="${C.mist}">${g.v > 0 ? "+" : "−"}${Math.abs(g.v).toFixed(1)} pp</text>
+    <text x="48" y="286" font-family="IBM Plex Mono" font-size="18" fill="${C.sub}">beyond luck (${(g.v / g.se).toFixed(1)}× the wobble)</text>`;
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr 470px; grid-template-rows: 1fr auto; column-gap: 40px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 84px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 25px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .verdict { font: 600 22px/1.35 "IBM Plex Mono"; color: ${C.mist}; margin-top: 18px; }
+    .chart { align-self: center; }
+    .key { font: 500 18px "IBM Plex Mono"; color: ${C.sub}; margin-top: 6px; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Check the Take · NBA</p><h1>Is Wemby living at the rim?</h1>
+      <p class="dek">A bit more of Victor Wembanyama's shots come at the rim. His finishing there is the real story.</p>
+      <p class="verdict">Verdict: too early. The finishing is real</p></div>
+    <div class="chart"><svg width="470" height="300" viewBox="0 0 470 300">
+${chart}</svg>
+      <p class="key">○ 2025-26 &nbsp; ● 2026-27 · band = chance range</p></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function startsFastCard(D) {
   // Pace dumbbells, one row per season: filled sky = first N days, open ring = rest of season.
   const S = D.seasons, days = D.model.days, vals = S.flatMap((r) => [r.early.pace, r.rest ? r.rest.pace : r.early.pace]);
@@ -1000,6 +1036,8 @@ function homeCard() {
   const TL = JSON.parse(tl.match(/const D = (\{.*?\});\n/s)[1]);
   const tk = fs.readFileSync(path.join(ROOT, "nba/check-the-take-kessler-field-goal-percentage/index.html"), "utf8");
   const TK = JSON.parse(tk.match(/const D = (\{.*?\});\n/s)[1]);
+  const tw = fs.readFileSync(path.join(ROOT, "nba/check-the-take-wembanyama-rim-shots/index.html"), "utf8");
+  const TW = JSON.parse(tw.match(/const D = (\{.*?\});\n/s)[1]);
   const sf = fs.readFileSync(path.join(ROOT, "nba/every-season-starts-fast-pace-fouls/index.html"), "utf8");
   const SF = JSON.parse(sf.match(/const D = (\{.*?\});\n/s)[1]);
   const tr = fs.readFileSync(path.join(ROOT, "nba/dashboards/team-ratings/index.html"), "utf8");
@@ -1038,6 +1076,7 @@ function homeCard() {
     ["nba/check-the-take-heat-luck/share.png", takeHeatCard(TH)],
     ["nba/check-the-take-luka-unguardable/share.png", takeLukaCard(TL)],
     ["nba/check-the-take-kessler-field-goal-percentage/share.png", takeKesslerCard(TK)],
+    ["nba/check-the-take-wembanyama-rim-shots/share.png", takeWembyCard(TW)],
     ["nba/every-season-starts-fast-pace-fouls/share.png", startsFastCard(SF)],
     ["nba/dashboards/team-ratings/share.png", teamRatingsCard(TR)],
     ["nba/dashboards/game-overview/share.png", gameOverviewCard()],
