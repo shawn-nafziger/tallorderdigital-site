@@ -956,7 +956,7 @@ function render(fast){
 }
 function setBadge(){
   if (state.view === 'now' && !state.ov && !state.ovErr){ badge.className = 'badge'; badge.innerHTML = 'Loading NOAA’s aurora forecast…'; return; }
-  if (state.view === 'now' && state.ov){ badge.className = 'badge'; badge.innerHTML = `NOAA aurora forecast · valid <b>${fmtTime(state.ov.fc, state.place.tz)}</b>`; return; }
+  if (state.view === 'now' && state.ov){ badge.className = 'badge'; badge.innerHTML = `NOAA aurora forecast · valid <b>${fmtWhen(state.ov.fc, state.place.tz)}</b>${Date.now() - state.ov.fc > 3*HOUR ? ' · <b>out of date</b>' : ''}`; return; }
   const kp = currentKpForModel(); badge.className = 'badge model';
   if (state.view === 'tonight') badge.innerHTML = `Sketch for tonight’s forecast peak, <b>Kp ${kp == null ? '—' : kpStr(kp)}</b> · not NOAA’s model`;
   else if (state.view === 'now') badge.innerHTML = `NOAA feed unavailable · sketch for <b>Kp ${kpStr(kp)}</b>`;
@@ -976,6 +976,12 @@ function animateTo(target, dur){
 
 // ---------------- formatting ----------------
 function fmtTime(d, tz){ try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, hour:'numeric', minute:'2-digit' }).format(d).replace('AM','a.m.').replace('PM','p.m.'); } catch(e){ return d.toTimeString().slice(0,5); } }
+function fmtWhen(d, tz){ // the time, plus the date when it isn't today in that place
+  let sameDay = true; try { const f = new Intl.DateTimeFormat('en-US', { timeZone: tz, year:'numeric', month:'numeric', day:'numeric' }); sameDay = f.format(d) === f.format(new Date(Date.now())); } catch(e){}
+  if (sameDay) return fmtTime(d, tz);
+  let ds = ''; try { ds = new Intl.DateTimeFormat('en-US', { timeZone: tz, month:'short', day:'numeric' }).format(d); } catch(e){}
+  return ds.replace(/^(Jan|Feb|Aug|Sep|Oct|Nov|Dec) /, (m, a) => (a === 'Sep' ? 'Sept' : a) + '. ') + ', ' + fmtTime(d, tz);
+}
 function fmtDay(d, tz){ try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday:'short' }).format(d); } catch(e){ return ''; } }
 function pct(p){ return p < 1 ? 'under 1%' : Math.round(p) + '%'; }
 
@@ -1012,21 +1018,24 @@ function liveNumbers(){
   // Kp now
   // the current three-hour Kp (observed or estimated) is the official number; the 1-minute estimate only fills in when it's missing
   const cur = state.fc && state.fc.find(r => Date.now() >= r.t && Date.now() < r.t + 3*HOUR);
-  if (cur || state.kp1m){ const k = cur ? cur.kp : state.kp1m.kp; document.getElementById('lvKp').textContent = kpStr(k);
+  const k1ok = state.kp1m && Date.now() - state.kp1m.t < 3*HOUR;
+  if (!cur && !k1ok){ document.getElementById('lvKp').textContent = '—'; document.getElementById('lvKpS').textContent = state.fc || state.kp1m ? 'No current reading from NOAA' : (state.ovErr ? 'NOAA feed unavailable' : 'Loading from NOAA…'); }
+  else { const k = cur ? cur.kp : state.kp1m.kp; document.getElementById('lvKp').textContent = kpStr(k);
     const gl = k >= 8.99 ? 'G5 extreme storm' : k >= 7.66 ? 'G4 severe storm' : k >= 6.66 ? 'G3 strong storm' : k >= 5.66 ? 'G2 moderate storm' : k >= 4.66 ? 'G1 minor storm' : k >= 3.66 ? 'Active' : 'Quiet';
     document.getElementById('lvKpS').textContent = cur ? `${gl} · ${cur.kind === 'observed' ? 'observed' : cur.kind === 'predicted' ? 'NOAA forecast' : 'estimated so far'}, ${fmtTime(new Date(cur.t), p.tz)}–${fmtTime(new Date(cur.t + 3*HOUR), p.tz)}` : `${gl} · 1-minute estimate, ${fmtTime(state.kp1m.t, p.tz)}`; }
-  else if (state.ovErr) document.getElementById('lvKpS').textContent = 'NOAA feed unavailable';
   // tonight
   const [vw, vs] = verdict(tn.kp, need);
   document.getElementById('lvTonK').textContent = 'Tonight in ' + p.name.split(',')[0];
   if (tn.w.none){ document.getElementById('lvTon').textContent = 'Too light'; document.getElementById('lvTonS').textContent = 'The sun doesn’t get 12° below the horizon in the next day and a half.'; }
+  else if (tn.kp == null && need > 0){ document.getElementById('lvTon').textContent = 'No forecast';
+    document.getElementById('lvTonS').textContent = (state.fc ? 'NOAA’s Kp forecast doesn’t reach tonight. ' : '') + (need > 9 ? 'You need a storm beyond Kp 9.' : `You need about Kp ${need.toFixed(1)}.`); }
   else { document.getElementById('lvTon').textContent = vw;
     document.getElementById('lvTonS').textContent = (tn.kp != null ? `Forecast peak Kp ${kpStr(tn.kp)} in your dark hours; ` : '') + (need > 9 ? 'you need a storm beyond Kp 9.' : need <= 0 ? 'any Kp will do.' : `you need about ${need.toFixed(1)}.`); }
   // chance overhead
   if (state.ov){ const pv = ovAt(state.ov.g, p.lat, p.lon); document.getElementById('lvP').textContent = pct(pv);
     const vl = liveViewLine(state.ov.g, p.lat >= 0), lo = ((Math.round(p.lon) % 360) + 360) % 360, line = vl[lo];
     const inside = line !== null && (p.lat >= 0 ? p.lat >= line : p.lat <= line);
-    document.getElementById('lvPS').textContent = (inside ? `Inside the horizon line: look ${hemi === 'northern' ? 'north' : 'south'} if it’s dark.` : 'Outside the horizon line right now.') + ` NOAA, valid ${fmtTime(state.ov.fc, p.tz)}`.replace(/\.?$/, '.'); }
+    document.getElementById('lvPS').textContent = (inside ? `Inside the horizon line: look ${hemi === 'northern' ? 'north' : 'south'} if it’s dark.` : 'Outside the horizon line right now.') + ` NOAA, valid ${fmtWhen(state.ov.fc, p.tz)}`.replace(/\.?$/, '.'); }
   // dark
   if (tn.w.none){ document.getElementById('lvDark').textContent = 'Not tonight'; document.getElementById('lvDarkS').textContent = 'Twilight lasts all night here this time of year.'; }
   else if (tn.w.allDark){ document.getElementById('lvDark').textContent = 'All day'; document.getElementById('lvDarkS').textContent = 'Polar night: dark around the clock.'; }
@@ -1035,7 +1044,7 @@ function liveNumbers(){
     document.getElementById('lvDarkS').textContent = 'Sun at least 12° below the horizon, ' + p.name.split(',')[0] + ' time.'; }
   // step text
   setK('place', p.name); setK('mlat', Math.abs(ml).toFixed(1) + '°'); setK('need', need <= 0 ? '0' : need > 9 ? 'more than 9' : need.toFixed(1));
-  if (state.ov){ const pk = d3.max(state.ov.g); setK('fcLine', ` (valid ${fmtTime(state.ov.fc, p.tz)} ${p.name.split(',')[0]} time). Its strongest spot is a <b>${Math.round(pk)}%</b> chance`); }
+  if (state.ov){ const pk = d3.max(state.ov.g); setK('fcLine', ` (valid ${fmtWhen(state.ov.fc, p.tz)} ${p.name.split(',')[0]} time). Its strongest spot is a <b>${Math.round(pk)}%</b> chance`); }
   else setK('fcLine', state.ovErr ? ' (NOAA’s feed isn’t answering, so this is a sketch for the latest Kp instead)' : '');
   if (state.ov){
     const pv = ovAt(state.ov.g, p.lat, p.lon), vl = liveViewLine(state.ov.g, p.lat >= 0), lo = ((Math.round(p.lon) % 360) + 360) % 360, line = vl[lo];
@@ -1060,7 +1069,9 @@ function drawKp(){
   const box = document.getElementById('kpchart'), w = box.clientWidth - 24, h = 150;
   kpsvg.attr('height', h).selectAll('*').remove();
   if (!state.fc || !state.fc.length){ kpsvg.append('text').attr('x', 4).attr('y', 30).text(state.ovErr ? 'NOAA’s Kp forecast is unavailable right now.' : 'Loading NOAA’s Kp forecast…'); return; }
-  const now = Date.now(), rows = state.fc.filter(r => r.t + 3*HOUR > now - 30*HOUR);
+  const now = Date.now(), last = state.fc[state.fc.length - 1].t + 3*HOUR, ended = last < now;
+  let rows = state.fc.filter(r => r.t + 3*HOUR > Math.min(now, last) - 30*HOUR);
+  document.getElementById('kpTitle').textContent = ended ? `Kp index: NOAA’s latest forecast ended ${fmtWhen(new Date(last), state.place.tz)}` : 'Kp index: last day observed, next three days forecast';
   const m = { l: 26, r: 34, t: 8, b: 22 };
   const x = d3.scaleTime().domain([rows[0].t, rows[rows.length-1].t + 3*HOUR]).range([m.l, w - m.r]);
   const y = d3.scaleLinear().domain([0, 9]).range([h - m.b, m.t]);
@@ -1080,7 +1091,7 @@ function drawKp(){
     .attr('stroke', r => r.kind === 'predicted' ? kpColor(r.kp) : 'none').attr('stroke-dasharray','2 2');
   if (need > 0 && need <= 9){ kpsvg.append('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(need)).attr('y2', y(need)).attr('stroke','#fff').attr('stroke-opacity', .7).attr('stroke-dasharray','5 4');
     kpsvg.append('text').attr('x', m.l + 4).attr('y', y(need) - 5).style('fill','#eef3f8').text(`Needed in ${p.name.split(',')[0]}: about ${need.toFixed(1)}`); }
-  const nowG = kpsvg.append('g').attr('class','now');
+  const nowG = kpsvg.append('g').attr('class','now').style('display', ended ? 'none' : null);
   nowG.append('line').attr('x1', x(now)).attr('x2', x(now)).attr('y1', m.t).attr('y2', h - m.b).attr('stroke','#5cf2a0').attr('stroke-width', 1.5);
   nowG.append('text').attr('x', x(now) + 4).attr('y', m.t + 10).text('now');
   // day ticks in place's time zone
