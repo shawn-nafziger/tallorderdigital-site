@@ -918,7 +918,7 @@ function thanksgivingCard(D) {
     .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
   </style>
   <div class="wrap">
-    <div><p class="kicker">Weather · ${D.places.length} US cities</p><h1>Every Thanksgiving, in your city</h1>
+    <div><p class="kicker">Weather · ${D.places.length} US cities</p><h1>Thanksgiving weather, every year</h1>
       <p class="dek">Each dot is one Thanksgiving's high in ${P.name}, ${P.st} since ${P.first}. Pick your city and see where ${D.year}'s forecast lands.</p></div>
     <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">${grid}${ticks}${med}${dots}${fcm}</svg></div>
     <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
