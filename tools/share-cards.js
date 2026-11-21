@@ -900,6 +900,34 @@ function houseplantsCard(D) {
   </div>`;
 }
 
+function thanksgivingCard(D) {
+  // Every Thanksgiving high in the default city (South Bend), warmest and coldest in sky, this year's forecast in orange.
+  const P = D.places.find((p) => p.slug === D.default), R = P.r, fc = P.fc;
+  const W = 560, Ht = 360, L = 52, Rt = 24, B = 316, T = 20, lo = 10, hi = 80;
+  const x0 = R[0][0], x1 = D.year;
+  const x = (yr) => L + (yr - x0) * (W - L - Rt) / (x1 - x0), y = (v) => B - (v - lo) * (B - T) / (hi - lo);
+  const grid = [20, 40, 60, 80].map((v) => `<line x1="${L}" x2="${W - Rt}" y1="${y(v)}" y2="${y(v)}" stroke="${C.rule}" stroke-width="2"/><text x="${L - 10}" y="${y(v) + 6}" text-anchor="end" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${v}°</text>`).join("");
+  const ticks = [1900, 1950, 2000].map((t) => `<text x="${x(t)}" y="${B + 30}" text-anchor="middle" font-family="IBM Plex Mono" font-size="17" fill="${C.sub}">${t}</text>`).join("");
+  const rec = (r) => r[1] === P.warm || r[1] === P.cold;
+  const dots = R.map((r) => `<circle cx="${x(r[0]).toFixed(1)}" cy="${y(r[1]).toFixed(1)}" r="${rec(r) ? 8 : 4.5}" fill="${rec(r) ? C.sky : C.sub}"${rec(r) ? ` stroke="${C.ink}" stroke-width="2"` : ` fill-opacity=".45"`}/>`).join("");
+  const med = `<line x1="${L}" x2="${W - Rt}" y1="${y(P.median)}" y2="${y(P.median)}" stroke="${C.sub}" stroke-opacity=".6" stroke-width="2" stroke-dasharray="6 6"/>`;
+  const fcm = fc ? (() => { const cx = x(x1), cy = y(fc.high), s = 11; return `<path d="M${cx},${cy - s}L${cx + s},${cy}L${cx},${cy + s}L${cx - s},${cy}Z" fill="${C.orange}" stroke="${C.ink}" stroke-width="2"/>`; })() : "";
+  return `${base}<style>
+    .wrap { position: absolute; inset: 56px 72px 56px; display: grid; grid-template-columns: 1fr ${W}px; grid-template-rows: 1fr auto; column-gap: 32px; }
+    .kicker { font: 500 20px "IBM Plex Mono"; letter-spacing: .16em; text-transform: uppercase; color: ${C.orange}; margin-bottom: 18px; }
+    h1 { font: 700 72px/.95 "Barlow Semi Condensed"; text-transform: uppercase; }
+    .dek { font-size: 23px; line-height: 1.35; color: ${C.sub}; margin-top: 20px; }
+    .chart { align-self: center; }
+    .foot { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid ${C.rule}; padding-top: 24px; }
+  </style>
+  <div class="wrap">
+    <div><p class="kicker">Weather · ${D.places.length} US cities</p><h1>Thanksgiving weather, every year</h1>
+      <p class="dek">Each dot is one Thanksgiving's high in ${P.name}, ${P.st} since ${P.first}. Pick your city and see where ${D.year}'s forecast lands.</p></div>
+    <div class="chart"><svg width="${W}" height="${Ht}" viewBox="0 0 ${W} ${Ht}">${grid}${ticks}${med}${dots}${fcm}</svg></div>
+    <div class="foot">${lockup(64)}<span class="url">tallorderdigital.com</span></div>
+  </div>`;
+}
+
 function recordLowsCard(D) {
   // Records per 100 by chance, by decade: lows in orange (the signal), highs in sky, dashed line at chance.
   const R = D.decades, W = 520, Ht = 340, L = 56, Rt = 136, B = 300, T = 24, top = 200;
@@ -1060,6 +1088,8 @@ function homeCard() {
   const BB = JSON.parse(bb.match(/const D = (\{.*?\});\n/s)[1]);
   const rl = fs.readFileSync(path.join(ROOT, "weather/record-lows-disappearing/index.html"), "utf8");
   const RL = JSON.parse(rl.match(/const DATA = (\{.*?\});\n/s)[1]);
+  const tg = fs.readFileSync(path.join(ROOT, "weather/every-thanksgiving-weather/index.html"), "utf8");
+  const TG = JSON.parse(tg.match(/const DATA = (\{.*?\});\n/s)[1]);
   const ff = fs.readFileSync(path.join(ROOT, "weather/first-freeze-running-late/index.html"), "utf8");
   const FF = JSON.parse(ff.match(/const DATA = (\{.*?\});\n/s)[1]);
   const sd2 = fs.readFileSync(path.join(ROOT, "weather/shortest-day-of-the-year/index.html"), "utf8");
@@ -1096,6 +1126,7 @@ function homeCard() {
     ["culture/blockbusters-got-longer/share.png", blockbustersCard(BB)],
     ["weather/record-lows-disappearing/share.png", recordLowsCard(RL)],
     ["weather/first-freeze-running-late/share.png", firstFreezeCard(FF)],
+    ["weather/every-thanksgiving-weather/share.png", thanksgivingCard(TG)],
     ["weather/shortest-day-of-the-year/share.png", shortestDayCard(SDY)],
     ["nature/houseplants-native-homes/share.png", houseplantsCard(HP)],
     ["numbers/how-much-is-a-billion/share.png", billionCard()],
