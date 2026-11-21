@@ -30,6 +30,7 @@ LINKS = {
     "culture/blockbusters-got-longer": [("The gap between big hits and ordinary films more than tripled", "line-chart"),
                                         ("Animated hits stay much shorter than live action", "line-chart"),
                                         ("Shared editing rooms aren't new", "stacked-bar")],
+    "numbers/state-vs-country-size/alaska": [("Only 18 countries have more land than Alaska", "bar-chart")],
     "nature/houseplants-native-homes": [("Mexico's Gulf coast is home to the most", "choropleth"),
                                         ("Every plant's driest month at home", "beeswarm"),
                                         ("Which one's readership grew the most", "line-chart")],
