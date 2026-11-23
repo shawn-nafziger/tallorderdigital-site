@@ -56,6 +56,9 @@ p { margin: 0; }
 .site-foot a { color: var(--ink-2); }
 
 main { padding-block: 56px 72px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 64px; }
+/* Home (Nov 23, 2026): no big logo, so the intro starts close under the header. */
+main.home { padding-top: 24px; gap: 48px; }
+.home .lede { margin-top: 12px; }
 /* minmax(0, 1fr): a wide child (e.g. the topic filter) can't stretch the column past the screen. */
 .kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
 h1, h2 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0; line-height: .95; margin: 0; text-wrap: balance; }
@@ -212,8 +215,14 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 /* Home: "Featured visual" pill under the intro (Nov 16, 2026), linking the newest showpiece (tools/build-hubs.js).
    Thin orange outline (Shawn's call, Nov 16): the one decorative use of the signal color, so the featured piece stands out.
    Text stays ink; on hover the title and arrow turn orange too. */
-.featured-pill { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; max-width: 100%; min-height: 44px; box-sizing: border-box;
-  margin-top: 20px; padding: 9px 16px; border: 1px solid var(--amber); border-radius: 999px; text-decoration: none; color: var(--ink); }
+.featured-pill { display: grid; grid-template-columns: minmax(0, auto) auto; column-gap: 16px; row-gap: 3px; align-items: center;
+  width: fit-content; max-width: 100%; min-height: 44px; box-sizing: border-box;
+  margin-top: 20px; padding: 10px 18px; border: 1px solid var(--amber); border-radius: 14px; text-decoration: none; color: var(--ink); }
+/* Two lines (Nov 23, 2026): label on top, title below, arrow at the right; the pills stack, one per line. */
+.featured-pill .fp-k { grid-column: 1; grid-row: 1; }
+.featured-pill .fp-t { grid-column: 1; grid-row: 2; }
+.featured-pill .fp-go { grid-column: 2; grid-row: 1 / span 2; }
+.featured-pill + .featured-pill { margin-top: 12px; }
 .featured-pill .fp-k { font: 500 11px/1.2 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
 .featured-pill .fp-t { font: 600 15px/1.3 var(--font-body); }
 .featured-pill:hover { box-shadow: inset 0 0 0 1px var(--amber); }
