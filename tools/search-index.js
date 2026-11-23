@@ -113,7 +113,9 @@ page("numbers/state-vs-country-size/alaska/", "numbers/state-vs-country-size/ala
 page("explained/", "explained/index.html", "Stats, explained", "glossary reference terms definitions math");
 page("explained/true-shooting/", "explained/true-shooting/index.html", "True shooting percentage: formula, calculator and what counts as good", "ts% ts true shooting percentage calculator formula 0.44 efficiency what is a good true shooting league average fg% efg");
 page("explained/charts/", "explained/charts/index.html", "Charts, explained: which chart should you use?", "chart types which chart should I use visualization graph guide reference");
+page("trivia/", "trivia/index.html", "Trivia", "trivia quiz games daily play weather nba basketball questions answers");
 page("trivia/weather/", "trivia/weather/index.html", "Weather trivia", "trivia quiz game daily play weather questions answers record high low snow rain daylight cities");
+page("trivia/nba/", "trivia/nba/index.html", "NBA trivia", "nba basketball trivia quiz game daily play questions answers points assists rebounds draft teams players");
 page("about/", "about/index.html", "About", "Tall Order Digital contact form privacy cookies hire");
 
 for (const it of items) if (!it.title) throw new Error("search index: an entry has no title: " + JSON.stringify(it));

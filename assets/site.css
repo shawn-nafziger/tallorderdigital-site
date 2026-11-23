@@ -224,6 +224,10 @@ h2 { font-size: clamp(24px, 4.2vw, 34px); }
 .featured-pill.trivia-pill { border-color: var(--navy); }
 .featured-pill.trivia-pill:hover { box-shadow: inset 0 0 0 1px var(--navy); }
 .almanac.trivia-card { margin-top: -40px; }
+/* NBA trivia card on nba/ (Nov 24, 2026): the weird stat's card style, with an outlined button so the daily stat stays first. */
+.feature.trivia-feature { margin-top: -40px; }
+.feature.trivia-feature .feature-go { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.feature.trivia-feature:hover .feature-go { background: var(--amber); color: var(--bg); box-shadow: none; }
 
 /* Visually hidden, still read by screen readers (form labels, live status). */
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
