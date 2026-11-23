@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("tod-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("tod-intro");setTimeout(function(){if(!window.todIntroStarted)document.documentElement.classList.remove("tod-intro")},2000)}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Walker Kessler's Field-Goal Percentage, Explained · Tall Order Digital</title>
+<meta name="description" content="Walker Kessler is shooting 68.0% for the Lakers. An average player taking his shots would make 62.3%: most of it is shot location, not finishing.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Tall Order Digital">
+<meta property="og:title" content="Check the Take: Is Kessler's 68% finishing or the shots?">
+<meta property="og:description" content="Walker Kessler is shooting 68.0% for the Lakers. An average player taking his shots would make 62.3%: most of it is shot location, not finishing.">
+<link rel="canonical" href="https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/">
+<meta property="og:url" content="https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/">
+<meta property="og:image" content="https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Check the Take: Walker Kessler's 68% shooting split into shot location (+8.8 pp) and finishing (+5.7 pp, within chance).">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" href="../../assets/brand/tod-app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../assets/brand/tod-app-icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single editorial column (~680px) with charts allowed to breathe to ~860px; hero headline set in a condensed arena face. */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #201914;
+  --ink-2: #4a403a;
+  --ink-3: #6e645d;
+  --rule: #dddad3;
+  --ghost: #cdc9c1;
+  --navy: #0a3746;
+  --amber: #b36000;
+  --edge: #e3b88a;
+  --funnel: rgba(127, 196, 214, .3);
+  --s1: #0a3746;
+  --s2: #4a403a;
+  --s3: #0a3746;
+  --logo-2: #0a3746; --logo-3: #366f80; --logo-4: #62a8bb; --logo-ink: #201914; --logo-sub: #4a403a;
+  --font-display: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+    --bg: #03222c; --surface: #0a3746; --ink: #f3f4ef; --ink-2: #dddad3; --ink-3: #9fb1b8; --rule: #1e3a44; --ghost: #3a5762; --navy: #7fc4d6; --amber: #f99a2b; --edge: #8f6230; --funnel: rgba(127, 196, 214, .25); --s1: #7fc4d6; --s2: #dddad3; --s3: #7fc4d6; --logo-2: #7fc4d6; --logo-3: #4f8d9e; --logo-4: #2e6272; --logo-ink: #f3f4ef; --logo-sub: #dddad3; color-scheme: dark;
+  }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 var(--font-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 860px; margin: 0 auto; padding-block: 48px 72px; display: grid; gap: 56px; }
+.col { max-width: 680px; }
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0; text-wrap: balance; margin: 0; line-height: .95; text-transform: uppercase; }
+h1 { font-size: clamp(44px, 9vw, 88px); }
+h2 { font-size: clamp(26px, 4.6vw, 38px); }
+.kicker { font: 500 12px/1.2 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 14px; }
+.dek { font-size: 21px; line-height: 1.45; color: var(--ink-2); margin: 20px 0 0; max-width: 34em; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.prose { display: grid; gap: 14px; max-width: 680px; }
+.byline { font: 400 13px/1.4 var(--font-data); color: var(--ink-3); margin-top: 22px; }
+strong { font-weight: 600; color: var(--ink); }
+.amber { color: var(--amber); font-weight: 600; }
+.navy { color: var(--navy); font-weight: 600; }
+
+.stats-note { font-size: 14px; line-height: 1.5; color: var(--ink-2); max-width: 680px; margin-top: -40px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 6px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat b { font: 700 clamp(34px, 5.6vw, 50px)/.95 var(--font-display); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr; } .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--rule); } }
+
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 20px 14px; display: grid; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 10px 18px; }
+.fig-title { font: 600 15px/1.35 var(--font-body); margin: 0; }
+.fig-sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 0; }
+.chart { position: relative; width: 100%; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-data); font-size: 11px; fill: var(--ink-3); }
+.chart .lbl { fill: var(--ink-2); font-size: 12px; }
+.chart .lbl-strong { fill: var(--ink); font-weight: 500; font-size: 12px; }
+.source { font: 400 12px/1.4 var(--font-data); color: var(--ink-3); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend .dot { width: 9px; height: 9px; border-radius: 50%; }
+.legend .ring { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--ghost); background: transparent; box-sizing: border-box; }
+.legend .bar { width: 16px; height: 6px; border-radius: 3px; background: var(--funnel); }
+
+.picker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.picker button { font: 500 12px/1 var(--font-data); padding: 7px 10px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; }
+.picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.picker button:focus-visible, select:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+select { font: 500 12px/1 var(--font-data); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); }
+
+.term { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: help;
+  text-decoration: underline dotted var(--ink-3); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.term:hover, .term[aria-expanded="true"] { text-decoration-color: var(--amber); }
+.term:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 2px; }
+.term-pop { position: absolute; z-index: 5; max-width: min(300px, calc(100vw - 32px)); background: var(--ink); color: var(--bg);
+  font: 400 14px/1.5 var(--font-body); padding: 10px 12px; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+.term-pop a.more { display: block; margin-top: 8px; color: inherit; font: 500 12px/1.4 var(--font-data); text-decoration: underline; text-underline-offset: 2px; }
+.term-pop b { display: block; font: 600 12px/1.3 var(--font-data); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; opacity: .8; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font: 400 12px/1.45 var(--font-body); padding: 8px 10px; border-radius: 6px; max-width: 240px; opacity: 0; transition: opacity .12s; z-index: 2; }
+.tip b { font-weight: 600; }
+.tip.on { opacity: 1; }
+
+.callout { border-left: 3px solid var(--amber); padding: 4px 0 4px 16px; font-size: 19px; line-height: 1.45; max-width: 640px; }
+details { border-top: 1px solid var(--rule); padding-top: 12px; }
+summary { cursor: pointer; font: 500 13px/1.4 var(--font-data); color: var(--ink-2); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font: 400 13px/1.4 var(--font-data); font-variant-numeric: tabular-nums; width: 100%; }
+th, td { text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { color: var(--ink-3); font-weight: 500; }
+.method { display: grid; gap: 12px; font-size: 15px; color: var(--ink-2); max-width: 680px; }
+.method h3 { font: 600 13px/1.3 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.method ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+
+/* Site chrome: shared with the rest of tallorderdigital.com */
+/* Logo: bar mark + wordmark (Barlow Semi Condensed), colors follow the theme */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand .mark { width: 42px; height: 42px; flex: none; }
+.mark .m-o { fill: #f99a2b; }
+.mark .m-2 { fill: var(--logo-2); }
+.mark .m-3 { fill: var(--logo-3); }
+.mark .m-4 { fill: var(--logo-4); }
+.wm { display: grid; line-height: 1; font-family: "Barlow Semi Condensed", "Arial Narrow", sans-serif; text-transform: uppercase; }
+.wm-1 { color: var(--logo-ink); font-weight: 700; font-size: 23px; letter-spacing: .01em; white-space: nowrap; }
+.wm-2 { font-weight: 600; font-size: 8.4px; letter-spacing: .52em; color: var(--logo-sub); margin: 3px 0 0 2px; }
+.site-bar { align-items: center; }
+
+body { margin: 0; }
+.site-bar, .site-foot { max-width: 860px; margin: 0 auto; }
+.site-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0 14px; border-bottom: 1px solid var(--rule); }
+.site-bar a { color: inherit; text-decoration: none; }
+.site-nav { display: flex; gap: 18px; font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
+.site-bar a:hover { color: var(--amber); }
+.site-bar a:focus-visible, .site-foot a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+.site-foot { border-top: 1px solid var(--rule); padding: 20px 0 40px; display: grid; gap: 6px; font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.site-foot a { color: var(--ink-2); }
+
+/* Check the Take additions */
+caption { text-align: left; font: 500 12px/1.4 var(--font-data); color: var(--ink-3); padding: 0 0 6px; }
+.verdict { border: 1px solid var(--rule); background: var(--surface); border-radius: 8px; padding: 18px 20px; margin: 8px 0 40px; max-width: 760px; }
+.verdict .vk { font: 500 12px/1 var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 8px; }
+.verdict .vh { font: 700 30px/1.05 var(--font-display); text-transform: uppercase; margin: 0 0 14px; }
+.verdict ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.verdict li { display: grid; grid-template-columns: 112px 1fr; gap: 10px; font-size: 15px; line-height: 1.45; }
+.verdict li b { font: 600 11px/1.6 var(--font-data); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.zonemap { max-width: 520px; margin: 4px auto 14px; }
+.zonemap svg { width: 100%; height: auto; display: block; }
+.take { border-left: 3px solid var(--rule); padding: 2px 0 2px 16px; color: var(--ink-2); }
+@media (max-width: 560px) { .verdict li { grid-template-columns: 1fr; gap: 2px; } }
+/* Phone: with three nav items, the header wraps under the logo (same rule as assets/site.css). */
+@media (max-width: 420px) { .site-bar { flex-wrap: wrap; gap: 4px 8px; } .site-nav { gap: 12px; letter-spacing: .08em; margin-left: auto; } }
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): pinned to the top while you scroll.
+   On phones (680px and narrower) it slides away while you scroll down and comes back as soon as you scroll up
+   (assets/site-header.js). Menu (Nov 16, 2026): Data stories ("Stories" on narrow phones), Weather, NBA, each with a
+   faint underline; then About, Subscribe (outlined; an envelope icon on phones), the search icon and the light/dark
+   button. The menu itself is written by tools/apply-header.py.
+   Master copy: tallorderdigital-site/assets/site-header.css. Self-contained pages (stories, dashboards)
+   carry an inline copy written by tools/apply-header.py; edit this file, then re-run that tool. */
+:root { --header-h: 76px; }
+html { scroll-padding-top: calc(var(--header-h) + 12px); }
+.site-bar { position: sticky; top: 0; z-index: 40; background: var(--bg);
+  box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax); transition: transform .2s ease; }
+.site-bar.is-away { transform: translateY(-100%); }
+@media (prefers-reduced-motion: reduce) { .site-bar { transition: none; } }
+.nav-search { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -10px -12px -6px;
+  border-radius: 50%; color: var(--ink-2); }
+.nav-search svg { width: 20px; height: 20px; }
+.site-bar .nav-search:hover { color: var(--amber); }
+.site-nav .nav-search[aria-current="page"] { color: var(--ink); box-shadow: none; padding-bottom: 0; }
+.site-bar .nav-search:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+/* Subscribe (Nov 4, 2026): the one outlined menu item, so the weekly email is easy to find. Ink, never orange
+   (orange is reserved for data meaning). Text on wider screens, an envelope icon on phones. */
+.site-nav .nav-sub { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; margin: -8px 0;
+  border: 1px solid var(--ink-3); border-radius: 999px; color: var(--ink); }
+.nav-sub svg { display: none; width: 20px; height: 20px; }
+.site-bar .nav-sub:hover { color: var(--amber); border-color: var(--amber); }
+.site-nav .nav-sub[aria-current="page"] { box-shadow: none; padding-bottom: 7px; border-color: var(--ink); }
+.site-bar .nav-sub:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+@media (max-width: 680px) {
+  .site-nav .nav-sub { width: 44px; height: 44px; padding: 0; margin: -12px -6px; justify-content: center; border: 0; color: var(--ink-2); }
+  .nav-sub .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .nav-sub svg { display: block; }
+  .site-nav .nav-sub[aria-current="page"] { color: var(--ink); padding-bottom: 0; }
+}
+/* The three topics (Nov 16, 2026): a faint underline under each, so "Data stories", "Weather" and "NBA" read as three
+   items rather than one run of words. The current section keeps its orange underline (aria-current rule in site.css). */
+.site-nav .nav-topic { padding-bottom: 4px; box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--ink-3) 35%, transparent); }
+.site-bar .site-nav .nav-topic:hover { box-shadow: inset 0 -1px 0 var(--amber); }
+.site-bar .site-nav .nav-topic[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--amber); }
+/* "Data stories" shortens to "Stories" where the menu would otherwise not fit on one line (its aria-label keeps the full name). */
+@media (max-width: 480px) { .nav-long { display: none; } }
+/* Thin divider before About (Nov 9, 2026): topics on the left, then About, Subscribe and the tools. */
+.site-nav .nav-about { position: relative; margin-left: 14px; }
+.site-nav .nav-about::before { content: ""; position: absolute; left: -17px; top: 50%; width: 1px; height: 16px; margin-top: -8px;
+  background: var(--ink-3); opacity: .55; pointer-events: none; }
+@media (max-width: 680px) {
+  .site-nav .nav-about { margin-left: 8px; }
+  .site-nav .nav-about::before { left: -11px; height: 14px; margin-top: -7px; }
+}
+/* Narrowest phones (360px and under): tighter menu so everything fits on one row with the divider. */
+@media (max-width: 360px) {
+  .site-bar .site-nav { gap: 8px; letter-spacing: .04em; }
+  .site-bar .site-nav .nav-about { margin-left: 6px; }
+  .site-bar .site-nav .nav-about::before { left: -8px; }
+}
+/* Animated logo intro: hide the static logo until assets/site-header.js takes over (home: the hero; elsewhere: the header logo). */
+.tod-intro .hero-logo .mark rect, .tod-intro .hero-logo .wm,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .mark rect,
+.tod-intro body:not(:has(.hero-logo)) .site-bar .brand .wm { opacity: 0; }
+/* site-header:end */
+/* theme-toggle:start */
+/* Light/dark button. Master copy: tallorderdigital-site/assets/site.css (.theme-toggle). */
+.theme-toggle { display: inline-grid; place-items: center; width: 44px; height: 44px; margin: -12px -12px -12px -6px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--ink-2); cursor: pointer; }
+.theme-toggle:hover { color: var(--amber); }
+.theme-toggle:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
+.theme-toggle svg { width: 20px; height: 20px; }
+.theme-toggle .i-sun { display: none; }
+.theme-toggle[data-showing="dark"] .i-sun { display: block; }
+.theme-toggle[data-showing="dark"] .i-moon { display: none; }
+/* theme-toggle:end */
+/* subscribe:start */
+/* Weekly-email signup (Buttondown). Same markup on the home page, subscribe/ and, later, the end of each story.
+   White card, ink button (orange is reserved for data meaning; the button turns Burnt/Orange on hover only). */
+.subscribe { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 24px; display: grid; gap: 12px; max-width: 640px; }
+.subscribe .kicker { margin: 0; }
+.subscribe h2 { font-size: clamp(26px, 4vw, 32px); }
+.subscribe .sub-dek { color: var(--ink-2); max-width: 34em; }
+.sub-form { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.sub-form input[type="email"] { flex: 1 1 220px; min-width: 0; min-height: 44px; padding: 10px 12px; font: 400 16px/1.2 var(--font-body);
+  color: var(--ink); background: var(--bg); border: 1px solid var(--ghost); border-radius: 6px; }
+.sub-form input[type="email"]::placeholder { color: var(--ink-3); }
+.sub-form button { min-height: 44px; padding: 10px 20px; font: 600 15px/1 var(--font-body); color: var(--bg); background: var(--ink);
+  border: 0; border-radius: 6px; cursor: pointer; }
+.sub-form button:hover { background: var(--amber); }
+.sub-form input:focus-visible, .sub-form button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.subscribe .sub-note { font: 400 12px/1.5 var(--font-data); color: var(--ink-3); }
+.subscribe .sub-note a { color: var(--ink-2); }
+.subscribe .sub-done { font-weight: 600; }
+.subscribe .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.subscribe.sub-end { margin-top: 8px; width: 100%; }
+.subscribe, .subscribe * { box-sizing: border-box; }
+/* subscribe:end */
+/* share:start */
+/* Share row at the end of each story, just above the subscribe card. Outlined ink button, so it ranks below
+   Subscribe (filled ink); orange only on hover and focus, as with the other buttons. */
+/* Story pages space <main>'s children 40-56px apart; the negative bottom margin keeps the row close to the card. */
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; max-width: 640px; margin: 0 0 -28px; }
+.share-row.share-solo { margin: 0; }
+/* Stories whose sections carry their own side margins (the travel stories: sections with the class wrap and a 760px
+   column inside) leave the main element full width, so the tool wraps the share row and card in this matching column. */
+.story-end { box-sizing: border-box; max-width: 792px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.story-end .share-row { margin: 0 0 20px; } /* pages with no subscribe card below (the weird stat of the day) */
+.share-row .share-ask { margin: 0; color: var(--ink-2); }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 10px 18px; font: 600 15px/1 var(--font-body);
+  color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 6px; cursor: pointer; }
+.share-btn svg { width: 18px; height: 18px; flex: none; }
+.share-btn:hover { border-color: var(--amber); color: var(--amber); }
+.share-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.share-row .share-msg { flex-basis: 100%; margin: 0; font: 400 13px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* Small Share button under a story's intro: reads like the byline it sits under (mono, secondary ink, underlined),
+   with a share icon and a 32px-tall hit area. */
+.share-top { margin: 8px 0 0; }
+.intro .share-top { margin-top: -6px; } /* travel intros lay out in grids with a 14px gap of their own */
+.share-top .share-btn { min-height: 32px; padding: 4px 0; gap: 6px; border: 0; border-radius: 0; font: 400 13px/1.4 var(--font-data);
+  color: var(--ink-3); text-decoration: underline; text-underline-offset: 3px; }
+.share-top .share-btn svg { width: 15px; height: 15px; }
+.share-top .share-btn:hover { color: var(--ink); }
+.share-top .share-msg:not([hidden]) { display: block; margin-top: 2px; font: 400 12px/1.5 var(--font-data); color: var(--ink-2); overflow-wrap: anywhere; }
+/* share:end */
+</style>
+<!-- seo:start -->
+<meta property="article:published_time" content="2026-11-16">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/#article","headline":"Kessler's 68%: finishing or the shots?","description":"Walker Kessler is shooting 68.0% for the Lakers. An average player taking his shots would make 62.3%: most of it is shot location, not finishing.","image":["https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/share.png"],"datePublished":"2026-11-16","dateModified":"2026-11-16","author":{"@id":"https://tallorderdigital.com/#shawn-nafziger"},"publisher":{"@id":"https://tallorderdigital.com/#organization"},"copyrightHolder":{"@id":"https://tallorderdigital.com/#organization"},"isAccessibleForFree":true,"inLanguage":"en-US","mainEntityOfPage":{"@id":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/#webpage"}},{"@type":"WebPage","@id":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/#webpage","url":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/","name":"Kessler's 68%: finishing or the shots?","description":"Walker Kessler is shooting 68.0% for the Lakers. An average player taking his shots would make 62.3%: most of it is shot location, not finishing.","inLanguage":"en-US","isPartOf":{"@id":"https://tallorderdigital.com/#website"},"breadcrumb":{"@id":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/#breadcrumb"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tallorderdigital.com/"},{"@type":"ListItem","position":2,"name":"NBA","item":"https://tallorderdigital.com/nba/"},{"@type":"ListItem","position":3,"name":"Kessler's 68%: finishing or the shots?","item":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/"}],"@id":"https://tallorderdigital.com/nba/check-the-take-kessler-field-goal-percentage/#breadcrumb"},{"@type":"Organization","@id":"https://tallorderdigital.com/#organization","name":"Tall Order Digital","legalName":"Tall Order Digital LLC","url":"https://tallorderdigital.com/","logo":{"@type":"ImageObject","url":"https://tallorderdigital.com/assets/brand/tod-app-icon-512.png","width":512,"height":512}},{"@type":"Person","@id":"https://tallorderdigital.com/#shawn-nafziger","name":"Shawn Nafziger"}]}
+</script>
+<!-- seo:end -->
+</head>
+<body>
+<header class="site-bar">
+  <a class="brand" href="../../" aria-label="Tall Order Digital, home"><svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><rect x="6" y="6" width="18" height="88" rx="3" class="m-o"/><rect x="30" y="50" width="18" height="44" rx="3" class="m-2"/><rect x="54" y="60" width="18" height="34" rx="3" class="m-3"/><rect x="78" y="70" width="18" height="24" rx="3" class="m-4"/></svg><span class="wm"><span class="wm-1">Tall Order</span><span class="wm-2">Digital</span></span></a>
+  <nav class="site-nav" aria-label="Site"><a class="nav-topic" href="../../stories/" aria-label="Data stories"><span class="nav-long">Data </span>stories</a><a class="nav-topic" href="../../weather/">Weather</a><a class="nav-topic" href="../../nba/" aria-current="page">NBA</a><a class="nav-about" href="../../about/">About</a><a class="nav-sub" href="../../subscribe/"><span class="t">Subscribe</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg></a><a class="nav-search" href="../../search/" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></a><button type="button" class="theme-toggle" aria-label="Switch theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button></nav>
+</header>
+
+<main>
+  <header class="col">
+    <p class="kicker">Check the Take · NBA · Nov 16, 2026</p>
+    <h1>Kessler's 68%: finishing or the shots?</h1>
+    <p class="dek">Walker Kessler is making 68.0% of his shots for the Los Angeles Lakers. Most of that comes from where he shoots: 84% of his attempts are at the rim, the most of any regular shooter in the NBA. His finishing on top of that is good, but not yet more than chance.</p>
+    <p class="byline">By Shawn Nafziger · Data through Nov 15, 2026 (14 games, 125 shots)</p>
+  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->
+  </header>
+
+  <div class="verdict">
+    <p class="vk">The verdict</p>
+    <p class="vh">Holds up, mostly because of where he shoots</p>
+    <ul>
+      <li><b>The 69%</b><span>Real. He's 85-of-125 (68.0%) through Nov 15, and the Lakers are 12–2 with him starting every game.</span></li>
+      <li><b>Shot location</b><span>The big part. An average player taking his shots would make 62.3%, the highest of 143 players with 100+ shots. That's +8.8 <button type="button" class="term" data-term="pp">pp</button> above the league's 53.5%.</span></li>
+      <li><b>Finishing</b><span>Too early. He makes +5.7 pp more than that, only 1.4 times the normal <button type="button" class="term" data-term="se">chance wobble</button>. At the rim alone he's at the edge of beyond luck.</span></li>
+      <li><b>Impact</b><span>At the edge. The Lakers are 15.2 points per 100 possessions better with him on the floor, just short of beyond luck.</span></li>
+      <li><b>Can't check</b><span>How many of his shots are lobs or passes from Luka Dončić. That needs play-by-play we haven't pulled.</span></li>
+    </ul>
+  </div>
+
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b>68.0%</b><span>from the field (85-of-125), with no three-point attempts</span></div>
+    <div class="stat" role="listitem"><b>84%</b><span>of his shots at the rim; league: 27%. The most of 143 players with 100+ shots</span></div>
+    <div class="stat" role="listitem"><b>+5.7 pp</b><span>finishing above an average player on the same shots, within chance wobble</span></div>
+  </div>
+
+  <section>
+    <div class="prose">
+      <h2>The take</h2>
+      <p class="take">In ESPN's power rankings on Nov 11, Dave McMenamin named Kessler the Lakers' best newcomer and said Kessler has had "a major impact": 14.9 points, 10.8 rebounds and 69.1% from the field through 12 games (<a href="https://www.tsn.ca/nba/article/raptors-tumble-further-to-17th-in-nba-power-rankings-n1-50443607/">ESPN's rankings as republished by TSN</a>).</p>
+      <p>A 69.1% field-goal percentage is eye-catching, but it mixes two things. One is where a player shoots: a dunk goes in far more often than a hook shot. The other is how well he converts from those spots. The first settles within a few games; the second takes months. So we split them.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>How much of Kessler's 68% is shot location?</h2>
+      <p>Most of it. We valued each of his 125 shots at what the whole league makes from that spot this season. That's his <button type="button" class="term" data-term="xefg">expected eFG%</button>: what an average player would shoot on exactly his shots. It comes to 62.3%, against a league average of 53.5%. Where he shoots is worth +8.8 pp before he does anything special.</p>
+      <p>He then beats that by +5.7 pp, for 68.0%. (He hasn't taken a three, so his <button type="button" class="term" data-term="efg">effective FG%</button> is just his field-goal percentage.) On 125 shots, though, that extra part would wobble about ±4.0 pp by chance alone, so a +5.7-pp edge is only 1.4 times the wobble. It could be skill; it could still be a good few weeks.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Kessler's 68.0%, split into shot location and finishing</p>
+        <p class="fig-sub">eFG%, 2026-27 through Nov 15. Location explains +8.8 pp; finishing adds +5.7 pp, within chance wobble.</p>
+<!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/waterfall/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a waterfall chart →</a></p><!-- chart-howto:end -->
+      </div></div>
+      <div class="chart" id="split"></div>
+      <p class="source"><span style="color:var(--navy);font-weight:600">Teal bars</span>: eFG% for the league's average shooter and for Kessler.<br>
+        <strong>Outlined bar</strong>: what his shot locations are worth. Where he shoots is a choice, not luck, so it gets no luck color.<br>
+        <span style="color:var(--ink-3);font-weight:600">Gray bar</span>: his finishing above that. Within normal <button type="button" class="term" data-term="se">chance wobble</button>.<br>
+        <span style="display:inline-block;width:14px;height:6px;border-radius:3px;background:var(--funnel);vertical-align:middle;margin-right:4px"></span><strong>Band</strong>: the luck range for finishing, −2.4 to +13.7 pp (±2 times the wobble).<br>
+        Source: NBA.com statistics (shot locations).</p>
+      <details><summary>Show the numbers</summary><div class="tablewrap"><table><caption>Walker Kessler&#x27;s eFG%, split into shot location and finishing, through Nov 15, 2026</caption><thead><tr><th>Step</th><th>eFG%</th></tr></thead><tbody><tr><td>Average shooter, league-wide</td><td>53.5</td></tr><tr><td>+ his shot locations</td><td>+8.8</td></tr><tr><td>+ his finishing (luck range −2.4 to +13.7)</td><td>+5.7</td></tr><tr><td>= Kessler</td><td>68.0</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Where does Kessler shoot from?</h2>
+      <p>Almost entirely at the rim. 105 of his 125 shots (84%) came within about four feet of the hoop, where the league makes 65.8%. A typical NBA player takes 27% of his shots there. The other 18 came in the rest of the paint, and he's taken just 2 from farther out.</p>
+      <p>At the rim he's made 74.3%, +8.5 pp better than the league. On 105 shots, that's 1.8 times the normal wobble: at the edge, close to the bar for beyond luck but not over it. His other paint shots (38.9% on 18, league 44.5%) are within chance.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Kessler's shooting by zone, through Nov 15</p>
+        <p class="fig-sub">84% of his shots are at the rim, where he makes 74.3% (league 65.8%). Hover or tap a zone for details.</p>
+      </div></div>
+      <div class="chart zonemap" id="zones"></div>
+      <div class="chart" id="zbars"></div>
+      <p class="source"><strong>Court</strong>: the five shot zones (both corners count as Corner 3). Each label shows his FG% there, then how many shots and the league's FG%.<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span> chip: at the edge (at least 80% of the way to twice the normal <button type="button" class="term" data-term="se">chance wobble</button>).<br>
+        No chip: within normal chance wobble, or fewer than 10 shots.<br>
+        <span style="color:var(--navy);font-weight:600">Teal bars</span>: Kessler's FG%.<br>
+        <strong>Tick mark</strong>: league FG% in that zone.<br>
+        Source: NBA.com statistics (shot locations).</p>
+      <details><summary>Show the numbers</summary><div class="tablewrap"><table><caption>Walker Kessler&#x27;s shots by zone, 2026-27</caption><thead><tr><th>Zone</th><th>Shots</th><th>Share of his shots</th><th>His FG%</th><th>League FG%</th></tr></thead><tbody><tr><td>Rim</td><td>105</td><td>84.0%</td><td>74.3%</td><td>65.8%</td></tr><tr><td>Paint</td><td>18</td><td>14.4%</td><td>38.9%</td><td>44.5%</td></tr><tr><td>Midrange</td><td>2</td><td>1.6%</td><td>0.0%</td><td>40.4%</td></tr><tr><td>Corner 3</td><td>0</td><td>0.0%</td><td>–</td><td>36.2%</td></tr><tr><td>Above-break 3</td><td>0</td><td>0.0%</td><td>–</td><td>34.8%</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Does anyone take easier shots than Kessler?</h2>
+      <p>No one with 100 or more shots this season. His expected eFG% of 62.3% leads all 143 of them; next is Zion Williamson at 60.1%. Williamson is second in rim share too (70% of his shots, vs Kessler's 84%). Shot location is a choice, and it settles within a few games, so this part of his 68% will last as long as his role does.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Expected eFG%: what an average player would make on each player's shots</p>
+        <p class="fig-sub">Every player with 100+ shots, 2026-27 through Nov 15. Kessler's shot locations are worth more than anyone's.</p>
+      </div></div>
+      <div class="chart" id="xboard"></div>
+      <p class="source"><strong>Dots</strong>: one per player (143); Kessler is outlined and labeled.<br>
+        No luck colors on this chart: where a player shoots is a choice, not chance.<br>
+        Expected eFG%: each shot valued at this season's league make rate for its zone, times 1.5 for threes.<br>
+        Source: NBA.com statistics (shot locations).</p>
+      <details><summary>Show the numbers</summary><div class="tablewrap"><table><caption>Highest expected eFG% of the 143 players with 100+ shots</caption><thead><tr><th>Player</th><th>Team</th><th>Shots</th><th>Rim share</th><th>Expected eFG%</th></tr></thead><tbody><tr><td>Walker Kessler</td><td>LAL</td><td>125</td><td>84.0%</td><td>62.3%</td></tr><tr><td>Zion Williamson</td><td>NOP</td><td>166</td><td>70.5%</td><td>60.1%</td></tr><tr><td>Kel&#x27;el Ware</td><td>MIL</td><td>110</td><td>51.8%</td><td>58.2%</td></tr><tr><td>Jalen Smith</td><td>CHI</td><td>107</td><td>40.2%</td><td>57.1%</td></tr><tr><td>Amen Thompson</td><td>HOU</td><td>157</td><td>56.1%</td><td>56.9%</td></tr><tr><td>Karl-Anthony Towns</td><td>NYK</td><td>189</td><td>45.5%</td><td>56.6%</td></tr><tr><td>OG Anunoby</td><td>NYK</td><td>154</td><td>34.4%</td><td>56.4%</td></tr><tr><td>Christian Braun</td><td>DEN</td><td>113</td><td>38.9%</td><td>56.4%</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Is his finishing better than chance?</h2>
+      <p>Not yet. Among the 143 players, his +5.7 pp of finishing above expected ranks 26th. To clear twice the wobble on 125 shots, he'd need about +8.0 pp.</p>
+      <p>One game carries a lot of it. Kessler went 12-for-12 in his Lakers debut on Oct 21 against Golden State. Since then he's 73-of-113 (64.6%), just +2.5 pp above what an average player would make on those shots. That's a fine finisher getting great looks, not yet a great finisher.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">Finishing: eFG% minus expected, every player with 100+ shots</p>
+        <p class="fig-sub">2026-27 through Nov 15. Kessler's +5.7 pp is within normal chance wobble.</p>
+<!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/beeswarm/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a beeswarm →</a></p><!-- chart-howto:end -->
+      </div></div>
+      <div class="chart" id="board"></div>
+      <p class="source"><span class="amber">Orange</span>: beyond luck, more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button> for his number of shots.<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span>: at the edge (at least 80% of the way there).<br>
+        <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble.<br>
+        <strong>Dots</strong>: one per player (143); Kessler is outlined and labeled.<br>
+        With 143 players, about 7 would land beyond luck by chance alone; 13 did.<br>
+        Source: NBA.com statistics (shot locations).</p>
+      <details><summary>Show the numbers</summary><div class="tablewrap"><table><caption>Shot making, top 5 of 143 players with 100+ shots, plus Kessler</caption><thead><tr><th>Rank</th><th>Player</th><th>Team</th><th>Shots</th><th>Shot making (pp)</th><th>× wobble</th></tr></thead><tbody><tr><td>1</td><td>Toumani Camara</td><td>POR</td><td>107</td><td>+13.5</td><td>2.0</td></tr><tr><td>2</td><td>Stephen Curry</td><td>GSW</td><td>160</td><td>+12.3</td><td>2.4</td></tr><tr><td>3</td><td>Jamal Murray</td><td>DEN</td><td>187</td><td>+11.1</td><td>2.5</td></tr><tr><td>4</td><td>Klay Thompson</td><td>MIA</td><td>143</td><td>+10.7</td><td>1.8</td></tr><tr><td>5</td><td>Domantas Sabonis</td><td>SAC</td><td>105</td><td>+10.5</td><td>2.2</td></tr><tr><td>26</td><td>Walker Kessler</td><td>LAL</td><td>125</td><td>+5.7</td><td>1.4</td></tr></tbody></table></div></details>
+    </figure>
+  </section>
+
+  <section>
+    <div class="prose">
+      <h2>Are the Lakers better with Kessler on the floor?</h2>
+      <p>Yes, by a lot, though it's not yet beyond luck. The Lakers are +13.4 points per 100 possessions with him on the floor and −1.8 without him, a gap of 15.2. That's 1.9 times the normal wobble: at the edge. It ranks 37th of 332 qualified players.</p>
+      <p>Treat <button type="button" class="term" data-term="onoff">on/off</button> with care this early. It rests on 512 Lakers possessions without him, about five games' worth, and it measures lineups as much as one player: when Kessler sits, the Lakers have no backup big man, as McMenamin points out. 50 of 332 players clear the luck line, more than the 15 chance alone would give, a sign the simple luck math understates how much on/off swings.</p>
+    </div>
+    <figure class="figure" style="margin:0">
+      <div class="fig-head"><div>
+        <p class="fig-title">On/off: team points per 100 possessions with the player on the floor, minus off</p>
+        <p class="fig-sub">Every qualified player, through Nov 15. Kessler's 15.2 is at the edge of beyond luck.</p>
+      </div></div>
+      <div class="chart" id="oo"></div>
+      <p class="source"><span class="amber">Orange</span>: beyond the usual luck line (more than twice the normal <button type="button" class="term" data-term="se">chance wobble</button>).<br>
+        <span style="font-weight:600"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--edge);margin-right:5px;vertical-align:1px"></i>Light orange</span>: at the edge.<br>
+        <span style="color:var(--ink-3);font-weight:600">Gray</span>: within normal chance wobble.<br>
+        <strong>Dots</strong>: one per qualified player (332); Kessler is outlined and labeled.<br>
+        <strong>On/off</strong>: the team's <button type="button" class="term" data-term="net">net rating</button> with him on the floor minus without him.<br>
+        Source: NBA.com statistics (box scores: plus-minus and possessions).</p>
+      <details><summary>Show the numbers</summary><div class="tablewrap"><table><caption>Lakers net rating with and without Walker Kessler, through Nov 15</caption><thead><tr><th></th><th>Points per 100 possessions</th><th>Lakers possessions</th></tr></thead><tbody><tr><td>Kessler on the floor</td><td>+13.4</td><td>896</td></tr><tr><td>Kessler off the floor</td><td>−1.8</td><td>512</td></tr><tr><td>Gap (luck band ±16.0)</td><td>+15.2</td><td></td></tr></tbody></table></div></details>
+    </figure>
+    <p class="callout">McMenamin's take holds up: Kessler has been a big part of a 12–2 start, and his 68.0% is real. But it's mostly a product of his shots. He takes the easiest shots in the league, and an average player would make 62.3% of them. His finishing on top of that is promising, at the edge at the rim, but 14 games can't separate it from a hot start yet. Expect the location part to last, and his percentage to drift down toward the 62.3% his shots are worth.</p>
+  </section>
+
+  <section class="method">
+    <h3>Method</h3>
+    <ul>
+      <li><strong>Data:</strong> NBA.com box scores and shot locations via the open-source <code>nba_api</code> client, 2026-27 through Nov 15, 2026. The numbers are frozen at that date from the site's <a href="../dashboards/player-profile/">Player Profile</a> and <a href="../dashboards/hot-cold/">Hot and Cold Shooters</a> dashboards, which use the same data and math.</li>
+      <li><strong>Expected eFG%:</strong> each shot valued at this season's league make rate for its zone (rim, rest of paint, midrange, corner 3, above-the-break 3), times 1.5 for threes. It knows location only, not defender distance, shot type or who passed the ball.</li>
+      <li><strong>Finishing (shot making):</strong> actual eFG% minus expected eFG%. Its <button type="button" class="term" data-term="se">standard error</button> (4.0 pp) comes from the shot-by-shot spread. Beyond luck = more than 2 standard errors; at the edge = at least 1.6.</li>
+      <li><strong>Rim FG%:</strong> tested against the league's rim rate with a standard error of √(p × (1 − p) ÷ shots) = 4.6 pp on 105 shots. Zones with fewer than 10 shots aren't judged.</li>
+      <li><strong>Comparison pool:</strong> the 143 players with 100 or more shots this season.</li>
+      <li><strong>On/off:</strong> on = 100 × his plus-minus ÷ his possessions; off = the Lakers' point differential without him, per 100 of their possessions without him. Luck band from a 14.4-point single-game spread in net rating. It doesn't adjust for teammates, opponents or garbage time.</li>
+      <li><strong>Not checked:</strong> assisted vs unassisted shots, lobs and pick-and-roll play types (play-by-play and Synergy), and how closely each shot was contested.</li>
+      <li>Related: <a href="../check-the-take-luka-unguardable/">Check the Take: Is Luka unguardable?</a> uses the same shot-making method for Kessler's teammate.</li>
+    </ul>
+  </section>
+  <!-- share:start -->
+  <div class="share-row">
+    <p class="share-ask">Know someone who'd like this?</p>
+    <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <p class="share-msg" role="status" hidden></p>
+  </div>
+  <!-- share:end -->
+  <!-- subscribe:start -->
+  <section class="subscribe sub-end" id="subscribe" aria-labelledby="sub-h">
+    <p class="kicker">The weekly email</p>
+    <h2 id="sub-h">Get each new story by email</h2>
+    <p class="sub-dek">One email a week with the newest stories and what they found. Unsubscribe anytime.</p>
+    <form class="sub-form" action="https://buttondown.com/api/emails/embed-subscribe/tallorderdigital" method="post" target="_blank">
+      <label for="sub-email" class="sr-only">Email address</label>
+      <input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+      <input type="hidden" name="embed" value="1">
+      <input type="hidden" name="metadata__signup-page" value="">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sub-done" role="status" hidden>Almost done: check your inbox for a confirmation email.</p>
+    <p class="sub-note">Sent with Buttondown. Your address is used only for this email (<a href="../../about/#privacy">privacy</a>).</p>
+  </section>
+  <!-- subscribe:end -->
+</main>
+
+<footer class="site-foot">
+  <p>Data: <a href="https://www.nba.com/stats">NBA.com</a> statistics, via the open-source <a href="https://github.com/swar/nba_api">nba_api</a> client. Not affiliated with or endorsed by the NBA or any team.</p>
+  <p class="sub-foot"><a href="../../subscribe/">Get the weekly email</a></p>
+  <p>© 2026 Tall Order Digital LLC. Charts and text may be shared with credit and a link.</p>
+  <p><a href="../../">More stories</a></p>
+  <p>No cookies. Visits are counted anonymously (<a href="../../about/#privacy">privacy</a>).</p>
+</footer>
+
+<script>
+const D = {"asof":"2026-11-15","z":2.0,"split":{"lg":53.5,"loc":8.8,"make":5.7,"se":4.0,"x":62.3,"efg":68.0,"tier":"noise"},"zones":[{"key":"rim","label":"Rim","n":105,"share":84.0,"fg":74.3,"lgfg":65.8,"lgshare":27.4,"tier":"near"},{"key":"paint","label":"Paint","n":18,"share":14.4,"fg":38.9,"lgfg":44.5,"lgshare":19.1,"tier":"noise"},{"key":"mid","label":"Midrange","n":2,"share":1.6,"fg":0.0,"lgfg":40.4,"lgshare":10.3,"tier":"few"},{"key":"c3","label":"Corner 3","n":0,"share":0.0,"fg":0.0,"lgfg":36.2,"lgshare":11.7,"tier":"few"},{"key":"ab3","label":"Above-break 3","n":0,"share":0.0,"fg":0.0,"lgfg":34.8,"lgshare":31.5,"tier":"few"}],"xBoard":[{"name":"LeBron James","team":"PHI","n":140,"v":54.9,"rim":40.7,"me":false},{"name":"Kevin Durant","team":"HOU","n":185,"v":48.4,"rim":13.5,"me":false},{"name":"Brook Lopez","team":"LAC","n":124,"v":52.2,"rim":25.8,"me":false},{"name":"James Harden","team":"CLE","n":159,"v":52.8,"rim":18.9,"me":false},{"name":"Stephen Curry","team":"GSW","n":160,"v":51.2,"rim":11.9,"me":false},{"name":"Jrue Holiday","team":"POR","n":103,"v":53.2,"rim":16.5,"me":false},{"name":"Paul George","team":"BOS","n":175,"v":51.3,"rim":16.0,"me":false},{"name":"Kyrie Irving","team":"DAL","n":190,"v":51.1,"rim":14.7,"me":false},{"name":"Klay Thompson","team":"MIA","n":143,"v":50.8,"rim":2.1,"me":false},{"name":"Anthony Davis","team":"WAS","n":219,"v":52.0,"rim":35.2,"me":false},{"name":"Damian Lillard","team":"POR","n":168,"v":51.8,"rim":12.5,"me":false},{"name":"CJ McCollum","team":"ATL","n":171,"v":51.0,"rim":18.1,"me":false},{"name":"Giannis Antetokounmpo","team":"MIA","n":247,"v":55.3,"rim":49.4,"me":false},{"name":"Zach LaVine","team":"SAC","n":170,"v":51.6,"rim":17.6,"me":false},{"name":"Jerami Grant","team":"MEM","n":101,"v":54.4,"rim":28.7,"me":false},{"name":"Julius Randle","team":"BKN","n":175,"v":53.3,"rim":31.4,"me":false},{"name":"Andrew Wiggins","team":"MIA","n":103,"v":51.3,"rim":14.6,"me":false},{"name":"Joel Embiid","team":"PHI","n":163,"v":50.5,"rim":26.4,"me":false},{"name":"Nikola Jokić","team":"DEN","n":198,"v":50.2,"rim":21.7,"me":false},{"name":"Karl-Anthony Towns","team":"NYK","n":189,"v":56.6,"rim":45.5,"me":false},{"name":"Kelly Oubre Jr.","team":"IND","n":109,"v":55.3,"rim":33.9,"me":false},{"name":"Devin Booker","team":"PHX","n":212,"v":48.5,"rim":12.7,"me":false},{"name":"Myles Turner","team":"MIL","n":100,"v":52.8,"rim":18.0,"me":false},{"name":"Norman Powell","team":"CHI","n":141,"v":51.9,"rim":19.9,"me":false},{"name":"Mario Hezonja","team":"CLE","n":104,"v":55.2,"rim":31.7,"me":false},{"name":"Domantas Sabonis","team":"SAC","n":105,"v":54.8,"rim":45.7,"me":false},{"name":"Dejounte Murray","team":"NOP","n":102,"v":53.8,"rim":37.3,"me":false},{"name":"Jamal Murray","team":"DEN","n":187,"v":50.9,"rim":18.2,"me":false},{"name":"Jaylen Brown","team":"PHI","n":218,"v":53.0,"rim":32.1,"me":false},{"name":"Pascal Siakam","team":"IND","n":212,"v":51.9,"rim":26.9,"me":false},{"name":"Fred VanVleet","team":"HOU","n":118,"v":49.9,"rim":3.4,"me":false},{"name":"De'Aaron Fox","team":"SAS","n":117,"v":52.8,"rim":26.5,"me":false},{"name":"Jayson Tatum","team":"BOS","n":232,"v":52.1,"rim":25.0,"me":false},{"name":"Lauri Markkanen","team":"UTA","n":113,"v":52.3,"rim":13.3,"me":false},{"name":"Donovan Mitchell","team":"CLE","n":215,"v":52.5,"rim":23.3,"me":false},{"name":"John Collins","team":"DET","n":109,"v":55.8,"rim":41.3,"me":false},{"name":"OG Anunoby","team":"NYK","n":154,"v":56.4,"rim":34.4,"me":false},{"name":"Bam Adebayo","team":"MIA","n":167,"v":52.2,"rim":29.9,"me":false},{"name":"Kyle Kuzma","team":"MIL","n":129,"v":55.7,"rim":31.8,"me":false},{"name":"Derrick White","team":"BOS","n":139,"v":51.6,"rim":15.1,"me":false},{"name":"Dillon Brooks","team":"PHX","n":139,"v":50.4,"rim":16.5,"me":false},{"name":"Grayson Allen","team":"CHA","n":125,"v":51.9,"rim":6.4,"me":false},{"name":"Miles Bridges","team":"PHX","n":143,"v":53.8,"rim":25.9,"me":false},{"name":"Jalen Brunson","team":"NYK","n":272,"v":50.1,"rim":18.4,"me":false},{"name":"Shai Gilgeous-Alexander","team":"OKC","n":320,"v":48.9,"rim":16.9,"me":false},{"name":"De'Anthony Melton","team":"GSW","n":101,"v":52.9,"rim":12.9,"me":false},{"name":"Michael Porter Jr.","team":"BKN","n":169,"v":52.9,"rim":17.8,"me":false},{"name":"Collin Sexton","team":"LAL","n":110,"v":54.2,"rim":30.9,"me":false},{"name":"Anfernee Simons","team":"PHI","n":116,"v":52.9,"rim":15.5,"me":false},{"name":"P.J. Washington","team":"DAL","n":155,"v":53.4,"rim":20.6,"me":false},{"name":"Trae Young","team":"WAS","n":183,"v":50.6,"rim":12.6,"me":false},{"name":"Luka Dončić","team":"LAL","n":296,"v":50.1,"rim":8.4,"me":false},{"name":"Rui Hachimura","team":"LAC","n":120,"v":52.6,"rim":22.5,"me":false},{"name":"Duncan Robinson","team":"DET","n":140,"v":52.7,"rim":9.3,"me":false},{"name":"Andrew Nembhard","team":"IND","n":139,"v":51.0,"rim":17.3,"me":false},{"name":"Zion Williamson","team":"NOP","n":166,"v":60.1,"rim":70.5,"me":false},{"name":"RJ Barrett","team":"TOR","n":222,"v":54.8,"rim":38.7,"me":false},{"name":"De'Andre Hunter","team":"SAC","n":118,"v":50.9,"rim":11.0,"me":false},{"name":"Darius Garland","team":"LAC","n":187,"v":50.6,"rim":15.0,"me":false},{"name":"Nickeil Alexander-Walker","team":"ATL","n":238,"v":54.4,"rim":23.5,"me":false},{"name":"Tyler Herro","team":"MIL","n":213,"v":52.1,"rim":20.7,"me":false},{"name":"Luguentz Dort","team":"ATL","n":115,"v":55.8,"rim":32.2,"me":false},{"name":"Ty Jerome","team":"MEM","n":202,"v":48.2,"rim":6.4,"me":false},{"name":"Naz Reid","team":"CHA","n":218,"v":51.8,"rim":21.1,"me":false},{"name":"Anthony Edwards","team":"MIN","n":104,"v":52.1,"rim":23.1,"me":false},{"name":"LaMelo Ball","team":"MIN","n":195,"v":52.7,"rim":13.8,"me":false},{"name":"Deni Avdija","team":"POR","n":186,"v":54.5,"rim":33.9,"me":false},{"name":"Onyeka Okongwu","team":"ATL","n":151,"v":55.4,"rim":33.8,"me":false},{"name":"Devin Vassell","team":"SAS","n":113,"v":50.7,"rim":15.0,"me":false},{"name":"Aaron Nesmith","team":"IND","n":124,"v":53.4,"rim":21.8,"me":false},{"name":"Tyrese Maxey","team":"PHI","n":254,"v":54.3,"rim":31.9,"me":false},{"name":"Saddiq Bey","team":"NOP","n":170,"v":51.9,"rim":19.4,"me":false},{"name":"Jaden McDaniels","team":"MIN","n":173,"v":53.6,"rim":30.1,"me":false},{"name":"Jalen Smith","team":"CHI","n":107,"v":57.1,"rim":40.2,"me":false},{"name":"Immanuel Quickley","team":"TOR","n":158,"v":50.3,"rim":9.5,"me":false},{"name":"Paul Reed","team":"DET","n":101,"v":55.4,"rim":49.5,"me":false},{"name":"Payton Pritchard","team":"BOS","n":138,"v":50.9,"rim":11.6,"me":false},{"name":"Desmond Bane","team":"ORL","n":161,"v":51.8,"rim":10.6,"me":false},{"name":"Jalen Green","team":"PHX","n":128,"v":53.5,"rim":32.8,"me":false},{"name":"Jonathan Kuminga","team":"MIN","n":131,"v":55.8,"rim":36.6,"me":false},{"name":"Naji Marshall","team":"DAL","n":107,"v":51.6,"rim":22.4,"me":false},{"name":"Ayo Dosunmu","team":"MIN","n":177,"v":56.2,"rim":44.1,"me":false},{"name":"Trey Murphy III","team":"NOP","n":101,"v":54.4,"rim":27.7,"me":false},{"name":"Franz Wagner","team":"ORL","n":227,"v":52.2,"rim":26.9,"me":false},{"name":"Jalen Johnson","team":"ATL","n":177,"v":54.7,"rim":40.1,"me":false},{"name":"Davion Mitchell","team":"MIA","n":158,"v":53.4,"rim":25.3,"me":false},{"name":"Austin Reaves","team":"LAL","n":189,"v":49.8,"rim":14.3,"me":false},{"name":"Scottie Barnes","team":"TOR","n":185,"v":50.7,"rim":27.6,"me":false},{"name":"Sandro Mamukelashvili","team":"LAL","n":111,"v":53.9,"rim":26.1,"me":false},{"name":"Julian Champagnie","team":"SAS","n":102,"v":52.7,"rim":5.9,"me":false},{"name":"Alperen Sengun","team":"HOU","n":188,"v":54.8,"rim":44.7,"me":false},{"name":"Josh Giddey","team":"CHI","n":113,"v":54.6,"rim":32.7,"me":false},{"name":"Cade Cunningham","team":"DET","n":218,"v":52.2,"rim":26.1,"me":false},{"name":"Evan Mobley","team":"CLE","n":137,"v":56.3,"rim":43.1,"me":false},{"name":"Aaron Wiggins","team":"ATL","n":164,"v":52.0,"rim":14.0,"me":false},{"name":"Dyson Daniels","team":"ATL","n":122,"v":55.0,"rim":44.3,"me":false},{"name":"Jabari Smith Jr.","team":"HOU","n":169,"v":52.5,"rim":20.1,"me":false},{"name":"Tari Eason","team":"HOU","n":133,"v":56.1,"rim":38.3,"me":false},{"name":"Walker Kessler","team":"LAL","n":125,"v":62.3,"rim":84.0,"me":true},{"name":"Christian Braun","team":"DEN","n":113,"v":56.4,"rim":38.9,"me":false},{"name":"Ryan Rollins","team":"MIL","n":131,"v":53.2,"rim":25.2,"me":false},{"name":"Jaime Jaquez Jr.","team":"MIL","n":167,"v":54.7,"rim":34.1,"me":false},{"name":"Peyton Watson","team":"CLE","n":118,"v":54.8,"rim":33.9,"me":false},{"name":"Collin Gillespie","team":"PHX","n":105,"v":51.8,"rim":7.6,"me":false},{"name":"Quenton Jackson","team":"IND","n":100,"v":54.6,"rim":32.0,"me":false},{"name":"Victor Wembanyama","team":"SAS","n":275,"v":54.9,"rim":40.7,"me":false},{"name":"Brandon Miller","team":"CHA","n":215,"v":51.1,"rim":13.5,"me":false},{"name":"Amen Thompson","team":"HOU","n":157,"v":56.9,"rim":56.1,"me":false},{"name":"Anthony Black","team":"ORL","n":107,"v":50.3,"rim":12.1,"me":false},{"name":"Keyonte George","team":"UTA","n":204,"v":49.2,"rim":11.8,"me":false},{"name":"Brice Sensabaugh","team":"UTA","n":104,"v":49.6,"rim":6.7,"me":false},{"name":"Toumani Camara","team":"POR","n":107,"v":53.8,"rim":15.0,"me":false},{"name":"Brandin Podziemski","team":"GSW","n":139,"v":51.5,"rim":12.9,"me":false},{"name":"Tristan da Silva","team":"ORL","n":123,"v":52.7,"rim":11.4,"me":false},{"name":"Matas Buzelis","team":"CHI","n":114,"v":55.4,"rim":30.7,"me":false},{"name":"Zaccharie Risacher","team":"DAL","n":108,"v":55.4,"rim":35.2,"me":false},{"name":"Alex Sarr","team":"WAS","n":113,"v":56.1,"rim":38.9,"me":false},{"name":"Reed Sheppard","team":"HOU","n":100,"v":52.6,"rim":10.0,"me":false},{"name":"Stephon Castle","team":"SAS","n":195,"v":53.6,"rim":27.7,"me":false},{"name":"Ja'Kobe Walter","team":"TOR","n":120,"v":53.4,"rim":13.3,"me":false},{"name":"Jared McCain","team":"OKC","n":165,"v":52.7,"rim":18.2,"me":false},{"name":"Kyshawn George","team":"WAS","n":190,"v":52.6,"rim":23.7,"me":false},{"name":"Kel'el Ware","team":"MIL","n":110,"v":58.2,"rim":51.8,"me":false},{"name":"Ajay Mitchell","team":"OKC","n":169,"v":52.6,"rim":31.4,"me":false},{"name":"Jaylen Wells","team":"MEM","n":103,"v":53.3,"rim":15.5,"me":false},{"name":"Daniss Jenkins","team":"DET","n":118,"v":51.6,"rim":16.1,"me":false},{"name":"Cooper Flagg","team":"DAL","n":226,"v":50.8,"rim":24.3,"me":false},{"name":"Dylan Harper","team":"SAS","n":198,"v":53.5,"rim":35.4,"me":false},{"name":"VJ Edgecombe","team":"PHI","n":147,"v":55.7,"rim":36.7,"me":false},{"name":"Ace Bailey","team":"UTA","n":165,"v":52.0,"rim":18.2,"me":false},{"name":"Jeremiah Fears","team":"NOP","n":190,"v":55.2,"rim":41.1,"me":false},{"name":"Tre Johnson","team":"WAS","n":121,"v":49.7,"rim":7.4,"me":false},{"name":"Nolan Traore","team":"BKN","n":108,"v":52.3,"rim":22.2,"me":false},{"name":"Derik Queen","team":"NOP","n":114,"v":54.4,"rim":42.1,"me":false},{"name":"Yaxel Lendeborg","team":"GSW","n":183,"v":53.0,"rim":27.3,"me":false},{"name":"Cedric Coward","team":"MEM","n":130,"v":52.8,"rim":21.5,"me":false},{"name":"AJ Dybantsa","team":"WAS","n":140,"v":53.3,"rim":33.6,"me":false},{"name":"Darryn Peterson","team":"UTA","n":210,"v":49.4,"rim":9.5,"me":false},{"name":"Cameron Boozer","team":"MEM","n":175,"v":53.2,"rim":26.3,"me":false},{"name":"Caleb Wilson","team":"CHI","n":159,"v":53.8,"rim":29.6,"me":false},{"name":"Darius Acuff Jr.","team":"SAC","n":295,"v":50.1,"rim":14.6,"me":false},{"name":"Brayden Burries","team":"MIL","n":107,"v":53.3,"rim":25.2,"me":false},{"name":"Meleek Thomas","team":"CLE","n":119,"v":53.0,"rim":21.0,"me":false}],"board":[{"name":"LeBron James","team":"PHI","n":140,"make":-7.4,"se":4.5,"z":-1.64,"me":false},{"name":"Kevin Durant","team":"HOU","n":185,"make":6.1,"se":4.1,"z":1.49,"me":false},{"name":"Brook Lopez","team":"LAC","n":124,"make":8.7,"se":5.1,"z":1.71,"me":false},{"name":"James Harden","team":"CLE","n":159,"make":-3.1,"se":5.2,"z":-0.6,"me":false},{"name":"Stephen Curry","team":"GSW","n":160,"make":12.3,"se":5.2,"z":2.37,"me":false},{"name":"Jrue Holiday","team":"POR","n":103,"make":8.9,"se":6.6,"z":1.35,"me":false},{"name":"Paul George","team":"BOS","n":175,"make":7.0,"se":4.8,"z":1.46,"me":false},{"name":"Kyrie Irving","team":"DAL","n":190,"make":6.5,"se":4.5,"z":1.44,"me":false},{"name":"Klay Thompson","team":"MIA","n":143,"make":10.7,"se":5.8,"z":1.84,"me":false},{"name":"Anthony Davis","team":"WAS","n":219,"make":1.6,"se":3.4,"z":0.47,"me":false},{"name":"Damian Lillard","team":"POR","n":168,"make":0.9,"se":5.0,"z":0.18,"me":false},{"name":"CJ McCollum","team":"ATL","n":171,"make":-0.4,"se":4.6,"z":-0.09,"me":false},{"name":"Giannis Antetokounmpo","team":"MIA","n":247,"make":5.8,"se":3.3,"z":1.76,"me":false},{"name":"Zach LaVine","team":"SAC","n":170,"make":8.4,"se":4.8,"z":1.75,"me":false},{"name":"Jerami Grant","team":"MEM","n":101,"make":5.0,"se":6.3,"z":0.79,"me":false},{"name":"Julius Randle","team":"BKN","n":175,"make":-3.6,"se":4.3,"z":-0.84,"me":false},{"name":"Andrew Wiggins","team":"MIA","n":103,"make":-1.8,"se":6.1,"z":-0.3,"me":false},{"name":"Joel Embiid","team":"PHI","n":163,"make":-11.9,"se":4.0,"z":-2.98,"me":false},{"name":"Nikola Jokić","team":"DEN","n":198,"make":3.6,"se":3.8,"z":0.95,"me":false},{"name":"Karl-Anthony Towns","team":"NYK","n":189,"make":3.9,"se":4.3,"z":0.91,"me":false},{"name":"Kelly Oubre Jr.","team":"IND","n":109,"make":-5.3,"se":5.5,"z":-0.96,"me":false},{"name":"Devin Booker","team":"PHX","n":212,"make":5.2,"se":4.0,"z":1.3,"me":false},{"name":"Myles Turner","team":"MIL","n":100,"make":-7.8,"se":6.1,"z":-1.28,"me":false},{"name":"Norman Powell","team":"CHI","n":141,"make":1.2,"se":5.1,"z":0.24,"me":false},{"name":"Mario Hezonja","team":"CLE","n":104,"make":-0.4,"se":5.8,"z":-0.07,"me":false},{"name":"Domantas Sabonis","team":"SAC","n":105,"make":10.5,"se":4.8,"z":2.19,"me":false},{"name":"Dejounte Murray","team":"NOP","n":102,"make":-6.8,"se":5.4,"z":-1.26,"me":false},{"name":"Jamal Murray","team":"DEN","n":187,"make":11.1,"se":4.5,"z":2.47,"me":false},{"name":"Jaylen Brown","team":"PHI","n":218,"make":2.0,"se":3.9,"z":0.51,"me":false},{"name":"Pascal Siakam","team":"IND","n":212,"make":4.5,"se":3.8,"z":1.18,"me":false},{"name":"Fred VanVleet","team":"HOU","n":118,"make":7.7,"se":6.2,"z":1.24,"me":false},{"name":"De'Aaron Fox","team":"SAS","n":117,"make":2.4,"se":5.3,"z":0.45,"me":false},{"name":"Jayson Tatum","team":"BOS","n":232,"make":-2.8,"se":3.8,"z":-0.74,"me":false},{"name":"Lauri Markkanen","team":"UTA","n":113,"make":-0.5,"se":6.3,"z":-0.08,"me":false},{"name":"Donovan Mitchell","team":"CLE","n":215,"make":4.0,"se":4.2,"z":0.95,"me":false},{"name":"John Collins","team":"DET","n":109,"make":-3.6,"se":5.5,"z":-0.65,"me":false},{"name":"OG Anunoby","team":"NYK","n":154,"make":-8.3,"se":5.0,"z":-1.66,"me":false},{"name":"Bam Adebayo","team":"MIA","n":167,"make":3.8,"se":4.1,"z":0.93,"me":false},{"name":"Kyle Kuzma","team":"MIL","n":129,"make":-1.8,"se":5.4,"z":-0.33,"me":false},{"name":"Derrick White","team":"BOS","n":139,"make":2.0,"se":5.3,"z":0.38,"me":false},{"name":"Dillon Brooks","team":"PHX","n":139,"make":1.4,"se":5.1,"z":0.27,"me":false},{"name":"Grayson Allen","team":"CHA","n":125,"make":10.5,"se":6.3,"z":1.67,"me":false},{"name":"Miles Bridges","team":"PHX","n":143,"make":-1.0,"se":5.0,"z":-0.2,"me":false},{"name":"Jalen Brunson","team":"NYK","n":272,"make":-0.1,"se":3.6,"z":-0.03,"me":false},{"name":"Shai Gilgeous-Alexander","team":"OKC","n":320,"make":3.8,"se":3.2,"z":1.19,"me":false},{"name":"De'Anthony Melton","team":"GSW","n":101,"make":1.1,"se":6.8,"z":0.16,"me":false},{"name":"Michael Porter Jr.","team":"BKN","n":169,"make":4.2,"se":4.9,"z":0.86,"me":false},{"name":"Collin Sexton","team":"LAL","n":110,"make":-3.7,"se":5.5,"z":-0.67,"me":false},{"name":"Anfernee Simons","team":"PHI","n":116,"make":4.4,"se":6.4,"z":0.69,"me":false},{"name":"P.J. Washington","team":"DAL","n":155,"make":-4.0,"se":5.1,"z":-0.78,"me":false},{"name":"Trae Young","team":"WAS","n":183,"make":-4.7,"se":4.4,"z":-1.07,"me":false},{"name":"Luka Dončić","team":"LAL","n":296,"make":9.5,"se":3.7,"z":2.57,"me":false},{"name":"Rui Hachimura","team":"LAC","n":120,"make":-8.0,"se":5.5,"z":-1.45,"me":false},{"name":"Duncan Robinson","team":"DET","n":140,"make":9.1,"se":5.9,"z":1.54,"me":false},{"name":"Andrew Nembhard","team":"IND","n":139,"make":2.6,"se":5.3,"z":0.49,"me":false},{"name":"Zion Williamson","team":"NOP","n":166,"make":2.0,"se":4.0,"z":0.5,"me":false},{"name":"RJ Barrett","team":"TOR","n":222,"make":-3.6,"se":3.7,"z":-0.97,"me":false},{"name":"De'Andre Hunter","team":"SAC","n":118,"make":2.9,"se":5.8,"z":0.5,"me":false},{"name":"Darius Garland","team":"LAC","n":187,"make":5.0,"se":4.4,"z":1.14,"me":false},{"name":"Nickeil Alexander-Walker","team":"ATL","n":238,"make":-2.8,"se":4.2,"z":-0.67,"me":false},{"name":"Tyler Herro","team":"MIL","n":213,"make":-1.2,"se":4.2,"z":-0.29,"me":false},{"name":"Luguentz Dort","team":"ATL","n":115,"make":-9.7,"se":5.9,"z":-1.64,"me":false},{"name":"Ty Jerome","team":"MEM","n":202,"make":7.3,"se":4.2,"z":1.74,"me":false},{"name":"Naz Reid","team":"CHA","n":218,"make":-4.7,"se":4.0,"z":-1.18,"me":false},{"name":"Anthony Edwards","team":"MIN","n":104,"make":4.6,"se":6.0,"z":0.77,"me":false},{"name":"LaMelo Ball","team":"MIN","n":195,"make":3.0,"se":4.7,"z":0.64,"me":false},{"name":"Deni Avdija","team":"POR","n":186,"make":2.0,"se":4.3,"z":0.47,"me":false},{"name":"Onyeka Okongwu","team":"ATL","n":151,"make":1.9,"se":4.9,"z":0.39,"me":false},{"name":"Devin Vassell","team":"SAS","n":113,"make":-3.8,"se":5.6,"z":-0.68,"me":false},{"name":"Aaron Nesmith","team":"IND","n":124,"make":-5.8,"se":5.4,"z":-1.07,"me":false},{"name":"Tyrese Maxey","team":"PHI","n":254,"make":2.6,"se":3.7,"z":0.7,"me":false},{"name":"Saddiq Bey","team":"NOP","n":170,"make":2.2,"se":4.8,"z":0.46,"me":false},{"name":"Jaden McDaniels","team":"MIN","n":173,"make":4.3,"se":4.3,"z":1.0,"me":false},{"name":"Jalen Smith","team":"CHI","n":107,"make":3.2,"se":5.8,"z":0.55,"me":false},{"name":"Immanuel Quickley","team":"TOR","n":158,"make":-1.6,"se":5.0,"z":-0.32,"me":false},{"name":"Paul Reed","team":"DET","n":101,"make":2.5,"se":5.2,"z":0.48,"me":false},{"name":"Payton Pritchard","team":"BOS","n":138,"make":0.9,"se":5.4,"z":0.17,"me":false},{"name":"Desmond Bane","team":"ORL","n":161,"make":2.5,"se":5.4,"z":0.46,"me":false},{"name":"Jalen Green","team":"PHX","n":128,"make":-7.8,"se":4.9,"z":-1.59,"me":false},{"name":"Jonathan Kuminga","team":"MIN","n":131,"make":-4.3,"se":5.3,"z":-0.81,"me":false},{"name":"Naji Marshall","team":"DAL","n":107,"make":-0.7,"se":5.5,"z":-0.13,"me":false},{"name":"Ayo Dosunmu","team":"MIN","n":177,"make":3.4,"se":4.3,"z":0.79,"me":false},{"name":"Trey Murphy III","team":"NOP","n":101,"make":2.1,"se":6.2,"z":0.34,"me":false},{"name":"Franz Wagner","team":"ORL","n":227,"make":-1.4,"se":3.6,"z":-0.39,"me":false},{"name":"Jalen Johnson","team":"ATL","n":177,"make":-8.4,"se":3.9,"z":-2.15,"me":false},{"name":"Davion Mitchell","team":"MIA","n":158,"make":6.4,"se":5.0,"z":1.28,"me":false},{"name":"Austin Reaves","team":"LAL","n":189,"make":8.7,"se":4.3,"z":2.02,"me":false},{"name":"Scottie Barnes","team":"TOR","n":185,"make":-0.9,"se":3.9,"z":-0.23,"me":false},{"name":"Sandro Mamukelashvili","team":"LAL","n":111,"make":3.3,"se":6.0,"z":0.55,"me":false},{"name":"Julian Champagnie","team":"SAS","n":102,"make":8.0,"se":7.0,"z":1.14,"me":false},{"name":"Alperen Sengun","team":"HOU","n":188,"make":3.2,"se":3.8,"z":0.84,"me":false},{"name":"Josh Giddey","team":"CHI","n":113,"make":-6.4,"se":5.6,"z":-1.14,"me":false},{"name":"Cade Cunningham","team":"DET","n":218,"make":1.3,"se":3.9,"z":0.33,"me":false},{"name":"Evan Mobley","team":"CLE","n":137,"make":7.6,"se":5.1,"z":1.49,"me":false},{"name":"Aaron Wiggins","team":"ATL","n":164,"make":5.3,"se":5.0,"z":1.06,"me":false},{"name":"Dyson Daniels","team":"ATL","n":122,"make":-5.8,"se":4.6,"z":-1.26,"me":false},{"name":"Jabari Smith Jr.","team":"HOU","n":169,"make":2.5,"se":4.9,"z":0.51,"me":false},{"name":"Tari Eason","team":"HOU","n":133,"make":-6.1,"se":4.9,"z":-1.24,"me":false},{"name":"Walker Kessler","team":"LAL","n":125,"make":5.7,"se":4.0,"z":1.43,"me":true},{"name":"Christian Braun","team":"DEN","n":113,"make":-1.1,"se":5.6,"z":-0.2,"me":false},{"name":"Ryan Rollins","team":"MIL","n":131,"make":-6.3,"se":5.4,"z":-1.17,"me":false},{"name":"Jaime Jaquez Jr.","team":"MIL","n":167,"make":1.0,"se":4.7,"z":0.21,"me":false},{"name":"Peyton Watson","team":"CLE","n":118,"make":-14.1,"se":5.0,"z":-2.82,"me":false},{"name":"Collin Gillespie","team":"PHX","n":105,"make":-1.8,"se":6.5,"z":-0.28,"me":false},{"name":"Quenton Jackson","team":"IND","n":100,"make":-0.1,"se":6.0,"z":-0.02,"me":false},{"name":"Victor Wembanyama","team":"SAS","n":275,"make":3.4,"se":3.3,"z":1.03,"me":false},{"name":"Brandon Miller","team":"CHA","n":215,"make":-10.2,"se":3.9,"z":-2.62,"me":false},{"name":"Amen Thompson","team":"HOU","n":157,"make":-1.8,"se":4.0,"z":-0.45,"me":false},{"name":"Anthony Black","team":"ORL","n":107,"make":3.0,"se":5.8,"z":0.52,"me":false},{"name":"Keyonte George","team":"UTA","n":204,"make":-0.9,"se":4.1,"z":-0.22,"me":false},{"name":"Brice Sensabaugh","team":"UTA","n":104,"make":-0.1,"se":6.2,"z":-0.02,"me":false},{"name":"Toumani Camara","team":"POR","n":107,"make":13.5,"se":6.6,"z":2.05,"me":false},{"name":"Brandin Podziemski","team":"GSW","n":139,"make":5.7,"se":5.4,"z":1.06,"me":false},{"name":"Tristan da Silva","team":"ORL","n":123,"make":5.8,"se":6.1,"z":0.95,"me":false},{"name":"Matas Buzelis","team":"CHI","n":114,"make":-2.4,"se":5.8,"z":-0.41,"me":false},{"name":"Zaccharie Risacher","team":"DAL","n":108,"make":-2.2,"se":5.6,"z":-0.39,"me":false},{"name":"Alex Sarr","team":"WAS","n":113,"make":5.0,"se":5.3,"z":0.94,"me":false},{"name":"Reed Sheppard","team":"HOU","n":100,"make":-3.6,"se":6.5,"z":-0.55,"me":false},{"name":"Stephon Castle","team":"SAS","n":195,"make":-3.8,"se":4.3,"z":-0.88,"me":false},{"name":"Ja'Kobe Walter","team":"TOR","n":120,"make":-4.2,"se":5.9,"z":-0.71,"me":false},{"name":"Jared McCain","team":"OKC","n":165,"make":-3.3,"se":4.8,"z":-0.69,"me":false},{"name":"Kyshawn George","team":"WAS","n":190,"make":4.0,"se":4.4,"z":0.91,"me":false},{"name":"Kel'el Ware","team":"MIL","n":110,"make":-14.1,"se":5.2,"z":-2.71,"me":false},{"name":"Ajay Mitchell","team":"OKC","n":169,"make":1.9,"se":4.2,"z":0.45,"me":false},{"name":"Jaylen Wells","team":"MEM","n":103,"make":8.4,"se":6.4,"z":1.31,"me":false},{"name":"Daniss Jenkins","team":"DET","n":118,"make":3.0,"se":5.9,"z":0.51,"me":false},{"name":"Cooper Flagg","team":"DAL","n":226,"make":-0.2,"se":3.7,"z":-0.05,"me":false},{"name":"Dylan Harper","team":"SAS","n":198,"make":0.8,"se":3.8,"z":0.21,"me":false},{"name":"VJ Edgecombe","team":"PHI","n":147,"make":-2.7,"se":4.7,"z":-0.57,"me":false},{"name":"Ace Bailey","team":"UTA","n":165,"make":1.4,"se":4.6,"z":0.3,"me":false},{"name":"Jeremiah Fears","team":"NOP","n":190,"make":-7.0,"se":4.0,"z":-1.75,"me":false},{"name":"Tre Johnson","team":"WAS","n":121,"make":-6.8,"se":5.4,"z":-1.26,"me":false},{"name":"Nolan Traore","team":"BKN","n":108,"make":6.1,"se":5.9,"z":1.03,"me":false},{"name":"Derik Queen","team":"NOP","n":114,"make":-4.4,"se":4.9,"z":-0.9,"me":false},{"name":"Yaxel Lendeborg","team":"GSW","n":183,"make":3.5,"se":4.4,"z":0.8,"me":false},{"name":"Cedric Coward","team":"MEM","n":130,"make":3.0,"se":5.6,"z":0.54,"me":false},{"name":"AJ Dybantsa","team":"WAS","n":140,"make":-10.0,"se":4.5,"z":-2.22,"me":false},{"name":"Darryn Peterson","team":"UTA","n":210,"make":-1.3,"se":4.1,"z":-0.32,"me":false},{"name":"Cameron Boozer","team":"MEM","n":175,"make":-8.9,"se":4.3,"z":-2.07,"me":false},{"name":"Caleb Wilson","team":"CHI","n":159,"make":-4.5,"se":4.7,"z":-0.96,"me":false},{"name":"Darius Acuff Jr.","team":"SAC","n":295,"make":-2.4,"se":3.4,"z":-0.71,"me":false},{"name":"Brayden Burries","team":"MIL","n":107,"make":-6.1,"se":5.6,"z":-1.09,"me":false},{"name":"Meleek Thomas","team":"CLE","n":119,"make":7.9,"se":6.0,"z":1.32,"me":false}],"ooBoard":[{"name":"Victor Wembanyama","team":"SAS","diff":44.2,"z":5.56,"offPoss":523,"me":false},{"name":"Justin Champagnie","team":"WAS","diff":38.1,"z":3.14,"offPoss":1258,"me":false},{"name":"Alex Caruso","team":"OKC","diff":35.3,"z":4.33,"offPoss":906,"me":false},{"name":"Norchad Omier","team":"CLE","diff":32.2,"z":2.03,"offPoss":1320,"me":false},{"name":"Luka Dončić","team":"LAL","diff":32.1,"z":3.99,"offPoss":491,"me":false},{"name":"Dylan Harper","team":"SAS","diff":30.7,"z":3.77,"offPoss":472,"me":false},{"name":"Ryan Dunn","team":"PHX","diff":27.5,"z":3.16,"offPoss":752,"me":false},{"name":"Franz Wagner","team":"ORL","diff":24.3,"z":2.44,"offPoss":272,"me":false},{"name":"De'Aaron Fox","team":"SAS","diff":24.1,"z":3.11,"offPoss":610,"me":false},{"name":"Jamal Murray","team":"DEN","diff":23.8,"z":2.34,"offPoss":266,"me":false},{"name":"Ryan Kalkbrenner","team":"CHA","diff":23.5,"z":2.83,"offPoss":756,"me":false},{"name":"Luke Kennard","team":"PHX","diff":22.3,"z":2.52,"offPoss":784,"me":false},{"name":"Patrick Williams","team":"CHI","diff":21.6,"z":2.14,"offPoss":993,"me":false},{"name":"Day'Ron Sharpe","team":"BKN","diff":21.5,"z":2.59,"offPoss":617,"me":false},{"name":"Neemias Queta","team":"BOS","diff":21.3,"z":2.63,"offPoss":673,"me":false},{"name":"Landry Shamet","team":"NYK","diff":19.5,"z":2.39,"offPoss":568,"me":false},{"name":"Austin Reaves","team":"LAL","diff":19.5,"z":2.45,"offPoss":524,"me":false},{"name":"Javonte Green","team":"DET","diff":19.2,"z":2.22,"offPoss":789,"me":false},{"name":"Sam Hauser","team":"BOS","diff":18.5,"z":2.26,"offPoss":718,"me":false},{"name":"Jabari Smith Jr.","team":"HOU","diff":18.2,"z":2.13,"offPoss":399,"me":false},{"name":"Stephen Curry","team":"GSW","diff":18.0,"z":2.24,"offPoss":742,"me":false},{"name":"Emanuel Sharp","team":"SAC","diff":17.9,"z":2.17,"offPoss":825,"me":false},{"name":"Duncan Robinson","team":"DET","diff":17.7,"z":2.07,"offPoss":453,"me":false},{"name":"Devin Vassell","team":"SAS","diff":17.6,"z":2.27,"offPoss":652,"me":false},{"name":"Cedric Coward","team":"MEM","diff":17.6,"z":2.2,"offPoss":582,"me":false},{"name":"Sam Merrill","team":"CLE","diff":17.1,"z":2.09,"offPoss":953,"me":false},{"name":"Herbert Jones","team":"NOP","diff":17.0,"z":2.25,"offPoss":737,"me":false},{"name":"Jordan Goodwin","team":"PHX","diff":17.0,"z":1.83,"offPoss":850,"me":false},{"name":"Jaden McDaniels","team":"MIN","diff":16.5,"z":1.91,"offPoss":398,"me":false},{"name":"Collin Gillespie","team":"PHX","diff":16.3,"z":1.94,"offPoss":570,"me":false},{"name":"Damian Lillard","team":"POR","diff":16.2,"z":1.89,"offPoss":451,"me":false},{"name":"Santi Aldama","team":"DAL","diff":16.1,"z":1.34,"offPoss":1243,"me":false},{"name":"Jalen Slawson","team":"IND","diff":15.9,"z":1.81,"offPoss":1056,"me":false},{"name":"Michael Porter Jr.","team":"BKN","diff":15.6,"z":1.81,"offPoss":441,"me":false},{"name":"Alijah Martin","team":"TOR","diff":15.6,"z":1.64,"offPoss":994,"me":false},{"name":"Zion Williamson","team":"NOP","diff":15.4,"z":1.97,"offPoss":544,"me":false},{"name":"Walker Kessler","team":"LAL","diff":15.2,"z":1.9,"offPoss":512,"me":true},{"name":"Tyler Kolek","team":"NYK","diff":15.0,"z":1.59,"offPoss":948,"me":false},{"name":"LaMelo Ball","team":"MIN","diff":14.9,"z":1.85,"offPoss":547,"me":false},{"name":"Gradey Dick","team":"LAC","diff":14.8,"z":1.68,"offPoss":810,"me":false},{"name":"Cooper Flagg","team":"DAL","diff":14.8,"z":1.83,"offPoss":484,"me":false},{"name":"Christian Braun","team":"DEN","diff":14.7,"z":1.52,"offPoss":313,"me":false},{"name":"Anthony Edwards","team":"MIN","diff":14.1,"z":1.47,"offPoss":1040,"me":false},{"name":"Kyshawn George","team":"WAS","diff":14.1,"z":1.72,"offPoss":458,"me":false},{"name":"Deni Avdija","team":"POR","diff":13.9,"z":1.55,"offPoss":379,"me":false},{"name":"Paul Reed","team":"DET","diff":13.8,"z":1.66,"offPoss":552,"me":false},{"name":"Ja Morant","team":"POR","diff":13.7,"z":1.27,"offPoss":992,"me":false},{"name":"Josh Green","team":"UTA","diff":13.7,"z":1.7,"offPoss":946,"me":false},{"name":"Quenton Jackson","team":"IND","diff":13.6,"z":1.77,"offPoss":763,"me":false},{"name":"Egor Dëmin","team":"BKN","diff":13.6,"z":1.41,"offPoss":910,"me":false},{"name":"Paul George","team":"BOS","diff":13.2,"z":1.63,"offPoss":603,"me":false},{"name":"Robert Williams III","team":"POR","diff":13.2,"z":1.46,"offPoss":848,"me":false},{"name":"Dyson Daniels","team":"ATL","diff":13.2,"z":1.69,"offPoss":535,"me":false},{"name":"Ryan Rollins","team":"MIL","diff":13.2,"z":1.71,"offPoss":746,"me":false},{"name":"Allen Graves","team":"TOR","diff":13.1,"z":1.47,"offPoss":927,"me":false},{"name":"Nic Claxton","team":"CHI","diff":13.0,"z":0.93,"offPoss":1132,"me":false},{"name":"Trendon Watford","team":"NOP","diff":12.9,"z":1.24,"offPoss":1230,"me":false},{"name":"Charles Bassey","team":"GSW","diff":12.8,"z":1.38,"offPoss":992,"me":false},{"name":"Julius Randle","team":"BKN","diff":12.4,"z":1.38,"offPoss":371,"me":false},{"name":"Fred VanVleet","team":"HOU","diff":12.1,"z":1.55,"offPoss":688,"me":false},{"name":"Joel Embiid","team":"PHI","diff":12.0,"z":1.56,"offPoss":649,"me":false},{"name":"Donovan Mitchell","team":"CLE","diff":11.6,"z":1.44,"offPoss":492,"me":false},{"name":"Kyrie Irving","team":"DAL","diff":11.4,"z":1.48,"offPoss":684,"me":false},{"name":"Onyeka Okongwu","team":"ATL","diff":11.4,"z":1.46,"offPoss":536,"me":false},{"name":"Tyrese Haliburton","team":"IND","diff":11.2,"z":1.19,"offPoss":1123,"me":false},{"name":"Karl-Anthony Towns","team":"NYK","diff":11.1,"z":1.26,"offPoss":384,"me":false},{"name":"Cameron Johnson","team":"DEN","diff":11.0,"z":1.25,"offPoss":618,"me":false},{"name":"Alperen Sengun","team":"HOU","diff":11.0,"z":1.37,"offPoss":513,"me":false},{"name":"Anthony Black","team":"ORL","diff":10.7,"z":1.28,"offPoss":585,"me":false},{"name":"Jonathan Mogbo","team":"SAC","diff":10.7,"z":0.87,"offPoss":1158,"me":false},{"name":"Kobe Sanders","team":"LAC","diff":10.7,"z":1.29,"offPoss":624,"me":false},{"name":"Brandon Williams","team":"GSW","diff":10.1,"z":1.12,"offPoss":957,"me":false},{"name":"Danny Wolf","team":"BKN","diff":10.0,"z":1.1,"offPoss":847,"me":false},{"name":"Dylan Cardwell","team":"SAC","diff":9.9,"z":0.93,"offPoss":1095,"me":false},{"name":"Jaylon Tyson","team":"CLE","diff":9.7,"z":1.13,"offPoss":1012,"me":false},{"name":"Anthony Davis","team":"WAS","diff":9.4,"z":1.21,"offPoss":564,"me":false},{"name":"Georges Niang","team":"GSW","diff":9.2,"z":1.14,"offPoss":754,"me":false},{"name":"Jaime Jaquez Jr.","team":"MIL","diff":9.2,"z":1.17,"offPoss":551,"me":false},{"name":"Trey Murphy III","team":"NOP","diff":9.1,"z":1.2,"offPoss":817,"me":false},{"name":"Zach Edey","team":"MEM","diff":9.0,"z":1.07,"offPoss":887,"me":false},{"name":"Riley Minix","team":"CLE","diff":9.0,"z":0.63,"offPoss":1297,"me":false},{"name":"Ajay Mitchell","team":"OKC","diff":8.9,"z":1.15,"offPoss":696,"me":false},{"name":"Leaky Black","team":"SAC","diff":8.6,"z":0.97,"offPoss":947,"me":false},{"name":"Gui Santos","team":"GSW","diff":8.0,"z":0.92,"offPoss":913,"me":false},{"name":"VJ Edgecombe","team":"PHI","diff":8.0,"z":0.99,"offPoss":482,"me":false},{"name":"Tyrese Maxey","team":"PHI","diff":7.9,"z":0.87,"offPoss":334,"me":false},{"name":"Norman Powell","team":"CHI","diff":7.7,"z":0.94,"offPoss":596,"me":false},{"name":"Bobby Portis Jr.","team":"MIA","diff":7.4,"z":0.93,"offPoss":786,"me":false},{"name":"Brandin Podziemski","team":"GSW","diff":7.4,"z":0.92,"offPoss":552,"me":false},{"name":"Keaton Wagler","team":"LAC","diff":7.4,"z":0.89,"offPoss":623,"me":false},{"name":"Christian Anderson","team":"CHA","diff":7.4,"z":0.8,"offPoss":924,"me":false},{"name":"Royce O'Neale","team":"CHA","diff":7.2,"z":0.87,"offPoss":736,"me":false},{"name":"Stephon Castle","team":"SAS","diff":7.1,"z":0.9,"offPoss":537,"me":false},{"name":"Sandro Mamukelashvili","team":"LAL","diff":6.8,"z":0.88,"offPoss":708,"me":false},{"name":"Shai Gilgeous-Alexander","team":"OKC","diff":6.7,"z":0.79,"offPoss":418,"me":false},{"name":"Daniss Jenkins","team":"DET","diff":6.7,"z":0.8,"offPoss":498,"me":false},{"name":"Isaac Okoro","team":"CHI","diff":6.6,"z":0.8,"offPoss":685,"me":false},{"name":"Brook Lopez","team":"LAC","diff":6.5,"z":0.78,"offPoss":590,"me":false},{"name":"Rudy Gobert","team":"MIN","diff":6.5,"z":0.82,"offPoss":587,"me":false},{"name":"Terance Mann","team":"BKN","diff":6.5,"z":0.61,"offPoss":983,"me":false},{"name":"Desmond Bane","team":"ORL","diff":6.3,"z":0.72,"offPoss":408,"me":false},{"name":"Kevin Durant","team":"HOU","diff":6.2,"z":0.71,"offPoss":375,"me":false},{"name":"Collin Murray-Boyles","team":"TOR","diff":6.2,"z":0.78,"offPoss":689,"me":false},{"name":"Ryan Conwell","team":"MIA","diff":6.0,"z":0.69,"offPoss":971,"me":false},{"name":"Jarrett Allen","team":"CLE","diff":5.8,"z":0.75,"offPoss":800,"me":false},{"name":"Isaiah Hartenstein","team":"OKC","diff":5.8,"z":0.75,"offPoss":665,"me":false},{"name":"Walter Clayton Jr.","team":"DAL","diff":5.7,"z":0.7,"offPoss":934,"me":false},{"name":"Dennis Schröder","team":"CHA","diff":5.5,"z":0.67,"offPoss":709,"me":false},{"name":"Nikola Jokić","team":"DEN","diff":5.5,"z":0.53,"offPoss":251,"me":false},{"name":"Max Strus","team":"LAC","diff":5.4,"z":0.55,"offPoss":926,"me":false},{"name":"Jrue Holiday","team":"POR","diff":5.3,"z":0.63,"offPoss":529,"me":false},{"name":"Aaron Gordon","team":"DEN","diff":5.3,"z":0.59,"offPoss":408,"me":false},{"name":"Ty Jerome","team":"MEM","diff":5.2,"z":0.65,"offPoss":613,"me":false},{"name":"Darius Acuff Jr.","team":"SAC","diff":5.0,"z":0.53,"offPoss":297,"me":false},{"name":"Wendell Carter Jr.","team":"ORL","diff":4.8,"z":0.53,"offPoss":374,"me":false},{"name":"Karlo Matković","team":"NOP","diff":4.7,"z":0.59,"offPoss":947,"me":false},{"name":"Quentin Grimes","team":"LAL","diff":4.4,"z":0.57,"offPoss":706,"me":false},{"name":"Trevon Brazile","team":"DEN","diff":4.4,"z":0.5,"offPoss":637,"me":false},{"name":"Sion James","team":"CHA","diff":4.4,"z":0.54,"offPoss":542,"me":false},{"name":"Malik Monk","team":"SAC","diff":4.1,"z":0.49,"offPoss":878,"me":false},{"name":"Giannis Antetokounmpo","team":"MIA","diff":3.9,"z":0.46,"offPoss":424,"me":false},{"name":"Tyler Herro","team":"MIL","diff":3.8,"z":0.48,"offPoss":565,"me":false},{"name":"Luka Garza","team":"BOS","diff":3.8,"z":0.41,"offPoss":933,"me":false},{"name":"Larry Nance Jr.","team":"IND","diff":3.7,"z":0.43,"offPoss":1031,"me":false},{"name":"Andrew Nembhard","team":"IND","diff":3.7,"z":0.48,"offPoss":627,"me":false},{"name":"Donovan Clingan","team":"POR","diff":3.7,"z":0.45,"offPoss":574,"me":false},{"name":"Nickeil Alexander-Walker","team":"ATL","diff":3.4,"z":0.42,"offPoss":480,"me":false},{"name":"Tre Johnson","team":"WAS","diff":3.4,"z":0.44,"offPoss":815,"me":false},{"name":"Bam Adebayo","team":"MIA","diff":3.1,"z":0.36,"offPoss":397,"me":false},{"name":"CJ McCollum","team":"ATL","diff":3.0,"z":0.4,"offPoss":658,"me":false},{"name":"Kyle Kuzma","team":"MIL","diff":3.0,"z":0.39,"offPoss":592,"me":false},{"name":"Ayo Dosunmu","team":"MIN","diff":3.0,"z":0.36,"offPoss":450,"me":false},{"name":"Al Horford","team":"GSW","diff":2.9,"z":0.34,"offPoss":909,"me":false},{"name":"Kris Dunn","team":"LAC","diff":2.8,"z":0.34,"offPoss":524,"me":false},{"name":"Josh Giddey","team":"CHI","diff":2.8,"z":0.34,"offPoss":493,"me":false},{"name":"Keyonte George","team":"UTA","diff":2.8,"z":0.36,"offPoss":536,"me":false},{"name":"Jalen Smith","team":"CHI","diff":2.7,"z":0.33,"offPoss":649,"me":false},{"name":"Matisse Thybulle","team":"LAL","diff":2.6,"z":0.34,"offPoss":687,"me":false},{"name":"Ace Bailey","team":"UTA","diff":2.6,"z":0.33,"offPoss":500,"me":false},{"name":"Trey Lyles","team":"MIN","diff":2.5,"z":0.31,"offPoss":813,"me":false},{"name":"Jaylen Brown","team":"PHI","diff":2.5,"z":0.3,"offPoss":442,"me":false},{"name":"Jayson Tatum","team":"BOS","diff":2.5,"z":0.29,"offPoss":436,"me":false},{"name":"Grayson Allen","team":"CHA","diff":2.5,"z":0.3,"offPoss":524,"me":false},{"name":"Nikola Jović","team":"MIA","diff":2.5,"z":0.23,"offPoss":1140,"me":false},{"name":"Keon Ellis","team":"BKN","diff":2.5,"z":0.3,"offPoss":703,"me":false},{"name":"Mo Bamba","team":"UTA","diff":2.4,"z":0.28,"offPoss":1016,"me":false},{"name":"Daniel Gafford","team":"DAL","diff":2.4,"z":0.31,"offPoss":787,"me":false},{"name":"Brandon Miller","team":"CHA","diff":2.4,"z":0.29,"offPoss":587,"me":false},{"name":"Myles Turner","team":"MIL","diff":2.3,"z":0.3,"offPoss":659,"me":false},{"name":"Aaron Wiggins","team":"ATL","diff":2.2,"z":0.29,"offPoss":667,"me":false},{"name":"Ausar Thompson","team":"DET","diff":2.2,"z":0.27,"offPoss":594,"me":false},{"name":"Pascal Siakam","team":"IND","diff":2.1,"z":0.26,"offPoss":511,"me":false},{"name":"Derrick White","team":"BOS","diff":2.1,"z":0.25,"offPoss":497,"me":false},{"name":"Kevin Huerter","team":"DET","diff":2.1,"z":0.25,"offPoss":588,"me":false},{"name":"Obi Toppin","team":"IND","diff":2.1,"z":0.26,"offPoss":932,"me":false},{"name":"Svi Mykhailiuk","team":"UTA","diff":1.9,"z":0.24,"offPoss":939,"me":false},{"name":"Kentavious Caldwell-Pope","team":"PHI","diff":1.8,"z":0.23,"offPoss":764,"me":false},{"name":"Alex Morales","team":"ORL","diff":1.8,"z":0.16,"offPoss":984,"me":false},{"name":"Cam Spencer","team":"MEM","diff":1.8,"z":0.23,"offPoss":727,"me":false},{"name":"Kobe Brown","team":"IND","diff":1.5,"z":0.13,"offPoss":1233,"me":false},{"name":"Tristan da Silva","team":"ORL","diff":1.5,"z":0.18,"offPoss":547,"me":false},{"name":"Jaylen Wells","team":"MEM","diff":1.5,"z":0.19,"offPoss":577,"me":false},{"name":"Darryn Peterson","team":"UTA","diff":1.4,"z":0.18,"offPoss":508,"me":false},{"name":"Max Christie","team":"DAL","diff":1.3,"z":0.16,"offPoss":971,"me":false},{"name":"Klay Thompson","team":"MIA","diff":1.2,"z":0.15,"offPoss":716,"me":false},{"name":"Ziaire Williams","team":"LAL","diff":1.0,"z":0.13,"offPoss":844,"me":false},{"name":"Jonathan Kuminga","team":"MIN","diff":0.8,"z":0.1,"offPoss":489,"me":false},{"name":"Reed Sheppard","team":"HOU","diff":0.6,"z":0.07,"offPoss":894,"me":false},{"name":"Payton Pritchard","team":"BOS","diff":0.5,"z":0.06,"offPoss":557,"me":false},{"name":"Dean Wade","team":"PHI","diff":0.1,"z":0.01,"offPoss":760,"me":false},{"name":"Jake LaRavia","team":"LAL","diff":0.1,"z":0.01,"offPoss":726,"me":false},{"name":"Josh Dix","team":"OKC","diff":0.1,"z":0.01,"offPoss":1133,"me":false},{"name":"Chris Youngblood","team":"POR","diff":-0.1,"z":-0.01,"offPoss":1038,"me":false},{"name":"Davion Mitchell","team":"MIA","diff":-0.3,"z":-0.03,"offPoss":345,"me":false},{"name":"Cason Wallace","team":"OKC","diff":-0.3,"z":-0.02,"offPoss":1281,"me":false},{"name":"Meleek Thomas","team":"CLE","diff":-0.3,"z":-0.04,"offPoss":867,"me":false},{"name":"Tari Eason","team":"HOU","diff":-0.4,"z":-0.05,"offPoss":642,"me":false},{"name":"Baylor Scheierman","team":"BOS","diff":-0.4,"z":-0.05,"offPoss":714,"me":false},{"name":"Alex Sarr","team":"WAS","diff":-0.4,"z":-0.05,"offPoss":651,"me":false},{"name":"Miles McBride","team":"NYK","diff":-0.5,"z":-0.06,"offPoss":757,"me":false},{"name":"Tyrese Proctor","team":"CLE","diff":-0.5,"z":-0.06,"offPoss":888,"me":false},{"name":"Immanuel Quickley","team":"TOR","diff":-0.7,"z":-0.09,"offPoss":563,"me":false},{"name":"Jared McCain","team":"OKC","diff":-0.7,"z":-0.09,"offPoss":600,"me":false},{"name":"AJ Dybantsa","team":"WAS","diff":-0.9,"z":-0.12,"offPoss":719,"me":false},{"name":"Isaiah Collier","team":"UTA","diff":-1.1,"z":-0.13,"offPoss":981,"me":false},{"name":"T.J. McConnell","team":"IND","diff":-1.2,"z":-0.1,"offPoss":1270,"me":false},{"name":"Andre Drummond","team":"NYK","diff":-1.3,"z":-0.14,"offPoss":911,"me":false},{"name":"Jaylen Clark","team":"MIN","diff":-1.4,"z":-0.15,"offPoss":986,"me":false},{"name":"Josh Okogie","team":"UTA","diff":-1.5,"z":-0.19,"offPoss":905,"me":false},{"name":"Trae Young","team":"WAS","diff":-1.5,"z":-0.17,"offPoss":359,"me":false},{"name":"Precious Achiuwa","team":"SAC","diff":-1.6,"z":-0.2,"offPoss":691,"me":false},{"name":"Kel'el Ware","team":"MIL","diff":-1.7,"z":-0.22,"offPoss":858,"me":false},{"name":"Clint Capela","team":"HOU","diff":-1.8,"z":-0.16,"offPoss":1186,"me":false},{"name":"Braden Smith","team":"IND","diff":-1.8,"z":-0.17,"offPoss":1183,"me":false},{"name":"Tidjane Salaün","team":"CHA","diff":-1.9,"z":-0.21,"offPoss":914,"me":false},{"name":"Jase Richardson","team":"ORL","diff":-2.0,"z":-0.24,"offPoss":688,"me":false},{"name":"Zaccharie Risacher","team":"DAL","diff":-2.1,"z":-0.27,"offPoss":699,"me":false},{"name":"Keegan Murray","team":"SAC","diff":-2.2,"z":-0.24,"offPoss":965,"me":false},{"name":"Morez Johnson Jr.","team":"DAL","diff":-2.3,"z":-0.28,"offPoss":930,"me":false},{"name":"LeBron James","team":"PHI","diff":-2.4,"z":-0.31,"offPoss":644,"me":false},{"name":"Pelle Larsson","team":"MIA","diff":-2.4,"z":-0.31,"offPoss":643,"me":false},{"name":"Khaman Maluach","team":"PHX","diff":-2.5,"z":-0.29,"offPoss":719,"me":false},{"name":"Jamison Battle","team":"TOR","diff":-2.6,"z":-0.32,"offPoss":779,"me":false},{"name":"De'Andre Hunter","team":"SAC","diff":-2.7,"z":-0.34,"offPoss":560,"me":false},{"name":"Jalen Brunson","team":"NYK","diff":-2.8,"z":-0.31,"offPoss":356,"me":false},{"name":"Chet Holmgren","team":"OKC","diff":-2.8,"z":-0.25,"offPoss":1197,"me":false},{"name":"Marvin Bagley III","team":"DEN","diff":-2.9,"z":-0.29,"offPoss":820,"me":false},{"name":"Noa Essengue","team":"CHI","diff":-3.1,"z":-0.33,"offPoss":947,"me":false},{"name":"Jarred Vanderbilt","team":"LAL","diff":-3.4,"z":-0.33,"offPoss":1170,"me":false},{"name":"Domantas Sabonis","team":"SAC","diff":-3.5,"z":-0.42,"offPoss":444,"me":false},{"name":"Ousmane Dieng","team":"MIL","diff":-3.5,"z":-0.35,"offPoss":1165,"me":false},{"name":"Derik Queen","team":"NOP","diff":-3.5,"z":-0.46,"offPoss":787,"me":false},{"name":"Bogdan Bogdanović","team":"HOU","diff":-3.6,"z":-0.4,"offPoss":1028,"me":false},{"name":"Isaiah Stewart","team":"MEM","diff":-3.6,"z":-0.41,"offPoss":935,"me":false},{"name":"Scottie Barnes","team":"TOR","diff":-3.6,"z":-0.45,"offPoss":640,"me":false},{"name":"Jeremiah Fears","team":"NOP","diff":-3.6,"z":-0.46,"offPoss":567,"me":false},{"name":"Bub Carrington","team":"WAS","diff":-4.0,"z":-0.51,"offPoss":870,"me":false},{"name":"Buddy Hield","team":"CHI","diff":-4.1,"z":-0.44,"offPoss":919,"me":false},{"name":"Toumani Camara","team":"POR","diff":-4.2,"z":-0.5,"offPoss":480,"me":false},{"name":"Jalen Johnson","team":"ATL","diff":-4.3,"z":-0.57,"offPoss":642,"me":false},{"name":"Ivica Zubac","team":"IND","diff":-4.6,"z":-0.56,"offPoss":964,"me":false},{"name":"Spencer Jones","team":"DEN","diff":-4.6,"z":-0.35,"offPoss":951,"me":false},{"name":"Jalen Williams","team":"OKC","diff":-4.7,"z":-0.42,"offPoss":1193,"me":false},{"name":"Keldon Johnson","team":"SAS","diff":-4.9,"z":-0.64,"offPoss":681,"me":false},{"name":"Bennett Stirtz","team":"OKC","diff":-5.0,"z":-0.63,"offPoss":846,"me":false},{"name":"Marcus Smart","team":"HOU","diff":-5.1,"z":-0.6,"offPoss":968,"me":false},{"name":"Mikel Brown Jr.","team":"BKN","diff":-5.1,"z":-0.58,"offPoss":811,"me":false},{"name":"Jordan Poole","team":"NOP","diff":-5.2,"z":-0.59,"offPoss":1111,"me":false},{"name":"Cade Cunningham","team":"DET","diff":-5.5,"z":-0.61,"offPoss":357,"me":false},{"name":"Draymond Green","team":"GSW","diff":-5.7,"z":-0.71,"offPoss":711,"me":false},{"name":"OG Anunoby","team":"NYK","diff":-5.9,"z":-0.65,"offPoss":347,"me":false},{"name":"Jay Huff","team":"IND","diff":-5.9,"z":-0.71,"offPoss":986,"me":false},{"name":"Mario Hezonja","team":"CLE","diff":-6.0,"z":-0.77,"offPoss":839,"me":false},{"name":"GG Jackson","team":"MEM","diff":-6.0,"z":-0.69,"offPoss":927,"me":false},{"name":"Tim Hardaway Jr.","team":"MIA","diff":-6.1,"z":-0.69,"offPoss":986,"me":false},{"name":"Lauri Markkanen","team":"UTA","diff":-6.1,"z":-0.78,"offPoss":890,"me":false},{"name":"Joan Beringer","team":"MIN","diff":-6.1,"z":-0.73,"offPoss":863,"me":false},{"name":"Dejounte Murray","team":"NOP","diff":-6.2,"z":-0.81,"offPoss":859,"me":false},{"name":"Nolan Traore","team":"BKN","diff":-6.5,"z":-0.77,"offPoss":707,"me":false},{"name":"Oso Ighodaro","team":"PHX","diff":-6.6,"z":-0.77,"offPoss":730,"me":false},{"name":"Jakob Poeltl","team":"TOR","diff":-6.8,"z":-0.83,"offPoss":774,"me":false},{"name":"Julian Champagnie","team":"SAS","diff":-6.8,"z":-0.88,"offPoss":632,"me":false},{"name":"Jaren Jackson Jr.","team":"UTA","diff":-6.9,"z":-0.66,"offPoss":1202,"me":false},{"name":"Kenrich Williams","team":"OKC","diff":-6.9,"z":-0.88,"offPoss":794,"me":false},{"name":"Naz Reid","team":"CHA","diff":-7.0,"z":-0.83,"offPoss":461,"me":false},{"name":"Kingston Flemings","team":"ATL","diff":-7.0,"z":-0.91,"offPoss":888,"me":false},{"name":"Caleb Wilson","team":"CHI","diff":-7.2,"z":-0.88,"offPoss":571,"me":false},{"name":"Brayden Burries","team":"MIL","diff":-7.2,"z":-0.94,"offPoss":773,"me":false},{"name":"Nate Ament","team":"MIL","diff":-7.3,"z":-0.88,"offPoss":973,"me":false},{"name":"Scotty Pippen Jr.","team":"MEM","diff":-7.4,"z":-0.63,"offPoss":1147,"me":false},{"name":"Jalen Suggs","team":"ORL","diff":-7.6,"z":-0.75,"offPoss":925,"me":false},{"name":"Brice Sensabaugh","team":"UTA","diff":-7.6,"z":-0.95,"offPoss":922,"me":false},{"name":"Zach LaVine","team":"SAC","diff":-7.8,"z":-0.94,"offPoss":468,"me":false},{"name":"Marcus Sasser","team":"DAL","diff":-7.8,"z":-0.89,"offPoss":1040,"me":false},{"name":"Jabari Walker","team":"PHI","diff":-8.0,"z":-0.83,"offPoss":1122,"me":false},{"name":"Jarace Walker","team":"IND","diff":-8.3,"z":-1.06,"offPoss":842,"me":false},{"name":"RJ Barrett","team":"TOR","diff":-8.4,"z":-0.97,"offPoss":392,"me":false},{"name":"Jaxson Hayes","team":"UTA","diff":-8.4,"z":-1.09,"offPoss":821,"me":false},{"name":"Micah Peavy","team":"OKC","diff":-8.7,"z":-0.94,"offPoss":1077,"me":false},{"name":"Aday Mara","team":"OKC","diff":-8.7,"z":-1.12,"offPoss":744,"me":false},{"name":"Kasparas Jakučionis","team":"MIL","diff":-8.8,"z":-1.11,"offPoss":889,"me":false},{"name":"Matas Buzelis","team":"CHI","diff":-9.0,"z":-1.09,"offPoss":539,"me":false},{"name":"Jevon Carter","team":"ORL","diff":-9.1,"z":-0.87,"offPoss":947,"me":false},{"name":"Deandre Ayton","team":"WAS","diff":-9.1,"z":-1.07,"offPoss":1019,"me":false},{"name":"Tre Jones","team":"CHI","diff":-9.1,"z":-1.09,"offPoss":762,"me":false},{"name":"Josh Hart","team":"NYK","diff":-9.2,"z":-1.13,"offPoss":655,"me":false},{"name":"Thomas Bryant","team":"CLE","diff":-9.3,"z":-0.93,"offPoss":1160,"me":false},{"name":"Evan Mobley","team":"CLE","diff":-9.3,"z":-1.2,"offPoss":603,"me":false},{"name":"AJ Green","team":"MIL","diff":-9.5,"z":-1.18,"offPoss":922,"me":false},{"name":"Derrick Jones Jr.","team":"LAC","diff":-9.6,"z":-1.16,"offPoss":552,"me":false},{"name":"Terrence Shannon Jr","team":"MIN","diff":-9.6,"z":-1.16,"offPoss":858,"me":false},{"name":"Bennedict Mathurin","team":"NOP","diff":-9.8,"z":-1.15,"offPoss":1066,"me":false},{"name":"Saddiq Bey","team":"NOP","diff":-10.0,"z":-1.31,"offPoss":616,"me":false},{"name":"Jerami Grant","team":"MEM","diff":-10.2,"z":-1.28,"offPoss":711,"me":false},{"name":"Caleb Martin","team":"DAL","diff":-10.4,"z":-1.26,"offPoss":952,"me":false},{"name":"Kelly Oubre Jr.","team":"IND","diff":-10.6,"z":-1.38,"offPoss":788,"me":false},{"name":"Anfernee Simons","team":"PHI","diff":-10.8,"z":-1.39,"offPoss":773,"me":false},{"name":"Alex Karaban","team":"SAC","diff":-10.8,"z":-0.9,"offPoss":1145,"me":false},{"name":"Jamal Shead","team":"TOR","diff":-11.0,"z":-1.38,"offPoss":637,"me":false},{"name":"Gary Payton II","team":"GSW","diff":-11.5,"z":-1.23,"offPoss":996,"me":false},{"name":"Cameron Boozer","team":"MEM","diff":-11.5,"z":-1.37,"offPoss":445,"me":false},{"name":"Bilal Coulibaly","team":"WAS","diff":-11.6,"z":-1.52,"offPoss":718,"me":false},{"name":"Miles Bridges","team":"PHX","diff":-11.9,"z":-1.38,"offPoss":447,"me":false},{"name":"De'Anthony Melton","team":"GSW","diff":-11.9,"z":-1.49,"offPoss":711,"me":false},{"name":"Ja'Kobe Walter","team":"TOR","diff":-12.0,"z":-1.45,"offPoss":477,"me":false},{"name":"Yves Missi","team":"NOP","diff":-12.2,"z":-0.91,"offPoss":1331,"me":false},{"name":"Hugo González","team":"BOS","diff":-12.3,"z":-1.37,"offPoss":904,"me":false},{"name":"Peyton Watson","team":"CLE","diff":-12.5,"z":-1.62,"offPoss":755,"me":false},{"name":"Bryce Hopkins","team":"DEN","diff":-12.8,"z":-1.16,"offPoss":874,"me":false},{"name":"Naji Marshall","team":"DAL","diff":-13.0,"z":-1.67,"offPoss":819,"me":false},{"name":"DeAndre Jordan","team":"NOP","diff":-13.1,"z":-0.99,"offPoss":1326,"me":false},{"name":"Adem Bona","team":"PHI","diff":-13.5,"z":-1.36,"offPoss":1146,"me":false},{"name":"Aaron Nesmith","team":"IND","diff":-13.7,"z":-1.79,"offPoss":723,"me":false},{"name":"Khris Middleton","team":"WAS","diff":-13.8,"z":-1.15,"offPoss":1252,"me":false},{"name":"Isaiah Jackson","team":"LAC","diff":-13.8,"z":-1.61,"offPoss":756,"me":false},{"name":"Chaney Johnson","team":"BKN","diff":-13.9,"z":-1.64,"offPoss":735,"me":false},{"name":"Coby White","team":"CHA","diff":-14.0,"z":-1.32,"offPoss":1032,"me":false},{"name":"Leonard Miller","team":"CHI","diff":-14.1,"z":-1.53,"offPoss":914,"me":false},{"name":"Noah Clowney","team":"BKN","diff":-14.3,"z":-1.71,"offPoss":681,"me":false},{"name":"Jordan Walsh","team":"BOS","diff":-14.8,"z":-1.74,"offPoss":823,"me":false},{"name":"Rui Hachimura","team":"LAC","diff":-15.1,"z":-1.82,"offPoss":599,"me":false},{"name":"Jaylin Williams","team":"OKC","diff":-15.2,"z":-1.54,"offPoss":1119,"me":false},{"name":"DeMar DeRozan","team":"DEN","diff":-15.6,"z":-1.77,"offPoss":609,"me":false},{"name":"John Collins","team":"DET","diff":-16.0,"z":-1.93,"offPoss":556,"me":false},{"name":"James Harden","team":"CLE","diff":-16.4,"z":-2.06,"offPoss":514,"me":false},{"name":"Javon Small","team":"MEM","diff":-16.8,"z":-1.66,"offPoss":1068,"me":false},{"name":"Moritz Wagner","team":"BKN","diff":-17.1,"z":-2.01,"offPoss":736,"me":false},{"name":"Moussa Diabaté","team":"CHA","diff":-17.3,"z":-2.14,"offPoss":623,"me":false},{"name":"Andrew Wiggins","team":"MIA","diff":-17.6,"z":-2.23,"offPoss":613,"me":false},{"name":"Quinten Post","team":"MEM","diff":-17.6,"z":-1.67,"offPoss":1094,"me":false},{"name":"Jock Landale","team":"ATL","diff":-17.9,"z":-1.96,"offPoss":1148,"me":false},{"name":"Harrison Barnes","team":"SAS","diff":-18.1,"z":-2.06,"offPoss":1036,"me":false},{"name":"Ronald Holland II","team":"DET","diff":-18.3,"z":-2.1,"offPoss":805,"me":false},{"name":"Will Richard","team":"GSW","diff":-18.3,"z":-2.2,"offPoss":837,"me":false},{"name":"P.J. Washington","team":"DAL","diff":-18.9,"z":-2.35,"offPoss":489,"me":false},{"name":"Sidy Cissoko","team":"POR","diff":-19.1,"z":-2.3,"offPoss":613,"me":false},{"name":"Jamal Cain","team":"ORL","diff":-19.7,"z":-2.25,"offPoss":767,"me":false},{"name":"Mikal Bridges","team":"NYK","diff":-20.3,"z":-2.49,"offPoss":581,"me":false},{"name":"Scoot Henderson","team":"POR","diff":-20.5,"z":-2.47,"offPoss":627,"me":false},{"name":"Luguentz Dort","team":"ATL","diff":-21.1,"z":-2.79,"offPoss":725,"me":false},{"name":"Isaiah Joe","team":"DET","diff":-22.4,"z":-1.43,"offPoss":1126,"me":false},{"name":"Bones Hyland","team":"MIN","diff":-23.3,"z":-2.68,"offPoss":938,"me":false},{"name":"Amen Thompson","team":"HOU","diff":-23.9,"z":-2.81,"offPoss":414,"me":false},{"name":"Devin Booker","team":"PHX","diff":-24.2,"z":-2.63,"offPoss":347,"me":false},{"name":"Collin Sexton","team":"LAL","diff":-24.9,"z":-3.11,"offPoss":907,"me":false},{"name":"Hannes Steinbach","team":"CHA","diff":-25.1,"z":-1.89,"offPoss":1126,"me":false},{"name":"Yaxel Lendeborg","team":"GSW","diff":-25.8,"z":-3.04,"offPoss":430,"me":false},{"name":"Dillon Brooks","team":"PHX","diff":-26.3,"z":-3.06,"offPoss":452,"me":false},{"name":"Mitchell Robinson","team":"BOS","diff":-27.9,"z":-3.26,"offPoss":836,"me":false},{"name":"Darius Garland","team":"LAC","diff":-29.1,"z":-3.25,"offPoss":376,"me":false},{"name":"Jalen Green","team":"PHX","diff":-34.9,"z":-4.13,"offPoss":516,"me":false},{"name":"Luke Kornet","team":"SAS","diff":-35.4,"z":-4.27,"offPoss":954,"me":false}]};
+const NS = "http://www.w3.org/2000/svg";
+const ME = "Kessler";
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(1);
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) * (r1 - r0) / (d1 - d0);
+function svg(w, h) { const s = document.createElementNS(NS, "svg"); s.setAttribute("viewBox", `0 0 ${w} ${h}`); s.setAttribute("width", w); s.setAttribute("height", h); return s; }
+function el(tag, attrs, parent, text) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; if (parent) parent.appendChild(e); return e; }
+function tipFor(host) { let t = host.querySelector(".tip"); if (!t) { t = document.createElement("div"); t.className = "tip"; t.setAttribute("role", "status"); host.appendChild(t); } return t; }
+function showTip(host, html, x, y) { const t = tipFor(host); t.innerHTML = html; t.classList.add("on"); const w = host.clientWidth; const tw = t.offsetWidth; t.style.left = Math.max(0, Math.min(w - tw, x + 12)) + "px"; t.style.top = Math.max(0, y - t.offsetHeight - 10) + "px"; }
+function hideTip(host) { const t = host.querySelector(".tip"); if (t) t.classList.remove("on"); }
+function hover(host, g, html, px, py) {
+  const tip = e => { const hr = host.getBoundingClientRect(); showTip(host, html, e.clientX != null ? e.clientX - hr.left : px, e.clientY != null ? e.clientY - hr.top : py); };
+  g.addEventListener("pointermove", tip); g.addEventListener("focus", tip); g.addEventListener("pointerleave", () => hideTip(host)); g.addEventListener("blur", () => hideTip(host));
+}
+const tierVar = t => t === "big" ? "--amber" : t === "near" ? "--edge" : "--ghost";
+const zTier = z => Math.abs(z) > D.z ? "big" : Math.abs(z) >= 0.8 * D.z ? "near" : "noise";
+
+/* ---------- 1. eFG% split: league average + location + finishing = Kessler (waterfall) ---------- */
+function drawSplit() {
+  const host = document.getElementById("split"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, phone = W < 520, P = D.split;
+  const rows = [
+    { label: "League average shooter", a: 0, b: P.lg, kind: "total", txt: P.lg.toFixed(1) + "%" },
+    { label: "+ His shot locations", a: P.lg, b: P.x, kind: "loc", txt: fmt(P.loc) },
+    { label: "+ His finishing", a: P.x, b: P.efg, kind: "make", txt: fmt(P.make) },
+    { label: "= Kessler", a: 0, b: P.efg, kind: "total", txt: P.efg.toFixed(1) + "%" },
+  ];
+  const row = phone ? 46 : 38, lw = phone ? 0 : 190, m = { l: lw, r: 64, t: 4, b: 26 }, H = m.t + rows.length * row + m.b, s = svg(W, H);
+  const x0 = phone ? 0 : m.l, x = lin(0, 80, x0, W - m.r);
+  [0, 20, 40, 60, 80].forEach(v => { el("line", { x1: x(v), x2: x(v), y1: m.t, y2: H - m.b, stroke: css("--rule") }, s); el("text", { x: x(v), y: H - 8, "text-anchor": "middle" }, s, v + "%"); });
+  rows.forEach((r, i) => {
+    const top = m.t + i * row, cy = phone ? top + 31 : top + row / 2;
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: ${r.txt}` }, s);
+    el("rect", { x: 0, y: top, width: W, height: row, fill: "transparent" }, g);
+    el("text", phone ? { x: 0, y: top + 13, class: "lbl-strong" } : { x: m.l - 12, y: cy + 4, "text-anchor": "end", class: "lbl-strong" }, g, r.label);
+    const attrs = { x: x(r.a), y: cy - 8, width: Math.max(2, x(r.b) - x(r.a)), height: 16, rx: 3 };
+    let right = x(r.b);
+    if (r.kind === "total") el("rect", { ...attrs, fill: css("--navy") }, g);
+    else if (r.kind === "loc") el("rect", { ...attrs, x: attrs.x + 1, width: attrs.width - 2, y: cy - 7, height: 14, fill: "none", stroke: css("--ink-2"), "stroke-width": 2 }, g);
+    else {
+      const lo = P.x + P.make - 2 * P.se, hi = P.x + P.make + 2 * P.se;
+      el("rect", { x: x(lo), y: cy - 11, width: x(hi) - x(lo), height: 22, rx: 11, fill: css("--funnel") }, g);
+      el("rect", { ...attrs, fill: css(tierVar(P.tier)), stroke: css("--ink-3"), "stroke-width": 1 }, g);
+      right = x(hi);
+    }
+    if (i > 0 && r.kind !== "total") el("line", { x1: x(r.a), x2: x(r.a), y1: cy - row + 8, y2: cy - 8, stroke: css("--ink-3"), "stroke-dasharray": "2 3" }, g);
+    el("text", { x: right + 8, y: cy + 4, class: "lbl" }, g, r.txt);
+    const tips = {
+      total: `<b>${r.label.replace(/^= /, "")}</b><br>${r.txt} effective FG%`,
+      loc: `<b>His shot locations</b><br>${fmt(P.loc)} pp: an average player taking his exact shots would make ${P.x.toFixed(1)}%.<br>A choice, not luck.`,
+      make: `<b>His finishing</b><br>${fmt(P.make)} pp above an average player on the same shots.<br>Luck range: ${fmt(P.make - 2 * P.se)} to ${fmt(P.make + 2 * P.se)} pp, so it could easily be chance.`,
+    };
+    hover(host, g, tips[r.kind], x(r.b), cy);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", `League average eFG% ${P.lg}, plus ${P.loc} pp from Kessler's shot locations, plus ${P.make} pp of finishing (within chance), equals ${P.efg}%.`);
+  host.prepend(s);
+}
+
+/* ---------- 2a. Half-court zone map (same court as New Spots: baseline at top, hoop at 0,0, units = 0.1 ft) ---------- */
+function drawZones() {
+  const host = document.getElementById("zones"); host.innerHTML = "";
+  const s = svg(500, 410); s.setAttribute("viewBox", "-250 -100 500 410"); s.removeAttribute("width"); s.removeAttribute("height");
+  host.append(s);   // attach first so label widths can be measured
+  const c3 = Math.sqrt(237.5 ** 2 - 220 ** 2), Z = Object.fromEntries(D.zones.map(r => [r.key, r]));
+  const shapes = {
+    rim: "M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z",
+    paint: "M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z M -40 -47.5 L -40 0 A 40 40 0 0 0 40 0 L 40 -47.5 Z",
+    mid: `M -220 -47.5 L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 220 -47.5 Z M -80 -47.5 L -80 142.5 L 80 142.5 L 80 -47.5 Z`,
+    c3: `M -250 -47.5 L -250 ${c3} L -220 ${c3} L -220 -47.5 Z M 220 -47.5 L 220 ${c3} L 250 ${c3} L 250 -47.5 Z`,
+    ab3: `M -250 ${c3} L -220 ${c3} A 237.5 237.5 0 0 0 220 ${c3} L 250 ${c3} L 250 305 L -250 305 Z`,
+  };
+  const pct = r => r.n ? r.fg.toFixed(1) + "%" : "–";
+  // Every zone gets the same light tint: the court is a map, the labels carry the numbers.
+  Object.entries(shapes).forEach(([k, d]) => {
+    const r = Z[k];
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: ${pct(r)} on ${r.n} shots vs league ${r.lgfg}%` }, s);
+    el("path", { d, "fill-rule": "evenodd", fill: css("--funnel"), stroke: css("--surface"), "stroke-width": 4 }, g);
+    hover(host, g, `<b>${r.label}</b><br>${ME}: ${r.n ? `${pct(r)} on ${r.n} shots (${r.share.toFixed(1)}% of his shots)` : "no shots"}<br>League: ${r.lgfg.toFixed(1)}%${r.n ? `<br>Gap: ${fmt(r.fg - r.lgfg)} pp` : ""}${r.tier === "few" ? (r.n ? " (under 10 shots: not judged)" : "") : r.tier === "big" ? " (beyond luck)" : r.tier === "near" ? " (at the edge)" : " (within chance)"}`, 0, 0);
+  });
+  const line = css("--ink-3"), L = (x1, y1, x2, y2) => el("line", { x1, y1, x2, y2, stroke: line, "stroke-width": 1.5 }, s);
+  L(-250, -47.5, 250, -47.5); el("circle", { cx: 0, cy: 0, r: 7.5, fill: "none", stroke: line, "stroke-width": 1.5 }, s); L(-30, -7.5, 30, -7.5);
+  const k1 = host.clientWidth < 520 ? 1.3 : 1;   // bigger text on phones, where the court shrinks
+  const label = (k, x, y, name) => {
+    const r = Z[k], g = el("g", { "pointer-events": "none" }, s);
+    const t1 = `${name} ${pct(r)}`, t2 = `${r.n} shot${r.n === 1 ? "" : "s"} · league ${r.lgfg.toFixed(1)}%`;
+    const w = (Math.max(t1.length * 9.6, t2.length * 7.6) + 30) * k1, h = 42 * k1;
+    el("rect", { x: x - w / 2, y: y - h / 2, width: w, height: h, rx: 6, fill: css("--surface"), "fill-opacity": 0.92 }, g);
+    el("text", { x, y: y - 2 * k1, "text-anchor": "middle", style: `font: 600 ${17 * k1}px var(--font-data); fill: ${css("--ink")}` }, g, t1);
+    const chip = r.tier === "big" || r.tier === "near", off = chip ? 7 * k1 : 0;
+    const tt = el("text", { x: x + off, y: y + 16 * k1, "text-anchor": "middle", style: `font: 500 ${13 * k1}px var(--font-data); fill: ${css("--ink-2")}` }, g, t2);
+    if (chip) { const tw = tt.getComputedTextLength ? tt.getComputedTextLength() : t2.length * 7.6 * k1;
+      el("rect", { x: x + off - tw / 2 - 14 * k1, y: y + 7.5 * k1, width: 9 * k1, height: 9 * k1, rx: 2, fill: css(tierVar(r.tier)) }, g); }
+  };
+  label("rim", 0, k1 > 1 ? 30 : 36, "Rim"); label("paint", 0, k1 > 1 ? 110 : 104, "Paint"); label("mid", 0, k1 > 1 ? 196 : 190, "Midrange"); label("ab3", 0, k1 > 1 ? 276 : 272, "Above-break 3");
+  label("c3", 0, -74, "Corner 3");
+  const cw = 86 * k1 + 4;
+  el("path", { d: `M ${-cw} -70 L -235 -70 L -235 -40 M ${cw} -70 L 235 -70 L 235 -40`, stroke: line, "stroke-width": 1.5, fill: "none" }, s);
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Half-court map of the five shot zones with Kessler's field-goal percentage in each, and the league's. Nearly all his shots are at the rim.");
+}
+
+/* ---------- 2b. FG% by zone, bars with a league tick ---------- */
+function drawZBars() {
+  const host = document.getElementById("zbars"); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, phone = W < 520, row = phone ? 44 : 34, lw = phone ? 0 : 150, m = { l: lw, r: 170, t: 6, b: 6 };
+  const H = m.t + D.zones.length * row + m.b, s = svg(W, H);
+  D.zones.forEach((r, i) => {
+    const top = m.t + i * row, cy = phone ? top + 30 : top + row / 2, x0 = phone ? 0 : m.l, x = lin(0, 90, x0, W - m.r);
+    const g = el("g", { tabindex: 0, "aria-label": `${r.label}: ${r.n ? r.fg + "%" : "no shots"} on ${r.n} vs league ${r.lgfg}%` }, s);
+    el("rect", { x: 0, y: top, width: W, height: row, fill: "transparent" }, g);
+    el("text", phone ? { x: 0, y: top + 13, class: "lbl-strong" } : { x: m.l - 12, y: cy + 4, "text-anchor": "end", class: "lbl-strong" }, g, r.label);
+    if (r.n) el("rect", { x: x0, y: cy - 7, width: Math.max(2, x(r.fg) - x0), height: 14, rx: 3, fill: css("--navy"), opacity: r.tier === "few" ? 0.45 : 1 }, g);
+    el("line", { x1: x(r.lgfg), x2: x(r.lgfg), y1: cy - 12, y2: cy + 12, stroke: css("--surface"), "stroke-width": 6, "stroke-linecap": "round" }, g);
+    el("line", { x1: x(r.lgfg), x2: x(r.lgfg), y1: cy - 11, y2: cy + 11, stroke: css("--ink"), "stroke-width": 2.5 }, g);
+    const tx = Math.max(r.n ? x(r.fg) : 0, x(r.lgfg)) + 8, chip = r.tier === "big" || r.tier === "near";
+    if (chip) el("rect", { x: tx, y: cy - 4.5, width: 9, height: 9, rx: 2, fill: css(tierVar(r.tier)) }, g);
+    el("text", { x: tx + (chip ? 14 : 0), y: cy + 4 }, g, r.n ? `${r.fg.toFixed(1)}% on ${r.n} (lg ${r.lgfg.toFixed(1)})` : `no shots (lg ${r.lgfg.toFixed(1)})`);
+    hover(host, g, `<b>${r.label}</b><br>${ME}: ${r.n ? `${r.fg}% on ${r.n} shots` : "no shots"}<br>League: ${r.lgfg}%${r.tier === "few" && r.n ? "<br>Under 10 shots: not judged" : ""}`, x(r.n ? r.fg : r.lgfg), cy);
+  });
+  s.setAttribute("role", "img"); s.setAttribute("aria-label", "Kessler's field-goal percentage by zone vs the league.");
+  host.prepend(s);
+}
+
+/* ---------- strip chart shared by the leaderboards ---------- */
+function strip(hostId, rows, key, unit, label, tipFn, opts = {}) {
+  const host = document.getElementById(hostId); host.querySelectorAll("svg").forEach(s => s.remove());
+  const W = host.clientWidth, R = W < 520 ? 2.6 : 3.6, stepIn = opts.step || 5;
+  const vals = rows.map(r => r[key]), lo = Math.floor(Math.min(...vals) / stepIn) * stepIn, hi = Math.ceil(Math.max(...vals) / stepIn) * stepIn;
+  const named = rows.filter(r => r.me || (opts.extra && opts.extra(r)));
+  const m = { l: 12, r: 12, t: 22 + 18 * named.length, b: 34 }, x = lin(lo, hi, m.l, W - m.r), step = (hi - lo) > 60 ? 20 : stepIn;
+  const color = opts.color || (r => css(tierVar(zTier(r.z))));
+  // Beeswarm-lite: dots that would overlap stack into small columns around a midline (offsets first, height after).
+  const placed = [], order = [...rows].sort((a, b) => (a.me - b.me) || (Math.abs(a.z || 0) - Math.abs(b.z || 0)));
+  order.forEach(r => {
+    const cx = x(r[key]); let k = 0, dy = 0;
+    while (placed.some(p => Math.abs(p[0] - cx) < 2 * R && Math.abs(p[1] - dy) < 2 * R) && k < 200) { k++; dy = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * 2 * R * 0.95; }
+    placed.push([cx, dy]); r._xy = [cx, dy];
+  });
+  const spread = Math.max(R + 6, ...placed.map(p => Math.abs(p[1]) + R + 4)), mid = m.t + spread, H = mid + spread + m.b, s = svg(W, H);
+  const tick = opts.tick || (v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v));
+  for (let v = Math.ceil(lo / step) * step; v <= hi; v += step) { el("line", { x1: x(v), x2: x(v), y1: m.t - 6, y2: H - m.b, stroke: css("--rule"), "stroke-width": v === 0 && !opts.tick ? 1.5 : 1 }, s); el("text", { x: x(v), y: H - m.b + 15, "text-anchor": "middle" }, s, tick(v)); }
+  el("text", { x: (m.l + W - m.r) / 2, y: H - 4, "text-anchor": "middle" }, s, W < 520 && opts.short ? opts.short : label);
+  const vfmt = opts.vfmt || fmt;
+  order.forEach(r => {
+    const cx = r._xy[0], cy = mid + r._xy[1];
+    const g = el("g", { tabindex: r.me ? 0 : -1, "aria-label": `${r.name}: ${vfmt(r[key])} ${unit}` }, s);
+    el("circle", { cx, cy, r: R + 3, fill: "transparent" }, g);
+    el("circle", { cx, cy, r: r.me ? R + 3 : R, fill: color(r), stroke: r.me ? css("--ink") : css("--surface"), "stroke-width": r.me ? 2 : 1 }, g);
+    hover(host, g, tipFn(r), cx, cy);
+    r._xy = [cx, cy];
+  });
+  // Labels stack upward, one line each, so two nearby names never collide.
+  named.sort((a, b) => a._xy[0] - b._xy[0]).forEach((r, i) => {
+    const [cx, cy] = r._xy, right = cx < W * 0.6, ly = m.t - 8 - 18 * i;
+    el("line", { x1: cx, x2: cx, y1: cy - (r.me ? R + 4 : R + 1), y2: ly + 4, stroke: css("--ink-3") }, s);
+    el("text", { x: cx + (right ? 4 : -4), y: ly, "text-anchor": right ? "start" : "end", class: r.me ? "lbl-strong" : "lbl" }, s, `${r.me ? ME : r.name} ${vfmt(r[key])}`);
+  });
+  s.setAttribute("role", "img");
+  host.prepend(s);
+  return s;
+}
+
+function drawX() {
+  const s = strip("xboard", D.xBoard, "v", "expected eFG%", "Expected eFG%, from shot locations only →",
+    r => `<b>${r.name}</b> · ${r.team}<br>${r.n} shots, ${r.rim.toFixed(1)}% at the rim<br>Expected eFG%: ${r.v.toFixed(1)}%`,
+    { step: 2, color: r => r.me ? css("--navy") : css("--ghost"), vfmt: v => v.toFixed(1) + "%", tick: v => v + "%" });
+  s.setAttribute("aria-label", `Expected eFG% for ${D.xBoard.length} players with 100+ shots; Kessler's is the highest.`);
+}
+
+function drawBoard() {
+  const s = strip("board", D.board, "make", "pp", "Finishing, pp of eFG% vs an average player on the same shots →",
+    r => `<b>${r.name}</b> · ${r.team}<br>${r.n} shots · ${fmt(r.make)} pp vs an average player<br>${Math.abs(r.z).toFixed(1)}× the normal chance wobble`,
+    { short: "Finishing, pp vs expected →" });
+  s.setAttribute("aria-label", `Finishing above expected for ${D.board.length} players; Kessler is within chance.`);
+}
+
+function drawOO() {
+  const s = strip("oo", D.ooBoard, "diff", "per 100", "On/off, points per 100 possessions →",
+    r => `<b>${r.name}</b> · ${r.team}<br>On/off ${fmt(r.diff)} per 100 possessions<br>${r.offPoss} team possessions without him<br>${Math.abs(r.z).toFixed(1)}× the normal chance wobble`);
+  s.setAttribute("aria-label", `On/off for ${D.ooBoard.length} qualified players; Kessler is at the edge of beyond luck.`);
+}
+
+/* ---------- Glossary popovers (hover, tap, or keyboard focus) ---------- */
+const GLOSSARY = {
+  efg: ["Effective FG%", "Field-goal percentage that counts a made three as 1.5 makes, since it's worth 50% more. League average this season is about 53%. For a player with no threes, it equals plain FG%.", "efg"],
+  xefg: ["Expected eFG%", "What a set of shots 'should' produce if each were made at the league's rate for its spot on the floor. Here it uses location only, not how closely the shot was guarded.", "expected"],
+  pp: ["Percentage points", "The plain difference between two percentages: 54% to 61% is a 7-point (pp) gap, not 7%.", "pp"],
+  se: ["Chance wobble (standard error)", "How much a number would move by luck alone if the same games were replayed. It shrinks as the number of shots grows. A gap more than twice the wobble is unlikely to be a fluke. Statisticians call it the standard error.", "chance-wobble"],
+  onoff: ["On/off", "How a team does with a player on the floor minus how it does with him on the bench, per 100 possessions. It reflects his teammates and opponents too, so it's noisy until well into the season.", "net-rating"],
+  net: ["Net rating", "Points scored minus points allowed per 100 possessions. +10 is elite; 0 is average.", "net-rating"],
+};
+const pop = document.createElement("div"); pop.className = "term-pop"; pop.id = "term-pop"; pop.setAttribute("role", "tooltip"); pop.hidden = true; document.body.appendChild(pop);
+let popFor = null;
+function openTerm(btn) {
+  const g = GLOSSARY[btn.dataset.term]; if (!g) return;
+  if (popFor && popFor !== btn) popFor.setAttribute("aria-expanded", "false");
+  pop.innerHTML = `<b>${g[0]}</b>${g[1]}` + (g[2] ? `<a class="more" href="../../explained/#${g[2]}">More on this →</a>` : ""); pop.hidden = false; popFor = btn;
+  btn.setAttribute("aria-expanded", "true"); btn.setAttribute("aria-describedby", "term-pop");
+  const r = btn.getBoundingClientRect(), pw = pop.offsetWidth, ph = pop.offsetHeight;
+  const left = Math.max(16, Math.min(window.scrollX + document.documentElement.clientWidth - pw - 16, window.scrollX + r.left + r.width / 2 - pw / 2));
+  const above = r.top - ph - 10 > 0;
+  pop.style.left = left + "px";
+  pop.style.top = (window.scrollY + (above ? r.top - ph - 10 : r.bottom + 10)) + "px";
+}
+// Hover pop-ups close after a short delay, so the mouse can move onto the pop-up and click "More on this".
+let closeTimer;
+const closeSoon = () => { clearTimeout(closeTimer); closeTimer = setTimeout(closeTerm, 300); };
+pop.addEventListener("pointerenter", () => clearTimeout(closeTimer));
+pop.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+pop.addEventListener("click", e => e.stopPropagation());
+function closeTerm() { clearTimeout(closeTimer); if (!popFor) return; popFor.setAttribute("aria-expanded", "false"); popFor.removeAttribute("aria-describedby"); popFor = null; pop.hidden = true; }
+document.querySelectorAll(".term").forEach(btn => {
+  btn.setAttribute("aria-expanded", "false");
+  let openedAt = 0;
+  const open = () => { if (popFor !== btn) { openTerm(btn); openedAt = Date.now(); } };
+  btn.addEventListener("click", e => { e.stopPropagation(); if (popFor === btn && Date.now() - openedAt > 400) closeTerm(); else open(); });
+  btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") open(); });
+  btn.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") closeSoon(); });
+  btn.addEventListener("focus", open);
+  btn.addEventListener("blur", () => setTimeout(() => { if (!pop.contains(document.activeElement)) closeTerm(); }, 0));
+});
+document.addEventListener("click", closeTerm);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeTerm(); });
+window.addEventListener("resize", closeTerm);
+
+function drawAll() { drawSplit(); drawZones(); drawZBars(); drawX(); drawBoard(); drawOO(); }
+drawAll();
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(drawAll, 120); }).observe(document.querySelector("main"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+<script>
+/* site-header:start */
+/* Site header (sitewide, Nov 2, 2026): keeps --header-h current (for anchor links) and, on phones,
+   slides the pinned header away while the reader scrolls down and brings it back on any scroll up.
+   Master copy: tallorderdigital-site/assets/site-header.js; self-contained pages carry an inline copy
+   written by tools/apply-header.py. */
+(function () {
+  var bar = document.querySelector(".site-bar");
+  if (!bar) return;
+  var root = document.documentElement;
+  var phone = window.matchMedia ? window.matchMedia("(max-width: 680px)") : { matches: false };
+  var last = window.scrollY, away = false;
+  function measure() { root.style.setProperty("--header-h", bar.offsetHeight + "px"); }
+  function set(v) { if (v !== away) { away = v; bar.classList.toggle("is-away", v); } }
+  window.addEventListener("scroll", function () {
+    var y = window.scrollY, d = y - last;
+    if (!phone.matches || y < bar.offsetHeight) { set(false); last = y; return; }
+    if (Math.abs(d) < 8) return;
+    set(d > 0);
+    last = y;
+  }, { passive: true });
+  // Keyboard users tabbing into the header always see it.
+  bar.addEventListener("focusin", function () { set(false); });
+  window.addEventListener("resize", measure);
+  if (phone.addEventListener) phone.addEventListener("change", function () { set(false); measure(); });
+  measure();
+})();
+
+/* Animated logo intro (Nov 9, 2026): sixteen mixed-up dots in the logo's colors swirl about two turns and stretch
+   into the four bars as they land (7 + 4 + 3 + 2 dots for the 88 / 44 / 34 / 24 bars); the orange bar settles with a
+   small bounce, then the wordmark wipes in. About 3.6 s. Plays once per visit, on whichever page the reader lands on
+   (sessionStorage "tod-intro"): the home page's hero logo, or the header logo anywhere else. Never with reduce motion.
+   The one-line script in <head> (written by tools/apply-header.py) adds class "tod-intro" to <html> so the static
+   logo doesn't flash first, and removes it after 2 s if this never runs. Colors come from the m-o / m-2 / m-3 / m-4
+   classes, so it follows light/dark mode. Decision: docs/brand-decisions.md, Animated logo. */
+(function () {
+  var root = document.documentElement;
+  if (!root.classList.contains("tod-intro")) return;
+  // The home page plays it on the big hero logo; every other page on the header logo.
+  var hero = document.querySelector(".hero-logo") || document.querySelector(".site-bar .brand");
+  var svg = hero && hero.querySelector(".mark");
+  if (!svg) { root.classList.remove("tod-intro"); return; }
+  window.todIntroStarted = true;
+  try { sessionStorage.setItem("tod-intro", "1"); } catch (e) {}
+
+  var NS = "http://www.w3.org/2000/svg";
+  var T = 3.6, SW = 1.75;
+  var BAR_X = [6, 30, 54, 78], BAR_W = 18, BASE = 94;
+  var BAR_H = [88, 44, 34, 24], COUNTS = [7, 4, 3, 2];
+  var CLS = ["m-o", "m-2", "m-3", "m-4"];
+  var C = { x: 51, y: 52 }, R0 = 6, R1 = 5.4;
+  var MIX = [0, 1, 0, 2, 3, 0, 2, 0, 0, 2, 0, 1, 1, 0, 3, 1];
+
+  function clamp(v) { return Math.max(0, Math.min(1, v)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ioc(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function outBack(t) { var c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2); }
+  function ang(p) { return Math.atan2(p.y - C.y, p.x - C.x); }
+
+  var grid = [], slots = [], dots = [];
+  for (var r = 0; r < 4; r++) for (var c = 0; c < 4; c++)
+    grid.push({ x: 15 + c * 24, y: 16 + r * 24, row: r, col: c, bar: MIX[r * 4 + c] });
+  BAR_H.forEach(function (h, b) {
+    var n = COUNTS[b], s = h / n;
+    for (var j = 0; j < n; j++) slots.push({ bar: b, s: s, x: BAR_X[b] + BAR_W / 2, y: BASE - s * (j + .5) });
+  });
+  [0, 1, 2, 3].forEach(function (b) {
+    var byAng = function (p, q) { return ang(p) - ang(q); };
+    var gs = grid.filter(function (g) { return g.bar === b; }).sort(byAng);
+    var ss = slots.filter(function (s) { return s.bar === b; }).sort(byAng);
+    gs.forEach(function (g, k) {
+      var s = ss[k], a0 = ang(g), d = ang(s) - a0;
+      while (d < 2.4 * Math.PI) d += 2 * Math.PI;
+      while (d >= 4.4 * Math.PI) d -= 2 * Math.PI;
+      dots.push({ g: g, s: s, a0: a0, d: d, pop: (g.row + g.col) * .045,
+                  r0: Math.hypot(g.x - C.x, g.y - C.y), r1: Math.hypot(s.x - C.x, s.y - C.y) });
+    });
+  });
+  dots.slice().sort(function (p, q) { return p.a0 - q.a0; }).forEach(function (d, k) { d.swirl = .85 + k * .012; });
+  var barEnd = [0, 1, 2, 3].map(function (b) {
+    return Math.max.apply(null, dots.filter(function (d) { return d.s.bar === b; }).map(function (d) { return d.swirl + SW; }));
+  });
+
+  var bars = CLS.map(function (cl) { return svg.querySelector("." + cl); });
+  var layer = document.createElementNS(NS, "g");
+  svg.appendChild(layer);
+  dots.forEach(function (d) {
+    d.el = document.createElementNS(NS, "rect");
+    d.el.setAttribute("class", CLS[d.s.bar]);
+    layer.appendChild(d.el);
+  });
+  var w1 = hero.querySelector(".wm-1"), w2 = hero.querySelector(".wm-2");
+
+  function render(t) {
+    dots.forEach(function (d) {
+      var a = clamp((t - d.pop) / .35);
+      var e = ioc(clamp((t - d.swirl) / SW));
+      var th = d.a0 + d.d * e;
+      var rad = lerp(d.r0, d.r1, e) * (1 - .45 * Math.sin(Math.PI * e));
+      var cx = C.x + rad * Math.cos(th), cy = C.y + rad * Math.sin(th);
+      var m = ioc(clamp((e - .62) / .38));
+      var rr = lerp(R0, R1, e) * (a < 1 ? outBack(a) : 1);
+      var w = Math.max(0, lerp(2 * rr, BAR_W, m)), h = Math.max(0, lerp(2 * rr, d.s.s + .6, m));
+      d.el.setAttribute("x", cx - w / 2); d.el.setAttribute("y", cy - h / 2);
+      d.el.setAttribute("width", w); d.el.setAttribute("height", h);
+      d.el.setAttribute("rx", Math.max(0, lerp(rr, 0, m)));
+      d.el.style.opacity = t >= barEnd[d.s.bar] ? 0 : clamp(a * 1.4);
+    });
+    bars.forEach(function (bar, b) {
+      if (!bar) return;
+      var h = BAR_H[b];
+      if (b === 0) { var p = clamp((t - 2.8) / .35); h *= 1 + .05 * Math.sin(Math.PI * p) * (1 - p * .3); }
+      bar.setAttribute("y", BASE - h); bar.setAttribute("height", h);
+      bar.style.opacity = t >= barEnd[b] ? 1 : 0;
+    });
+    var p1 = ioc(clamp((t - 2.72) / .55)), p2 = ioc(clamp((t - 2.97) / .6));
+    if (w1) { w1.style.opacity = p1; w1.style.transform = "translateX(" + (1 - p1) * -.25 + "em)"; w1.style.clipPath = "inset(-10% " + (1 - p1) * 100 + "% -10% 0)"; }
+    if (w2) { w2.style.opacity = p2; w2.style.letterSpacing = lerp(.95, .52, p2) + "em"; }
+  }
+
+  function finish() {
+    layer.remove();
+    bars.forEach(function (bar, b) { if (bar) { bar.style.opacity = ""; bar.setAttribute("y", BASE - BAR_H[b]); bar.setAttribute("height", BAR_H[b]); } });
+    [w1, w2].forEach(function (el) { if (el) el.removeAttribute("style"); });
+    root.classList.remove("tod-intro");
+  }
+
+  render(0);
+  root.classList.remove("tod-intro"); // inline styles from render() now control visibility
+  var start = null;
+  function frame(now) {
+    if (start === null) start = now;
+    var t = Math.min(T, (now - start) / 1000);
+    render(t);
+    if (t < T) requestAnimationFrame(frame); else finish();
+  }
+  requestAnimationFrame(frame);
+})();
+/* site-header:end */
+</script>
+<script>
+/* theme-toggle:start */
+/* Tall Order Digital: light/dark toggle.
+   - First visit follows the reader's system setting.
+   - Clicking a .theme-toggle button switches theme and remembers it (localStorage "tod-theme").
+   - Each page also carries a one-line script in <head> that applies the saved choice
+     before anything draws, so there's no flash of the wrong theme:
+       <script>try{var t=localStorage.getItem("tod-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}<\/script>
+   - The CSS reads :root[data-theme="light" | "dark"]; story charts already redraw when data-theme changes. */
+(function () {
+  var root = document.documentElement;
+  var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+
+  function current() {
+    var t = root.dataset.theme;
+    if (t === "light" || t === "dark") return t;
+    return media && media.matches ? "dark" : "light";
+  }
+
+  function sync() {
+    var theme = current();
+    var next = theme === "dark" ? "light" : "dark";
+    document.querySelectorAll(".theme-toggle").forEach(function (btn) {
+      btn.setAttribute("aria-label", "Switch to " + next + " mode");
+      btn.setAttribute("title", "Switch to " + next + " mode");
+      btn.dataset.showing = theme;
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest && e.target.closest(".theme-toggle");
+    if (!btn) return;
+    var next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("tod-theme", next); } catch (err) {}
+    sync();
+    if (window.goatcounter && window.goatcounter.count) {
+      try { window.goatcounter.count({ path: "theme/" + next, event: true }); } catch (err) {}
+    }
+  });
+
+  if (media) {
+    var onChange = function () { if (!root.dataset.theme) sync(); };
+    if (media.addEventListener) media.addEventListener("change", onChange);
+    else if (media.addListener) media.addListener(onChange);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync);
+  else sync();
+})();
+/* theme-toggle:end */
+</script>
+<script>
+/* subscribe:start */
+/* Weekly-email signup: the form posts to Buttondown in a new tab (Buttondown shows its own
+   "check your inbox" page and may ask for a captcha). This script tags each signup with the page
+   it came from, counts it in GoatCounter as subscribe/<page>, and tells the reader what happens next. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  document.querySelectorAll("form.sub-form").forEach(function (form) {
+    var src = form.querySelector('input[name="metadata__signup-page"]');
+    if (src) src.value = page;
+    form.addEventListener("submit", function () {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "subscribe/" + page, title: "subscribe/" + page, event: true });
+      var box = form.closest(".subscribe"), done = box && box.querySelector(".sub-done");
+      if (done) setTimeout(function () { done.hidden = false; form.reset(); }, 300);
+    });
+  });
+})();
+/* subscribe:end */
+</script>
+<script>
+/* share:start */
+/* Share button at the end of each story. Phones (and browsers with a share menu) open the device's share sheet;
+   others copy the link. The shared link is the page address plus ?ref=share, so visits from shares show up in
+   GoatCounter as their own referrer. A row marked data-keep-hash also keeps the address's #part (the weird stat of the
+   day uses it, so a share links to the night the reader is looking at). A finished share counts in GoatCounter as share/<page> (cancelling the share
+   sheet doesn't count). Uses the page's own address, not its canonical link, so a page whose canonical points to
+   another site still shares this one.
+   The small Share button under a story's intro (.share-top, added Nov 8, 2026) works the same way; the GoatCounter
+   title says which one was used: share/<page> (top, menu), (end, copy) and so on. */
+(function () {
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var base = location.origin + location.pathname + "?ref=share";
+  var og = document.querySelector('meta[property="og:title"]');
+  var title = og ? og.getAttribute("content") : document.title;
+  document.querySelectorAll(".share-row, .share-top").forEach(function (row) {
+    var where = row.classList.contains("share-top") ? "top" : "end";
+    function count(how) {
+      var gc = window.goatcounter;
+      if (gc && gc.count) gc.count({ path: "share/" + page, title: "share/" + page + " (" + where + ", " + how + ")", event: true });
+    }
+    var btn = row.querySelector(".share-btn"), msg = row.querySelector(".share-msg"), url = base;
+    function say(text) { if (msg) { msg.textContent = text; msg.hidden = false; } }
+    function copy() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say("Link copied. Paste it anywhere to share."); count("copy"); },
+          function () { say("Copy this link: " + url); });
+      } else {
+        say("Copy this link: " + url);
+      }
+    }
+    btn.addEventListener("click", function () {
+      url = base + (row.hasAttribute("data-keep-hash") ? location.hash : "");
+      if (navigator.share) {
+        navigator.share({ title: title, url: url }).then(function () { count("menu"); }, function (err) {
+          if (!err || err.name !== "AbortError") copy();
+        });
+      } else {
+        copy();
+      }
+    });
+  });
+})();
+/* share:end */
+</script>
+<!-- Analytics (both cookie-free): GoatCounter counts visits and reader actions; Cloudflare Web Analytics measures page speed. Same block on every page. -->
+<script data-goatcounter="https://tallorderdigital.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5d3a617ba3ea4ca68113ec25a9a48b1b"}'></script>
+<script>
+(function () {
+  // Reader actions sent to GoatCounter as events, at most once per page view each:
+  //   glossary/<page>/<term>  a glossary pop-up was opened
+  //   read-to-end/<page>      the reader scrolled down to the footer
+  var parts = location.pathname.split("/").filter(Boolean);
+  var page = parts.length ? parts[parts.length - 1].replace(/\.html$/, "") : "home";
+  var sent = {};
+  function send(path, tries) {
+    if (sent[path] && tries === undefined) return;
+    sent[path] = true;
+    var gc = window.goatcounter;
+    if (gc && gc.count) { gc.count({ path: path, title: path, event: true }); return; }
+    if ((tries || 0) < 20) setTimeout(function () { send(path, (tries || 0) + 1); }, 500);
+  }
+  // A glossary pop-up counts once it has stayed open for 0.6 s (tap, click, keyboard or hover), so passing the mouse over a term doesn't count.
+  if ("MutationObserver" in window) {
+    new MutationObserver(function (ms) {
+      ms.forEach(function (m) {
+        var t = m.target;
+        if (t.getAttribute("aria-expanded") !== "true" || !t.getAttribute("data-term")) return;
+        setTimeout(function () {
+          if (t.getAttribute("aria-expanded") === "true") send("glossary/" + page + "/" + t.getAttribute("data-term"));
+        }, 600);
+      });
+    }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ["aria-expanded"] });
+  }
+  window.addEventListener("load", function () {
+    var foot = document.querySelector("footer");
+    // Only long pages (stories): on short pages the footer is visible without scrolling.
+    if (!foot || !("IntersectionObserver" in window) ||
+        document.documentElement.scrollHeight < 2 * window.innerHeight) return;
+    var io = new IntersectionObserver(function (es) {
+      if (es.some(function (x) { return x.isIntersecting; })) { send("read-to-end/" + page); io.disconnect(); }
+    });
+    io.observe(foot);
+  });
+})();
+</script>
+</body>
+</html>
