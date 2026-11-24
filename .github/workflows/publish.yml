@@ -21,7 +21,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: read   # to see this run's uploaded artifact (the wait step below)
+  actions: read   # to find this run's uploaded site (the fallback deploy below)
 
 # One publish at a time; a newer one waits rather than cancelling an older one.
 concurrency:
@@ -34,7 +34,7 @@ jobs:
     timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy_api.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -67,29 +67,55 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      - id: upload
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      # GitHub sometimes takes a few seconds to list a just-uploaded artifact; deploy-pages looks it up
-      # straight away and fails with 'No artifacts named "github-pages"' when it isn't listed yet (every
-      # publish from Nov 24, 2026, 03:32 UTC failed this way). Wait until it is listed (up to 3 minutes).
-      - name: Wait for the upload to be listed
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for i in $(seq 1 36); do
-            n=$(gh api "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts" \
-                  --jq '[.artifacts[] | select(.name == "github-pages")] | length' || echo 0)
-            if [ "$n" -ge 1 ]; then echo "Artifact listed after $(( (i - 1) * 5 )) s"; exit 0; fi
-            sleep 5
-          done
-          echo "::warning::The upload still isn't listed after 3 minutes; trying the deploy anyway."
-
+      # The usual deploy. Since Nov 24, 2026, GitHub's deploy-pages sometimes can't find the site that was just
+      # uploaded ('No artifacts named "github-pages" were found', a known GitHub bug; the upload itself is fine),
+      # so a failure here doesn't stop the run: the next step deploys the same upload another way.
       - id: deploy
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+
+      # Fallback: hand the upload's ID straight to GitHub's Pages deployment API (the same call deploy-pages makes
+      # once it has found the upload), then wait until the site is live. Runs only if the usual deploy failed;
+      # fails the run if this doesn't work either, so nothing is reported as published when it isn't.
+      - id: deploy_api
+        name: Deploy (fallback, if the usual deploy failed)
+        if: steps.deploy.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact_id }}
+        run: |
+          set -euo pipefail
+          if [ -z "${ARTIFACT_ID:-}" ]; then
+            ARTIFACT_ID=$(gh api "repos/$REPO/actions/runs/${{ github.run_id }}/artifacts" \
+              --jq '[.artifacts[] | select(.name == "github-pages")] | last | .id')
+          fi
+          echo "Deploying upload $ARTIFACT_ID"
+          OIDC=$(curl -fsS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq -r .value)
+          RESP=$(gh api -X POST "repos/$REPO/pages/deployments" \
+            -F artifact_id="$ARTIFACT_ID" -f pages_build_version="$GITHUB_SHA" \
+            -f environment=github-pages -f oidc_token="$OIDC")
+          DEP=$(echo "$RESP" | jq -r '.id'); URL=$(echo "$RESP" | jq -r '.page_url')
+          echo "Deployment $DEP created"
+          for i in $(seq 1 60); do
+            ST=$(gh api "repos/$REPO/pages/deployments/$DEP" --jq '.status' || echo unknown)
+            echo "  status: $ST"
+            case "$ST" in
+              succeed) echo "page_url=$URL" >> "$GITHUB_OUTPUT"; echo "Published."; exit 0 ;;
+              deployment_failed|deployment_lost|deployment_cancelled|deployment_content_failed|deployment_attempt_error)
+                echo "::error::Pages deployment $DEP ended with status $ST"; exit 1 ;;
+            esac
+            sleep 10
+          done
+          echo "::error::Pages deployment $DEP didn't finish within 10 minutes"; exit 1
 
       # Tell Bing and the other IndexNow engines which pages just changed (tools/indexnow.js). Never fails the run.
       - name: Ping IndexNow
+        if: steps.deploy.outcome == 'success' || steps.deploy_api.outcome == 'success'
         continue-on-error: true
         run: node tools/indexnow.js --changed "$RUNNER_TEMP/changed.txt" --prev-almanac "$RUNNER_TEMP/prev-almanac.xml"
