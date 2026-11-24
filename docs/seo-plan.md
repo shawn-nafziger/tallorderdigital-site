@@ -93,6 +93,8 @@ Re-run `node tools/structured-data.js` (before `tools/sitemap.js`) whenever a pa
 
 Opportunities spotted: "alaska state size comparison" gets 1,900 a month on its own, so a page per state (`numbers/state-vs-country-size/<state>/`) could each rank for its state. The chart pages draw their example charts with scripts; **done Nov 11, 2026:** each chart's takeaway, readout and data table are now written into the HTML (Indiana, the default state) by `misc-analytics/analysis/chart_guide/prerender.py`, and every guide page shows "Published Nov 11, 2026 · Data through 2025", which `tools/structured-data.js` now reads as the page's dates (the hub is a `CollectionPage`).
 
+NBA trivia (`trivia/nba/`, Nov 23, 2026): title "Daily NBA Trivia, From Real Stats". nba trivia 8,100 (difficulty 25) · nba basketball trivia 8,100 (28) · basketball trivia 2,900 (18) · nba trivia questions 1,900 (22) · nba trivia games 1,600 (23) · nba trivia questions and answers 590 (25) · nba trivia hard 480 (25). Ten sample Q&As are in the HTML and kept out of the daily sets. The trivia home page `trivia/` ("Daily Trivia Games From Real Data") is indexable since Nov 24.
+
 Weather trivia (`trivia/weather/`, Nov 16, 2026): title "Daily Weather Trivia, From Real Records". weather trivia 590 (difficulty 24) · weather trivia questions 140 (26) · weather trivia questions and answers 140 (23) · daily trivia game 1,900 (63, out of reach). The page carries ten sample questions with answers in the HTML for the "questions and answers" searches; they're kept out of the daily sets.
 
 ## Keyword strategy: long tail first
