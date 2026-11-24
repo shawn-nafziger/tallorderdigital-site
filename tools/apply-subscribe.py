@@ -1,4 +1,6 @@
 """Puts the share row and the weekly-email signup card at the end of story pages, plus a "Get the weekly email" footer link.
+Since Nov 24, 2026 it also writes the Save buttons beside both Share buttons and the inline copy of assets/saved.js (which
+adds a "Save chart" button under each chart's title and keeps the reader's list for saved/).
 Claude runs this; Shawn doesn't need to.
 
     python3 tools/apply-subscribe.py                       # every story page in this repo
@@ -34,18 +36,27 @@ CSS = CSS.replace("/* subscribe:end */",
 JS = (ROOT / "assets/subscribe.js").read_text().strip().replace("</", "<\\/")
 SHARE_CSS = re.search(r"/\* share:start \*/.*?/\* share:end \*/", _css, re.S).group(0)
 SHARE_JS = (ROOT / "assets/share.js").read_text().strip().replace("</", "<\\/")
+# Save buttons (Nov 24, 2026): "Save" beside the top Share button, "Save this story" beside the end one, and (added by the
+# script) "Save chart" under each chart's title. Master copies: assets/saved.js and "saved:start" / "saved:end" in
+# assets/site.css. The list stays in the reader's browser; saved/ shows it.
+SAVED_CSS = re.search(r"/\* saved:start \*/.*?/\* saved:end \*/", _css, re.S).group(0)
+SAVED_JS = (ROOT / "assets/saved.js").read_text().strip().replace("</", "<\\/")
+BOOKMARK = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.6-6.5 4.6v-16a1 1 0 0 1 1-1z"/></svg>')
 SHARE_HTML = '''  <!-- share:start -->
   <div class="share-row">
     <p class="share-ask">Know someone who'd like this?</p>
     <button type="button" class="share-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this story</button>
+    <button type="button" class="save-btn" data-save="page" data-off="Save this story" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.6-6.5 4.6v-16a1 1 0 0 1 1-1z"/></svg><span class="save-t">Save this story</span></button>
     <p class="share-msg" role="status" hidden></p>
+    <p class="save-msg" role="status" hidden></p>
   </div>
   <!-- share:end -->
 '''
 SHARE_TOP_HTML = ('\n  <!-- share-top:start --><p class="share-top"><button type="button" class="share-btn">'
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" '
     'aria-hidden="true"><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>'
-    'Share</button><span class="share-msg" role="status" hidden></span></p><!-- share-top:end -->')
+    'Share</button><button type="button" class="save-btn" data-save="page" aria-pressed="false">' + BOOKMARK + '<span class="save-t">Save</span></button>'
+    '<span class="share-msg" role="status" hidden></span><span class="save-msg" role="status" hidden></span></p><!-- share-top:end -->')
 SHARE_TOP_RE = re.compile(r"\n?[ \t]*<!-- share-top:start -->.*?<!-- share-top:end -->", re.S)
 # Where the small top Share button goes (added Nov 8, 2026): on its own line right after the first line under the
 # headline that says who and when (byline), or the line a page's script fills with dates (meta, status; scripts rewrite
@@ -58,6 +69,8 @@ END_CLOSE_RE = re.compile(r"[ \t]*</div><!-- story-end:end -->\n?")
 SHARE_CSS_RE = re.compile(r"/\* share:start \*/.*?/\* share:end \*/\n?", re.S)
 SHARE_HTML_RE = re.compile(r"[ \t]*<!-- share:start -->.*?<!-- share:end -->\n?", re.S)
 SHARE_JS_RE = re.compile(r"<script>\s*/\* share:start \*/.*?/\* share:end \*/\s*</script>\n?", re.S)
+SAVED_CSS_RE = re.compile(r"/\* saved:start \*/.*?/\* saved:end \*/\n?", re.S)
+SAVED_JS_RE = re.compile(r"<script>\s*/\* saved:start \*/.*?/\* saved:end \*/\s*</script>\n?", re.S)
 
 CSS_RE = re.compile(r"/\* subscribe:start \*/.*?/\* subscribe:end \*/\n?", re.S)
 HTML_RE = re.compile(r"[ \t]*<!-- subscribe:start -->.*?<!-- subscribe:end -->\n?", re.S)
@@ -121,6 +134,8 @@ def apply(html, path):
     old = SHARE_HTML_RE.search(html)
     label = re.search(r"</svg>([^<]+)</button>", old.group(0)) if old else None
     share = SHARE_HTML.replace("</svg>Share this story</button>", "</svg>" + label.group(1) + "</button>") if label else SHARE_HTML
+    if label and "page" in label.group(1).lower():  # "Share this page" (the Almanac, the chart guide) gets "Save this page"
+        share = share.replace("Save this story", "Save this page")
     html = SHARE_HTML_RE.sub("", HTML_RE.sub("", END_OPEN_RE.sub("", END_CLOSE_RE.sub("", html))))
     foot = html.index("<footer")
     end = html.rindex("</main>", 0, foot)
@@ -154,14 +169,15 @@ def apply(html, path):
 
     # 3. Styles, inside the page's last <style>.
     head_end = html.index("</head>")
-    head = SHARE_CSS_RE.sub("", CSS_RE.sub("", html[:head_end]))
+    head = SAVED_CSS_RE.sub("", SHARE_CSS_RE.sub("", CSS_RE.sub("", html[:head_end])))
     i = head.rindex("</style>")
-    html = head[:i] + CSS + "\n" + SHARE_CSS + "\n" + head[i:] + html[head_end:]
+    html = head[:i] + CSS + "\n" + SHARE_CSS + "\n" + SAVED_CSS + "\n" + head[i:] + html[head_end:]
 
     # 4. Script, before the analytics block (or </body>).
-    html = SHARE_JS_RE.sub("", JS_RE.sub("", html))
+    html = SAVED_JS_RE.sub("", SHARE_JS_RE.sub("", JS_RE.sub("", html)))
     tag = ("<script>\n/* subscribe:start */\n" + JS + "\n/* subscribe:end */\n</script>\n"
-           "<script>\n/* share:start */\n" + SHARE_JS + "\n/* share:end */\n</script>\n")
+           "<script>\n/* share:start */\n" + SHARE_JS + "\n/* share:end */\n</script>\n"
+           "<script>\n/* saved:start */\n" + SAVED_JS + "\n/* saved:end */\n</script>\n")
     j = html.find("<!-- Analytics")
     if j < 0:
         j = html.rindex("</body>")
