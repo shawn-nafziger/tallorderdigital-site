@@ -71,6 +71,7 @@ figure{margin:1.6em 0}figure.main{margin:1.8em -10px}
 figure .chart-howto{margin:0 0 4px !important}figure .save-chart{margin:0 0 16px}
 .key{font:400 13px/1.7 "IBM Plex Mono";color:var(--ink-2);margin:0 0 20px}.key>span{display:block;padding-left:1.4em;text-indent:-1.4em}
 .k-sig{color:var(--amber);font-weight:500}.k-comp{color:var(--navy);font-weight:500}.k-noise{color:var(--ink-3);font-weight:500}
+.fig-note{font-size:14px;line-height:1.5;color:var(--ink-2);margin:-8px 0 16px}
 svg.chart{width:100%;height:auto;display:block;overflow:visible}
 svg .grid{stroke:var(--rule);stroke-width:1}svg .zero{stroke:var(--ink-3);stroke-width:1}
 svg .tick,svg .axl{font:400 11px "IBM Plex Mono";fill:var(--ink-3)}
@@ -81,7 +82,7 @@ svg circle.noise{fill:var(--ghost)}svg circle.comp{fill:var(--navy);opacity:.75}
 svg .line{fill:none;stroke-width:2.5}svg .line.comp{stroke:var(--navy)}svg .line.sig{stroke:var(--amber)}svg .line.noise-line{stroke:var(--ghost);stroke-width:2}
 svg .sig-t{fill:var(--amber);font-weight:600}svg .comp-t{fill:var(--navy);font-weight:600}
 svg .ring{fill:none;stroke:var(--ink);stroke-width:1.5}svg .gap{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3}
-svg .stem{stroke:var(--rule);stroke-width:2}svg .whisk{stroke-width:2}svg .whisk.sig{stroke:var(--amber)}svg .whisk.comp{stroke:var(--navy)}
+svg .stem{stroke:var(--rule);stroke-width:2}svg .whisk{stroke-width:2}svg .whisk.sig{stroke:var(--amber)}svg .whisk.comp{stroke:var(--navy)}svg .whisk.noise{stroke:var(--ink-3)}svg circle.noise.big{fill:var(--ink-3)}
 .take{font-size:16px;color:var(--ink-2);margin:.4em 0}
 details{margin:.4em 0 1em;font-size:14px}summary{cursor:pointer;font:500 13px "IBM Plex Mono";color:var(--ink-3);min-height:32px}
 .tw{overflow-x:auto}
@@ -302,7 +303,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <p class="fig-title">Texas now needs 91 GW on a 100°F day; in 2019 it needed 74 GW</p>
 <p class="fig-sub">Each dot is one summer weekday, 2016 to 2026: the day’s high across ERCOT, weighted by population, and that day’s highest hour of demand.</p>
 <!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/scatter-plot/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a scatter plot →</a></p><!-- chart-howto:end -->
-<div class="key"><span><span class="k-sig">Orange</span>: summer 2026 weekdays and the fitted curve</span><span><span class="k-comp">Blue</span>: summer 2019 weekdays and the fitted curve</span><span><span class="k-noise">Gray</span>: other summers, 2016 to 2025</span></div>
+<div class="key"><span><span class="k-sig">Orange</span>: summer 2026 weekdays, and the line that best fits them</span><span><span class="k-comp">Blue</span>: summer 2019 weekdays, and the line that best fits them</span><span><span class="k-noise">Gray</span>: other summers, 2016 to 2025</span></div>
 <div class="wide-only"><svg viewBox="0 0 720 440" role="img" aria-labelledby="t-ERCO-big720" class="chart">
 <title id="t-ERCO-big720">ERCOT: daily summer peak demand against the day's high temperature, 2019 vs 2026</title>
 <line class="grid" x1="48" x2="662" y1="354.1" y2="354.1"/>
@@ -7884,8 +7885,9 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <p class="fig-title">ERCOT’s same-temperature demand grew 23% from 2019 to 2026, more than twice any other grid</p>
 <p class="fig-sub">Modeled change in summer peak demand from 2019 to 2026 at the same temperature, by grid.</p>
 <!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/dot-plot/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a dot plot →</a></p><!-- chart-howto:end -->
-<div class="key"><span><span class="k-sig">Orange</span>: ERCOT</span><span><span class="k-comp">Blue</span>: other grids</span><span>Line: 90% range from resampling days</span></div>
-<svg viewBox="0 0 640 298" role="img" aria-labelledby="t-dots" class="chart"><title id="t-dots">Change in summer peak demand at the same temperature, 2019 to 2026, by grid region</title>
+<div class="key"><span><span class="k-sig">Orange</span>: ERCOT, the standout</span><span><span class="k-comp">Blue</span>: a change too big to be a fluke</span><span><span class="k-noise">Gray</span>: too small to tell from no change (New England)</span></div>
+<p class="fig-note">The short line through each dot shows how far that number could move by <a href="../../explained/#chance-wobble">chance wobble</a> alone. Where the line crosses 0%, the grid hasn’t clearly changed.</p>
+<div class="wide-only"><svg viewBox="0 0 640 298" role="img" aria-labelledby="t-dots640" class="chart"><title id="t-dots640">Change in summer peak demand at the same temperature, 2019 to 2026, by grid region</title>
 <line class="grid" x1="150.0" x2="150.0" y1="18" y2="268"/>
 <text class="tick" x="150.0" y="284" text-anchor="middle">-10%</text>
 <line class="grid" x1="210.0" x2="210.0" y1="18" y2="268"/>
@@ -7904,40 +7906,74 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <text class="tick" x="570.0" y="284" text-anchor="middle">+25%</text>
 <text class="rowl" x="140" y="38" text-anchor="end">ERCOT</text>
 <line class="whisk sig" x1="537.6" x2="549.6" y1="34" y2="34"/>
-<line class="stem" x1="270.0" x2="543.6" y1="34" y2="34"/>
-<circle class="sig" cx="543.6" cy="34" r="6"><title>ERCOT: +22.8% (90% range +22.3 to +23.3%), 930 summer weekdays</title></circle>
+<circle class="sig big" cx="543.6" cy="34" r="6"><title>ERCOT: +22.8%; by chance alone it could be anywhere from +22.3% to +23.3% (930 summer weekdays)</title></circle>
 <text class="val" x="559.6" y="38">+22.8%</text>
 <text class="rowl" x="140" y="72" text-anchor="end">SPP</text>
 <line class="whisk comp" x1="370.8" x2="404.4" y1="68" y2="68"/>
-<line class="stem" x1="270.0" x2="386.4" y1="68" y2="68"/>
-<circle class="comp" cx="386.4" cy="68" r="6"><title>SPP: +9.7% (90% range +8.4 to +11.2%), 929 summer weekdays</title></circle>
+<circle class="comp big" cx="386.4" cy="68" r="6"><title>SPP: +9.7%; by chance alone it could be anywhere from +8.4% to +11.2% (929 summer weekdays)</title></circle>
 <text class="val" x="414.4" y="72">+9.7%</text>
 <text class="rowl" x="140" y="106" text-anchor="end">PJM</text>
 <line class="whisk comp" x1="343.2" x2="369.6" y1="102" y2="102"/>
-<line class="stem" x1="270.0" x2="356.4" y1="102" y2="102"/>
-<circle class="comp" cx="356.4" cy="102" r="6"><title>PJM: +7.2% (90% range +6.1 to +8.3%), 930 summer weekdays</title></circle>
+<circle class="comp big" cx="356.4" cy="102" r="6"><title>PJM: +7.2%; by chance alone it could be anywhere from +6.1% to +8.3% (930 summer weekdays)</title></circle>
 <text class="val" x="379.6" y="106">+7.2%</text>
 <text class="rowl" x="140" y="140" text-anchor="end">MISO</text>
 <line class="whisk comp" x1="306.0" x2="325.2" y1="136" y2="136"/>
-<line class="stem" x1="270.0" x2="315.6" y1="136" y2="136"/>
-<circle class="comp" cx="315.6" cy="136" r="6"><title>MISO: +3.8% (90% range +3.0 to +4.6%), 931 summer weekdays</title></circle>
+<circle class="comp big" cx="315.6" cy="136" r="6"><title>MISO: +3.8%; by chance alone it could be anywhere from +3.0% to +4.6% (931 summer weekdays)</title></circle>
 <text class="val" x="335.2" y="140">+3.8%</text>
 <text class="rowl" x="140" y="174" text-anchor="end">CAISO</text>
 <line class="whisk comp" x1="285.6" x2="318.0" y1="170" y2="170"/>
-<line class="stem" x1="270.0" x2="301.2" y1="170" y2="170"/>
-<circle class="comp" cx="301.2" cy="170" r="6"><title>CAISO: +2.6% (90% range +1.3 to +4.0%), 918 summer weekdays</title></circle>
+<circle class="comp big" cx="301.2" cy="170" r="6"><title>CAISO: +2.6%; by chance alone it could be anywhere from +1.3% to +4.0% (918 summer weekdays)</title></circle>
 <text class="val" x="328.0" y="174">+2.6%</text>
 <text class="rowl" x="140" y="208" text-anchor="end">ISO-NE</text>
-<line class="whisk comp" x1="259.2" x2="294.0" y1="204" y2="204"/>
-<line class="stem" x1="270.0" x2="276.0" y1="204" y2="204"/>
-<circle class="comp" cx="276.0" cy="204" r="6"><title>ISO-NE: +0.5% (90% range -0.9 to +2.0%), 924 summer weekdays</title></circle>
+<line class="whisk noise" x1="259.2" x2="294.0" y1="204" y2="204"/>
+<circle class="noise big" cx="276.0" cy="204" r="6"><title>ISO-NE: +0.5%; by chance alone it could be anywhere from -0.9% to +2.0% (924 summer weekdays)</title></circle>
 <text class="val" x="304.0" y="208">+0.5%</text>
 <text class="rowl" x="140" y="242" text-anchor="end">NYISO</text>
 <line class="whisk comp" x1="183.6" x2="212.4" y1="238" y2="238"/>
-<line class="stem" x1="270.0" x2="196.8" y1="238" y2="238"/>
-<circle class="comp" cx="196.8" cy="238" r="6"><title>NYISO: -6.1% (90% range -7.2 to -4.8%), 931 summer weekdays</title></circle>
+<circle class="comp big" cx="196.8" cy="238" r="6"><title>NYISO: -6.1%; by chance alone it could be anywhere from -7.2% to -4.8% (931 summer weekdays)</title></circle>
 <text class="val" x="280.0" y="242">-6.1%</text>
-</svg>
+</svg></div><div class="narrow-only"><svg viewBox="0 0 360 298" role="img" aria-labelledby="t-dots360" class="chart"><title id="t-dots360">Change in summer peak demand at the same temperature, 2019 to 2026, by grid region</title>
+<line class="grid" x1="64.0" x2="64.0" y1="18" y2="268"/>
+<text class="tick" x="64.0" y="284" text-anchor="middle">-10%</text>
+<line class="grid" x1="97.4" x2="97.4" y1="18" y2="268"/>
+<line class="zero" x1="130.9" x2="130.9" y1="18" y2="268"/>
+<text class="tick" x="130.9" y="284" text-anchor="middle">0%</text>
+<line class="grid" x1="164.3" x2="164.3" y1="18" y2="268"/>
+<line class="grid" x1="197.7" x2="197.7" y1="18" y2="268"/>
+<text class="tick" x="197.7" y="284" text-anchor="middle">+10%</text>
+<line class="grid" x1="231.1" x2="231.1" y1="18" y2="268"/>
+<line class="grid" x1="264.6" x2="264.6" y1="18" y2="268"/>
+<text class="tick" x="264.6" y="284" text-anchor="middle">+20%</text>
+<line class="grid" x1="298.0" x2="298.0" y1="18" y2="268"/>
+<text class="rowl" x="54" y="38" text-anchor="end">ERCOT</text>
+<line class="whisk sig" x1="279.9" x2="286.6" y1="34" y2="34"/>
+<circle class="sig big" cx="283.3" cy="34" r="6"><title>ERCOT: +22.8%; by chance alone it could be anywhere from +22.3% to +23.3% (930 summer weekdays)</title></circle>
+<text class="val" x="296.6" y="38">+22.8%</text>
+<text class="rowl" x="54" y="72" text-anchor="end">SPP</text>
+<line class="whisk comp" x1="187.0" x2="205.7" y1="68" y2="68"/>
+<circle class="comp big" cx="195.7" cy="68" r="6"><title>SPP: +9.7%; by chance alone it could be anywhere from +8.4% to +11.2% (929 summer weekdays)</title></circle>
+<text class="val" x="215.7" y="72">+9.7%</text>
+<text class="rowl" x="54" y="106" text-anchor="end">PJM</text>
+<line class="whisk comp" x1="171.6" x2="186.3" y1="102" y2="102"/>
+<circle class="comp big" cx="179.0" cy="102" r="6"><title>PJM: +7.2%; by chance alone it could be anywhere from +6.1% to +8.3% (930 summer weekdays)</title></circle>
+<text class="val" x="196.3" y="106">+7.2%</text>
+<text class="rowl" x="54" y="140" text-anchor="end">MISO</text>
+<line class="whisk comp" x1="150.9" x2="161.6" y1="136" y2="136"/>
+<circle class="comp big" cx="156.3" cy="136" r="6"><title>MISO: +3.8%; by chance alone it could be anywhere from +3.0% to +4.6% (931 summer weekdays)</title></circle>
+<text class="val" x="171.6" y="140">+3.8%</text>
+<text class="rowl" x="54" y="174" text-anchor="end">CAISO</text>
+<line class="whisk comp" x1="139.5" x2="157.6" y1="170" y2="170"/>
+<circle class="comp big" cx="148.2" cy="170" r="6"><title>CAISO: +2.6%; by chance alone it could be anywhere from +1.3% to +4.0% (918 summer weekdays)</title></circle>
+<text class="val" x="167.6" y="174">+2.6%</text>
+<text class="rowl" x="54" y="208" text-anchor="end">ISO-NE</text>
+<line class="whisk noise" x1="124.8" x2="144.2" y1="204" y2="204"/>
+<circle class="noise big" cx="134.2" cy="204" r="6"><title>ISO-NE: +0.5%; by chance alone it could be anywhere from -0.9% to +2.0% (924 summer weekdays)</title></circle>
+<text class="val" x="154.2" y="208">+0.5%</text>
+<text class="rowl" x="54" y="242" text-anchor="end">NYISO</text>
+<line class="whisk comp" x1="82.7" x2="98.8" y1="238" y2="238"/>
+<circle class="comp big" cx="90.1" cy="238" r="6"><title>NYISO: -6.1%; by chance alone it could be anywhere from -7.2% to -4.8% (931 summer weekdays)</title></circle>
+<text class="val" x="140.9" y="242">-6.1%</text>
+</svg></div>
 <details><summary>Table: modeled peak on the same hot day, 2019 vs 2026</summary><div class="tw"><table><caption>Modeled peak demand on the same hot summer weekday, 2019 vs 2026</caption><thead><tr><th scope="col">Grid</th><th scope="col">Serves</th><th scope="col">Reference hot day</th><th scope="col">2019 (GW)</th><th scope="col">2026 (GW)</th><th scope="col">Change</th><th scope="col">Summer weekdays</th></tr></thead><tbody><tr><th scope="row">ERCOT</th><td>most of Texas</td><td>100°F</td><td>73.7</td><td>90.5</td><td>+22.8%</td><td>930</td></tr><tr><th scope="row">SPP</th><td>Kansas to North Dakota and parts of 12 more states</td><td>96°F</td><td>50.2</td><td>55.0</td><td>+9.7%</td><td>929</td></tr><tr><th scope="row">PJM</th><td>13 states from Illinois to New Jersey plus D.C.</td><td>90°F</td><td>144.7</td><td>155.1</td><td>+7.2%</td><td>930</td></tr><tr><th scope="row">MISO</th><td>15 states from Louisiana to Minnesota</td><td>88°F</td><td>111.5</td><td>115.7</td><td>+3.8%</td><td>931</td></tr><tr><th scope="row">CAISO</th><td>most of California</td><td>96°F</td><td>43.4</td><td>44.5</td><td>+2.6%</td><td>918</td></tr><tr><th scope="row">ISO-NE</th><td>the six New England states</td><td>90°F</td><td>23.2</td><td>23.3</td><td>+0.5%</td><td>924</td></tr><tr><th scope="row">NYISO</th><td>New York State</td><td>88°F</td><td>29.8</td><td>28.0</td><td>-6.1%</td><td>931</td></tr></tbody></table></div></details>
 </figure>
 
@@ -7948,7 +7984,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <p class="fig-sub">Modeled summer peak demand at the same temperature, as a percentage of 2019, for each grid.</p>
 <!-- chart-howto:start --><p class="chart-howto" style="margin:4px 0 0;font:500 13px/1.4 var(--font-data, monospace)"><a href="../../explained/charts/line-chart/" style="color:var(--ink-2, inherit);text-underline-offset:2px">How to read a line chart →</a></p><!-- chart-howto:end -->
 <div class="key"><span><span class="k-sig">Orange</span>: ERCOT</span><span><span class="k-noise">Gray</span>: the other six grids</span></div>
-<svg viewBox="0 0 640 300" role="img" aria-labelledby="t-trend" class="chart"><title id="t-trend">Summer peak demand at the same temperature each year, as a percentage of 2019, by grid region</title>
+<div class="wide-only"><svg viewBox="0 0 640 300" role="img" aria-labelledby="t-trend640" class="chart"><title id="t-trend640">Summer peak demand at the same temperature each year, as a percentage of 2019, by grid region</title>
 <line class="grid" x1="44" x2="576" y1="270.0" y2="270.0"/>
 <text class="tick" x="38" y="274.0" text-anchor="end">-10%</text>
 <line class="grid" x1="44" x2="576" y1="233.7" y2="233.7"/>
@@ -7985,7 +8021,41 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <text class="lab " x="582" y="186.9">CAISO +3%</text>
 <text class="lab " x="582" y="199.9">ISO-NE 0%</text>
 <text class="lab " x="582" y="245.7">NYISO −6%</text>
-</svg>
+</svg></div><div class="narrow-only"><svg viewBox="0 0 360 300" role="img" aria-labelledby="t-trend360" class="chart"><title id="t-trend360">Summer peak demand at the same temperature each year, as a percentage of 2019, by grid region</title>
+<line class="grid" x1="38" x2="268" y1="270.0" y2="270.0"/>
+<text class="tick" x="32" y="274.0" text-anchor="end">-10%</text>
+<line class="grid" x1="38" x2="268" y1="233.7" y2="233.7"/>
+<text class="tick" x="32" y="237.7" text-anchor="end">-5%</text>
+<line class="zero" x1="38" x2="268" y1="197.4" y2="197.4"/>
+<text class="tick" x="32" y="201.4" text-anchor="end">0%</text>
+<line class="grid" x1="38" x2="268" y1="161.1" y2="161.1"/>
+<text class="tick" x="32" y="165.1" text-anchor="end">+5%</text>
+<line class="grid" x1="38" x2="268" y1="124.9" y2="124.9"/>
+<text class="tick" x="32" y="128.9" text-anchor="end">+10%</text>
+<line class="grid" x1="38" x2="268" y1="88.6" y2="88.6"/>
+<text class="tick" x="32" y="92.6" text-anchor="end">+15%</text>
+<line class="grid" x1="38" x2="268" y1="52.3" y2="52.3"/>
+<text class="tick" x="32" y="56.3" text-anchor="end">+20%</text>
+<line class="grid" x1="38" x2="268" y1="16.0" y2="16.0"/>
+<text class="tick" x="32" y="20.0" text-anchor="end">+25%</text>
+<text class="tick" x="38.0" y="286" text-anchor="middle">2016</text>
+<text class="tick" x="153.0" y="286" text-anchor="middle">2021</text>
+<text class="tick" x="268.0" y="286" text-anchor="middle">2026</text>
+<polyline class="line noise-line" points="38.0,211.2 61.0,213.4 84.0,183.6 107.0,197.4 130.0,203.2 153.0,207.6 176.0,190.2 199.0,183.6 222.0,161.1 245.0,142.3 268.0,127.0"><title>SPP: +9.7% in 2026 vs 2019</title></polyline>
+<polyline class="line noise-line" points="38.0,177.1 61.0,190.2 84.0,176.4 107.0,197.4 130.0,210.5 153.0,189.4 176.0,190.9 199.0,192.3 222.0,196.0 245.0,173.5 268.0,145.2"><title>PJM: +7.2% in 2026 vs 2019</title></polyline>
+<polyline class="line noise-line" points="38.0,188.7 61.0,188.7 84.0,181.5 107.0,197.4 130.0,219.9 153.0,208.3 176.0,209.0 199.0,210.5 222.0,206.9 245.0,186.5 268.0,169.9"><title>MISO: +3.8% in 2026 vs 2019</title></polyline>
+<polyline class="line noise-line" points="38.0,164.0 61.0,169.1 84.0,179.3 107.0,197.4 130.0,206.1 153.0,198.2 176.0,188.7 199.0,199.6 222.0,210.5 245.0,204.7 268.0,178.6"><title>CAISO: +2.6% in 2026 vs 2019</title></polyline>
+<polyline class="line noise-line" points="38.0,158.2 61.0,167.7 84.0,159.7 107.0,197.4 130.0,202.5 153.0,180.7 176.0,198.2 199.0,194.5 222.0,204.0 245.0,215.6 268.0,193.8"><title>ISO-NE: +0.5% in 2026 vs 2019</title></polyline>
+<polyline class="line noise-line" points="38.0,182.2 61.0,190.2 84.0,173.5 107.0,197.4 130.0,230.8 153.0,209.8 176.0,223.6 199.0,230.8 222.0,233.0 245.0,251.1 268.0,241.7"><title>NYISO: -6.1% in 2026 vs 2019</title></polyline>
+<polyline class="line sig" points="38.0,236.6 61.0,231.5 84.0,212.7 107.0,197.4 130.0,200.3 153.0,165.5 176.0,154.6 199.0,119.1 222.0,100.9 245.0,66.8 268.0,32.0"><title>ERCOT: +22.8% in 2026 vs 2019</title></polyline>
+<text class="lab sig-t" x="274" y="36.0">ERCOT +23%</text>
+<text class="lab " x="274" y="131.0">SPP +10%</text>
+<text class="lab " x="274" y="149.2">PJM +7%</text>
+<text class="lab " x="274" y="173.9">MISO +4%</text>
+<text class="lab " x="274" y="186.9">CAISO +3%</text>
+<text class="lab " x="274" y="199.9">ISO-NE 0%</text>
+<text class="lab " x="274" y="245.7">NYISO −6%</text>
+</svg></div>
 <details><summary>Table: % vs 2019 by year</summary><div class="tw"><table class="wide"><caption>Same-temperature summer peak demand, % vs 2019</caption><thead><tr><th scope="col">Grid</th><th scope="col">2016</th><th scope="col">2017</th><th scope="col">2018</th><th scope="col">2019</th><th scope="col">2020</th><th scope="col">2021</th><th scope="col">2022</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th><th scope="col">2026</th></tr></thead><tbody><tr><th scope="row">ERCOT</th><td>-5.4</td><td>-4.7</td><td>-2.1</td><td>+0.0</td><td>-0.4</td><td>+4.4</td><td>+5.9</td><td>+10.8</td><td>+13.3</td><td>+18.0</td><td>+22.8</td></tr><tr><th scope="row">SPP</th><td>-1.9</td><td>-2.2</td><td>+1.9</td><td>+0.0</td><td>-0.8</td><td>-1.4</td><td>+1.0</td><td>+1.9</td><td>+5.0</td><td>+7.6</td><td>+9.7</td></tr><tr><th scope="row">PJM</th><td>+2.8</td><td>+1.0</td><td>+2.9</td><td>+0.0</td><td>-1.8</td><td>+1.1</td><td>+0.9</td><td>+0.7</td><td>+0.2</td><td>+3.3</td><td>+7.2</td></tr><tr><th scope="row">MISO</th><td>+1.2</td><td>+1.2</td><td>+2.2</td><td>+0.0</td><td>-3.1</td><td>-1.5</td><td>-1.6</td><td>-1.8</td><td>-1.3</td><td>+1.5</td><td>+3.8</td></tr><tr><th scope="row">CAISO</th><td>+4.6</td><td>+3.9</td><td>+2.5</td><td>+0.0</td><td>-1.2</td><td>-0.1</td><td>+1.2</td><td>-0.3</td><td>-1.8</td><td>-1.0</td><td>+2.6</td></tr><tr><th scope="row">ISO-NE</th><td>+5.4</td><td>+4.1</td><td>+5.2</td><td>+0.0</td><td>-0.7</td><td>+2.3</td><td>-0.1</td><td>+0.4</td><td>-0.9</td><td>-2.5</td><td>+0.5</td></tr><tr><th scope="row">NYISO</th><td>+2.1</td><td>+1.0</td><td>+3.3</td><td>+0.0</td><td>-4.6</td><td>-1.7</td><td>-3.6</td><td>-4.6</td><td>-4.9</td><td>-7.4</td><td>-6.1</td></tr></tbody></table></div></details>
 </figure>
 
@@ -8000,7 +8070,7 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <section class="note" aria-labelledby="how"><h2 id="how">How this was measured</h2>
 <p><b>Demand.</b> Hourly demand for the seven grid operators from the U.S. Energy Information Administration’s Form EIA-930, January 2016 to November 18, 2026. EIA publishes each grid’s hours as reported; we screened out missing, zero and sudden-spike hours (fewer than 0.1% of hours except SPP, 2.6%) and used EIA’s adjusted series where it filled them. Our 2026 peaks match EIA’s published records.</p>
 <p><b>Temperature.</b> Hourly readings from 198 airport weather stations in NOAA’s Global Historical Climatology Network hourly (GHCNh). Each county was assigned to its nearest station and weighted by its Census 2025 population and by the share of its electric customers each grid serves, from EIA’s Form EIA-861 (2025). That gives one temperature per grid per hour, weighted by where people live. 99.94% of the Lower 48’s population is mapped to a grid.</p>
-<p><b>Model.</b> For each grid, each summer weekday (June to September, holidays excluded) has its highest hour of demand and the day’s highest population-weighted temperature. We fit one curve shape per grid and let its level change by year (log of peak demand = year + temperature + temperature²). The year levels give the change at the same temperature; the reference hot day is each grid’s 95th-percentile summer high. Two other versions, one using only the hottest quarter of days, agree within 2 percentage points. The 90% ranges treat days as independent, so they understate the uncertainty somewhat.</p>
+<p><b>Model.</b> For each grid, each summer weekday (June to September, holidays excluded) has its highest hour of demand and the day’s highest population-weighted temperature. We fit one curve shape per grid and let its level change by year (log of peak demand = year + temperature + temperature²). The year levels give the change at the same temperature; the reference hot day is each grid’s 95th-percentile summer high. Two other versions, one using only the hottest quarter of days, agree within 2 percentage points. The short lines on the grid chart show where each number would land 9 times in 10 if the summers were redrawn at random from the same days; they treat each day as independent, so the real wobble is somewhat larger.</p>
 </section>
 
 <section class="note" aria-labelledby="src"><h2 id="src">Sources</h2>
