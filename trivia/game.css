@@ -1,6 +1,10 @@
 /* Trivia games (weather, NBA, ...): shared look. Site tokens only; the answer is --amber, other options --navy.
    Generated from the Tall Order Digital project, claude/trivia/shared/; don't hand-edit the copy in the site. */
 .tv { margin-top: -30px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px 22px; }
+.tv-sets { display: flex; gap: 0; margin: -4px 0 14px; border: 1.5px solid var(--ink); border-radius: 999px; width: max-content; max-width: 100%; overflow: hidden; }
+.tv-sets button { min-height: 40px; padding: 0 16px; border: 0; background: none; color: var(--ink); cursor: pointer; font: 500 12px/1 var(--font-data); letter-spacing: .1em; text-transform: uppercase; }
+.tv-sets button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.tv-sets button:focus-visible { outline: 2px solid var(--amber); outline-offset: -4px; }
 .tv-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin: -6px -4px 16px; }
 .tv-tabs button { min-height: 44px; padding: 0 12px; border: 0; background: none; cursor: pointer; color: var(--ink-2);
   font: 500 12px/1 var(--font-data); letter-spacing: .12em; text-transform: uppercase; }

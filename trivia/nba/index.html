@@ -45,11 +45,12 @@
   <article class="prose">
     <p class="kicker">Trivia · NBA</p>
     <h1>NBA trivia</h1>
-    <p class="lede">Five questions a day, and every answer comes from the box scores: who scored more, which team won more, who went higher in the draft. All from NBA.com stats for the six regular seasons from 2020-21 through 2025-26.</p>
-    <p class="meta">Published <time datetime="2026-11-24">Nov 24, 2026</time> · Seasons 2020-21 through 2025-26</p>
+    <p class="lede">Five questions a day, and every answer comes from the box scores. Play <strong>this season</strong>, with new questions every morning from last night's games, or the <strong>past six seasons</strong>, from 2020-21 through 2025-26. All from NBA.com stats.</p>
+    <p class="meta">Published <time datetime="2026-11-24">Nov 24, 2026</time> · This season updated every morning · Past seasons 2020-21 through 2025-26</p>
   </article>
 
-  <section class="tv" id="play" aria-label="NBA trivia game" data-game="nba" data-title="Tall Order NBA Trivia" hidden>
+  <section class="tv" id="play" aria-label="NBA trivia game" data-page="nba" data-sets='[{"id":"season","label":"This season","bank":"season.json","game":"nba-season","title":"Tall Order NBA Trivia, this season"},{"id":"past","label":"Past seasons","bank":"bank.json","game":"nba","title":"Tall Order NBA Trivia"}]' hidden>
+    <div class="tv-sets" id="tv-sets" role="group" aria-label="Which questions" hidden></div>
     <div class="tv-tabs" role="tablist">
       <button type="button" role="tab" id="tab-daily" aria-selected="true">Today's 5</button>
       <button type="button" role="tab" id="tab-endless" aria-selected="false">Keep playing</button>
@@ -74,7 +75,7 @@
   <article class="prose">
     <h2>How does it work?</h2>
     <p>Everyone gets the same five questions each day, starting with an easy one. Pick an answer and the numbers behind it appear, with a link to the player's or team's page on the site's NBA dashboards. When you're done, share your score as a row of squares without giving the answers away. A new set arrives at midnight, your time.</p>
-    <p><strong>Keep playing</strong> draws from all 2,793 questions in the bank, as long as your streak lasts. Totals are regular-season totals, and every answer shows how many games each player played, since a total depends on games played as much as on skill.</p>
+    <p><strong>This season</strong> and <strong>Past seasons</strong> each have their own Today's 5. This season's set is picked each morning from the totals through the night before, and never changes once it's up. <strong>Keep playing</strong> draws from either set's whole pool (2,793 questions for the past seasons), as long as your streak lasts. Totals are regular-season totals, and every answer shows how many games each player played, since a total depends on games played as much as on skill.</p>
 
     <h2>Sample NBA trivia questions and answers</h2>
     <p>Ten questions from the bank, none of which will turn up in a daily set. Open each one for the answer.</p>
@@ -96,12 +97,13 @@
     <table class="facts">
       <thead><tr><th scope="col">Questions about</th><th scope="col">Source</th><th scope="col">How it's measured</th></tr></thead>
       <tbody>
-        <tr><td>Points, assists, rebounds, 3-pointers, blocks and steals</td><td>NBA.com statistics, the same data behind the site's <a href="../../nba/">NBA stories</a> and dashboards</td><td>Regular-season totals for one season, or for all six seasons from 2020-21 through 2025-26 added up</td></tr>
+        <tr><td>Points, assists, rebounds, 3-pointers, blocks and steals</td><td>NBA.com statistics, the same data behind the site's <a href="../../nba/">NBA stories</a> and dashboards</td><td>Regular-season totals: so far this season, for one past season, or for all six past seasons from 2020-21 through 2025-26 added up</td></tr>
+        <tr><td>Last night's scoring and season-high games</td><td>NBA.com box scores, rebuilt every morning</td><td>Points in one game; this season's questions are re-checked each morning by recomputing every number a second way (points from made shots and free throws, wins from the game results)</td></tr>
         <tr><td>Team records</td><td>NBA.com team game logs</td><td>Wins and losses in the 82-game regular season</td></tr>
         <tr><td>The draft, college and undrafted players</td><td>NBA.com player records</td><td>Overall pick number, and the last team a player was on before the draft</td></tr>
       </tbody>
     </table>
-    <p class="note">The bank holds 2,793 questions about 1,095 players and all 30 teams; daily sets use the 168 best-known players. Only finished seasons are used, so no answer changes once it's written. The newest is 2025-26.</p>
+    <p class="note">The bank holds 2,793 questions about 1,095 players and all 30 teams; daily sets use the 168 best-known players. Past-season answers never change; the newest finished season is 2025-26. This season's answers are as of the date shown with each question.</p>
   </article>
 
   <section class="subscribe" id="subscribe" aria-labelledby="sub-h">
@@ -142,8 +144,67 @@
   function ord(k) { var s = ["th", "st", "nd", "rd"], v = k % 100; return k + (s[(v - 20) % 10] || s[v] || s[0]); }
   function list(a) { return a.length < 3 ? a.join(" and ") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
 
+  // ---------------------------------------------------------------- this season (season.json, built each morning)
+  // season.json: {season, thru, days: [{date, thru, q: [...]}], pool: [...]}, questions with names inline.
+  // adapt() turns it into the shape the game expects: q (every question), dates + days (the frozen daily sets)
+  // and endless (today's pool only, so Keep playing never shows an older day's totals).
+  var MON = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  function longDate(iso) { var p = iso.split("-"); return MON[+p[1] - 1] + " " + (+p[2]) + ", " + p[0]; }
+  function shortDate(iso) { var p = iso.split("-"); return MON[+p[1] - 1].slice(0, 3) + " " + (+p[2]); }
+  function adapt(raw) {
+    if (!raw.pool) return raw;
+    var b = { live: true, season: raw.season, thru: raw.thru, q: [], dates: [], days: [], endless: [] };
+    raw.days.forEach(function (d) {
+      b.dates.push(d.date);
+      b.days.push(d.q.map(function (q) { q.thru = d.thru; b.q.push(q); return b.q.length - 1; }));
+    });
+    raw.pool.forEach(function (q) { q.thru = raw.thru; b.q.push(q); b.endless.push(b.q.length - 1); });
+    return b;
+  }
+  function vsWords(m) {   // "DEN vs. LAL" -> "at home against LAL"; "DEN @ LAL" -> "at LAL"
+    var at = m.indexOf("@") >= 0, other = m.split(/ vs\. | @ /)[1] || "";
+    return at ? "at " + other : "against " + other;
+  }
+  function renderLive(b, qi, base) {
+    var q = b.q[qi], k = q.k, x = q.x;
+    var out = { id: qi, kind: k, answer: x, viz: "bar", options: [] };
+    var thru = longDate(q.thru), so = "so far this season";
+    var prof = function (pl) { return { href: base + "nba/dashboards/player-profile/#p" + pl[1], label: "See " + pl[0] + " this season" }; };
+    if (k === "ps" || k === "p4") {
+      var st = STAT[q.m];
+      out.ask = (k === "ps" ? "Who has " + st.more : "Which of these players has " + st.most) + " " + so + "?";
+      out.sub = "Regular-season totals through " + thru;
+      out.options = q.p.map(function (pl, j) { return { label: pl[0], value: q.v[j], shown: n(q.v[j]) }; });
+      var rest = q.p.map(function (pl, j) { return j === x ? null : pl[0] + " " + n(q.v[j]) + " in " + q.g[j] + " games"; }).filter(Boolean);
+      out.explain = q.p[x][0] + " has " + n(q.v[x]) + " " + st.noun + " in " + q.g[x] + " games through " + shortDate(q.thru) + ". " + list(rest) + ".";
+      out.more = prof(q.p[x]);
+    } else if (k === "tw") {
+      out.ask = "Which team has won more games " + so + "?";
+      out.sub = "Regular-season records through " + thru;
+      out.options = q.t.map(function (t, j) { return { label: t[1], value: q.v[j][0], shown: q.v[j][0] + "–" + q.v[j][1] }; });
+      out.explain = "Through " + shortDate(q.thru) + ": " + list(q.t.map(function (t, j) { return t[1] + " " + q.v[j][0] + "–" + q.v[j][1]; })) + ".";
+      out.more = { href: base + "nba/dashboards/team-profile/#" + q.t[x][0], label: "See the " + q.t[x][1] + " this season" };
+    } else if (k === "ln") {
+      out.ask = "Who scored more points on " + shortDate(q.night) + "?";
+      out.sub = "Box scores from " + longDate(q.night);
+      out.options = q.p.map(function (pl, j) { return { label: pl[0], value: q.v[j], shown: q.v[j] + " pts" }; });
+      out.explain = list(q.p.map(function (pl, j) { return pl[0] + " scored " + q.v[j] + " " + vsWords(q.vs[j]); })) + ".";
+      out.more = { href: base + "nba/dashboards/game-overview/", label: "See last night's games" };
+    } else if (k === "hi") {
+      out.ask = "Whose best scoring game " + so + " is the highest?";
+      out.sub = "Most points in one game, through " + thru;
+      out.options = q.p.map(function (pl, j) { return { label: pl[0], value: q.v[j], shown: q.v[j] + " pts" }; });
+      out.explain = q.p[x][0] + " scored " + q.v[x] + " on " + shortDate(q.when[x]) + " " + vsWords(q.vs[x]) + ". " +
+        list(q.p.map(function (pl, j) { return j === x ? null : pl[0] + " " + q.v[j] + " (" + shortDate(q.when[j]) + ")"; }).filter(Boolean)) + ".";
+      out.more = prof(q.p[x]);
+    }
+    out.answerLabel = out.options[x].label;
+    return out;
+  }
+
   function render(b, qi, base) {
     base = base || "../../";
+    if (b.live) return renderLive(b, qi, base);
     var q = b.q[qi], k = q[0], ids = q[1], x = q[2], e = q[3];
     var P = function (i) { var r = b.players[i]; return { name: r[0], id: r[1], active: r[2] }; };
     var T = function (i) { var r = b.teams[i]; return { abbr: r[0], name: r[1] }; };
@@ -210,7 +271,7 @@
     return out;
   }
 
-  var api = { render: render };
+  var api = { render: render, adapt: adapt };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.Trivia = api;
 })(this);
 </script>

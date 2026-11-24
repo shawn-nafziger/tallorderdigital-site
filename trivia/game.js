@@ -4,14 +4,20 @@
 // Progress is kept only in the reader's own browser (localStorage), and every read/write is wrapped in try/catch.
 (function () {
   var root = document.getElementById("play");
-  var BANK_URL = root.getAttribute("data-bank") || "bank.json";
-  var GAME = root.getAttribute("data-game");                 // "weather", "nba": keys, events and share text
-  var TITLE = root.getAttribute("data-title");               // "Tall Order Weather Trivia"
   var BASE = root.getAttribute("data-base") || "../../";     // path to the site root
-  var URL0 = "https://tallorderdigital.com/trivia/" + GAME + "/?ref=share";
-  var K = "tod-trivia-" + GAME + "-";
+  var PAGE = root.getAttribute("data-page") || root.getAttribute("data-game");   // the page's folder: "weather", "nba"
+  // A page can offer several question sets (NBA: "This season" and "Past seasons"), each with its own bank,
+  // saved progress and events. data-sets is a JSON list of {id, label, bank, game, title}; without it the page
+  // has one set from data-bank, data-game and data-title.
+  var SETS = JSON.parse(root.getAttribute("data-sets") || "null") || [{ id: "", bank: root.getAttribute("data-bank") || "bank.json",
+    game: root.getAttribute("data-game"), title: root.getAttribute("data-title") }];
+  var SET, BANK_URL, GAME, TITLE, URL0, K;                   // the set being played
   var $ = function (id) { return document.getElementById(id); };
-  var b, mode = "daily", state, endless;
+  var b, mode = "daily", state, endless, banks = {};
+  function useSet(s) {
+    SET = s; BANK_URL = s.bank; GAME = s.game; TITLE = s.title; K = "tod-trivia-" + GAME + "-";
+    URL0 = "https://tallorderdigital.com/trivia/" + PAGE + "/?" + (s.id && s.id !== SETS[0].id ? "set=" + s.id + "&" : "") + "ref=share";
+  }
 
   // Progress saved under the first address (trivia/, Nov 17, 2026) moves to the per-game keys once.
   try {
@@ -26,11 +32,21 @@
     (function go() { gc = window.goatcounter; if (gc && gc.count) gc.count({ path: path, title: path, event: true }); else if (tries++ < 20) setTimeout(go, 500); })();
   }
   function localDay(d) { return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5; }
+  function todayISO() { var d = new Date(); return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function dateWords(iso) { var p = iso.split("-"); return MON[+p[1] - 1] + " " + (+p[2]); }
+  // Banks with a fixed schedule (b.days[i] = day i after b.epoch) or dated sets built each morning (b.dates).
   function dayNumber() {
+    if (b.dates) {   // the newest set dated today or earlier (a reader ahead of the morning run gets yesterday's)
+      var t = todayISO(), i = b.dates.length - 1;
+      while (i > 0 && b.dates[i] > t) i--;
+      return i;
+    }
     var e = b.epoch.split("-");
     var n = localDay(new Date()) - Date.UTC(+e[0], +e[1] - 1, +e[2]) / 864e5;
     return Math.max(0, Math.floor(n));
   }
+  function dayName(n) { return b.dates ? dateWords(b.dates[n]) : "Daily #" + (n + 1); }
 
   // ------------------------------------------------------------ drawing one question
   var current, answered;
@@ -124,19 +140,21 @@
   }
 
   // ------------------------------------------------------------ Today's 5
-  function dailyKey() { return K + "day-" + dayNumber(); }
+  function dailyKey() { return K + "day-" + (b.dates ? b.dates[dayNumber()] : dayNumber()); }
   function startDaily() {
     mode = "daily";
     tabs();
     var n = dayNumber(), set = b.days[n % b.days.length];
-    state = store(dailyKey()) || { n: n, ids: set, picks: [] };
+    if (b.dates) n = Math.round(localDay(new Date(b.dates[n] + "T12:00")) - 20000);   // a running day count, for "days in a row"
+    state = store(dailyKey()) || { n: n, ids: set, picks: [], name: dayName(dayNumber()) };
+    state.name = state.name || dayName(dayNumber());
     if (state.picks.length >= 5) return finishDaily(false);
     nextDaily();
   }
   function nextDaily() {
     var k = state.picks.length;
     dots();
-    show(state.ids[k], "Daily #" + (state.n + 1) + " · Question " + (k + 1) + " of 5");
+    show(state.ids[k], state.name + " · Question " + (k + 1) + " of 5");
     $("tv-next").textContent = k === 4 ? "See your score" : "Next question";
   }
   function dots() {
@@ -177,7 +195,7 @@
     var st = store(K + "stats");
     $("tv-question").hidden = true;
     dots();
-    $("tv-label").textContent = "Daily #" + (state.n + 1) + " · Done";
+    $("tv-label").textContent = state.name + " · Done";
     var d = $("tv-done");
     d.hidden = false;
     var words = ["Tough set.", "One to build on.", "Not bad.", "Nicely done.", "So close to perfect.", "Perfect score!"][score];
@@ -210,6 +228,7 @@
     clearTimeout(timer);
     var el = $("tv-next-set");
     if (!el || mode !== "daily") return;
+    if (b.dates) { el.textContent = (el.textContent.indexOf("Days played") === 0 ? el.textContent.split(" · New questions")[0] + " · " : "") + "New questions every morning, from last night's games"; return; }
     var now = new Date(), mid = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
     var m = Math.max(1, Math.round((mid - now) / 6e4));
     var base = el.textContent.split(" · Next set")[0];
@@ -219,7 +238,7 @@
   }
   function shareScore() {
     var score = state.picks.reduce(function (a, c) { return a + c; }, 0);
-    var text = TITLE + " #" + (state.n + 1) + ": " + score + "/5\n" + squares();
+    var text = TITLE + (b.dates ? ", " + state.name : " #" + (state.n + 1)) + ": " + score + "/5\n" + squares();
     var url = URL0;
     var done = function (how) { $("tv-shared").textContent = how; send("share/trivia-" + GAME); };
     if (navigator.share) {
@@ -240,9 +259,9 @@
   }
   function nextEndless() {
     if (endless.over) { endless.streak = 0; endless.over = false; }
-    var n = b.q.length, qi, guard = 0;
+    var from = b.endless || null, n = from ? from.length : b.q.length, qi, guard = 0;   // b.endless: today's pool only
     var recent = endless.seen.slice(-300);
-    do { qi = Math.floor(Math.random() * n); } while (recent.indexOf(qi) >= 0 && guard++ < 50);
+    do { qi = Math.floor(Math.random() * n); if (from) qi = from[qi]; } while (recent.indexOf(qi) >= 0 && guard++ < 50);
     show(qi, "Keep playing · Streak " + endless.streak + " · Best " + endless.best);
     $("tv-next").textContent = "Next question";
   }
@@ -261,12 +280,32 @@
   $("tab-daily").addEventListener("click", startDaily);
   $("tab-endless").addEventListener("click", startEndless);
 
-  fetch(BANK_URL).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (data) {
-    b = data;
-    root.hidden = false;
-    if (/[?&]mode=endless\b/.test(location.search)) startEndless(); else startDaily();
-  }).catch(function () {
-    root.hidden = false;
-    root.innerHTML = '<p class="note">The questions didn\'t load. Try reloading the page; the sample questions below work either way.</p>';
-  });
+  // ------------------------------------------------------------ choosing a set, loading its bank
+  function load(s, wantEndless) {
+    useSet(s);
+    var box = $("tv-sets");
+    if (box) box.querySelectorAll("button").forEach(function (bt) { bt.setAttribute("aria-pressed", bt.getAttribute("data-set") === s.id); });
+    var go = function () { root.hidden = false; endless = null; if (wantEndless) startEndless(); else startDaily(); };
+    if (banks[s.id]) { b = banks[s.id]; return go(); }
+    fetch(BANK_URL).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (data) {
+      b = banks[s.id] = Trivia.adapt ? Trivia.adapt(data) : data;
+      go();
+    }).catch(function () {
+      root.hidden = false;
+      $("tv-question").hidden = true; $("tv-done").hidden = false;
+      $("tv-done").innerHTML = '<p class="note">These questions didn\'t load. Try reloading the page' + (SETS.length > 1 ? ' or the other set' : '') + '; the sample questions below work either way.</p>';
+    });
+  }
+  var box = $("tv-sets");
+  if (box && SETS.length > 1) {
+    SETS.forEach(function (s) {
+      var bt = document.createElement("button");
+      bt.type = "button"; bt.textContent = s.label; bt.setAttribute("data-set", s.id); bt.setAttribute("aria-pressed", "false");
+      bt.addEventListener("click", function () { if (SET !== s) load(s, mode === "endless"); });
+      box.appendChild(bt);
+    });
+    box.hidden = false;
+  }
+  var want = (location.search.match(/[?&]set=([a-z-]+)/) || [])[1];
+  load(SETS.filter(function (s) { return s.id === want; })[0] || SETS[0], /[?&]mode=endless\b/.test(location.search));
 })();
