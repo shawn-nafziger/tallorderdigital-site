@@ -197,3 +197,7 @@ AI search leans heavily on what other sites say about you, more than on your own
 - **Search Console:** impressions, clicks and the queries behind them, per page.
 - **GoatCounter referrers:** watch for chatgpt.com, perplexity.ai, gemini.google.com, copilot.microsoft.com and bing.com.
 - **Monthly spot check:** ask ChatGPT, Perplexity and Google a handful of the target questions and note whether the site is cited.
+
+## Proposed: `noindex` on the Saved page (PR, Nov 24, 2026)
+
+`saved/` (readers' saved stories and charts, kept in their own browser) carries `noindex`. To a search engine it's an empty page, the same as search results, which the standards already exclude. `tools/sitemap.js`, `structured-data.js` and `indexnow.js` skip it because of the tag. Needs Shawn's OK under `docs/seo-standards.md` §2 (approve by merging the PR). The Save buttons add no text a crawler reads as content: the page buttons are short labels beside Share, and the "Save chart" buttons are added by script.
