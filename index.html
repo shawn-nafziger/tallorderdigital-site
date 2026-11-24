@@ -52,6 +52,10 @@
     <!-- featured:end -->
     <!-- Trivia (Nov 17, 2026; points to the trivia home page since Nov 24, when NBA trivia joined): written by hand, not by build-hubs.js. -->
     <a class="featured-pill trivia-pill" href="trivia/"><span class="fp-k">Trivia</span><span class="fp-t">Weather and NBA</span><span class="fp-go" aria-hidden="true">→</span></a>
+    <!-- Saved list (Nov 24, 2026): shows only once the reader has saved something; the list is in their browser (assets/saved.js).
+         The line after it reveals it before the page draws, so nothing moves. -->
+    <a class="featured-pill saved-pill" href="saved/" hidden><span class="fp-k">Your saved list</span><span class="fp-t"></span><span class="fp-go" aria-hidden="true">→</span></a>
+    <script>try{var s=JSON.parse(localStorage.getItem("tod-saved")||"[]");if(Array.isArray(s)&&s.length){var a=document.currentScript.previousElementSibling,c=s.filter(function(x){return x&&x.c}).length,n=s.length-c,w=[];if(n)w.push(n+(n===1?" story":" stories"));if(c)w.push(c+(c===1?" chart":" charts"));a.querySelector(".fp-t").textContent=w.join(", ");a.hidden=false}}catch(e){}</script>
   </header>
 
   <section id="stories" aria-labelledby="doors-h">
