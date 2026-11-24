@@ -65,7 +65,8 @@ h2{font:700 27px/1.2 "Barlow Semi Condensed";margin:2.2em 0 .4em}
 .lead{font-size:19px}
 .facts{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 18px;margin:1.4em 0}
 .facts h2{margin:0 0 .3em;font-size:20px}.facts ul{margin:0;padding-left:1.1em}.facts li{margin:.25em 0}
-figure{margin:1.6em 0}figure.main{margin:1.8em -10px}
+figure{margin:1.6em 0}
+main figure:not(.sm){background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:20px 20px 14px;margin:32px 0}
 .fig-title{font:700 21px/1.25 "Barlow Semi Condensed";margin:0 0 6px}
 .fig-sub{font-size:14px;line-height:1.5;color:var(--ink-2);margin:0 0 10px}
 figure .chart-howto{margin:0 0 4px !important}figure .save-chart{margin:0 0 16px}
@@ -76,7 +77,7 @@ svg.chart{width:100%;height:auto;display:block;overflow:visible}
 svg .grid{stroke:var(--rule);stroke-width:1}svg .zero{stroke:var(--ink-3);stroke-width:1}
 svg .tick,svg .axl{font:400 11px "IBM Plex Mono";fill:var(--ink-3)}
 svg .lab,svg .rowl,svg .val{font:500 12px "IBM Plex Mono";fill:var(--ink-2)}svg .rowl{font-size:13px;fill:var(--ink)}
-svg .ann,svg .lab{paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+svg .ann,svg .lab{paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round}
 svg .ann{font:400 12px "IBM Plex Sans";fill:var(--ink-2)}svg .ann.strong{font-weight:600;fill:var(--ink)}
 svg circle.noise{fill:var(--ghost)}svg circle.comp{fill:var(--navy);opacity:.75}svg circle.sig{fill:var(--amber)}
 svg .line{fill:none;stroke-width:2.5}svg .line.comp{stroke:var(--navy)}svg .line.sig{stroke:var(--amber)}svg .line.noise-line{stroke:var(--ghost);stroke-width:2}
@@ -88,11 +89,16 @@ details{margin:.4em 0 1em;font-size:14px}summary{cursor:pointer;font:500 13px "I
 .tw{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font:400 13px/1.4 "IBM Plex Mono";margin:.4em 0}caption{text-align:left;font:600 13px "IBM Plex Sans";color:var(--ink-2);padding:4px 0}
 th,td{border-bottom:1px solid var(--rule);padding:6px 8px;text-align:left;vertical-align:top}td{font-variant-numeric:tabular-nums}thead th{color:var(--ink-3);font-weight:500}
+table.records th,table.records td{padding:10px 10px 10px 0}table.records th[scope=row],table.records thead th{white-space:nowrap}table.records b{font-weight:500;color:var(--ink)}
+.cell-sub{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+@media (max-width:600px){table.records thead{display:none}table.records tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;padding:12px 0;border-bottom:1px solid var(--rule)}
+table.records th[scope=row]{grid-column:1/-1;padding:0;border:0;font-size:15px}table.records td{padding:0;border:0}
+table.records td::before{content:attr(data-label);display:block;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}}
 table.wide td,table.wide th{padding:5px 6px;text-align:right}table.wide th[scope=row]{text-align:left}
 .grid-sm{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px}@media (max-width:600px){.grid-sm{grid-template-columns:1fr}}
-figure.sm{margin:.4em 0}figure.sm figcaption{font:400 13px "IBM Plex Mono";color:var(--ink-2)}figure.sm figcaption b{font:700 15px "Barlow Semi Condensed";color:var(--ink)}
+figure.sm{margin:.4em 0;min-width:0}figure.sm figcaption{font:400 13px "IBM Plex Mono";color:var(--ink-2)}figure.sm figcaption b{font:700 15px "Barlow Semi Condensed";color:var(--ink)}
 .note{font-size:15px;color:var(--ink-2)}.note h2{font-size:22px}
-@media (max-width:600px){.wide-only{display:none}figure.main{margin:1.8em 0}}@media (min-width:601px){.narrow-only{display:none}}
+@media (max-width:600px){.wide-only{display:none}main figure:not(.sm){padding:16px 12px 10px}}@media (min-width:601px){.narrow-only{display:none}}
 
 body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 /* this page uses normal flow inside <main>, not the story grid: space the end row and card by margin */
@@ -2219,8 +2225,9 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 <details><summary>Table: ERCOT modeled peak by temperature</summary><div class="tw"><table><caption>ERCOT modeled weekday peak demand (GW) by the day's high</caption><thead><tr><th scope="col">Day's high</th><th scope="col">2019</th><th scope="col">2026</th></tr></thead><tbody><tr><th scope="row">85°F</th><td>56.8</td><td>69.8</td></tr><tr><th scope="row">90°F</th><td>63.0</td><td>77.3</td></tr><tr><th scope="row">95°F</th><td>68.7</td><td>84.4</td></tr><tr><th scope="row">100°F</th><td>73.7</td><td>90.5</td></tr><tr><th scope="row">105°F</th><td>77.9</td><td>95.7</td></tr></tbody></table></div></details>
 </figure>
 
-<p>The same view for the other six grids, with demand shown as a percentage of each grid’s 2019 peak on a hot day so all six panels use the same vertical scale:</p>
-<figure id="six-grids-demand-vs-temperature" data-save-title="The other six grids: demand vs temperature, 2019 and 2026">
+<figure class="six" id="six-grids-demand-vs-temperature">
+<p class="fig-title">The other six grids: SPP and PJM moved up, New York moved down</p>
+<p class="fig-sub">The same view for each grid. Demand is shown as a percentage of the grid’s 2019 peak on a hot day, so all six panels use the same vertical scale.</p>
 <div class="key"><span><span class="k-sig">Orange</span>: 2026</span><span><span class="k-comp">Blue</span>: 2019</span><span><span class="k-noise">Gray</span>: other summers</span></div>
 <div class="grid-sm"><figure class="sm" data-no-save><figcaption><b>SPP</b> +10%</figcaption><svg viewBox="0 0 360 250" role="img" aria-labelledby="t-SWPP360" class="chart">
 <title id="t-SWPP360">SPP: daily summer peak demand against the day's high temperature, 2019 vs 2026</title>
@@ -8061,8 +8068,12 @@ html { scroll-padding-top: calc(var(--header-h) + 12px); }
 
 <h2>Where did the heat matter most?</h2>
 <p>On the peak days in the East, though those summers were ordinary overall. PJM’s record day was about 2°F hotter than its previous peak day, so PJM needed both the heat and the growth: its 2026 peak of 162.6 GW on July 2 beat the June 2025 record by 2.0 GW. New York’s 2026 peak day was about 5°F hotter than its August 2016 peak day, yet demand fell 1 GW short, because New York now uses less power at a given temperature than it did.</p>
-<div class="tw"><table><caption>Highest hourly demand before 2026 vs 2026's highest hour, with that day's population-weighted high</caption><thead><tr><th scope="col">Grid</th><th scope="col">Highest before 2026 (since 2016)</th><th scope="col">2026 highest</th><th scope="col">Result</th><th scope="col">Summer 2026 heat rank (average daily high)</th></tr></thead><tbody><tr><th scope="row">ERCOT</th><td>85.5 GW · Aug 20, 2024 · 101.6°F</td><td>91.1 GW · Jul 22, 2026 · 102.4°F</td><td>New record</td><td>2 of 11</td></tr><tr><th scope="row">SPP</th><td>56.0 GW · Aug 21, 2023 · 100.6°F</td><td>58.0 GW · Jul 27, 2026 · 99.5°F</td><td>New record</td><td>1 of 11</td></tr><tr><th scope="row">PJM</th><td>160.6 GW · Jun 23, 2025 · 94.7°F</td><td>162.6 GW · Jul 2, 2026 · 96.5°F</td><td>New record</td><td>8 of 11</td></tr><tr><th scope="row">MISO</th><td>120.8 GW · Aug 23, 2023 · 92.5°F</td><td>121.5 GW · Jun 30, 2026 · 91.4°F</td><td>New record</td><td>4 of 11</td></tr><tr><th scope="row">CAISO</th><td>51.1 GW · Sep 6, 2022 · 104.1°F</td><td>50.0 GW · Sep 9, 2026 · 100.5°F</td><td>Below record</td><td>9 of 11</td></tr><tr><th scope="row">ISO-NE</th><td>25.9 GW · Jun 24, 2025 · 98.0°F</td><td>25.3 GW · Jul 2, 2026 · 95.7°F</td><td>Below record</td><td>9 of 11</td></tr><tr><th scope="row">NYISO</th><td>32.1 GW · Aug 11, 2016 · 90.1°F</td><td>31.1 GW · Jul 2, 2026 · 95.3°F</td><td>Below record</td><td>8 of 11</td></tr></tbody></table></div>
-<p class="take">“Highest before 2026” is the highest hour in EIA’s hourly data, which starts in July 2015; NYISO’s official record, 34.0 GW in 2013, is older.</p>
+<figure class="records-card" id="record-peaks-table" data-no-save>
+<p class="fig-title">Four grids beat their highest hour since 2015; three fell short</p>
+<p class="fig-sub">Each grid’s highest hour of demand before 2026 and in 2026. Under each figure: the date and that day’s high, weighted by where people live. “Summer 2026” ranks that summer’s average daily high among the 11 summers since 2016.</p>
+<div class="tw"><table class="records"><thead><tr><th scope="col">Grid</th><th scope="col">Highest before 2026</th><th scope="col">Highest in 2026</th><th scope="col">Beat it?</th><th scope="col">Summer 2026</th></tr></thead><tbody><tr><th scope="row">ERCOT</th><td data-label="Highest before 2026"><b>85.5 GW</b><span class="cell-sub">Aug 20, 2024 · 101.6°F</span></td><td data-label="Highest in 2026"><b>91.1 GW</b><span class="cell-sub">Jul 22, 2026 · 102.4°F</span></td><td data-label="Beat it?">Yes</td><td data-label="Summer 2026">2nd hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">SPP</th><td data-label="Highest before 2026"><b>56.0 GW</b><span class="cell-sub">Aug 21, 2023 · 100.6°F</span></td><td data-label="Highest in 2026"><b>58.0 GW</b><span class="cell-sub">Jul 27, 2026 · 99.5°F</span></td><td data-label="Beat it?">Yes</td><td data-label="Summer 2026">1st hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">PJM</th><td data-label="Highest before 2026"><b>160.6 GW</b><span class="cell-sub">Jun 23, 2025 · 94.7°F</span></td><td data-label="Highest in 2026"><b>162.6 GW</b><span class="cell-sub">Jul 2, 2026 · 96.5°F</span></td><td data-label="Beat it?">Yes</td><td data-label="Summer 2026">8th hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">MISO</th><td data-label="Highest before 2026"><b>120.8 GW</b><span class="cell-sub">Aug 23, 2023 · 92.5°F</span></td><td data-label="Highest in 2026"><b>121.5 GW</b><span class="cell-sub">Jun 30, 2026 · 91.4°F</span></td><td data-label="Beat it?">Yes</td><td data-label="Summer 2026">4th hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">CAISO</th><td data-label="Highest before 2026"><b>51.1 GW</b><span class="cell-sub">Sep 6, 2022 · 104.1°F</span></td><td data-label="Highest in 2026"><b>50.0 GW</b><span class="cell-sub">Sep 9, 2026 · 100.5°F</span></td><td data-label="Beat it?">No</td><td data-label="Summer 2026">9th hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">ISO-NE</th><td data-label="Highest before 2026"><b>25.9 GW</b><span class="cell-sub">Jun 24, 2025 · 98.0°F</span></td><td data-label="Highest in 2026"><b>25.3 GW</b><span class="cell-sub">Jul 2, 2026 · 95.7°F</span></td><td data-label="Beat it?">No</td><td data-label="Summer 2026">9th hottest<span class="cell-sub">of 11 summers</span></td></tr><tr><th scope="row">NYISO</th><td data-label="Highest before 2026"><b>32.1 GW</b><span class="cell-sub">Aug 11, 2016 · 90.1°F</span></td><td data-label="Highest in 2026"><b>31.1 GW</b><span class="cell-sub">Jul 2, 2026 · 95.3°F</span></td><td data-label="Beat it?">No</td><td data-label="Summer 2026">8th hottest<span class="cell-sub">of 11 summers</span></td></tr></tbody></table></div>
+<p class="fig-note" style="margin:10px 0 0">“Before 2026” starts with EIA’s hourly data in July 2015, so older official records don’t count here: New York’s, for example, is 34.0 GW from 2013.</p>
+</figure>
 
 <h2>What this doesn’t tell us</h2>
 <p>It shows how much more power each grid needs at a given temperature, not why. Data centers, new factories, population growth, electric vehicles and the electrification of oil fields are all possible reasons, and this data can’t separate them. Rooftop solar lowers the demand a grid sees at midday, which is part of why California looks flat. A grid’s territory can also change over time, which would show up here as growth.</p>
